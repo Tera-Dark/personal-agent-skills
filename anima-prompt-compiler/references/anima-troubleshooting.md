@@ -1,75 +1,103 @@
-# Anima Troubleshooting & Diagnostic Guide
+# Anima Diagnostic & Troubleshooting System
 
-> **Version**: 1.0.0  
+> **Version**: 1.1.0  
 > **Last Updated**: 2026-09-17  
-> **Scope**: 常见生图异常排查、提示词冲突消解与修复建议
+> **Scope**: 异常可见伪影诊断流程、最小扰动修复与排查标准
 
-本文档为 `anima-prompt-compiler` 提供异常诊断经验沉淀。当生成的画面出现崩坏、色彩融化、构图混乱或角色串线时，可依据本指南进行针对性修正。
-
----
-
-## 1. 肢体畸形与手指崩坏 (Anatomy & Hand Artifacts)
-
-### 常见诱因
-1. **动作冲突 (Conflicting Poses)**：例如 Prompt 中同时包含了 `running` 和 `hands clasped behind back`，模型在运动动力学与静止姿势间冲突。
-2. **多余肢体引导**：过度泛化的词汇（如 `dynamic crazy action pose`）导致四肢数量随机增加。
-3. **未说明手部位置**：手部无明确归宿时，AI 容易在衣角或口袋处生成多余的手指。
-
-### 修复建议
-- **精准锚定手部行为**：明确指出手部所在位置（如 `hands gently resting on lap`、`one hand in coat pocket`、`holding a teacup with both hands`）。
-- **降低肢体复杂度**：由夸张复杂扭转退回为自然的静态或半身景别（Cowboy shot）。
+本文档为 `anima-prompt-compiler` 提供系统化生图异常诊断体系。当生成的画面出现崩坏、色彩融化、构图混乱或角色串线时，依照结构化诊断流程执行最小必要修正，杜绝盲目堆叠无效负面词。
 
 ---
 
-## 2. 服装融合与内外层串色 (Garment Merging & Color Bleeding)
+## 1. 标准诊断执行流 (Standard Diagnostic Flow)
 
-### 常见诱因
-1. **多重颜色修饰词散落**：例如 `blue eyes, black coat, white shirt, red scarf, brown shoes`，模型容易将红色混入大衣，或把黑色染上衬衫。
-2. **缺乏空间装配次序**：未按物理层级从内向外描述。
+遇到异常出图时，按以下四步顺序排查，严禁一次性修改多个变量：
 
-### 修复建议
-- **紧凑短语绑定 (Tight Phrase Binding)**：将颜色与服装紧密锁定在一个从句内：
+```text
+Step 1: 识别可见伪影 (Identify Visible Artifact)
+   ↓
+Step 2: 定位问题根源 (Root Cause Analysis: 提示词冲突 / 主体计数 / 空间歧义 / 材质融色 / 参数设置)
+   ↓
+Step 3: 施加最小扰动修复 (Apply Smallest Possible Prompt Modification)
+   ↓
+Step 4: 单变量回测验证 (Re-test while keeping other variables strictly unchanged)
+```
+
+---
+
+## 2. 结构化诊断条目 (Diagnostic Catalog)
+
+### 诊断项 01 · 肢体畸变与手部多指 (Anatomy & Hand Artifacts)
+
+- **症状 (Symptom)**：手部指头粘连、多指、关节反折或胸前莫名伸出多余手臂。
+- **可能原因 (Potential Root Causes)**：
+  1. 提示词中同时存在互斥的姿态动词（如同时写了奔跑与背手）；
+  2. 未给手部指定任何物理锚点，模型在自由发散中产生幻觉；
+  3. 含有过度夸张的动作修饰词（如 `extreme crazy pose`）。
+- **优先排查项 (First-order Checks)**：检查是否包含 2 个以上的冲突动作词。
+- **最小修复措施 (Minimal Remediation)**：明确手部所在物理位置（如 `hands resting naturally on lap`、`one hand in coat pocket`、`holding a book with both hands`）。
+- **不要立即做的事情 (What NOT to do)**：❌ 不要盲目在 Negative Prompt 堆叠几十个 `bad hands, extra fingers, missing fingers, malformed limbs`；❌ 不要随意加到 `(detailed fingers:1.5)` 这种过高权重。
+- **验证标准 (Verification Criteria)**：手部有明确的着落点，指关节清晰自然。
+
+---
+
+### 诊断项 02 · 服装融合与内外层串色 (Garment Merging & Color Bleeding)
+
+- **症状 (Symptom)**：外套的颜色渗入内搭，围巾的花纹融进衬衫，或下摆与长裤材质混淆。
+- **可能原因 (Potential Root Causes)**：
+  1. 多种颜色形容词散落排列，模型注意力未能正确对应具体名词；
+  2. 缺乏从内到外的物理装配空间顺序。
+- **优先排查项 (First-order Checks)**：检查颜色词是否紧贴在对应的服饰名词之前。
+- **最小修复措施 (Minimal Remediation)**：采用**紧凑短语绑定 (Tight Phrase Binding)** 与 4 层叠穿语法：
   ```text
-  [优化前] a girl in a coat, shirt, scarf, black, white, red
-  [优化后] wearing an open black wool coat over a crisp white cotton shirt, accented by a red knitted scarf
+  [修复方案]
+  wearing an open [Color + Material] coat over a [Color + Material] shirt, paired with [Color] trousers
   ```
-- **物理层级排序**：严格遵循 `Base Layer (贴身) → Mid Layer (中层) → Outer Shell (外套)` 的顺序编译。
+- **不要立即做的事情 (What NOT to do)**：❌ 不要单纯提高某个颜色的括号权重；❌ 不要拆分成无上下文的单独逗号 Tag。
+- **验证标准 (Verification Criteria)**：内搭与外套领口界限分明，颜色无渗透。
 
 ---
 
-## 3. 背景抢主体与视觉过载 (Background Dominance & Visual Overload)
+### 诊断项 03 · 背景喧宾夺主与视觉过载 (Background Dominance)
 
-### 常见诱因
-1. **背景信息密度远超主体**：大段描述了复杂的赛博朋克街景、几十栋建筑、车流与广告牌，稀释了人物注意力。
-2. **缺乏景深衰减指令**。
-
-### 修复建议
-- **引入负空间与散景**：在背景描述中加入 `shallow depth of field, background softly blurred, low visual density, simple minimalist backdrop`。
-- **调大角色构图占比**：改用 `close-up`, `cowboy shot` 或指定 `character dominating the foreground`。
+- **症状 (Symptom)**：复杂的街道建筑、密集路人或刺眼光污染夺取了角色主体地位，角色被压缩变小。
+- **可能原因 (Potential Root Causes)**：
+  1. 背景词汇长度与信息密度显著高于角色；
+  2. 未指明景深衰减或构图景别；
+  3. 缺少负空间休止区。
+- **优先排查项 (First-order Checks)**：统计背景描述词数是否超过总词数的 40%。
+- **最小修复措施 (Minimal Remediation)**：
+  1. 将景别收拢至 `cowboy shot` 或 `upper body portrait`；
+  2. 在背景描述中加入 `shallow depth of field, background softly blurred, low visual density`。
+- **不要立即做的事情 (What NOT to do)**：❌ 不要直接粗暴使用纯白底破坏原有叙事意图。
+- **验证标准 (Verification Criteria)**：主体占据画面视觉焦点，背景虚化或留白自然退后。
 
 ---
 
-## 4. 多角色属性串线 (Multi-Character Attribute Cross-Contamination)
+### 诊断项 04 · 多角色属性串线 (Multi-Character Cross-Contamination)
 
-### 常见诱因
-当画面出现 2 个或更多角色时，AI 会把 A 的金色长发画到 B 头上，或把 B 的西装穿到 A 身上。
-
-### 修复建议
-- **单人优先原则**：若非绝对必要，立绘与服设尽量坚持单主体（`1girl` 或 `1boy`）。
-- **严格分块绑定**：如果必须编译双人插画，使用严格的方位前缀：
+- **症状 (Symptom)**：角色 A 的金发或服装被绘制在角色 B 身上，或者两个角色长相融合成连体婴。
+- **可能原因 (Potential Root Causes)**：
+  1. 使用了全局泛化描述而未按方位/角色独立分块；
+  2. 出现多主体时未明确数量与站位关系。
+- **优先排查项 (First-order Checks)**：检查是否使用了单一大段从句混合描述两个角色。
+- **最小修复措施 (Minimal Remediation)**：
+  按严格分块语法隔离：
   ```text
   2girls,
-  the girl on the left has long blonde hair and wears a blue dress,
-  the girl on the right has short black hair and wears a white sweater
+  [LEFT]: the girl on the left has [Hair/Eyes] and wears [Outfit A],
+  [RIGHT]: the girl on the right has [Hair/Eyes] and wears [Outfit B]
   ```
-- **多尺度展示板替代**：如果是展示同一角色的不同角度或特写，使用 `layered character presentation layout`，并指明为 `same character`。
+- **不要立即做的事情 (What NOT to do)**：❌ 不要在同一个句式中并列两套服装词。
+- **验证标准 (Verification Criteria)**：两人特征清晰独立，发色与衣物无交叉混淆。
 
 ---
 
-## 5. 纯白背景边缘消融 (White Background Edge Bleaching)
+### 诊断项 05 · 纯白背景边缘消融 (White Background Edge Bleaching)
 
-### 常见诱因
-当指定 `white background` 且角色穿浅色或反光材质衣物时，受光面容易与背景融为一体失去轮廓。
-
-### 修复建议
-- **注入弱阴影锚点**：添加 `subtle soft contact shadow beneath feet, gentle grey gradient backdrop`，既保持了纯净背景，又保证了边缘轮廓完整。
+- **症状 (Symptom)**：角色穿着浅色、白色丝绸或羽绒服时，身体边缘与纯白背景融合成一片。
+- **可能原因 (Potential Root Causes)**：
+  纯白背景拉高了全局明度，浅色物体受光面失去对比阶调。
+- **优先排查项 (First-order Checks)**：检查是否缺少受光与暗部接地面。
+- **最小修复措施 (Minimal Remediation)**：添加微弱暗部支点：`soft subtle contact shadow beneath feet, gentle grey gradient backdrop, balanced ambient lighting`。
+- **不要立即做的事情 (What NOT to do)**：❌ 不要将角色衣服强制改成深色。
+- **验证标准 (Verification Criteria)**：白裙白衣依然成立，但边缘通过微弱阴影获得清晰轮廓。

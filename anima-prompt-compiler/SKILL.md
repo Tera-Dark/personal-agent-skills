@@ -21,9 +21,9 @@ description: Compile character concepts, fashion designs, OC settings, compositi
        ▼                           ▼                           ▼                           ▼
 【模型知识库】               【构图排版协议】             【去AI味美学引擎】           【服设与材质模式】
 anima-model-profiles        anima-composition           anima-aesthetic-deai        anima-fashion-patterns
-(负责模型兼容性)            (负责画面稳定性)            (负责审美自由增强)          (负责穿搭质感)
+(负责模型兼容性与证据溯源)  (负责画面稳定性与展示板)    (负责审美自由增强)          (负责穿搭与材质碰撞)
        │
-       └──────────────► 【异常诊断与排查】 ◄──────────────┘
+       └──────────────► 【异常诊断手册】 ◄──────────────┘
                          anima-troubleshooting
                          (负责常见崩图与冲突消解)
 ```
@@ -39,7 +39,7 @@ anima-model-profiles        anima-composition           anima-aesthetic-deai    
 ## 2. Core Principles (编译原则)
 
 ### 2.1 锁定信息与不确定性处理
-- **严格锁定已明确特征**：发色、瞳色、种族特征、指定服装配色与关键道具属于不可侵犯锁死项，严禁擅自篡改。
+- **忠实保留已明确特征**：发色、瞳色、种族特征、指定服装配色与关键道具属于不可侵犯锁死项，严禁擅自篡改。
 - **未确定信息保持开放**：对输入或参考图中无法明确确认的细节，**严禁脑补后列为锁定项**。保持描述的包容性，将探索空间留给画面本身。
 
 ### 2.2 多角色身份隔离 (Multi-Subject Isolation)
@@ -61,16 +61,17 @@ If the user explicitly requests negative prompts or a specific frontend requires
 
 ---
 
-## 3. Prompt 长度策略 (Prompt Length Strategy)
+## 3. 弹性词数规划策略 (Flexible Planning Targets)
 
-拒绝所有输出机械膨胀至相同长度，依据任务性质动态规划词数预算：
+> 💡 **核心准则**：Prompt length budgets are flexible planning targets, not hard limits. Prioritize information density, subject identity, spatial clarity, and user intent over reaching a fixed word count.  
+> 词数预算仅用于规划输出密度，不是硬性限制。当角色身份、服装层级或空间关系需要更多信息时，可以适当超出预算；当任务简单时，应主动缩短。
 
-| 任务类型 | 建议词数 (Word Budget) | 结构重心 |
+| 任务类型 | 弹性规划参考值 (Planning Target) | 结构重心 |
 | :--- | :--- | :--- |
-| **头像 / 表情研究 / 快速原型** | **30 - 50 词** | 极简高敏 Tag 锁定五官、发型、眼神光与基础柔光。 |
-| **日常穿搭 / OC 标准立绘** | **50 - 80 词** | 聚焦服装 4 层叠穿、材质物理特性、站立姿态与接地阴影。 |
-| **多尺度展示板 / 多角色插画** | **70 - 100 词** | 严格区分前景清晰主体与背景放大淡化头像，防止图层混乱。 |
-| **电影感叙事场景 / 高定概念图** | **80 - 120 词** | 融入景深衰减、非对称构图、主光源方向、空气微尘与电影颗粒。 |
+| **头像 / 表情研究 / 快速原型** | **~20 - 45 词** | 极简高敏 Tag 锁定五官、发型、眼神光与基础柔光。 |
+| **日常穿搭 / OC 标准立绘** | **~45 - 75 词** | 聚焦服装 4 层叠穿、材质物理特性、站立姿态与接地阴影。 |
+| **多尺度展示板 / 多角色插画** | **~70 - 100 词** | 严格区分前景清晰主体与背景放大淡化头像，防止图层混乱。 |
+| **电影感叙事场景 / 高定概念图** | **~80 - 120 词** | 融入景深衰减、非对称构图、主光源方向、空气微尘与电影颗粒。 |
 
 ---
 
@@ -101,8 +102,8 @@ If the user explicitly requests negative prompts or a specific frontend requires
 - **触发条件**：用户提供参考图、要求重构还原已有设想、或需要兼顾还原与艺术升华时。
 - **输出格式**：
   1. **Strategy Line**：说明当前任务类型与匹配的美学预设。
-  2. **V1 Faithful Prompt (忠实还原版)**：严格 1:1 锁定用户原始输入，不擅自增删元素，确保绝对符合原案。
-  3. **V2 Enhanced Prompt (美学增强版)**：注入去 AI 味光影、微观物理瑕疵、高级叠穿或电影构图的升华版。
+  2. **V1 Faithful Prompt (忠实还原版)**：尽可能忠实保留用户明确表达的主体、特征、服装、动作和场景信息；允许进行必要的语言转换、顺序整理、消解歧义和结构化装配，但不得主动进行美学升级或添加未经请求的关键设定。
+  3. **V2 Enhanced Prompt (美学增强版)**：在 V1 基础上，注入去 AI 味光影、微观物理瑕疵、高级叠穿或电影构图的审美升华版。
   4. **V2 Enhancement Notes**：简述 V2 相较于 V1 在光影/材质/空间上所做的关键艺术优化。
 
 ### 5.3 Deep Mode (深度企划模式)
@@ -124,6 +125,6 @@ If the user explicitly requests negative prompts or a specific frontend requires
 - [ ] 未确定的细节是否保持了开放，未擅自补全为锁定项？
 - [ ] 是否根据任务正确选择了美学策略，避免了强行套用阴暗留白模板？
 - [ ] 是否执行了 Positive-First 协议，避免无意义的否定修饰？
-- [ ] 词数是否符合 Prompt 长度策略，未出现无序膨胀？
+- [ ] 词数是否合理服务于信息密度与画面清晰度，避免生硬死凑数字？
 - [ ] 多角色场景是否做了属性物理绑定与隔离？
 - [ ] 输出格式是否严格符合当前选定的 Direct / Standard / Deep 模式契约？

@@ -5,6 +5,19 @@ All notable changes to the `personal-agent-skills` repository will be documented
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2026-09-17
+
+### Added
+- **Provenance & Sources Tracking**: Added a dedicated Source tracking section in `anima-model-profiles.md` with explicit URL/Context, verified dates, and scope to eliminate unverified "Official" assertions.
+- **Systematic Diagnostic Flow**: Upgraded `anima-troubleshooting.md` into a 4-step diagnostic flow with structured catalog entries (Symptom, Root Cause, First-order Check, Minimal Remediation, Anti-patterns, Verification Criteria).
+- **Core Test Suite**: Created `tests/test-suite.md` featuring 8 comprehensive benchmark cases covering identity lock, 4-tier layering, multi-scale presentation layouts, white backdrop edge retention, multi-character isolation, and word count flexibility.
+
+### Changed
+- **De-dogmatized Phrasing Standards**: Enforced 3-tier calibrated phrasing ("Officially documented", "Commonly observed across community workflows", "Observed under tested conditions") to eliminate exaggerated claims.
+- **Redefined V1 Faithful Contract**: Revised V1 definition from rigid "strict 1:1" to faithful preservation of explicit intent while allowing necessary language conversion, disambiguation, and structured layout without unsolicited aesthetic upgrades.
+- **Flexible Planning Targets for Prompt Length**: Replaced rigid word count limits with dynamic planning budgets prioritizing information density and spatial clarity over arbitrary metrics.
+- **Experiment Log Metadata**: Enhanced test logs with `Replication Count` and `Generalizability` boundaries.
+
 ---
 
 ## [1.1.0] - 2026-09-17

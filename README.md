@@ -28,6 +28,8 @@
 ├── CHANGELOG.md                       # 版本与规则演进记录
 ├── docs/
 │   └── skill-specification.md         # 通用 Skill 编写与贡献标准
+├── tests/
+│   └── test-suite.md                  # 核心测试集（8组覆盖构图、叠穿、隔离与约束的验证样例）
 │
 ├── anima-prompt-compiler/             # 【已就绪】Anima 动漫图像提示词编译器
 │   ├── SKILL.md                       # 主调度中枢（任务路由、V1/V2契约）
