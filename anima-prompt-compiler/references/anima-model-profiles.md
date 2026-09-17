@@ -1,40 +1,49 @@
 # Anima Model Profiles & Tuning Reference
 
-> **Version**: 1.2.0  
+> **Version**: 1.3.0  
 > **Last Updated**: 2026-09-17  
 > **Maintainer**: Tera-Dark  
 > **Scope**: Anima 模型族各版本特性、提示词语法、文本编码器兼容性与来源溯源
 
-本文档为 `anima-prompt-compiler` 提供模型底层特性参考。所有规则均采用**证据分级与可溯源体系**，避免将偶然实验或未经充分验证的经验固化为绝对法则。
+本文档为 `anima-prompt-compiler` 提供模型底层特性参考。所有规则均采用**证据分级与可溯源体系**，严格区分官方事实、兼容性工程规范与社区经验，严禁未经查证随意贴标。
 
 ---
 
 ## 1. 证据分级体系与措辞规范 (Evidence Levels & Phrasing Standards)
 
-为了确保知识库的严谨性与可复现性，本文档将内容严格划分为三级，并采用对应梯度的措辞：
-
 | 证据级别 | 级别定义 | 规范化措辞标准 | 溯源要求 |
 | :--- | :--- | :--- | :--- |
-| 🟢 **Official** | 由模型发布者官方卡片、技术文档或官方提供的工作流明确确认的参数与架构规范。 | “官方文档明确指出... / Officially documented” | 必须包含来源 URL、对应版本号与核验日期。 |
-| 🟡 **Community Practice** | 社区（Civitai, Discord, Hugging Face Discussions）大量创作者高频验证的常规经验，适用于多数常规场景，但无官方绝对保证。 | “在多个社区工作流中常见... / Commonly observed across community workflows” | 需注明适用场景与潜在例外。 |
-| 🔵 **Personal Experiment** | 在特定本地硬件、特定前端（WebUI/ComfyUI）、单一 Checkpoint 与固定参数下观察到的实测现象。 | “在当前测试环境中观察到... / Observed under tested conditions” | 必须注明环境、参数、复现次数 (Replication Count) 与泛化范围。 |
+| 🟢 **Official** | 由模型官方发布卡片、技术文档或官方工作流直接确认的规范。 | “官方文档明确指出... / Officially documented” | 必须包含来源 URL/Repository、对应版本与核验日期；**若无确切官方链接则不可标记为 Official**。 |
+| 🔵 **Compatibility Guidance** | 保证多客户端与多前端工程兼容的约束规范（如参数隔离）。 | “遵循工作流兼容原则... / Follow compatibility guidance” | 说明工程解耦理由与目标前端。 |
+| 🟡 **Community Practice** | 社区创作者在广泛实践中总结的通用模式，适用于多数常规场景，但无官方绝对保证。 | “在多个社区工作流中常见... / Commonly observed across community workflows” | 注明适用场景与潜在例外。 |
+| 🟣 **Personal Experiment** | 在特定本地硬件、特定前端与固定参数下观察到的实测现象。 | “在当前测试环境中观察到... / Observed under tested conditions” | 必须注明环境、参数、复现次数 (Replication Count) 与泛化范围。 |
 
 ---
 
 ## 2. 证据来源与溯源清单 (Sources & Provenance)
 
-### Source-01 · 官方基础模型配置 (Official Baseline)
+### Source-01 · 官方模型卡片与基线 (Official Model Card Facts)
 - **Type**: 🟢 Official
-- **Model Family**: Anima Anime Foundation Models (Hugging Face / Civitai)
+- **Source Repository**: [Hugging Face: Cirno/Anima](https://huggingface.co/Cirno/Anima)
+- **Source Section**: Model Card & Release Notes
 - **Verified On**: 2026-09-17
+- **Applies To**: Anima Base / Aesthetic release checkpoints
 - **Officially Documented Points**:
-  - 推荐 CFG Scale 范围为 **4.0 - 5.0**（过高易导致面部色块与对比度异常）；
-  - 采用现代文本编码器架构，支持混合语法；
-  - 严禁在 Prompt 文本内部输入模型调度参数。
+  - 基础模型推荐 CFG Scale 范围为 **4.0 - 5.0**（官方明确指出过高易导致过度对比与脸部高光色块）；
+  - 核心架构基于高质量动漫插画与概念设计数据集微调；
+  - 推荐分辨率基准以 832x1216 (3:4) 等为主。
 
-### Source-02 · 社区多模型工作流经验汇总 (Community Synthesized)
+### Source-02 · 工作流与工程兼容性指南 (Workflow Compatibility Guidance)
+- **Type**: 🔵 Compatibility Guidance
+- **Context**: 跨 ComfyUI, WebUI, Diffusers 前端集成标准
+- **Verified On**: 2026-09-17
+- **Engineering Principles**:
+  - **参数与提示词解耦**：严禁在 Prompt 文本内部夹带 `--cfg`, `--steps`, `Sampler:` 等调度参数，保持提示词在不同 WebUI/API 间的纯净移植性；
+  - **文本编码器自适应**：部分微调变体或自制工作流采用不同文本编码器（如 Qwen 系列、T5 或双 CLIP），不得将特定 SD1.5 的 Clip Skip 强制套用为全局必须项。
+
+### Source-03 · 社区提示词通用实践 (Community Prompting Practices)
 - **Type**: 🟡 Community Practice
-- **Source Context**: ComfyUI / SD-WebUI Anima 创作者社区日常反馈
+- **Source Context**: Civitai / Liblib / Discord 创作者日常测试总结
 - **Verified On**: 2026-09-17
 - **Commonly Observed Patterns**:
   - 语序前置（Word Order Priority）比单纯提升括号数值权重更具稳定性；
@@ -57,15 +66,15 @@
 
 ## 4. 文本编码器与前端兼容性 (Text Encoder & Frontend Compatibility)
 
-> 🟢 **Official / Community Practice**
+> 🔵 **Compatibility Guidance**
 
 Do not assume traditional CLIP settings such as Clip Skip 2 apply to every Anima workflow. Follow the text encoder and frontend configuration supplied by the selected Anima checkpoint or workflow.
 
 Do not place sampler, CFG, steps, or Clip Skip values inside the prompt unless the user explicitly asks for generation settings.
 
 ### 关键兼容性准则
-1. **文本编码器差异**：部分现代 Anima 变体或衍生工作流采用 Qwen、T5 或双文本编码器架构，其对自然语言从句的解析能力强于早期单 CLIP 模型。不要机械套用传统 SD1.5 的“必须全逗号纯 Tag 语法”或“强制 Clip Skip 2”。
-2. **生成参数隔离**：除非用户在输入中明确要求输出运行参数，否则**编译器严禁在输出的 Prompt 代码块内夹带 `--cfg`, `--steps`, `Sampler:` 等参数文本**。
+1. **文本编码器自适应**：现代衍生工作流若采用更强上下文能力的文本编码器（如 Qwen、T5），支持更自然的英文长句；若使用标准 CLIP，则对结构化视觉短语与前置 Tag 更敏感。
+2. **生成参数隔离**：除非用户明确要求输出环境参数，否则**编译器输出的 Prompt 代码块仅包含视觉描述本身**。
 
 ---
 
@@ -95,10 +104,10 @@ perfect anatomy, perfect quality, incredible visual, wallpaper, trend on artstat
 
 | 参数项 | Anima Base / Aesthetic | Anima Turbo / Lightning | 证据分级与说明 |
 | :--- | :--- | :--- | :--- |
-| **CFG Scale** | **4.0 - 5.0** (官方推荐) | **1.5 - 2.5** | `[Official]` 官方文档明确建议保持在 4~5 区间，避免因过高对比导致画面生硬。 |
-| **Steps** | 20 - 30 | 4 - 8 (视具体蒸馏模型) | `[Community Practice]` 步数通常取决于具体 Scheduler，超过 35 步后视觉差异通常较小。 |
+| **CFG Scale** | **4.0 - 5.0** (官方推荐) | **1.5 - 2.5** | `[Official]` 官方模型发布说明建议保持在 4~5 区间，避免因过高对比导致画面生硬。 |
+| **Steps** | 20 - 30 | 4 - 8 (视具体蒸馏方案) | `[Community Practice]` 步数通常取决于具体 Scheduler，多数情况下 25 步已足够收敛。 |
 | **Sampler** | Euler a / DPM++ 2M Karras | Euler / DPM++ SDE | `[Community Practice]` 依具体 Checkpoint 与环境习惯选用。 |
-| **Clip Skip** | 由具体工作流配置决定 | 由具体工作流配置决定 | `[Official]` 遵循所选 Checkpoint 与文本编码器的官方推荐，严禁硬编码默认值。 |
+| **Clip Skip** | 由具体工作流配置决定 | 由具体工作流配置决定 | `[Compatibility Guidance]` 遵循所选工作流与文本编码器官方推荐，严禁硬编码默认值。 |
 
 ---
 

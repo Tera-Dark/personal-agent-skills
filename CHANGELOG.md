@@ -5,6 +5,20 @@ All notable changes to the `personal-agent-skills` repository will be documented
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.0] - 2026-09-17
+
+### Added
+- **Dedicated Provenance Separation**: Disentangled official facts from engineering guidance in `anima-model-profiles.md`. Added explicit Hugging Face model card URL for `Source-01`, introduced `Source-02 (Compatibility Guidance)`, and labeled Clip Skip as `[Compatibility Guidance]`.
+- **Key Fact Lock Constraint for V2**: Explicitly mandated in `SKILL.md` that V2 Enhanced Prompt MUST NOT modify core facts established in V1 (hair, eyes, core clothing style, specified pose) unless explicitly designated as optional creative variants.
+- **Uncertainty Handling Protocol**: Added a 4-step diagnostic protocol in `anima-troubleshooting.md` for ambiguous artifacts (avoid hasty claims, identify top 2 causes, apply least invasive test, record separately).
+- **Manual Evaluation Rubric in Test Suite**: Enhanced `tests/test-suite.md` with a standardized 6-dimension evaluation rubric (Identity Preservation, Outfit Binding, Spatial Clarity, Unrequested Additions, V1/V2 Fact Consistency, Output Contract) and per-case evaluation record templates.
+
+### Changed
+- **Softened Empirical Diagnostics**: Reframed background length ratio (40%) in troubleshooting as a rough investigation signal rather than a rigid universal threshold.
+- **Prompt Length Guideline Clarification**: Clarified in `SKILL.md` that length budget ranges serve solely to help AI structure information density, not as rigid pass/fail criteria.
+
+---
+
 ## [1.2.0] - 2026-09-17
 
 ### Added

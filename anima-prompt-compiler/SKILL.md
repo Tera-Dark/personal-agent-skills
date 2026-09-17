@@ -28,11 +28,11 @@ anima-model-profiles        anima-composition           anima-aesthetic-deai    
                          (负责常见崩图与冲突消解)
 ```
 
-- **模型知识库** (`references/anima-model-profiles.md`)：基于证据分级（Official / Community / Experiment）掌控模型特性、语法权重与有效渲染词，负责**兼容性**。
+- **模型知识库** (`references/anima-model-profiles.md`)：基于证据分级（Official / Compatibility Guidance / Community Practice / Experiment）掌控模型特性、语法权重与有效渲染词，负责**兼容性**。
 - **构图排版协议** (`references/anima-composition-patterns.md`)：掌控全身立绘、牛仔景别、多尺度展示板（前景立绘+背景放大头像），负责**稳定性**。
 - **去 AI 味美学引擎** (`references/anima-aesthetic-deai.md`)：掌控六大人性化美学思维与 5 大风格预设（商业头像、甜美可爱、高级服设、暗黑叙事、电影海报），负责**审美按需增强，拒绝单一固定模板**。
 - **服设与材质模式** (`references/anima-fashion-patterns.md`)：掌控 4 层叠穿架构、非对称剪裁与物理材质对抗，负责**视觉质感**。
-- **异常诊断手册** (`references/anima-troubleshooting.md`)：掌控肢体崩坏、内外层服装融合、背景抢主体与多角色串线的排查。
+- **异常诊断手册** (`references/anima-troubleshooting.md`)：基于 4 步诊断流掌控肢体崩坏、内外层服装融合、背景抢主体与多角色串线的排查与归因不确定性处理。
 
 ---
 
@@ -64,7 +64,8 @@ If the user explicitly requests negative prompts or a specific frontend requires
 ## 3. 弹性词数规划策略 (Flexible Planning Targets)
 
 > 💡 **核心准则**：Prompt length budgets are flexible planning targets, not hard limits. Prioritize information density, subject identity, spatial clarity, and user intent over reaching a fixed word count.  
-> 词数预算仅用于规划输出密度，不是硬性限制。当角色身份、服装层级或空间关系需要更多信息时，可以适当超出预算；当任务简单时，应主动缩短。
+> 词数预算仅用于规划输出密度，不是硬性限制。当角色身份、服装层级或空间关系需要更多信息时，可以适当超出预算；当任务简单时，应主动缩短。  
+> **注意：以下区间用于帮助模型规划信息层次与密度，不得将其作为判断输出是否合格的生硬死线（These ranges serve to guide information density, not as criteria for judging pass/fail）。**
 
 | 任务类型 | 弹性规划参考值 (Planning Target) | 结构重心 |
 | :--- | :--- | :--- |
@@ -104,6 +105,7 @@ If the user explicitly requests negative prompts or a specific frontend requires
   1. **Strategy Line**：说明当前任务类型与匹配的美学预设。
   2. **V1 Faithful Prompt (忠实还原版)**：尽可能忠实保留用户明确表达的主体、特征、服装、动作和场景信息；允许进行必要的语言转换、顺序整理、消解歧义和结构化装配，但不得主动进行美学升级或添加未经请求的关键设定。
   3. **V2 Enhanced Prompt (美学增强版)**：在 V1 基础上，注入去 AI 味光影、微观物理瑕疵、高级叠穿或电影构图的审美升华版。
+     > ⚠️ **关键事实锁定约束**：**V2 不得修改 V1 的关键事实（如发色、瞳色、服装核心款式、指定动作等），除非明确标注为“可选创作变体”。**
   4. **V2 Enhancement Notes**：简述 V2 相较于 V1 在光影/材质/空间上所做的关键艺术优化。
 
 ### 5.3 Deep Mode (深度企划模式)
@@ -113,7 +115,7 @@ If the user explicitly requests negative prompts or a specific frontend requires
   2. Locked Information (锁定的核心信息清单)
   3. Composition Decision (构图与景别决策)
   4. V1 Faithful Prompt 代码块
-  5. V2 Enhanced Prompt 代码块
+  5. V2 Enhanced Prompt 代码块（遵循关键事实锁定约束）
   6. Enhancement Notes (增强点解析)
   7. Potential Ambiguity Warnings (潜在冲突或建议实测项)
 
@@ -123,6 +125,7 @@ If the user explicitly requests negative prompts or a specific frontend requires
 
 - [ ] 角色核心特征（发色、瞳色、种族）是否与用户输入严格一致？
 - [ ] 未确定的细节是否保持了开放，未擅自补全为锁定项？
+- [ ] V2 是否忠实守住了 V1 的核心事实，未擅自篡改？
 - [ ] 是否根据任务正确选择了美学策略，避免了强行套用阴暗留白模板？
 - [ ] 是否执行了 Positive-First 协议，避免无意义的否定修饰？
 - [ ] 词数是否合理服务于信息密度与画面清晰度，避免生硬死凑数字？

@@ -1,8 +1,8 @@
 # Anima Diagnostic & Troubleshooting System
 
-> **Version**: 1.1.0  
+> **Version**: 1.2.0  
 > **Last Updated**: 2026-09-17  
-> **Scope**: 异常可见伪影诊断流程、最小扰动修复与排查标准
+> **Scope**: 异常可见伪影诊断流程、最小扰动修复、不确定性处理与排查标准
 
 本文档为 `anima-prompt-compiler` 提供系统化生图异常诊断体系。当生成的画面出现崩坏、色彩融化、构图混乱或角色串线时，依照结构化诊断流程执行最小必要修正，杜绝盲目堆叠无效负面词。
 
@@ -64,7 +64,7 @@ Step 4: 单变量回测验证 (Re-test while keeping other variables strictly un
   1. 背景词汇长度与信息密度显著高于角色；
   2. 未指明景深衰减或构图景别；
   3. 缺少负空间休止区。
-- **优先排查项 (First-order Checks)**：统计背景描述词数是否超过总词数的 40%。
+- **优先排查项 (First-order Checks)**：检查背景描述所占篇幅（*注：将 40% 视为粗略排查参考信号，而非绝对通用硬阈值 / Treat 40% as a rough investigation signal, not a universal threshold*）。
 - **最小修复措施 (Minimal Remediation)**：
   1. 将景别收拢至 `cowboy shot` 或 `upper body portrait`；
   2. 在背景描述中加入 `shallow depth of field, background softly blurred, low visual density`。
@@ -101,3 +101,14 @@ Step 4: 单变量回测验证 (Re-test while keeping other variables strictly un
 - **最小修复措施 (Minimal Remediation)**：添加微弱暗部支点：`soft subtle contact shadow beneath feet, gentle grey gradient backdrop, balanced ambient lighting`。
 - **不要立即做的事情 (What NOT to do)**：❌ 不要将角色衣服强制改成深色。
 - **验证标准 (Verification Criteria)**：白裙白衣依然成立，但边缘通过微弱阴影获得清晰轮廓。
+
+---
+
+## 3. 归因不确定性处理 (Uncertainty Handling)
+
+当生成画面出现异常且无法一眼断定单一根因时，执行以下不确定性处理规范，防止误诊：
+
+1. **Do not claim a definitive cause (严禁轻率武断断言)**：不得在未隔离变量前将复杂伪影直接宣布为“提示词写错”或“模型缺陷”。
+2. **Identify the top two plausible causes (列出前两位可能性)**：例如：① 动作动词冲突；② 采样器步数不足。
+3. **Apply the least invasive test first (优先执行侵入性最小的单变量测试)**：优先微调单个词汇（如补充手部着落点），保持 CFG、步数、种子及其他词句完全不变。
+4. **Record the result separately (独立记录观察)**：若修复有效，将其归档至 Experiment Log 并注明测试范围；若无效，回滚后再测试第二假设。
