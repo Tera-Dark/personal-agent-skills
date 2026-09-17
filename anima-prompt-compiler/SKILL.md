@@ -1,101 +1,129 @@
 ---
 name: anima-prompt-compiler
-description: Compile character concepts, fashion designs, OC settings, composition briefs, and visual blueprints into concise, expressive, positive English prompts for the Anima anime image model. Features modular architecture with model profiles, fashion patterns, composition protocols, and flexible de-AI aesthetic engines.
+description: Compile character concepts, fashion designs, OC settings, composition briefs, and visual blueprints into concise, expressive, positive English prompts for the Anima anime image model. Features modular architecture with model profiles, fashion patterns, composition protocols, troubleshooting diagnostics, and flexible de-AI aesthetic engines.
 ---
 
 # Anima Prompt Compiler (模块化动漫提示词编译器)
 
 ## 1. Mission & System Architecture
 
-将用户的自然语言需求、OC 设定、服装设计案、中文视觉蓝图或已有粗糙 Prompt，精准编译为专为 **Anima 动漫图像模型** 优化的高水准纯正向英文图像提示词。
+将用户的自然语言需求、OC 设定、服装设计案、中文视觉蓝图或已有粗糙 Prompt，精准编译为专为 **Anima 动漫图像模型** 优化的高水准英文提示词。
 
-本编译器采用**解耦与模块化体系架构**，由四大知识库作为支撑支柱：
+本编译器采用**解耦与模块化体系架构**，由五大知识库作为支撑支柱：
 
 ```text
-               ┌───────────────────────────────┐
-               │    anima-prompt-compiler      │
-               │   (核心调度与语法编译中枢)    │
-               └───────────────┬───────────────┘
-                               │
-       ┌───────────────────────┼───────────────────────┬───────────────────────┐
-       ▼                       ▼                       ▼                       ▼
-【模型知识库】           【构图排版协议】         【去AI味美学引擎】       【服设与材质模式】
-anima-model-profiles    anima-composition       anima-aesthetic-deai    anima-fashion-patterns
-(负责模型兼容性)        (负责画面稳定性)        (负责审美自由增强)      (负责穿搭质感)
+               ┌───────────────────────────────────────┐
+               │         anima-prompt-compiler         │
+               │       (核心调度与语法编译中枢)        │
+               └───────────────────┬───────────────────┘
+                                   │
+       ┌───────────────────────────┼───────────────────────────┬───────────────────────────┐
+       ▼                           ▼                           ▼                           ▼
+【模型知识库】               【构图排版协议】             【去AI味美学引擎】           【服设与材质模式】
+anima-model-profiles        anima-composition           anima-aesthetic-deai        anima-fashion-patterns
+(负责模型兼容性)            (负责画面稳定性)            (负责审美自由增强)          (负责穿搭质感)
+       │
+       └──────────────► 【异常诊断与排查】 ◄──────────────┘
+                         anima-troubleshooting
+                         (负责常见崩图与冲突消解)
 ```
 
-- **模型知识库** (`references/anima-model-profiles.md`)：掌控 Base / Aesthetic / Turbo 模型特性、语法权重与有效渲染词，负责**兼容性**。
-- **构图排版协议** (`references/anima-composition-patterns.md`)：掌控全身立绘、半身景别、多尺度展示板（前景全身+背景放大头像），负责**稳定性**。
-- **去 AI 味美学引擎** (`references/anima-aesthetic-deai.md`)：掌控六大人性化美学思维与 5 大风格预设（商业头像、甜美可爱、高级服设、暗黑叙事、电影海报），负责**审美按需增强，彻底拒绝单一死板模板**。
+- **模型知识库** (`references/anima-model-profiles.md`)：基于证据分级（Official / Community / Experiment）掌控模型特性、语法权重与有效渲染词，负责**兼容性**。
+- **构图排版协议** (`references/anima-composition-patterns.md`)：掌控全身立绘、牛仔景别、多尺度展示板（前景立绘+背景放大头像），负责**稳定性**。
+- **去 AI 味美学引擎** (`references/anima-aesthetic-deai.md`)：掌控六大人性化美学思维与 5 大风格预设（商业头像、甜美可爱、高级服设、暗黑叙事、电影海报），负责**审美按需增强，拒绝单一固定模板**。
 - **服设与材质模式** (`references/anima-fashion-patterns.md`)：掌控 4 层叠穿架构、非对称剪裁与物理材质对抗，负责**视觉质感**。
+- **异常诊断手册** (`references/anima-troubleshooting.md`)：掌控肢体崩坏、内外层服装融合、背景抢主体与多角色串线的排查。
 
 ---
 
-## 2. Core Principles (编译铁律)
+## 2. Core Principles (编译原则)
 
-1. **锁定核心信息 (Preserve Locked Information)**：
-   角色的发色、瞳色、核心外观、指定服装配色与关键特征为不可侵犯锁死项，严禁在编译中擅自篡改。
-2. **拒绝单一审美绑架 (Flexible Aesthetic Routing)**：
-   **严禁**无论什么任务都盲目套用“30% 留白 + 单一刺点色 + 失焦放空沉思”。必须根据任务类型（如商业头像、甜美萌系、日常插画、暗黑叙事等）动态调度最契合的美学策略。
-3. **纯正向英文输出 (Positive-Only Output)**：
-   输出必须为可以直接复制的英文 Prompt。不得在输出中包含独立 Negative Prompt、`no ...`、`without ...` 或负面参数，所有画面约束均转化为具体的正向视觉引导。
-4. **全面净化垃圾质量词 (Purge Dirty Flooding Tokens)**：
-   默认拦截过滤 `masterpiece, best quality, ultra-detailed, 8k, insane quality` 等污染 Anima 潜空间的无效词，以高信息密度的具体视觉短语替代。
+### 2.1 锁定信息与不确定性处理
+- **严格锁定已明确特征**：发色、瞳色、种族特征、指定服装配色与关键道具属于不可侵犯锁死项，严禁擅自篡改。
+- **未确定信息保持开放**：对输入或参考图中无法明确确认的细节，**严禁脑补后列为锁定项**。保持描述的包容性，将探索空间留给画面本身。
+
+### 2.2 多角色身份隔离 (Multi-Subject Isolation)
+画面中出现多于一个角色时，必须按角色独立绑定属性块（`Character A: appearance + clothing + action`），严禁混合散落形容词以防止色彩与肢体串线。
+
+### 2.3 正向优先输出协议 (Positive-First Output)
+Prefer positive visual descriptions over standalone negative prompts.
+
+Convert exclusions into affirmative scene constraints whenever possible, such as:
+- "a single character centered in the composition" (替代不要出现其他人)
+- "a clean white studio background" (替代不要有复杂背景)
+- "an uncluttered environment with low visual density" (替代不要让背景抢主体)
+
+Do not generate a separate negative prompt by default.
+If the user explicitly requests negative prompts or a specific frontend requires them, explain the compatibility trade-off first.
+
+### 2.4 全面净化空泛质量词 (Purge Low-Information Tokens)
+默认拦截过滤 `masterpiece, best quality, ultra-detailed, 8k, insane quality` 等词，以具体的空间、光影、微观织物纹理代替。
 
 ---
 
-## 3. Dynamic Task & Aesthetic Routing (任务与美学动态路由)
+## 3. Prompt 长度策略 (Prompt Length Strategy)
 
-在接收到用户需求后，执行双轴路由（**任务类型轴 × 美学风格轴**）：
+拒绝所有输出机械膨胀至相同长度，依据任务性质动态规划词数预算：
 
-### 轴 1：任务类型路由 (Task Dimension)
-- **Character Illustration (立绘/单人插画)**：查阅 `references/anima-composition-patterns.md` 中的景别定义，依 `subject → appearance → clothing → pose → lighting → background` 结构展开。
-- **Fashion Design (服装穿搭/设计)**：查阅 `references/anima-fashion-patterns.md`，按 `廓形剪影 → 4层叠穿 → 领口袖型 → 材质对抗 → 局部非对称配饰` 展开。
-- **Layered Character Showcase (多尺度展示板)**：查阅 `references/anima-composition-patterns.md` 第 2 节，严格采用 `前景清晰完整立绘 (Foreground) + 背景低对比放大柔焦头像 (Background)` 双层硬隔离编译。
-- **Expression Sheet (表情差分板)**：固定发型与服饰，生成 3~4 个排版整洁、表情各异的研究板。
+| 任务类型 | 建议词数 (Word Budget) | 结构重心 |
+| :--- | :--- | :--- |
+| **头像 / 表情研究 / 快速原型** | **30 - 50 词** | 极简高敏 Tag 锁定五官、发型、眼神光与基础柔光。 |
+| **日常穿搭 / OC 标准立绘** | **50 - 80 词** | 聚焦服装 4 层叠穿、材质物理特性、站立姿态与接地阴影。 |
+| **多尺度展示板 / 多角色插画** | **70 - 100 词** | 严格区分前景清晰主体与背景放大淡化头像，防止图层混乱。 |
+| **电影感叙事场景 / 高定概念图** | **80 - 120 词** | 融入景深衰减、非对称构图、主光源方向、空气微尘与电影颗粒。 |
 
-### 轴 2：美学策略路由 (Aesthetic Dimension - 按需激活)
+---
+
+## 4. Dynamic Aesthetic Routing (美学风格路由)
+
 查阅 `references/anima-aesthetic-deai.md`，按用户明确意图或隐含风格匹配：
 
 - **Preset A · 商业与社交头像**：干净明澈、柔和漫射三点光、自然微表情、浅灰米白柔焦背景。
-- **Preset B · 元气甜美与清新日系**：高调漫射光、马卡龙与奶油低饱和暖色、发丝透光金边、生动灵动的抓拍神态。
-- **Preset C · 高级时尚与极简冷淡**：雕塑感硬侧光、大牌秀场黑白灰/驼色系、非对称解构剪裁、高级厌世疏离视线。
-- **Preset D · 暗黑叙事与戏剧张力**：卡拉瓦乔极端暗色调（Tenebrism）、纯黑暗场单束光撕裂、≤5% 唯一刺点色、凝重张力。
-- **Preset E · 电影感角色海报**：索尔·雷特雨雾隔窗反光、冷暖色温对抗（Teal & Orange）、35mm 胶片质感、失焦放空的生活时间切片。
+- **Preset B · 元气甜美与清新日系**：高调漫射光、马卡龙与奶油低饱和暖色、发丝透光金边、生动抓拍神态。
+- **Preset C · 高级时尚与极简冷淡**：雕塑感硬侧光、秀场黑白灰/驼色系、非对称解构剪裁、高级厌世疏离视线。
+- **Preset D · 暗黑叙事与戏剧张力**：卡拉瓦乔极端暗色调（Tenebrism）、纯黑暗场单束光撕裂、≤5% 唯一刺点色。
+- **Preset E · 电影感角色海报**：索尔·雷特雨雾隔窗反光、冷暖色温对抗、35mm 胶片质感、失焦生活时间切片。
 - **Default · 中立自然**：用户无特定风格要求时，仅注入物理主光源与布料微观纹理，保持画面干净通透。
 
 ---
 
-## 4. Prompt Compilation Steps (编译五步法)
+## 5. Output Modes & Contract (输出模式与契约)
 
-```text
-Step 1: 提取硬性约束 (锁定角色外貌、服饰指定、场景意图)
-   ↓
-Step 2: 裁决软硬冲突 (排查镜头与动作互斥，通过层级化梳理主次色调)
-   ↓
-Step 3: 匹配知识库模式 (匹配构图景别 + 叠穿材质 + 选定美学预设)
-   ↓
-Step 4: 组装混合英文链条 (Tag 锚点 + 视觉短语 + 物理光影从句)
-   ↓
-Step 5: 执行终端净化 (剔除垃圾质量词、冗余标点与未授权世界观)
-```
+根据用户交互场景选择输出模式：
 
----
+### 5.1 Direct Mode (单版本直接模式)
+- **触发条件**：用户明确要求快速输出、单版提示词或简单快速请求。
+- **输出格式**：
+  1. 一行策略说明（任务模式 + 美学预设）。
+  2. 一个纯英文 Prompt 代码块。
 
-## 5. Output Contract (输出契约)
+### 5.2 Standard Mode (双版本标准模式 - 推荐默认)
+- **触发条件**：用户提供参考图、要求重构还原已有设想、或需要兼顾还原与艺术升华时。
+- **输出格式**：
+  1. **Strategy Line**：说明当前任务类型与匹配的美学预设。
+  2. **V1 Faithful Prompt (忠实还原版)**：严格 1:1 锁定用户原始输入，不擅自增删元素，确保绝对符合原案。
+  3. **V2 Enhanced Prompt (美学增强版)**：注入去 AI 味光影、微观物理瑕疵、高级叠穿或电影构图的升华版。
+  4. **V2 Enhancement Notes**：简述 V2 相较于 V1 在光影/材质/空间上所做的关键艺术优化。
 
-默认交付规范：
-1. **一行简短策略说明**：标注采用的任务模式、选配的美学预设（如 `Mode: Layered Showcase | Aesthetic: Preset C (High Fashion)`）。
-2. **一个纯英文 Prompt 代码块**：内部为可以直接复制到 WebUI/ComfyUI/生图客户端的洁净 Prompt。
-
-除非用户主动要求，否则不额外输出负向提示词、采样参数解释或大段冗余过程分析。
+### 5.3 Deep Mode (深度企划模式)
+- **触发条件**：复杂 OC 企划、全新世界观角色创立或高定服设。
+- **输出格式**：
+  1. Input Interpretation (输入理解与核心意图提炼)
+  2. Locked Information (锁定的核心信息清单)
+  3. Composition Decision (构图与景别决策)
+  4. V1 Faithful Prompt 代码块
+  5. V2 Enhanced Prompt 代码块
+  6. Enhancement Notes (增强点解析)
+  7. Potential Ambiguity Warnings (潜在冲突或建议实测项)
 
 ---
 
 ## 6. Verification Checklist (自检清单)
 
 - [ ] 角色核心特征（发色、瞳色、种族）是否与用户输入严格一致？
+- [ ] 未确定的细节是否保持了开放，未擅自补全为锁定项？
 - [ ] 是否根据任务正确选择了美学策略，避免了强行套用阴暗留白模板？
-- [ ] 输出是否为 100% 纯正向英文 Prompt，且未混入 `no/without` 等负向词？
-- [ ] 是否已剔除 `masterpiece, 8k, ultra-detailed` 等低效质量词？
-- [ ] 复杂构图（如多图展示板）是否做好了前景与背景的清晰层级解耦？
+- [ ] 是否执行了 Positive-First 协议，避免无意义的否定修饰？
+- [ ] 词数是否符合 Prompt 长度策略，未出现无序膨胀？
+- [ ] 多角色场景是否做了属性物理绑定与隔离？
+- [ ] 输出格式是否严格符合当前选定的 Direct / Standard / Deep 模式契约？

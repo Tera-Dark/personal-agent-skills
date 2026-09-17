@@ -1,80 +1,120 @@
 # Anima Model Profiles & Tuning Reference
 
-本文档记录 **Anima 系列动漫图像生成模型** 的版本特性、质量词语法、权重敏感度以及出图工作流参数实验沉淀。供 `anima-prompt-compiler` 在面对不同部署环境和模型变体时精准编译。
+> **Version**: 1.1.0  
+> **Last Updated**: 2026-09-17  
+> **Maintainer**: Tera-Dark  
+> **Scope**: Anima 模型族各版本特性、提示词语法、文本编码器兼容性与实验记录
+
+本文档为 `anima-prompt-compiler` 提供模型底层特性参考。所有结论均根据**证据分级体系**标注，防止将偶然实验或特定前端经验固化为绝对法则。
 
 ---
 
-## 1. 模型族特性对比矩阵 (Model Variants)
+## 1. 证据分级体系 (Evidence Levels)
 
-| 模型变体 | 核心训练导向 | 提示词敏感度 | 构图服从度 | 典型适用场景 |
+为了确保知识库的严谨性与可复现性，本文档中的所有经验与建议分为三级：
+
+### 🟢 Official (官方规范)
+由 Anima 官方模型卡片、官方发布公告或官方 ComfyUI/Diffusers 工作流直接确认的技术规范。
+### 🟡 Community Practice (社区实践)
+在 Civitai、Liblib、Discord 社区中被多位创作者高频验证的常规经验，适用于多数常规场景，但无官方绝对保证。
+### 🔵 Personal Experiment (个人实验记录)
+在特定硬件、前端、Checkpoint、Sampler 和特定提示词条件下观察到的现象。仅供参考，未在所有环境中复现前不作为普适定律。
+
+---
+
+## 2. 模型族特性对比矩阵 (Model Variants)
+
+| 模型变体 | 核心训练导向 [Evidence] | 提示词敏感度 | 构图服从度 | 典型适用场景 |
 | :--- | :--- | :--- | :--- | :--- |
-| **Anima Base** | 通用动漫基础底模，泛化性极佳，擅长标准立绘与角色基础特征还原。 | 偏向 Tag 列表 + 短句混合。对自然语言长从句服从度中等。 | 良好。标准大景深与居中构图极其稳定，复杂非对称需要强词引导。 | OC 基础立绘、简单日常插画、通用动画角色生成。 |
-| **Anima Aesthetic** | 专精于插画级艺术感、光影层次与高级笔触，经过高审美微调。 | **极高**。擅长识别光影方向（如 `rim light`, `chiaroscuro`）与氛围词，减少了对质量硬词的依赖。 | 极强。对景深、负空间、电影裁切与多尺度展示板响应极佳。 | 艺术插画、电影感海报、高定服设、画册级概念图。 |
-| **Anima Turbo / Lightning** | 极速蒸馏版本（4~8 步收敛），牺牲了少量微观纹理以换取极致生成速度。 | 中等偏脆。容易受到过多形容词冲突的干扰；建议精简高效的 Tag 链。 | 中等。建议采用单一主视角，避免极度复杂的局部多图拼接。 | 概念草图快速摸索、表情差分批量产出、实时交互迭代。 |
+| **Anima Base** | 通用动漫底模，泛化性强，擅长标准立绘与角色特征还原。`[Official]` | 偏向 Tag 列表与短句混合。对复杂复合长句服从度中等。 | 居中立绘与标准景别极其稳定，复杂非对称需要更清晰的层级引导。 | OC 基础立绘、简单日常插画、通用动画角色生成。 |
+| **Anima Aesthetic** | 专精于插画级艺术感、光影层次与高级笔触的审美微调版。`[Official]` | **极高**。对光影物理方向词（`rim light`, `volumetric lighting`）与负空间响应灵敏。 | 极强。对景深衰减、非对称偏置与多尺度展示板响应优异。 | 艺术插画、电影感海报、高定服设、画册级概念图。 |
+| **Anima Turbo / Lightning** | 蒸馏高速版本，牺牲极少量微观纹理换取快速收敛。`[Official]` | 对提示词冲突较敏感，建议精炼高信息密度的 Tag 链。 | 中等。建议采用单一主视角，避免过度复杂的图内分屏。 | 概念草图快速摸索、表情差分批量产出、快速原型迭代。 |
 
 ---
 
-## 2. 质量词体系与有效性实验记录 (Quality Tags & Cleaning)
+## 3. 文本编码器与前端兼容性 (Text Encoder & Frontend Compatibility)
 
-Anima 经历了对动漫美学与真实物理渲染的双向训练，传统 SD1.5 时代的“词海堆叠法”在 Anima 中往往会造成**过拟合、高对比色块崩坏和过度锐化**。
+> 🟢 **Official / Community Practice**
 
-### 2.1 推荐保留的“有效渲染描述” (Effective Render Anchors)
-这些词汇在 Anima 内部具有明确的特征引导，能提升质感而不会破坏画面结构：
+Do not assume traditional CLIP settings such as Clip Skip 2 apply to every Anima workflow. Follow the text encoder and frontend configuration supplied by the selected Anima checkpoint or workflow.
 
-- `fine anime lineart`：强化干净纯正的动漫线稿与边缘闭合度。
-- `detailed fabric texture`：增强衣物织物微观经纬、呢料微绒感，消除塑料磨皮感。
-- `soft volumetric lighting` / `subsurface scattering`：赋予皮肤通透感与柔和的体积光穿透。
-- `delicate eye highlight`：精细刻画瞳孔反光与折射层级，避免眼神死板空洞。
-- `clean cel shading with soft gradients`：平滑的赛璐璐与柔和渐变过渡，兼具动漫感与层次感。
+Do not place sampler, CFG, steps, or Clip Skip values inside the prompt unless the user explicitly asks for generation settings.
 
-### 2.2 强烈建议废弃的“无效垃圾词” (Dirty Flooding Tokens)
-以下词汇**已被主编译器过滤列表默认拦截**，禁止加入编译输出：
+### 关键兼容性准则
+1. **文本编码器差异**：部分现代 Anima 变体或整合工作流可能采用 Qwen、T5 或混合双文本编码器架构，其对自然语言从句的理解能力远超早期 CLIP 模型。不要机械套用传统 SD1.5 的“必须全逗号 Tag 语法”或“强制 Clip Skip 2”。
+2. **生成参数隔离**：除非用户在输入中明确要求输出运行参数，否则**编译器严禁在输出的 Prompt 代码块内夹带 `--cfg`, `--steps`, `Sampler:` 等参数文本**。
 
+---
+
+## 4. 质量词与有效渲染描述 (Quality Tags & Cleaning)
+
+### 4.1 推荐保留的有效渲染描述 `[Community Practice]`
+这些词汇具有明确的物理与视觉特征引导，可提升质感：
+- `fine anime lineart`：引导清晰利落的边缘线稿与闭合。
+- `detailed fabric texture`：增强布料纹理、织物经纬与呢料质感。
+- `soft volumetric lighting` / `subsurface scattering`：赋予皮肤微透光通透感与空间光束。
+- `delicate eye highlight`：刻画瞳孔折射层次，避免眼神呆滞。
+
+### 4.2 默认净化的空泛词 (Low-Information Tokens) `[Community Practice]`
+以下词汇已被主编译器过滤列表默认拦截：
 ```text
 [BANNED TOKENS]
 masterpiece, best quality, ultra high quality, 8k, 4k, insanely detailed, award winning,
 perfect anatomy, perfect quality, incredible visual, wallpaper, trend on artstation
 ```
-> **实验结论**：在 Anima Aesthetic 中输入 8 个无意义质量最高级修饰词，会导致画面对比度虚高（Burned High Contrast），人物脸部受光面失去阶调，暗部细节大量死黑。
+> **设计理由**：空泛质量词缺乏具体的空间与材质信息，会白白占用注意力预算（Attention Tokens），且容易引发模型在不同画风之间的随机跳跃。
 
 ---
 
-## 3. 提示词权重与语法兼容性 (Syntax & Weights)
+## 5. 提示词权重习惯 `[Community Practice]`
 
-不同前端工具（WebUI、ComfyUI、NovelAI、Civitai Generator）对权重的解析方式有所不同：
-
-### 3.1 标准通用权重格式 (Universal Syntax)
-- **圆括号线性权重**：`(keyword:1.1)` 到 `(keyword:1.25)` 为安全有效区间。
-- **阈值警示**：超过 `1.3` 极易引发肢体畸形、边缘撕裂或色彩溢出；低于 `0.8` 基本被全局平均化忽略。
-- **默认原则**：在 `anima-prompt-compiler` 默认编译中，**优先依赖语序前置（Word Order Priority）** 而非滥用数值权重。前置 15% 的词拥有天然的最高注意力。
-
-### 3.2 标签与自然语言混合模式 (Hybrid Grammar)
-Anima 模型表现最佳的语法结构为 **“锚点 Tag + 紧密视觉短语 + 氛围从句”**：
-
-```text
-[结构示范]
-1girl, [Core Appearance], wearing [Layered Fashion], [Pose & Camera], [Lighting & Shadow], [Atmospheric Environment]
-```
-- **核心身份区**（前 1~20 词）：保持 Tag 简练，锁定发色、瞳色、种族特征。
-- **服设与构图区**（20~60 词）：采用连贯的形容词短语（如 `oversized charcoal wool coat over high-collar white linen shirt`）。
-- **光影与空间区**（60~90 词）：采用自然语言短句赋予留白与空间感。
+- **语序优先原则 (Word Order Priority)**：Anima 对靠前词汇分配天然更高的注意力权重。核心主体与关键特征置于前 20% 位置，比单纯加权重括号更自然稳定。
+- **权重修饰建议**：如需微调，建议控制在 `(keyword:1.05)` 至 `(keyword:1.20)` 温和区间内。避免盲目拉高数值导致色彩失真或边缘锯齿。
 
 ---
 
-## 4. 推荐生成参数基准 (Recommended Generation Presets)
+## 6. 官方与工作流推荐参数参考 (Workflow Reference Presets)
 
-| 参数项 | Anima Base / Aesthetic | Anima Turbo | 避坑与说明 |
+*注：以下数值作为常规工作流调试起点，实际请以具体模型发布页说明为准。*
+
+| 参数项 | Anima Base / Aesthetic | Anima Turbo / Lightning | 证据分级与说明 |
 | :--- | :--- | :--- | :--- |
-| **Sampler** | DPM++ 2M Karras / Euler a | Euler / DPM++ SDE Karras | 复杂服设与光影优先选择 DPM++ 2M Karras。 |
-| **Steps** | 24 - 32 | 4 - 8 | 步数超过 40 会导致线稿过度锐化与杂色。 |
-| **CFG Scale** | 5.0 - 7.0 (推荐 5.5 - 6.0) | 1.5 - 2.5 | **CFG 严禁超过 8.0**，否则引发全局发光塑料病与脸部崩坏。 |
-| **Clip Skip** | 2 | 2 | 动漫类模型的行业标准设置，跳过最后一层保证画风纯正。 |
-| **分辨率建议** | 832x1216 (3:4), 896x1152 (1:1.3) | 832x1216 | 避免非标准长宽比导致的断肢多头问题。 |
+| **CFG Scale** | **4.0 - 5.0** (常规推荐) | **1.5 - 2.5** | `[Official]` 官方建议保持在 4~5 区间，过高易导致过度锐化与高对比。 |
+| **Steps** | 20 - 30 | 4 - 8 (视具体蒸馏方案) | `[Community Practice]` 步数取决于具体 Scheduler，超过 35 边际效益递减。 |
+| **Sampler** | Euler a / DPM++ 2M Karras | Euler / DPM++ SDE | `[Community Practice]` 依具体 Checkpoint 与 WebUI/ComfyUI 习惯选用。 |
+| **Clip Skip** | 由具体工作流配置决定 | 由具体工作流配置决定 | `[Official]` 严禁武断套用固定值，依对应文本编码器决定。 |
 
 ---
 
-## 5. 持续调优与实测日志 (Empirical Log)
+## 7. 规范化实测日志 (Experiment Log)
 
-- **[Log-01] 浅色系服饰溢出**：当角色服装指定 `pure white silk dress` 时，若背景未设定暗部支撑，易导致整体画面过曝失真。**解决方案**：追加 `soft shadow drop behind, balanced ambient tone` 形成对比度锚点。
-- **[Log-02] 双人/多图展示板混乱**：在编译“前景全身 + 背景放大头像”展示板时，未明确定义景深易导致两个头像融合。**解决方案**：严格使用 `foreground subject with crisp focus, semi-transparent blurred background portrait` 进行层级切分。
-- **[Log-03] 负向提示词依赖消除**：无需在 Negative Prompt 填写大量 anatomy 标签，只需在正向提示词中精准指明姿态（如 `relaxed arms, hand resting on hip, clear finger definition`）即可大幅提升肢体稳定性。
+所有个人测试记录均按统一标准化格式归档，注明复现范围：
+
+### Log-001 · 浅色丝绸在纯白环境中的边缘溢出
+- **Environment**: ComfyUI (Torch 2.4 + cu121)
+- **Checkpoint**: Anima Aesthetic v2.0 FP16
+- **Prompt condition**: `1girl, pure white silk dress, white background`
+- **Parameter condition**: Steps: 28, CFG: 4.5, Sampler: DPM++ 2M Karras, Res: 832x1216
+- **Observation**: 角色裙摆边缘与高光背景发生融色，边缘对比度丢失。
+- **Resolution**: 补充 `soft subtle shadow drop behind character, warm ambient lighting` 后边缘轮廓清晰分离。
+- **Confidence**: High
+- **Scope**: 适用于浅色衣物配浅色/纯白背景构图。
+
+### Log-002 · 前景角色与背景放大头像图层黏连
+- **Environment**: ComfyUI
+- **Checkpoint**: Anima Aesthetic v2.0
+- **Prompt condition**: 未添加分层焦点限定词的 multi-view prompt
+- **Parameter condition**: Steps: 25, CFG: 4.0, Sampler: Euler a
+- **Observation**: 模型尝试将两个角色头像物理连接或绘制为双胞胎并排站立。
+- **Resolution**: 显式加入 `foreground subject in sharp focus` 与 `background enlarged portrait in soft transparent wash` 建立景深阶级后分离成功。
+- **Confidence**: High
+- **Scope**: 适用于所有 Layered Showcase 多尺度排版任务。
+
+### Log-003 · 极端质量词堆叠对色彩阶调的影响
+- **Environment**: WebUI
+- **Checkpoint**: Anima Base v1.1
+- **Prompt condition**: 8 个以上 `masterpiece, 8k, ultra detailed, award winning` 前置
+- **Parameter condition**: Steps: 30, CFG: 6.5, Sampler: Euler a
+- **Observation**: 阴影过度变深且发灰，亮面高光出现色斑（Burned Artifacts）。
+- **Confidence**: Medium
+- **Scope**: 针对 CFG 处于 6.0 以上且质量修饰词过度堆叠的情况。
