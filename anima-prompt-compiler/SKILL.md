@@ -1,133 +1,219 @@
 ---
 name: anima-prompt-compiler
-description: Compile character concepts, fashion designs, OC settings, composition briefs, and visual blueprints into concise, expressive, positive English prompts for the Anima anime image model. Features modular architecture with model profiles, fashion patterns, composition protocols, troubleshooting diagnostics, and flexible de-AI aesthetic engines.
+description: Compile character concepts, fashion designs, OC settings, composition briefs, and visual blueprints into concise, expressive prompts for the Anima anime image model using a flexible Tag + natural-language workflow.
 ---
 
-# Anima Prompt Compiler (模块化动漫提示词编译器)
+# Anima Prompt Compiler
 
-## 1. Mission & System Architecture
+## 1. Mission
 
-将用户的自然语言需求、OC 设定、服装设计案、中文视觉蓝图或已有粗糙 Prompt，精准编译为专为 **Anima 动漫图像模型** 优化的高水准英文提示词。
+将用户的自然语言需求、OC 设定、服装设计案、中文视觉蓝图或已有粗糙 prompt，编译为适合 Anima 的英文视觉提示词。
 
-本编译器采用**解耦与模块化体系架构**，由五大知识库作为支撑支柱：
+核心目标：
 
-```text
-               ┌───────────────────────────────────────┐
-               │         anima-prompt-compiler         │
-               │       (核心调度与语法编译中枢)        │
-               └───────────────────┬───────────────────┘
-                                   │
-       ┌───────────────────────────┼───────────────────────────┬───────────────────────────┐
-       ▼                           ▼                           ▼                           ▼
-【模型知识库】               【构图排版协议】             【去AI味美学引擎】           【服设与材质模式】
-anima-model-profiles        anima-composition           anima-aesthetic-deai        anima-fashion-patterns
-(负责模型兼容性与证据溯源)  (负责画面稳定性与展示板)    (负责审美自由增强)          (负责穿搭与材质碰撞)
-       │
-       └──────────────► 【异常诊断手册】 ◄──────────────┘
-                         anima-troubleshooting
-                         (负责常见崩图与冲突消解)
-```
+- 准确保留用户明确指定的角色身份、外观、服装、动作、道具与场景。
+- 使用 **Tag + Natural Language** 混合表达，而不是机械堆砌标签或写成长篇散文。
+- 优先解决主体、构图、空间关系和服装结构，再补充光影、材质与审美增强。
+- 让输出可以直接复制到用户已有工作流；不要擅自改写其质量词、负面词或其他独立字段。
 
-- **模型知识库** (`references/anima-model-profiles.md`)：基于证据分级（Official / Compatibility Guidance / Community Practice / Experiment）掌控模型特性、语法权重与有效渲染词，负责**兼容性**。
-- **构图排版协议** (`references/anima-composition-patterns.md`)：掌控全身立绘、牛仔景别、多尺度展示板（前景立绘+背景放大头像），负责**稳定性**。
-- **去 AI 味美学引擎** (`references/anima-aesthetic-deai.md`)：掌控六大人性化美学思维与 5 大风格预设（商业头像、甜美可爱、高级服设、暗黑叙事、电影海报），负责**审美按需增强，拒绝单一固定模板**。
-- **服设与材质模式** (`references/anima-fashion-patterns.md`)：掌控 4 层叠穿架构、非对称剪裁与物理材质对抗，负责**视觉质感**。
-- **异常诊断手册** (`references/anima-troubleshooting.md`)：基于 4 步诊断流掌控肢体崩坏、内外层服装融合、背景抢主体与多角色串线的排查与归因不确定性处理。
+## 2. Operating Principles
 
----
+### 2.1 Preserve explicit information
 
-## 2. Core Principles (编译原则)
+以下信息属于锁定项，除非用户允许变体，否则不得擅自修改：
 
-### 2.1 锁定信息与不确定性处理
-- **忠实保留已明确特征**：发色、瞳色、种族特征、指定服装配色与关键道具属于不可侵犯锁死项，严禁擅自篡改。
-- **未确定信息保持开放**：对输入或参考图中无法明确确认的细节，**严禁脑补后列为锁定项**。保持描述的包容性，将探索空间留给画面本身。
+- 发色、瞳色、发型、种族、年龄感与角色身份
+- 指定服装款式、颜色、图案、材质和关键配饰
+- 指定动作、表情、镜头、场景、道具与叙事关系
+- 用户明确要求的构图比例、背景和视觉风格
 
-### 2.2 多角色身份隔离 (Multi-Subject Isolation)
-画面中出现多于一个角色时，必须按角色独立绑定属性块（`Character A: appearance + clothing + action`），严禁混合散落形容词以防止色彩与肢体串线。
+对用户没有确定的内容，保持开放表达。不要把推测内容写成硬性设定；必要时使用可选建议或标记为需要实测的部分。
 
-### 2.3 正向优先输出协议 (Positive-First Output)
-Prefer positive visual descriptions over standalone negative prompts.
+### 2.2 Composition first
 
-Convert exclusions into affirmative scene constraints whenever possible, such as:
-- "a single character centered in the composition" (替代不要出现其他人)
-- "a clean white studio background" (替代不要有复杂背景)
-- "an uncluttered environment with low visual density" (替代不要让背景抢主体)
+提示词的组织顺序通常遵循：
 
-Do not generate a separate negative prompt by default.
-If the user explicitly requests negative prompts or a specific frontend requires them, explain the compatibility trade-off first.
+1. 画面类型、主体数量与景别
+2. 主体位置、视角、裁切和姿态
+3. 角色身份与外观
+4. 服装层级、剪裁、材质和配饰
+5. 动作、表情与角色交互
+6. 场景、背景和空间关系
+7. 光线、色彩、氛围与细节增强
 
-### 2.4 全面净化空泛质量词 (Purge Low-Information Tokens)
-默认拦截过滤 `masterpiece, best quality, ultra-detailed, 8k, insane quality` 等词，以具体的空间、光影、微观织物纹理代替。
+不要为了展示服装而忽略景别和身体裁切。全身立绘应明确写出 full body、脚部可见、站立重心和接地阴影等必要信息；半身、头像、动态插画和多尺度展示板则应使用对应的构图描述。
 
----
+### 2.3 Tag + natural language
 
-## 3. 弹性词数规划策略 (Flexible Planning Targets)
+使用两种表达方式的互补优势：
 
-> 💡 **核心准则**：Prompt length budgets are flexible planning targets, not hard limits. Prioritize information density, subject identity, spatial clarity, and user intent over reaching a fixed word count.  
-> 词数预算仅用于规划输出密度，不是硬性限制。当角色身份、服装层级或空间关系需要更多信息时，可以适当超出预算；当任务简单时，应主动缩短。  
-> **注意：以下区间用于帮助模型规划信息层次与密度，不得将其作为判断输出是否合格的生硬死线（These ranges serve to guide information density, not as criteria for judging pass/fail）。**
+- **Tags**：用于稳定锁定高敏感、短语化的信息，例如 `1girl`, `solo`, `full body`, `white background`, `long silver hair`。
+- **Natural language**：用于表达复杂关系，例如服装层级、非对称剪裁、动作因果、材质互动、光线方向和空间叙事。
 
-| 任务类型 | 弹性规划参考值 (Planning Target) | 结构重心 |
-| :--- | :--- | :--- |
-| **头像 / 表情研究 / 快速原型** | **~20 - 45 词** | 极简高敏 Tag 锁定五官、发型、眼神光与基础柔光。 |
-| **日常穿搭 / OC 标准立绘** | **~45 - 75 词** | 聚焦服装 4 层叠穿、材质物理特性、站立姿态与接地阴影。 |
-| **多尺度展示板 / 多角色插画** | **~70 - 100 词** | 严格区分前景清晰主体与背景放大淡化头像，防止图层混乱。 |
-| **电影感叙事场景 / 高定概念图** | **~80 - 120 词** | 融入景深衰减、非对称构图、主光源方向、空气微尘与电影颗粒。 |
+不要把所有内容强行转成标签，也不要把简单信息写成冗长句子。标签之间使用自然的英文短语；默认使用小写，不添加无依据的艺术家标签。
 
----
+### 2.4 Weights and syntax
 
-## 4. Dynamic Aesthetic Routing (美学风格路由)
+- 默认不主动添加权重、括号或特殊语法。
+- 只有在用户明确要求、工作流已使用该语法，或模型资料有可靠依据时，才考虑权重。
+- 不要为了“看起来专业”而堆叠权重、重复同义词或复杂符号。
+- 不把未验证的语法效果描述成官方保证。
 
-查阅 `references/anima-aesthetic-deai.md`，按用户明确意图或隐含风格匹配：
+### 2.5 Quality and negative fields
 
-- **Preset A · 商业与社交头像**：干净明澈、柔和漫射三点光、自然微表情、浅灰米白柔焦背景。
-- **Preset B · 元气甜美与清新日系**：高调漫射光、马卡龙与奶油低饱和暖色、发丝透光金边、生动抓拍神态。
-- **Preset C · 高级时尚与极简冷淡**：雕塑感硬侧光、秀场黑白灰/驼色系、非对称解构剪裁、高级厌世疏离视线。
-- **Preset D · 暗黑叙事与戏剧张力**：卡拉瓦乔极端暗色调（Tenebrism）、纯黑暗场单束光撕裂、≤5% 唯一刺点色。
-- **Preset E · 电影感角色海报**：索尔·雷特雨雾隔窗反光、冷暖色温对抗、35mm 胶片质感、失焦生活时间切片。
-- **Default · 中立自然**：用户无特定风格要求时，仅注入物理主光源与布料微观纹理，保持画面干净通透。
+用户可能已经在前端或工作流中设置默认质量词与负面提示词。因此：
 
----
+- 不主动添加 `masterpiece`, `best quality`, `8k`, `ultra-detailed` 等空泛质量词。
+- 不主动删除、清洗或重写用户工作流中的默认质量词和负面字段；如果用户提供了这些字段，除非明确要求，否则将其视为外部配置。
+- 默认只输出正向视觉提示词，不额外生成 negative prompt。
+- 当用户明确要求负面提示词时，按其工作流格式提供，并避免与正向描述互相矛盾。
+- 尽量把排除需求转化为清晰的正向场景约束，例如 `a single character centered in a clean white studio background`。
 
-## 5. Output Modes & Contract (输出模式与契约)
+## 3. Character and Subject Binding
 
-根据用户交互场景选择输出模式：
+### 3.1 Single character
 
-### 5.1 Direct Mode (单版本直接模式)
-- **触发条件**：用户明确要求快速输出、单版提示词或简单快速请求。
-- **输出格式**：
-  1. 一行策略说明（任务模式 + 美学预设）。
-  2. 一个纯英文 Prompt 代码块。
+单角色任务应优先明确：
 
-### 5.2 Standard Mode (双版本标准模式 - 推荐默认)
-- **触发条件**：用户提供参考图、要求重构还原已有设想、或需要兼顾还原与艺术升华时。
-- **输出格式**：
-  1. **Strategy Line**：说明当前任务类型与匹配的美学预设。
-  2. **V1 Faithful Prompt (忠实还原版)**：尽可能忠实保留用户明确表达的主体、特征、服装、动作和场景信息；允许进行必要的语言转换、顺序整理、消解歧义和结构化装配，但不得主动进行美学升级或添加未经请求的关键设定。
-  3. **V2 Enhanced Prompt (美学增强版)**：在 V1 基础上，注入去 AI 味光影、微观物理瑕疵、高级叠穿或电影构图的审美升华版。
-     > ⚠️ **关键事实锁定约束**：**V2 不得修改 V1 的关键事实（如发色、瞳色、服装核心款式、指定动作等），除非明确标注为“可选创作变体”。**
-  4. **V2 Enhancement Notes**：简述 V2 相较于 V1 在光影/材质/空间上所做的关键艺术优化。
+- 主体数量和身份
+- 景别、姿态、视线和身体朝向
+- 角色外观与服装的绑定关系
+- 背景是否简洁，以及脚下是否需要接地阴影
 
-### 5.3 Deep Mode (深度企划模式)
-- **触发条件**：复杂 OC 企划、全新世界观角色创立或高定服设。
-- **输出格式**：
-  1. Input Interpretation (输入理解与核心意图提炼)
-  2. Locked Information (锁定的核心信息清单)
-  3. Composition Decision (构图与景别决策)
-  4. V1 Faithful Prompt 代码块
-  5. V2 Enhanced Prompt 代码块（遵循关键事实锁定约束）
-  6. Enhancement Notes (增强点解析)
-  7. Potential Ambiguity Warnings (潜在冲突或建议实测项)
+### 3.2 Multiple characters
 
----
+多角色任务必须进行属性隔离，推荐使用以下逻辑结构：
 
-## 6. Verification Checklist (自检清单)
+- `Character A: appearance + clothing + action`
+- `Character B: appearance + clothing + action`
+- `Interaction and spatial relationship: ...`
 
-- [ ] 角色核心特征（发色、瞳色、种族）是否与用户输入严格一致？
-- [ ] 未确定的细节是否保持了开放，未擅自补全为锁定项？
-- [ ] V2 是否忠实守住了 V1 的核心事实，未擅自篡改？
-- [ ] 是否根据任务正确选择了美学策略，避免了强行套用阴暗留白模板？
-- [ ] 是否执行了 Positive-First 协议，避免无意义的否定修饰？
-- [ ] 词数是否合理服务于信息密度与画面清晰度，避免生硬死凑数字？
-- [ ] 多角色场景是否做了属性物理绑定与隔离？
-- [ ] 输出格式是否严格符合当前选定的 Direct / Standard / Deep 模式契约？
+不要将多个角色的发色、服装颜色、动作和配饰散落在同一串形容词中。明确角色之间的左右位置、前后关系、视线和交互，降低串色、串装和肢体混淆。
+
+### 3.3 Reference characters and series
+
+当用户指定已有角色、系列或作品时：
+
+- 保留明确的角色名和系列名作为身份锚点。
+- 只有在有助于消歧时才补充简短的外观描述。
+- 不要凭空添加未经确认的服装、发色或剧情设定。
+- 如果存在同名角色或版本差异，提出简短澄清，或在不影响主体的情况下标注版本假设。
+
+## 4. Fashion and Material Construction
+
+服装设计不应只列出衣物名词。根据任务复杂度，描述以下层级：
+
+1. **Base layer**：贴身层、衬衫、内搭或基础连衣裙
+2. **Structural layer**：背心、马甲、束腰、短夹克、外套或裙撑
+3. **Silhouette layer**：裙摆、披肩、长外套、围巾、袖型和整体轮廓
+4. **Accessory layer**：腰带、扣件、蝴蝶结、珠宝、包袋、发饰和鞋履
+
+优先表达具有视觉价值的设计关系：
+
+- 长短层级与露出比例
+- 非对称下摆、错位开襟和不规则裁片
+- 硬质结构与柔软织物的对比
+- 透明、半透明、针织、皮革、金属、缎面和粗糙面料之间的材质差异
+- 服装如何随姿态产生褶皱、悬垂、拉伸和遮挡
+
+不要无意义地堆叠材质形容词。每个材质词最好对应可见的结构、光泽、褶皱或物理行为。
+
+## 5. Aesthetic Routing
+
+根据用户的明确需求选择审美方向，不要默认套用同一种“高级感”模板。
+
+### Preset A: Clean commercial portrait
+
+干净背景、柔和漫射光、自然微表情、清晰面部轮廓和适度景深。
+
+### Preset B: Sweet Japanese freshness
+
+高调柔光、奶油或低饱和色彩、轻盈发丝透光、生动但自然的抓拍感。
+
+### Preset C: Fashion editorial
+
+明确的主光方向、雕塑感侧光、克制的色彩体系、非对称剪裁、秀场或杂志式构图。
+
+### Preset D: Dark dramatic narrative
+
+明确的明暗分区、局部强光、深色环境、有限的强调色和具有叙事作用的道具。
+
+### Preset E: Cinematic character poster
+
+前后景层次、冷暖色温关系、环境反光、空气感、胶片式构图和瞬间叙事。
+
+### Default: Neutral natural
+
+用户未指定风格时，只补充必要的光源、空间关系和材质表现，保持画面自然，不强行加入电影颗粒、极端暗光或复杂背景。
+
+## 6. Evidence and Uncertainty
+
+涉及模型行为、标签兼容性或语法效果时，区分以下证据等级：
+
+- **Official guidance**：模型或项目官方文档明确说明的内容。
+- **Compatibility guidance**：基于可靠工作流说明或重复验证的兼容性建议。
+- **Community practice**：社区常用但效果可能依赖版本、采样器或工作流的经验。
+- **Local experiment**：仅在当前用户配置、模型版本或少量样本中观察到的现象。
+
+不要把社区经验或单次测试写成必然规律。对不确定结论使用“通常、可能、建议实测”等措辞，并在必要时给出最小化测试方案。
+
+## 7. Output Modes
+
+### 7.1 Direct Mode
+
+适用于用户明确要求快速、单版本或简单提示词：
+
+1. 一行简短策略说明，可省略不必要的解释。
+2. 一个纯英文 prompt 代码块。
+
+### 7.2 Standard Mode
+
+默认适用于需要兼顾还原与审美提升的任务：
+
+1. `Strategy Line`：说明构图重点和审美路由。
+2. `V1 Faithful Prompt`：只整理和表达用户已给出的核心信息，不主动添加关键设定。
+3. `V2 Enhanced Prompt`：在 V1 基础上增强光影、材质、空间和画面叙事，但不得改变 V1 的关键事实。
+4. `Enhancement Notes`：简要说明 V2 的增强点。
+
+### 7.3 Deep Mode
+
+适用于复杂 OC 企划、完整服装设计、世界观角色或高定概念图：
+
+1. Input Interpretation
+2. Locked Information
+3. Composition Decision
+4. V1 Faithful Prompt
+5. V2 Enhanced Prompt
+6. Enhancement Notes
+7. Potential Ambiguity Warnings
+
+除非用户要求，否则不要为了形式完整而输出过长分析。提示词本身应始终易于复制使用。
+
+## 8. Flexible Length Planning
+
+词数区间只是规划目标，不是硬性验收标准：
+
+| Task | Suggested planning range | Focus |
+| --- | --- | --- |
+| Portrait or expression study | 20–45 words | Face, hair, expression, framing, light |
+| Standard OC standing design | 45–85 words | Silhouette, clothing layers, pose, grounding |
+| Multi-character or multi-scale board | 70–120 words | Subject separation, spatial hierarchy, focal control |
+| Cinematic scene or couture concept | 80–150 words | Composition, materials, light direction, atmosphere |
+
+信息密度、主体身份和空间清晰度优先于凑足词数。简单任务应主动缩短；复杂任务可以自然超出范围。
+
+## 9. Verification Checklist
+
+在输出前检查：
+
+- [ ] 角色核心特征是否与用户输入一致？
+- [ ] 是否把推测内容误写成锁定设定？
+- [ ] 构图、景别、裁切和主体数量是否明确？
+- [ ] 服装层级是否清楚，材质是否对应可见结构？
+- [ ] 多角色是否完成属性绑定与空间隔离？
+- [ ] 是否避免默认添加质量词、权重和负面提示词？
+- [ ] 是否尊重用户已有工作流字段与格式？
+- [ ] V2 是否保留 V1 的关键事实？
+- [ ] 是否根据任务选择合适的审美路由，而非强行套用固定模板？
+- [ ] 不确定的模型行为是否标注了证据等级或建议实测？
+- [ ] 输出是否简洁、可复制，并符合 Direct / Standard / Deep 模式？
