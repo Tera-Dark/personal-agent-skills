@@ -5,6 +5,9 @@ metadata:
   author: Tera-Dark
   version: "2.0.0"
   layer: "02_creation"
+  load: "on-demand"
+  status: "active"
+  triggers: "插画, 氛围图, 竖屏, 半留白, 印象风, 故事感, key visual, poster, scene"
 ---
 
 # Illustration Direction

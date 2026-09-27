@@ -5,6 +5,38 @@ All notable changes to the `personal-agent-skills` repository will be documented
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.0] - 2026-09-28
+
+Harness release. Target use changed from "skills discovered by a coding-agent runtime" to "a chat model (ChatGPT / Gemini / Claude) handed one URL". That needs a kernel, a build step, single-file bundles, and CI — added here.
+
+### Added
+- **`kernel/KERNEL.md`** — the operating contract: handshake (a one-line version probe instead of a repo summary), READ→ROUTE→LOAD→THINK→EXECUTE→VERIFY→DELIVER loop, non-negotiables, two-tier module loading with graceful degradation to module cards (`[card-only]`), generated module index, voice, Session State block, vision protocol (`seen:` first, observed vs inferred), commands (`/state /modules /reload /mode /model /new-module /version /help`), extension protocol, named failure modes.
+- **`kernel/EXTENSION-PROTOCOL.md`** + **`kernel/templates/`** — how a new capability is drafted in chat (overlap check → layer → complete files with paths → commit → CI) with a SKILL and a reference template.
+- **`scripts/build.py`** — compiles sources into `bundle/HARNESS.md` (kernel + index + always-on modules, ≈23k tokens), `bundle/HARNESS-FULL.md` (everything, ≈56k), `bundle/modules/<name>.md` (one fetch per module), `bundle/manifest.json`, and a generated `docs/skill-registry.md`. `--check` reports stale outputs.
+- **`scripts/skills_lib.py`** — shared frontmatter parser / discovery / token estimate / heading demotion.
+- **`harness.json`** (repo, branch, layers, always-on file lists, handshake, core token budget) and **`VERSION`**.
+- **`.github/workflows/harness.yml`** — validates on PRs (fails if bundle is stale); on push to `main` validates, rebuilds and commits `bundle/` back, so modules added via the GitHub web UI or from chat go live without a local toolchain.
+- **`02_creation/general-image-prompt-adapter`** — adapter for Midjourney / DALL-E / Imagen / Flux / SDXL / unnamed targets; parameters outside the prompt; every model claim carries an evidence label; `references/target-notes.md` with per-row evidence.
+- **`06_extensions/`** — home for chat-added modules that fit no other layer.
+- **`AGENTS.md`** — pointer for coding agents; **`docs/usage.md`** — per-platform setup, commands, extension flow, troubleshooting, token budgets.
+- **Harness test cases** (Harness-01…08) in `tests/test-suite.md`.
+
+### Changed
+- **README** now opens with the AI bootstrap block (fetch `bundle/HARNESS.md`, operate under it, do not summarize, exact fallback line) so pasting the repo URL is enough.
+- **Frontmatter** of every skill gained `metadata.load` (always / on-demand), `metadata.status` (active / placeholder / planned), `metadata.triggers`. The validator enforces `layer == folder`, `load`, `status`, always-on consistency with `harness.json`, and rejects skills outside declared layers.
+- **Router** routes unknown / other image models to `general-image-prompt-adapter`, extension modules by their own triggers, and non-creative requests to a direct answer; no more hand-maintained trigger list — the index is built from module frontmatter.
+- `04_tools/*` status changed from `placeholder` to `planned` (listed, not loadable; answered `[no module]`).
+- `docs/skill-registry.md` is now generated. `docs/architecture.md`, `docs/skill-specification.md`, `docs/versioning.md` updated for the kernel, bundling rules, and semver meaning.
+- Last release's review moved to `docs/reviews/2026-09-27-v2.0-review.md`.
+
+### Decisions made on the owner's behalf (per request)
+- Placeholder tools kept as `planned` rather than deleted — they document intent and cost nothing in the bundle.
+- Taste signature sentence kept; it remains the one line the owner should personally edit.
+- Kernel written in English (cross-model instruction precision); taste and creative modules stay Chinese; models answer in the owner's language; prompts always English.
+- Always-on set = identity (signature, dislikes, voice) + director (moves, diagnosis, pairs) + router + evaluation. ≈23k tokens, under the 40k budget; the calibration pairs stay in because they are the strongest taste carrier.
+
+---
+
 ## [2.0.0] - 2026-09-27
 
 Architecture release. Fixes the two problems found in review: (1) the taste layer the whole architecture depended on was empty, so outputs fell through to slot-filling; (2) three generations of skills coexisted (`skills/`, root `anima-prompt-compiler/`, numbered `0X_` layers) with drifting duplicates.

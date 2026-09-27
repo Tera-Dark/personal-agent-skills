@@ -4,26 +4,30 @@
 
 Define how this repository evolves while keeping Skill responsibilities stable.
 
+## Where the version lives
+
+`VERSION` (single line) is the harness version. `scripts/build.py` stamps it into `bundle/HARNESS.md`, the handshake line, and `bundle/manifest.json`. Individual skills carry their own `metadata.version`; bump it when that skill's contract changes.
+
 ## Version Rules
 
-### Minor changes
+### Patch (x.y.Z)
 
-Use when:
+- wording fixes, new examples, new reference knowledge, new rows in target-notes
+- no contract change; a running session would not notice
 
-- adding references
-- improving prompts or examples
-- extending supported workflows
+### Minor (x.Y.0)
 
-No architecture change.
+- a new module
+- a new section in a module's output contract
+- new kernel command
+- always-on set changed in `harness.json`
 
-### Major changes
+### Major (X.0.0)
 
-Use when:
-
-- changing Skill responsibilities
-- moving modules between layers
-- changing Router behavior
-- breaking existing workflows
+- kernel operating loop or non-negotiables changed
+- skills moved between layers or renamed (fetch URLs change)
+- router behavior changed
+- anything that breaks a custom GPT / Gem that uploaded the previous HARNESS-FULL.md
 
 ## New Skill Checklist
 

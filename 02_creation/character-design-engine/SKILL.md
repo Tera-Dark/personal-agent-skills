@@ -5,6 +5,9 @@ metadata:
   author: Tera-Dark
   version: "2.0.0"
   layer: "02_creation"
+  load: "on-demand"
+  status: "active"
+  triggers: "OC, 人设, 角色设计, 服装设计, 立绘, 高定服设, 二游角色, character sheet"
 ---
 
 # Character Design Engine

@@ -5,6 +5,9 @@ metadata:
   author: Tera-Dark
   version: "2.0.0"
   layer: "02_creation"
+  load: "on-demand"
+  status: "active"
+  triggers: "NAI5, NovelAI, NAI提示词, tag prompt, Danbooru, artist stack, char1"
 ---
 
 # NAI5 Community Prompt Engineering

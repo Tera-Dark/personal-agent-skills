@@ -1,6 +1,41 @@
 # Architecture
 
-> Merged from the previous `architecture.md` + `creative-system-overview.md` (v2.0.0).
+> v2.1.0: a kernel and a build step were added on top of the v2.0 layered skills, turning the repository into a harness that a chat model can load from one URL.
+
+## Two views of the same repository
+
+```
+SOURCE (what you edit)                        DISTRIBUTION (what a model loads)
+─────────────────────────                     ────────────────────────────────────
+harness.json  VERSION                         bundle/HARNESS.md
+kernel/KERNEL.md                 build.py       = kernel (placeholders filled)
+00_core/<skill>/SKILL.md      ───────────►      + module index (from frontmatter)
+   references/*.md                              + always-on modules, full text
+01_router/ … 06_extensions/                   bundle/modules/<name>.md   (one file per module: SKILL.md + references)
+                                              bundle/HARNESS-FULL.md     (everything)
+                                              bundle/manifest.json       (machine-readable)
+                                              docs/skill-registry.md     (human-readable, generated)
+```
+
+Chat models (ChatGPT, Gemini, Claude) have no skill-discovery mechanism; a URL fetch returns one document. So the unit of distribution is a **single compiled file**, and the kernel inside it tells the model how to pull more single files on demand. Skill-discovering runtimes (Claude Code, Codex) can still use the sources directly via `scripts/install.sh`.
+
+## Kernel
+
+`kernel/KERNEL.md` is not a skill; it is the operating contract every session runs under:
+
+| Section | What it fixes |
+|---|---|
+| Handshake | The model's first reply is a one-line version probe, not a summary of the repo |
+| Operating loop | READ → ROUTE → LOAD → THINK → EXECUTE → VERIFY → DELIVER, every turn |
+| Non-negotiables | adapters never design · taste has one home · no fabricated model facts · feedback is evidence · prompts in English · never echo harness text · never pretend |
+| Loading protocol | two tiers (always-on embedded / on-demand fetched), ≤3 loads per turn, cache, graceful degradation to module cards with `[card-only]` |
+| Module index | generated from every SKILL.md's frontmatter: triggers, status, token cost, fetch URL, card |
+| Voice | the owner's presentation rules, binding |
+| Session State | a ≤12-line block tracking target, mode, locked facts, approved dimensions, rejected items, prompt version, loaded modules |
+| Vision protocol | `seen:` before anything else; observed vs inferred; route reference vs result vs screenshot |
+| Commands | `/state /modules /reload /mode /model /new-module /version /help` |
+| Extension protocol | how a new module is drafted in chat and goes live through CI |
+| Failure modes | the specific ways this model tends to drift, named |
 
 ## Philosophy
 

@@ -20,13 +20,14 @@ Skill 之间按**名字**引用（不是相对路径），因为它们可能被�
 适配器（模型相关，只翻译不设计）：
 - `anima-prompt-compiler` — Tag + Natural Language 格式，Anima 系列
 - `nai5-community-prompt-engineering` — 社区格式：artist stack / char blocks / 权重，NovelAI
+- `general-image-prompt-adapter` — 自然语言 prompt，Midjourney / DALL-E / Imagen / Flux / SD / 未命名目标；带证据标签
 
 ## 03_analysis
 
 - `image-reverse-analysis` — 参考图 → 设计语言（结构，不是物件）
 - `prompt-analysis` — 现有 prompt → 意图 / 结构 / 问题 / 改法
 
-## 04_tools — 技术（当前为占位）
+## 04_tools — 技术（status: planned，无可加载内容）
 
 - `comfyui-workflow`
 - `lora-training`
@@ -35,3 +36,11 @@ Skill 之间按**名字**引用（不是相对路径），因为它们可能被�
 ## 05_evaluation
 
 - `evaluation-loop` — 六维评分 + 反馈诊断 + 单变量迭代
+
+## 06_extensions — owner 通过聊天新增的模块
+
+目前为空。规则见 `kernel/EXTENSION-PROTOCOL.md`。
+
+## kernel/ — 不是 Skill
+
+`kernel/KERNEL.md` 是运行契约（操作循环、加载协议、视觉协议、会话状态、命令、扩展协议）。build 会把它和 always-on 模块合成 `bundle/HARNESS.md`。

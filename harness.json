@@ -1,0 +1,17 @@
+{
+  "name": "personal-agent-skills",
+  "owner": "Tera-Dark",
+  "repo": "Tera-Dark/personal-agent-skills",
+  "branch": "main",
+  "bundle_dir": "bundle",
+  "kernel": "kernel/KERNEL.md",
+  "layers": ["00_core", "01_router", "02_creation", "03_analysis", "04_tools", "05_evaluation", "06_extensions"],
+  "always_on": {
+    "personal-identity-profile": ["SKILL.md", "references/taste-signature.md", "references/design-dislikes.md", "references/workflow-style.md"],
+    "aesthetic-director-core":   ["SKILL.md", "references/creative-moves.md", "references/feedback-diagnosis.md", "references/taste-calibration-pairs.md"],
+    "creative-skill-router":     ["SKILL.md"],
+    "evaluation-loop":           ["SKILL.md"]
+  },
+  "handshake": "Harness v{version} loaded · {modules} modules · 说需求，或发参考图。",
+  "core_budget_tokens": 40000
+}

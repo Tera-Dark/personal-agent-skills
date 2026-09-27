@@ -5,6 +5,9 @@ metadata:
   author: Tera-Dark
   version: "2.0.0"
   layer: "03_analysis"
+  load: "on-demand"
+  status: "active"
+  triggers: "反推, 分析图片, 提取提示词, 还原风格, 参考这张, reverse prompt, reference image"
 ---
 
 # Image Reverse Analysis

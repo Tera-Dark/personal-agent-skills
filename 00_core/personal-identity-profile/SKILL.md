@@ -5,6 +5,9 @@ metadata:
   author: Tera-Dark
   version: "2.0.0"
   layer: "00_core"
+  load: "always"
+  status: "active"
+  triggers: "我的风格, 个人偏好, 按我习惯, any creative task"
 ---
 
 # Personal Identity Profile

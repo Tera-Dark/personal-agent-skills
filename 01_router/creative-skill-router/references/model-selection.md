@@ -34,13 +34,22 @@ Output:
 
 Natural visual description.
 
-## General Image Models
+## General Image Models (`general-image-prompt-adapter`)
 
 Use when:
 
+- the target is Midjourney, DALL-E / GPT Image, Imagen / Gemini image, Flux, SDXL-style checkpoints, or unnamed
 - scene understanding is primary
 - conversational editing is needed
 - less syntax control is required
+
+Output:
+
+Natural-language paragraph; parameters outside the prompt only when the target officially supports them; every model claim carries an evidence label.
+
+## Unknown target
+
+If the owner did not name a model and it affects the format, ask one question. Default to `general-image-prompt-adapter` in generic mode.
 
 ## Rule
 

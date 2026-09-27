@@ -5,6 +5,9 @@ metadata:
   author: Tera-Dark
   version: "2.0.0"
   layer: "03_analysis"
+  load: "on-demand"
+  status: "active"
+  triggers: "优化提示词, prompt 哪里有问题, prompt review, 分析这段提示词"
 ---
 
 # Prompt Analysis

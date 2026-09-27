@@ -1,6 +1,6 @@
 # 核心验证测试集 (Test Suite)
 
-> **Version**: 2.0.0  
+> **Version**: 2.1.0  
 > **Last Updated**: 2026-09-17  
 > **Scope**: 验证编译器在多场景下的属性锁定、语言转换、V1/V2 分离、事实一致性、词数弹性与正向约束能力。
 
@@ -197,3 +197,49 @@
 - **用户输入**：「帮我写个 NAI5 提示词，一个赛博巫女。」
 - **Fail 信号**：适配器直接产出 prompt。
 - **Pass**：适配器识别出这不是 blueprint，走 identity → director → character-design-engine 后再编译；赛博元素以签名方式处理（有理由的结构、一处怪、一个刺点），而不是拒绝用户要求。
+
+---
+
+## 4. Harness 层用例 (Harness Cases, v2.1.0)
+
+测的是 kernel 行为，不是任何模块。在 ChatGPT / Gemini 新会话里跑。
+
+### Harness-01: 一个链接冷启动
+- **输入**：第一条消息只有 `https://github.com/Tera-Dark/personal-agent-skills`
+- **Pass**：回复**只有**一行握手 `Harness v2.1.0 loaded · 14 modules · 说需求，或发参考图。`（版本、模块数与 `bundle/manifest.json` 一致）
+- **Fail**：介绍仓库、列功能、描述架构、问"需要我做什么"之外的任何多余内容
+
+### Harness-02: 抓取失败降级
+- **输入**：在不能联网的会话里发链接
+- **Pass**：回复精确为 `我无法访问链接。请把 bundle/HARNESS.md 的内容粘贴给我。`
+- **Fail**：假装读到了；或凭训练记忆编一个"harness"
+
+### Harness-03: 按需加载与卡片降级
+- **输入**：握手后发「设计一个 OC，出 Anima 提示词」
+- **Pass**：模型声明加载 `character-design-engine` 与 `anima-prompt-compiler`（≤3 个）；若某个抓取失败，输出带 `[card-only]` 并给出 raw URL
+- **Fail**：不加载直接写；或声称加载了但输出里没有该模块的输出契约结构
+
+### Harness-04: 视觉协议
+- **输入**：发一张参考图 + 「参考这张的感觉」
+- **Pass**：第一段是 `seen:` + ≤3 行可见内容，推断项带 `?`；随后进入 image-reverse-analysis 的结构拆解
+- **Fail**：描述了看不见的细节（织物经纬、精确色值）；或跳过 `seen:` 直接输出 prompt
+
+### Harness-05: 会话状态
+- **输入**：锁定「银发、金瞳」后迭代三轮，第四轮发 `/state`
+- **Pass**：state 块 ≤12 行，locked 含银发金瞳，prompt 版本号递增，rejected 项在后续输出里没有以 tag 回流
+- **Fail**：某一轮把银发改成了别的；或 state 块缺字段
+
+### Harness-06: 证据标签
+- **输入**：「Midjourney 上怎么写才能让它更听话？」
+- **Pass**：每条模型行为断言带 `[Official]` / `[Community]` / `[Unverified]`；官方参数与社区经验分开
+- **Fail**：任何无标签的"MJ 对 X 更敏感"式断言；编造参数
+
+### Harness-07: 扩展协议
+- **输入**：`/new-module tweet-caption-writer`
+- **Pass**：先查索引说明无重叠；输出 `06_extensions/tweet-caption-writer/SKILL.md` 完整文件（frontmatter 含 name==目录、description 有触发词、metadata.layer/load/status）；六段齐全；末尾给出"提交到 main → CI 重建 → 下会话生效"两步；本会话按草稿工作
+- **Fail**：片段、省略号、占位符；缺 frontmatter 字段；写成散文
+
+### Harness-08: 不总结、不布道
+- **输入**：握手后发「你能干什么？」
+- **Pass**：`/help` 表或一两行指向索引；不复述 kernel，不输出审美理论
+- **Fail**：长篇介绍

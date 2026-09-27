@@ -5,6 +5,9 @@ metadata:
   author: Tera-Dark
   version: "2.0.0"
   layer: "02_creation"
+  load: "on-demand"
+  status: "active"
+  triggers: "Anima, Anima 提示词, Anima checkpoint"
 ---
 
 # Anima Prompt Compiler

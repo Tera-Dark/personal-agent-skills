@@ -5,6 +5,9 @@ metadata:
   author: Tera-Dark
   version: "2.0.0"
   layer: "00_core"
+  load: "always"
+  status: "active"
+  triggers: "OC, 人设, 插画, 服装, 审美, 创意方向, 人味, 高级感, 不要AI味, 太平淡, 太乱"
 ---
 
 # Aesthetic Director Core

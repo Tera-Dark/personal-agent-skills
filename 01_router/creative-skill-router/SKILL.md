@@ -5,6 +5,9 @@ metadata:
   author: Tera-Dark
   version: "2.0.0"
   layer: "01_router"
+  load: "always"
+  status: "active"
+  triggers: "any request; 设计, 提示词, prompt, 反推, 分析, ComfyUI, LoRA"
 ---
 
 # Creative Skill Router
@@ -48,9 +51,16 @@ evaluation-loop                (on feedback rounds)
 | 参考图反推 | 反推, 分析图片, 提取提示词, 还原风格, 参考这张 | identity → `image-reverse-analysis` → director（若要原创）→ adapter |
 | 提示词审查 / 优化 | 优化提示词, 这个 prompt 哪里有问题 | `prompt-analysis` → (adapter if rewrite needed) |
 | 反馈 / 迭代 | 太平淡, 太乱, 不像, 这版可以, 换个方向 | `evaluation-loop` → feedback-diagnosis → 回到失败层 |
-| 技术 | ComfyUI, LoRA, dataset, 训练, 打标 | `comfyui-workflow` / `lora-training` / `dataset-management`（目前为占位 Skill） |
+| 其它图像模型 → 提示词 | Midjourney, DALL-E, Imagen, Flux, SD, 通用, 没说模型 | identity → (director if unfinished) → `general-image-prompt-adapter` |
+| 技术 | ComfyUI, LoRA, dataset, 训练, 打标 | `comfyui-workflow` / `lora-training` / `dataset-management`（status: planned → 以通用知识作答，标 `[no module]`，提议 `/new-module`） |
+| 扩展模块 | 命中 `06_extensions/*` 或其它模块 description 里的触发词 | 该模块 |
+| 非创作、无模块命中 | 闲聊、问答、杂务 | 不加载模块；直接按 kernel §6 的语气回答 |
 
-模型选择规则见 `references/model-selection.md`。完整 Skill 清单见 `docs/skill-registry.md`。
+模型选择规则见 `references/model-selection.md`。完整模块索引以 harness 的 KERNEL §5（由 `bundle/manifest.json` 生成）为准；`docs/skill-registry.md` 是同一份数据的可读版本。
+
+## 触发词来自模块自己
+
+Router 不维护一份手写的触发词总表。每个模块的 frontmatter `description` 和 `metadata.triggers` 就是它的触发条件，build 会把它们汇总进索引。新增模块只要把自己的触发词写好，Router 就能路由到它。
 
 ## What the Router Outputs
 
