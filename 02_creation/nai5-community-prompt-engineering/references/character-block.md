@@ -1,23 +1,39 @@
-# NAI5 Character Block
+# NAI5 Character Block Format
 
-## Structure
+## Overview
 
-```
+Community prompts commonly separate characters into blocks.
+
+Example:
+
+```text
 char1:
-girl, character name, appearance, clothing, expression, action
+girl, character name, hair, eyes, outfit, action
+
+char2:
+boy, character name, outfit, interaction
 ```
 
-## Order
+## Recommended Order
 
-Recommended order:
+```text
+gender
+identity
+face
+hair
+eyes
+expression
+clothing
+accessories
+props
+pose
+```
 
-1. gender
-2. character identity
-3. physical traits
-4. outfit
-5. pose/action
-6. emotional state
+## Rules
 
-## Principle
+- Keep identity tokens close to the beginning.
+- Describe signature features before secondary decoration.
+- Avoid mixing two characters in one block.
+- Use interaction tags for relationships.
 
-A character block should describe a person, not a random collection of tags.
+The goal is character consistency, not maximum token quantity.

@@ -1,20 +1,33 @@
-# NAI5 Weighting
+# NAI5 Weighting System
 
-## Weighted Syntax
+## Purpose
 
-Example:
+NovelAI V5 community prompts frequently use weighted syntax to control emphasis.
 
-```
+## Common Syntax
+
+```text
 1.5::tag::
--1::tag::
+0.5::tag::
+-2::tag::
 ```
 
-## Usage
+Positive values strengthen visual influence. Negative values suppress unwanted features.
 
-Use weights for:
+## Weight Guidelines
 
-- style emphasis
-- removing unwanted tendencies
-- balancing artist influence
+- 0.25-0.75: subtle influence
+- 0.8-1.5: strong influence
+- 2+: aggressive emphasis, use carefully
+- negative weights: style removal or correction
 
-Avoid excessive weighting that makes prompts difficult to understand.
+## Usage Principles
+
+Do not weight every token. Reserve weights for:
+
+- artist blending
+- important style direction
+- critical character traits
+- unwanted style suppression
+
+Avoid turning prompts into random weighted token piles.

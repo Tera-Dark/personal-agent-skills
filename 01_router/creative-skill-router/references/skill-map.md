@@ -1,32 +1,37 @@
 # Skill Map
 
-## Core
+Skill 之间按**名字**引用（不是相对路径），因为它们可能被分别安装到不同位置。
 
-00_core/
+## 00_core — 身份与审美
 
-- personal-identity-profile
-- aesthetic-director-core
+- `personal-identity-profile` — 品味签名、否决清单、工作方式。唯一的品味来源。
+- `aesthetic-director-core` — 九个创作动作 → Creative Brief。所有创作任务的第一站。
 
-## Creation
+## 01_router
 
-02_creation/
+- `creative-skill-router` — 本 Skill。
 
-- character-design-engine
-- illustration-direction
-- nai5-community-prompt-engineering
-- anima-prompt-engineering
+## 02_creation — 设计与模型适配
 
-## Analysis
+设计（模型无关）：
+- `character-design-engine` — Brief → 角色 blueprint（命题、轮廓、服装工程、配色层级、姿势因果、展示方式）
+- `illustration-direction` — Brief → 画面 blueprint（瞬间、构图、光源、密度、氛围预设）
 
-03_analysis/
+适配器（模型相关，只翻译不设计）：
+- `anima-prompt-compiler` — Tag + Natural Language 格式，Anima 系列
+- `nai5-community-prompt-engineering` — 社区格式：artist stack / char blocks / 权重，NovelAI
 
-- image-reverse-analysis
-- prompt-analysis
+## 03_analysis
 
-## Tools
+- `image-reverse-analysis` — 参考图 → 设计语言（结构，不是物件）
+- `prompt-analysis` — 现有 prompt → 意图 / 结构 / 问题 / 改法
 
-04_tools/
+## 04_tools — 技术（当前为占位）
 
-- comfyui
-- lora-training
-- dataset
+- `comfyui-workflow`
+- `lora-training`
+- `dataset-management`
+
+## 05_evaluation
+
+- `evaluation-loop` — 六维评分 + 反馈诊断 + 单变量迭代

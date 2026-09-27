@@ -23,6 +23,10 @@ Triggers:
 Flow:
 Existing concept -> Model Adapter
 
+**判断"概念是否已存在"的标准**：用户给出了明确的角色事实（发型、服装件、姿势、构图）。
+如果用户只给了主题/职业/氛围词（"一个月光祭司"、"赛博巫女"、"有故事感的"），概念**不存在**，必须先走：
+Identity -> Aesthetic Director -> Character Design / Illustration Direction -> Model Adapter
+
 ## Image Reverse Analysis
 
 Triggers:
@@ -39,9 +43,20 @@ Triggers:
 - 插画
 - 氛围图
 - 竖屏艺术图
+- 半留白 / 印象风 / 故事感 / key visual
 
 Flow:
-Theme -> Composition -> Illustration Skill
+Identity -> Aesthetic Director -> Illustration Direction -> Model Adapter
+
+## Feedback / Iteration
+
+Triggers:
+- 太平淡 / 太乱 / 不像 OC / 没人味 / 太怪
+- 这版可以 / 就这个方向
+- 换个方向 / 再来一版
+
+Flow:
+evaluation-loop -> aesthetic-director-core/references/feedback-diagnosis.md -> 回到失败的那一层 -> Model Adapter
 
 ## Technical Workflow
 

@@ -27,12 +27,11 @@ Use when:
 
 ## New Skill Checklist
 
-1. Confirm no existing Skill already owns the responsibility.
-2. Create an isolated directory.
-3. Add SKILL.md with clear boundaries.
-4. Put detailed knowledge in references/.
-5. Register the Skill in docs/skill-registry.md.
-6. Update README when architecture changes.
+See `docs/skill-specification.md` § Checklist. In short: no overlap → isolated directory → `name` == dir → knowledge in `references/` → register in `docs/skill-registry.md` → `scripts/validate_skills.py` passes → README/architecture updated if the architecture changed.
+
+## Taste updates are versioned too
+
+Changes to `personal-identity-profile/references/taste-signature.md` or `design-dislikes.md` are dated entries, never silent edits. Old entries are marked superseded, not deleted — the history of what the owner stopped liking is itself taste data.
 
 ## Design Principle
 

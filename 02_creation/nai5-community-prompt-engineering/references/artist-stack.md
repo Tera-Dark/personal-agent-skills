@@ -1,22 +1,41 @@
-# NAI5 Artist Stack
+# NAI5 Artist Stack Engineering
 
 ## Purpose
 
-Define how artist influence blocks are structured in NAI5 community prompts.
+Guide weighted artist mixing for NovelAI V5 community prompts.
 
-## Format
-
-Use weighted artist syntax:
+Format:
 
 ```
-0.8::artist:name::
+0.6::artist:name::
 ```
 
-## Guidelines
+## Principles
 
-- Prefer coherent style combinations.
-- Avoid excessive random artist accumulation.
-- Artist selection should support the target visual language.
-- Avoid artist collaboration tags unless intentionally required.
+Artist tags are not decoration. They influence:
+- line quality
+- color language
+- composition
+- character design feeling
 
-The artist stack supports style translation, not replaces design thinking.
+Avoid blindly stacking famous artists.
+
+A good stack balances:
+
+- character design
+- rendering
+- lighting
+- illustration composition
+
+Typical:
+
+```
+5-12 artists
+0.25-1.5 weight
+```
+
+Always keep `artist collaboration` controlled when needed:
+
+```
+-1::artist collaboration::
+```

@@ -1,0 +1,68 @@
+---
+name: evaluation-loop
+description: Evaluates a generated image or compiled prompt against the original Creative Brief and blueprint, using a fixed rubric (identity preservation, outfit binding, spatial clarity, unrequested additions, V1/V2 consistency, output contract) plus a design-layer read (thesis, silhouette, causality, density, punctum, one strange thing). Diagnoses which layer failed and routes the fix to that layer with a single-variable change. Use on any feedback round: 太平淡, 太乱, 不像, 没人味, 这版可以, 评价一下, 哪里不对, compare versions.
+metadata:
+  author: Tera-Dark
+  version: "2.0.0"
+  layer: "05_evaluation"
+---
+
+# Evaluation Loop
+
+## 定位
+
+生成 → 评价 → 定位失败层 → 只修那一层 → 再生成。
+
+本 Skill 不修 prompt。它决定**该谁修**：设计层问题回 `aesthetic-director-core` / `character-design-engine` / `illustration-direction`；语法与伪影问题回对应适配器。
+
+## 评价顺序（从上往下，第一个失败的层就是要修的层）
+
+```
+1. 命题        看图能不能说出"这是关于什么的"？有动词吗？
+2. 身份一致    锁定事实（发色、瞳色、服装件、姿势）是否 100% 保留？
+3. 轮廓        缩略图尺寸认得出吗？
+4. 服装结构    四层是否可读？颜色是否绑定到正确的件？有没有融色？
+5. 因果 / 瞬间 姿势有没有解释服装和道具？是状态还是时刻？
+6. 密度 / 刺点 有密集区和安静区吗？刺点是一个还是多个？
+7. 那一处怪    在吗？只有一处吗？
+8. 未授权添加  有没有出现 blueprint 里没有的东西（耳环、腰带、手表、粒子、翅膀）？
+9. 空间 / 构图 景别对吗？多图层是否隔离？背景抢戏吗？
+10. 光         有物理来源和衰减吗？
+11. 输出契约   格式对吗？有没有禁用质量词 / 多余负面 / 参数？
+```
+
+**技术质量（手、解剖、清晰度）排最后。** 一张技术正确的图仍然可以因为没有人而失败。
+
+## 六维评分表（与 `tests/test-suite.md` 一致）
+
+| 维度 | Pass | Fail |
+|---|---|---|
+| Identity Preservation | 锁定事实 100% 一致 | 改了发色 / 瞳色 / 关键特征 |
+| Outfit Attribute Binding | 材质与颜色紧贴对应服装件 | 外套颜色渗入内搭；领口材质混淆 |
+| Spatial & Layout Clarity | 景别 / 构图 / 图层隔离清楚 | 展示板出双胞胎；背景喧宾夺主 |
+| Unrequested Additions | 无未授权物件 / 世界观 | 出现赛博配件、翅膀、手表、粒子 |
+| V1/V2 Fact Consistency | V2 未改 V1 事实 | V2 把白发改成金发 |
+| Output Contract | 格式正确，无禁用词，无多余负面 | 出现 `masterpiece`；夹带独立 Negative |
+
+外加一行 **Design Read**：命题 ___ / 轮廓 ___ / 因果 ___ / 密度 ___ / 刺点 ___ / 怪 ___（各一个词：成立 / 弱 / 缺失）。
+
+## 输出契约
+
+```
+诊断：失败在 [层]。原因一句话。
+六维：IP ✓/✗ · OB ✓/✗ · SC ✓/✗ · UA ✓/✗ · VC ✓/✗ · OC ✓/✗
+Design Read：命题 成立 / 轮廓 弱 / 因果 缺失 / 密度 成立 / 刺点 多于一个 / 怪 缺失
+下一步：交给 [skill]，只改 [一个变量]，锁定 [其它一切]。
+```
+
+不写长篇评语。不夸。不列十条建议——一条，最上面那层的。
+
+## 反馈翻译
+
+用户原话 → 失败层 → 动作，见 `aesthetic-director-core/references/feedback-diagnosis.md`。本 Skill 直接引用那张表，不另维护。
+
+## 三条元规则
+
+1. 一次一层，一次一个变量。
+2. 用户认可的版本：记录成功维度到 `personal-identity-profile/references/taste-signature.md` § 5。
+3. 一次否决不升格为永久规则；≥3 次或用户明说才写入 `design-dislikes.md`。

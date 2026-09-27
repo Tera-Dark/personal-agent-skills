@@ -1,49 +1,76 @@
 ---
 name: image-reverse-analysis
-description: Analyze reference images into design language, composition, and prompt structure.
-priority: 20
+description: Decomposes a reference image into transferable design language — silhouette and mass distribution, motif grammar, garment construction, material contrast, palette hierarchy, pose logic, negative space and presentation format — instead of a tag dump. Output feeds aesthetic-director-core (for original work) or a model adapter (for faithful reproduction). Use for 反推, 分析图片, 提取提示词, 还原风格, 参考这张图, reverse prompt, image analysis.
+metadata:
+  author: Tera-Dark
+  version: "2.0.0"
+  layer: "03_analysis"
 ---
 
 # Image Reverse Analysis
 
-## Purpose
+## 定位
 
-Convert visual references into reusable creative understanding.
+参考图 → **结构**，不是参考图 → 名词。
 
-Do not only extract tags.
-Analyze:
+v2.0.0 合并了原先三处重复的反推流程（本 Skill、`skills/nai5-prompt-engineering/references/reverse-image-analysis.md`、`anima-prompt-compiler § 5`）。适配器不再各自持有反推逻辑。
 
-- character identity
-- costume language
-- composition
-- lighting
-- atmosphere
-- artistic direction
+## 两种任务，先分清
 
-## Process
+| 用户要的是 | 输出去向 |
+|---|---|
+| **忠实还原**这张图（"把这张图的 prompt 反推出来"） | 本 Skill → 模型适配器。保留具体物件、构图、配色。 |
+| **参考这张图的感觉做原创**（"参考这张，但要原创"） | 本 Skill → `aesthetic-director-core` → `character-design-engine`。只保留结构，换掉全部具体物件。 |
 
-Image
+没说清时问一句。默认是后者（这个用户的绝大多数需求）。
 
-↓
+## 分析顺序
 
-Visual decomposition
-
-↓
-
-Design language extraction
-
-↓
-
-Model-specific prompt conversion
-
-## Output
+先看用户给的**这张图**，不要用网络搜索的同类图替代它。
 
 ```
-Visual concept:
-Character:
-Costume:
-Composition:
-Lighting:
-Mood:
-Prompt translation:
+1. Silhouette      外轮廓由哪几个大形状组成？缩略图里认得出的是什么？
+2. Mass            装饰 / 密度集中在头、胸腰、背、四肢中的哪里？哪里是空的？
+3. Motif grammar   重复出现的形态语言是什么（蛇 / 骨 / 花 / 线 / 布褶 / 直线 / 弧）？在几处出现？怎么变形？
+4. Garment         base / structural / signature extension / accessory 四层各是什么？剪裁在哪里？
+5. Material        哪两种材质在对抗？对抗落在哪个结构上？
+6. Palette         基底 / 结构 / 刺点三级分别是什么颜色、落在哪？刺点有几个（理想是一个）？
+7. Pose logic      她在做什么？姿势和道具 / 附属结构有没有物理接触？因果链是什么？
+8. Light           主光源方向、衰减、阴影沉降区。有没有无来源光？
+9. Negative space  哪些区域刻意留白？为什么？
+10. Presentation   clean plate / decorated key visual / editorial plate / environmental vignette？
+11. Mood mechanism 气质是怎么达成的？（不是"神秘"——是"生物的眼睛 + 她的松弛之间的反差"）
 ```
+
+## 输出契约
+
+```
+## 结构拆解
+1–11 每项一到两行，指向图上的具体位置。
+
+## 真正在起作用的（3–5 条）
+去掉具体物件后仍然成立的原则。例："一个巨大环形轮廓让白底上的剪影一眼可读"，而不是"有蛇"。
+
+## 可迁移 / 不可迁移
+可迁移：结构原则。
+不可迁移：具体角色身份、商标、专属构图、版权元素。
+
+## 下一步
+→ 忠实还原：交给 [adapter]，附锁定事实清单。
+→ 原创：交给 aesthetic-director-core，附"真正在起作用的"清单作为约束。
+```
+
+## 禁止
+
+- 输出 `white background, anime, detailed, intricate, elegant` 这类无结构信息的词
+- 用"换名词"当原创（蛇 → 龙）
+- 把用户的参考图替换成搜索到的"类似图"
+- 复制具体角色 / 版权设定，除非用户明确要求忠实还原
+
+## 示例
+
+见 `aesthetic-director-core/references/taste-calibration-pairs.md` Pair 5：蛇形环绕参考图 → 五条结构原则 → 蚕丝少女原创。
+
+## References
+
+- `references/design-language-extraction.md` — 轮廓 / 色彩 / 时装结构 / 情绪的提取要点与重构原则

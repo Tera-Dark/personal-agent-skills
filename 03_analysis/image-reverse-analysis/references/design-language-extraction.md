@@ -1,4 +1,6 @@
-# Reverse Image Analysis
+# Design Language Extraction — 反推要点
+
+> 从 `skills/nai5-prompt-engineering/references/reverse-image-analysis.md` 迁入（v2.0.0）。与模型无关。完整分析顺序见本 Skill 的 SKILL.md；本文件是各步骤的提取要点。
 
 ## Analysis Pipeline
 

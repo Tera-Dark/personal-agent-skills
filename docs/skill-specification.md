@@ -1,61 +1,71 @@
-# Agent Skill 编写与扩展规范 (Skill Specification)
+# Skill Specification
 
-本项目遵循模块化、自包含、跨平台通用的 Agent Skill 设计规范。所有新增技能均需符合本标准，以确保能够在不同的 AI 客户端（Claude、ChatGPT、Antigravity、Cursor 等）中无缝解析与执行。
+> Merged from the previous `skill-specification.md` + `skill-development-guide.md` and aligned with the open Agent Skills spec (agentskills.io/specification), v2.0.0.
 
----
+## Directory
 
-## 1. 目录结构规范
-
-每个技能必须作为一个独立的自包含目录存放在项目根目录下：
-
-```text
-[skill-name]/
-├── SKILL.md                  # [必需] 核心技能定义、路由分发与执行契约
-├── references/               # [推荐] 深度参考知识库、模式库、语法表
-│   ├── [topic-a].md
-│   └── [topic-b].md
-├── templates/                # [可选] 输出模板或结构骨架
-└── examples/                 # [可选] Few-Shot 优质示例或对比用例
+```
+<skill-name>/
+├── SKILL.md            required
+├── references/         optional — knowledge loaded on demand
+├── scripts/            optional
+└── assets/             optional
 ```
 
----
+Skills live under a numbered layer folder (`00_core/`, `01_router/`, …). The layer folder is organizational only; the skill's identity is its own directory name.
 
-## 2. SKILL.md 编写标准
-
-### 2.1 YAML Frontmatter (元数据头)
-每个 `SKILL.md` 顶部必须包含标准的 Frontmatter，便于 Agent 自主发现与检索：
+## Frontmatter
 
 ```yaml
 ---
-name: [技能唯一标识，小写中划线，如：video-director-compiler]
-description: [50-100字简述，明确说明本技能的使用场景、输入类型与交付成果。Agent 根据此字段决定何时激活本技能]
+name: skill-name                 # required. MUST equal the directory name. [a-z0-9] and single hyphens, ≤ 64 chars.
+description: What it does. Use when …   # required. ≤ 1024 chars. What + when + trigger keywords (Chinese triggers welcome). No < >.
+license: MIT                     # optional
+metadata:                        # optional, string → string only
+  author: Tera-Dark
+  version: "2.0.0"
+  layer: "02_creation"
+  status: "placeholder"          # only for stubs
 ---
 ```
 
-### 2.2 正文结构框架
-正文应保持**逻辑主干清晰、规则高度凝练**，避免将几十页的词库硬编码在主文档中（应下沉到 `references/`）：
+Do **not** use non-spec top-level keys (`priority`, `trigger`, `input`, `output`, `dependencies`). Runtimes ignore them at best; put such information under `metadata:` or in the body.
 
-1. **Mission & Architecture (定位与系统架构)**：声明技能职责、上下游输入输出边界。
-2. **Core Principles (核心原则与约束)**：声明 MUST 和 MUST NOT 规则底线。
-3. **Task Routing (任务路由机制)**：根据用户场景分流到不同子模式。
-4. **Execution Workflow (执行流程)**：Step-by-Step 标准操作流程（SOP）。
-5. **Output Contract (交付契约)**：明确规定的输出格式（如代码块、Markdown 报告、JSON 等）。
-6. **Verification Checklist (自检清单)**：供 Agent 输出前的自检闭环。
+`scripts/validate_skills.py` enforces the rules above and fails CI-style on violations.
 
----
+## Body
 
-## 3. 知识下沉原则 (References Separation)
+Keep SKILL.md under ~5000 tokens. It should contain **process**, not **knowledge**:
 
-- **为什么需要 References？**
-  若将所有微观细节（词表、参数、特定画风实验记录）全部写在 `SKILL.md` 中，会造成 Context 冗长膨胀，且容易导致 Agent 产生“机械式死板套用”。
-- **下沉策略**：
-  - 将**固定语法、模型参数、实验记录**抽离为独立参考文件。
-  - 将**领域词汇库、穿搭模式、构图模板**抽离为独立参考文件。
-  - 将**多分支的美学/设计策略**抽离为独立参考文件，由主 Skill 按需索引加载。
+1. 定位 — what it is, what it receives, what it emits, what it explicitly does not do
+2. 硬规则 — MUST / MUST NOT
+3. 执行流程 — ordered steps with dependencies between them
+4. 输出契约 — exact output shape
+5. 自检 — checklist before returning
+6. References — one line per file, what it's for
 
----
+Knowledge (vocabulary, patterns, model parameters, experiment logs, examples) goes in `references/`.
 
-## 4. 跨平台通用性考量
+## Design-layer rules specific to this hub
 
-- **无平台私有依赖**：避免绑定仅某一个客户端特有的专有语法（如某些工具内部的特定私有函数），保持为标准 Markdown + YAML。
-- **纯文本/通用格式交互**：支持自然语言输入与标准代码块交付。
+- **Taste lives only in `personal-identity-profile`.** New skills must not add "personal aesthetic" sections. Reference the profile by name.
+- **Adapters translate, they do not design.** An adapter's SKILL.md must include the input check ("is this a blueprint?") and the route-back rule.
+- **Prefer methods over forms.** An output contract that is a list of empty labels (`Identity: / Costume: / Mood:`) invites slot-filling. Write the contract as dependent decisions, and require the "what was cut" and "rejected directions" lines for anything creative.
+- **Prefer replacement moves over prohibitions.** "Avoid X" must be paired with "do Y instead". See `aesthetic-director-core/references/anti-ai-patterns.md` for the format.
+- **Skills reference each other by name**, never by relative path.
+- **Examples beat rules.** When adding taste knowledge, add a pair to `taste-calibration-pairs.md` (generic answer vs directed answer + what changed) rather than another bullet list.
+
+## Language
+
+Chinese for reasoning and rules (this is how the owner thinks about taste); English for anything that may end up inside a prompt. Frontmatter `description` in English with Chinese trigger words appended.
+
+## Checklist for a new skill
+
+1. Does an existing skill already own this responsibility? (`docs/skill-registry.md`)
+2. Which layer? Does it only depend downward?
+3. `name` == directory name; description says what + when.
+4. Body is process; knowledge is in `references/`.
+5. If it's an adapter: input check + route-back rule present; no taste section.
+6. Register it in `docs/skill-registry.md`.
+7. `python3 scripts/validate_skills.py` passes.
+8. If it changes the architecture, update `README.md` and `docs/architecture.md`, bump major in `CHANGELOG.md`.

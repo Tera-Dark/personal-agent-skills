@@ -9,7 +9,7 @@ Select the correct execution adapter after identifying the creative task.
 Do not choose a model based only on popularity.
 Choose according to the communication style required.
 
-## NAI5
+## NAI5 (`nai5-community-prompt-engineering`)
 
 Use when:
 
@@ -22,7 +22,7 @@ Output:
 
 Structured tags + weighted syntax.
 
-## Anima
+## Anima (`anima-prompt-compiler`)
 
 Use when:
 

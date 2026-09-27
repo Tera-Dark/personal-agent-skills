@@ -1,6 +1,8 @@
-# Anima Fashion Patterns & Garment Library
+# Garment Lexicon — 服装结构词汇与穿搭模式
 
-本文档为 `anima-prompt-compiler` 的专用服设参考知识库。提供日常女装、叠穿层级、非对称解构剪影与高级材质组合的可视化英文模式与词汇库。
+> 从 `anima-prompt-compiler/references/anima-fashion-patterns.md` 迁入 `character-design-engine`（v2.0.0）。内容与模型无关：这些英文短语描述的是**真实服装结构**，Anima 可直接用整句，NAI5 拆成短 tag 后同样成立。
+
+提供日常女装、叠穿层级、非对称解构剪影与高级材质组合的可视化英文模式与词汇库。用途：当 `character-design-engine` Step 4（服装工程）需要把“一件外套”写成“形状 + 位置 + 功能”时，从这里取词，**不要**用 `ornate / intricate / elegant / luxurious` 代替。
 
 ---
 

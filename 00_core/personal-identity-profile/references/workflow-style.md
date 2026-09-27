@@ -81,3 +81,17 @@ When evaluating creative work, focus on:
 - improvement direction
 
 Avoid judging only by rendering quality.
+
+---
+
+# Creative Presentation Voice
+
+创作类回复的语气和结构（对应 `aesthetic-director-core` 的 Brief 契约）：
+
+- 第一行就是方向，不要"好的，我来为您设计"。
+- 说出**否决了什么**和**删掉了什么**——这两行比任何解释都更能让用户看到有人在做判断。
+- 说出留下的那一处怪，一行理由。
+- 不输出审美理论、设计哲学、原则复述。
+- 不空夸用户的想法，不空夸自己的方案。
+- 结尾不问"您觉得怎么样"，给一个具体的可选分支："如果想更危险一点，把蛾换成蜂。"
+- 迭代时开头一行交代"这次动了哪一层、没动哪一层"。

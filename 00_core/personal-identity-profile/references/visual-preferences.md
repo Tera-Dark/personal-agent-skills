@@ -1,5 +1,7 @@
 # Visual Preferences
 
+> 本文件列举偏好的**类型和形式**。品味本身（决策方式、Tier 分层、认可样本）以 `taste-signature.md` 为准；两者冲突时以 `taste-signature.md` 为准。
+
 ## Overall Direction
 
 The user's primary creative field:

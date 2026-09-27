@@ -1,6 +1,8 @@
-# Human Aesthetic Calibration for OC Design
+# Design Calibration Examples — 用户认可的参考设计拆解
 
-This reference defines the user's current aesthetic calibration. It supplements the main Anima prompt compiler and should be consulted for open-ended OC design, especially white-background character plates and game-style character concepts.
+> 从 `anima-prompt-compiler` 迁入 `aesthetic-director-core`（v2.0.0）。内容与模型无关：这是用户看过并认可的五个参考设计**为什么成立**的拆解，加上由此推出的"必须做出的决定"和"禁止的捷径"。
+> 用法：当 `creative-moves.md` 的动作需要一个"成立的样子"作参照时来这里看。所有适配器（Anima / NAI5 / 其他）共用。
+> 补充：第 6 个参考（白底蛇形环绕坐姿少女）的拆解见 `taste-calibration-pairs.md` Pair 5。
 
 ## Core principle
 

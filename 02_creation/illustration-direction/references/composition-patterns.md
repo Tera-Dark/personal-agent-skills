@@ -1,6 +1,8 @@
-# Anima Composition Patterns & Layout Protocols
+# Composition Patterns & Layout Protocols — 景别、展示板与构图协议
 
-本文档为 `anima-prompt-compiler` 的构图与版式排版参考协议。定义了全身立绘、半身肖像、角色展示板、特别是**“前景完整角色 + 背景放大头像”**等多尺度混合构图的稳定引导策略。
+> 从 `anima-prompt-compiler/references/anima-composition-patterns.md` 迁入 `illustration-direction`（v2.0.0）。景别与构图原则与模型无关。§2 的“分层展示板”模板在 Anima 上有实测记录（见 `anima-prompt-compiler/references/anima-model-profiles.md` Log-002），其他模型需自行验证隔离效果。
+
+本文档是构图与版式排版参考协议。定义了全身立绘、半身肖像、角色展示板、特别是**“前景完整角色 + 背景放大头像”**等多尺度混合构图的稳定引导策略。
 
 ---
 

@@ -1,6 +1,9 @@
-# Anima Aesthetic & De-AI Engine Reference
+# Atmosphere Presets — 去 AI 塑料感六维度与氛围预设
 
-本文档为 `anima-prompt-compiler` 的美学增强与“去 AI 塑料感”决策知识库。将人类大师级美学思维解耦为**模块化、按需调用**的策略池，彻底告别“无论什么需求都强制套用 30% 留白 + 单一刺点色 + 失焦沉思”的单一呆板套路。
+> 从 `anima-prompt-compiler/references/anima-aesthetic-deai.md` 迁入 `illustration-direction`（v2.0.0）。六个维度与模型无关；五个预设里的英文片段是自然语言，Anima 直接用，NAI5 拆为短 tag。
+> 使用边界：预设只调 **光 / 色 / 材质 / 神态**，不加物件。预设一次只开一个。预设不能代替 `aesthetic-director-core` 的决定——先有命题和瞬间，再选预设。
+
+本文档是“去 AI 塑料感”的决策知识库。将人类美学思维解耦为**模块化、按需调用**的策略池，避免“无论什么需求都强制套用 30% 留白 + 单一刺点色 + 失焦沉思”的单一套路。
 
 ---
 
@@ -37,7 +40,7 @@ AI 绘图最致命的通病是**“平庸工业味”**：全局无衰减的塑�
 
 ## 2. 五大模块化美学风格预设 (Modular Aesthetic Presets)
 
-编译器在执行任务时，**根据用户需求与画风偏好动态路由**，匹配最恰当的美学方案：
+根据用户需求与画风偏好选择，匹配最恰当的美学方案：
 
 ### Preset A · 商业头像与社交立绘 (Commercial & Clean Avatar)
 - **设计诉求**：亲和、明亮清爽、构图端庄、适度对比、面部结构清晰。
@@ -46,7 +49,7 @@ AI 绘图最致命的通病是**“平庸工业味”**：全局无衰减的塑�
   - *色彩*：明快干净的自然肤色，主色调明亮统一。
   - *神态*：自然灵动的微表情（自信从容的温和注视、嘴角微扬），脱离呆板假人微笑。
   - *负空间*：背景为极简浅灰/米白柔焦色场，让视觉 100% 聚焦于面部和领口。
-- **推荐 Prompt 编译片段**：
+- **可用英文片段**：
   `commercial studio portrait, soft key light with gentle ambient fill, crisp facial features, delicate catchlight in eyes, natural gentle expression, subtle smile, clean muted backdrop, shallow depth of field`
 
 ---
@@ -58,7 +61,7 @@ AI 绘图最致命的通病是**“平庸工业味”**：全局无衰减的塑�
   - *色彩*：奶油色、草莓粉、奶杏、薄荷绿等马卡龙低饱和微温色系，轻盈灵动。
   - *微瑕与质感*：空气感蓬松发丝、少女面颊微透血色、软糯针织或轻薄棉麻质感。
   - *神态*：动态抓拍感（歪头轻笑、吹泡泡、双手抱膝、微风吹乱刘海的瞬间），生动不油腻。
-- **推荐 Prompt 编译片段**：
+- **可用英文片段**：
   `bright high-key daytime lighting, airy atmosphere, soft pastel and cream color palette, wind-blown fluffy hair wisps, natural lively smile, blushing translucent cheeks, candid snapshot moment, cheerful charming energy`
 
 ---
@@ -70,7 +73,7 @@ AI 绘图最致命的通病是**“平庸工业味”**：全局无衰减的塑�
   - *色彩*：黑白灰、驼色、炭灰统治全局（Morandi / Monochrome），仅以金属拉丝银或皮革作为点缀。
   - *构图与非对称*：全身或大半身站姿，单侧垂坠、解构落肩，大面积几何留白。
   - *神态*：冷峻、疏离放空、高级厌世脸、视线投向画外。
-- **推荐 Prompt 编译片段**：
+- **可用英文片段**：
   `high-fashion editorial lookbook, architectural garment silhouette, structured tailoring, matte wool contrasting with lustrous satin, monochrome palette with charcoal and ivory, distant aloof gaze, sculptural lighting, generous minimalist negative space`
 
 ---
@@ -82,7 +85,7 @@ AI 绘图最致命的通病是**“平庸工业味”**：全局无衰减的塑�
   - *色彩*：深墨绿、玄黑、曜石灰占 80%，唯一一处鲜红（如玫瑰、伤痕、红瞳或发饰）作为**刺点色（The Punctum）**。
   - *质感*：破损、风化、微湿水痕、金属反光与粗糙呢料对抗。
   - *神态*：沉重思索、眼神警惕、防备、或疲惫的松弛。
-- **推荐 Prompt 编译片段**：
+- **可用英文片段**：
   `tenebrism chiaroscuro, single dramatic shaft of light cutting through heavy deep shadows, 80% pitch black and charcoal base, lone crimson punctum accent, weary intense gaze, moody atmospheric dust particles, cinematic narrative tension`
 
 ---
@@ -94,12 +97,12 @@ AI 绘图最致命的通病是**“平庸工业味”**：全局无衰减的塑�
   - *构图*：2.39:1 或 16:9 横画幅，前景水珠玻璃遮挡偷窥构图（Sub-framing），人物偏置三分线。
   - *质感*：35mm 胶片细腻银盐颗粒感、微润反光地表。
   - *神态*：失焦出神、注视雨滴滑落、不表演的纯粹时间切片。
-- **推荐 Prompt 编译片段**：
+- **可用英文片段**：
   `cinematic 35mm film still, Saul Leiter atmospheric style, viewed through rain-streaked window with soft chromatic reflections, moody teal and warm amber tone contrast, character lost in thought, cinematic frame crop, fine film grain`
 
 ---
 
-## 3. 编译器策略选择决策流 (Compiler Decision Flow)
+## 3. 预设选择决策流 (Preset Decision Flow)
 
 ```text
 [用户输入意图]

@@ -1,6 +1,6 @@
-# Anima Prompt Compiler 核心验证测试集 (Test Suite)
+# 核心验证测试集 (Test Suite)
 
-> **Version**: 1.1.0  
+> **Version**: 2.0.0  
 > **Last Updated**: 2026-09-17  
 > **Scope**: 验证编译器在多场景下的属性锁定、语言转换、V1/V2 分离、事实一致性、词数弹性与正向约束能力。
 
@@ -43,7 +43,7 @@
 ### Test-02: 4 层复杂服装叠穿与高级材质碰撞
 - **用户输入**：
   > “设计一套冬日高级感穿搭：内搭米色针织高领毛衣，外面套深灰开衫西装，再披一件重磅黑色粗呢大衣，围着燕麦色围巾，下身直筒西装裤。”
-- **预期模式**：Standard Mode | Aesthetic: Preset C (High Fashion)
+- **预期模式**：Standard Mode | Aesthetic: Preset C (High Fashion, see 02_creation/illustration-direction/references/atmosphere-presets.md)
 - **评分记录表 (Evaluation Record)**：
   ```markdown
   - [ ] Identity Preservation: Pass / Fail
@@ -156,3 +156,44 @@
   - [ ] Output Contract: Pass / Fail
   - Notes:
   ```
+
+---
+
+## 3. 设计层回归用例 (Design-Layer Cases, v2.0.0)
+
+以下用例不测 Anima 语法，测 `aesthetic-director-core` → `character-design-engine` 这条链有没有真的做决定。任何模型适配器都适用。
+评分只看四项，缺三项以上判 Fail：**有带动词的命题 / 有被否决的方向 / 有删掉的东西 / 有一处怪**。
+
+### Design-01: 开放式 OC
+- **用户输入**：「设计一个有创意的原创女性角色。」
+- **Fail 信号**：输出以职业/种族标签开头（"月光祭司"、"精灵弓箭手"）；发色瞳色服装全是众数；没有【否决的方向】；出现手表 / 蝴蝶 / 玫瑰 / 粒子 / 魔法阵。
+- **Pass 参照**：`aesthetic-director-core/references/taste-calibration-pairs.md` Pair 1。
+- **记录**：
+  ```markdown
+  - [ ] 命题含动词: Pass / Fail
+  - [ ] 否决的方向 ≥2: Pass / Fail
+  - [ ] 删掉的东西 ≥2: Pass / Fail
+  - [ ] 一处怪（且只有一处）: Pass / Fail
+  - Notes:
+  ```
+
+### Design-02: "更高级一点"
+- **用户输入**：「白衬衫 + 黑长裙，帮我做得更高级一点。」
+- **Fail 信号**：高级 = 加蕾丝 / 珍珠 / 刺绣 / 缎面 / 项链 / 手链；没有任何结构或比例决定。
+- **Pass 参照**：Pair 2。至少一个大结构决定 + 一个比例决定 + 一个材质决定，且有删除清单。
+
+### Design-03: "太平淡"反馈轮
+- **上下文**：上一版是「墨绿军装长外套女骑士，短发，持剑，白底」。
+- **用户输入**：「太平淡了。」
+- **Fail 信号**：加肩章 / 勋章 / 披风 / 军帽 / 枫叶 / 光效；回复没有"诊断：失败在 X 层"这一行。
+- **Pass 参照**：Pair 6。只动命题层与由它引起的轮廓；装饰不增加。
+
+### Design-04: 参考图原创
+- **用户输入**：一张参考图 + 「参考这张的感觉，但要原创。」
+- **Fail 信号**：换名词当原创（蛇 → 龙）；输出 `white background, anime, intricate` 类无结构词。
+- **Pass 参照**：Pair 5。先列出 3–5 条"真正在起作用的结构"，再换掉全部具体物件。
+
+### Design-05: 适配器拒收需求
+- **用户输入**：「帮我写个 NAI5 提示词，一个赛博巫女。」
+- **Fail 信号**：适配器直接产出 prompt。
+- **Pass**：适配器识别出这不是 blueprint，走 identity → director → character-design-engine 后再编译；赛博元素以签名方式处理（有理由的结构、一处怪、一个刺点），而不是拒绝用户要求。

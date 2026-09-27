@@ -1,10 +1,19 @@
-# Design Dislikes
+# Design Dislikes — 否决清单
+
+> 每一条都是历史反馈里反复出现过的。这不是"永远禁止"清单，是"没有因果链就默认不出现"清单。
+> 判断标准只有一个：**能不能说出她为什么会有这个**（`aesthetic-director-core/references/creative-moves.md` M4）。一只怀表在"以记忆为燃料的钟表裁缝"身上是命题本身；挂在随便哪个少女腰上就是 AI 味。
+> 升格规则：某样东西被否决 ≥3 次，或用户明确说"以后都不要"，才写入本文件。写入时注明日期。
 
 ## General Principle
 
 Avoid adding elements only because they are considered "cool".
 
 Every element should have a design reason and contribute to character identity.
+
+## 最高优先级否决项（2026-09 之前已反复确认）
+
+- **手表 / 怀表 / 钟表** —— 除非与时间、职业、剧情或服装主题高度适配，否则禁止主动加入。这是历史上最高频的否决。
+- **无来源的饰品作为"高级感补丁"** —— 随机金属链、随机宝石、随机蝴蝶、随机玫瑰、魔法阵、荧光粒子。
 
 ---
 

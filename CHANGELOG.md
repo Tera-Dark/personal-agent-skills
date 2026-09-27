@@ -5,6 +5,54 @@ All notable changes to the `personal-agent-skills` repository will be documented
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.0] - 2026-09-27
+
+Architecture release. Fixes the two problems found in review: (1) the taste layer the whole architecture depended on was empty, so outputs fell through to slot-filling; (2) three generations of skills coexisted (`skills/`, root `anima-prompt-compiler/`, numbered `0X_` layers) with drifting duplicates.
+
+### Added
+- **`aesthetic-director-core/SKILL.md`** — the creative direction layer now exists. Nine creative moves (find the obsession, plant a contradiction, pick from the tail, build causality, choose the moment, subtract, keep one strange thing, uneven density, name the punctum) producing a Creative Brief that must include rejected directions and what was cut.
+- **`aesthetic-director-core/references/creative-moves.md`** — per-move: what it solves, what the AI does by default, what a designer does, concrete technique, test.
+- **`aesthetic-director-core/references/taste-calibration-pairs.md`** — six paired examples (generic answer vs directed answer + what changed) covering open OC, "make it higher-end", story illustration, white-plate, reference-to-original, and a "too plain" feedback round. Written inside the owner's signature.
+- **`aesthetic-director-core/references/feedback-diagnosis.md`** — one system-wide table: user phrase → failing layer → fix → what not to do. Replaces three partial copies that lived in the Anima adapter.
+- **`personal-identity-profile/references/taste-signature.md`** — names the taste ("精致的基底上，一处怪，一点危险") with evidence, Tier A/B/C/D, boundaries, and an approved-samples log. Single source of truth for preferences.
+- **`scripts/validate_skills.py`** — checks name==directory, description present/length, duplicate names, non-spec frontmatter keys, missing reference files, registry drift.
+- **`scripts/install.sh`** — symlinks every skill into `~/.claude/skills` (or any target) so the numbered layout stays discoverable.
+- **Design-layer regression cases** (Design-01…05) in `tests/test-suite.md`.
+- **Adapter input check**: both adapters now verify they received a blueprint (thesis with verb, silhouette, four garment layers, one punctum, locked facts) and route back otherwise.
+
+### Changed
+- **`character-design-engine`** rewritten from a 13-slot form into an 11-step method with dependent decisions, a subtraction pass, and mandatory "what was cut" / "rejected directions" lines.
+- **`illustration-direction`** rewritten: moment first, physical light sources, one background layer, atmosphere preset at most one, plate-mode rules.
+- **`anima-prompt-compiler`** moved into `02_creation/` and trimmed to a pure adapter (format contract, length budgets, V1/V2 modes, model profiles, troubleshooting). Its model-agnostic knowledge was re-homed:
+  - `anima-oc-design-system.md` → `character-design-engine/references/oc-design-system.md`
+  - `anima-fashion-patterns.md` → `character-design-engine/references/garment-lexicon.md`
+  - `anima-composition-patterns.md` → `illustration-direction/references/composition-patterns.md`
+  - `anima-aesthetic-deai.md` → `illustration-direction/references/atmosphere-presets.md`
+  - `anima-human-aesthetic-calibration.md` → `aesthetic-director-core/references/design-calibration-examples.md`
+  - `anima-user-aesthetic-profile.md` → merged into `personal-identity-profile/references/taste-signature.md`
+- **`nai5-community-prompt-engineering`** merged from the two duplicate copies; kept the fuller references; removed its private "Personal Aesthetic Rules" section; added a blueprint→tag translation section (density as tag count, punctum color appears once, cut items must not return as tags) and an explicit note that NAI quality tags are a legitimate model-level exception.
+- **`image-reverse-analysis`** consolidated from three duplicate reverse-analysis flows; now distinguishes faithful reproduction vs structural extraction for original work.
+- **`evaluation-loop`** moved to `05_evaluation/evaluation-loop/` (name must match directory); now carries the six-dimension rubric plus a design-layer read.
+- **`creative-skill-router`** updated: pipeline table, "is the concept already designed?" test, the rule that adapters only receive blueprints.
+- **`anti-ai-patterns.md`** reformatted to pattern → cause → replacement move (prohibitions alone leave the model with no alternative action).
+- **`emotional-design.md`** expanded: emotion as evidence (body + object + trace of time), expression handling, narrative residue.
+- **`workflow-style.md`** gained a "Creative Presentation Voice" section (lead with the direction, state rejections and cuts, no theory, no empty praise, end with one concrete branch).
+- **Frontmatter** normalized across all skills to the Agent Skills spec: `name` == directory, real `description` with what/when/triggers, `priority` moved under `metadata`.
+- **Docs** consolidated: `architecture.md` absorbs `creative-system-overview.md`; `skill-specification.md` absorbs `skill-development-guide.md`; `skill-registry.md` rewritten with status column and a removed-items table; `README.md` rewritten to match the tree.
+- `04_tools/*` marked `status: placeholder` in metadata and body.
+
+### Removed
+- `skills/` (legacy `creative-prompt-router`, `nai5-prompt-engineering`) — duplicates.
+- `02_creation/anima-prompt-engineering/` — 7-line stub shadowing the real compiler.
+- `docs/tera-aesthetic-profile.md`, `docs/project-map.md`, `docs/creative-system-overview.md`, `docs/skill-development-guide.md` — merged elsewhere.
+- `04_tools/tool-system-map.md`, thin `character-framework.md`, `costume-design.md`, `composition.md` — superseded by re-homed references.
+
+### Migration
+- If you symlinked `anima-prompt-compiler` from the repo root, re-point it to `02_creation/anima-prompt-compiler` (or run `scripts/install.sh`).
+- If any external prompt or note referenced `nai5-prompt-engineering` or `creative-prompt-router`, use `nai5-community-prompt-engineering` / `creative-skill-router`.
+
+---
+
 ## [1.3.0] - 2026-09-17
 
 ### Added
