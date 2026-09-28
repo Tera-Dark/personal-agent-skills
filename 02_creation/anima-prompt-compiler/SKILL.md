@@ -47,6 +47,8 @@ metadata:
 - 服装单品：按 base → structural → signature extension → accessory 顺序
 - 道具与动作：`holding curved scissors`, `tucking hair behind ear`
 - 角色身份（如果 blueprint 有）
+- **角色 / 系列触发词优先按 Anima 的 Danbooru 训练集实际 token 写法输出**，不要把角色名和作品名拆成多个 token。
+- 触发词中用于标识作品的括号、冒号等特殊字符会与 Anima 的权重语法冲突时，必须做转义。例：Danbooru 原始触发词为 `37_(reverse:1999)` 时，Anima 提示词中写作 **`37\\(reverse1999\\)`**，不要写成 `37, reverse:1999`、`37_(reverse:1999)` 或 `37 (reverse1999)`。
 
 Tag block 简洁、可扫描、不重复同义词。设计逻辑不塞进标签。
 
