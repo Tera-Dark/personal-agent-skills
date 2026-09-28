@@ -8,7 +8,7 @@
   "harness_full_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS-FULL.md",
   "handshake": "Harness v2.1.0 loaded · 14 modules · 说需求，或发参考图。",
   "core_tokens": 22867,
-  "full_tokens": 55965,
+  "full_tokens": 56106,
   "modules": [
     {
       "name": "aesthetic-director-core",
@@ -89,8 +89,8 @@
         "references/anima-model-profiles.md",
         "references/anima-troubleshooting.md"
       ],
-      "tokens_skill": 1749,
-      "tokens_bundle": 7001
+      "tokens_skill": 1889,
+      "tokens_bundle": 7142
     },
     {
       "name": "character-design-engine",
