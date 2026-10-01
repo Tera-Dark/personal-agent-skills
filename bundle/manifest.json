@@ -8,7 +8,7 @@
   "harness_full_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS-FULL.md",
   "handshake": "Harness v2.1.0 loaded · 14 modules · 说需求，或发参考图。",
   "core_tokens": 22867,
-  "full_tokens": 56106,
+  "full_tokens": 58934,
   "modules": [
     {
       "name": "aesthetic-director-core",
@@ -140,10 +140,11 @@
       "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/illustration-direction.md",
       "references": [
         "references/atmosphere-presets.md",
-        "references/composition-patterns.md"
+        "references/composition-patterns.md",
+        "references/visual-grammar.md"
       ],
       "tokens_skill": 1385,
-      "tokens_bundle": 5691
+      "tokens_bundle": 8512
     },
     {
       "name": "nai5-community-prompt-engineering",
