@@ -1,14 +1,14 @@
 {
   "name": "personal-agent-skills",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "repo": "Tera-Dark/personal-agent-skills",
   "branch": "main",
   "raw_base": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/",
   "harness_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS.md",
   "harness_full_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS-FULL.md",
-  "handshake": "Harness v2.1.0 loaded · 14 modules · 说需求，或发参考图。",
-  "core_tokens": 22867,
-  "full_tokens": 58934,
+  "handshake": "Harness v2.2.0 loaded · 14 modules · 说需求，或发参考图。",
+  "core_tokens": 22883,
+  "full_tokens": 60502,
   "modules": [
     {
       "name": "aesthetic-director-core",
@@ -132,19 +132,19 @@
       "layer": "02_creation",
       "load": "on-demand",
       "status": "active",
-      "version": "2.0.0",
-      "description": "Turns a Creative Brief into a model-agnostic illustration blueprint — the captured moment, camera and framing, figure-to-frame ratio, negative space, physical light sources, density map, narrative residue in the environment, and one atmosphere preset. Use for 插画, 氛围图, 竖屏, 半留白, 印象风, 故事感, key visual, poster, scene illustration, cinematic composition, or whenever a character needs to be placed into a moment rather than displayed on a plate. Never writes model-specific prompt syntax.",
+      "version": "2.1.0",
+      "description": "Turns a Creative Brief into an authored, model-agnostic illustration blueprint — the image thesis, captured moment, visual motif, environment-character relationship, camera and framing, scale contrast, negative space, physical light sources, density map, narrative residue, and one coherent surreal detail. Use for 插画, 氛围图, 竖屏, 半留白, 印象风, 故事感, key visual, poster, scene illustration, cinematic composition, or whenever a character needs to be placed into a designed moment rather than displayed on a plate. Never writes model-specific prompt syntax.",
       "triggers": "插画, 氛围图, 竖屏, 半留白, 印象风, 故事感, key visual, poster, scene",
       "path": "02_creation/illustration-direction",
       "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_creation/illustration-direction",
       "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/illustration-direction.md",
       "references": [
-        "references/atmosphere-presets.md",
         "references/composition-patterns.md",
-        "references/visual-grammar.md"
+        "references/visual-grammar.md",
+        "references/atmosphere-presets.md"
       ],
-      "tokens_skill": 1385,
-      "tokens_bundle": 8512
+      "tokens_skill": 2920,
+      "tokens_bundle": 10063
     },
     {
       "name": "nai5-community-prompt-engineering",
