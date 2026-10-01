@@ -69,7 +69,7 @@ Rules:
 | `anima-prompt-compiler` | 02_creation | on-demand | active | 7142 | Anima, Anima 提示词, Anima checkpoint | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-prompt-compiler.md` |
 | `character-design-engine` | 02_creation | on-demand | active | 6714 | OC, 人设, 角色设计, 服装设计, 立绘, 高定服设, 二游角色, character sheet | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/character-design-engine.md` |
 | `general-image-prompt-adapter` | 02_creation | on-demand | active | 2162 | Midjourney, MJ, DALL-E, GPT Image, Imagen, Gemini image, Nano Banana, Flux, SDXL, Stable Diffusion, 通用提示词, 其他模型, 不知道用什么模型 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/general-image-prompt-adapter.md` |
-| `illustration-direction` | 02_creation | on-demand | active | 10063 | 插画, 氛围图, 竖屏, 半留白, 印象风, 故事感, key visual, poster, scene | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/illustration-direction.md` |
+| `illustration-direction` | 02_creation | on-demand | active | 11772 | 插画, 氛围图, 竖屏, 半留白, 印象风, 故事感, key visual, poster, scene | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/illustration-direction.md` |
 | `nai5-community-prompt-engineering` | 02_creation | on-demand | active | 2864 | NAI5, NovelAI, NAI提示词, tag prompt, Danbooru, artist stack, char1 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/nai5-community-prompt-engineering.md` |
 | `image-reverse-analysis` | 03_analysis | on-demand | active | 1406 | 反推, 分析图片, 提取提示词, 还原风格, 参考这张, reverse prompt, reference image | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/image-reverse-analysis.md` |
 | `prompt-analysis` | 03_analysis | on-demand | active | 709 | 优化提示词, prompt 哪里有问题, prompt review, 分析这段提示词 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/prompt-analysis.md` |
@@ -3232,6 +3232,140 @@ A very small, still character can become emotionally powerful when placed agains
 
 These are structural strategies, not a request to copy any one image or artist.
 
+##### 11A. Preferred Aesthetic Profile: 美型角色 × 半留白艺术插画
+
+The owner's current preferred direction is a **refined, female-oriented, half-negative-space illustration language**: the character remains the emotional anchor, while the surrounding environment and decorative structure create an authored composition rather than a generic scenic backdrop.
+
+###### Core visual sentence
+
+> **A beautiful character occupies a deliberate visual pocket, while architecture, fabric, flowers, ornaments, or environmental forms build an asymmetrical frame around her and dissolve into generous quiet space.**
+
+The target is not simply "white space". It is **high-density design against controlled silence**.
+
+###### A. Half-negative-space is a composition, not an empty background
+
+Prefer one side or one large region to remain materially quiet while the opposite region carries most of the ornamental and narrative density.
+
+Useful distributions:
+- dense character + botanical/architectural cluster on one side → pale open field on the other
+- figure near a third line → long empty sky, wall, water, mist, or paper-like field extending in the gaze direction
+- ornate frame enclosing only part of the figure → open space completing the silhouette
+- dense upper/side cluster → quiet lower or opposing region
+
+Do not automatically split the canvas 50/50. The negative space should be shaped by the visual thesis and eye path.
+
+###### B. The character should be integrated into the scene
+
+Avoid the feeling of **"character rendered first, scenery pasted behind."**
+
+Instead, let environmental forms physically relate to the character:
+- flower branches overlap or echo the hair silhouette
+- ribbons follow the same directional flow as wind or water
+- architectural lines point toward the face or gesture
+- sleeves, hair, fabric, mist, and foliage share a common curve
+- reflections or shadows connect the character to the ground/water/architecture
+- foreground objects partially frame or cut the silhouette when appropriate
+
+The environment should appear designed around the character, not merely located behind her.
+
+###### C. Decorative density should form an irregular frame
+
+Preferred decorative vocabulary includes:
+- fine lace and embroidery
+- translucent layered fabric
+- pearls, restrained metal ornaments, hair jewelry
+- flowers and botanical clusters
+- ribbons, tassels, veils, draped cloth
+- traditional windows, moon gates, pavilions, bridges, arches, screens
+- refined gothic, Victorian, Chinese-inspired, classical, or fantasy architectural fragments
+
+Use these as **structural framing devices**, not as a checklist. One strong cluster is better than decoration distributed evenly across the entire canvas.
+
+###### D. Couture and skin-to-fabric contrast
+
+When the brief calls for fashion-focused beauty, favor sophisticated couture construction over generic fantasy clothing:
+- structured bodices or collars contrasted with translucent layers
+- lace against satin, silk, velvet, or matte fabric
+- exposed shoulder, collarbone, upper back, or other restrained skin areas when appropriate to the design
+- asymmetrical neckline or sleeve construction
+- embroidery and appliqué concentrated around a meaningful anatomical or compositional anchor
+
+The desired effect is **elegant contrast between skin, lace, translucent material, and structured couture**, not indiscriminate exposure.
+
+###### E. Palette and rendering behavior
+
+Prefer controlled, slightly softened palettes with a clear dominant field and one or two puncta.
+
+Common useful families:
+- ivory / pale blue / lavender + one saturated blue accent
+- cream / blush / muted rose + dark hair or lace accent
+- white / jade / pale cyan + restrained red or gold punctum
+- deep navy / ivory / muted teal + pearl or crystal highlight
+- pale architectural field + one richly colored garment mass
+
+Avoid rainbow-like local color proliferation. Let white, cream, mist, paper, sky, water, or pale architecture function as actual compositional material.
+
+###### F. Beauty hierarchy
+
+For female-oriented OC illustration, prioritize the reading order:
+
+**face / eyes → hair silhouette → signature ornament → garment construction → environmental motif → secondary details.**
+
+Decorative detail should reinforce the character's identity. Do not let lace, flowers, particles, or scenery overpower the face unless the image thesis explicitly makes the environment the subject.
+
+###### G. Scene families that currently fit the aesthetic
+
+Useful scene families include:
+- classical Chinese garden, pavilion, lotus pond, moon gate, willow, plum blossom
+- misty waterside architecture and distant mountains
+- quiet autumn courtyard with restrained warm accents
+- snow-covered temple or winter garden with large pale fields
+- moonlit conservatory or abandoned greenhouse with botanical overgrowth
+- ornate interior such as library, salon, theater, or Victorian room
+- elegant seaside or river scene where water and sky become the negative-space field
+
+These are **starting environments**, not mandatory props. Every scene still requires a unique visual thesis and one dominant motif.
+
+###### H. Mood target
+
+Favor:
+- serene
+- wistful
+- refined
+- dreamlike
+- poetic
+- elegant
+- slightly melancholic
+- quiet rather than spectacular
+
+Avoid turning every scene into a festival of fantasy effects. The aesthetic gains strength from restraint, asymmetry, and visual silence.
+
+###### I. Anti-patterns for this specific aesthetic
+
+Avoid:
+- character centered against a fully rendered scenic background
+- evenly distributed flowers and ornaments around all four edges
+- empty white background with no compositional relationship between figure and whitespace
+- excessive bloom, lens flare, particles, butterflies, sparkles, or floating symbols
+- over-saturated rainbow palettes
+- costume detail that has no relationship to the face, gesture, or composition
+- excessive skin exposure that replaces garment design
+- symmetrical decorative framing unless symmetry is itself the thesis
+- generic "Chinese fantasy garden" / "Victorian room" without a unique spatial relationship
+
+###### J. Fast design test
+
+Before compiling the prompt, ask:
+
+1. Where is the dense visual pocket?
+2. Where is the quiet field?
+3. What physical shape connects them?
+4. What part of the environment overlaps, frames, or echoes the character?
+5. What is the single signature detail that makes this OC recognizable?
+6. If all decorative particles disappear, does the image still look designed?
+
+If the answer to #6 is no, strengthen the geometry, environmental relationship, or negative-space structure before adding detail.
+
 ##### 12. Anti-Pattern: “Pretty Background Syndrome”
 
 If a generated illustration feels weak, check these failure modes first:
@@ -3291,8 +3425,10 @@ Before passing the blueprint to a prompt adapter, ask:
 - Is there exactly one strong narrative residue?
 - Is the surreal element coherent rather than decorative?
 - If all particles and decorative effects are removed, does the composition still work?
+- For the owner's preferred half-negative-space style: is the dense pocket clearly separated from a deliberate quiet field?
+- Do costume, ornament, and environment reinforce the same visual language?
 
-If the answer to the last question is no, the image is not designed yet.
+If the answer to the last questions is no, the image is not designed yet.
 
 ---
 
