@@ -5,6 +5,22 @@ All notable changes to the `personal-agent-skills` repository will be documented
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.2.0] - 2026-10-01
+
+Illustration-direction visual design upgrade. This release adds an authored-composition layer based on the owner's recent reference calibration: the image must have a visual thesis, a structural motif, environmental agency, scale rhythm, intentional negative space, and narrative residue before it is translated into a model prompt.
+
+### Added
+- **`02_creation/illustration-direction/references/visual-grammar.md`** — a model-agnostic visual grammar covering image thesis, captured moment, visual motifs, environment-character relationships, scale contrast, controlled occlusion, density rhythm, color-mass design, physical light, coherent surrealism, reference calibration, and anti-pattern replacements.
+
+### Changed
+- **`02_creation/illustration-direction/SKILL.md`** upgraded from a moment-first composition workflow to a thesis-first authored illustration workflow.
+- Added mandatory **画面命题 / visual motif / environment-character relationship / scale strategy / occlusion plan / color-mass strategy / unique strange point** fields to the illustration blueprint.
+- Added a thumbnail-read test and a final “remove all decoration” test to prevent generic pretty-background outputs.
+- Explicitly separated **illustration** from **plate-style character presentation**: narrative illustrations should not default to a centered, fully visible character over a scenic background.
+- Added reference-derived strategies for architectural framing, organic enclosure, extreme environmental scale, and environment-as-story-evidence without imitating a specific artist.
+
+---
+
 ## [2.1.0] - 2026-09-28
 
 Harness release. Target use changed from "skills discovered by a coding-agent runtime" to "a chat model (ChatGPT / Gemini / Claude) handed one URL". That needs a kernel, a build step, single-file bundles, and CI — added here.
@@ -74,7 +90,7 @@ Architecture release. Fixes the two problems found in review: (1) the taste laye
 - `04_tools/*` marked `status: placeholder` in metadata and body.
 
 ### Removed
-- `skills/` (legacy `creative-prompt-router`, `nai5-prompt-engineering`) — duplicates.
+- `skills/` (legacy `creative-skill-router`, `nai5-prompt-engineering`) — duplicates.
 - `02_creation/anima-prompt-engineering/` — 7-line stub shadowing the real compiler.
 - `docs/tera-aesthetic-profile.md`, `docs/project-map.md`, `docs/creative-system-overview.md`, `docs/skill-development-guide.md` — merged elsewhere.
 - `04_tools/tool-system-map.md`, thin `character-framework.md`, `costume-design.md`, `composition.md` — superseded by re-homed references.
