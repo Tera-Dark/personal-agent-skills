@@ -3,11 +3,11 @@ name: illustration-direction
 description: Turns a Creative Brief into an authored, model-agnostic illustration blueprint — the image thesis, captured moment, visual motif, environment-character relationship, camera and framing, scale contrast, negative space, physical light sources, density map, narrative residue, and one coherent surreal detail. Use for 插画, 氛围图, 竖屏, 半留白, 印象风, 故事感, key visual, poster, scene illustration, cinematic composition, or whenever a character needs to be placed into a designed moment rather than displayed on a plate. Never writes model-specific prompt syntax.
 metadata:
   author: Tera-Dark
-  version: "2.1.0"
+  version: "2.2.0"
   layer: "02_creation"
   load: "on-demand"
   status: "active"
-  triggers: "插画, 氛围图, 竖屏, 半留白, 印象风, 故事感, key visual, poster, scene"
+  triggers: "插画, 氛围图, 竖屏, 半留白, 印象风, 故事感, key visual, poster, scene, 极繁, 特写垫底, 大头贴, 元素贴, 角色拼贴"
 ---
 
 # Illustration Direction
@@ -97,6 +97,8 @@ Step 15 缩略图测试      想象缩小到手机缩略图：能否立刻看出
 
 如果用户明确要求**插画**，不得把角色重新摆成“完整角色站中间 + 风景背景”的立绘伪装。优先使用视觉母题、环境尺度、sub-framing、非对称布局、反射、切割或局部遮挡。
 
+如果用户要求**极繁 OC 展示 / 特写垫底 / 大头贴 / 元素贴**，优先读取 `references/oc-maximalist-closeup-backdrop-preset.md`。此时“特写垫底”是核心构图骨架：巨大同角色脸部/半身特写铺在最底层，主全身立绘压在前景，再以不同尺度的大头贴、主题元素贴和局部特写形成第三层。不要把这些词误解成“增加几个装饰物”。
+
 ## 参考校准：高完成度插画的结构特征
 
 参考 `references/visual-grammar.md`。重点不是模仿某位作者，而是吸收这些可迁移的结构策略：
@@ -131,4 +133,5 @@ Step 15 缩略图测试      想象缩小到手机缩略图：能否立刻看出
 
 - `references/visual-grammar.md` — 画面命题、视觉母题、环境能动性、尺度、遮挡、色块、叙事残留、受控超现实与反 AI 套路。
 - `references/composition-patterns.md` — 景别协议、分层展示板、设定图、三分偏置、sub-framing、极端机位（英文短语可直接进 prompt）。
+- `references/oc-maximalist-closeup-backdrop-preset.md` — 极繁 OC 展示专用构图预设：特写垫底 + 主全身立绘 + 大头贴/元素贴 + 前景碎片。
 - `references/atmosphere-presets.md` — 去 AI 塑料感六维度 + 五个氛围预设（商业头像 / 清新日系 / 高定极简 / 暗黑叙事 / 电影海报）+ 选择决策流。
