@@ -67,7 +67,7 @@ Rules:
 | `personal-identity-profile` | 00_core | always | active | 4617 | 我的风格, 个人偏好, 按我习惯, any creative task | embedded below |
 | `creative-skill-router` | 01_router | always | active | 3143 | any request; 设计, 提示词, prompt, 反推, 分析, ComfyUI, LoRA | embedded below |
 | `anima-prompt-compiler` | 02_creation | on-demand | active | 7142 | Anima, Anima 提示词, Anima checkpoint | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-prompt-compiler.md` |
-| `character-design-engine` | 02_creation | on-demand | active | 9037 | OC, 人设, 角色设计, 服装设计, 立绘, 高定服设, 二游角色, character sheet | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/character-design-engine.md` |
+| `character-design-engine` | 02_creation | on-demand | active | 9678 | OC, 人设, 角色设计, 服装设计, 立绘, 高定服设, 二游角色, character sheet | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/character-design-engine.md` |
 | `general-image-prompt-adapter` | 02_creation | on-demand | active | 2162 | Midjourney, MJ, DALL-E, GPT Image, Imagen, Gemini image, Nano Banana, Flux, SDXL, Stable Diffusion, 通用提示词, 其他模型, 不知道用什么模型 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/general-image-prompt-adapter.md` |
 | `illustration-direction` | 02_creation | on-demand | active | 16431 | 插画, 氛围图, 竖屏, 半留白, 印象风, 故事感, key visual, poster, scene, 极繁, 特写垫底, 大头贴, 元素贴, 角色拼贴 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/illustration-direction.md` |
 | `nai5-community-prompt-engineering` | 02_creation | on-demand | active | 2864 | NAI5, NovelAI, NAI提示词, tag prompt, Danbooru, artist stack, char1 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/nai5-community-prompt-engineering.md` |
@@ -2597,6 +2597,56 @@ Step 11 反平庸检查  references/oc-design-system.md § 4
 - 不把“职业 + 常规制服 + 一个道具”当作完整 OC 设计；必须增加独特轮廓、形态语法和行为动作。
 - 优先输出少量但有辨识度的结构，确保角色可以作为游戏立绘、卡面或商品化 OC 被记住。
 - 若用户要求多套设计，每套必须在设计命题、轮廓策略、主锚点、材质语言和动作逻辑上至少有两项明显不同。
+
+
+##### 8. Maximalist OC Mode — 极繁精美人设
+
+When the user explicitly asks for **极繁、极繁精美、原创圈高完成度人设、华丽人设**, do not interpret this as “add more decorations.” Load `references/maximalist-oc-design-grammar.md`.
+
+The target is a **structurally maximalist fashion-character design**:
+- exaggerated macro silhouette;
+- 3–5 clearly readable garment layers;
+- one dominant motif family repeated at multiple scales;
+- asymmetric directional weight;
+- large signature extensions such as oversized headwear, sleeves, bows, capes, tails, hair masses, wing/petal structures or irregular skirts;
+- deliberate material collisions such as translucent textile vs velvet, lace vs leather, pearls vs metal;
+- dense meso/micro details attached to meaningful garment architecture;
+- controlled 2–4 color hierarchy rather than rainbow decoration.
+
+###### Maximalism rule
+
+**Macro → meso → micro** must all be designed.
+
+Macro silhouette must remain recognizable without color. Meso construction must remain attractive if micro ornaments are removed. Micro ornaments should reward inspection rather than carry the entire design.
+
+###### Motif-family rule
+
+Choose one coherent motif family and propagate it through:
+**hair → neck/chest → waist → skirt/legs → accessories/prop.**
+
+Multiple motif families require a real conceptual reason. Never assemble unrelated “gothic + butterfly + crystal + clock + angel” vocabulary only because each item is pretty.
+
+###### Complexity distribution
+
+Complexity should be uneven:
+**one major visual mass + one counter-mass + several medium structures + sparse micro puncta.**
+
+Do not evenly decorate every surface.
+
+###### Identity check
+
+A successful maximalist OC should become noticeably less recognizable if its major garment architecture or motif family is removed. If removing half the tiny ornaments changes almost nothing, the design is merely accessorized.
+
+###### Pose activation
+
+The pose must activate the costume:
+- ribbons, trains, sleeves, hair and layered skirts respond to the body;
+- one gesture line should connect the face, hand and lower silhouette;
+- crossed legs, bent knees, torso twists, lifted fabric, veil manipulation, raised arm or other deliberate fashion poses are preferred over neutral standing.
+
+###### White-background use
+
+For white-background立绘, the white field is a **quiet counter-mass**, not permission to simplify the character. The character itself should carry the design density through silhouette, layering and material contrast.
 
 ---
 
