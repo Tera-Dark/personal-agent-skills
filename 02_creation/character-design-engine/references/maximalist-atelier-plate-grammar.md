@@ -1,0 +1,195 @@
+# Maximalist Atelier Plate Grammar — 极繁人设·艺术展示板语法
+
+> A reference-derived composition grammar for high-end original-character presentation. It captures transferable structural decisions from supplied examples without copying any specific artist, character, logo, watermark, or exact composition.
+
+## Core visual sentence
+
+> **A highly designed character is embedded in a quiet editorial field, supported by one or two oversized low-contrast graphic masses, a strong linear scaffold, selective line-art / wash fragments, and concentrated costume detail.**
+
+This is not a conventional character sheet and not a scenic illustration. It is an **atelier / art-print / fashion-plate presentation** where character design and page design are one system.
+
+## 1. Build the page before decorating the character
+
+Choose four large graphic decisions first:
+
+**primary character mass → oversized supporting mass → directional scaffold → quiet field.**
+
+The oversized supporting mass may be:
+- a pale fan / halo / oval / paper panel;
+- a giant cropped motif;
+- a broad translucent fabric shape;
+- a botanical silhouette;
+- an architectural contour.
+
+It should have lower contrast than the character and should support, not compete.
+
+## 2. One strong axis
+
+Introduce one clear compositional axis:
+- vertical staff / pole / branch;
+- long ribbon;
+- sword / parasol;
+- architectural seam;
+- descending fabric strip.
+
+This axis should cut through or beside the figure and stabilize the page. A second major axis should only appear when it creates a deliberate cross or tension.
+
+## 3. Graphic scaffold, not background scenery
+
+The environment should often be reduced to **graphic evidence**:
+- sparse branches;
+- contour lines;
+- faint botanical studies;
+- pale geometric panels;
+- partial architectural traces;
+- loose construction lines;
+- lightly washed shapes.
+
+Do not build a complete realistic room behind the character unless the scene brief requires it.
+
+The viewer should feel that the character is placed on an **artwork page**, not standing inside a fully rendered location.
+
+## 4. Selective rendering
+
+Do not render every region equally.
+
+Use:
+- fully rendered focal costume areas;
+- medium-detail structural clothing;
+- pale wash / linework in support areas;
+- partially dissolved edges;
+- intentional unfinished-looking marks.
+
+The “unfinished” areas are not errors. They create a designed contrast with the dense focal areas.
+
+## 5. Line ecology
+
+Use repeated line behaviors as a visual language:
+- branch-like thin lines;
+- ribbon curves;
+- garment contour echoes;
+- long vertical strokes;
+- small botanical stems;
+- diagram-like construction marks.
+
+The lines should share stroke character and directional rhythm.
+
+Avoid arbitrary scribbles. Every visible line should either frame, divide, connect, or lead.
+
+## 6. Large + medium + tiny detail rhythm
+
+The page should contain at least three scales:
+
+**Large:** oversized pale support mass / main figure silhouette.  
+**Medium:** branches, cloth panels, costume blocks, cropped motif studies.  
+**Tiny:** beads, petals, ornaments, handwritten marks, miniature studies.
+
+Do not let tiny decoration become the dominant information.
+
+## 7. Dense center, breathing margins
+
+A useful density distribution is:
+
+**dense character core + several dense motif pockets + broad pale margins.**
+
+The margins can contain faint traces, but should remain materially quieter than the character.
+
+## 8. White / pale color is an active material
+
+White is not “blank.” Treat it as:
+- paper;
+- fog;
+- washed pigment;
+- translucent cloth;
+- negative form around the silhouette.
+
+For pale maximalist designs, create separation through:
+**edge hierarchy → value shifts → line density → material transparency → shadow placement**,
+not by adding more saturated color.
+
+## 9. Motif transformation
+
+A motif should not simply repeat as identical stickers.
+
+Transform the same source shape through:
+**macro silhouette → garment cut → embroidery → ornament → line drawing / background trace.**
+
+Example: pine branch → shoulder cut → sleeve seam → hair ornament → faint branch sketch behind figure.
+
+This creates unity between character and page.
+
+## 10. Controlled incompleteness
+
+Allow:
+- edges fading into the paper;
+- partially drawn motifs;
+- low-opacity secondary portraits;
+- cropped objects;
+- broken contour lines;
+- faint annotation fragments;
+- areas that are almost monochrome.
+
+Do not attempt to maximize finish everywhere.
+
+## 11. Human-mark layer
+
+When the presentation calls for atelier / art-book feeling, small human-made marks can be introduced:
+- sparse handwritten notes;
+- tiny label blocks;
+- red correction mark;
+- pencil-like construction line;
+- small material study;
+- cropped detail callout.
+
+These should remain subordinate and sparse. They suggest authorship; they are not decoration.
+
+## 12. Pose and page geometry must agree
+
+The character's gesture should cooperate with the page scaffold:
+- a vertical prop can counter a diagonal torso;
+- a branch can echo a bent arm;
+- long hair can continue a background curve;
+- a skirt train can occupy the quiet field;
+- a raised arm can point toward a pale support mass.
+
+Do not choose pose and page layout independently.
+
+## 13. Maximalist does not mean visual noise
+
+A useful test:
+
+If the image is blurred, you should still see:
+1. main character silhouette;
+2. one oversized support mass;
+3. one strong axis;
+4. one or two dense motif clusters;
+5. a broad quiet region.
+
+If these five masses disappear into uniform detail, the composition is overfilled.
+
+## 14. Anti-patterns
+
+Avoid:
+- full realistic background behind a detailed character;
+- every area rendered at equal resolution;
+- symmetrical floral borders;
+- random particles replacing graphic structure;
+- “more pearls / more crystals / more flowers” as the main strategy;
+- multiple giant background objects competing with the character;
+- decorative text everywhere;
+- fake sketch marks with no compositional function;
+- close-up portraits added only because the page looks empty.
+
+## 15. Relationship to other presets
+
+This grammar can combine with:
+- **Maximalist OC Design Grammar** — character engineering;
+- **OC Maximalist Close-Up Backdrop + Element Sticker Preset** — giant close-up + main figure + headshots / stickers.
+
+For a reference-matched result, the preferred stack is:
+
+**maximalist character design**
++
+**atelier plate grammar**
++
+**optional giant close-up / element-sticker presentation**
