@@ -743,3 +743,267 @@ AI 绘图最致命的通病是**“平庸工业味”**：全局无衰减的塑�
        ├─► 想要电影故事/剧照抓拍/复古氛围？ ─► 激活 Preset E (Film grain, Sub-framing, Candid)
        └─► 未明确指定美学倾向？ ──────────► 保持中立均衡，仅注入基础物理主光与材质微瑕
 ```
+
+---
+
+## Reference: references/white-background-fashion-grammar.md
+
+### White-Background Fashion Character Grammar — 白底女性向高设计感立绘审美
+
+> This reference captures the owner's latest preferred character-illustration direction. It is for original female-oriented OC design and does not imitate any specific artist. The goal is a **designed fashion image**, not a portrait and not a generic character sheet.
+
+#### 1. Core shift: from portrait / standing sheet to authored full-body fashion illustration
+
+When the brief is a white-background character illustration, default to:
+
+- **full-body figure** unless the user explicitly asks for portrait / upper body
+- a **deliberate standing pose or fashion-editorial pose**, not neutral A-pose or mannequin standing
+- visible feet and a readable ground/stance relationship when the pose is standing
+- one clear gesture line through the body: S-curve, diagonal, contrapposto, crossed legs, lifted knee, turned torso, flowing cape, skirt sweep, etc.
+- a silhouette that is recognizable before local costume details are read
+
+The image should feel like a polished female-oriented Xiaohongshu / game-fashion illustration: cute or elegant, but with **strong silhouette design, couture layering, pose rhythm and ornamental hierarchy**.
+
+#### 2. White background is an active design field
+
+White is not a blank canvas to fill with scenery. Treat it as a material and a compositional counter-mass.
+
+Use:
+- large clean white or near-white fields around the figure
+- pale blue, lavender, blush, cream, mint, silver, muted burgundy or deep navy as controlled color masses
+- translucent fabric, veils, ribbons, hair and skirt panels that overlap the white field
+- sparse grounding shadow only when it clarifies stance
+- occasional cropped ornament or flowing fabric crossing into the white field
+
+Avoid turning the white background into a fake scenic background. If environmental context is requested, keep it subordinate to the character's graphic silhouette.
+
+#### 3. Pose is part of the costume design
+
+Do not treat pose as an afterthought.
+
+The pose should activate the clothing:
+- a lifted skirt creates a fan of layered hems
+- a turned torso makes ribbons and hair sweep in a counter-direction
+- a raised knee creates a strong triangular or X-shaped leg structure
+- an extended arm gives sleeves and gloves a directional line
+- a hand near the face creates an intimacy anchor
+- a cape pulled outward creates a second silhouette around the body
+- a bent ankle or pointed toe makes footwear and stockings part of the gesture
+
+Prefer **gesture → fabric response → hair response → ornament response** as a causal chain.
+
+#### 4. Preferred pose families
+
+Use a varied pose vocabulary instead of repeating frontal standing poses:
+
+##### Elegant standing
+- contrapposto with one foot slightly behind
+- one hand lifting skirt or ribbon
+- torso turned three-quarter while hips counter-rotate
+- one shoulder lowered to create an S-curve
+
+##### Fashion-editorial standing
+- long diagonal leg line
+- asymmetrical arm placement
+- one knee bent inward or lifted slightly
+- cape / overskirt / ribbon extending beyond the body silhouette
+- deliberate off-center weight distribution
+
+##### Dynamic standing
+- skirt caught by wind
+- one leg stepping forward while torso turns back
+- one hand reaching outward and the other anchoring the garment
+- long hair or translucent fabric creating a secondary sweeping arc
+
+##### More experimental full-body compositions
+- perched or lightly seated pose
+- suspended / floating pose
+- crouched pose
+- reclining diagonal pose
+- extreme perspective with one leg or sleeve approaching the viewer
+
+These are optional variations; if the user explicitly asks for **standing**, keep both feet / stance readable unless the brief clearly calls for an airborne illusion.
+
+#### 5. Silhouette-first costume design
+
+The costume should read as 3–5 major shapes before embroidery is considered.
+
+Prioritize:
+1. head ornament / hair mass
+2. shoulder and sleeve architecture
+3. torso construction
+4. waist / bow / belt anchor
+5. skirt / coat / cape silhouette
+6. footwear and leg line
+
+Useful high-value forms:
+- oversized bows
+- sculptural bonnets / hats / hoods
+- petal collars
+- asymmetrical capes
+- translucent overskirts
+- layered organza or chiffon
+- large ribbon tails
+- fitted corsets under soft layers
+- puff sleeves and bishop sleeves
+- long gloves / lace cuffs
+- pearl chains and restrained metal ornaments
+- crystal or floral focal ornaments
+
+Do not distribute detail evenly. Build a dominant silhouette first, then place detail where it supports the pose.
+
+#### 6. Female-oriented decorative language
+
+The current preference favors a sophisticated but accessible feminine vocabulary:
+
+- pearls
+- lace
+- ribbons
+- bows
+- flowers
+- cameo-like ornaments
+- delicate chains
+- translucent fabric
+- satin / silk / velvet contrast
+- embroidered floral or geometric motifs
+- small metallic accents
+- soft Victorian, gothic-lolita, romantic, Chinese-inspired, classical, ballet, confectionery, nautical, winter couture and fantasy-fashion influences
+
+Mix references rather than locking every design to one historical costume system. The goal is **fresh OC fashion design**, not cosplay reconstruction.
+
+#### 7. Color direction
+
+Prefer a restrained palette with a clear hero color and one or two supporting accents.
+
+Strong families:
+- ivory + icy blue + lavender
+- cream + dusty rose + burgundy
+- white + mint + turquoise
+- ivory + sage + hydrangea blue
+- navy + white + muted coral
+- silver-white + pale pink + crystal blue
+- black + ivory + one deep red accent
+
+White should remain a meaningful mass rather than disappearing under color. Avoid rainbow decoration unless the brief explicitly asks for it.
+
+#### 8. Ornamental density: concentrated, not everywhere
+
+The strongest current designs use **high-detail pockets**:
+
+- face / hair ornament cluster
+- chest / collar ornament cluster
+- one asymmetric sleeve or waist cluster
+- one strong skirt / hem motif
+
+Then allow simpler fabric fields between them.
+
+Do not cover every inch with lace, flowers, pearls and ribbons. Contrast between ornate and quiet material makes the expensive-looking details more legible.
+
+#### 9. Visual composition for white-background full-body art
+
+Even without a scene, the illustration should have composition.
+
+Plan:
+- one dominant silhouette
+- one counter-flow
+- one focal gesture
+- one quiet white field
+
+Useful structures:
+- figure slightly off-center with fabric extending into the empty side
+- large bow / cape / hair mass counterbalancing the legs
+- diagonal body axis opposed by a curved ribbon or skirt axis
+- head ornament and footwear forming a vertical rhythm
+- asymmetrical accessory cluster on one side of the body
+- a lower skirt or cape mass acting as the counterweight to an airy upper body
+
+Avoid perfectly centered, symmetrical, passport-like character sheets unless the user specifically requests a neutral design sheet.
+
+#### 10. Beauty hierarchy
+
+For the intended female-oriented aesthetic, use this reading order:
+
+**face / expression → hair silhouette → signature ornament → pose / gesture → garment silhouette → material contrast → secondary accessories.**
+
+The face should be attractive, but the image must remain interesting even if the face is blurred. The pose and costume should still carry a recognizable graphic identity.
+
+#### 11. Expression vocabulary
+
+Do not default to the same gentle smile.
+
+Rotate expressions according to the costume and pose:
+- playful wink
+- coy side glance
+- slightly embarrassed smile
+- serene closed-eye smile
+- sleepy half-lidded gaze
+- proud composed expression
+- curious widened eyes
+- teasing smile
+- distant melancholic gaze
+- surprised parted lips
+- confident fashion-editorial gaze
+
+Expression should support the pose rather than float independently from it.
+
+#### 12. Freshness rule
+
+Avoid producing eight variations of the same "cute pastel girl + oversized bow" formula.
+
+Across a batch, deliberately vary at least two of:
+- silhouette
+- pose
+- expression
+- garment architecture
+- historical/fashion influence
+- hair construction
+- accessory language
+- hero color
+
+The user prefers **small-batch experimentation**: 3–4 concepts with clearly different visual identities are more useful than a large family of near-duplicates.
+
+#### 13. Reference calibration
+
+Recent visual references emphasize:
+
+- pale or white-dominant palettes
+- elegant but exaggerated fashion silhouettes
+- oversized headwear or sculptural ornaments
+- flowing hair and fabric treated as major graphic shapes
+- long diagonal limbs and unconventional full-body poses
+- translucent layers and delicate material overlap
+- high detail around the face and costume anchors
+- large quiet fields around the figure
+- painterly anime rendering with controlled linework and luminous material edges
+
+Use these as **structural observations**, not as instructions to copy an artist, character, or exact composition.
+
+#### 14. Anti-patterns
+
+Avoid:
+- upper-body portrait when the user asks for a full-body character
+- neutral standing pose with both arms hanging symmetrically
+- centered mannequin-like presentation
+- generic school-uniform / fantasy-dress combinations with no silhouette idea
+- background scenery pasted behind a white-background fashion illustration
+- equal decorative density from head to shoes
+- random petals, particles, sparkles and butterflies used to fill whitespace
+- excessive micro-detail that destroys the major silhouette
+- rainbow color proliferation
+- every character smiling gently
+- every design relying on the same oversized bow + pearl chain combination
+
+#### 15. Fast design test
+
+Before compiling the prompt, ask:
+
+1. Is the figure unmistakably full-body?
+2. Can the pose be described as one clear gesture line?
+3. Does the clothing visibly react to the pose?
+4. Is there a dominant silhouette before local detail?
+5. Where is the dense ornamental pocket?
+6. Where is the quiet white field?
+7. What makes this design different from the previous batch?
+8. If the face is hidden, does the silhouette still look designed?
+9. If the particles and tiny decorations are removed, does the image still work?
+10. Are expression, pose, costume and palette telling the same aesthetic story?
