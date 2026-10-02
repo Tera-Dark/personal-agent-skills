@@ -7,8 +7,8 @@
   "harness_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS.md",
   "harness_full_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS-FULL.md",
   "handshake": "Harness v2.2.0 loaded · 14 modules · 说需求，或发参考图。",
-  "core_tokens": 22916,
-  "full_tokens": 70035,
+  "core_tokens": 22917,
+  "full_tokens": 71689,
   "modules": [
     {
       "name": "aesthetic-director-core",
@@ -106,10 +106,11 @@
       "references": [
         "references/maximalist-oc-design-grammar.md",
         "references/oc-design-system.md",
-        "references/garment-lexicon.md"
+        "references/garment-lexicon.md",
+        "references/maximalist-atelier-plate-grammar.md"
       ],
       "tokens_skill": 1767,
-      "tokens_bundle": 9827
+      "tokens_bundle": 11476
     },
     {
       "name": "general-image-prompt-adapter",
