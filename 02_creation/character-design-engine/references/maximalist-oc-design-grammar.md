@@ -238,3 +238,120 @@ Do not confuse this with the separate composition preset:
 
 They can be combined:
 **極繁精美人设 + giant close-up backdrop + full-body foreground + headshot/element stickers.**
+
+
+## 16. Reference-derived upgrade: composition-ready character design
+
+The supplied high-end reference reveals that maximalist OC design should not stop at “a complex costume.” The character must be designed to **generate a page**.
+
+Add four decisions before micro-detail:
+
+1. **Primary silhouette mass** — the largest character shape, readable as a flat cutout.
+2. **Support mass** — one oversized, low-contrast shape that supports the character: fan, halo, branch, cape, paper panel, giant floral form, translucent wash, etc.
+3. **Graphic axis** — one dominant line that stabilizes the page: staff, branch, ribbon, sleeve extension, sword, parasol, long train.
+4. **Quiet field** — a broad low-detail region deliberately left open.
+
+Do not allow the character, support mass, and graphic axis to compete equally. The character remains the main readable subject.
+
+## 17. Silhouette-to-page continuity
+
+A maximalist OC should have at least one shape that exists simultaneously in:
+**character silhouette → garment construction → accessory → page/background trace.**
+
+Examples:
+- branch shape → shoulder structure → hair ornament → pale branch drawing behind;
+- fan arc → overskirt → sleeve seam → faint fan geometry;
+- wing curve → cape edge → embroidery → background contour.
+
+This creates the impression that the page was designed from the character rather than decorated afterward.
+
+## 18. Transformation beats repetition
+
+Do not repeat the same motif as identical flowers, bows, gems or stickers.
+
+Instead transform one source motif through scale and function:
+**macro form → garment cut → seam / embroidery → accessory → background trace.**
+
+The motif should survive while changing role, shape and density.
+
+This produces visual authorship and avoids “motif wallpaper.”
+
+## 19. Graphic scaffolding
+
+When the requested aesthetic resembles an atelier / art-book / editorial plate, allow a restrained scaffold around the character:
+- sparse botanical linework;
+- partial contour studies;
+- faint washed silhouettes;
+- cropped motif studies;
+- pale geometric panels;
+- construction-like lines;
+- one narrow vertical element;
+- small annotation or material-study marks.
+
+These are not background scenery. They are **layout structures** and must frame, divide, connect or lead.
+
+## 20. Selective completion
+
+High-end maximalist presentation should not render every region at maximum finish.
+
+Use:
+- dense focal costume zones;
+- medium-detail structural zones;
+- pale or line-art support zones;
+- dissolved edges;
+- partial motifs;
+- almost monochrome areas.
+
+The contrast between finished and unfinished-looking areas is part of the design.
+
+Do not use fake sketch marks indiscriminately. Every reduced-finish region needs a layout function.
+
+## 21. Value before color
+
+For pale maximalist designs, check the design in grayscale first.
+
+The page should still show:
+**main figure mass → support mass → axis → dense motif pocket → quiet field.**
+
+Create separation through silhouette edges, value shifts, line density, translucency and shadow rather than adding more colors.
+
+## 22. Detail density should be locally extreme
+
+“Maximalist” should permit **very high local density**.
+
+Instead of making every area equally busy:
+- choose 1–2 dense focal pockets;
+- push those pockets significantly;
+- keep adjacent structures legible;
+- use broad quiet regions as contrast.
+
+A dense pocket may combine lace, embroidery, chains, layered fabric, tiny charms, overlapping ornament and motif variations. Its surrounding area should not automatically receive the same density.
+
+## 23. Human selection over catalog completeness
+
+Do not try to display every possible feature.
+
+A strong design is recognizable because the designer **selected** what matters.
+
+Prefer:
+- one oversized statement form over five medium statement forms;
+- one unusual garment construction over many generic accessories;
+- one transformed motif system over many unrelated motifs;
+- one conspicuous asymmetry over symmetric ornament on both sides.
+
+The test is not “how many details are present?” but “can the major decisions be named and remembered?”
+
+## 24. Anti-AI-average gate
+
+Before approving a maximalist OC, ask:
+
+- Could another OC inherit 70% of these details unchanged? If yes, the motif language is too generic.
+- If the decorative nouns are removed from the description, does the silhouette still sound distinctive?
+- Does one shape travel through at least three design layers?
+- Is there one decision that feels slightly strange but intentional?
+- Is one area deliberately under-resolved?
+- Is the complexity concentrated somewhere rather than evenly spread?
+- Does the pose create a visible deformation in hair, sleeves, ribbons, skirt or train?
+- Would the design still feel authored if all gemstones were removed?
+
+If the answer to several questions is no, do another design pass before prompt compilation.
