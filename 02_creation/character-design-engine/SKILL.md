@@ -3,7 +3,7 @@ name: character-design-engine
 description: Turns a Creative Brief (from aesthetic-director-core) into a complete, model-agnostic character blueprint — design thesis, silhouette architecture, visual anchors, garment engineering (base / structural / signature extension / accessory system), material contrast, palette hierarchy, behavioral pose + camera, narrative residue, presentation format — then runs a subtraction pass. Use for OC, 人设, 角色设计, 服装设计, 立绘, 高定服设, 二游角色, character sheet, fashion concept. Never writes model-specific prompt syntax.
 metadata:
   author: Tera-Dark
-  version: "2.1.0"
+  version: "2.2.0"
   layer: "02_creation"
   load: "on-demand"
   status: "active"
@@ -20,6 +20,8 @@ metadata:
 如果被直接调用而没有 Brief：先用 `aesthetic-director-core` 的 M1 / M3 / M6 / M7 压缩跑一遍（内部完成，不必输出完整 Brief），再进入下面的流程。**不要跳过。** 跳过的结果就是表单填充。
 
 如果用户明确要求**极繁精美人设 / 极繁 OC**，优先读取 `references/maximalist-oc-design-grammar.md`；此模式允许高复杂度，但复杂度必须来自轮廓、服装工程、统一母题、材质对抗和多尺度细节，而不是随机堆配饰。
+
+如果用户提供的参考具有**艺术展示板 / atelier / art-print / 极繁平面设计**特征，额外读取 `references/maximalist-atelier-plate-grammar.md`；此时不仅设计角色，还要让角色能够“生成版面”：一个大型低对比支撑形、一个明确的构图轴、一个从人设延伸到页面的母题，以及局部精细 / 局部淡化的完成度层级。不要把它做成普通背景，也不要用假草稿线和随机装饰填空。
 
 本 Skill 不写 Anima / NAI5 语法。本 Skill 不重新决定品味——品味来自 `personal-identity-profile`。
 
@@ -46,6 +48,7 @@ Step 8  叙事残留    一件东西的状态说明发生过什么。必须是�
 Step 9  展示方式    clean plate / decorated key visual / editorial plate / environmental vignette
 Step 10 减法        对 Step 4–9 的每一件东西问"删掉它命题还在吗"。在 → 删。写下删了什么。
 Step 11 反平庸检查  references/oc-design-system.md § 4
+Step 12 版面生成检查 若为极繁展示：主形 / 支撑形 / 构图轴 / 安静区是否成立？是否存在从人设到页面的母题连续性？
 ```
 
 ## 输出契约：Character Blueprint
@@ -101,3 +104,4 @@ Step 11 反平庸检查  references/oc-design-system.md § 4
 - `references/oc-design-system.md` — 六层结构、五种轮廓策略、姿势-镜头对应、展示方式、复杂度控制、反平庸检查、开放式请求默认行为
 - `references/garment-lexicon.md` — 穿搭原型、四层叠穿、不对称手法、材质碰撞矩阵、领/袖/腰/裙词汇（英文短语可直接进 prompt）
 - `references/maximalist-oc-design-grammar.md` — 极繁精美人设专用设计语法：宏观轮廓、服装多层、统一母题、非对称重量、材质碰撞、多尺度细节与 pose activation
+- `references/maximalist-atelier-plate-grammar.md` — 极繁艺术展示板语法：大型低对比支撑形、单一构图轴、图形骨架、局部完成、留白、母题变形与艺术版式
