@@ -408,3 +408,83 @@ Before passing the blueprint to a prompt adapter, ask:
 - Do costume, ornament, and environment reinforce the same visual language?
 
 If the answer to the last questions is no, the image is not designed yet.
+
+
+## 11B. Preferred OC Presentation Grammar: 极繁角色展示 × 特写垫底 × 大头贴/元素贴
+
+The owner has now identified a distinct presentation language that should be treated as a **reusable composition preset**, separate from ordinary scene illustration or ordinary character-sheet layout.
+
+### Core visual sentence
+
+> **A giant faded close-up of the same character forms the rear visual foundation; the complete full-body character overlaps it in the foreground; smaller headshots, themed stickers, charms, and selected detail crops orbit the main figure as a third scale layer.**
+
+This is **not** “add a close-up portrait and some stickers.” The oversized close-up is the background's primary compositional plane.
+
+### Layer order
+
+**Back:** giant cropped face/bust backdrop  
+**Middle:** full-body main character  
+**Front / surrounding:** small headshots, element stickers, cropped hands, accessories, mascots, charms and selected foreground fragments.
+
+The depth hierarchy must remain obvious at thumbnail size.
+
+### Full-body figure behavior
+
+The main figure should be a designed fashion/character silhouette:
+- full body;
+- deliberate standing pose or dynamic gesture;
+- one readable gesture line;
+- clothing, hair, ribbons and accessories responding to the pose;
+- not a neutral “standing character sheet” stance.
+
+### Close-up backdrop behavior
+
+The backdrop portrait should:
+- be substantially larger than the foreground character;
+- be visibly cropped by the canvas;
+- occupy a major portion of the rear plane;
+- use fading, low-opacity visual treatment, softened contrast, or pale integration;
+- remain recognizable as the same OC;
+- act as a large face/hair/color mass rather than a separate mini illustration.
+
+Useful overlap patterns:
+- main figure crossing the giant face;
+- hair of the full-body figure cutting through the backdrop portrait;
+- small headshots overlapping both layers;
+- ribbons or decorative objects bridging the giant face and foreground body.
+
+### Headshot / element sticker behavior
+
+Smaller elements should behave like **designed fragments of the character showcase**:
+- several bust/head crops at varied scales;
+- small themed mascots or charms;
+- accessory close-ups;
+- cropped hands or expressive gestures;
+- flowers, ornaments, ribbons, props, costume-detail fragments.
+
+Do not place them in a regular grid. Prefer an irregular rhythm with partial overlaps and varied orientation.
+
+### Density and palette
+
+The image can be highly ornate and dense, but hierarchy remains:
+1. giant face backdrop;
+2. main full-body character;
+3. headshots / stickers;
+4. micro-decoration.
+
+Use a pale or clean field around the collage to prevent total density. The palette should remain character-specific and controlled rather than becoming rainbow noise.
+
+### Anti-pattern
+
+**Wrong:** full-body character + scenic background + a small portrait + many random decorations.  
+**Right:** giant facial close-up as a rear layer + full-body figure cutting across it + smaller character portraits and themed element stickers interlocking around the foreground figure.
+
+This preset should be selected when the user asks for:
+- “极繁 OC 立绘”
+- “特写垫底”
+- “大头贴”
+- “元素贴”
+- “角色拼贴展示”
+- “特写 + 主立绘 + 小头像”
+- maximalist original-character showcase.
+
