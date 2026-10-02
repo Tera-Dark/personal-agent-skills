@@ -7,8 +7,8 @@
   "harness_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS.md",
   "harness_full_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS-FULL.md",
   "handshake": "Harness v2.2.0 loaded · 14 modules · 说需求，或发参考图。",
-  "core_tokens": 22901,
-  "full_tokens": 69871,
+  "core_tokens": 22916,
+  "full_tokens": 70035,
   "modules": [
     {
       "name": "aesthetic-director-core",
@@ -97,19 +97,19 @@
       "layer": "02_creation",
       "load": "on-demand",
       "status": "active",
-      "version": "2.0.0",
+      "version": "2.1.0",
       "description": "Turns a Creative Brief (from aesthetic-director-core) into a complete, model-agnostic character blueprint — design thesis, silhouette architecture, visual anchors, garment engineering (base / structural / signature extension / accessory system), material contrast, palette hierarchy, behavioral pose + camera, narrative residue, presentation format — then runs a subtraction pass. Use for OC, 人设, 角色设计, 服装设计, 立绘, 高定服设, 二游角色, character sheet, fashion concept. Never writes model-specific prompt syntax.",
-      "triggers": "OC, 人设, 角色设计, 服装设计, 立绘, 高定服设, 二游角色, character sheet",
+      "triggers": "OC, 人设, 角色设计, 服装设计, 立绘, 高定服设, 二游角色, character sheet, 极繁, 极繁精美, 华丽人设, 原创圈",
       "path": "02_creation/character-design-engine",
       "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_creation/character-design-engine",
       "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/character-design-engine.md",
       "references": [
+        "references/maximalist-oc-design-grammar.md",
         "references/oc-design-system.md",
-        "references/garment-lexicon.md",
-        "references/maximalist-oc-design-grammar.md"
+        "references/garment-lexicon.md"
       ],
-      "tokens_skill": 1618,
-      "tokens_bundle": 9678
+      "tokens_skill": 1767,
+      "tokens_bundle": 9827
     },
     {
       "name": "general-image-prompt-adapter",
