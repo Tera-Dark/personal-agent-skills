@@ -152,6 +152,25 @@
 - 若用户要求多套设计，每套必须在设计命题、轮廓策略、主锚点、材质语言和动作逻辑上至少有两项明显不同。
 
 
+
+
+
+## 8.5. Reference-derived atelier layer — 艺术展示板层
+
+When the user supplies or requests a maximalist OC reference with a **pale editorial / atelier / art-print presentation**, load `references/maximalist-atelier-plate-grammar.md` in addition to the character grammar.
+
+This layer changes how the character is designed to sit inside a page:
+- design one oversized, low-contrast support mass behind or around the character;
+- establish one strong graphic axis;
+- let one motif transform from costume into a faint page/background trace;
+- use selective completion: dense rendered focal zones against pale linework / wash zones;
+- treat white and pale gray as active graphic materials;
+- allow controlled cropping, partial contours and quiet margins;
+- never replace structural design with fake sketch marks or decorative noise.
+
+The character and presentation should be conceived together. A strong result should still work if annotation, text and micro-decoration are removed.
+
+
 ## 8. Maximalist OC Mode — 极繁精美人设
 
 When the user explicitly asks for **极繁、极繁精美、原创圈高完成度人设、华丽人设**, do not interpret this as “add more decorations.” Load `references/maximalist-oc-design-grammar.md`.
