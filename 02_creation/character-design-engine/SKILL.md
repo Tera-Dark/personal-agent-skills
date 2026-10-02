@@ -3,11 +3,11 @@ name: character-design-engine
 description: Turns a Creative Brief (from aesthetic-director-core) into a complete, model-agnostic character blueprint — design thesis, silhouette architecture, visual anchors, garment engineering (base / structural / signature extension / accessory system), material contrast, palette hierarchy, behavioral pose + camera, narrative residue, presentation format — then runs a subtraction pass. Use for OC, 人设, 角色设计, 服装设计, 立绘, 高定服设, 二游角色, character sheet, fashion concept. Never writes model-specific prompt syntax.
 metadata:
   author: Tera-Dark
-  version: "2.0.0"
+  version: "2.1.0"
   layer: "02_creation"
   load: "on-demand"
   status: "active"
-  triggers: "OC, 人设, 角色设计, 服装设计, 立绘, 高定服设, 二游角色, character sheet"
+  triggers: "OC, 人设, 角色设计, 服装设计, 立绘, 高定服设, 二游角色, character sheet, 极繁, 极繁精美, 华丽人设, 原创圈"
 ---
 
 # Character Design Engine
@@ -18,6 +18,8 @@ metadata:
 输出：一份**角色 blueprint**，任何模型适配器都能直接翻译，且不需要再做设计决定。
 
 如果被直接调用而没有 Brief：先用 `aesthetic-director-core` 的 M1 / M3 / M6 / M7 压缩跑一遍（内部完成，不必输出完整 Brief），再进入下面的流程。**不要跳过。** 跳过的结果就是表单填充。
+
+如果用户明确要求**极繁精美人设 / 极繁 OC**，优先读取 `references/maximalist-oc-design-grammar.md`；此模式允许高复杂度，但复杂度必须来自轮廓、服装工程、统一母题、材质对抗和多尺度细节，而不是随机堆配饰。
 
 本 Skill 不写 Anima / NAI5 语法。本 Skill 不重新决定品味——品味来自 `personal-identity-profile`。
 
@@ -98,3 +100,4 @@ Step 11 反平庸检查  references/oc-design-system.md § 4
 
 - `references/oc-design-system.md` — 六层结构、五种轮廓策略、姿势-镜头对应、展示方式、复杂度控制、反平庸检查、开放式请求默认行为
 - `references/garment-lexicon.md` — 穿搭原型、四层叠穿、不对称手法、材质碰撞矩阵、领/袖/腰/裙词汇（英文短语可直接进 prompt）
+- `references/maximalist-oc-design-grammar.md` — 极繁精美人设专用设计语法：宏观轮廓、服装多层、统一母题、非对称重量、材质碰撞、多尺度细节与 pose activation
