@@ -3,7 +3,7 @@ name: anima-prompt-skeleton
 description: Compact Anima prompt-structure layer that maps a finished blueprint into stable hard anchors and relational natural language. Absorbs Good Anima's hard_tags, soft_phrases, and nltags concepts without adding a third user-visible block. Use after tag classification and before serialization/compiler assembly.
 metadata:
   author: Tera-Dark
-  version: "1.0.0"
+  version: "1.1.0"
   layer: "02_creation"
   load: "on-demand"
   status: "active"
@@ -14,7 +14,7 @@ metadata:
 
 ## 1. Purpose
 
-This module defines how a finished blueprint is compressed into the existing two-part Anima prompt:
+This module defines the information structure of a finished blueprint inside the existing two-part Anima prompt. It does not perform final length optimization; `anima-prompt-compressor` does that.
 
 Part A — verified Tag block
 Part B — Natural-language block
@@ -148,7 +148,21 @@ soft side light catches the satin edge while the deeper folds remain subdued
 
 These are relation clauses, not tag synonyms.
 
-## 6. Information compression
+## 6. Information handoff
+
+The skeleton identifies what *could* be useful; the P6 compressor decides what survives.
+
+Pass forward:
+- all locked facts;
+- candidate signature/structural relations;
+- compact NL relations;
+- optional support information marked as removable.
+
+Do not assume every item here must appear in the final prompt.
+
+For actual deletion, use `anima-prompt-compressor`.
+
+## 7. Information compression
 
 When the prompt is too long:
 
@@ -173,7 +187,7 @@ generic adjectives → secondary accessories → redundant hard tags → decorat
 
 Never delete a proposition merely because it is not a Danbooru tag.
 
-## 7. What this layer must not do
+## 8. What this layer must not do
 
 - no tag verification;
 - no alias lookup;
@@ -194,11 +208,13 @@ anima-tag-classifier
   ↓
 anima-prompt-skeleton
   ↓
+anima-prompt-compressor
+  ↓
 anima-tag-serializer
   ↓
 anima-prompt-compiler
 
-## 8. Acceptance checklist
+## 9. Acceptance checklist
 
 - [ ] Output remains two visible parts: Tag + NL.
 - [ ] Hard tags contain only verified/classifier-approved anchors.
