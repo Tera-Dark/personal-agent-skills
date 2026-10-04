@@ -90,13 +90,13 @@ Rules:
 
 | module | layer | load | status | ~tokens | triggers | fetch |
 |---|---|---|---|---|---|---|
-| `aesthetic-director-core` | 00_core | always | active | 15341 | OC, 人设, 插画, 服装, 审美, 创意方向, 人味, 高级感, 不要AI味, 太平淡, 太乱 | embedded below |
+| `aesthetic-director-core` | 00_core | always | active | 15666 | OC, 人设, 插画, 服装, 审美, 创意方向, 人味, 高级感, 不要AI味, 太平淡, 太乱 | embedded below |
 | `personal-identity-profile` | 00_core | always | active | 4617 | 我的风格, 个人偏好, 按我习惯, any creative task | embedded below |
 | `creative-skill-router` | 01_router | always | active | 3229 | any request; 设计, 提示词, prompt, 反推, 分析, ComfyUI, LoRA | embedded below |
-| `anima-prompt-compiler` | 02_creation | on-demand | active | 7142 | Anima, Anima 提示词, Anima checkpoint | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-prompt-compiler.md` |
-| `character-design-engine` | 02_creation | on-demand | active | 13212 | OC, 人设, 角色设计, 服装设计, 立绘, 高定服设, 二游角色, character sheet, 极繁, 极繁精美, 华丽人设, 原创圈 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/character-design-engine.md` |
+| `anima-prompt-compiler` | 02_creation | on-demand | active | 7270 | Anima, Anima 提示词, Anima checkpoint | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-prompt-compiler.md` |
+| `character-design-engine` | 02_creation | on-demand | active | 13263 | OC, 人设, 角色设计, 服装设计, 立绘, 高定服设, 二游角色, character sheet, 极繁, 极繁精美, 华丽人设, 原创圈 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/character-design-engine.md` |
 | `general-image-prompt-adapter` | 02_creation | on-demand | active | 2162 | Midjourney, MJ, DALL-E, GPT Image, Imagen, Gemini image, Nano Banana, Flux, SDXL, Stable Diffusion, 通用提示词, 其他模型, 不知道用什么模型 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/general-image-prompt-adapter.md` |
-| `illustration-direction` | 02_creation | on-demand | active | 16431 | 插画, 氛围图, 竖屏, 半留白, 印象风, 故事感, key visual, poster, scene, 极繁, 特写垫底, 大头贴, 元素贴, 角色拼贴 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/illustration-direction.md` |
+| `illustration-direction` | 02_creation | on-demand | active | 16538 | 插画, 氛围图, 竖屏, 半留白, 印象风, 故事感, key visual, poster, scene, 极繁, 特写垫底, 大头贴, 元素贴, 角色拼贴 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/illustration-direction.md` |
 | `nai5-community-prompt-engineering` | 02_creation | on-demand | active | 5675 | NAI5, NovelAI, NAI提示词, tag prompt, Danbooru, artist stack, char1 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/nai5-community-prompt-engineering.md` |
 | `image-reverse-analysis` | 03_analysis | on-demand | active | 1406 | 反推, 分析图片, 提取提示词, 还原风格, 参考这张, reverse prompt, reference image | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/image-reverse-analysis.md` |
 | `prompt-analysis` | 03_analysis | on-demand | active | 709 | 优化提示词, prompt 哪里有问题, prompt review, 分析这段提示词 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/prompt-analysis.md` |
@@ -597,7 +597,7 @@ Avoid judging only by rendering quality.
 ---
 
 ## MODULE: aesthetic-director-core
-layer: 00_core · load: always · status: active · module version: 2.0.0 · harness 3.0.0
+layer: 00_core · load: always · status: active · module version: 2.1.0 · harness 3.0.0
 source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/00_core/aesthetic-director-core
 
 **description:** Creative direction layer that turns a vague request into one committed design idea before any blueprint or prompt is written. Runs a sequence of generative "moves" (find the obsession, plant a contradiction, pick from the tail, build causality, subtract, keep one strange thing) and produces a short Creative Brief with rejected alternatives. Use for any OC / character / illustration / fashion / key-visual request, whenever output feels generic, "AI-flavored", too plain, too busy, or when the user asks for taste, direction, 审美, 创意方向, 人味, 高级感, 不要AI味.
@@ -616,7 +616,20 @@ AI 味不是渲染问题，是**决策方式**问题。模型在每个槽位里�
 上游：`personal-identity-profile`（读取品味签名与禁区）
 下游：`character-design-engine` / `illustration-direction`（把 Brief 展开成 blueprint）→ 模型适配器
 
-#### 1. 硬规则
+#### 1. Design Gate Modes
+
+##### FULL
+用于未完成设计的创作请求。必须完成 M1–M9，真正做选择，产出 Creative Brief。
+
+##### AUDIT
+用于用户已经给出完成设计、明确锁定事实或完整 prompt specification 的请求。只检查命题、因果、密度、未授权添加和可执行性，不修改锁定事实。
+
+##### ESCALATE
+AUDIT 发现缺失的核心设计决定时，必须升级到 FULL；不得让 specialist 或 adapter 偷补。
+
+AUDIT 是必经的质量闸门，不等于“顺手美化”。没有失败证据，不改已完成设计。
+
+#### 2. 硬规则
 
 - **先定一个念头，再动手**。没有一句话说得清的核心想法，不进入下一层。
 - **必须否决**。每次至少产生 3 个方向，明确淘汰 2 个并给出一句话理由。淘汰理由要写出来给用户看（一行即可）。
@@ -646,7 +659,11 @@ AI 味不是渲染问题，是**决策方式**问题。模型在每个槽位里�
 ```
 读取 personal-identity-profile（签名 + 禁区 + 本回合明确要求）
    ↓
-M1–M3：生成 3 个互不重叠的方向 → 淘汰 2 个（写理由）
+判定 Gate Mode：FULL / AUDIT
+   ↓
+AUDIT：只审不改；失败则 ESCALATE → FULL
+   ↓
+FULL：M1–M3：生成 3 个互不重叠的方向 → 淘汰 2 个（写理由）
    ↓
 M4–M5：给幸存方向建因果链、定瞬间
    ↓
@@ -659,7 +676,9 @@ M6–M9：减法、留怪、密度图、刺点
 
 时间预算：Brief 本身应短。用户要的是判断，不是过程。内部推理可以长，输出必须收敛。
 
-#### 4. 输出契约：Creative Brief
+#### 4. 输出契约
+
+##### FULL → Creative Brief
 
 ```
 【方向】一句话，名词 + 动词。（例：被供奉的蛇神少女正在把祭品的红线咬断）
@@ -709,6 +728,20 @@ Brief 用中文或英文均可，跟随用户当前语言。不加解释段落�
 - `references/feedback-diagnosis.md` — 反馈 → 失败层级 → 修正动作
 - `references/anti-ai-patterns.md` — AI 味模式清单：模式 → 成因 → 替换动作
 - `references/emotional-design.md` — 情绪与叙事如何落到可见的视觉决定上
+
+
+##### AUDIT → Design Audit Record
+
+【Gate】AUDIT
+【命题】成立 / 缺失 / 冲突
+【轮廓 / 构图】成立 / 缺失 / 冲突
+【因果】成立 / 缺失
+【密度 / 刺点】成立 / 缺失
+【未授权添加】有 / 无
+【结论】PASS / ESCALATE
+【锁定事实】原样保留
+
+AUDIT 通常内部完成；只有用户明确要求审美评审时才展开。
 
 ---
 
