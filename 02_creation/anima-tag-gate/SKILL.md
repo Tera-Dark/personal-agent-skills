@@ -1,14 +1,13 @@
 ---
 name: anima-tag-gate
-description: |
-  Web-first validation gate for Anima Danbooru hard tags. Resolves exact canonical tags, exact aliases, or missing without fuzzy promotion. Uses the Anima 1.0 tag index protocol and never changes creative decisions.
-  Triggers: Anima tag validation, Danbooru tag check, hard tag verification.
+description: Web-first validation gate for Anima Danbooru hard tags. Resolves exact canonical tags, exact aliases, or missing without fuzzy promotion. Uses the Anima 1.0 tag index protocol and never changes creative decisions. Triggers: Anima tag validation, Danbooru tag check, hard tag verification.
 metadata:
   author: Tera-Dark
   version: "1.0.0"
   layer: "02_creation"
   load: "on-demand"
   status: "active"
+  triggers: "Anima tag validation, Danbooru tag check, hard tag verification"
 ---
 
 # Anima Tag Gate
