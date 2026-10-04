@@ -7,8 +7,8 @@
   "harness_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS.md",
   "harness_full_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS-FULL.md",
   "handshake": "Harness v3.0.0 loaded · 14 modules · 说需求，或发参考图。",
-  "core_tokens": 23896,
-  "full_tokens": 77508,
+  "core_tokens": 25199,
+  "full_tokens": 80674,
   "modules": [
     {
       "name": "aesthetic-director-core",
