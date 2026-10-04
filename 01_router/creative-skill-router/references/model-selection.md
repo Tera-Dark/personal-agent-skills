@@ -2,56 +2,39 @@
 
 ## Purpose
 
-Select the correct execution adapter after identifying the creative task.
+Select the execution adapter only after the creative artifact passes the Aesthetic Gate and Blueprint Gate.
 
-## Principles
+## NAI5
 
-Do not choose a model based only on popularity.
-Choose according to the communication style required.
+Use when tag-based control, weighted artist stacks, and NovelAI V5 community syntax are desired.
 
-## NAI5 (`nai5-community-prompt-engineering`)
-
-Use when:
-
-- tag-based control is preferred
-- artist stack weighting is useful
-- character blocks are clearly defined
-- community prompt syntax is expected
+Pipeline:
+identity → Aesthetic Gate FULL/AUDIT → type specialist when needed → Blueprint Gate → nai5-community-prompt-engineering
 
 Output:
+compact weighted community tags using the NAI5 canonical skeleton.
 
-Structured tags + weighted syntax.
+## Anima
 
-## Anima (`anima-prompt-compiler`)
+Use when complex visual concepts, atmosphere and natural-language relationships are important.
 
-Use when:
-
-- visual concepts are complex
-- atmosphere and composition matter
-- natural language is more effective
+Pipeline:
+identity → Aesthetic Gate FULL/AUDIT → type specialist when needed → Blueprint Gate → anima-prompt-compiler
 
 Output:
+Anima Tag Lock + Natural-language Relations.
 
-Natural visual description.
+## General Image Models
 
-## General Image Models (`general-image-prompt-adapter`)
+Use for Midjourney, DALL-E / GPT Image, Imagen / Gemini image, Flux, SDXL-style checkpoints or unnamed targets.
 
-Use when:
-
-- the target is Midjourney, DALL-E / GPT Image, Imagen / Gemini image, Flux, SDXL-style checkpoints, or unnamed
-- scene understanding is primary
-- conversational editing is needed
-- less syntax control is required
-
-Output:
-
-Natural-language paragraph; parameters outside the prompt only when the target officially supports them; every model claim carries an evidence label.
+Pipeline:
+identity → Aesthetic Gate FULL/AUDIT → type specialist when needed → Blueprint Gate → general-image-prompt-adapter
 
 ## Unknown target
 
-If the owner did not name a model and it affects the format, ask one question. Default to `general-image-prompt-adapter` in generic mode.
+If the target model changes the required prompt format, ask one question. Otherwise default to generic mode.
 
 ## Rule
 
-The router selects the adapter.
-The adapter does not redesign the concept.
+The adapter is the final compiler. It never decides the concept.
