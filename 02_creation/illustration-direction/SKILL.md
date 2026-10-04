@@ -3,7 +3,7 @@ name: illustration-direction
 description: Turns a Creative Brief into an authored, model-agnostic illustration blueprint — the image thesis, captured moment, visual motif, environment-character relationship, camera and framing, scale contrast, negative space, physical light sources, density map, narrative residue, and one coherent surreal detail. Use for 插画, 氛围图, 竖屏, 半留白, 印象风, 故事感, key visual, poster, scene illustration, cinematic composition, or whenever a character needs to be placed into a designed moment rather than displayed on a plate. Never writes model-specific prompt syntax.
 metadata:
   author: Tera-Dark
-  version: "2.3.0"
+  version: "2.4.0"
   layer: "02_creation"
   load: "on-demand"
   status: "active"
@@ -102,6 +102,20 @@ An illustration blueprint is READY only when visual thesis, captured moment, mot
 如果用户明确要求**插画**，不得把角色重新摆成“完整角色站中间 + 风景背景”的立绘伪装。优先使用视觉母题、环境尺度、sub-framing、非对称布局、反射、切割或局部遮挡。
 
 如果用户要求**极繁 OC 展示 / 特写垫底 / 大头贴 / 元素贴**，优先读取 `references/oc-maximalist-closeup-backdrop-preset.md`。此时“特写垫底”是核心构图骨架：巨大同角色脸部/半身特写铺在最底层，主全身立绘压在前景，再以不同尺度的大头贴、主题元素贴和局部特写形成第三层。不要把这些词误解成“增加几个装饰物”。
+
+## Modern Key Visual Mode
+
+当目标是现代二游 / 商业角色主视觉时，覆盖普通“氛围图”的默认解法：
+
+- 先做主体大形 + 主运动轴 + 支撑大形，再填人物细节。
+- 用对角、S 曲线、环绕或双向张力组织头发、衣摆、武器与背景形。
+- 允许角色偏置、切边、前景遮挡和图形框景；不默认正中完整展示。
+- 复杂度集中在 1–2 个 focal pockets，邻接区域刻意降密度。
+- 颜色先看 3–4 个大色块，再放唯一强调色；不要靠柔和渐变消除冲突。
+- 光影必须塑造体积和材质，优先清晰局部阴影与接触阴影，不用全局 bloom 制造高级感。
+- 人物的脸、皮肤、头发和配饰保留有限的手绘不规则：眼睛不必镜像，高光不必堆叠，头发以发量结构优先。
+- 首饰、布带、链条、流苏等必须有可解释的 attachment point；能删掉的装饰优先删。
+- 故事感可以来自一个动态动作、一个被打断的动作或一个明确的 before/after，不必强行加入复杂环境。
 
 ## 参考校准：高完成度插画的结构特征
 
