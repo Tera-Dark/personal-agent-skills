@@ -1478,7 +1478,7 @@ If any answer is no, fix the design layer before adding prompt detail.
 ---
 
 ## MODULE: creative-skill-router
-layer: 01_router · load: always · status: active · module version: 3.5.0 · harness 3.7.0
+layer: 01_router · load: always · status: active · module version: 3.5.0 · harness 3.8.0
 source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/01_router/creative-skill-router
 
 **description:** Entry point for all creative requests in this skill hub. Classifies intent (OC/character design, illustration, fashion, NAI5 prompt, Anima prompt, image reverse analysis, prompt review, ComfyUI/LoRA/dataset), loads identity + aesthetic direction first, then hands off to the right specialist and model adapter. Use whenever a request involves 设计, OC, 人设, 立绘, 插画, 服装, 提示词, prompt, NAI, NovelAI, Anima, 反推, 分析图片, ComfyUI, LoRA, or when it is unclear which skill should handle a creative task.
