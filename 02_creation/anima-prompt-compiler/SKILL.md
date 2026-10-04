@@ -3,7 +3,7 @@ name: anima-prompt-compiler
 description: Model adapter that compiles a finished character or illustration blueprint into Anima-ready English prompts in a disciplined Tag block + Natural Language block format. Handles Anima-specific format contract, length budgets, positive-first output, V1 faithful / V2 enhanced modes, model profiles and artifact troubleshooting. Use when the user asks for Anima prompts, Anima 提示词, or names an Anima checkpoint. Does not design — if no blueprint exists, route through aesthetic-director-core and character-design-engine / illustration-direction first.
 metadata:
   author: Tera-Dark
-  version: "2.1.0"
+  version: "2.2.0"
   layer: "02_creation"
   load: "on-demand"
   status: "active"
@@ -97,9 +97,7 @@ NL 段不是 Tag 段的同义词复述。它必须补充关系和层级。
 ## 5. 输出模式
 
 ### Direct Mode（用户要求直接给）
-1. 一行设计方向
-2. Tag block
-3. NL block
+只输出最终提示词代码块，不加设计说明、策略线或解释。
 
 ### Standard Mode（默认）
 1. 一行 Strategy Line（来自 blueprint 的命题）
