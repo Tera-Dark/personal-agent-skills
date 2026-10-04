@@ -81,56 +81,6 @@ Router 本身不对用户输出长篇内容。它在内部决定管线后直接�
 
 ---
 
-## Reference: references/execution-flow.md
-
-### Execution Flow
-
-#### Standard creative pipeline
-
-User Request
-→ Task Classification
-→ Identity Context
-→ Aesthetic Gate (FULL / AUDIT / ESCALATE)
-→ Specialist / Design Packet
-→ Blueprint Gate
-→ Model Adapter
-→ Output Verification
-→ Evaluation Loop on feedback
-
-#### Gate semantics
-
-##### FULL
-Use when the user has not made the core design decisions. The director commits to a thesis, rejects alternatives, builds causality, subtracts, and keeps one coherent strange point.
-
-##### AUDIT
-Use when the user already specified the design. The director checks structural completeness, causal gaps, generic drift and unrequested additions without rewriting locked facts.
-
-##### ESCALATE
-If AUDIT finds a missing decision that materially affects the result, return to FULL rather than inventing it in an adapter.
-
-#### Blueprint Gate
-
-Minimum type-specific artifacts:
-
-- Character: thesis + silhouette + anchor hierarchy + applicable garment structure + material/palette logic + pose/camera + punctum/strange detail + locked facts.
-- Illustration: thesis + captured moment + motif + scale/placement + camera + environment relationship + physical light + density + narrative residue + punctum/strange detail + locked facts.
-- Finished-design packet: concrete user-supplied facts covering the adapter's required fields and passing AUDIT.
-
-#### Failure recovery
-
-If output quality is poor:
-1. Do not add keywords first.
-2. Use evaluation-loop to identify the highest failed layer.
-3. Re-enter the owning design or adapter layer only.
-4. Preserve approved and locked dimensions.
-5. Re-run Blueprint Gate before returning to an adapter.
-
-#### Technical invariant
-
-Adapters translate. They do not create missing design decisions.
-
----
-
 ## Reference: references/model-selection.md
 
 ### Model Selection Rules
@@ -173,6 +123,81 @@ If the target model changes the required prompt format, ask one question. Otherw
 #### Rule
 
 The adapter is the final compiler. It never decides the concept.
+
+---
+
+## Reference: references/task-classification.md
+
+### Task Classification
+
+#### Character Design
+
+Triggers:
+- OC
+- 人设
+- 角色设计
+- 服装设计
+
+Flow:
+Identity -> Aesthetic Director -> Character Design
+
+#### Prompt Engineering
+
+Triggers:
+- 提示词
+- prompt
+- tag
+- NAI5
+- Anima
+
+Flow:
+Existing concept -> Model Adapter
+
+**判断"概念是否已存在"的标准**：用户给出了明确的角色事实（发型、服装件、姿势、构图）。
+如果用户只给了主题/职业/氛围词（"一个月光祭司"、"赛博巫女"、"有故事感的"），概念**不存在**，必须先走：
+Identity -> Aesthetic Director -> Character Design / Illustration Direction -> Model Adapter
+
+#### Image Reverse Analysis
+
+Triggers:
+- reference image
+- 反推
+- 分析图片
+
+Flow:
+Image Analysis -> Design Language -> Prompt
+
+#### Illustration Direction
+
+Triggers:
+- 插画
+- 氛围图
+- 竖屏艺术图
+- 半留白 / 印象风 / 故事感 / key visual
+
+Flow:
+Identity -> Aesthetic Director -> Illustration Direction -> Model Adapter
+
+#### Feedback / Iteration
+
+Triggers:
+- 太平淡 / 太乱 / 不像 OC / 没人味 / 太怪
+- 这版可以 / 就这个方向
+- 换个方向 / 再来一版
+
+Flow:
+evaluation-loop -> aesthetic-director-core/references/feedback-diagnosis.md -> 回到失败的那一层 -> Model Adapter
+
+#### Technical Workflow
+
+Triggers:
+- ComfyUI
+- LoRA
+- dataset
+- training
+
+Flow:
+Technical Skill
 
 ---
 
@@ -241,3 +266,102 @@ User preferences override generic best practices.
 Many words do not equal “already designed”. Readiness is structural.
 
 ---
+
+## Reference: references/execution-flow.md
+
+### Execution Flow
+
+#### Standard creative pipeline
+
+User Request
+→ Task Classification
+→ Identity Context
+→ Aesthetic Gate (FULL / AUDIT / ESCALATE)
+→ Specialist / Design Packet
+→ Blueprint Gate
+→ Model Adapter
+→ Output Verification
+→ Evaluation Loop on feedback
+
+#### Gate semantics
+
+##### FULL
+Use when the user has not made the core design decisions. The director commits to a thesis, rejects alternatives, builds causality, subtracts, and keeps one coherent strange point.
+
+##### AUDIT
+Use when the user already specified the design. The director checks structural completeness, causal gaps, generic drift and unrequested additions without rewriting locked facts.
+
+##### ESCALATE
+If AUDIT finds a missing decision that materially affects the result, return to FULL rather than inventing it in an adapter.
+
+#### Blueprint Gate
+
+Minimum type-specific artifacts:
+
+- Character: thesis + silhouette + anchor hierarchy + applicable garment structure + material/palette logic + pose/camera + punctum/strange detail + locked facts.
+- Illustration: thesis + captured moment + motif + scale/placement + camera + environment relationship + physical light + density + narrative residue + punctum/strange detail + locked facts.
+- Finished-design packet: concrete user-supplied facts covering the adapter's required fields and passing AUDIT.
+
+#### Failure recovery
+
+If output quality is poor:
+1. Do not add keywords first.
+2. Use evaluation-loop to identify the highest failed layer.
+3. Re-enter the owning design or adapter layer only.
+4. Preserve approved and locked dimensions.
+5. Re-run Blueprint Gate before returning to an adapter.
+
+#### Technical invariant
+
+Adapters translate. They do not create missing design decisions.
+
+---
+
+## Reference: references/skill-map.md
+
+### Skill Map
+
+Skill 之间按**名字**引用（不是相对路径），因为它们可能被分别安装到不同位置。
+
+#### 00_core — 身份与审美
+
+- `personal-identity-profile` — 品味签名、否决清单、工作方式。唯一的品味来源。
+- `aesthetic-director-core` — 九个创作动作 → Creative Brief。所有创作任务的第一站。
+
+#### 01_router
+
+- `creative-skill-router` — 本 Skill。
+
+#### 02_creation — 设计与模型适配
+
+设计（模型无关）：
+- `character-design-engine` — Brief → 角色 blueprint（命题、轮廓、服装工程、配色层级、姿势因果、展示方式）
+- `illustration-direction` — Brief → 画面 blueprint（瞬间、构图、光源、密度、氛围预设）
+
+适配器（模型相关，只翻译不设计）：
+- `anima-prompt-compiler` — Tag + Natural Language 格式，Anima 系列
+- `nai5-community-prompt-engineering` — 社区格式：artist stack / char blocks / 权重，NovelAI
+- `general-image-prompt-adapter` — 自然语言 prompt，Midjourney / DALL-E / Imagen / Flux / SD / 未命名目标；带证据标签
+
+#### 03_analysis
+
+- `image-reverse-analysis` — 参考图 → 设计语言（结构，不是物件）
+- `prompt-analysis` — 现有 prompt → 意图 / 结构 / 问题 / 改法
+
+#### 04_tools — 技术（status: planned，无可加载内容）
+
+- `comfyui-workflow`
+- `lora-training`
+- `dataset-management`
+
+#### 05_evaluation
+
+- `evaluation-loop` — 六维评分 + 反馈诊断 + 单变量迭代
+
+#### 06_extensions — owner 通过聊天新增的模块
+
+目前为空。规则见 `kernel/EXTENSION-PROTOCOL.md`。
+
+#### kernel/ — 不是 Skill
+
+`kernel/KERNEL.md` 是运行契约（操作循环、加载协议、视觉协议、会话状态、命令、扩展协议）。build 会把它和 always-on 模块合成 `bundle/HARNESS.md`。
