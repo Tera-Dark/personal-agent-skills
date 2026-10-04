@@ -3,7 +3,7 @@ name: nai5-community-prompt-engineering
 description: Model adapter that compiles a finished character or illustration blueprint into NovelAI V5 community-format prompts — weighted artist stack, global style layer, scene base, char1/char2 blocks, source#/target#/mutual# interaction tags, and optional targeted negative steering with weight::tag:: syntax. Use when the user asks for NAI5, NovelAI, NAI提示词, tag prompt, Danbooru-style prompt. Does not design — if no blueprint exists, route through aesthetic-director-core and character-design-engine / illustration-direction first.
 metadata:
   author: Tera-Dark
-  version: "2.3.0"
+  version: "2.4.0"
   layer: "02_creation"
   load: "on-demand"
   status: "active"
@@ -82,7 +82,26 @@ artist:mr.owlish
 -1::artist collaboration::
 
 画师 Stack 服务 blueprint 的视觉语言，不替代角色设计或构图设计。见 references/artist-stack.md。
-## 4. Global Style + Quality Layer
+## 4. Canonical Prompt Skeleton
+
+NAI5 is compiled as a compact community-style weighted tag sequence, not a long natural-language essay.
+
+Order:
+1. Subject / identity / framing anchor
+2. Year / era when relevant
+3. Weighted artist stack
+4. Quality / aesthetic anchor
+5. Complexity / illustration density
+6. Rendering / material direction
+7. Targeted style suppression / numeric control
+8. Framing / scene / environment
+9. Character detail
+10. Expression / clothing / accessories / props / pose
+11. Optional quality tail / no text
+
+For a single subject, a flat comma-separated prompt is valid. Use char1/char2 blocks when multiple subjects or isolation needs them.
+
+### 4A. Global Style + Quality Layer
 
 风格与角色数据分离。见 `references/style-layer.md`。
 
@@ -192,6 +211,9 @@ Tag 格式天然会丢失“关系”。补救：
 - [ ] 是否保留用户原始 artist: namespace？
 - [ ] 用户原始 artist tag 的转义/特殊语法是否被保留？
 - [ ] subject / framing 是否靠前？
+- [ ] 是否遵循 Subject → Year/Era → Artist → Quality → Complexity → Rendering → Control → Scene → Character → Action 的骨架？
+- [ ] Quality layer 是否显式存在？
+- [ ] 当前输入是否已经通过 Aesthetic/Blueprint Gate？
 - [ ] quality / aesthetic / complexity / rendering 是否形成明确的全局层？
 - [ ] 是否避免无限堆叠同义质量词？
 - [ ] char block 顺序反映了主锚点 / 安静区？
