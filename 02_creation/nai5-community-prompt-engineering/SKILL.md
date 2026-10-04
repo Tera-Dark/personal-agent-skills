@@ -12,6 +12,10 @@ metadata:
 
 # NAI5 Community Prompt Engineering
 
+## Adapter Blueprint Boundary
+
+This skill is an adapter, not a design engine. It may compile only a finished blueprint that has already passed the aesthetic and blueprint gates. If the input lacks a concrete proposition, silhouette, four-layer outfit structure, punctum, or locked facts, route back through `creative-skill-router` instead of inventing design decisions here.
+
 ## 1. 定位
 
 本 Skill 是**适配器**：把已经做完设计决定的 blueprint 翻译成 NovelAI V5 社区格式。
@@ -41,7 +45,7 @@ Negative:
 
 1.0::artist:name::
 
-**不要删除 artist: 前缀。** NovelAI V5 官方 Explore 实例可以看到实际 prompt 使用 artist:name 形式，因此用户池中的 artist namespace 应视为有效输入；特殊形式也要保持原样。
+**不要删除 artist: 前缀。** NovelAI 官方 Explore 实例可以看到实际 prompt 使用 artist:name 形式，因此用户池中的 artist namespace 应视为有效输入；特殊形式也要保持原样。
 
 ### NAI5 数值权重语义
 
@@ -82,6 +86,7 @@ artist:mr.owlish
 -1::artist collaboration::
 
 画师 Stack 服务 blueprint 的视觉语言，不替代角色设计或构图设计。见 references/artist-stack.md。
+
 ## 4. Canonical Prompt Skeleton
 
 NAI5 is compiled as a compact community-style weighted tag sequence, not a long natural-language essay.
@@ -226,24 +231,15 @@ Tag 格式天然会丢失“关系”。补救：
 - [ ] Quality layer 是否显式存在？
 - [ ] 当前输入是否已经通过 Aesthetic/Blueprint Gate？
 - [ ] quality / aesthetic / complexity / rendering 是否形成明确的全局层？
-- [ ] 是否避免无限堆叠同义质量词？
-- [ ] char block 顺序反映了主锚点 / 安静区？
-- [ ] 刺点颜色只出现一次？
-- [ ] 被删掉的物件没有以 tag 回流？
-- [ ] 权重语义是否正确（>1.0 加强，0.0–1.0 削弱）？
-- [ ] 权重只用在必要处？
-- [ ] 默认没有附带 Negative？
-- [ ] 默认没有把方括号分区标题直接输出为 prompt token？
-- [ ] 锁定事实未改？
+- [ ] 是否避免把设计说明塞进 tag？
+- [ ] 是否保持用户 Negative 约定？
 
 ## References
 
-- `references/community-format.md` — 整体格式
-- `references/artist-stack.md` — 画师栈工程
-- `references/style-layer.md` — 全局风格层（quality / complexity / rendering / 风格抑制）
-- `references/character-block.md` — 角色块顺序与规则
-- `references/tag-taxonomy.md` — tag 分类与服装描述法
-- `references/interaction-tags.md` — 多角色交互
-- `references/scene-block.md` — 场景块
-- `references/weighting.md` — 权重系统
-- `references/negative-strategy.md` — 负面策略
+- `references/community-format.md`
+- `references/artist-stack.md`
+- `references/style-layer.md`
+- `references/character-block.md`
+- `references/tag-taxonomy.md`
+- `references/interaction-tags.md`
+- `references/scene-block.md`
