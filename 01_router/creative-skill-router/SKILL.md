@@ -3,7 +3,7 @@ name: creative-skill-router
 description: Entry point for all creative requests in this skill hub. Classifies intent (OC/character design, illustration, fashion, NAI5 prompt, Anima prompt, image reverse analysis, prompt review, ComfyUI/LoRA/dataset), loads identity + aesthetic direction first, then hands off to the right specialist and model adapter. Use whenever a request involves 设计, OC, 人设, 立绘, 插画, 服装, 提示词, prompt, NAI, NovelAI, Anima, 反推, 分析图片, ComfyUI, LoRA, or when it is unclear which skill should handle a creative task.
 metadata:
   author: Tera-Dark
-  version: "3.4.0"
+  version: "3.5.0"
   layer: "01_router"
   load: "always"
   status: "active"
@@ -42,6 +42,8 @@ Anima: anima-prompt-compressor    (minimum-sufficient reduction)
 Anima: anima-tag-serializer     (canonical identity → exact Anima syntax)
   ↓
 Model Adapter                  (anima-prompt-compiler / nai5-community-prompt-engineering)
+
+Web-first Anima execution: select the declared `pipeline_packs.anima` pack as the single on-demand fetch; its internal order is authoritative.
   ↓
 evaluation-loop                (on feedback rounds)
 ```
@@ -112,6 +114,7 @@ For Anima only, the serializer is the final syntax boundary between canonical id
 7. **Anima hard tags 必须经过 `anima-tag-gate`。** 不得因为模型记忆、搜索引擎近似结果或语义相似而跳过验证。
 8. **Anima verified tags 在进入 Compiler 前必须经过 `anima-tag-classifier`。** 分类层只做角色标注与减法过滤，不得发现、改写或创造 tag。
 9. **Anima serialized syntax 必须经过 `anima-tag-serializer`。** Compiler 不得重新发明全局转义规则；canonical identity 与 emitted syntax 必须保持分离。
+10. **Web-first Anima 不得拆成多次独立抓取。** 当路由选择 Anima 时，优先加载声明的 `anima` pipeline pack；pack 内部严格执行 Gate → Classifier → Skeleton → Protection → Compressor → Serializer → Compiler，不得跳步、重排或用记忆替代。
 
 ## Quick Routing Table
 
@@ -119,7 +122,7 @@ For Anima only, the serializer is the final syntax boundary between canonical id
 |---|---|---|
 | 角色 / OC / 服装设计 | OC, 人设, 角色设计, 服装设计, 立绘, 高定, 二游角色 | identity → Aesthetic Gate FULL → `character-design-engine` → Blueprint Gate → adapter |
 | 插画 / 氛围图 / 故事感 | 插画, 氛围图, 竖屏, 半留白, 印象风, 故事感, key visual | identity → Aesthetic Gate FULL → `illustration-direction` → Blueprint Gate → adapter |
-| 已有设计 → Anima 提示词 | 提示词, prompt, tag, Anima（且设计已完整） | identity → Aesthetic Gate AUDIT → verified design packet → `anima-tag-gate` → `anima-tag-classifier` → `anima-prompt-skeleton` → `anima-aesthetic-protection` → `anima-prompt-compressor` → `anima-tag-serializer` → `anima-prompt-compiler` |
+| 已有设计 → Anima 提示词 | 提示词, prompt, tag, Anima（且设计已完整） | identity → Aesthetic Gate AUDIT → Blueprint Gate → **load `pipeline_packs.anima` once** → Gate → Classifier → Skeleton → Protection → Compressor → Serializer → Compiler |
 | 已有设计 → NAI5 提示词 | NAI5, NovelAI（且设计已完整） | identity → Aesthetic Gate AUDIT → verified design packet → `nai5-community-prompt-engineering` |
 | 参考图反推 | 反推, 分析图片, 提取提示词, 还原风格, 参考这张 | identity → `image-reverse-analysis` → Aesthetic Gate FULL（原创）/ AUDIT（忠实）→ specialist/adapter |
 | 提示词审查 / 优化 | 优化提示词, 这个 prompt 哪里有问题 | `prompt-analysis` → (adapter if rewrite needed) |
