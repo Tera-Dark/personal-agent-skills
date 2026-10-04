@@ -74,7 +74,11 @@ The build system is responsible for keeping these runtime artifacts synchronized
 
 Failure handling is explicit and fail-closed. Read the generated policy below before continuing after any fetch or data-source failure.
 
-{{FAILURE_POLICY_TABLE}}
+| scope | failure state | label | allowed continuation | forbidden |
+|---|---|---|---|---|
+| standalone module | `card_only` | `[card-only]` | other loaded modules may continue | memory substitution |
+| pipeline pack | `pipeline_unavailable` | `[pipeline-unavailable]` | already-loaded stages only | model-specific compile from missing stages |
+| Anima tag index | `unverified_to_nl` | `[tag-index-unavailable]` | route affected tag meaning to NL | hard tags / fuzzy promotion |
 
 #### State semantics
 
