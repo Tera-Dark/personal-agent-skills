@@ -1,3 +1,25 @@
+## [3.2.0] - 2026-10-04
+
+Web-first runtime and Anima pipeline hardening release.
+
+### Added
+- Dedicated Web-first runtime contract in `kernel/KERNEL.md`.
+- Declarative `web_first` entries in `harness.json`.
+- Anima P2 exact → alias → missing tag gate.
+- Anima P3 tag classifier/filter.
+- Anima P4 syntax serializer with the explicit Reverse:1999 serialization rule.
+- Anima P5 compact Tag/NL prompt skeleton.
+- Anima P6 minimum-sufficient prompt compressor.
+- Anima P7 aesthetic protection / design-drift boundary.
+
+### Changed
+- Web conversation is now the canonical no-local-runtime execution path.
+- Anima prompts default to the smallest sufficient control packet instead of filling a word budget.
+- Verified tags are not automatically retained; verification, structure, compression and syntax serialization are separate responsibilities.
+
+### Compatibility
+The GitHub repository page remains the discovery surface. `bundle/HARNESS.md` is the web runtime artifact; CI regenerates it from source skills after changes.
+
 ## [3.1.0] - 2026-10-04
 
 Taste calibration release. The harness now recognizes a separate Modern Character Key Visual mode based on the owner's latest reference-board calibration.
