@@ -56,6 +56,17 @@
       "anima-prompt-compiler",
       "nai5-community-prompt-engineering",
       "general-image-prompt-adapter"
-    ]
+    ],
+    "pipeline_packs": {
+      "anima": [
+        "anima-tag-gate",
+        "anima-tag-classifier",
+        "anima-prompt-skeleton",
+        "anima-aesthetic-protection",
+        "anima-prompt-compressor",
+        "anima-tag-serializer",
+        "anima-prompt-compiler"
+      ]
+    }
   }
 }
