@@ -15,9 +15,9 @@
    │
    ▼  HARNESS.md = kernel（运行契约）+ 模块索引（每个模块的触发词、URL、卡片）+ always-on 模块全文
    │
-   ▼  模型回一行握手：Harness v3.2.0 loaded · current modules · 说需求，或发参考图。
+   ▼  模型回一行握手：Harness v3.3.0 loaded · current modules · 说需求，或发参考图。
    │
-   ▼  你提需求 → router 选模块 → 需要的 on-demand 模块按索引里的 raw URL 再抓一次（一个模块一个文件）
+   ▼  你提需求 → router 选单模块或 pipeline pack → 按索引里的 raw URL 抓取；多阶段 Web-first 管线优先一次抓 pack
 ```
 
 关键设计：
@@ -35,7 +35,7 @@ Paste GitHub repo URL → read README bootstrap → fetch raw bundle/HARNESS.md 
 
 Normal web use does not require a repository clone, Python, Node, SQLite, an executable, or a local HTTP server. The GitHub page is the discovery/bootstrap surface; the raw Bundle is the runtime source of truth.
 
-Fresh-session rule: prefer current `main` raw Bundle. The handshake version and module count are a freshness probe. On-demand modules use generated raw URLs from the Bundle index. If raw loading fails, use only the module card and mark `[card-only]`; never silently substitute remembered content.
+Fresh-session rule: prefer current `main` raw Bundle. The handshake version and module count are a freshness probe. On-demand modules and pipeline packs use generated raw URLs from the Bundle index. A pipeline pack counts as one fetch and loads all declared internal stages together. If raw loading fails, use only the affected module cards and mark `[card-only]`; never silently substitute remembered content.
 
 ## 3. 各平台
 
@@ -45,7 +45,7 @@ Fresh-session rule: prefer current `main` raw Bundle. The handshake version and 
 2. 看到握手行。没看到、或它开始"介绍这个仓库" → 回它：`不要总结。按 README 顶部的指令：抓 bundle/HARNESS.md，按它工作，只回握手行。`
 3. 发需求或参考图。
 
-已知行为：ChatGPT 一轮里抓取次数有限。kernel 限制每轮最多加载 3 个 on-demand 模块，正常任务一轮 1–2 个足够。
+已知行为：ChatGPT 一轮里抓取次数有限。Kernel 每轮最多执行 3 个 on-demand fetch；多阶段 Anima 使用一个 `pipeline pack`，因此不会因 7 个内部模块而跨回合。
 
 ### Gemini（有 URL 读取）
 
@@ -125,6 +125,7 @@ scripts/install.sh ./.claude/skills   # → 项目内
 | `bundle/HARNESS.md` | 23k | 默认入口；ChatGPT / Gemini / 粘贴 |
 | `bundle/HARNESS-FULL.md` | 56k | 知识文件上传；1M 上下文模型直接发 |
 | `bundle/modules/aesthetic-director-core.md` | 15k | 已含在 HARNESS.md 里，单独抓仅用于 `/reload` |
+| `bundle/pipelines/anima.md` | 按实际模块合计 | Web-first Anima 单次 fetch，包含 7 个阶段 |
 | 其它 on-demand 模块 | 0.7k–7k | 按需 |
 
 `harness.json` 的 `always_on` 决定 HARNESS.md 里嵌哪些文件；`core_budget_tokens`（默认 40000）超了 build 会警告。
