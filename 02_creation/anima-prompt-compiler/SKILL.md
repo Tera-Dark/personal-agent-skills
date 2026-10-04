@@ -3,7 +3,7 @@ name: anima-prompt-compiler
 description: Model adapter that compiles a finished character or illustration blueprint into Anima-ready English prompts in a disciplined Tag block + Natural Language block format. Handles Anima-specific format contract, length budgets, positive-first output, V1 faithful / V2 enhanced modes, model profiles and artifact troubleshooting. Use when the user asks for Anima prompts, Anima 提示词, or names an Anima checkpoint. Does not design — if no blueprint exists, route through aesthetic-director-core and character-design-engine / illustration-direction first.
 metadata:
   author: Tera-Dark
-  version: "2.0.0"
+  version: "2.1.0"
   layer: "02_creation"
   load: "on-demand"
   status: "active"
@@ -51,6 +51,15 @@ metadata:
 - 触发词中用于标识作品的括号、冒号等特殊字符会与 Anima 的权重语法冲突时，必须做转义。例：Danbooru 原始触发词为 `37_(reverse:1999)` 时，Anima 提示词中写作 **`37\\(reverse1999\\)`**，不要写成 `37, reverse:1999`、`37_(reverse:1999)` 或 `37 (reverse1999)`。
 
 Tag block 简洁、可扫描、不重复同义词。设计逻辑不塞进标签。
+
+### Canonical Prompt Skeleton
+
+Anima is compiled in one stable skeleton:
+1. Tag Lock — subject, framing, identity, appearance, hair/face, clothing, props and action.
+2. Natural-language Relations — garment hierarchy, asymmetry, spatial placement, pose causality, environment relation, light/material response, density and punctum.
+3. Optional Negative — only when positive constraints cannot express the exclusion.
+
+The compiler may compress within the model profile, but it does not redesign the concept.
 
 ### Part B — Natural-language block
 
@@ -118,7 +127,7 @@ NL 段不是 Tag 段的同义词复述。它必须补充关系和层级。
 
 ## 8. 输出前检查
 
-- [ ] 输入是 blueprint 不是需求？
+- [ ] 输入已通过 Aesthetic/Blueprint Gate？
 - [ ] Tag 段简洁、具体、无同义重复？
 - [ ] NL 段写了关系（层级 / 位置 / 因果 / 密度 / 刺点位置），不是复述 tag？
 - [ ] 锁定事实一字未改？
