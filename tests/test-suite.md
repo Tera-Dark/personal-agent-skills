@@ -247,6 +247,26 @@
 - **Fail**：长篇介绍
 
 
+## 6. Taste Calibration Regression Cases
+
+### Taste-10: Modern Key Visual mode
+- Modern gacha / commercial character refs produce strong silhouette + motion axis + color masses + material contrast, not soft atmospheric filler.
+
+### Taste-11: Local density
+- Design has 1–2 high-density focal pockets and a quiet field; complexity is not uniform.
+
+### Taste-12: Physical attachment
+- Hanging accessories identify a fastening / support relationship.
+
+### Taste-13: Human irregularity
+- Eyes are not forced into mirror symmetry; iris highlights and skin rendering remain restrained and tactile.
+
+### Taste-14: Hair mass
+- Hairstyle is described as readable masses / roots / wrapping before flyaway strands.
+
+### Taste-15: Compact prompt
+- Direct / Standard image prompts stay within the adapter's compact budget unless the owner explicitly requests detail.
+
 ## 5. Architecture Gate Regression Cases
 
 ### Arch-01: Every creative request passes Aesthetic Gate
