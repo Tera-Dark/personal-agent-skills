@@ -157,6 +157,9 @@ def main():
                 errors.append(f'harness.json pipeline.pipeline_packs.{pack_name}: planned skill `{name}` cannot be packed')
             elif skill['metadata'].get('load') == 'always':
                 errors.append(f'harness.json pipeline.pipeline_packs.{pack_name}: always-on skill `{name}` should remain embedded, not packed')
+    expected_anima = ['anima-tag-gate', 'anima-tag-classifier', 'anima-prompt-skeleton', 'anima-aesthetic-protection', 'anima-prompt-compressor', 'anima-tag-serializer', 'anima-prompt-compiler']
+    if 'anima' in packs and packs.get('anima') != expected_anima:
+        errors.append('harness.json pipeline.pipeline_packs.anima: order must be Gate → Classifier → Skeleton → Protection → Compressor → Serializer → Compiler')
 
     director = skills.get('aesthetic-director-core')
     if director:
