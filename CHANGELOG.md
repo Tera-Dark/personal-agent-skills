@@ -1,3 +1,13 @@
+## [3.5.0] - 2026-10-04
+
+### Failure degradation
+- Added a single fail-closed degradation contract in the Kernel and `harness.json`.
+- Standalone module failures use `[card-only]` without memory substitution.
+- Pipeline-pack failures use `[pipeline-unavailable]` and block unsafe adapter jumps.
+- Anima tag-index failures use `[tag-index-unavailable]`, preserving design while routing affected tag meanings to Natural Language.
+- Validator checks required failure states and forbids hard-tag/fuzzy promotion during Tag Index degradation.
+- Added P11 acceptance coverage.
+
 ## [3.4.0] - 2026-10-04
 
 ### Bundle build integrity
