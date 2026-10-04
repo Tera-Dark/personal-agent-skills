@@ -8,6 +8,7 @@ Outputs (all generated — never edit by hand):
   bundle/HARNESS.md            kernel + module index + ALWAYS-ON modules (the file to fetch/paste)
   bundle/HARNESS-FULL.md       everything: kernel + index + every module with all references
   bundle/modules/<name>.md     one file per module: SKILL.md + all its references (on-demand fetch)
+  bundle/pipelines/<name>.md  generated multi-module pipeline packs (one Web-first fetch)
   bundle/manifest.json         machine-readable index
   docs/skill-registry.md       human-readable index (same data)
 
@@ -322,7 +323,7 @@ def stale_outputs(root):
             continue
         if _normalize(open(p, encoding="utf-8").read()) != _normalize(content):
             stale.append(rel)
-    # orphaned module bundles (skill renamed/removed)
+    # orphaned generated bundles (skill/pipeline pack renamed or removed)
     cfg = L.load_config(root)
     mod_dir = os.path.join(root, cfg["bundle_dir"], "modules")
     if os.path.isdir(mod_dir):
