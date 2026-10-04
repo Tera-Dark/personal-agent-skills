@@ -36,6 +36,7 @@ jobs:
       - name: Validate skills and scripts
         run: |
           python3 scripts/validate_skills.py
+          python3 scripts/check_personal_anima_regression.py
           python3 -m compileall -q scripts
 
       # build.py --check compares sources against bundle/ ignoring the build date,
