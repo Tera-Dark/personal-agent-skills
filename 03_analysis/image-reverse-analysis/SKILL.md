@@ -3,7 +3,7 @@ name: image-reverse-analysis
 description: Decomposes a reference image into transferable design language — silhouette and mass distribution, motif grammar, garment construction, material contrast, palette hierarchy, pose logic, negative space and presentation format — instead of a tag dump. Output feeds aesthetic-director-core (for original work) or a model adapter (for faithful reproduction). Use for 反推, 分析图片, 提取提示词, 还原风格, 参考这张图, reverse prompt, image analysis.
 metadata:
   author: Tera-Dark
-  version: "2.0.0"
+  version: "2.1.0"
   layer: "03_analysis"
   load: "on-demand"
   status: "active"
@@ -44,6 +44,18 @@ v2.0.0 合并了原先三处重复的反推流程（本 Skill、`skills/nai5-pro
 10. Presentation   clean plate / decorated key visual / editorial plate / environmental vignette？
 11. Mood mechanism 气质是怎么达成的？（不是"神秘"——是"生物的眼睛 + 她的松弛之间的反差"）
 ```
+
+## Modern Key Visual extraction
+
+当参考图属于现代二游 / 商业角色主视觉时，额外提取：
+
+- Motion axis：主对角 / S 曲线 / 垂直冲刺 / 环形 / 双向张力。
+- Graphic scaffold：主体大形、支撑大形、构图轴、安静区。
+- Occlusion：哪些前景或服装结构有意切入人物，服务什么层级。
+- Local density：最高密度口袋与最低密度区域。
+- Material behavior：哪些材质靠褶皱、硬高光、透叠或粗糙度区分。
+- Human irregularity：脸部是否存在非镜像眼睛、高光差异、笔触边缘或自然色阶。
+- Attachment logic：饰品、链条、流苏、布带如何固定并承担重量。
 
 ## 输出契约
 
