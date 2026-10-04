@@ -208,7 +208,7 @@
 
 ### Harness-01: 一个链接冷启动
 - **输入**：第一条消息只有 `https://github.com/Tera-Dark/personal-agent-skills`
-- **Pass**：回复**只有**一行握手 `Harness v2.1.0 loaded · 14 modules · 说需求，或发参考图。`（版本、模块数与 `bundle/manifest.json` 一致）
+- **Pass**：回复**只有**一行握手，版本与模块数来自当前 `bundle/manifest.json`；不得使用旧的硬编码版本/模块数。
 - **Fail**：介绍仓库、列功能、描述架构、问"需要我做什么"之外的任何多余内容
 
 ### Harness-02: 抓取失败降级
@@ -218,7 +218,7 @@
 
 ### Harness-03: 按需加载与卡片降级
 - **输入**：握手后发「设计一个 OC，出 Anima 提示词」
-- **Pass**：模型声明加载 `character-design-engine` 与 `anima-prompt-compiler`（≤3 个）；若某个抓取失败，输出带 `[card-only]` 并给出 raw URL
+- **Pass**：模型选择 Anima pipeline pack `anima`；standalone module 抓取失败使用 `[card-only]`；pack 抓取失败使用 `[pipeline-unavailable]`，不得绕过缺失阶段
 - **Fail**：不加载直接写；或声称加载了但输出里没有该模块的输出契约结构
 
 ### Harness-04: 视觉协议
