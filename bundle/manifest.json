@@ -1,14 +1,14 @@
 {
   "name": "personal-agent-skills",
-  "version": "2.2.0",
+  "version": "3.0.0",
   "repo": "Tera-Dark/personal-agent-skills",
   "branch": "main",
   "raw_base": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/",
   "harness_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS.md",
   "harness_full_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS-FULL.md",
-  "handshake": "Harness v2.2.0 loaded · 14 modules · 说需求，或发参考图。",
-  "core_tokens": 22919,
-  "full_tokens": 76244,
+  "handshake": "Harness v3.0.0 loaded · 14 modules · 说需求，或发参考图。",
+  "core_tokens": 23569,
+  "full_tokens": 76895,
   "modules": [
     {
       "name": "aesthetic-director-core",
@@ -58,7 +58,7 @@
       "layer": "01_router",
       "load": "always",
       "status": "active",
-      "version": "2.0.0",
+      "version": "3.0.0",
       "description": "Entry point for all creative requests in this skill hub. Classifies intent (OC/character design, illustration, fashion, NAI5 prompt, Anima prompt, image reverse analysis, prompt review, ComfyUI/LoRA/dataset), loads identity + aesthetic direction first, then hands off to the right specialist and model adapter. Use whenever a request involves 设计, OC, 人设, 立绘, 插画, 服装, 提示词, prompt, NAI, NovelAI, Anima, 反推, 分析图片, ComfyUI, LoRA, or when it is unclear which skill should handle a creative task.",
       "triggers": "any request; 设计, 提示词, prompt, 反推, 分析, ComfyUI, LoRA",
       "path": "01_router/creative-skill-router",
@@ -71,8 +71,8 @@
         "references/execution-flow.md",
         "references/skill-map.md"
       ],
-      "tokens_skill": 1249,
-      "tokens_bundle": 3143
+      "tokens_skill": 1334,
+      "tokens_bundle": 3229
     },
     {
       "name": "anima-prompt-compiler",
