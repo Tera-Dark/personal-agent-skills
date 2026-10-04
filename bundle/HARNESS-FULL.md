@@ -8,7 +8,7 @@
 
 ## KERNEL — Operating Contract
 
-> Version 3.1.0 · built 2026-10-04 · 16 modules indexed
+> Version 3.1.0 · built 2026-10-04 · 17 modules indexed
 > Language policy: this kernel is in English for cross-model precision. Taste and creative modules are in Chinese because that is how the owner thinks about them. You answer in the owner's language; prompts are always English.
 
 ### 0. What you are now
@@ -19,7 +19,7 @@ You are the operator of Tera-Dark's creative harness. For the rest of this conve
 
 After you have read this entire harness, reply with exactly one line and nothing else:
 
-`Harness v3.1.0 loaded · 16 modules · 说需求，或发参考图。`
+`Harness v3.1.0 loaded · 17 modules · 说需求，或发参考图。`
 
 Do not summarize the repository. Do not describe the architecture. Do not list modules, principles, or what you "can do". If the owner's first message already contains a task, skip the handshake and do the task.
 
@@ -96,6 +96,7 @@ Rules:
 | `anima-prompt-compiler` | 02_creation | on-demand | active | 7958 | Anima, Anima 提示词, Anima checkpoint | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-prompt-compiler.md` |
 | `anima-tag-classifier` | 02_creation | on-demand | active | 1594 | Anima tag classification, Danbooru tag category, tag filtering, hard tag filtering | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-tag-classifier.md` |
 | `anima-tag-gate` | 02_creation | on-demand | active | 2068 | Anima tag validation, Danbooru tag check, hard tag verification | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-tag-gate.md` |
+| `anima-tag-serializer` | 02_creation | on-demand | active | 1394 | Anima tag serialization, Anima syntax escaping, 37 Reverse1999 syntax | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-tag-serializer.md` |
 | `character-design-engine` | 02_creation | on-demand | active | 15338 | OC, 人设, 角色设计, 服装设计, 立绘, 高定服设, 二游角色, character sheet, 极繁, 极繁精美, 华丽人设, 原创圈 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/character-design-engine.md` |
 | `general-image-prompt-adapter` | 02_creation | on-demand | active | 2186 | Midjourney, MJ, DALL-E, GPT Image, Imagen, Gemini image, Nano Banana, Flux, SDXL, Stable Diffusion, 通用提示词, 其他模型, 不知道用什么模型 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/general-image-prompt-adapter.md` |
 | `illustration-direction` | 02_creation | on-demand | active | 16883 | 插画, 氛围图, 竖屏, 半留白, 印象风, 故事感, key visual, poster, scene, 极繁, 特写垫底, 大头贴, 元素贴, 角色拼贴 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/illustration-direction.md` |
@@ -112,6 +113,7 @@ Rules:
 - **anima-prompt-compiler** — Model adapter that compiles a finished character or illustration blueprint into Anima-ready English prompts in a disciplined Tag block + Natural Language block format. Handles Anima-specific format contract, length budgets, positive-first output, V1 faithful / V2 enhanced modes, model profiles and artifact troubleshooting. Use when the user asks for Anima prompts, Anima 提示词, or names an Anima checkpoint. Does not design — if no blueprint exists, route through aesthetic-director-core and character-design-engine / illustration-direction first.
 - **anima-tag-classifier** — Lightweight classification and filtering layer for verified Anima Danbooru tags. Assigns intent groups, identity sensitivity, and prompt-role classes without inventing or fuzzy-matching tags. Use after anima-tag-gate and before prompt compilation when tag selection needs category-aware filtering.
 - **anima-tag-gate** — Web-first validation gate for Anima Danbooru hard tags. Resolves exact canonical tags, exact aliases, or missing without fuzzy promotion. Uses the Anima 1.0 tag index protocol and never changes creative decisions. Triggers: Anima tag validation, Danbooru tag check, hard tag verification.
+- **anima-tag-serializer** — Final serialization layer for verified Anima Danbooru tags. Converts canonical tag identities into exact Anima-safe syntax only for explicitly registered syntax rules, preserving ordinary tags and never discovering, rewriting, or inventing identities. Use after anima-tag-classifier and before anima-prompt-compiler serialization.
 - **character-design-engine** — Turns a Creative Brief (from aesthetic-director-core) into a complete, model-agnostic character blueprint — design thesis, silhouette architecture, visual anchors, garment engineering (base / structural / signature extension / accessory system), material contrast, palette hierarchy, behavioral pose + camera, narrative residue, presentation format — then runs a subtraction pass. Use for OC, 人设, 角色设计, 服装设计, 立绘, 高定服设, 二游角色, character sheet, fashion concept. Never writes model-specific prompt syntax.
 - **general-image-prompt-adapter** — Model adapter that compiles a finished character or illustration blueprint into a natural-language image prompt for models that are not Anima or NAI5 — Midjourney, DALL-E / GPT Image, Google Imagen / Gemini image, Flux, SDXL-style checkpoints, or an unnamed target. Keeps parameters out of the prompt unless the target officially supports them, and labels every model-specific claim with an evidence level. Use when the user names any other image model, says 通用提示词, MJ, Midjourney, DALL-E, Imagen, Flux, SD, 或没说用什么模型. Does not design — if no blueprint exists, route through aesthetic-director-core first.
 - **illustration-direction** — Turns a Creative Brief into an authored, model-agnostic illustration blueprint — the image thesis, captured moment, visual motif, environment-character relationship, camera and framing, scale contrast, negative space, physical light sources, density map, narrative residue, and one coherent surreal detail. Use for 插画, 氛围图, 竖屏, 半留白, 印象风, 故事感, key visual, poster, scene illustration, cinematic composition, or whenever a character needs to be placed into a designed moment rather than displayed on a plate. Never writes model-specific prompt syntax.
@@ -3066,6 +3068,205 @@ This is an upstream-derived validation protocol. The upstream repository is GPL-
 ##### Why the full corpus is not copied here
 
 The personal harness is designed to be pasted into web AI sessions. A giant static tag dump would consume context, make updates expensive, and encourage models to scan unrelated tags. The harness therefore keeps the source pointer + lookup contract lightweight and asks the runtime model to fetch only when a hard anchor actually needs verification.
+
+---
+
+## MODULE: anima-tag-serializer
+layer: 02_creation · load: on-demand · status: active · module version: 1.0.0 · harness 3.1.0
+source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_creation/anima-tag-serializer
+
+**description:** Final serialization layer for verified Anima Danbooru tags. Converts canonical tag identities into exact Anima-safe syntax only for explicitly registered syntax rules, preserving ordinary tags and never discovering, rewriting, or inventing identities. Use after anima-tag-classifier and before anima-prompt-compiler serialization.
+
+
+### Anima Tag Serializer
+
+#### 1. Boundary
+
+This module answers one question only:
+
+> Given a **verified canonical Anima tag**, what exact token should be emitted to the Anima prompt?
+
+It does **not**:
+- verify whether a tag exists;
+- resolve aliases;
+- fuzzy-match or search for candidates;
+- classify tags;
+- redesign the blueprint;
+- change canonical identity;
+- globally escape punctuation.
+
+Pipeline ownership:
+
+```text
+anima-tag-gate
+  ↓
+anima-tag-classifier
+  ↓
+anima-tag-serializer
+  ↓
+anima-prompt-compiler
+```
+
+P2 owns identity evidence. P3 owns role/filtering. P4 owns only final syntax representation.
+
+#### 2. Canonical vs serialized identity
+
+Every tag has two representations:
+
+- `canonical_tag`: the registry/Danbooru identity returned by Gate.
+- `serialized_tag`: the exact token emitted to the Anima prompt.
+
+Serialization must never mutate `canonical_tag`.
+
+The canonical value is the source of truth for verification and provenance. The serialized value is a transport representation for the target model.
+
+##### Required special case
+
+```text
+canonical: 37_(reverse:1999)
+serialized: 37\\(reverse1999\\)
+```
+
+This transformation is an explicit Anima syntax rule. It is **not** a general punctuation escape rule.
+
+The token must remain one character/IP identity. Never split it into:
+
+```text
+37
+reverse
+1999
+```
+
+and never replace it with an invented natural-language approximation such as `character 37` when the verified hard tag is intended to be emitted.
+
+#### 3. Serialization rules
+
+##### Rule A — only verified input
+
+Input must carry:
+
+```text
+status: verified
+canonical_tag: <exact canonical identity>
+prompt_role: core | structural | signature | support
+```
+
+`unverified`, `missing`, fuzzy candidates, semantic guesses, and classifier `omit` entries are rejected from hard-tag serialization. Their meaning must be handled by the compiler's Natural Language path instead.
+
+##### Rule B — exact rule table, not global escaping
+
+Apply only explicitly registered syntax transforms.
+
+Current rule table:
+
+| Canonical pattern | Serialized output | Scope |
+|---|---|---|
+| `37_(reverse:1999)` | `37\\(reverse1999\\)` | exact token only |
+
+Ordinary tags are preserved byte-for-byte after the Gate's transport normalization. Examples:
+
+```text
+1girl              → 1girl
+long_hair          → long_hair
+white_background   → white_background
+```
+
+Do **not**:
+- remove underscores globally;
+- remove or escape every parenthesis;
+- remove colons globally;
+- normalize slashes globally;
+- convert arbitrary `name_(series)` forms;
+- infer additional Anima-specific syntax from punctuation alone.
+
+If a new syntax-sensitive identity is discovered, add an explicit rule and a regression test rather than broadening a global regex.
+
+##### Rule C — canonical identity is immutable
+
+For every serialized result:
+
+```text
+result.canonical_tag == input.canonical_tag
+```
+
+Only `serialized_tag` may differ.
+
+##### Rule D — idempotence
+
+Serialization must be idempotent for the same output:
+
+```text
+serialize(serialize(x)) == serialize(x)
+```
+
+For the current special case, an already serialized `37\\(reverse1999\\)` must not become double-escaped.
+
+##### Rule E — ordering
+
+Serialization occurs only after verification and classification/filtering. It must never be used as an earlier lookup normalization step.
+
+Correct:
+
+```text
+raw input → Gate → canonical → Classifier → Serializer → Compiler
+```
+
+Incorrect:
+
+```text
+raw input → escape punctuation → Gate
+raw input → fuzzy match → Serializer
+raw input → Serializer → classify
+```
+
+#### 4. Failure behavior
+
+If the serializer receives an unknown syntax-sensitive case it cannot prove:
+
+1. do not invent a transform;
+2. preserve the canonical value internally;
+3. mark the result `serialization_unverified`;
+4. keep it out of the final hard-tag block until the compiler has an approved fallback;
+5. route the meaning to Natural Language if needed.
+
+Never silently guess an Anima escape convention.
+
+#### 5. Output contract
+
+Recommended internal packet:
+
+```yaml
+status: verified
+canonical_tag: 37_(reverse:1999)
+serialized_tag: 37\\(reverse1999\\)
+serialization_status: verified
+transform_id: anima_reverse1999_character_37
+```
+
+For ordinary tags:
+
+```yaml
+status: verified
+canonical_tag: 1girl
+serialized_tag: 1girl
+serialization_status: unchanged
+transform_id: null
+```
+
+The compiler consumes `serialized_tag`; Gate/Classifer continue to reason over `canonical_tag`.
+
+#### 6. Acceptance checklist
+
+- [ ] Input is Gate-verified.
+- [ ] Classifier has not marked the tag `omit`.
+- [ ] Canonical identity is unchanged.
+- [ ] Only registered syntax rules are applied.
+- [ ] `37_(reverse:1999)` becomes exactly `37\\(reverse1999\\)`.
+- [ ] Ordinary underscores, parentheses, colons and slashes are not globally rewritten.
+- [ ] The special token is never split into multiple tags.
+- [ ] Serialization is idempotent.
+- [ ] Unknown syntax fails closed rather than guessing.
+- [ ] Serializer runs after Gate + Classifier and before final Compiler emission.
 
 ---
 
@@ -6491,4 +6692,4 @@ Design Read：命题 成立 / 轮廓 弱 / 因果 缺失 / 密度 成立 / 刺�
 
 ---
 
-## END OF HARNESS — now reply with the handshake line: `Harness v3.1.0 loaded · 16 modules · 说需求，或发参考图。`
+## END OF HARNESS — now reply with the handshake line: `Harness v3.1.0 loaded · 17 modules · 说需求，或发参考图。`

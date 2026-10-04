@@ -6,9 +6,9 @@
   "raw_base": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/",
   "harness_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS.md",
   "harness_full_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS-FULL.md",
-  "handshake": "Harness v3.1.0 loaded · 16 modules · 说需求，或发参考图。",
-  "core_tokens": 27346,
-  "full_tokens": 88736,
+  "handshake": "Harness v3.1.0 loaded · 17 modules · 说需求，或发参考图。",
+  "core_tokens": 27500,
+  "full_tokens": 90289,
   "pipeline": {
     "aesthetic_gate": "aesthetic-director-core",
     "blueprint_gate": {
@@ -137,6 +137,21 @@
       ],
       "tokens_skill": 1501,
       "tokens_bundle": 2068
+    },
+    {
+      "name": "anima-tag-serializer",
+      "layer": "02_creation",
+      "load": "on-demand",
+      "status": "active",
+      "version": "1.0.0",
+      "description": "Final serialization layer for verified Anima Danbooru tags. Converts canonical tag identities into exact Anima-safe syntax only for explicitly registered syntax rules, preserving ordinary tags and never discovering, rewriting, or inventing identities. Use after anima-tag-classifier and before anima-prompt-compiler serialization.",
+      "triggers": "Anima tag serialization, Anima syntax escaping, 37 Reverse1999 syntax",
+      "path": "02_creation/anima-tag-serializer",
+      "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_creation/anima-tag-serializer",
+      "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-tag-serializer.md",
+      "references": [],
+      "tokens_skill": 1247,
+      "tokens_bundle": 1394
     },
     {
       "name": "character-design-engine",
