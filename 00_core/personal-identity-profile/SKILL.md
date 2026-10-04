@@ -1,9 +1,9 @@
 ---
 name: personal-identity-profile
-description: Persistent identity and taste layer for Tera-Dark's creative work. Holds the aesthetic signature (restrained base, one strange thing, a hint of danger, fashion-grade garment construction, female-oriented OC/gacha sensibility), hard dislikes (watches, cyber/mech, random butterflies-roses-particles, adjective costumes), business goals and workflow style. Does not generate prompts. Load first for any creative, design, illustration, prompt or aesthetic-judgment task; also when the user says 我的风格, 我喜欢, 按我习惯, 个人偏好.
+description: Persistent identity and taste layer for Tera-Dark's creative work. Holds the aesthetic signature (structured foundation, one strange thing, a hint of danger, modern key-visual impact, fashion-grade garment construction, female-oriented OC/gacha sensibility), hard dislikes (watches, cyber/mech, random butterflies-roses-particles, adjective costumes), business goals and workflow style. Does not generate prompts. Load first for any creative, design, illustration, prompt or aesthetic-judgment task; also when the user says 我的风格, 我喜欢, 按我习惯, 个人偏好.
 metadata:
   author: Tera-Dark
-  version: "2.0.0"
+  version: "2.1.0"
   layer: "00_core"
   load: "always"
   status: "active"
