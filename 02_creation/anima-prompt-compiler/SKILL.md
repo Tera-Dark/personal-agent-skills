@@ -12,6 +12,10 @@ metadata:
 
 # Anima Prompt Compiler
 
+## Adapter Blueprint Boundary
+
+This skill is an adapter, not a design engine. It may compile only a finished blueprint that has already passed the aesthetic and blueprint gates. If the input lacks a concrete proposition, silhouette, four-layer outfit structure, punctum, or locked facts, route back through `creative-skill-router` instead of inventing design decisions here.
+
 ## 1. 定位（v2.0.0 起）
 
 本 Skill 是**适配器**：把已经做完设计决定的 blueprint 翻译成 Anima 能理解的英文。
