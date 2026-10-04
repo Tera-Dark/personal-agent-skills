@@ -125,6 +125,40 @@ def cards(entries):
     return "\n".join(out)
 
 
+
+def pipeline_pack_table(cfg):
+    packs = (cfg.get("pipeline") or {}).get("pipeline_packs") or {}
+    if not packs:
+        return "No pipeline packs declared."
+    rows = ["| pack | modules | fetch |", "|---|---|---|"]
+    raw = raw_base(cfg)
+    bundle_dir = cfg["bundle_dir"]
+    for name, modules in packs.items():
+        module_list = ", ".join(modules)
+        url = "{}{}/pipelines/{}.md".format(raw, bundle_dir, name)
+        rows.append("| `{}` | {} | `{}` · 1 fetch |".format(name, module_list, url))
+    return "\n".join(rows)
+
+def render_pipeline_pack(name, module_names, by_name, cfg, version):
+    lines = [
+        GEN_NOTE,
+        "# PIPELINE PACK: {} · harness v{}".format(name, version),
+        "",
+        "This generated Web-first pack loads all declared stages in one fetch.",
+        "The declared order is authoritative; do not skip, reorder, or replace stages with memory.",
+        "",
+    ]
+    for module_name in module_names:
+        if module_name not in by_name:
+            raise SystemExit("pipeline pack {}: unknown module {}".format(name, module_name))
+        lines.extend([
+            "--- MODULE {} ---".format(module_name),
+            "",
+            L.demote_headings(by_name[module_name]["_rendered"], 1).rstrip(),
+            "",
+        ])
+    return "\n".join(lines).rstrip() + "\n"
+
 def render_kernel(root, cfg, version, entries):
     text = open(os.path.join(root, cfg["kernel"]), encoding="utf-8").read()
     handshake = cfg["handshake"].format(version=version, modules=len(entries))
@@ -135,6 +169,7 @@ def render_kernel(root, cfg, version, entries):
         "{{HANDSHAKE}}": handshake,
         "{{RAW_BASE}}": raw_base(cfg),
         "{{MANIFEST_TABLE}}": manifest_table(entries) + "\n\n### Module cards (contracts for on-demand modules; use only if a fetch fails)\n\n" + cards(entries),
+        "{{PIPELINE_PACK_TABLE}}": pipeline_pack_table(cfg),
     }
     for k, v in subs.items():
         text = text.replace(k, v)
@@ -239,6 +274,14 @@ def build_outputs(root):
         "core_tokens": L.estimate_tokens(outputs[f"{bundle_dir}/HARNESS.md"]),
         "full_tokens": L.estimate_tokens(outputs[f"{bundle_dir}/HARNESS-FULL.md"]),
         "pipeline": cfg.get("pipeline", {}),
+        "pipeline_packs": {
+            name: {
+                "modules": module_names,
+                "fetches_as": 1,
+                "bundle_url": f"{raw_base(cfg)}{bundle_dir}/pipelines/{name}.md",
+            }
+            for name, module_names in ((cfg.get("pipeline") or {}).get("pipeline_packs") or {}).items()
+        },
         "modules": [{k: v for k, v in e.items() if not k.startswith("_")} for e in entries],
     }
     outputs[f"{bundle_dir}/manifest.json"] = json.dumps(manifest, ensure_ascii=False, indent=2) + "\n"
@@ -255,7 +298,13 @@ def _normalize(text):
 def stale_outputs(root):
     _, _, outputs = build_outputs(root)
     stale = []
+    expected_packs = {os.path.basename(k) for k in outputs if k.startswith(f"{cfg['bundle_dir']}/pipelines/")}
+    for fn in os.listdir(pipe_dir):
+        if fn.endswith(".md") and fn not in expected_packs:
+            os.remove(os.path.join(pipe_dir, fn))
+            print(f"  removed orphan pipeline pack {fn}")
     for rel, content in outputs.items():
+
         p = os.path.join(root, rel)
         if not os.path.exists(p):
             stale.append(rel)
@@ -270,6 +319,12 @@ def stale_outputs(root):
         for fn in os.listdir(mod_dir):
             if fn.endswith(".md") and fn not in expected:
                 stale.append(f"{cfg['bundle_dir']}/modules/{fn} (orphan — delete)")
+    pipe_dir = os.path.join(root, cfg["bundle_dir"], "pipelines")
+    if os.path.isdir(pipe_dir):
+        expected = {os.path.basename(k) for k in outputs if k.startswith(f"{cfg['bundle_dir']}/pipelines/")}
+        for fn in os.listdir(pipe_dir):
+            if fn.endswith(".md") and fn not in expected:
+                stale.append(f"{cfg['bundle_dir']}/pipelines/{fn} (orphan — delete)")
     return stale
 
 
@@ -287,7 +342,9 @@ def main():
         return
     cfg, manifest, outputs = build_outputs(root)
     mod_dir = os.path.join(root, cfg["bundle_dir"], "modules")
+    pipe_dir = os.path.join(root, cfg["bundle_dir"], "pipelines")
     os.makedirs(mod_dir, exist_ok=True)
+    os.makedirs(pipe_dir, exist_ok=True)
     expected = {os.path.basename(k) for k in outputs if k.startswith(f"{cfg['bundle_dir']}/modules/")}
     for fn in os.listdir(mod_dir):
         if fn.endswith(".md") and fn not in expected:
