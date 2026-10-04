@@ -17,6 +17,21 @@ Every element should have a design reason and contribute to character identity.
 
 ---
 
+# Newly promoted anti-patterns — 2026-10-04
+
+These are now explicit dislikes when they appear without a strong reason:
+
+- Beauty-filter face — mirrored eyes, identical eyelid geometry, excessive iris sparkles, porcelain-smooth skin and zero painterly irregularity.
+- Soft-light soup — the whole image dissolved into bloom, haze, bokeh and floating particles with no decisive cast shadow.
+- Surface-only hair — large hairstyles rendered as a shell covered in random flyaway strands, with no readable roots, mass, wrapping or fastening.
+- Accessory wallpaper — flowers, pearls, chains, tassels and ornaments accumulated for luxury without visible attachment points or shared construction logic.
+- Atmosphere as background — using fog, light spots, petals or dreamy color wash instead of a designed environment or a clean white field.
+- Detail without hierarchy — uniformly high detail everywhere, so the image has no dominant mass, quiet field or visual route.
+
+These are defaults to reject because they repeatedly weaken identity and authored design; explicit current-turn requests can override them.
+
+---
+
 # Overused AI Elements
 
 Avoid unless specifically requested:
