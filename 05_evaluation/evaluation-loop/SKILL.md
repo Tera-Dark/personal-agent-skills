@@ -3,7 +3,7 @@ name: evaluation-loop
 description: Evaluates a generated image or compiled prompt against the original Creative Brief and blueprint, using a fixed rubric (identity preservation, outfit binding, spatial clarity, unrequested additions, V1/V2 consistency, output contract) plus a design-layer read (thesis, silhouette, causality, density, punctum, one strange thing). Diagnoses which layer failed and routes the fix to that layer with a single-variable change. Use on any feedback round: 太平淡, 太乱, 不像, 没人味, 这版可以, 评价一下, 哪里不对, compare versions.
 metadata:
   author: Tera-Dark
-  version: "2.0.0"
+  version: "2.1.0"
   layer: "05_evaluation"
   load: "always"
   status: "active"
@@ -18,6 +18,10 @@ metadata:
 
 本 Skill 不修 prompt。它决定**该谁修**：设计层问题回 `aesthetic-director-core` / `character-design-engine` / `illustration-direction`；语法与伪影问题回对应适配器。
 
+## Evaluation Gate
+
+先检查当前 artifact 是否仍符合上游 Creative Brief / Blueprint / finished-design packet。设计包失效时先回设计层，禁止用 adapter 词汇掩盖设计失败。
+
 ## 评价顺序（从上往下，第一个失败的层就是要修的层）
 
 ```
@@ -31,7 +35,8 @@ metadata:
 8. 未授权添加  有没有出现 blueprint 里没有的东西（耳环、腰带、手表、粒子、翅膀）？
 9. 空间 / 构图 景别对吗？多图层是否隔离？背景抢戏吗？
 10. 光         有物理来源和衰减吗？
-11. 输出契约   格式对吗？有没有禁用质量词 / 多余负面 / 参数？
+11. 输出契约   格式对吗？有没有模型特定的禁用词 / 多余负面 / 参数？
+12. Gate Result  只有通过 Blueprint Gate 才允许重新进入 adapter。
 ```
 
 **技术质量（手、解剖、清晰度）排最后。** 一张技术正确的图仍然可以因为没有人而失败。
