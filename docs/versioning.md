@@ -27,6 +27,7 @@ Define how this repository evolves while keeping Skill responsibilities stable.
 - kernel operating loop or non-negotiables changed
 - skills moved between layers or renamed (fetch URLs change)
 - router behavior changed
+- gate contracts changed in a way that can alter module execution
 - anything that breaks a custom GPT / Gem that uploaded the previous HARNESS-FULL.md
 
 ## New Skill Checklist
@@ -40,3 +41,8 @@ Changes to `personal-identity-profile/references/taste-signature.md` or `design-
 ## Design Principle
 
 Prefer adding knowledge over adding duplicate Skills.
+
+
+## Architecture releases
+
+The Aesthetic Gate and Blueprint Gate are architecture-level contracts. Changes to when a creative task is design-ready, which specialist owns a packet, or whether an adapter may execute require a major version bump.
