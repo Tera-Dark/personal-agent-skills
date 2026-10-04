@@ -1,12 +1,12 @@
 {
   "name": "personal-agent-skills",
-  "version": "3.3.0",
+  "version": "3.4.0",
   "repo": "Tera-Dark/personal-agent-skills",
   "branch": "main",
   "raw_base": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/",
   "harness_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS.md",
   "harness_full_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS-FULL.md",
-  "handshake": "Harness v3.3.0 loaded · 20 modules · 说需求，或发参考图。",
+  "handshake": "Harness v3.4.0 loaded · 20 modules · 说需求，或发参考图。",
   "core_tokens": 29432,
   "full_tokens": 97459,
   "pipeline": {
@@ -31,6 +31,21 @@
         "anima-tag-serializer",
         "anima-prompt-compiler"
       ]
+    }
+  },
+  "pipeline_packs": {
+    "anima": {
+      "modules": [
+        "anima-tag-gate",
+        "anima-tag-classifier",
+        "anima-prompt-skeleton",
+        "anima-aesthetic-protection",
+        "anima-prompt-compressor",
+        "anima-tag-serializer",
+        "anima-prompt-compiler"
+      ],
+      "fetches_as": 1,
+      "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/pipelines/anima.md"
     }
   },
   "modules": [
