@@ -3,7 +3,7 @@ name: anima-prompt-compiler
 description: Model adapter that compiles a finished character or illustration blueprint into Anima-ready English prompts in a disciplined Tag block + Natural Language block format. Handles Anima-specific format contract, length budgets, positive-first output, V1 faithful / V2 enhanced modes, model profiles and artifact troubleshooting. Use when the user asks for Anima prompts, Anima 提示词, or names an Anima checkpoint. Does not design — if no blueprint exists, route through aesthetic-director-core and character-design-engine / illustration-direction first.
 metadata:
   author: Tera-Dark
-  version: "2.5.0"
+  version: "2.6.0"
   layer: "02_creation"
   load: "on-demand"
   status: "active"
@@ -28,7 +28,7 @@ This skill is an adapter, not a design engine. It may compile only a finished bl
 
 **输入检查**：收到的东西有没有一句带动词的命题、明确的轮廓、四层服装、一个刺点、锁定事实？没有 → 这不是 blueprint，退回 `creative-skill-router`。用户直接说"帮我写个 Anima 提示词，一个月光祭司"时，**不要**在这里补设计。
 
-保留在本 Skill 的只有 Anima 相关的东西：格式契约、长度预算、输出模式、模型档案、伪影排查，以及对已验证、已分类、已序列化 tag packet 的最终组装。
+保留在本 Skill 的只有 Anima 相关的东西：格式契约、长度预算、输出模式、模型档案、伪影排查，以及对已验证、已分类、经过 prompt skeleton 规划、已序列化 tag packet 的最终组装。
 
 ## 2. 默认行为
 
@@ -38,7 +38,7 @@ This skill is an adapter, not a design engine. It may compile only a finished bl
 - 不加 `masterpiece, best quality, 8k, ultra-detailed` 等空泛质量词（禁用清单见 `references/anima-model-profiles.md` § 5.2）。
 - 不加权重、CFG、steps、采样器、Clip Skip 等工作流参数，除非用户要。
 - 不改动 blueprint 的**锁定事实**。
-- **任何进入 Tag block 的 Danbooru hard anchor 必须先通过 `anima-tag-gate`，再通过 `anima-tag-classifier`，最后通过 `anima-tag-serializer`。**
+- **任何进入 Tag block 的 Danbooru hard anchor 必须先通过 `anima-tag-gate`，再通过 `anima-tag-classifier`，再通过 `anima-prompt-skeleton`，最后通过 `anima-tag-serializer`。**
 
 ## 3. Pre-compile Tag Gate + Classifier + Serializer
 
@@ -48,8 +48,9 @@ This skill is an adapter, not a design engine. It may compile only a finished bl
 2. 只接受 `exact` / `alias`；`missing` / `unverified` 降级到 Natural Language。
 3. 将通过验证的 packet 交给 `anima-tag-classifier` 做 intent / identity scope / prompt role 分类。
 4. 过滤 `omit`、冗余和无关 support tags，只保留 core / structural / signature 与少量有用 support。
-5. 将剩余 packet 交给 `anima-tag-serializer`，把 canonical identity 转成最终 Anima token。
-6. 本 Compiler 只组装 `serialized_tag`，不再重新定义 Anima 字符转义规则。
+5. 将过滤后的 design packet 交给 `anima-prompt-skeleton`，确定哪些事实进入 Tag block、哪些关系进入 NL，并压缩重复信息。
+6. 将保留下来的 hard-tag packet 交给 `anima-tag-serializer`，把 canonical identity 转成最终 Anima token。
+7. 本 Compiler 只组装 `serialized_tag` 与 skeleton 生成的 NL，不再重新定义 Anima 字符转义规则。
 
 ### Gate contract
 
@@ -90,6 +91,13 @@ Tag Gate 输出的是 **canonical identity**，Classifier 不改变 canonical id
 Tag block 简洁、可扫描、不重复同义词。设计逻辑不塞进标签。
 
 ### Canonical Prompt Skeleton
+
+The skeleton layer absorbs Good Anima's hard-tag / soft-phrase / relation split without changing the user-visible two-part format:
+- hard anchors → Tag block;
+- compact soft aesthetic phrases → only where useful, embedded in NL;
+- relation-oriented nltags → NL block.
+
+The Compiler must not emit a separate soft-phrase block.
 
 Anima is compiled in one stable skeleton:
 1. Tag Lock — subject, framing, identity, appearance, hair/face, clothing, props and action.
@@ -132,7 +140,7 @@ NL 段不是 Tag 段的同义词复述。它必须补充关系和层级。
 
 超预算时的删除顺序：重复形容词 → 次要配饰 → 背景枝节 → 材质细节。**不删**：命题结构、主锚点、刺点、锁定事实、因果链里的关键词。
 
-验证、分类与序列化都不能增加预算：即使有更多 verified tags，也只保留对当前 blueprint 有价值的少数硬锚点。
+验证、分类、skeleton 规划与序列化都不能增加预算：即使有更多 verified tags，也只保留对当前 blueprint 有价值的少数硬锚点。
 
 ## 6. 输出模式
 
@@ -168,6 +176,7 @@ NL 段不是 Tag 段的同义词复述。它必须补充关系和层级。
 - [ ] 输入已通过 Aesthetic/Blueprint Gate？
 - [ ] Anima hard anchors 已通过 `anima-tag-gate`？
 - [ ] 已通过 `anima-tag-classifier`？
+- [ ] 已通过 `anima-prompt-skeleton`？
 - [ ] 已通过 `anima-tag-serializer`？
 - [ ] 每个进入 Tag block 的 Tag 都有 `exact` / `alias` 证据，或已降级到 NL？
 - [ ] 没有 fuzzy / candidate tag 混入 hard_tags？
@@ -191,5 +200,6 @@ NL 段不是 Tag 段的同义词复述。它必须补充关系和层级。
 - `references/anima-troubleshooting.md` — 伪影诊断目录、最小修复、不确定性处理
 - `anima-tag-gate` — Web-first exact → alias → missing gate
 - `anima-tag-classifier` — P3 intent / identity scope / prompt-role filtering
+- `anima-prompt-skeleton` — P5 stable facts → compact Tag/NL structure
 - `anima-tag-serializer` — P4 canonical identity → exact Anima syntax
 - 测试集：`tests/test-suite.md`
