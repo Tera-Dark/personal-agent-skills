@@ -12,6 +12,8 @@ plus repo-local rules:
   - warns on non-spec top-level keys (priority, trigger, ...)
 
   repo
+  - architecture pipeline references are valid
+  - creative director, specialists, adapters and evaluation loop expose gate contracts
   - no duplicate skill names
   - metadata.layer == actual layer folder; metadata.load in {always, on-demand}; metadata.status in {active, placeholder, planned}
   - every `references/*.md` mentioned in SKILL.md exists; every references/*.md on disk is mentioned (warn)
@@ -115,6 +117,40 @@ def main():
     for name, s in skills.items():
         if s["metadata"].get("load") == "always" and name not in cfg.get("always_on", {}):
             errors.append(f"{s['rel']}: metadata.load is `always` but harness.json always_on does not list it")
+
+
+    # architecture contract sanity
+    pipeline = cfg.get('pipeline', {})
+    required_pipeline = {'aesthetic_gate', 'blueprint_gate', 'evaluation_gate', 'adapters'}
+    missing = required_pipeline - set(pipeline)
+    if missing:
+        errors.append(f'harness.json pipeline missing keys: {sorted(missing)}')
+    for key in ('aesthetic_gate', 'evaluation_gate'):
+        name = pipeline.get(key)
+        if name and name not in skills:
+            errors.append(f'harness.json pipeline.{key}: unknown skill `{name}`')
+    for kind, name in (pipeline.get('blueprint_gate') or {}).items():
+        if name not in skills:
+            errors.append(f'harness.json pipeline.blueprint_gate.{kind}: unknown skill `{name}`')
+    for name in pipeline.get('adapters', []):
+        if name not in skills:
+            errors.append(f'harness.json pipeline.adapters: unknown skill `{name}`')
+
+    director = skills.get('aesthetic-director-core')
+    if director:
+        body = director['body']
+        if not all(token in body for token in ('FULL', 'AUDIT', 'ESCALATE')):
+            errors.append('aesthetic-director-core: missing FULL/AUDIT/ESCALATE gate contract')
+    for name in ('character-design-engine', 'illustration-direction'):
+        skill = skills.get(name)
+        if skill and 'Blueprint Gate Contract' not in skill['body']:
+            errors.append(f'{name}: missing Blueprint Gate Contract')
+    for name in ('anima-prompt-compiler', 'nai5-community-prompt-engineering', 'general-image-prompt-adapter'):
+        skill = skills.get(name)
+        if skill:
+            body = skill['body'].lower()
+            if 'blueprint' not in body or 'adapter' not in body:
+                errors.append(f'{name}: missing adapter blueprint boundary')
 
     if not os.path.exists(os.path.join(root, cfg["kernel"])):
         errors.append(f"kernel file {cfg['kernel']} missing")
