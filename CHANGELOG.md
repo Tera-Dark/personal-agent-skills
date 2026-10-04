@@ -1,3 +1,12 @@
+## [3.4.0] - 2026-10-04
+
+### Bundle build integrity
+- Pipeline packs are now first-class generated artifacts in `scripts/build.py`.
+- `bundle/pipelines/<name>.md` is generated from `harness.json` and automatically checked for stale/orphan files.
+- Kernel pipeline-pack entries are generated from configuration instead of hardcoded routes.
+- Manifest output exposes pipeline-pack module lists, fetch cost and generated URLs.
+- P10 acceptance tests cover source → bundle → manifest → pipeline pack → registry consistency.
+
 ## [3.2.0] - 2026-10-04
 
 Web-first runtime and Anima pipeline hardening release.
