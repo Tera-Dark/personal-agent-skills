@@ -3,7 +3,7 @@ name: anima-tag-gate
 description: Web-first validation gate for Anima Danbooru hard tags. Resolves exact canonical tags, exact aliases, or missing without fuzzy promotion. Uses the Anima 1.0 tag index protocol and never changes creative decisions. Triggers: Anima tag validation, Danbooru tag check, hard tag verification.
 metadata:
   author: Tera-Dark
-  version: "1.0.0"
+  version: "1.1.0"
   layer: "02_creation"
   load: "on-demand"
   status: "active"
@@ -152,12 +152,14 @@ Do not perform this conversion inside the tag database or validation result. Thi
 
 ## 9. Failure / degradation
 
-If the web source cannot be read, the JSON is malformed, the expected group is absent, or the lookup cannot be proven:
+If the web source cannot be read, the JSON is malformed, the expected group is absent, or the lookup cannot be proven, enter **`tag-index-unavailable`** mode:
 
 - do not invent a tag;
-- mark the anchor `unverified` internally;
-- route its meaning to NL;
-- optionally tell the user that tag verification was unavailable only when it materially affects the requested output.
+- mark every affected anchor `unverified` internally, regardless of model memory or prior runs;
+- route its meaning to Natural Language;
+- no affected tag may enter `hard_tags`;
+- never use fuzzy, semantic, search-engine, or remembered candidates as a substitute;
+- expose `[tag-index-unavailable]` only when the missing verification materially affects the requested output.
 
 A source failure is never permission to use fuzzy matching.
 
