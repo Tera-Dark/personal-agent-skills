@@ -70,7 +70,7 @@ Rules:
 | `character-design-engine` | 02_creation | on-demand | active | 13212 | OC, 人设, 角色设计, 服装设计, 立绘, 高定服设, 二游角色, character sheet, 极繁, 极繁精美, 华丽人设, 原创圈 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/character-design-engine.md` |
 | `general-image-prompt-adapter` | 02_creation | on-demand | active | 2162 | Midjourney, MJ, DALL-E, GPT Image, Imagen, Gemini image, Nano Banana, Flux, SDXL, Stable Diffusion, 通用提示词, 其他模型, 不知道用什么模型 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/general-image-prompt-adapter.md` |
 | `illustration-direction` | 02_creation | on-demand | active | 16431 | 插画, 氛围图, 竖屏, 半留白, 印象风, 故事感, key visual, poster, scene, 极繁, 特写垫底, 大头贴, 元素贴, 角色拼贴 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/illustration-direction.md` |
-| `nai5-community-prompt-engineering` | 02_creation | on-demand | active | 5653 | NAI5, NovelAI, NAI提示词, tag prompt, Danbooru, artist stack, char1 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/nai5-community-prompt-engineering.md` |
+| `nai5-community-prompt-engineering` | 02_creation | on-demand | active | 5675 | NAI5, NovelAI, NAI提示词, tag prompt, Danbooru, artist stack, char1 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/nai5-community-prompt-engineering.md` |
 | `image-reverse-analysis` | 03_analysis | on-demand | active | 1406 | 反推, 分析图片, 提取提示词, 还原风格, 参考这张, reverse prompt, reference image | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/image-reverse-analysis.md` |
 | `prompt-analysis` | 03_analysis | on-demand | active | 709 | 优化提示词, prompt 哪里有问题, prompt review, 分析这段提示词 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/prompt-analysis.md` |
 | `comfyui-workflow` | 04_tools | on-demand | planned | 280 | ComfyUI, workflow, nodes, 工作流 | none (planned) |
@@ -4625,7 +4625,7 @@ Before compiling the prompt, ask:
 ---
 
 ## MODULE: nai5-community-prompt-engineering
-layer: 02_creation · load: on-demand · status: active · module version: 2.2.0 · harness 2.2.0
+layer: 02_creation · load: on-demand · status: active · module version: 2.3.0 · harness 2.2.0
 source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_creation/nai5-community-prompt-engineering
 
 **description:** Model adapter that compiles a finished character or illustration blueprint into NovelAI V5 community-format prompts — weighted artist stack, global style layer, scene base, char1/char2 blocks, source#/target#/mutual# interaction tags, and optional targeted negative steering with weight::tag:: syntax. Use when the user asks for NAI5, NovelAI, NAI提示词, tag prompt, Danbooru-style prompt. Does not design — if no blueprint exists, route through aesthetic-director-core and character-design-engine / illustration-direction first.
@@ -4637,7 +4637,7 @@ source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_creation
 
 本 Skill 是**适配器**：把已经做完设计决定的 blueprint 翻译成 NovelAI V5 社区格式。
 
-v2.2.0 起明确锁定 NAI5 权重与 artist tag 使用规则：1.0 是数值 emphasis 基准；>1.0 加强，0.0–1.0 削弱；用户提供画师池时保留 artist: namespace，不擅自改成裸画师名；随机画师默认 1 名主画师约 0.95–1.10，其余全部 <=0.6；用户通常已有自己的 Negative，因此默认不输出。
+v2.3.0 起进一步锁定 NAI5 质量词、复杂度、渲染层与 prompt 顺序，并保留 v2.2.0 的权重与 artist tag 规则：1.0 是数值 emphasis 基准；>1.0 加强，0.0–1.0 削弱；用户提供画师池时保留 artist: namespace，不擅自改成裸画师名；随机画师默认 1 名主画师约 0.95–1.10，其余全部 <=0.6；用户通常已有自己的 Negative，因此默认不输出。
 
 **输入检查**：同 `anima-prompt-compiler`。没有命题 / 轮廓 / 四层服装 / 刺点 / 锁定事实的输入不是 blueprint，退回 router。
 
