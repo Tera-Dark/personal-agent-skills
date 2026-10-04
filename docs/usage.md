@@ -15,7 +15,7 @@
    │
    ▼  HARNESS.md = kernel（运行契约）+ 模块索引（每个模块的触发词、URL、卡片）+ always-on 模块全文
    │
-   ▼  模型回一行握手：Harness v3.3.0 loaded · current modules · 说需求，或发参考图。
+   ▼  模型回一行握手：Harness v3.4.0 loaded · current modules · 说需求，或发参考图。
    │
    ▼  你提需求 → router 选单模块或 pipeline pack → 按索引里的 raw URL 抓取；多阶段 Web-first 管线优先一次抓 pack
 ```
