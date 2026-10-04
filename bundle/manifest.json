@@ -33,6 +33,30 @@
       ]
     }
   },
+  "failure_policy": {
+    "default_mode": "fail_closed",
+    "standalone_module": {
+      "on_fetch_failure": "card_only",
+      "label": "[card-only]",
+      "may_continue_with_other_loaded_modules": true,
+      "memory_substitution": false
+    },
+    "pipeline_pack": {
+      "on_fetch_failure": "pipeline_unavailable",
+      "label": "[pipeline-unavailable]",
+      "may_emit_model_specific_prompt": false,
+      "may_use_already_loaded_modules": true,
+      "memory_substitution": false
+    },
+    "anima_tag_index": {
+      "on_fetch_failure": "unverified_to_nl",
+      "label": "[tag-index-unavailable]",
+      "hard_tags_allowed": false,
+      "nl_fallback": true,
+      "fuzzy_promotion": false,
+      "memory_substitution": false
+    }
+  },
   "pipeline_packs": {
     "anima": {
       "modules": [
