@@ -1,0 +1,201 @@
+---
+name: anima-tag-serializer
+description: Final serialization layer for verified Anima Danbooru tags. Converts canonical tag identities into exact Anima-safe syntax only for explicitly registered syntax rules, preserving ordinary tags and never discovering, rewriting, or inventing identities. Use after anima-tag-classifier and before anima-prompt-compiler serialization.
+metadata:
+  author: Tera-Dark
+  version: "1.0.0"
+  layer: "02_creation"
+  load: "on-demand"
+  status: "active"
+  triggers: "Anima tag serialization, Anima syntax escaping, 37 Reverse1999 syntax"
+---
+
+# Anima Tag Serializer
+
+## 1. Boundary
+
+This module answers one question only:
+
+> Given a **verified canonical Anima tag**, what exact token should be emitted to the Anima prompt?
+
+It does **not**:
+- verify whether a tag exists;
+- resolve aliases;
+- fuzzy-match or search for candidates;
+- classify tags;
+- redesign the blueprint;
+- change canonical identity;
+- globally escape punctuation.
+
+Pipeline ownership:
+
+```text
+anima-tag-gate
+  ↓
+anima-tag-classifier
+  ↓
+anima-tag-serializer
+  ↓
+anima-prompt-compiler
+```
+
+P2 owns identity evidence. P3 owns role/filtering. P4 owns only final syntax representation.
+
+## 2. Canonical vs serialized identity
+
+Every tag has two representations:
+
+- `canonical_tag`: the registry/Danbooru identity returned by Gate.
+- `serialized_tag`: the exact token emitted to the Anima prompt.
+
+Serialization must never mutate `canonical_tag`.
+
+The canonical value is the source of truth for verification and provenance. The serialized value is a transport representation for the target model.
+
+### Required special case
+
+```text
+canonical: 37_(reverse:1999)
+serialized: 37\\(reverse1999\\)
+```
+
+This transformation is an explicit Anima syntax rule. It is **not** a general punctuation escape rule.
+
+The token must remain one character/IP identity. Never split it into:
+
+```text
+37
+reverse
+1999
+```
+
+and never replace it with an invented natural-language approximation such as `character 37` when the verified hard tag is intended to be emitted.
+
+## 3. Serialization rules
+
+### Rule A — only verified input
+
+Input must carry:
+
+```text
+status: verified
+canonical_tag: <exact canonical identity>
+prompt_role: core | structural | signature | support
+```
+
+`unverified`, `missing`, fuzzy candidates, semantic guesses, and classifier `omit` entries are rejected from hard-tag serialization. Their meaning must be handled by the compiler's Natural Language path instead.
+
+### Rule B — exact rule table, not global escaping
+
+Apply only explicitly registered syntax transforms.
+
+Current rule table:
+
+| Canonical pattern | Serialized output | Scope |
+|---|---|---|
+| `37_(reverse:1999)` | `37\\(reverse1999\\)` | exact token only |
+
+Ordinary tags are preserved byte-for-byte after the Gate's transport normalization. Examples:
+
+```text
+1girl              → 1girl
+long_hair          → long_hair
+white_background   → white_background
+```
+
+Do **not**:
+- remove underscores globally;
+- remove or escape every parenthesis;
+- remove colons globally;
+- normalize slashes globally;
+- convert arbitrary `name_(series)` forms;
+- infer additional Anima-specific syntax from punctuation alone.
+
+If a new syntax-sensitive identity is discovered, add an explicit rule and a regression test rather than broadening a global regex.
+
+### Rule C — canonical identity is immutable
+
+For every serialized result:
+
+```text
+result.canonical_tag == input.canonical_tag
+```
+
+Only `serialized_tag` may differ.
+
+### Rule D — idempotence
+
+Serialization must be idempotent for the same output:
+
+```text
+serialize(serialize(x)) == serialize(x)
+```
+
+For the current special case, an already serialized `37\\(reverse1999\\)` must not become double-escaped.
+
+### Rule E — ordering
+
+Serialization occurs only after verification and classification/filtering. It must never be used as an earlier lookup normalization step.
+
+Correct:
+
+```text
+raw input → Gate → canonical → Classifier → Serializer → Compiler
+```
+
+Incorrect:
+
+```text
+raw input → escape punctuation → Gate
+raw input → fuzzy match → Serializer
+raw input → Serializer → classify
+```
+
+## 4. Failure behavior
+
+If the serializer receives an unknown syntax-sensitive case it cannot prove:
+
+1. do not invent a transform;
+2. preserve the canonical value internally;
+3. mark the result `serialization_unverified`;
+4. keep it out of the final hard-tag block until the compiler has an approved fallback;
+5. route the meaning to Natural Language if needed.
+
+Never silently guess an Anima escape convention.
+
+## 5. Output contract
+
+Recommended internal packet:
+
+```yaml
+status: verified
+canonical_tag: 37_(reverse:1999)
+serialized_tag: 37\\(reverse1999\\)
+serialization_status: verified
+transform_id: anima_reverse1999_character_37
+```
+
+For ordinary tags:
+
+```yaml
+status: verified
+canonical_tag: 1girl
+serialized_tag: 1girl
+serialization_status: unchanged
+transform_id: null
+```
+
+The compiler consumes `serialized_tag`; Gate/Classifer continue to reason over `canonical_tag`.
+
+## 6. Acceptance checklist
+
+- [ ] Input is Gate-verified.
+- [ ] Classifier has not marked the tag `omit`.
+- [ ] Canonical identity is unchanged.
+- [ ] Only registered syntax rules are applied.
+- [ ] `37_(reverse:1999)` becomes exactly `37\\(reverse1999\\)`.
+- [ ] Ordinary underscores, parentheses, colons and slashes are not globally rewritten.
+- [ ] The special token is never split into multiple tags.
+- [ ] Serialization is idempotent.
+- [ ] Unknown syntax fails closed rather than guessing.
+- [ ] Serializer runs after Gate + Classifier and before final Compiler emission.
