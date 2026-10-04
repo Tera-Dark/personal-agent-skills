@@ -1,3 +1,18 @@
+## [3.1.0] - 2026-10-04
+
+Taste calibration release. The harness now recognizes a separate Modern Character Key Visual mode based on the owner's latest reference-board calibration.
+
+### Added
+- Modern Key Visual grammar: strong silhouette, directional motion, graphic composition, local high-density pockets, material contrast, physical attachment logic, decisive shadows, and human-painted irregularity.
+- Explicit anti-patterns for beauty-filter faces, soft-light soup, surface-only hair, accessory wallpaper and atmosphere-as-background.
+- Compact prompt budgets for Anima / general image prompts and a concise discipline for NAI5.
+
+### Changed
+- personal-identity-profile now distinguishes clean plate, modern key visual and Eastern decorative narrative presentation modes.
+- aesthetic-director-core routes modern gacha / commercial key visuals through the new grammar without forcing them into a restrained or soft-light aesthetic.
+- illustration-direction adds a Modern Key Visual mode.
+- Prompt adapters prioritize event, silhouette, action, material and construction facts over explanatory prose.
+
 # Changelog
 
 ## [3.0.0] - 2026-10-04
