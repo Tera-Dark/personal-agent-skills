@@ -33,8 +33,10 @@ jobs:
         with:
           python-version: "3.x"
 
-      - name: Validate skills
-        run: python3 scripts/validate_skills.py
+      - name: Validate skills and scripts
+        run: |
+          python3 scripts/validate_skills.py
+          python3 -m compileall -q scripts
 
       # build.py --check compares sources against bundle/ ignoring the build date,
       # so a rebuild on another day does not count as "stale" by itself.
@@ -57,6 +59,7 @@ jobs:
         if: github.event_name != 'pull_request' && steps.check.outputs.stale == 'true'
         run: |
           python3 scripts/build.py
+          python3 scripts/validate_skills.py --check-bundle
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add bundle docs/skill-registry.md
