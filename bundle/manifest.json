@@ -1,14 +1,14 @@
 {
   "name": "personal-agent-skills",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "repo": "Tera-Dark/personal-agent-skills",
   "branch": "main",
   "raw_base": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/",
   "harness_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS.md",
   "harness_full_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS-FULL.md",
-  "handshake": "Harness v3.1.0 loaded · 20 modules · 说需求，或发参考图。",
-  "core_tokens": 28621,
-  "full_tokens": 96648,
+  "handshake": "Harness v3.2.0 loaded · 20 modules · 说需求，或发参考图。",
+  "core_tokens": 29064,
+  "full_tokens": 97091,
   "pipeline": {
     "aesthetic_gate": "aesthetic-director-core",
     "blueprint_gate": {
