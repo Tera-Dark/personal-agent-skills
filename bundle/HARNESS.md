@@ -93,7 +93,7 @@ Rules:
 | `aesthetic-director-core` | 00_core | always | active | 17160 | OC, 人设, 插画, 服装, 审美, 创意方向, 人味, 高级感, 不要AI味, 太平淡, 太乱 | embedded below |
 | `personal-identity-profile` | 00_core | always | active | 5476 | 我的风格, 个人偏好, 按我习惯, any creative task | embedded below |
 | `creative-skill-router` | 01_router | always | active | 4097 | any request; 设计, 提示词, prompt, 反推, 分析, ComfyUI, LoRA | embedded below |
-| `anima-prompt-compiler` | 02_creation | on-demand | active | 7786 | Anima, Anima 提示词, Anima checkpoint | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-prompt-compiler.md` |
+| `anima-prompt-compiler` | 02_creation | on-demand | active | 7958 | Anima, Anima 提示词, Anima checkpoint | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-prompt-compiler.md` |
 | `anima-tag-classifier` | 02_creation | on-demand | active | 1594 | Anima tag classification, Danbooru tag category, tag filtering, hard tag filtering | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-tag-classifier.md` |
 | `anima-tag-gate` | 02_creation | on-demand | active | 2068 | Anima tag validation, Danbooru tag check, hard tag verification | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-tag-gate.md` |
 | `character-design-engine` | 02_creation | on-demand | active | 15338 | OC, 人设, 角色设计, 服装设计, 立绘, 高定服设, 二游角色, character sheet, 极繁, 极繁精美, 华丽人设, 原创圈 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/character-design-engine.md` |
