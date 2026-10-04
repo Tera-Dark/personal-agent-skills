@@ -1478,7 +1478,7 @@ Avoid judging only by rendering quality.
 ---
 
 ## MODULE: creative-skill-router
-layer: 01_router · load: always · status: active · module version: 3.5.0 · harness 3.7.0
+layer: 01_router · load: always · status: active · module version: 3.5.0 · harness 3.8.0
 source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/01_router/creative-skill-router
 
 **description:** Entry point for all creative requests in this skill hub. Classifies intent (OC/character design, illustration, fashion, NAI5 prompt, Anima prompt, image reverse analysis, prompt review, ComfyUI/LoRA/dataset), loads identity + aesthetic direction first, then hands off to the right specialist and model adapter. Use whenever a request involves 设计, OC, 人设, 立绘, 插画, 服装, 提示词, prompt, NAI, NovelAI, Anima, 反推, 分析图片, ComfyUI, LoRA, or when it is unclear which skill should handle a creative task.
@@ -1917,7 +1917,7 @@ Skill 之间按**名字**引用（不是相对路径），因为它们可能被�
 ---
 
 ## MODULE: anima-aesthetic-protection
-layer: 02_creation · load: on-demand · status: active · module version: 1.0.0 · harness 3.7.0
+layer: 02_creation · load: on-demand · status: active · module version: 1.0.0 · harness 3.8.0
 source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_creation/anima-aesthetic-protection
 
 **description:** Protection boundary for Anima prompt compilation. Prevents tag verification, classification, compression, serialization and model-adapter rules from altering finished aesthetic decisions, composition, silhouette, asymmetry, focal hierarchy or visual grammar. Use as an audit layer before final Anima output.
@@ -2070,7 +2070,7 @@ Model adaptation can change wording, not the design thesis.
 ---
 
 ## MODULE: anima-prompt-compiler
-layer: 02_creation · load: on-demand · status: active · module version: 2.9.0 · harness 3.7.0
+layer: 02_creation · load: on-demand · status: active · module version: 2.9.0 · harness 3.8.0
 source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_creation/anima-prompt-compiler
 
 **description:** Model adapter that compiles a finished character or illustration blueprint into Anima-ready English prompts in a disciplined Tag block + Natural Language block format. Handles Anima-specific format contract, length budgets, positive-first output, V1 faithful / V2 enhanced modes, model profiles and artifact troubleshooting. Use when the user asks for Anima prompts, Anima 提示词, or names an Anima checkpoint. Does not design — if no blueprint exists, route through aesthetic-director-core and character-design-engine / illustration-direction first.
@@ -2564,7 +2564,7 @@ Step 4: 单变量回测验证 (Re-test while keeping other variables strictly un
 ---
 
 ## MODULE: anima-prompt-compressor
-layer: 02_creation · load: on-demand · status: active · module version: 1.1.0 · harness 3.7.0
+layer: 02_creation · load: on-demand · status: active · module version: 1.1.0 · harness 3.8.0
 source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_creation/anima-prompt-compressor
 
 **description:** Minimal-sufficient prompt compression layer for Anima. Removes low-impact, redundant, decorative and merely explanatory text after skeleton planning while protecting identity, locked facts, silhouette, key garment structure, pose and one visual punctum. Use before final Anima syntax serialization and compilation.
@@ -2776,7 +2776,7 @@ Anima should receive a **small control packet**, not a written description of th
 ---
 
 ## MODULE: anima-prompt-skeleton
-layer: 02_creation · load: on-demand · status: active · module version: 1.1.0 · harness 3.7.0
+layer: 02_creation · load: on-demand · status: active · module version: 1.1.0 · harness 3.8.0
 source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_creation/anima-prompt-skeleton
 
 **description:** Compact Anima prompt-structure layer that maps a finished blueprint into stable hard anchors and relational natural language. Absorbs Good Anima's hard_tags, soft_phrases, and nltags concepts without adding a third user-visible block. Use after tag classification and before serialization/compiler assembly.
@@ -3006,7 +3006,7 @@ anima-prompt-compiler
 ---
 
 ## MODULE: anima-tag-classifier
-layer: 02_creation · load: on-demand · status: active · module version: 1.0.0 · harness 3.7.0
+layer: 02_creation · load: on-demand · status: active · module version: 1.0.0 · harness 3.8.0
 source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_creation/anima-tag-classifier
 
 **description:** Lightweight classification and filtering layer for verified Anima Danbooru tags. Assigns intent groups, identity sensitivity, and prompt-role classes without inventing or fuzzy-matching tags. Use after anima-tag-gate and before prompt compilation when tag selection needs category-aware filtering.
@@ -3181,7 +3181,7 @@ Only entries with `status=verified` and `prompt_role != omit` are eligible for c
 ---
 
 ## MODULE: anima-tag-gate
-layer: 02_creation · load: on-demand · status: active · module version: 1.1.0 · harness 3.7.0
+layer: 02_creation · load: on-demand · status: active · module version: 1.1.0 · harness 3.8.0
 source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_creation/anima-tag-gate
 
 **description:** Web-first validation gate for Anima Danbooru hard tags. Resolves exact canonical tags, exact aliases, or missing without fuzzy promotion. Uses the Anima 1.0 tag index protocol and never changes creative decisions. Triggers: Anima tag validation, Danbooru tag check, hard tag verification.
@@ -3400,7 +3400,7 @@ The personal harness is designed to be pasted into web AI sessions. A giant stat
 ---
 
 ## MODULE: anima-tag-serializer
-layer: 02_creation · load: on-demand · status: active · module version: 1.0.0 · harness 3.7.0
+layer: 02_creation · load: on-demand · status: active · module version: 1.0.0 · harness 3.8.0
 source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_creation/anima-tag-serializer
 
 **description:** Final serialization layer for verified Anima Danbooru tags. Converts canonical tag identities into exact Anima-safe syntax only for explicitly registered syntax rules, preserving ordinary tags and never discovering, rewriting, or inventing identities. Use after anima-tag-classifier and before anima-prompt-compiler serialization.
@@ -3602,7 +3602,7 @@ The compiler consumes `serialized_tag`; Gate/Classifer continue to reason over `
 ---
 
 ## MODULE: character-design-engine
-layer: 02_creation · load: on-demand · status: active · module version: 2.5.0 · harness 3.7.0
+layer: 02_creation · load: on-demand · status: active · module version: 2.5.0 · harness 3.8.0
 source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_creation/character-design-engine
 
 **description:** Turns a Creative Brief (from aesthetic-director-core) into a complete, model-agnostic character blueprint — design thesis, silhouette architecture, visual anchors, garment engineering (base / structural / signature extension / accessory system), material contrast, palette hierarchy, behavioral pose + camera, narrative residue, presentation format — then runs a subtraction pass. Use for OC, 人设, 角色设计, 服装设计, 立绘, 高定服设, 二游角色, character sheet, fashion concept. Never writes model-specific prompt syntax.
@@ -4724,7 +4724,7 @@ Tier 4: Micro Accessories (五金扣件/围巾/束带/首饰)
 ---
 
 ## MODULE: general-image-prompt-adapter
-layer: 02_creation · load: on-demand · status: active · module version: 0.2.0 · harness 3.7.0
+layer: 02_creation · load: on-demand · status: active · module version: 0.2.0 · harness 3.8.0
 source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_creation/general-image-prompt-adapter
 
 **description:** Model adapter that compiles a finished character or illustration blueprint into a natural-language image prompt for models that are not Anima or NAI5 — Midjourney, DALL-E / GPT Image, Google Imagen / Gemini image, Flux, SDXL-style checkpoints, or an unnamed target. Keeps parameters out of the prompt unless the target officially supports them, and labels every model-specific claim with an evidence level. Use when the user names any other image model, says 通用提示词, MJ, Midjourney, DALL-E, Imagen, Flux, SD, 或没说用什么模型. Does not design — if no blueprint exists, route through aesthetic-director-core first.
@@ -4842,7 +4842,7 @@ Standard mode 下同 `anima-prompt-compiler`：V1 忠实 + V2 增强，V2 不改
 ---
 
 ## MODULE: illustration-direction
-layer: 02_creation · load: on-demand · status: active · module version: 2.4.0 · harness 3.7.0
+layer: 02_creation · load: on-demand · status: active · module version: 2.4.0 · harness 3.8.0
 source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_creation/illustration-direction
 
 **description:** Turns a Creative Brief into an authored, model-agnostic illustration blueprint — the image thesis, captured moment, visual motif, environment-character relationship, camera and framing, scale contrast, negative space, physical light sources, density map, narrative residue, and one coherent surreal detail. Use for 插画, 氛围图, 竖屏, 半留白, 印象风, 故事感, key visual, poster, scene illustration, cinematic composition, or whenever a character needs to be placed into a designed moment rather than displayed on a plate. Never writes model-specific prompt syntax.
@@ -6043,7 +6043,7 @@ Before compiling the prompt, ask:
 ---
 
 ## MODULE: nai5-community-prompt-engineering
-layer: 02_creation · load: on-demand · status: active · module version: 2.5.0 · harness 3.7.0
+layer: 02_creation · load: on-demand · status: active · module version: 2.5.0 · harness 3.8.0
 source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_creation/nai5-community-prompt-engineering
 
 **description:** Model adapter that compiles a finished character or illustration blueprint into NovelAI V5 community-format prompts — weighted artist stack, global style layer, scene base, char1/char2 blocks, source#/target#/mutual# interaction tags, and optional targeted negative steering with weight::tag:: syntax. Use when the user asks for NAI5, NovelAI, NAI提示词, tag prompt, Danbooru-style prompt. Does not design — if no blueprint exists, route through aesthetic-director-core and character-design-engine / illustration-direction first.
@@ -6763,7 +6763,7 @@ Avoid turning prompts into random weighted token piles.
 ---
 
 ## MODULE: image-reverse-analysis
-layer: 03_analysis · load: on-demand · status: active · module version: 2.1.0 · harness 3.7.0
+layer: 03_analysis · load: on-demand · status: active · module version: 2.1.0 · harness 3.8.0
 source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/03_analysis/image-reverse-analysis
 
 **description:** Decomposes a reference image into transferable design language — silhouette and mass distribution, motif grammar, garment construction, material contrast, palette hierarchy, pose logic, negative space and presentation format — instead of a tag dump. Output feeds aesthetic-director-core (for original work) or a model adapter (for faithful reproduction). Use for 反推, 分析图片, 提取提示词, 还原风格, 参考这张图, reverse prompt, image analysis.
@@ -6907,7 +6907,7 @@ Create an original design inspired by principles, not a direct copy of the image
 ---
 
 ## MODULE: prompt-analysis
-layer: 03_analysis · load: on-demand · status: active · module version: 2.0.0 · harness 3.7.0
+layer: 03_analysis · load: on-demand · status: active · module version: 2.0.0 · harness 3.8.0
 source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/03_analysis/prompt-analysis
 
 **description:** Reviews an existing image-generation prompt by separating design intent from model syntax — what it is trying to say, which design layer is weak (thesis, silhouette, garment structure, causality, density, punctum), what is noise, and what a rewrite should change. Use for 优化提示词, 这个 prompt 哪里有问题, prompt review, 分析这段提示词, why does this prompt not work.
