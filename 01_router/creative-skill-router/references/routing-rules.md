@@ -46,3 +46,16 @@ User preferences override generic best practices.
 - 一处怪
 
 四项里缺三项以上 → 不是 blueprint，是需求。退回 `aesthetic-director-core`。
+
+
+## Aesthetic Gate decision table
+
+| Input state | Gate mode | Next step |
+|---|---|---|
+| Theme / role / mood / “make it better” only | FULL | Creative Brief → specialist → Blueprint Gate → adapter |
+| Complete design facts already supplied | AUDIT | verify → adapter if packet is complete |
+| Existing prompt with unclear design intent | AUDIT | prompt-analysis → FULL if a design layer is missing |
+| Reference image for original work | AUDIT extraction → FULL | image-reverse-analysis → director → specialist → adapter |
+| Reference image for faithful reproduction | AUDIT | image-reverse-analysis → verified facts → adapter |
+
+Many words do not equal “already designed”. Readiness is structural.
