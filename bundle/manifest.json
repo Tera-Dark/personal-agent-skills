@@ -6,9 +6,9 @@
   "raw_base": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/",
   "harness_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS.md",
   "harness_full_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS-FULL.md",
-  "handshake": "Harness v3.1.0 loaded · 18 modules · 说需求，或发参考图。",
-  "core_tokens": 28016,
-  "full_tokens": 92798,
+  "handshake": "Harness v3.1.0 loaded · 19 modules · 说需求，或发参考图。",
+  "core_tokens": 28170,
+  "full_tokens": 94489,
   "pipeline": {
     "aesthetic_gate": "aesthetic-director-core",
     "blueprint_gate": {
@@ -105,6 +105,21 @@
       ],
       "tokens_skill": 3115,
       "tokens_bundle": 8369
+    },
+    {
+      "name": "anima-prompt-compressor",
+      "layer": "02_creation",
+      "load": "on-demand",
+      "status": "active",
+      "version": "1.0.0",
+      "description": "Minimal-sufficient prompt compression layer for Anima. Removes low-impact, redundant, decorative and merely explanatory text after skeleton planning while protecting identity, locked facts, silhouette, key garment structure, pose and one visual punctum. Use before final Anima syntax serialization and compilation.",
+      "triggers": "Anima prompt compression, prompt shortening, token reduction, minimal prompt",
+      "path": "02_creation/anima-prompt-compressor",
+      "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_creation/anima-prompt-compressor",
+      "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-prompt-compressor.md",
+      "references": [],
+      "tokens_skill": 1385,
+      "tokens_bundle": 1531
     },
     {
       "name": "anima-prompt-skeleton",
