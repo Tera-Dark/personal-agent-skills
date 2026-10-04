@@ -3,7 +3,7 @@ name: nai5-community-prompt-engineering
 description: Model adapter that compiles a finished character or illustration blueprint into NovelAI V5 community-format prompts — weighted artist stack, global style layer, scene base, char1/char2 blocks, source#/target#/mutual# interaction tags, and optional targeted negative steering with weight::tag:: syntax. Use when the user asks for NAI5, NovelAI, NAI提示词, tag prompt, Danbooru-style prompt. Does not design — if no blueprint exists, route through aesthetic-director-core and character-design-engine / illustration-direction first.
 metadata:
   author: Tera-Dark
-  version: "2.2.0"
+  version: "2.3.0"
   layer: "02_creation"
   load: "on-demand"
   status: "active"
@@ -16,7 +16,7 @@ metadata:
 
 本 Skill 是**适配器**：把已经做完设计决定的 blueprint 翻译成 NovelAI V5 社区格式。
 
-v2.2.0 起明确锁定 NAI5 权重与 artist tag 使用规则：1.0 是数值 emphasis 基准；>1.0 加强，0.0–1.0 削弱；用户提供画师池时保留 artist: namespace，不擅自改成裸画师名；随机画师默认 1 名主画师约 0.95–1.10，其余全部 <=0.6；用户通常已有自己的 Negative，因此默认不输出。
+v2.3.0 起进一步锁定 NAI5 质量词、复杂度、渲染层与 prompt 顺序，并保留 v2.2.0 的权重与 artist tag 规则：1.0 是数值 emphasis 基准；>1.0 加强，0.0–1.0 削弱；用户提供画师池时保留 artist: namespace，不擅自改成裸画师名；随机画师默认 1 名主画师约 0.95–1.10，其余全部 <=0.6；用户通常已有自己的 Negative，因此默认不输出。
 
 **输入检查**：同 `anima-prompt-compiler`。没有命题 / 轮廓 / 四层服装 / 刺点 / 锁定事实的输入不是 blueprint，退回 router。
 
