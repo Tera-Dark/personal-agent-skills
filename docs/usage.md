@@ -15,7 +15,7 @@
    │
    ▼  HARNESS.md = kernel（运行契约）+ 模块索引（每个模块的触发词、URL、卡片）+ always-on 模块全文
    │
-   ▼  模型回一行握手：Harness v2.1.0 loaded · 14 modules · 说需求，或发参考图。
+   ▼  模型回一行握手：Harness v3.2.0 loaded · current modules · 说需求，或发参考图。
    │
    ▼  你提需求 → router 选模块 → 需要的 on-demand 模块按索引里的 raw URL 再抓一次（一个模块一个文件）
 ```
@@ -27,7 +27,17 @@
 - **抓不到也能降级**：索引里每个模块带一张"卡片"（它的契约）。抓取失败时模型按卡片工作并标 `[card-only]`，同时把 raw URL 给你粘贴。
 - **握手行 = 版本探针**。看到 `v2.1.0 · 14 modules` 就知道它加载的是哪个版本、索引里有几个模块。数字不对说明抓到了旧缓存或截断。
 
-## 2. 各平台
+## 2. Web-first contract
+
+The supported zero-local-runtime path is:
+
+Paste GitHub repo URL → read README bootstrap → fetch raw bundle/HARNESS.md → handshake → route → fetch selected module → deliver.
+
+Normal web use does not require a repository clone, Python, Node, SQLite, an executable, or a local HTTP server. The GitHub page is the discovery/bootstrap surface; the raw Bundle is the runtime source of truth.
+
+Fresh-session rule: prefer current `main` raw Bundle. The handshake version and module count are a freshness probe. On-demand modules use generated raw URLs from the Bundle index. If raw loading fails, use only the module card and mark `[card-only]`; never silently substitute remembered content.
+
+## 3. 各平台
 
 ### ChatGPT（有联网）
 
@@ -65,7 +75,7 @@ scripts/install.sh ./.claude/skills   # → 项目内
 
 它把每个 `<layer>/<name>/` 软链成 `<target>/<name>/`，运行时按 `SKILL.md` 的 description 自动激活。`AGENTS.md` 也会告诉编码型 agent 去读 `bundle/HARNESS.md`。
 
-## 3. 会话里的命令
+## 4. 会话里的命令
 
 | 命令 | 作用 |
 |---|---|
@@ -77,7 +87,7 @@ scripts/install.sh ./.claude/skills   # → 项目内
 | `/new-module <name>` | 进入扩展协议，让模型产出一个新模块的完整文件 |
 | `/version` | 版本与构建日期 |
 
-## 4. 加功能的完整流程
+## 5. 加功能的完整流程
 
 1. 对话里说：`/new-module tweet-caption-writer` 或 "加一个给推文配文案的功能"。
 2. 模型先查索引有没有已经负责的模块；没有就按 `kernel/EXTENSION-PROTOCOL.md` 产出完整的 `06_extensions/<name>/SKILL.md`（和可选的 references），每个文件前面是精确路径。
@@ -87,7 +97,7 @@ scripts/install.sh ./.claude/skills   # → 项目内
 
 要修改已有模块：同样的流程，改的是 `<layer>/<name>/SKILL.md` 或它的 reference。
 
-## 5. 常见故障
+## 6. 常见故障
 
 | 现象 | 原因 | 处理 |
 |---|---|---|
@@ -108,7 +118,7 @@ scripts/install.sh ./.claude/skills   # → 项目内
 - 仓库 About（描述）里保留那句给 AI 的引导，它出现在页面标题里，是任何抓取器读到的第一句话。
 - 最稳的入口始终是 raw 链接：`https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS.md`，没有任何页面噪音。
 
-## 6. Token 预算
+## 7. Token 预算
 
 | 文件 | ≈tokens | 用途 |
 |---|---|---|
