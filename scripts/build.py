@@ -298,6 +298,7 @@ def build_outputs(root):
         "core_tokens": L.estimate_tokens(outputs[f"{bundle_dir}/HARNESS.md"]),
         "full_tokens": L.estimate_tokens(outputs[f"{bundle_dir}/HARNESS-FULL.md"]),
         "pipeline": cfg.get("pipeline", {}),
+        "failure_policy": cfg.get("failure_policy", {}),
         "pipeline_packs": {
             name: {
                 "modules": module_names,
