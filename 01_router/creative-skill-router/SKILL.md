@@ -56,13 +56,13 @@ Before any model adapter, verify a type-specific blueprint or a verified finishe
 
 | 意图 | 触发词示例 | 管线 |
 |---|---|---|
-| 角色 / OC / 服装设计 | OC, 人设, 角色设计, 服装设计, 立绘, 高定, 二游角色 | identity → director → `character-design-engine` → adapter |
-| 插画 / 氛围图 / 故事感 | 插画, 氛围图, 竖屏, 半留白, 印象风, 故事感, key visual | identity → director → `illustration-direction` → adapter |
-| 已有设计 → 提示词 | 提示词, prompt, tag, NAI5, NovelAI, Anima（且设计已完整） | identity → adapter |
-| 参考图反推 | 反推, 分析图片, 提取提示词, 还原风格, 参考这张 | identity → `image-reverse-analysis` → director（若要原创）→ adapter |
+| 角色 / OC / 服装设计 | OC, 人设, 角色设计, 服装设计, 立绘, 高定, 二游角色 | identity → Aesthetic Gate FULL → `character-design-engine` → Blueprint Gate → adapter |
+| 插画 / 氛围图 / 故事感 | 插画, 氛围图, 竖屏, 半留白, 印象风, 故事感, key visual | identity → Aesthetic Gate FULL → `illustration-direction` → Blueprint Gate → adapter |
+| 已有设计 → 提示词 | 提示词, prompt, tag, NAI5, NovelAI, Anima（且设计已完整） | identity → Aesthetic Gate AUDIT → verified design packet → adapter |
+| 参考图反推 | 反推, 分析图片, 提取提示词, 还原风格, 参考这张 | identity → `image-reverse-analysis` → Aesthetic Gate FULL（原创）/ AUDIT（忠实）→ specialist/adapter |
 | 提示词审查 / 优化 | 优化提示词, 这个 prompt 哪里有问题 | `prompt-analysis` → (adapter if rewrite needed) |
 | 反馈 / 迭代 | 太平淡, 太乱, 不像, 这版可以, 换个方向 | `evaluation-loop` → feedback-diagnosis → 回到失败层 |
-| 其它图像模型 → 提示词 | Midjourney, DALL-E, Imagen, Flux, SD, 通用, 没说模型 | identity → (director if unfinished) → `general-image-prompt-adapter` |
+| 其它图像模型 → 提示词 | Midjourney, DALL-E, Imagen, Flux, SD, 通用, 没说模型 | identity → Aesthetic Gate AUDIT/FULL → `general-image-prompt-adapter` |
 | 技术 | ComfyUI, LoRA, dataset, 训练, 打标 | `comfyui-workflow` / `lora-training` / `dataset-management`（status: planned → 以通用知识作答，标 `[no module]`，提议 `/new-module`） |
 | 扩展模块 | 命中 `06_extensions/*` 或其它模块 description 里的触发词 | 该模块 |
 | 非创作、无模块命中 | 闲聊、问答、杂务 | 不加载模块；直接按 kernel §6 的语气回答 |
