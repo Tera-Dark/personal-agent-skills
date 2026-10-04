@@ -3,7 +3,7 @@ name: character-design-engine
 description: Turns a Creative Brief (from aesthetic-director-core) into a complete, model-agnostic character blueprint — design thesis, silhouette architecture, visual anchors, garment engineering (base / structural / signature extension / accessory system), material contrast, palette hierarchy, behavioral pose + camera, narrative residue, presentation format — then runs a subtraction pass. Use for OC, 人设, 角色设计, 服装设计, 立绘, 高定服设, 二游角色, character sheet, fashion concept. Never writes model-specific prompt syntax.
 metadata:
   author: Tera-Dark
-  version: "2.2.0"
+  version: "2.3.0"
   layer: "02_creation"
   load: "on-demand"
   status: "active"
@@ -17,7 +17,7 @@ metadata:
 输入：`aesthetic-director-core` 产出的 **Creative Brief**（方向、矛盾、轮廓策略、因果链、瞬间、密度图、刺点、留下的怪、删掉的东西）。
 输出：一份**角色 blueprint**，任何模型适配器都能直接翻译，且不需要再做设计决定。
 
-如果被直接调用而没有 Brief：先用 `aesthetic-director-core` 的 M1 / M3 / M6 / M7 压缩跑一遍（内部完成，不必输出完整 Brief），再进入下面的流程。**不要跳过。** 跳过的结果就是表单填充。
+如果被直接调用，必须已有 Aesthetic Gate 的 FULL Brief、或 AUDIT PASS 的 finished-design packet。没有就回到 director；**不要让 adapter 替你补设计。**
 
 如果用户明确要求**极繁精美人设 / 极繁 OC**，优先读取 `references/maximalist-oc-design-grammar.md`；此模式允许高复杂度，但复杂度必须来自轮廓、服装工程、统一母题、材质对抗和多尺度细节，而不是随机堆配饰。
 
@@ -50,6 +50,10 @@ Step 10 减法        对 Step 4–9 的每一件东西问"删掉它命题还在
 Step 11 反平庸检查  references/oc-design-system.md § 4
 Step 12 版面生成检查 若为极繁展示：主形 / 支撑形 / 构图轴 / 安静区是否成立？是否存在从人设到页面的母题连续性？
 ```
+
+## Blueprint Gate Contract
+
+A character blueprint is READY only when thesis, silhouette, anchor hierarchy, applicable garment structure, material/palette logic, pose/camera, punctum/strange detail, subtraction decisions and locked facts are present. Missing decisions route back upstream.
 
 ## 输出契约：Character Blueprint
 
