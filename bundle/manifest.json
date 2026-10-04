@@ -7,8 +7,8 @@
   "harness_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS.md",
   "harness_full_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS-FULL.md",
   "handshake": "Harness v3.1.0 loaded · 14 modules · 说需求，或发参考图。",
-  "core_tokens": 31879,
-  "full_tokens": 83276,
+  "core_tokens": 30981,
+  "full_tokens": 92044,
   "modules": [
     {
       "name": "aesthetic-director-core",
@@ -98,7 +98,7 @@
       "layer": "02_creation",
       "load": "on-demand",
       "status": "active",
-      "version": "2.3.0",
+      "version": "2.4.0",
       "description": "Turns a Creative Brief (from aesthetic-director-core) into a complete, model-agnostic character blueprint — design thesis, silhouette architecture, visual anchors, garment engineering (base / structural / signature extension / accessory system), material contrast, palette hierarchy, behavioral pose + camera, narrative residue, presentation format — then runs a subtraction pass. Use for OC, 人设, 角色设计, 服装设计, 立绘, 高定服设, 二游角色, character sheet, fashion concept. Never writes model-specific prompt syntax.",
       "triggers": "OC, 人设, 角色设计, 服装设计, 立绘, 高定服设, 二游角色, character sheet, 极繁, 极繁精美, 华丽人设, 原创圈",
       "path": "02_creation/character-design-engine",
@@ -111,7 +111,7 @@
         "references/garment-lexicon.md"
       ],
       "tokens_skill": 2079,
-      "tokens_bundle": 13263
+      "tokens_bundle": 22708
     },
     {
       "name": "general-image-prompt-adapter",
@@ -181,7 +181,7 @@
       "layer": "03_analysis",
       "load": "on-demand",
       "status": "active",
-      "version": "2.0.0",
+      "version": "2.1.0",
       "description": "Decomposes a reference image into transferable design language — silhouette and mass distribution, motif grammar, garment construction, material contrast, palette hierarchy, pose logic, negative space and presentation format — instead of a tag dump. Output feeds aesthetic-director-core (for original work) or a model adapter (for faithful reproduction). Use for 反推, 分析图片, 提取提示词, 还原风格, 参考这张图, reverse prompt, image analysis.",
       "triggers": "反推, 分析图片, 提取提示词, 还原风格, 参考这张, reverse prompt, reference image",
       "path": "03_analysis/image-reverse-analysis",
@@ -191,7 +191,7 @@
         "references/design-language-extraction.md"
       ],
       "tokens_skill": 974,
-      "tokens_bundle": 1406
+      "tokens_bundle": 1642
     },
     {
       "name": "prompt-analysis",
@@ -258,7 +258,7 @@
       "layer": "05_evaluation",
       "load": "always",
       "status": "active",
-      "version": "2.1.0",
+      "version": "2.2.0",
       "description": "Evaluates a generated image or compiled prompt against the original Creative Brief and blueprint, using a fixed rubric (identity preservation, outfit binding, spatial clarity, unrequested additions, V1/V2 consistency, output contract) plus a design-layer read (thesis, silhouette, causality, density, punctum, one strange thing). Diagnoses which layer failed and routes the fix to that layer with a single-variable change. Use on any feedback round: 太平淡, 太乱, 不像, 没人味, 这版可以, 评价一下, 哪里不对, compare versions.",
       "triggers": "太平淡, 太乱, 不像, 没人味, 这版可以, 评价一下, 哪里不对, compare",
       "path": "05_evaluation/evaluation-loop",
@@ -266,7 +266,7 @@
       "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/evaluation-loop.md",
       "references": [],
       "tokens_skill": 942,
-      "tokens_bundle": 2436
+      "tokens_bundle": 1511
     }
   ]
 }
