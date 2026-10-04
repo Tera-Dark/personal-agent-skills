@@ -124,7 +124,7 @@ Raw URL pattern: `{{RAW_BASE}}bundle/modules/<name>.md`
 
 ### Web-first pipeline packs
 
-- `anima` → `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/pipelines/anima.md` · one fetch · stages: Gate → Classifier → Skeleton → Protection → Compressor → Serializer → Compiler
+- `anima` → {{ANIMA_PIPELINE_PACK_ENTRY}}
 Full single-file harness (everything, for knowledge upload or 1M-context models): `{{RAW_BASE}}bundle/HARNESS-FULL.md`
 
 ### Routing card (compressed; full rules in `creative-skill-router`, always-on)
