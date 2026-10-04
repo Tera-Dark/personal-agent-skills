@@ -135,6 +135,28 @@ def main():
     for name in pipeline.get('adapters', []):
         if name not in skills:
             errors.append(f'harness.json pipeline.adapters: unknown skill `{name}`')
+    packs = pipeline.get('pipeline_packs') or {}
+    if not isinstance(packs, dict):
+        errors.append('harness.json pipeline.pipeline_packs must be a mapping')
+        packs = {}
+    for pack_name, module_names in packs.items():
+        if not L.NAME_RE.match(str(pack_name)):
+            errors.append(f'harness.json pipeline.pipeline_packs: invalid pack name `{pack_name}`')
+        if not isinstance(module_names, list) or not module_names:
+            errors.append(f'harness.json pipeline.pipeline_packs.{pack_name}: must be a non-empty module list')
+            continue
+        seen = set()
+        for name in module_names:
+            if name in seen:
+                errors.append(f'harness.json pipeline.pipeline_packs.{pack_name}: duplicate module `{name}`')
+            seen.add(name)
+            skill = skills.get(name)
+            if not skill:
+                errors.append(f'harness.json pipeline.pipeline_packs.{pack_name}: unknown skill `{name}`')
+            elif skill['metadata'].get('status') == 'planned':
+                errors.append(f'harness.json pipeline.pipeline_packs.{pack_name}: planned skill `{name}` cannot be packed')
+            elif skill['metadata'].get('load') == 'always':
+                errors.append(f'harness.json pipeline.pipeline_packs.{pack_name}: always-on skill `{name}` should remain embedded, not packed')
 
     director = skills.get('aesthetic-director-core')
     if director:
