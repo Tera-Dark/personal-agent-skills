@@ -3,7 +3,7 @@ name: character-design-engine
 description: Turns a Creative Brief (from aesthetic-director-core) into a complete, model-agnostic character blueprint — design thesis, silhouette architecture, visual anchors, garment engineering (base / structural / signature extension / accessory system), material contrast, palette hierarchy, behavioral pose + camera, narrative residue, presentation format — then runs a subtraction pass. Use for OC, 人设, 角色设计, 服装设计, 立绘, 高定服设, 二游角色, character sheet, fashion concept. Never writes model-specific prompt syntax.
 metadata:
   author: Tera-Dark
-  version: "2.3.0"
+  version: "2.4.0"
   layer: "02_creation"
   load: "on-demand"
   status: "active"
@@ -81,6 +81,19 @@ A character blueprint is READY only when thesis, silhouette, anchor hierarchy, a
 **否决的方向**：① ___ ② ___
 **锁定事实**（用户明确给定、不可被适配器"优化"的）：___
 ```
+
+## Modern Key Visual Mode
+
+当目标是现代二游 / 商业角色主视觉时，角色本身必须具备 key-visual-ready 的大形与动势，而不只是复杂服装：
+
+- 先锁 macro silhouette + directional motion + counter-mass，再分配 meso/micro detail。
+- 主轮廓优先由大袖、长发量、披挂、裙片、长带、武器/道具或异形延伸结构构成；不要把识别度押在小配饰上。
+- 高复杂度只集中在 1–2 个 focal pockets，其他区域保持可读的整块材质。
+- 允许非对称、切边和受控遮挡；脸、主手势和主轮廓锚点必须保留。
+- 服装、头发、道具至少共享一条运动轴或曲线，使复杂来自统一动势而不是随机飘浮。
+- 首饰与悬挂部件必须有固定点、承重关系和垂坠方向。
+- 光影用清晰体积阴影和接触阴影服务结构，不用 bloom 把结构磨平。
+- 背景图形只能支撑轮廓、动势或色块，不能靠气氛填空。
 
 ## 多套设计
 
