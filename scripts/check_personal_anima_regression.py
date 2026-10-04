@@ -133,7 +133,28 @@ def main() -> int:
             failures,
         )
     require(len(case_ids) == 36, f"expected 36 P12 cases, found {len(case_ids)}", failures)
-    require(version == "3.6.0", f"VERSION must be 3.6.0, found {version}", failures)
+    require(version == "3.7.0", f"VERSION must be 3.7.0, found {version}", failures)
+
+    p13 = read("tests/p13-real-task-regression.md")
+    p13_cases = re.findall(r"^### (P13-(?:\d{2}|X-\d{2}))\s+—", p13, re.M)
+    expected_p13 = [
+        "P13-01", "P13-02", "P13-03", "P13-04",
+        "P13-05", "P13-06", "P13-07", "P13-08",
+        "P13-X-01", "P13-X-02", "P13-X-03", "P13-X-04",
+        "P13-X-05", "P13-X-06", "P13-X-07", "P13-X-08",
+    ]
+    require(p13_cases == expected_p13, "P13 case IDs or order changed", failures)
+    for needle in (
+        "modern gacha",
+        "white-background",
+        "high-fashion",
+        "punctum",
+        "local density",
+        "reference-to-original",
+        "prompt compression",
+        "design survives adapter",
+    ):
+        require(needle.lower() in p13.lower(), f"P13 matrix lost required regression concept: {needle}", failures)
 
     if failures:
         print("P12 regression contract: FAIL")
