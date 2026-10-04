@@ -1,5 +1,7 @@
 # Architecture
 
+> v3.0.0 hardens the creative pipeline with explicit Aesthetic and Blueprint Gates.
+
 > v2.1.0: a kernel and a build step were added on top of the v2.0 layered skills, turning the repository into a harness that a chat model can load from one URL.
 
 ## Two views of the same repository
@@ -49,25 +51,29 @@ Generic ("AI-flavored") output is not a rendering problem; it is a **decision-ma
 User Request
     │
     ▼
-01_router · creative-skill-router          classify intent, assemble pipeline
+01_router · creative-skill-router          classify + choose pipeline
     │
     ▼
-00_core · personal-identity-profile        WHO is this for  → taste signature, dislikes, voice
+00_core · personal-identity-profile        WHO is this for
     │
     ▼
-00_core · aesthetic-director-core          WHY / WHAT ONE IDEA → Creative Brief (thesis, contradiction,
-    │                                        silhouette strategy, causality, moment, density map,
-    │                                        punctum, one strange thing, what was cut, what was rejected)
-    ▼
-02_creation · character-design-engine      WHAT exactly → model-agnostic blueprint
-              illustration-direction
+00_core · aesthetic-director-core          AESTHETIC GATE (FULL / AUDIT / ESCALATE)
     │
     ▼
-02_creation · anima-prompt-compiler        HOW this model hears it → translate only
-              nai5-community-prompt-engineering
+02_creation · character-design-engine      CHARACTER BLUEPRINT
+              illustration-direction       ILLUSTRATION BLUEPRINT
     │
     ▼
-05_evaluation · evaluation-loop            WHICH LAYER failed → single-variable fix, back to that layer
+              BLUEPRINT GATE
+    │
+    ├───────────────┬──────────────────┐
+    ▼               ▼                  ▼
+ Anima           NAI5              Generic
+ Tag + NL       Community Tags       Natural NL
+    │               │                  │
+    └───────────────┴──────────────────┘
+                    ▼
+05_evaluation · evaluation-loop            diagnose layer → fix one variable → Blueprint Gate
 ```
 
 Side entrances:
@@ -116,3 +122,14 @@ The system does not try to make output "feel human" with adjectives. It enforces
 | visible rejection of alternatives | "rejected directions" line in every Brief |
 | a named taste, not a market segment | `taste-signature.md` |
 | examples, not just rules | `taste-calibration-pairs.md` |
+
+
+## Gate contracts
+
+**Aesthetic Gate:** every creative task passes FULL or AUDIT. FULL makes design decisions; AUDIT validates supplied decisions without rewriting locked facts; missing core decisions escalate to FULL.
+
+**Blueprint Gate:** adapters run only after a type-appropriate blueprint or verified finished-design packet passes. Character and illustration packets have different required fields.
+
+**Adapter boundary:** Anima and NAI5 have model-specific prompt skeletons, but no authority to change the concept.
+
+**Generated distribution:** bundle/ and docs/skill-registry.md are generated from source. VERSION is the harness version; module versions are independent contract versions.
