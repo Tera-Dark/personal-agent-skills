@@ -67,11 +67,11 @@ Use this compact internal structure:
 
 ```json
 {
-  "input": "long-haired girl",
+  "input": "loking_at_viewer",
   "group": "general",
   "status": "alias",
-  "canonical": "long_hair",
-  "matched_alias": "long-haired girl",
+  "canonical": "looking_at_viewer",
+  "matched_alias": "loking_at_viewer",
   "source": "anima-1.0-index"
 }
 ```
@@ -171,7 +171,7 @@ The compiler remains responsible for compact selection and the final Anima skele
 ## 11. Quick acceptance tests
 
 - `1girl` → `exact` → `1girl`
-- `looking_at_camera` → `alias` → `looking_at_viewer`
+- `loking_at_viewer` → `alias` → `looking_at_viewer`
 - `cinematic silver aura` → `missing` → NL
 - an unknown artist-like string in `general` → not an artist
 - `37_(reverse:1999)` → identity preserved; syntax escaping deferred
