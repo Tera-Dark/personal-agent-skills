@@ -3,7 +3,7 @@ name: character-design-engine
 description: Turns a Creative Brief (from aesthetic-director-core) into a complete, model-agnostic character blueprint — design thesis, silhouette architecture, visual anchors, garment engineering (base / structural / signature extension / accessory system), material contrast, palette hierarchy, behavioral pose + camera, narrative residue, presentation format — then runs a subtraction pass. Use for OC, 人设, 角色设计, 服装设计, 立绘, 高定服设, 二游角色, character sheet, fashion concept. Never writes model-specific prompt syntax.
 metadata:
   author: Tera-Dark
-  version: "2.4.0"
+  version: "2.5.0"
   layer: "02_creation"
   load: "on-demand"
   status: "active"
@@ -95,6 +95,118 @@ A character blueprint is READY only when thesis, silhouette, anchor hierarchy, a
 - 光影用清晰体积阴影和接触阴影服务结构，不用 bloom 把结构磨平。
 - 背景图形只能支撑轮廓、动势或色块，不能靠气氛填空。
 
+## Art Illustration Aesthetic Calibration
+
+当用户要求的是**艺术插画、情绪半身、装饰性人物图、海报感角色图**，不要把 Modern Key Visual 简化成“漂亮角色 + 氛围背景”。以下审美层级来自用户提供的高完成度参考，作为可迁移的结构规则，不模仿具体作者。
+
+### 1. 第一层：画面必须先成立，角色只是画面中的核心元素
+
+优先设计：
+
+`dominant mass → counter-mass / quiet field → directional flow → focal interruption`
+
+人物、头发、服装、环境必须共同组成一个大形。缩小到缩略图时，先看到的是**形、色块和动势**，再看到局部细节。
+
+### 2. 第二层：人物与环境必须发生“物理关系”
+
+禁止“角色渲染完 + 背景贴上去”。环境至少做一件事：
+
+- 包围人物并形成有机框景
+- 穿过人物轮廓并产生受控遮挡
+- 与头发 / 衣摆共享曲线和运动方向
+- 反射、投影或改变人物轮廓
+- 成为服装或发丝的视觉延伸
+- 用尺度差压迫、托举或缩小人物
+
+参考图中的花、枝、布、头发、冰状裙片都不是背景装饰，而是**构图结构**。
+
+### 3. 第三层：建立“视觉语法”，不要堆素材
+
+一张图最多建立 1 个主母题 + 1 个辅助母题。主母题必须反复承担**框、切、连、引导、包围、消融**之一。
+
+三类高价值语法：
+
+**Organic Enclosure**：花、枝、长发、蕾丝、布料等围绕人物形成不规则椭圆 / 花环 / 漩涡式视觉包围；适合哥特、植物、古典、浪漫主题。
+
+**Fluid Silhouette**：头发、裙摆、袖子、披挂像水、冰、雪、羽毛或风一样形成大型流体轮廓；用限制色块切分形体，而不是靠大量纹理解释细节。
+
+**Dissolving Field**：人物边缘、衣摆、花草和背景逐渐失去清晰度，局部清晰、外围消融；适合梦境、花海、记忆、柔光主题。
+
+这些是**构图机制**，不是 prompt 装饰词。
+
+### 4. 第四层：颜色是构图，不是上色
+
+先建立 3–4 个大色彩质量，再确定唯一或极少量的强调色。
+
+优先使用：
+- muted botanical darks + ivory + restrained crimson punctum
+- icy white + pale blue + deep navy/black anchor
+- cream + mint + blush/peach + pale lavender
+
+参考图显示的共同原则是：**大面积低饱和色负责统一，小面积高辨识度色负责记忆点。**
+
+避免局部颜色无限增殖；不要用“colorful”代替色彩设计。
+
+### 5. 第五层：复杂度来自“层级差”，不是每处都细
+
+必须有：
+
+- 1 个高信息核心区：脸 / 手 / 关键道具 / 主花束等
+- 1 个中信息结构区：服装与环境交界、头发与装饰等
+- 1 个低信息安静区：天空、雾、布、纸面、深色背景或融化的色块
+
+**高完成度 ≠ 全画面极高细节。**
+
+优秀参考往往是局部极细、局部粗粝、局部消融，靠完成度差制造视觉层次。
+
+### 6. 第六层：轮廓优先于纹理，色块优先于渐变
+
+特别是艺术插画模式：
+
+- 先保证头发 / 衣摆 / 花簇 / 布料的外轮廓成立
+- 用大块平面明暗切分体积
+- 允许可见笔触、干刷、断线、软边和不完全闭合的形
+- 需要时让不同材料共享相近的笔触语法
+- 不要用全局柔焦、bloom、过量渐变掩盖结构问题
+
+“手绘感”来自**笔触、边缘、色块和完成度层级**，不是单纯加入 `painterly`。
+
+### 7. 第七层：人物情绪必须与画面形态同源
+
+不要先写“忧郁 / 梦幻 / 温柔”，再往画面里塞氛围词。
+
+情绪应由：
+
+`pose + gaze + gesture + directional flow + palette + light + environment relationship`
+
+共同产生。
+
+例如：
+- 蜷缩姿态 + 被花包围 + 暗绿/米白 + 红色刺点 → 脆弱、神秘、被吞没
+- 倾斜身体 + 流体裙摆 + 冰白/深蓝 + 大对角 → 冷冽、漂浮、疏离
+- 轻抬头 + 花束贴近脸 + 高明度奶油色 + 边缘消融 → 温柔、短暂、梦境感
+
+### 8. 第八层：审美不是“越华丽越高级”，而是“主次越清楚越高级”
+
+当用户说“精美、华丽、艺术感”，默认增加的不是配饰数量，而是：
+
+`silhouette quality → composition quality → material contrast → color hierarchy → focal detail → micro detail`
+
+如果新增一个元素不能改变轮廓、动势、材质、色块、叙事或视线，就优先删除。
+
+### 9. 艺术插画反平庸检查
+
+生成 prompt 前必须问：
+
+1. 如果删掉所有粒子、蝴蝶、花瓣和光点，构图还成立吗？
+2. 人物和环境是否共享至少一条形态或运动关系？
+3. 是否存在一个明确的密集区和一个安静区？
+4. 是否有一个可以在缩略图中识别的主轮廓？
+5. 是否只有一个真正的视觉刺点？
+6. 颜色是否能用 3–4 个大色块解释？
+7. 有没有一个局部清晰、局部粗糙或局部消融的完成度层级？
+8. 画面是在“展示角色”，还是在“讲一个视觉瞬间”？如果只是展示，考虑升级为 illustration direction。
+
 ## 多套设计
 
 用户要 N 套时，每套之间至少在 **命题、轮廓策略、主锚点、材质语言、动作逻辑** 五项里有两项明显不同。不要出同一个设计的三个配色。
@@ -102,6 +214,8 @@ A character blueprint is READY only when thesis, silhouette, anchor hierarchy, a
 ## 参考图输入
 
 用户给参考图时，先走 `image-reverse-analysis` 提取**结构**（轮廓、密度分布、母题语法、颜色层级、材质、姿势逻辑、留白），再在这里换掉全部具体物件、保留结构。见 `aesthetic-director-core/references/taste-calibration-pairs.md` Pair 5。
+
+参考图若属于高完成度艺术插画，额外判断它属于哪种主导语法：**Organic Enclosure / Fluid Silhouette / Dissolving Field / Architectural Framing / Extreme Scale**。允许混合两种，但必须有一个主导语法；不要把所有语法同时塞进一张图。
 
 ## 自检
 
@@ -113,6 +227,10 @@ A character blueprint is READY only when thesis, silhouette, anchor hierarchy, a
 - [ ] 叙事残留是她造成的吗？
 - [ ] 刺点只有一个、有精确位置？
 - [ ] 有"删掉的"和"否决的方向"两行吗？
+- [ ] 艺术插画是否有主导视觉语法，而不是素材堆叠？
+- [ ] 是否存在密集区 / 安静区 / 连接动线？
+- [ ] 色彩能否压缩成 3–4 个大色块 + 少量刺点？
+- [ ] 局部清晰 / 局部粗粝 / 局部消融的完成度层级是否成立？
 - [ ] 踩了 `personal-identity-profile/references/design-dislikes.md` 吗？
 - [ ] 锁定事实完整传下去了吗？
 
