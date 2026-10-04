@@ -70,6 +70,27 @@ The canonical direct runtime artifact is the raw `bundle/HARNESS.md`. The GitHub
 - Full runtime: `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS-FULL.md`
 
 The build system is responsible for keeping these runtime artifacts synchronized with source skills.
+### 3.1 Failure degradation contract
+
+Failure handling is explicit and fail-closed. Read the generated policy below before continuing after any fetch or data-source failure.
+
+{{FAILURE_POLICY_TABLE}}
+
+#### State semantics
+
+- **normal** — requested source/module is loaded and verified; execute normally.
+- **card-only** — a standalone module fetch failed. Use only that module's index card; never reconstruct its missing content from memory. Other already-loaded modules may continue.
+- **pipeline-unavailable** — a selected multi-stage pipeline pack failed to load. Do not claim the pipeline is loaded and do not emit model-specific output that depends on unavailable stages. Use already-loaded modules only; otherwise surface the exact pack URL for manual paste.
+- **tag-index-unavailable** — the Anima 1.0 tag index cannot be verified. Keep creative design decisions intact, downgrade affected tags to unverified, forbid all hard-tag insertion, and express their intended meaning in Natural Language.
+
+#### Global fail-closed rules
+
+1. Never replace unavailable source content with model memory while claiming the source was loaded.
+2. Never promote fuzzy, semantic, or remembered tags into verified hard_tags during degradation.
+3. Never silently downgrade a missing Anima pipeline stage into a direct compiler call.
+4. Degrade only the smallest affected scope: Tag Index failure affects tag verification, not the whole creative blueprint; Pack failure affects model-specific compilation; standalone module failure affects only that module.
+5. Record the degradation label internally and expose it to the owner only when it materially affects the requested output.
+
 
 ### 4. Design Gate and Blueprint Gate
 
