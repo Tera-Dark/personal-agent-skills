@@ -94,7 +94,7 @@ Rules:
 | `personal-identity-profile` | 00_core | always | active | 5476 | 我的风格, 个人偏好, 按我习惯, any creative task | embedded below |
 | `creative-skill-router` | 01_router | always | active | 3895 | any request; 设计, 提示词, prompt, 反推, 分析, ComfyUI, LoRA | embedded below |
 | `anima-prompt-compiler` | 02_creation | on-demand | active | 7786 | Anima, Anima 提示词, Anima checkpoint | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-prompt-compiler.md` |
-| `anima-tag-gate` | 02_creation | on-demand | active | 1977 | Anima tag validation, Danbooru tag check, hard tag verification | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-tag-gate.md` |
+| `anima-tag-gate` | 02_creation | on-demand | active | 2068 | Anima tag validation, Danbooru tag check, hard tag verification | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-tag-gate.md` |
 | `character-design-engine` | 02_creation | on-demand | active | 15338 | OC, 人设, 角色设计, 服装设计, 立绘, 高定服设, 二游角色, character sheet, 极繁, 极繁精美, 华丽人设, 原创圈 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/character-design-engine.md` |
 | `general-image-prompt-adapter` | 02_creation | on-demand | active | 2186 | Midjourney, MJ, DALL-E, GPT Image, Imagen, Gemini image, Nano Banana, Flux, SDXL, Stable Diffusion, 通用提示词, 其他模型, 不知道用什么模型 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/general-image-prompt-adapter.md` |
 | `illustration-direction` | 02_creation | on-demand | active | 16883 | 插画, 氛围图, 竖屏, 半留白, 印象风, 故事感, key visual, poster, scene, 极繁, 特写垫底, 大头贴, 元素贴, 角色拼贴 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/illustration-direction.md` |
@@ -2726,11 +2726,11 @@ Use this compact internal structure:
 
 ```json
 {
-  "input": "loking_at_viewer",
+  "input": "<verified alias from the live index>",
   "group": "general",
   "status": "alias",
-  "canonical": "looking_at_viewer",
-  "matched_alias": "loking_at_viewer",
+  "canonical": "<canonical tag from the same index entry>",
+  "matched_alias": "<submitted alias>",
   "source": "anima-1.0-index"
 }
 ```
@@ -2830,11 +2830,18 @@ The compiler remains responsible for compact selection and the final Anima skele
 #### 11. Quick acceptance tests
 
 - `1girl` → `exact` → `1girl`
-- `loking_at_viewer` → `alias` → `looking_at_viewer`
+- `long_hair` → `exact` → `long_hair`
 - `cinematic silver aura` → `missing` → NL
 - an unknown artist-like string in `general` → not an artist
 - `37_(reverse:1999)` → identity preserved; syntax escaping deferred
 - fuzzy search suggestion → never `hard_tags`
+
+For the full P2 acceptance protocol, including a live-index alias test, group isolation, failure-mode checks, and compiler integration, use `tests/test-suite.md`.
+
+#### References
+
+- `references/anima-tag-index.md` — Web-first index source, schema, and licensing boundary
+- `tests/test-suite.md` — P2 acceptance and regression matrix
 
 ---
 

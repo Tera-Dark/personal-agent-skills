@@ -62,11 +62,11 @@ Use this compact internal structure:
 
 ```json
 {
-  "input": "loking_at_viewer",
+  "input": "<verified alias from the live index>",
   "group": "general",
   "status": "alias",
-  "canonical": "looking_at_viewer",
-  "matched_alias": "loking_at_viewer",
+  "canonical": "<canonical tag from the same index entry>",
+  "matched_alias": "<submitted alias>",
   "source": "anima-1.0-index"
 }
 ```
@@ -166,11 +166,18 @@ The compiler remains responsible for compact selection and the final Anima skele
 ### 11. Quick acceptance tests
 
 - `1girl` → `exact` → `1girl`
-- `loking_at_viewer` → `alias` → `looking_at_viewer`
+- `long_hair` → `exact` → `long_hair`
 - `cinematic silver aura` → `missing` → NL
 - an unknown artist-like string in `general` → not an artist
 - `37_(reverse:1999)` → identity preserved; syntax escaping deferred
 - fuzzy search suggestion → never `hard_tags`
+
+For the full P2 acceptance protocol, including a live-index alias test, group isolation, failure-mode checks, and compiler integration, use `tests/test-suite.md`.
+
+### References
+
+- `references/anima-tag-index.md` — Web-first index source, schema, and licensing boundary
+- `tests/test-suite.md` — P2 acceptance and regression matrix
 
 ---
 
