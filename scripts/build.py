@@ -310,39 +310,32 @@ def _normalize(text):
 def stale_outputs(root):
     _, _, outputs = build_outputs(root)
     stale = []
-    expected_packs = {os.path.basename(k) for k in outputs if k.startswith(f"{cfg['bundle_dir']}/pipelines/")}
-    for fn in os.listdir(pipe_dir):
-        if fn.endswith(".md") and fn not in expected_packs:
-            os.remove(os.path.join(pipe_dir, fn))
-            print(f"  removed orphan pipeline pack {fn}")
-    for rel, content in outputs.items():
 
+    for rel, content in outputs.items():
         p = os.path.join(root, rel)
         if not os.path.exists(p):
             stale.append(rel)
             continue
         if _normalize(open(p, encoding="utf-8").read()) != _normalize(content):
             stale.append(rel)
+
     # orphaned generated bundles (skill/pipeline pack renamed or removed)
     cfg = L.load_config(root)
+
     mod_dir = os.path.join(root, cfg["bundle_dir"], "modules")
     if os.path.isdir(mod_dir):
         expected = {os.path.basename(k) for k in outputs if k.startswith(f"{cfg['bundle_dir']}/modules/")}
         for fn in os.listdir(mod_dir):
             if fn.endswith(".md") and fn not in expected:
                 stale.append(f"{cfg['bundle_dir']}/modules/{fn} (orphan — delete)")
+
     pipe_dir = os.path.join(root, cfg["bundle_dir"], "pipelines")
     if os.path.isdir(pipe_dir):
         expected = {os.path.basename(k) for k in outputs if k.startswith(f"{cfg['bundle_dir']}/pipelines/")}
         for fn in os.listdir(pipe_dir):
             if fn.endswith(".md") and fn not in expected:
                 stale.append(f"{cfg['bundle_dir']}/pipelines/{fn} (orphan — delete)")
-    pipe_dir = os.path.join(root, cfg["bundle_dir"], "pipelines")
-    if os.path.isdir(pipe_dir):
-        expected = {os.path.basename(k) for k in outputs if k.startswith(f"{cfg['bundle_dir']}/pipelines/")}
-        for fn in os.listdir(pipe_dir):
-            if fn.endswith(".md") and fn not in expected:
-                stale.append(f"{cfg['bundle_dir']}/pipelines/{fn} (orphan — delete)")
+
     return stale
 
 
