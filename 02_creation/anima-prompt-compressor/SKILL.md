@@ -3,7 +3,7 @@ name: anima-prompt-compressor
 description: Minimal-sufficient prompt compression layer for Anima. Removes low-impact, redundant, decorative and merely explanatory text after skeleton planning while protecting identity, locked facts, silhouette, key garment structure, pose and one visual punctum. Use before final Anima syntax serialization and compilation.
 metadata:
   author: Tera-Dark
-  version: "1.0.0"
+  version: "1.1.0"
   layer: "02_creation"
   load: "on-demand"
   status: "active"
@@ -16,7 +16,7 @@ metadata:
 
 > Keep the smallest prompt that still produces the intended image.
 
-This is a **subtractive layer**. It does not make the prompt richer. It assumes the skeleton is already correct, then removes anything whose deletion is unlikely to change the rendered result or violates a locked fact.
+This is a **subtractive layer**. It does not make the prompt richer. It assumes the skeleton is already correct and the design packet is protected by `anima-aesthetic-protection`, then removes anything whose deletion is unlikely to change the rendered result.
 
 Do not optimize for descriptive completeness. Optimize for **visual control per token**.
 
@@ -166,7 +166,13 @@ Only retain a negative concept when:
 
 Negative text is outside the positive prompt compression budget but should also be minimal.
 
-## 10. No aesthetic redesign
+## 10. Protected design boundary
+
+Before deletion, load the protected design packet from `anima-aesthetic-protection`. A deletion is allowed only when the protected thesis, silhouette, framing, focal hierarchy, asymmetry, signature construction and locked facts remain reconstructable.
+
+If deletion changes one of those, keep the element even when it costs more tokens.
+
+## 11. No aesthetic redesign
 
 Compression may not:
 
@@ -178,7 +184,7 @@ Compression may not:
 
 When the prompt cannot fit without losing a locked fact, report a budget conflict internally and prioritize the locked fact.
 
-## 11. Final shape
+## 12. Final shape
 
 Preferred result:
 
@@ -190,7 +196,7 @@ Preferred result:
 
 Anima should receive a **small control packet**, not a written description of the artwork.
 
-## 12. Acceptance checklist
+## 13. Acceptance checklist
 
 - [ ] Every retained element passes the deletion test.
 - [ ] Prompt is shorter than the uncompressed skeleton unless a locked fact prevents reduction.
@@ -202,3 +208,4 @@ Anima should receive a **small control packet**, not a written description of th
 - [ ] Identity, framing, silhouette, locked facts and essential action survive.
 - [ ] No decorative completeness is added.
 - [ ] Compression does not redesign the blueprint.
+- [ ] Protected aesthetic packet was audited before compression.
