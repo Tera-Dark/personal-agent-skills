@@ -3,7 +3,7 @@ name: nai5-community-prompt-engineering
 description: Model adapter that compiles a finished character or illustration blueprint into NovelAI V5 community-format prompts — weighted artist stack, global style layer, scene base, char1/char2 blocks, source#/target#/mutual# interaction tags, and optional targeted negative steering with weight::tag:: syntax. Use when the user asks for NAI5, NovelAI, NAI提示词, tag prompt, Danbooru-style prompt. Does not design — if no blueprint exists, route through aesthetic-director-core and character-design-engine / illustration-direction first.
 metadata:
   author: Tera-Dark
-  version: "2.4.0"
+  version: "2.5.0"
   layer: "02_creation"
   load: "on-demand"
   status: "active"
@@ -178,6 +178,17 @@ NovelAI 数值 emphasis：
 - 不给每个 token 都加权
 - 随机 artist stack 默认采用“1 名主画师接近 1.0 + 其余 <=0.6”的层级，而不是多名 0.8+ 同时叠加
 - 用户已经有固定 Negative 时，不输出 Negative 段
+
+## 8.5 Compact prompt discipline
+
+用户默认偏好精炼提示词。NAI5 不把设计说明塞进 tag：
+- 保留 subject / framing / artist / quality / complexity / rendering / scene / action 的控制骨架；
+- 删除同义质量词、重复外观词、可由结构推断的枝节；
+- 现代 Key Visual 重点保留大形、动势、材质、遮挡、主色块与关键事件；
+- 叙事场景中，环境只保留能改变构图、动作、光或故事理解的元素；
+- 用户有自己的 Negative 时继续默认不输出。
+
+NAI5 的 compact 目标不是死卡词数，而是让每个 tag 都承担控制职责。
 
 ## 9. 翻译 blueprint 时的取舍
 
