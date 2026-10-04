@@ -4,6 +4,14 @@
   "repo": "Tera-Dark/personal-agent-skills",
   "branch": "main",
   "bundle_dir": "bundle",
+  "web_first": {
+    "enabled": true,
+    "primary_entry": "https://github.com/Tera-Dark/personal-agent-skills",
+    "runtime_entry": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS.md",
+    "full_runtime_entry": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS-FULL.md",
+    "module_entry_pattern": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/<name>.md",
+    "local_runtime_required": false
+  },
   "kernel": "kernel/KERNEL.md",
   "layers": [
     "00_core",
