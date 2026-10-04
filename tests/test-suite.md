@@ -1,10 +1,10 @@
 # 核心验证测试集 (Test Suite)
 
-> Architecture baseline: v3.0.0
+> Architecture baseline: v3.8.0
 
-> **Version**: 2.1.0  
-> **Last Updated**: 2026-09-17  
-> **Scope**: 验证编译器在多场景下的属性锁定、语言转换、V1/V2 分离、事实一致性、词数弹性与正向约束能力。
+> **Version**: 3.8.0  
+> **Last Updated**: 2026-10-05  
+> **Scope**: 验证创作决策、模型适配、Web-first harness、Anima Tag/NL 编译以及审美回归。
 
 ---
 
@@ -311,6 +311,40 @@
 ### Arch-09: Generated bundle consistency
 - Pass: source changes make scripts/validate_skills.py --check-bundle fail until build.py regenerates bundle/; CI rebuilds on push.
 - Fail: bundle files are hand-edited or silently drift from source.
+
+## P14 — Aesthetic Floor Regression
+
+> 这组回归由 2026-10-05 的真实测试反馈触发。目标不是让角色“更普通”，而是阻止系统把“辨识度”误解成“故意丑”。
+
+### P14-01: 怪点从属于整体美感
+- **输入**：设计一个女性向现代二游女角色，要求一处有点怪、白底全身、非对称、有明显轮廓。
+- **Pass**：第一眼先成立；比例、姿态、色块和服装结构整体顺眼；怪点只制造局部张力。
+- **Fail**：比例被故意做歪、轮廓失衡、配色冲突或服装结构被怪点破坏，却把“不协调”当成辨识度。
+
+### P14-02: 删除怪点后仍然好看
+- **输入**：对已经完成的角色设计删除唯一怪点，再比较整体结构。
+- **Pass**：核心轮廓、服装工程、色块和商业可读性仍成立，只是少了一层记忆点。
+- **Fail**：删除怪点后整套设计立刻变空，说明怪点正在替代命题或大结构。
+
+### P14-03: “丑的很有特点”反馈路由
+- **反馈**：丑的很有特点，继续。
+- **Pass**：先诊断比例 / 形状节奏 / 配色层级 / 剪裁，再决定是否撤回或替换怪点；不得用“这是刻意的”拒绝修正。
+- **Fail**：继续加装饰、加复杂度，或把“丑”包装成用户应该接受的风格。
+
+### P14-04: Modern Key Visual 不以怪换冲击
+- **输入**：现代二游商业主视觉，要求强轮廓、强动势、局部极密。
+- **Pass**：冲击来自大形、运动轴、大色块、材质和阴影；怪点不是主轮廓。
+- **Fail**：靠扭曲比例、随机失衡或大量异质元素制造“独特”。
+
+### P14-05: Token 压缩不保留错误的怪
+- **输入**：复杂角色进入 Anima 压缩阶段。
+- **Pass**：删掉装饰和解释性文字后，保留健康比例、轮廓、服装层级、动作和唯一刺点；怪点仍是可控局部偏差。
+- **Fail**：为了保留“独特”而优先牺牲结构美感，或留下多个奇异元素。
+
+### P14-06: 反馈与长期品味边界
+- **输入**：单次出现“丑”的反馈。
+- **Pass**：修正本次结果，但不把某个具体元素直接写成永久禁区；系统规则只升级为“怪 ≠ 丑”的通用约束。
+- **Fail**：把一次反馈直接永久化成“永远不要某种造型”。
 \n\n## P12 Personal Anima Regression\n\nThe detailed P12 regression matrix is in `tests/personal-anima-regression.md`.\n\nP12 adds 36 cases across exact/alias/missing/fuzzy tags, character/IP/artist isolation, appearance/clothing/action classification, composite packets, exact Anima syntax and idempotence, Tag/NL skeleton boundaries, compression priorities, aesthetic protection, all P11 failure scopes, Web-first pipeline loading, and the owner's recent gacha/full-body/high-fashion/illustration/reference/token-pressure tasks.\n\nThe deterministic CI gate is `scripts/check_personal_anima_regression.py`; live-index and visual/aesthetic judgments remain manual.\n
 
 ## P13 Real-Task Regression
