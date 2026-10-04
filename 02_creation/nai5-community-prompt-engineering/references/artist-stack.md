@@ -31,7 +31,7 @@ Avoid blindly stacking artists.
 
 When the user provides an artist pool and asks for a random artist stack:
 
-- Randomly select 4–5 artists by default; use 3–4 for lighter designs.
+- Randomly select 3–4 artists by default; use 3–4 for lighter designs.
 - Pick one primary artist at approximately 0.95–1.10, normally starting at 1.0 or 1.05.
 - Put all secondary artists at <=0.6, commonly 0.35–0.6.
 - Do not use multiple 0.8+ artist weights by default.
