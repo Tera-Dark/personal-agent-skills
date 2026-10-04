@@ -1,3 +1,10 @@
+## [3.7.0] - 2026-10-05
+
+### Real-task regression
+- Added P13 real-task regression coverage for modern gacha key visuals, Y2K/daily fashion, maximalist couture, white-background full-body plates, ice couture, compact Anima compilation, authored illustration, and reference-to-original transfer.
+- Added cross-task anti-regression checks for one strange point, one punctum, local density, decorative filler, white-background separation, compression order, adapter translation, and generic-market fallback.
+- Kept P13 visual judgment manual: the harness tests creative decisions and prompt translation, while CI checks that the regression matrix and its invariants remain present.
+
 ## [3.6.0] - 2026-10-05
 
 ### Personal Anima regression
