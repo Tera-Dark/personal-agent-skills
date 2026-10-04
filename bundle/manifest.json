@@ -72,7 +72,7 @@
         "references/skill-map.md"
       ],
       "tokens_skill": 1334,
-      "tokens_bundle": 3229
+      "tokens_bundle": 3683
     },
     {
       "name": "anima-prompt-compiler",
@@ -155,7 +155,7 @@
       "layer": "02_creation",
       "load": "on-demand",
       "status": "active",
-      "version": "2.3.0",
+      "version": "2.4.0",
       "description": "Model adapter that compiles a finished character or illustration blueprint into NovelAI V5 community-format prompts — weighted artist stack, global style layer, scene base, char1/char2 blocks, source#/target#/mutual# interaction tags, and optional targeted negative steering with weight::tag:: syntax. Use when the user asks for NAI5, NovelAI, NAI提示词, tag prompt, Danbooru-style prompt. Does not design — if no blueprint exists, route through aesthetic-director-core and character-design-engine / illustration-direction first.",
       "triggers": "NAI5, NovelAI, NAI提示词, tag prompt, Danbooru, artist stack, char1",
       "path": "02_creation/nai5-community-prompt-engineering",
@@ -173,7 +173,7 @@
         "references/negative-strategy.md"
       ],
       "tokens_skill": 2949,
-      "tokens_bundle": 5675
+      "tokens_bundle": 5938
     },
     {
       "name": "image-reverse-analysis",
@@ -257,7 +257,7 @@
       "layer": "05_evaluation",
       "load": "always",
       "status": "active",
-      "version": "2.0.0",
+      "version": "2.1.0",
       "description": "Evaluates a generated image or compiled prompt against the original Creative Brief and blueprint, using a fixed rubric (identity preservation, outfit binding, spatial clarity, unrequested additions, V1/V2 consistency, output contract) plus a design-layer read (thesis, silhouette, causality, density, punctum, one strange thing). Diagnoses which layer failed and routes the fix to that layer with a single-variable change. Use on any feedback round: 太平淡, 太乱, 不像, 没人味, 这版可以, 评价一下, 哪里不对, compare versions.",
       "triggers": "太平淡, 太乱, 不像, 没人味, 这版可以, 评价一下, 哪里不对, compare",
       "path": "05_evaluation/evaluation-loop",
@@ -265,7 +265,7 @@
       "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/evaluation-loop.md",
       "references": [],
       "tokens_skill": 942,
-      "tokens_bundle": 1146
+      "tokens_bundle": 2436
     }
   ]
 }
