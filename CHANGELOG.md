@@ -1,3 +1,11 @@
+## [3.6.0] - 2026-10-05
+
+### Personal Anima regression
+- Added a unified P12 regression matrix covering tag identity, IP/artist scope, appearance/clothing/action classification, composite packets, special syntax, relation-oriented skeleton assembly, compression, aesthetic protection, failure degradation, Web-first loading, and recent real tasks.
+- Added scripts/check_personal_anima_regression.py for deterministic offline contract checks.
+- CI now runs the P12 contract checker alongside skill validation and bundle integrity checks.
+- Live Good Anima alias verification and visual/aesthetic judgment remain explicit manual cases; the machine checker never invents tag evidence or claims to judge image quality automatically.
+
 ## [3.5.0] - 2026-10-04
 
 ### Failure degradation
