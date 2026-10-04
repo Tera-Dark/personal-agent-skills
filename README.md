@@ -1,5 +1,7 @@
 # personal-agent-skills
 
+> v3.0.0 architecture: mandatory Aesthetic Gate + type-specific Blueprint Gate + canonical Anima / NAI5 prompt skeletons.
+
 > ## ⚡ If you are an AI model reading this because a user pasted this link
 >
 > This repository is your **operating harness** for this conversation. Do these three things and nothing else:
@@ -35,15 +37,15 @@
 ## Architecture
 
 ```
-kernel/KERNEL.md            operating contract: loop · loading protocol · vision protocol · session state · voice · commands · extension protocol
+kernel/KERNEL.md            operating contract: loop · Aesthetic Gate · Blueprint Gate · loading · vision · state · voice · commands · extensions
    │
    ├─ 01_router   creative-skill-router           intent → pipeline                                   [always-on]
    ├─ 00_core     personal-identity-profile       taste signature · dislikes · voice                  [always-on]
    │              aesthetic-director-core         nine creative moves → Creative Brief                [always-on]
-   ├─ 02_creation character-design-engine         Brief → character blueprint (model-agnostic)        [on-demand]
-   │              illustration-direction          Brief → illustration blueprint (model-agnostic)     [on-demand]
-   │              anima-prompt-compiler           blueprint → Anima Tag+NL                            [on-demand]
-   │              nai5-community-prompt-engineering   blueprint → NAI5 community format               [on-demand]
+   ├─ 02_creation character-design-engine         Brief → character blueprint → Blueprint Gate       [on-demand]
+   │              illustration-direction          Brief → illustration blueprint → Blueprint Gate     [on-demand]
+   │              anima-prompt-compiler           verified packet → Anima canonical Tag+NL           [on-demand]
+   │              nai5-community-prompt-engineering   verified packet → NAI5 canonical community tags               [on-demand]
    │              general-image-prompt-adapter    blueprint → NL prompt for MJ / DALL-E / Imagen / Flux / SD / unnamed   [on-demand]
    ├─ 03_analysis image-reverse-analysis          reference image → structure                         [on-demand]
    │              prompt-analysis                 existing prompt → weakest layer                     [on-demand]
