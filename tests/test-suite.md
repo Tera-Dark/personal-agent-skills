@@ -202,7 +202,7 @@
 
 ---
 
-## 4. Harness 层用例 (Harness Cases, v2.1.0)
+## 4. Harness 层用例 (Harness Cases, v3.1.0)
 
 测的是 kernel 行为，不是任何模块。在 ChatGPT / Gemini 新会话里跑。
 
