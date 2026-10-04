@@ -135,6 +135,28 @@ def main():
     for name in pipeline.get('adapters', []):
         if name not in skills:
             errors.append(f'harness.json pipeline.adapters: unknown skill `{name}`')
+    # failure degradation contract sanity
+    failure = cfg.get('failure_policy', {})
+    if failure.get('default_mode') != 'fail_closed':
+        errors.append("harness.json failure_policy.default_mode must be `fail_closed`")
+    required_failure_scopes = {
+        'standalone_module': 'card_only',
+        'pipeline_pack': 'pipeline_unavailable',
+        'anima_tag_index': 'unverified_to_nl',
+    }
+    for scope, state in required_failure_scopes.items():
+        actual = (failure.get(scope) or {}).get('on_fetch_failure')
+        if actual != state:
+            errors.append(f"harness.json failure_policy.{scope}.on_fetch_failure must be `{state}`")
+        label = (failure.get(scope) or {}).get('label')
+        if not label:
+            errors.append(f"harness.json failure_policy.{scope}.label missing")
+    tag_failure = failure.get('anima_tag_index') or {}
+    if tag_failure.get('hard_tags_allowed') is not False:
+        errors.append("harness.json failure_policy.anima_tag_index.hard_tags_allowed must be false")
+    if tag_failure.get('fuzzy_promotion') is not False:
+        errors.append("harness.json failure_policy.anima_tag_index.fuzzy_promotion must be false")
+
     packs = pipeline.get('pipeline_packs') or {}
     if not isinstance(packs, dict):
         errors.append('harness.json pipeline.pipeline_packs must be a mapping')
