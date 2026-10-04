@@ -3,7 +3,7 @@ name: nai5-community-prompt-engineering
 description: Model adapter that compiles a finished character or illustration blueprint into NovelAI V5 community-format prompts — weighted artist stack, global style layer, scene base, char1/char2 blocks, source#/target#/mutual# interaction tags, and optional targeted negative steering with weight::tag:: syntax. Use when the user asks for NAI5, NovelAI, NAI提示词, tag prompt, Danbooru-style prompt. Does not design — if no blueprint exists, route through aesthetic-director-core and character-design-engine / illustration-direction first.
 metadata:
   author: Tera-Dark
-  version: "2.1.0"
+  version: "2.2.0"
   layer: "02_creation"
   load: "on-demand"
   status: "active"
@@ -16,27 +16,15 @@ metadata:
 
 本 Skill 是**适配器**：把已经做完设计决定的 blueprint 翻译成 NovelAI V5 社区格式。
 
-v2.1.0 起补充 NAI5 实际使用习惯：用户通常已有自己的 Negative，因此默认不输出 Negative；用户提供画师池并要求随机生成时，优先做小规模随机混合，而不是一次堆叠大量画师；遇到用户原始 artist tag 的特殊转义、通配符或异常格式时，不擅自规范化，先保持原写法，避免破坏 NAI/用户工作流解析。
+v2.2.0 起明确锁定 NAI5 权重与 artist tag 使用规则：1.0 是数值 emphasis 基准；>1.0 加强，0.0–1.0 削弱；用户提供画师池时保留 artist: namespace，不擅自改成裸画师名；随机画师默认 1 名主画师约 0.95–1.10，其余全部 <=0.6；用户通常已有自己的 Negative，因此默认不输出。
 
 **输入检查**：同 `anima-prompt-compiler`。没有命题 / 轮廓 / 四层服装 / 刺点 / 锁定事实的输入不是 blueprint，退回 router。
 
 ## 2. 社区格式架构
 
-默认输出：
+组织提示词时可以在内部按 artist stack / global style / scene / char1 / char2 分层，但这些只是编排说明，不是要直接输出到 NovelAI 提示框里的 tag。尤其不要把 [Artist Stack]、[Global Style]、[Scene] 这类方括号标题当成 Markdown 标题直接塞入 NAI prompt，因为 NovelAI 的 [] 本身具有 weakening 语义。
 
-```
-[Artist Stack]
-
-[Global Style Layer]
-
-[Scene Base]
-
-char1:
-...
-
-char2:
-...
-```
+实际输出默认直接从有效 tag / 短复合描述开始。
 
 如果用户明确要求 Negative、需要针对当前问题调负面，或没有提供自己的 Negative，才追加：
 
@@ -49,20 +37,51 @@ Negative:
 
 ## 3. Artist Stack
 
-```
-0.6::artist:name::
-```
+默认合法 artist 写法：
 
-- 每位画师承担一个明确职责：线条 / 上色 / 构图 / 角色设计感——不重复职责
-- **随机画师生成默认抽 4–6 位**；除非用户明确要求大规模融合，不要一次堆 8–12 位
-- 推荐默认分层：主画师约 `0.5–0.6`，第二画师约 `0.4–0.5`，其余约 `0.25–0.4`
-- 随机混合时优先控制总权重在约 `1.5–2.0` 的温和区间；避免多个 `0.6+` 画师同时叠加
-- 画师跨度很大时宁可减少人数，也不要用高权重硬压成“平均融合”
-- 用户提供画师池时，从池中随机抽取并保留用户给出的原始 tag 语法；不要擅自删除转义、通配符、括号或特殊后缀
-- 用户池里明显带有异常/不完整权重时，不要猜测其含义并直接加入高权重 stack；优先跳过该项或使用安全的低影响组合，并在必要时说明
-- 必要时控制 `-1::artist collaboration::`
-- 画师选择服务 blueprint 的视觉语言，不替代设计。见 `references/artist-stack.md`
+1.0::artist:name::
 
+**不要删除 artist: 前缀。** NovelAI V5 官方 Explore 实例可以看到实际 prompt 使用 artist:name 形式，因此用户池中的 artist namespace 应视为有效输入；特殊形式也要保持原样。
+
+### NAI5 数值权重语义
+
+NovelAI 官方数值 emphasis 规则：
+- 1.0 = 基准强度
+- >1.0 = 加强
+- 0.0–1.0 = 削弱
+
+因此 0.8–0.95 不是“高权重”；它仍然是在削弱。用户若目标是增强 artist 影响，应从接近或略高于 1.0 的值开始。
+
+### 用户画师池的默认随机策略
+
+当用户提供一个画师池并要求随机生成：
+- 默认抽 4–5 位；设计较轻时可只抽 3–4 位
+- 主画师 1 位：约 0.95–1.10，通常从 1.0 或 1.05 开始
+- 其余画师：全部 <=0.6，常用 0.35–0.6
+- 不再默认使用多个 0.8+ artist 权重同时叠加
+- 主画师承担主要 style prior，其他画师只做轻量混合，不与主画师争夺控制权
+- 画师跨度很大时宁可减少人数，也不要通过高权重硬压成平均融合
+- 如果出现噪点、脏图、风格撕裂，第一排查项是 artist 数量、主次权重与冲突 tag，而不是继续增加 prompt 内容
+
+### Preserve user syntax
+
+如果用户的池包含转义、通配符、括号、下划线、点号、后缀或其它特殊语法，保持原样；不要擅自规范化。
+
+例如以下形式不要擅自改写：
+
+artist:rei(sanbonzakura)
+artist:sencha_(senchat)
+artist:mr.owlish
+
+其中明显异常/不完整的条目不要猜测含义并推到主画师位置；可跳过，或仅在低影响位置使用。
+
+特殊条目 vlfdus 0 视为含义不明确，不要擅自猜测成某个画师名。
+
+必要时控制：
+
+-1::artist collaboration::
+
+画师 Stack 服务 blueprint 的视觉语言，不替代角色设计或构图设计。见 references/artist-stack.md。
 ## 4. Global Style Layer
 
 风格与角色数据分离。见 `references/style-layer.md`。
@@ -92,15 +111,19 @@ girl, [identity], [hair], [eyes], [expression], [outfit base→structural→exte
 
 ## 8. Weighting & Negative
 
-```
-1.5::tag::    -2::tag::
-```
+NovelAI 数值 emphasis：
 
-- 只给：画师混合、关键风格方向、关键角色特征、不想要的风格抑制
+1.5::tag::
+0.5::tag::
+-2::tag::
+
+- >1.0：加强
+- 0.0–1.0：削弱
+- 负值：针对性抑制 / removal / inversion
+- 只给画师混合、关键风格方向、关键角色特征、不想要的风格抑制
 - 不给每个 token 都加权
-- **不要为了“看起来专业”而给普通描述词批量加权**
-- **随机画师 stack 尤其避免高权重堆叠**；多画师同时高权重可能导致风格冲突、画面脏乱甚至噪点/伪影
-- Negative 只在用户需要时输出，并解决**具体问题**（风格抑制、伪影等），不复制大段通用负面表。见 `references/weighting.md`、`references/negative-strategy.md`
+- 随机 artist stack 默认采用“1 名主画师接近 1.0 + 其余 <=0.6”的层级，而不是多名 0.8+ 同时叠加
+- 用户已经有固定 Negative 时，不输出 Negative 段
 
 ## 9. 翻译 blueprint 时的取舍
 
@@ -128,14 +151,18 @@ Tag 格式天然会丢失“关系”。补救：
 ## 12. 输出前检查
 
 - [ ] 输入是 blueprint？
-- [ ] 画师栈每位有职责、无重复？
-- [ ] 随机画师是否控制在 4–6 位，且没有不必要的高权重堆叠？
+- [ ] 随机画师是否控制在 3–5 位（默认 4–5）？
+- [ ] 是否只有 1 名主画师约 0.95–1.10？
+- [ ] 其他画师是否全部 <=0.6？
+- [ ] 是否保留用户原始 artist: namespace？
 - [ ] 用户原始 artist tag 的转义/特殊语法是否被保留？
 - [ ] char block 顺序反映了主锚点 / 安静区？
 - [ ] 刺点颜色只出现一次？
 - [ ] 被删掉的物件没有以 tag 回流？
+- [ ] 权重语义是否正确（>1.0 加强，0.0–1.0 削弱）？
 - [ ] 权重只用在必要处？
 - [ ] 默认没有附带 Negative？
+- [ ] 默认没有把方括号分区标题直接输出为 prompt token？
 - [ ] 锁定事实未改？
 
 ## References
