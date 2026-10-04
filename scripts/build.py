@@ -212,6 +212,19 @@ def build_outputs(root):
     outputs = {}
     for e in entries:
         outputs[f"{bundle_dir}/modules/{e['name']}.md"] = GEN_NOTE + "\n" + e["_rendered"]
+    by_name = {e["name"]: e for e in entries}
+    for pack_name, module_names in ((cfg.get("pipeline") or {}).get("pipeline_packs") or {}).items():
+        pack_parts = [GEN_NOTE, f"# PIPELINE PACK: {pack_name} · harness v{version}", "",
+                      "This generated Web-first pack loads all declared stages in one fetch.",
+                      "The declared order is authoritative; do not skip, reorder, or replace stages with memory.", ""]
+        for module_name in module_names:
+            if module_name not in by_name:
+                raise SystemExit(f"pipeline pack {pack_name}: unknown module {module_name}")
+            pack_parts.append(f"--- MODULE {module_name} ---")
+            pack_parts.append("")
+            pack_parts.append(L.demote_headings(by_name[module_name]["_rendered"], 1).rstrip())
+            pack_parts.append("")
+        outputs[f"{bundle_dir}/pipelines/{pack_name}.md"] = "\n".join(pack_parts).rstrip() + "\n"
     outputs[f"{bundle_dir}/HARNESS.md"] = render_harness(root, cfg, version, skills, entries, full=False)
     outputs[f"{bundle_dir}/HARNESS-FULL.md"] = render_harness(root, cfg, version, skills, entries, full=True)
     manifest = {
