@@ -3,7 +3,7 @@ name: creative-skill-router
 description: Entry point for all creative requests in this skill hub. Classifies intent (OC/character design, illustration, fashion, NAI5 prompt, Anima prompt, image reverse analysis, prompt review, ComfyUI/LoRA/dataset), loads identity + aesthetic direction first, then hands off to the right specialist and model adapter. Use whenever a request involves 设计, OC, 人设, 立绘, 插画, 服装, 提示词, prompt, NAI, NovelAI, Anima, 反推, 分析图片, ComfyUI, LoRA, or when it is unclear which skill should handle a creative task.
 metadata:
   author: Tera-Dark
-  version: "2.0.0"
+  version: "3.0.0"
   layer: "01_router"
   load: "always"
   status: "active"
@@ -14,7 +14,7 @@ metadata:
 
 ## Purpose
 
-把用户请求送进正确的创作管线。Router 不产出最终 prompt，只做三件事：**分类 → 加载上游 → 交给下游**。
+把用户请求送进正确的创作管线。Router 不产出最终 prompt，只做：**分类 → 设计就绪判定 → Aesthetic Gate → specialist → Blueprint Gate → adapter / evaluation**。
 
 ```
 Request
@@ -32,9 +32,20 @@ Model Adapter                  (anima-prompt-compiler / nai5-community-prompt-en
 evaluation-loop                (on feedback rounds)
 ```
 
+## Gate Model
+
+### Aesthetic Gate
+Every creative request passes the gate.
+- FULL: unfinished idea or requested redesign; produce real creative decisions.
+- AUDIT: finished design/specification; check structure and generic drift without redesigning locked facts.
+- ESCALATE: missing core decision in AUDIT; return to FULL.
+
+### Blueprint Gate
+Before any model adapter, verify a type-specific blueprint or a verified finished-design packet. Adapters never fill missing design decisions.
+
 ## Core Rules
 
-1. **创作类请求不得直接跳到模型适配器。** 用户说"给我一个 NAI5 提示词，主题是 X"——如果 X 还没有被设计过，先过 `aesthetic-director-core` 再过适配器。只有当用户提供的是**已经完成的设计**（明确的角色事实、服装、姿势）时，才允许直接进适配器。
+1. **创作类请求不得绕过 Aesthetic Gate。** 未完成请求走 FULL；完成设计走 AUDIT。只有 AUDIT PASS 或 FULL 产出通过 Blueprint Gate 后，才允许进入 adapter。
 2. **按意图分类，不按关键词。** 用户提到"NAI5"不代表任务是"写 tag"，可能是"设计一个角色然后用 NAI5 出"。
 3. **设计决策与模型语法分离。** 适配器不重新设计；设计层不写模型语法。
 4. **用户明确要求 > 身份档案 > 审美方向 > 专家 Skill > 模型语法。**
