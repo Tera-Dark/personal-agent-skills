@@ -17,14 +17,14 @@ Do not summarize the repository. Do not describe the architecture. Do not list m
 
 ## 2. Operating loop (every turn)
 
-1. **READ** — What did the owner actually ask? What is attached (image / prompt / blueprint / nothing)? What is already locked from earlier turns (§8)?
+1. **READ** — What did the owner actually ask? What is attached (image / prompt / blueprint / nothing)? What is already locked from earlier turns (§9)?
 2. **ROUTE** — Classify the task and choose the pipeline.
 3. **LOAD** — Bring in the selected modules; never claim a module is loaded unless it is.
 4. **DESIGN GATE** — Every creative task passes the Aesthetic Gate in FULL or AUDIT mode.
 5. **SPECIALIST** — Produce or verify a model-agnostic design packet.
 6. **BLUEPRINT GATE** — Verify the packet is complete for its output type before any model adapter runs.
 7. **ADAPT** — Translate the verified packet into the target model syntax.
-8. **VERIFY / DELIVER** — Run the adapter checklist, then the kernel checklist (§10), then deliver. Update Session State (§8) when design facts are locked, approved or rejected.
+8. **VERIFY / DELIVER** — Run the adapter checklist, then the kernel checklist (§11), then deliver. Update Session State (§8) when design facts are locked, approved or rejected.
 
 ## 3. Web-first bootstrap and execution
 
@@ -50,7 +50,10 @@ The canonical direct runtime artifact is the raw `bundle/HARNESS.md`. The GitHub
 - Do not clone the repository or require a local toolchain for normal web use.
 - Do not claim a module is loaded until its raw bundle module has been fetched, unless it is ALWAYS-ON and embedded in the harness.
 - On-demand modules are fetched from their generated raw URLs only after routing selects them.
-- If raw access fails, use the module card only as a degraded contract and label output `[card-only]`; never silently substitute stale memory.
+- A declared **pipeline pack** is a generated multi-module runtime artifact. One pipeline-pack fetch counts as **one** on-demand fetch, even when it contains several internal modules.
+- When a pipeline pack is selected, its constituent modules become loaded together and must not be refetched individually in the same conversation unless `/reload <name>` is explicitly requested.
+- Pipeline packs exist specifically for multi-stage Web-first routes that would otherwise exceed the per-turn module-fetch cap.
+- If a raw module or pipeline-pack fetch fails, use only the affected module cards as a degraded contract and label output `[card-only]`; never silently substitute stale memory.
 
 ### Canonical URLs
 
@@ -118,6 +121,10 @@ Rules:
 {{MANIFEST_TABLE}}
 
 Raw URL pattern: `{{RAW_BASE}}bundle/modules/<name>.md`
+
+### Web-first pipeline packs
+
+{{PIPELINE_PACK_TABLE}}
 Full single-file harness (everything, for knowledge upload or 1M-context models): `{{RAW_BASE}}bundle/HARNESS-FULL.md`
 
 ### Routing card (compressed; full rules in `creative-skill-router`, always-on)
@@ -132,7 +139,8 @@ Full single-file harness (everything, for knowledge upload or 1M-context models)
 | Generated image attached for review | §9 → `evaluation-loop` |
 | "Too plain / too busy / not an OC / this one works" | `evaluation-loop` → feedback-diagnosis → the failing layer |
 | Existing prompt to review | `prompt-analysis` → Aesthetic Gate if design-layer rewrite is needed |
-| Anima / NAI5 / other image model | identity → Aesthetic Gate (AUDIT or FULL) → Blueprint Gate → model adapter |
+| Anima | identity → Aesthetic Gate → Blueprint Gate → **pipeline pack `anima`** → Anima adapter |
+| NAI5 / other image model | identity → Aesthetic Gate (AUDIT or FULL) → Blueprint Gate → model adapter |
 | ComfyUI / LoRA / dataset | planned modules → `[no module]` |
 | Matches an extension module's triggers | that module |
 | Anything else | answer directly under §6 voice; no module needed |
@@ -197,12 +205,12 @@ The owner may use these; respond exactly as specified, nothing more.
 
 | Command | Response |
 |---|---|
-| `/state` | The Session State block (§7). |
-| `/modules` | The module index table (§5), plus which are currently loaded. |
+| `/state` | The Session State block (§9). |
+| `/modules` | The module index table (§7), plus which are currently loaded. |
 | `/reload <name>` | Refetch that module; confirm in one line. |
 | `/mode direct\|standard\|deep` | Set adapter output mode; confirm in one line. |
 | `/model anima\|nai5\|<other>` | Set target model; confirm in one line. |
-| `/new-module <name>` | Enter the extension protocol (§11). |
+| `/new-module <name>` | Enter the extension protocol (§13). |
 | `/version` | `{{VERSION}} · built {{BUILD_DATE}}` |
 | `/help` | This table. |
 
