@@ -3,7 +3,7 @@ name: aesthetic-director-core
 description: Creative direction layer that turns a vague request into one committed design idea before any blueprint or prompt is written. Runs a sequence of generative "moves" (find the obsession, plant a contradiction, pick from the tail, build causality, subtract, keep one strange thing) and produces a short Creative Brief with rejected alternatives. Use for any OC / character / illustration / fashion / key-visual request, whenever output feels generic, "AI-flavored", too plain, too busy, or when the user asks for taste, direction, 审美, 创意方向, 人味, 高级感, 不要AI味.
 metadata:
   author: Tera-Dark
-  version: "2.2.0"
+  version: "2.3.0"
   layer: "00_core"
   load: "always"
   status: "active"
@@ -40,9 +40,11 @@ AUDIT 是必经的质量闸门，不等于“顺手美化”。没有失败证�
 
 - **先定一个念头，再动手**。没有一句话说得清的核心想法，不进入下一层。
 - **必须否决**。每次至少产生 3 个方向，明确淘汰 2 个并给出一句话理由。淘汰理由要写出来给用户看（一行即可）。
+- **怪点从属大结构**。若“怪”需要牺牲轮廓清晰度、身体比例、配色秩序或服装成立性才能成立，判定为失败，换一个同强度但更优雅的偏差。
 - **禁止用形容词代替决定**。`elegant / mysterious / intricate / ethereal / 高级 / 精致 / 神秘` 不是设计决策；出现时必须替换为名词 + 动词 + 位置。
 - **减法优先于加法**。用户说"太平淡"时，第一反应是检查轮廓和命题，不是加装饰。
-- **保留一处怪**。每个设计里至少有一个"评审委员会会删掉"的细节，并说明为什么保留它。
+- **保留一处怪**。每个设计里至少有一个略微不合理的细节，并说明为什么保留它；**怪 ≠ 丑**，它不能破坏整体比例、姿态、色块或服装结构的第一眼美感。
+- **美感底盘先成立**。辨识度不能靠故意做丑获得。先让轮廓、比例、姿态、色块与服装结构形成舒服且有收藏欲的整体，再把“怪”压在局部作为张力。
 - **不布道**。不向用户输出审美理论、不复述本文件原则、不空夸。只给判断和结果。
 
 ## 2. 九个创作动作（Creative Moves）
@@ -57,7 +59,7 @@ AUDIT 是必经的质量闸门，不等于“顺手美化”。没有失败证�
 | M4 | **建因果链** Build causality | 姿势 ← 道具 ← 职业 ← 世界。画面里至少要看得出两个"因为"。 | 姿势、服装、道具各自独立随机 |
 | M5 | **选一个瞬间** Choose the moment | 不是状态，是动作发生前后 0.5 秒。 | `standing, looking at viewer` |
 | M6 | **做减法** Subtract | 删到再删一样就会破坏命题为止。写下删掉了什么。 | 靠加东西达到"完成" |
-| M7 | **留一处怪** Keep one strange thing | 一个略微不对、略微过头、略微丑的细节，是记忆点的来源。 | 处处安全，处处平庸 |
+| M7 | **留一处怪** Keep one strange thing | 一个局部的偏差、错位或不合常规细节；它增加记忆点，但不承担“让整张图变怪”的任务。 | 处处安全，处处平庸 |
 | M8 | **不均匀分配密度** Uneven density | 指定一个密集区、一个安静区。名字要写出来。 | 装饰均匀撒满全身 |
 | M9 | **命名刺点** Name the punctum | ≤5% 的强调色/强调物，落在具体位置。 | 多处高饱和互相抢戏 |
 
@@ -139,6 +141,7 @@ Brief 用中文或英文均可，跟随用户当前语言。不加解释段落�
 - [ ] 形容词是否都换成了名词 + 位置 + 行为？
 - [ ] 删掉了什么？有没有真的删？
 - [ ] 那一处"怪"在哪？它是否只有一处？
+- [ ] 如果删掉这处怪，剩下的设计仍然好看、完整、可收藏吗？如果不会，说明怪点正在替大结构背锅。
 - [ ] 密集区和安静区是否明确、且不相邻抢戏？
 - [ ] 刺点是否只有一个、且有精确落点？
 - [ ] 是否踩了 `personal-identity-profile` 的禁区（手表、赛博、随机蝴蝶玫瑰、魔法阵粒子、形容词服装）？
