@@ -15,7 +15,7 @@
    │
    ▼  HARNESS.md = kernel（运行契约）+ 模块索引（每个模块的触发词、URL、卡片）+ always-on 模块全文
    │
-   ▼  模型回一行握手：Harness v3.4.0 loaded · current modules · 说需求，或发参考图。
+   ▼  模型回一行握手：Harness v3.5.0 loaded · current modules · 说需求，或发参考图。
    │
    ▼  你提需求 → router 选单模块或 pipeline pack → 按索引里的 raw URL 抓取；多阶段 Web-first 管线优先一次抓 pack
 ```
@@ -35,7 +35,7 @@ Paste GitHub repo URL → read README bootstrap → fetch raw bundle/HARNESS.md 
 
 Normal web use does not require a repository clone, Python, Node, SQLite, an executable, or a local HTTP server. The GitHub page is the discovery/bootstrap surface; the raw Bundle is the runtime source of truth.
 
-Fresh-session rule: prefer current `main` raw Bundle. The handshake version and module count are a freshness probe. On-demand modules and pipeline packs use generated raw URLs from the Bundle index. A pipeline pack counts as one fetch and loads all declared internal stages together. If raw loading fails, use only the affected module cards and mark `[card-only]`; never silently substitute remembered content.
+Fresh-session rule: prefer current `main` raw Bundle. The handshake version and module count are a freshness probe. On-demand modules and pipeline packs use generated raw URLs from the Bundle index. A pipeline pack counts as one fetch and loads all declared internal stages together. P11 adds explicit scoped degradation: standalone module failure → `[card-only]`, pipeline-pack failure → `[pipeline-unavailable]`, Anima tag-index failure → `[tag-index-unavailable]` with affected meanings moved to NL and no hard-tag insertion. Never silently substitute remembered content.
 
 ## 3. 各平台
 
