@@ -106,7 +106,7 @@ def main() -> int:
     for needle in ("canonical_tag", "serialized_tag", "37\\(reverse1999\\)", "idempot"):
         require(needle in sources["serializer"], f"Serializer lost contract token: {needle}", failures)
 
-    for needle in ("not a generator", "design-drift", "asymmetry", "quiet field", "punctum"):
+    for needle in ("not an aesthetic generator", "design-drift", "asymmetry", "quiet field", "punctum"):
         require(needle.lower() in sources["protection"].lower(), f"Protection lost contract token: {needle}", failures)
 
     for needle in ("Blueprint Gate", "Failure boundary", "37\\(reverse1999\\)"):
