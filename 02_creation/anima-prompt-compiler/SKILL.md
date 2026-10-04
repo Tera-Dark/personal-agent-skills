@@ -173,5 +173,5 @@ NL 段不是 Tag 段的同义词复述。它必须补充关系和层级。
 
 - `references/anima-model-profiles.md` — 证据分级、来源溯源、模型变体、文本编码器兼容、质量词清单、参数参考、实验日志
 - `references/anima-troubleshooting.md` — 伪影诊断目录、最小修复、不确定性处理
-- `../anima-tag-gate/SKILL.md` — Web-first exact → alias → missing gate
+- `anima-tag-gate` — Web-first exact → alias → missing gate
 - 测试集：`tests/test-suite.md`
