@@ -3,7 +3,7 @@ name: evaluation-loop
 description: Evaluates a generated image or compiled prompt against the original Creative Brief and blueprint, using a fixed rubric (identity preservation, outfit binding, spatial clarity, unrequested additions, V1/V2 consistency, output contract) plus a design-layer read (thesis, silhouette, causality, density, punctum, one strange thing). Diagnoses which layer failed and routes the fix to that layer with a single-variable change. Use on any feedback round: 太平淡, 太乱, 不像, 没人味, 这版可以, 评价一下, 哪里不对, compare versions.
 metadata:
   author: Tera-Dark
-  version: "2.1.0"
+  version: "2.2.0"
   layer: "05_evaluation"
   load: "always"
   status: "active"
@@ -53,6 +53,20 @@ metadata:
 | Output Contract | 格式正确，无禁用词，无多余负面 | 出现 `masterpiece`；夹带独立 Negative |
 
 外加一行 **Design Read**：命题 ___ / 轮廓 ___ / 因果 ___ / 密度 ___ / 刺点 ___ / 怪 ___（各一个词：成立 / 弱 / 缺失）。
+
+## Modern Key Visual evaluation
+
+当当前任务属于现代二游 / Character Key Visual，额外检查：
+
+- Impact：缩略图是否先读到强轮廓、主运动轴和大色块，而不是柔光。
+- Density：是否存在 1–2 个局部高密度口袋与明确安静区。
+- Construction：首饰、流苏、链条、服装延伸结构是否有固定、承重、衔接证据。
+- Face：是否出现镜像双眼、过量虹膜高光、塑料皮肤。
+- Hair：是否先读到发量结构，再看到少量发丝。
+- Light：是否有明确主光、清晰阴影和接触阴影；不能用 bloom / bokeh 代替形体。
+- Atmosphere：删除粒子、花瓣、光斑后构图是否仍成立。
+
+任一项因为设计逻辑失败，优先回到 Aesthetic Director / specialist，不得用 adapter 增加词汇掩盖。
 
 ## 输出契约
 
