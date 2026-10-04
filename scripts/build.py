@@ -337,6 +337,12 @@ def stale_outputs(root):
         for fn in os.listdir(pipe_dir):
             if fn.endswith(".md") and fn not in expected:
                 stale.append(f"{cfg['bundle_dir']}/pipelines/{fn} (orphan — delete)")
+    pipe_dir = os.path.join(root, cfg["bundle_dir"], "pipelines")
+    if os.path.isdir(pipe_dir):
+        expected = {os.path.basename(k) for k in outputs if k.startswith(f"{cfg['bundle_dir']}/pipelines/")}
+        for fn in os.listdir(pipe_dir):
+            if fn.endswith(".md") and fn not in expected:
+                stale.append(f"{cfg['bundle_dir']}/pipelines/{fn} (orphan — delete)")
     return stale
 
 
