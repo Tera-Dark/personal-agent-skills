@@ -126,6 +126,16 @@ def cards(entries):
 
 
 
+
+def build_anima_pipeline_pack_entry(cfg):
+    packs = (cfg.get("pipeline") or {}).get("pipeline_packs") or {}
+    if "anima" not in packs:
+        return "No `anima` pipeline pack declared."
+    raw = raw_base(cfg)
+    url = "{}{}/pipelines/anima.md".format(raw, cfg["bundle_dir"])
+    stages = " → ".join(["Gate", "Classifier", "Skeleton", "Protection", "Compressor", "Serializer", "Compiler"])
+    return "`{}` · one fetch · stages: {}".format(url, stages)
+
 def pipeline_pack_table(cfg):
     packs = (cfg.get("pipeline") or {}).get("pipeline_packs") or {}
     if not packs:
@@ -170,6 +180,7 @@ def render_kernel(root, cfg, version, entries):
         "{{RAW_BASE}}": raw_base(cfg),
         "{{MANIFEST_TABLE}}": manifest_table(entries) + "\n\n### Module cards (contracts for on-demand modules; use only if a fetch fails)\n\n" + cards(entries),
         "{{PIPELINE_PACK_TABLE}}": pipeline_pack_table(cfg),
+        "{{ANIMA_PIPELINE_PACK_ENTRY}}": build_anima_pipeline_pack_entry(cfg),
     }
     for k, v in subs.items():
         text = text.replace(k, v)
