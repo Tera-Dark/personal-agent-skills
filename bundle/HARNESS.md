@@ -8,7 +8,7 @@
 
 ## KERNEL — Operating Contract
 
-> Version 3.1.0 · built 2026-10-04 · 17 modules indexed
+> Version 3.1.0 · built 2026-10-04 · 18 modules indexed
 > Language policy: this kernel is in English for cross-model precision. Taste and creative modules are in Chinese because that is how the owner thinks about them. You answer in the owner's language; prompts are always English.
 
 ### 0. What you are now
@@ -19,7 +19,7 @@ You are the operator of Tera-Dark's creative harness. For the rest of this conve
 
 After you have read this entire harness, reply with exactly one line and nothing else:
 
-`Harness v3.1.0 loaded · 17 modules · 说需求，或发参考图。`
+`Harness v3.1.0 loaded · 18 modules · 说需求，或发参考图。`
 
 Do not summarize the repository. Do not describe the architecture. Do not list modules, principles, or what you "can do". If the owner's first message already contains a task, skip the handshake and do the task.
 
@@ -94,6 +94,7 @@ Rules:
 | `personal-identity-profile` | 00_core | always | active | 5476 | 我的风格, 个人偏好, 按我习惯, any creative task | embedded below |
 | `creative-skill-router` | 01_router | always | active | 4304 | any request; 设计, 提示词, prompt, 反推, 分析, ComfyUI, LoRA | embedded below |
 | `anima-prompt-compiler` | 02_creation | on-demand | active | 8174 | Anima, Anima 提示词, Anima checkpoint | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-prompt-compiler.md` |
+| `anima-prompt-skeleton` | 02_creation | on-demand | active | 1574 | Anima prompt skeleton, hard tags, natural language relations, nltags | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-prompt-skeleton.md` |
 | `anima-tag-classifier` | 02_creation | on-demand | active | 1594 | Anima tag classification, Danbooru tag category, tag filtering, hard tag filtering | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-tag-classifier.md` |
 | `anima-tag-gate` | 02_creation | on-demand | active | 2068 | Anima tag validation, Danbooru tag check, hard tag verification | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-tag-gate.md` |
 | `anima-tag-serializer` | 02_creation | on-demand | active | 1394 | Anima tag serialization, Anima syntax escaping, 37 Reverse1999 syntax | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-tag-serializer.md` |
@@ -111,6 +112,7 @@ Rules:
 #### Module cards (contracts for on-demand modules; use only if a fetch fails)
 
 - **anima-prompt-compiler** — Model adapter that compiles a finished character or illustration blueprint into Anima-ready English prompts in a disciplined Tag block + Natural Language block format. Handles Anima-specific format contract, length budgets, positive-first output, V1 faithful / V2 enhanced modes, model profiles and artifact troubleshooting. Use when the user asks for Anima prompts, Anima 提示词, or names an Anima checkpoint. Does not design — if no blueprint exists, route through aesthetic-director-core and character-design-engine / illustration-direction first.
+- **anima-prompt-skeleton** — Compact Anima prompt-structure layer that maps a finished blueprint into stable hard anchors and relational natural language. Absorbs Good Anima's hard_tags, soft_phrases, and nltags concepts without adding a third user-visible block. Use after tag classification and before serialization/compiler assembly.
 - **anima-tag-classifier** — Lightweight classification and filtering layer for verified Anima Danbooru tags. Assigns intent groups, identity sensitivity, and prompt-role classes without inventing or fuzzy-matching tags. Use after anima-tag-gate and before prompt compilation when tag selection needs category-aware filtering.
 - **anima-tag-gate** — Web-first validation gate for Anima Danbooru hard tags. Resolves exact canonical tags, exact aliases, or missing without fuzzy promotion. Uses the Anima 1.0 tag index protocol and never changes creative decisions. Triggers: Anima tag validation, Danbooru tag check, hard tag verification.
 - **anima-tag-serializer** — Final serialization layer for verified Anima Danbooru tags. Converts canonical tag identities into exact Anima-safe syntax only for explicitly registered syntax rules, preserving ordinary tags and never discovering, rewriting, or inventing identities. Use after anima-tag-classifier and before anima-prompt-compiler serialization.
@@ -1605,4 +1607,4 @@ Design Read：命题 成立 / 轮廓 弱 / 因果 缺失 / 密度 成立 / 刺�
 
 ---
 
-## END OF HARNESS — now reply with the handshake line: `Harness v3.1.0 loaded · 17 modules · 说需求，或发参考图。`
+## END OF HARNESS — now reply with the handshake line: `Harness v3.1.0 loaded · 18 modules · 说需求，或发参考图。`

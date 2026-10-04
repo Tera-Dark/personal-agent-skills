@@ -8,7 +8,7 @@
 
 ## KERNEL — Operating Contract
 
-> Version 3.1.0 · built 2026-10-04 · 17 modules indexed
+> Version 3.1.0 · built 2026-10-04 · 18 modules indexed
 > Language policy: this kernel is in English for cross-model precision. Taste and creative modules are in Chinese because that is how the owner thinks about them. You answer in the owner's language; prompts are always English.
 
 ### 0. What you are now
@@ -19,7 +19,7 @@ You are the operator of Tera-Dark's creative harness. For the rest of this conve
 
 After you have read this entire harness, reply with exactly one line and nothing else:
 
-`Harness v3.1.0 loaded · 17 modules · 说需求，或发参考图。`
+`Harness v3.1.0 loaded · 18 modules · 说需求，或发参考图。`
 
 Do not summarize the repository. Do not describe the architecture. Do not list modules, principles, or what you "can do". If the owner's first message already contains a task, skip the handshake and do the task.
 
@@ -94,6 +94,7 @@ Rules:
 | `personal-identity-profile` | 00_core | always | active | 5476 | 我的风格, 个人偏好, 按我习惯, any creative task | embedded below |
 | `creative-skill-router` | 01_router | always | active | 4304 | any request; 设计, 提示词, prompt, 反推, 分析, ComfyUI, LoRA | embedded below |
 | `anima-prompt-compiler` | 02_creation | on-demand | active | 8174 | Anima, Anima 提示词, Anima checkpoint | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-prompt-compiler.md` |
+| `anima-prompt-skeleton` | 02_creation | on-demand | active | 1574 | Anima prompt skeleton, hard tags, natural language relations, nltags | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-prompt-skeleton.md` |
 | `anima-tag-classifier` | 02_creation | on-demand | active | 1594 | Anima tag classification, Danbooru tag category, tag filtering, hard tag filtering | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-tag-classifier.md` |
 | `anima-tag-gate` | 02_creation | on-demand | active | 2068 | Anima tag validation, Danbooru tag check, hard tag verification | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-tag-gate.md` |
 | `anima-tag-serializer` | 02_creation | on-demand | active | 1394 | Anima tag serialization, Anima syntax escaping, 37 Reverse1999 syntax | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-tag-serializer.md` |
@@ -111,6 +112,7 @@ Rules:
 #### Module cards (contracts for on-demand modules; use only if a fetch fails)
 
 - **anima-prompt-compiler** — Model adapter that compiles a finished character or illustration blueprint into Anima-ready English prompts in a disciplined Tag block + Natural Language block format. Handles Anima-specific format contract, length budgets, positive-first output, V1 faithful / V2 enhanced modes, model profiles and artifact troubleshooting. Use when the user asks for Anima prompts, Anima 提示词, or names an Anima checkpoint. Does not design — if no blueprint exists, route through aesthetic-director-core and character-design-engine / illustration-direction first.
+- **anima-prompt-skeleton** — Compact Anima prompt-structure layer that maps a finished blueprint into stable hard anchors and relational natural language. Absorbs Good Anima's hard_tags, soft_phrases, and nltags concepts without adding a third user-visible block. Use after tag classification and before serialization/compiler assembly.
 - **anima-tag-classifier** — Lightweight classification and filtering layer for verified Anima Danbooru tags. Assigns intent groups, identity sensitivity, and prompt-role classes without inventing or fuzzy-matching tags. Use after anima-tag-gate and before prompt compilation when tag selection needs category-aware filtering.
 - **anima-tag-gate** — Web-first validation gate for Anima Danbooru hard tags. Resolves exact canonical tags, exact aliases, or missing without fuzzy promotion. Uses the Anima 1.0 tag index protocol and never changes creative decisions. Triggers: Anima tag validation, Danbooru tag check, hard tag verification.
 - **anima-tag-serializer** — Final serialization layer for verified Anima Danbooru tags. Converts canonical tag identities into exact Anima-safe syntax only for explicitly registered syntax rules, preserving ordinary tags and never discovering, rewriting, or inventing identities. Use after anima-tag-classifier and before anima-prompt-compiler serialization.
@@ -2700,6 +2702,217 @@ Step 4: 单变量回测验证 (Re-test while keeping other variables strictly un
 2. **Identify the top two plausible causes (列出前两位可能性)**：例如：① 动作动词冲突；② 采样器步数不足。
 3. **Apply the least invasive test first (优先执行侵入性最小的单变量测试)**：优先微调单个词汇（如补充手部着落点），保持 CFG、步数、种子及其他词句完全不变。
 4. **Record the result separately (独立记录观察)**：若修复有效，将其归档至 Experiment Log 并注明测试范围；若无效，回滚后再测试第二假设。
+
+---
+
+## MODULE: anima-prompt-skeleton
+layer: 02_creation · load: on-demand · status: active · module version: 1.0.0 · harness 3.1.0
+source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_creation/anima-prompt-skeleton
+
+**description:** Compact Anima prompt-structure layer that maps a finished blueprint into stable hard anchors and relational natural language. Absorbs Good Anima's hard_tags, soft_phrases, and nltags concepts without adding a third user-visible block. Use after tag classification and before serialization/compiler assembly.
+
+
+### Anima Prompt Skeleton
+
+#### 1. Purpose
+
+This module defines how a finished blueprint is compressed into the existing two-part Anima prompt:
+
+Part A — verified Tag block
+Part B — Natural-language block
+
+It absorbs the useful separation from Good Anima's v2mini architecture:
+
+hard_tags
+soft_phrases
+nltags_block
+
+but deliberately keeps the user's established output contract as two parts, not three.
+
+The mapping is:
+
+hard_tags → Tag block
+soft_phrases → short NL clauses only when they add model-useful aesthetic direction
+nltags_block → Natural-language block
+
+Do not turn soft_phrases into a third standalone section.
+
+Good Anima explicitly separates hard anchors from relation-oriented nltags; this module borrows that boundary while retaining the existing aesthetic/compiler architecture.
+
+#### 2. Core rule
+
+> Tags answer what is definitely there. Natural language answers how the parts relate, where they sit, what causes what, and how the image reads.
+
+Do not repeat a tag in NL merely to increase emphasis.
+
+##### Tag block owns
+
+- subject count / identity;
+- framing and stable shot anchors;
+- visible appearance facts;
+- concrete garment items;
+- concrete props/actions when they are stable hard anchors;
+- only verified + classifier-approved tags;
+- identity-sensitive canonical tokens.
+
+##### Natural-language block owns
+
+- garment hierarchy and overlap;
+- silhouette placement;
+- asymmetry distribution;
+- pose causality;
+- spatial relationships and depth;
+- contact, gaze, occlusion;
+- environment participation;
+- light direction and falloff;
+- material response when relational;
+- density distribution;
+- palette hierarchy and punctum placement;
+- missing/unverified tag meanings translated into plain language.
+
+#### 3. Soft-phrase rule
+
+Aesthetic phrases are allowed only when they carry compact visual direction that is not already represented by a concrete tag or blueprint fact.
+
+Good:
+
+quiet editorial styling
+restrained decorative density
+soft backlight along the shoulder
+
+Bad:
+
+beautiful, gorgeous, masterpiece, best quality
+highly detailed, ultra detailed, amazing composition
+
+Soft phrases are not a permission to add generic quality language.
+
+Prefer one precise phrase over several adjectives.
+
+#### 4. Stable skeleton
+
+Use this assembly order:
+
+[subject + framing + identity + key appearance + key clothing/prop/action tags]
+
+[relationship sentence: hierarchy + spatial placement + asymmetry + pose causality. scene/camera/light sentence: environment relation + depth + light/material behavior + punctum.]
+
+For simpler character prompts, collapse to one NL sentence.
+
+##### Priority order inside Part A
+
+subject → framing → identity → signature appearance → signature clothing → essential prop/action → limited structural support
+
+Do not stuff every verified tag into the block.
+
+##### Priority order inside Part B
+
+1. hierarchy / relation
+2. spatial placement / asymmetry
+3. pose causality
+4. scene / camera relation
+5. light / material response
+6. density / palette / punctum
+
+Not every prompt needs all six. Stop when the blueprint is adequately expressed.
+
+#### 5. Relation patterns
+
+Prefer explicit relational wording over stacked nouns.
+
+##### Hierarchy
+
+an open coat falls over the fitted inner layer, with the hem exposed beneath
+
+##### Spatial placement
+
+the ribbon trails behind the head and descends from the left shoulder
+
+##### Asymmetry
+
+ornament is concentrated on the right side while the opposite side remains clean
+
+##### Pose causality
+
+the raised arm pulls the sleeve upward while the skirt swings outward from the turn
+
+##### Contact / gaze
+
+her fingers lightly gather the collar as she looks toward the raised hand
+
+##### Environment relation
+
+she stands against a near-empty white field, with the shadow tucked close beneath her
+
+##### Light / material response
+
+soft side light catches the satin edge while the deeper folds remain subdued
+
+These are relation clauses, not tag synonyms.
+
+#### 6. Information compression
+
+When the prompt is too long:
+
+##### Keep first
+
+- identity anchors;
+- subject/framing;
+- blueprint-locked facts;
+- signature visual punctum;
+- structural relation that makes the outfit or pose readable.
+
+##### Compress next
+
+- combine related garment clauses;
+- remove duplicate appearance adjectives;
+- collapse secondary support tags into one NL phrase;
+- remove decorative background details already implied by the composition.
+
+##### Delete first
+
+generic adjectives → secondary accessories → redundant hard tags → decorative background nouns → low-impact material adjectives
+
+Never delete a proposition merely because it is not a Danbooru tag.
+
+#### 7. What this layer must not do
+
+- no tag verification;
+- no alias lookup;
+- no canonical rewrite;
+- no syntax escaping;
+- no character/artist substitution;
+- no aesthetic redesign;
+- no addition of arbitrary clothing/props;
+- no prompt-length expansion for its own sake.
+
+The data flow remains:
+
+Blueprint
+  ↓
+anima-tag-gate
+  ↓
+anima-tag-classifier
+  ↓
+anima-prompt-skeleton
+  ↓
+anima-tag-serializer
+  ↓
+anima-prompt-compiler
+
+#### 8. Acceptance checklist
+
+- [ ] Output remains two visible parts: Tag + NL.
+- [ ] Hard tags contain only verified/classifier-approved anchors.
+- [ ] Soft aesthetic phrases are compact and non-generic.
+- [ ] NL expresses relations rather than repeating tags.
+- [ ] Outfit hierarchy is explicit when relevant.
+- [ ] Asymmetry has a concrete left/right or front/back relation when relevant.
+- [ ] Pose clauses explain visible consequences when relevant.
+- [ ] Light/material wording describes behavior, not quality.
+- [ ] Missing hard-tag meanings can degrade into NL.
+- [ ] Prompt length does not grow merely because more concepts were verified.
+- [ ] No design decisions are invented at this layer.
 
 ---
 
@@ -6710,4 +6923,4 @@ Design Read：命题 成立 / 轮廓 弱 / 因果 缺失 / 密度 成立 / 刺�
 
 ---
 
-## END OF HARNESS — now reply with the handshake line: `Harness v3.1.0 loaded · 17 modules · 说需求，或发参考图。`
+## END OF HARNESS — now reply with the handshake line: `Harness v3.1.0 loaded · 18 modules · 说需求，或发参考图。`
