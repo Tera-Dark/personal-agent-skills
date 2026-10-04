@@ -6,9 +6,22 @@
   "raw_base": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/",
   "harness_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS.md",
   "harness_full_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS-FULL.md",
-  "handshake": "Harness v3.1.0 loaded · 14 modules · 说需求，或发参考图。",
-  "core_tokens": 30981,
-  "full_tokens": 92044,
+  "handshake": "Harness v3.1.0 loaded · 15 modules · 说需求，或发参考图。",
+  "core_tokens": 26995,
+  "full_tokens": 86521,
+  "pipeline": {
+    "aesthetic_gate": "aesthetic-director-core",
+    "blueprint_gate": {
+      "character": "character-design-engine",
+      "illustration": "illustration-direction"
+    },
+    "evaluation_gate": "evaluation-loop",
+    "adapters": [
+      "anima-prompt-compiler",
+      "nai5-community-prompt-engineering",
+      "general-image-prompt-adapter"
+    ]
+  },
   "modules": [
     {
       "name": "aesthetic-director-core",
@@ -30,8 +43,8 @@
         "references/emotional-design.md",
         "references/modern-key-visual-grammar.md"
       ],
-      "tokens_skill": 2411,
-      "tokens_bundle": 17217
+      "tokens_skill": 2719,
+      "tokens_bundle": 17160
     },
     {
       "name": "personal-identity-profile",
@@ -39,7 +52,7 @@
       "load": "always",
       "status": "active",
       "version": "2.1.0",
-      "description": "Persistent identity and taste layer for Tera-Dark's creative work. Holds the aesthetic signature (structured foundation, one strange thing, a hint of danger, modern key-visual impact, fashion-grade garment construction, female-oriented OC/gacha sensibility), hard dislikes (watches, cyber/mech, random butterflies-roses-particles, adjective costumes). Does not generate prompts. Load first for any creative, design, illustration, prompt or aesthetic-judgment task; also when the user says 我的风格, 我喜欢, 按我习惯, 个人偏好.",
+      "description": "Persistent identity and taste layer for Tera-Dark's creative work. Holds the aesthetic signature (structured foundation, one strange thing, a hint of danger, modern key-visual impact, fashion-grade garment construction, female-oriented OC/gacha sensibility), hard dislikes (watches, cyber/mech, random butterflies-roses-particles, adjective costumes), business goals and workflow style. Does not generate prompts. Load first for any creative, design, illustration, prompt or aesthetic-judgment task; also when the user says 我的风格, 我喜欢, 按我习惯, 个人偏好.",
       "triggers": "我的风格, 个人偏好, 按我习惯, any creative task",
       "path": "00_core/personal-identity-profile",
       "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/00_core/personal-identity-profile",
@@ -52,14 +65,14 @@
         "references/business-objectives.md"
       ],
       "tokens_skill": 589,
-      "tokens_bundle": 4953
+      "tokens_bundle": 5476
     },
     {
       "name": "creative-skill-router",
       "layer": "01_router",
       "load": "always",
       "status": "active",
-      "version": "3.0.0",
+      "version": "3.0.1",
       "description": "Entry point for all creative requests in this skill hub. Classifies intent (OC/character design, illustration, fashion, NAI5 prompt, Anima prompt, image reverse analysis, prompt review, ComfyUI/LoRA/dataset), loads identity + aesthetic direction first, then hands off to the right specialist and model adapter. Use whenever a request involves 设计, OC, 人设, 立绘, 插画, 服装, 提示词, prompt, NAI, NovelAI, Anima, 反推, 分析图片, ComfyUI, LoRA, or when it is unclear which skill should handle a creative task.",
       "triggers": "any request; 设计, 提示词, prompt, 反推, 分析, ComfyUI, LoRA",
       "path": "01_router/creative-skill-router",
@@ -72,15 +85,15 @@
         "references/execution-flow.md",
         "references/skill-map.md"
       ],
-      "tokens_skill": 1334,
-      "tokens_bundle": 3683
+      "tokens_skill": 1581,
+      "tokens_bundle": 3895
     },
     {
       "name": "anima-prompt-compiler",
       "layer": "02_creation",
       "load": "on-demand",
       "status": "active",
-      "version": "2.2.0",
+      "version": "2.3.0",
       "description": "Model adapter that compiles a finished character or illustration blueprint into Anima-ready English prompts in a disciplined Tag block + Natural Language block format. Handles Anima-specific format contract, length budgets, positive-first output, V1 faithful / V2 enhanced modes, model profiles and artifact troubleshooting. Use when the user asks for Anima prompts, Anima 提示词, or names an Anima checkpoint. Does not design — if no blueprint exists, route through aesthetic-director-core and character-design-engine / illustration-direction first.",
       "triggers": "Anima, Anima 提示词, Anima checkpoint",
       "path": "02_creation/anima-prompt-compiler",
@@ -90,15 +103,32 @@
         "references/anima-model-profiles.md",
         "references/anima-troubleshooting.md"
       ],
-      "tokens_skill": 2018,
-      "tokens_bundle": 7333
+      "tokens_skill": 2532,
+      "tokens_bundle": 7786
+    },
+    {
+      "name": "anima-tag-gate",
+      "layer": "02_creation",
+      "load": "on-demand",
+      "status": "active",
+      "version": "1.0.0",
+      "description": "Web-first validation gate for Anima Danbooru hard tags. Resolves exact canonical tags, exact aliases, or missing without fuzzy promotion. Uses the Anima 1.0 tag index protocol and never changes creative decisions. Triggers: Anima tag validation, Danbooru tag check, hard tag verification.",
+      "triggers": "Anima tag validation, Danbooru tag check, hard tag verification",
+      "path": "02_creation/anima-tag-gate",
+      "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_creation/anima-tag-gate",
+      "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-tag-gate.md",
+      "references": [
+        "references/anima-tag-index.md"
+      ],
+      "tokens_skill": 1410,
+      "tokens_bundle": 1977
     },
     {
       "name": "character-design-engine",
       "layer": "02_creation",
       "load": "on-demand",
       "status": "active",
-      "version": "2.4.0",
+      "version": "2.5.0",
       "description": "Turns a Creative Brief (from aesthetic-director-core) into a complete, model-agnostic character blueprint — design thesis, silhouette architecture, visual anchors, garment engineering (base / structural / signature extension / accessory system), material contrast, palette hierarchy, behavioral pose + camera, narrative residue, presentation format — then runs a subtraction pass. Use for OC, 人设, 角色设计, 服装设计, 立绘, 高定服设, 二游角色, character sheet, fashion concept. Never writes model-specific prompt syntax.",
       "triggers": "OC, 人设, 角色设计, 服装设计, 立绘, 高定服设, 二游角色, character sheet, 极繁, 极繁精美, 华丽人设, 原创圈",
       "path": "02_creation/character-design-engine",
@@ -110,8 +140,8 @@
         "references/oc-design-system.md",
         "references/garment-lexicon.md"
       ],
-      "tokens_skill": 2079,
-      "tokens_bundle": 22708
+      "tokens_skill": 4151,
+      "tokens_bundle": 15338
     },
     {
       "name": "general-image-prompt-adapter",
@@ -127,8 +157,8 @@
       "references": [
         "references/target-notes.md"
       ],
-      "tokens_skill": 1155,
-      "tokens_bundle": 2217
+      "tokens_skill": 1180,
+      "tokens_bundle": 2186
     },
     {
       "name": "illustration-direction",
@@ -148,8 +178,8 @@
         "references/atmosphere-presets.md",
         "references/white-background-fashion-grammar.md"
       ],
-      "tokens_skill": 3206,
-      "tokens_bundle": 16965
+      "tokens_skill": 3551,
+      "tokens_bundle": 16883
     },
     {
       "name": "nai5-community-prompt-engineering",
@@ -170,11 +200,11 @@
         "references/interaction-tags.md",
         "references/scene-block.md",
         "references/artist-stack.md",
-        "references/weighting.md",
-        "references/negative-strategy.md"
+        "references/negative-strategy.md",
+        "references/weighting.md"
       ],
-      "tokens_skill": 2949,
-      "tokens_bundle": 6156
+      "tokens_skill": 3279,
+      "tokens_bundle": 6006
     },
     {
       "name": "image-reverse-analysis",
@@ -190,8 +220,8 @@
       "references": [
         "references/design-language-extraction.md"
       ],
-      "tokens_skill": 974,
-      "tokens_bundle": 1642
+      "tokens_skill": 1188,
+      "tokens_bundle": 1621
     },
     {
       "name": "prompt-analysis",
@@ -265,8 +295,8 @@
       "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/05_evaluation/evaluation-loop",
       "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/evaluation-loop.md",
       "references": [],
-      "tokens_skill": 942,
-      "tokens_bundle": 1511
+      "tokens_skill": 1286,
+      "tokens_bundle": 1490
     }
   ]
 }
