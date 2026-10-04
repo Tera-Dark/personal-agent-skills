@@ -90,14 +90,14 @@ Rules:
 
 | module | layer | load | status | ~tokens | triggers | fetch |
 |---|---|---|---|---|---|---|
-| `aesthetic-director-core` | 00_core | always | active | 15666 | OC, 人设, 插画, 服装, 审美, 创意方向, 人味, 高级感, 不要AI味, 太平淡, 太乱 | embedded below |
-| `personal-identity-profile` | 00_core | always | active | 4617 | 我的风格, 个人偏好, 按我习惯, any creative task | embedded below |
+| `aesthetic-director-core` | 00_core | always | active | 17217 | OC, 人设, 插画, 服装, 审美, 创意方向, 人味, 高级感, 不要AI味, 太平淡, 太乱 | embedded below |
+| `personal-identity-profile` | 00_core | always | active | 4953 | 我的风格, 个人偏好, 按我习惯, any creative task | embedded below |
 | `creative-skill-router` | 01_router | always | active | 3683 | any request; 设计, 提示词, prompt, 反推, 分析, ComfyUI, LoRA | embedded below |
-| `anima-prompt-compiler` | 02_creation | on-demand | active | 7270 | Anima, Anima 提示词, Anima checkpoint | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-prompt-compiler.md` |
+| `anima-prompt-compiler` | 02_creation | on-demand | active | 7333 | Anima, Anima 提示词, Anima checkpoint | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-prompt-compiler.md` |
 | `character-design-engine` | 02_creation | on-demand | active | 13263 | OC, 人设, 角色设计, 服装设计, 立绘, 高定服设, 二游角色, character sheet, 极繁, 极繁精美, 华丽人设, 原创圈 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/character-design-engine.md` |
-| `general-image-prompt-adapter` | 02_creation | on-demand | active | 2162 | Midjourney, MJ, DALL-E, GPT Image, Imagen, Gemini image, Nano Banana, Flux, SDXL, Stable Diffusion, 通用提示词, 其他模型, 不知道用什么模型 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/general-image-prompt-adapter.md` |
-| `illustration-direction` | 02_creation | on-demand | active | 16538 | 插画, 氛围图, 竖屏, 半留白, 印象风, 故事感, key visual, poster, scene, 极繁, 特写垫底, 大头贴, 元素贴, 角色拼贴 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/illustration-direction.md` |
-| `nai5-community-prompt-engineering` | 02_creation | on-demand | active | 5938 | NAI5, NovelAI, NAI提示词, tag prompt, Danbooru, artist stack, char1 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/nai5-community-prompt-engineering.md` |
+| `general-image-prompt-adapter` | 02_creation | on-demand | active | 2217 | Midjourney, MJ, DALL-E, GPT Image, Imagen, Gemini image, Nano Banana, Flux, SDXL, Stable Diffusion, 通用提示词, 其他模型, 不知道用什么模型 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/general-image-prompt-adapter.md` |
+| `illustration-direction` | 02_creation | on-demand | active | 16965 | 插画, 氛围图, 竖屏, 半留白, 印象风, 故事感, key visual, poster, scene, 极繁, 特写垫底, 大头贴, 元素贴, 角色拼贴 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/illustration-direction.md` |
+| `nai5-community-prompt-engineering` | 02_creation | on-demand | active | 6156 | NAI5, NovelAI, NAI提示词, tag prompt, Danbooru, artist stack, char1 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/nai5-community-prompt-engineering.md` |
 | `image-reverse-analysis` | 03_analysis | on-demand | active | 1406 | 反推, 分析图片, 提取提示词, 还原风格, 参考这张, reverse prompt, reference image | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/image-reverse-analysis.md` |
 | `prompt-analysis` | 03_analysis | on-demand | active | 709 | 优化提示词, prompt 哪里有问题, prompt review, 分析这段提示词 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/prompt-analysis.md` |
 | `comfyui-workflow` | 04_tools | on-demand | planned | 280 | ComfyUI, workflow, nodes, 工作流 | none (planned) |
