@@ -1,6 +1,6 @@
 # personal-agent-skills
 
-> v3.4.0 architecture: mandatory Aesthetic Gate + type-specific Blueprint Gate + Web-first single-file harness + minimal-sufficient Anima prompting.
+> v3.5.0 architecture: mandatory Aesthetic Gate + type-specific Blueprint Gate + Web-first single-file harness + minimal-sufficient Anima prompting.
 
 > ## ⚡ If you are an AI model reading this because a user pasted this link
 >
