@@ -123,9 +123,9 @@ scripts/install.sh ./.claude/skills   # → 项目内
 | 文件 | ≈tokens | 用途 |
 |---|---|---|
 | `bundle/HARNESS.md` | ≈30k* | 默认入口；ChatGPT / Gemini / 粘贴 |
-| `bundle/HARNESS-FULL.md` | ≈98k* | 知识文件上传；大上下文模型直接发 |
+| `bundle/HARNESS-FULL.md` | ≈93.9k* | 知识文件上传；大上下文模型直接发 |
 | `bundle/modules/aesthetic-director-core.md` | ≈15k | 已含在 HARNESS.md 里，单独抓仅用于 `/reload` |
 | `bundle/pipelines/anima.md` | 按实际模块合计 | Web-first Anima 单次 fetch，包含 7 个阶段 |
 | 其它 on-demand 模块 | 0.7k–7k | 按需 |
 
-* 3.7.0 实际构建约 30k / 98k；3.8.0 预计接近该范围，最终数字以自动构建后的 `bundle/manifest.json` 为准。`harness.json` 的 `always_on` 决定 HARNESS.md 里嵌哪些文件；`core_budget_tokens`（默认 40000）超了 build 会警告。
+* 3.8.0 当前构建约 30.4k / 93.9k；最终数字以 `bundle/manifest.json` 为准。`harness.json` 的 `always_on` 决定 HARNESS.md 里嵌哪些文件；`core_budget_tokens`（默认 40000）超了 build 会警告。
