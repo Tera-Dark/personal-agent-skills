@@ -3,7 +3,7 @@ name: creative-skill-router
 description: Entry point for all creative requests in this skill hub. Classifies intent (OC/character design, illustration, fashion, NAI5 prompt, Anima prompt, image reverse analysis, prompt review, ComfyUI/LoRA/dataset), loads identity + aesthetic direction first, then hands off to the right specialist and model adapter. Use whenever a request involves 设计, OC, 人设, 立绘, 插画, 服装, 提示词, prompt, NAI, NovelAI, Anima, 反推, 分析图片, ComfyUI, LoRA, or when it is unclear which skill should handle a creative task.
 metadata:
   author: Tera-Dark
-  version: "3.0.2"
+  version: "3.1.0"
   layer: "01_router"
   load: "always"
   status: "active"
@@ -14,7 +14,7 @@ metadata:
 
 ## Purpose
 
-把用户请求送进正确的创作管线。Router 不产出最终 prompt，只做：**分类 → 设计就绪判定 → Aesthetic Gate → specialist → Blueprint Gate → tag verification → tag classification/filtering → adapter / evaluation**。
+把用户请求送进正确的创作管线。Router 不产出最终 prompt，只做：**分类 → 设计就绪判定 → Aesthetic Gate → specialist → Blueprint Gate → tag verification → tag classification/filtering → tag serialization → adapter / evaluation**。
 
 ```
 Request
@@ -32,6 +32,8 @@ Blueprint Gate
 Anima: anima-tag-gate           (verify hard anchors only)
   ↓
 Anima: anima-tag-classifier     (classify + filter verified tags)
+  ↓
+Anima: anima-tag-serializer     (canonical identity → exact Anima syntax)
   ↓
 Model Adapter                  (anima-prompt-compiler / nai5-community-prompt-engineering)
   ↓
@@ -57,12 +59,20 @@ For Anima only, hard anchors are validated after the blueprint is ready and befo
 - canonical Danbooru identity remains separate from Anima syntax escaping.
 
 ### Anima Tag Classifier
-For Anima only, verified tags are classified and filtered before compilation.
+For Anima only, verified tags are classified and filtered before serialization.
 - identity scope is derived only from the verified source group;
 - visual roles are assigned without rewriting canonical strings;
 - redundant/support tags may be omitted to prevent tag piles;
 - core, structural, and signature anchors survive unless the blueprint explicitly leaves them unlocked;
 - classification never changes creative decisions or prompt budget.
+
+### Anima Tag Serializer
+For Anima only, the serializer is the final syntax boundary between canonical identity and emitted prompt text.
+- it receives only Gate-verified, Classifier-approved tags;
+- it applies only explicitly registered Anima syntax transforms;
+- it never performs alias lookup, fuzzy matching, identity substitution, or global punctuation escaping;
+- canonical identity remains unchanged while `serialized_tag` may differ;
+- unknown syntax fails closed instead of being guessed.
 
 ## Core Rules
 
@@ -74,6 +84,7 @@ For Anima only, verified tags are classified and filtered before compilation.
 6. **反馈轮走 `evaluation-loop` + `aesthetic-director-core/references/feedback-diagnosis.md`**，不是直接改 prompt。
 7. **Anima hard tags 必须经过 `anima-tag-gate`。** 不得因为模型记忆、搜索引擎近似结果或语义相似而跳过验证。
 8. **Anima verified tags 在进入 Compiler 前必须经过 `anima-tag-classifier`。** 分类层只做角色标注与减法过滤，不得发现、改写或创造 tag。
+9. **Anima serialized syntax 必须经过 `anima-tag-serializer`。** Compiler 不得重新发明全局转义规则；canonical identity 与 emitted syntax 必须保持分离。
 
 ## Quick Routing Table
 
@@ -81,7 +92,7 @@ For Anima only, verified tags are classified and filtered before compilation.
 |---|---|---|
 | 角色 / OC / 服装设计 | OC, 人设, 角色设计, 服装设计, 立绘, 高定, 二游角色 | identity → Aesthetic Gate FULL → `character-design-engine` → Blueprint Gate → adapter |
 | 插画 / 氛围图 / 故事感 | 插画, 氛围图, 竖屏, 半留白, 印象风, 故事感, key visual | identity → Aesthetic Gate FULL → `illustration-direction` → Blueprint Gate → adapter |
-| 已有设计 → Anima 提示词 | 提示词, prompt, tag, Anima（且设计已完整） | identity → Aesthetic Gate AUDIT → verified design packet → `anima-tag-gate` → `anima-tag-classifier` → `anima-prompt-compiler` |
+| 已有设计 → Anima 提示词 | 提示词, prompt, tag, Anima（且设计已完整） | identity → Aesthetic Gate AUDIT → verified design packet → `anima-tag-gate` → `anima-tag-classifier` → `anima-tag-serializer` → `anima-prompt-compiler` |
 | 已有设计 → NAI5 提示词 | NAI5, NovelAI（且设计已完整） | identity → Aesthetic Gate AUDIT → verified design packet → `nai5-community-prompt-engineering` |
 | 参考图反推 | 反推, 分析图片, 提取提示词, 还原风格, 参考这张 | identity → `image-reverse-analysis` → Aesthetic Gate FULL（原创）/ AUDIT（忠实）→ specialist/adapter |
 | 提示词审查 / 优化 | 优化提示词, 这个 prompt 哪里有问题 | `prompt-analysis` → (adapter if rewrite needed) |
