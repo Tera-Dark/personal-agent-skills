@@ -225,6 +225,7 @@ def build_outputs(root):
         "handshake": cfg["handshake"].format(version=version, modules=len(entries)),
         "core_tokens": L.estimate_tokens(outputs[f"{bundle_dir}/HARNESS.md"]),
         "full_tokens": L.estimate_tokens(outputs[f"{bundle_dir}/HARNESS-FULL.md"]),
+        "pipeline": cfg.get("pipeline", {}),
         "modules": [{k: v for k, v in e.items() if not k.startswith("_")} for e in entries],
     }
     outputs[f"{bundle_dir}/manifest.json"] = json.dumps(manifest, ensure_ascii=False, indent=2) + "\n"
