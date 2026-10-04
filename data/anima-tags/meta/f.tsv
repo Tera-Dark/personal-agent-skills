@@ -1,0 +1,11 @@
+# Anima 1.0 tag shard
+# category=meta
+# source=ShiroEirin/comfyui-good-anima/danbooru-tags/anima-1.0.csv
+# format=canonical<TAB>count<TAB>aliases
+flower_request	4231	
+food_request	3289	
+fanbox_reward	849	
+fish_request	297	
+fixed	162	
+footwear_request	145	
+figure_available	54	

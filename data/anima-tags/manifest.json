@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0",
+  "dataset": "Anima 1.0",
+  "source_repo": "ShiroEirin/comfyui-good-anima",
+  "source_path": "danbooru-tags/anima-1.0.csv",
+  "source_blob_sha": "26efe367995967ed3d3f879085b8bb6665183f70",
+  "normalization": {
+    "lookup": "lowercase; trim; optional leading @ removed",
+    "tag_storage": "source canonical spelling"
+  },
+  "runtime_policy": {
+    "exact": true,
+    "alias": true,
+    "fuzzy_direct_insert": false,
+    "candidate_direct_insert": false,
+    "missing_to_nl": true
+  },
+  "categories": {
+    "general": 26275,
+    "artists": 42196,
+    "series": 8612,
+    "characters": 30094,
+    "meta": 282
+  },
+  "sharding": "first normalized character: a-z, 0-9, otherwise _"
+}

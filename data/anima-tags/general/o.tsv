@@ -1,0 +1,715 @@
+# Anima 1.0 tag shard
+# category=general
+# source=ShiroEirin/comfyui-good-anima/danbooru-tags/anima-1.0.csv
+# format=canonical<TAB>count<TAB>aliases
+open_mouth	3063033	mouth_open,o_face,opem_mouth
+outdoors	594994	outdoor,outdoor_sex,outdoors_sex,outside
+open_clothes	590774	open_clothing,open_topwear
+one_eye_closed	516991	eye_closed,one_eye_open,one_eye_opened,one_eye_shut,one_eyes_closed
+on_back	335370	laying_on_back,lying_on_back
+orange_hair	335127	ginger,ginger_hair
+official_alternate_costume	290739	alternate_costume_(official),official_alternate_outfit,official_alternative_costume
+open_jacket	270986	jacket_open,open_blazer,open_track_jacket
+off_shoulder	266056	
+orange_eyes	217896	
+oral	185745	oral_insertion,oral_penetration,oral_sex
+one-piece_swimsuit	169633	one_piece_swimsuit,piece_swimsuit
+on_bed	164610	laying_on_bed,lying_on_bed,pinned_to_bed,sex_on_bed
+open_shirt	143921	open_blouse,shirt_open
+ocean	124638	sea
+on_side	109916	laying_on_side,lying_on_side
+one_side_up	94401	
+own_hands_together	84625	
+obi	84072	
+on_stomach	79454	laying_on_stomach,lying_on_stomach,on_front
+outstretched_arms	70172	
+outstretched_arm	67768	
+outside_border	61124	cropped_background
+outline	57591	
+o-ring	53311	
+open_coat	52219	
+one_eye_covered	51623	covered_eye,one_eye_obstructed,one_eye_visible
+object_insertion	51167	sex_toy_insertion
+orgasm	43445	intense_orgasm
+official_alternate_hairstyle	38942	alternate_hairstyle_(official)
+one-hour_drawing_challenge	35570	1draw,wandoro
+on_floor	35092	sitting_on_floor
+orange_background	34438	
+off-shoulder_dress	30179	
+open_book	29881	
+out_of_frame	28612	out-of-frame
+oni	26660	
+overalls	25901	
+off-shoulder_shirt	25585	
+outstretched_hand	24767	
+onsen	24234	hot_spring,hot_springs
+ofuda	22998	paper_talisman
+on_couch	22190	on_sofa
+oekaki	21691	
+on_chair	21368	sitting_on_chair
+orange_bow	20973	
+onee-shota	20802	oneshota
+one_breast_out	19320	one_breast_out_of_clothes
+on_head	18628	
+on_ground	18447	laying_on_ground,lying_on_ground,on_the_ground,sitting_on_ground
+old	18433	
+open_hand	17677	
+office_lady	17626	
+open_cardigan	17586	
+open_fly	17313	unbuttoned_shorts
+orange_shirt	16292	orange_blouse
+old_man	16082	
+open_kimono	15873	
+own_hands_clasped	15495	clasped_hands,hands_clasped
+one-piece_tan	14699	
+oil-paper_umbrella	14652	japanese_umbrella,oriental_umbrella,paper_umbrella
+on_one_knee	14353	genuflecting,on_knee,one_knee
+o-ring_bikini	14008	
+oversized_clothes	13823	
+out-of-frame_censoring	13384	out_of_frame_censoring
+one-eyed	12839	
+o_o	12571	
+over_shoulder	12458	
+orange_skirt	11856	
+other_focus	11615	
+o-ring_top	11375	
+object_on_head	10851	
+oversized_object	10482	
+orange_dress	10389	
+open_vest	10303	
+off-shoulder_sweater	10075	
+orange_jacket	9944	
+oldschool	9833	
+on_grass	9274	
+official_style	9271	accurate_art_style
+oppai_loli	9003	
+orange_(fruit)	8978	orange_(food)
+orgy	8935	
+orange_bikini	8448	
+open_collar	8433	
+orb	8393	sphere
+open_hoodie	8233	
+ooarai_school_uniform	8208	
+on_desk	8194	sitting_on_desk
+open_hands	8018	
+orange_flower	7772	
+one-piece_swimsuit_pull	7470	one-piece_swimsuit_down
+oripathy_lesion_(arknights)	7469	
+octoling	7116	
+onee-loli	7058	
+over-kneehighs	7051	
+onigiri	6957	rice_ball,rice_balls
+orc	6955	
+orange_sky	6910	
+o-ring_choker	6735	
+old_school_swimsuit	6366	
+orange_nails	6318	orange_fingernails
+orange_ribbon	6206	
+obijime	6065	
+off-shoulder_jacket	6036	
+ovum	5984	
+office_chair	5980	
+octopus	5939	
+on_table	5585	laying_on_table
+orange_gloves	5561	orange_handwear
+orange-tinted_eyewear	5392	
+open_door	5362	
+orange_necktie	5200	
+o-ring_thigh_strap	5185	
+orange_shorts	4928	
+official_alternate_hair_length	4927	alternate_hair_length_(official)
+otonokizaka_school_uniform	4921	
+on_lap	4898	
+open_dress	4857	
+orange_fur	4743	
+okobo	4600	
+ok_sign	4445	
+on_shoulder	4426	
+owl	4400	
+on_bench	4356	
+orange_neckerchief	4348	
+oversized_shirt	4322	
+on_person	4249	
+o-ring_bottom	4246	
+open_shorts	4045	
+omelet	4028	
+orange_kimono	3976	
+opaque_glasses	3783	
+obiage	3738	
+orange_theme	3706	
+orange_bowtie	3641	
+orange_pants	3619	
+overskirt	3567	
+orange_scarf	3463	
+orange_hairband	3451	
+over-rim_eyewear	3438	
+office	3385	
+older_man_and_younger_girl	3374	
+overcast	3166	
+oversized_animal	3147	
+orange_thighhighs	3131	
+orange_hoodie	3112	
+open-chest_sweater	3103	
+orange_skin	3090	orange-skinned_female
+open_pants	3085	
+open_robe	3046	
+oni_mask	3039	
+object_namesake	3004	
+open_bra	2926	unfastened_bra,unhooked_bra,untied_bra
+orange_slice	2915	
+outie_navel	2859	outie_bellybutton,protruding_navel
+open_skirt	2787	
+omurice	2746	
+o3o	2652	
+overall_shorts	2625	
+overgrown	2586	
+ofuda_on_clothes	2500	
+oral_invitation	2497	
+oonusa	2447	
+off-shoulder_bikini	2423	
+open_belt	2418	unbuckled_belt
+orange_scrunchie	2418	
+orange_belt	2410	
+open_window	2282	
+oversized_food	2210	giant_food
+orange_pantyhose	2154	
+object_head	2145	
+orange_panties	2142	
+orange_bodysuit	2119	orange_bikesuit
+orange_sweater	2114	
+orange_vest	2112	
+old_woman	2088	
+onesie	2019	
+origami	2016	
+orange_hat	2002	
+ornate_border	1899	complex_border,detailed_border
+o-ring_belt	1889	
+off-shoulder	1843	
+object_through_head	1833	
+oridigi	1778	digifake
+older_woman_and_younger_man	1770	
+ootachi	1755	
+object_focus	1751	
+onmyouji	1729	
+oven_mitts	1716	
+orange_socks	1709	orange_kneehighs
+orange_sleeves	1701	
+obese	1689	
+on_vehicle	1684	
+on_motorcycle	1665	
+official_alternate_color	1661	
+open_bodysuit	1650	
+on_stool	1627	
+opening_door	1622	
+official_alternate_hair_color	1620	
+outstretched_leg	1598	
+orange_halo	1561	
+ofuda_on_head	1525	
+off-shoulder_one-piece_swimsuit	1521	off-shoulder_swimsuit
+ojou-sama_pose	1520	noblewoman's_laugh
+ooarai_military_uniform	1492	
+objectification	1490	
+overcoat	1481	
+orange_cape	1477	
+oda_uri	1408	
+on_railing	1349	sitting_on_railing
+on_roof	1270	
+oyakodon_(sex)	1262	oyakodon
+orange_jumpsuit	1249	
+owl_ears	1232	
+orange_pupils	1227	
+ornate_ring	1209	gem_ring,gemstone_ring
+overall_skirt	1208	
+orange_sailor_collar	1197	
+onion	1158	
+orange_horns	1145	
+orange_ascot	1118	
+o-ring_swimsuit	1104	
+oversized_breast_cup	1099	
+open_shoes	1096	
+orange_headband	1094	
+onbashira	1079	
+orange_choker	1069	
+official_alternate_eye_color	1059	
+one_leg_raised	1040	
+omikuji	1039	
+orange_bra	1037	
+oversized_limbs	1033	
+opened_by_self	1031	
+orange_rose	1018	
+orange_coat	1012	
+on_rock	989	
+otter	982	
+onii-shota	969	
+offering_hand	965	
+oar	946	boat_paddle
+onlookers	946	
+orange_tail	945	
+object_on_breast	933	
+orca	914	
+organs	895	
+odd_one_out	891	
+orange_cat	882	
+official_art_inset	877	
+orange_leotard	872	
+orange_apron	859	
+orange_bandana	850	
+otter_ears	839	
+obliques	836	
+otaku	835	
+orange_gemstone	830	
+on_innertube	822	
+orange_sash	816	
+orange_juice	810	
+over_the_nose_gag	810	otn_gag
+over_the_mouth_gag	809	
+ovaries	800	
+owl_girl	800	
+orange_tank_top	796	
+orange_sclera	784	
+orange_border	771	
+out_of_character	762	
+orca_girl	758	
+on_water	754	
+odaiba_girls_high_school_uniform	752	
+ogre	750	
+oven	749	
+off-shoulder_coat	745	
+o-ring_harness	725	
+orange-tinted_glasses	725	
+object_floating_above_hand	719	
+ofuda_between_fingers	710	
+orange_wings	690	
+oversized_forearms	689	
+on_pillow	687	laying_on_pillows
+orange_trim	685	
+oil_lamp	656	
+on_box	653	
+ooarai_(emblem)	645	
+orange_shoes	633	
+oxygen_mask	628	
+orange_eyeshadow	626	
+open_jumpsuit	625	
+orange-framed_eyewear	621	
+orca_hood	621	
+otter_tail	621	
+optical_sight	617	
+orange_lips	611	orange_lipstick
+on_stairs	596	
+on_stage	590	
+one_arm_handstand	583	single_handstand,standing_on_one_hand
+ocarina	574	
+orange_one-piece_swimsuit	572	
+outstretched_legs	567	
+orange_cardigan	566	
+oiled	565	oiled_skin
+ornate_armor	561	
+open_pajamas	559	
+o-ring_panties	552	
+onigiri_print	533	
+ofuda_on_pussy	532	
+originium_arts_(arknights)	522	
+on_crescent	514	
+on_food	514	
+orange_outline	510	
+on_toilet	503	sitting_on_toilet
+oxfords	499	
+orgasm_denial	496	orgasm_restriction
+orange_bag	491	orange_backpack
+oxygen_tank	486	
+oran_berry	485	
+orange_capelet	483	
+ox_horns	483	
+ouji_fashion	477	kodona,ouji_(fashion)
+open_bag	476	open_backpack
+one_finger_selfie_challenge_(meme)	471	one_finger_selfie_challenge
+one-piece_thong	467	
+orange_hair_ornament	464	
+o-ring_collar	463	
+oc_x_canon	463	original_character_with_canon_character
+ofuda_on_nipples	457	
+open_bikini	455	
+ostrich	450	
+open_box	441	
+oiran	439	
+ox_ears	432	
+ouroboros	427	
+oden	418	
+o-ring_strap	417	
+on_moon	407	
+ok_sign_over_eye	406	
+overexposure	406	
+on_swing	400	
+okamoto_condoms	398	0.01_condom
+off-shoulder_leotard	394	
+o-ring_dress	392	
+ovipositor	391	
+omamori	389	
+overhead_line	384	
+orange_butterfly	383	
+orange_tabard	383	
+originium_(arknights)	383	
+open-toe_shoes	380	peep-toe_shoes,toeless_shoes
+on_rooftop	378	
+open_towel	378	
+open_cloak	374	
+orange_boots	370	
+orange_collar	365	
+octopus_boy	364	
+on_car	358	
+orange_male_swimwear	356	
+oversized_wings	356	large_wings
+older_sister	348	
+ox_girl	345	
+o-ring_legwear	343	
+oktoberfest	342	
+obelisk_blue_uniform	337	
+older_woman_and_younger_girl	337	
+orange_eyeliner	336	
+outer_senshi	336	
+oversized_flower	336	oversized_flowers
+ornate_clothes	334	
+object_in_clothes	331	
+orange_feathers	331	
+ornate	331	
+orchid	327	
+official_alternate_design	322	
+oohashi_high_school_uniform	319	
+orange_pubic_hair	316	
+object_kiss	313	kissing_object
+ooarai_naval_school_uniform	313	
+orange_armband	312	
+orange_overalls	311	
+open_\m/	310	
+outer_glow	308	
+olive	305	
+otter_girl	305	
+orange_armor	303	
+ouendan	302	
+oni_horn	294	
+ornate_weapon	293	
+oyster	290	
+orange_print	286	
+orange_peel	285	
+orange_tongue	282	
+orange_clouds	280	
+omnitrix	279	
+on_wall	279	
+overpass	279	
+o/	278	
+octopus_girl	278	
+official_art_nude_filter	270	
+on_animal	269	
+on_branch	265	
+orange_male_underwear	264	orange_underwear_(male)
+october	262	
+oreo	262	
+orange_tunic	260	
+oni_costume	259	
+optical_illusion	259	
+oppai_mochi	257	
+oni_girl	252	
+oppai_challenge	251	
+orange_wristband	251	
+original_race_uniform_(umamusume)	245	
+obidome	240	
+on_boat	240	
+orange_camisole	235	
+on_cloud	232	
+object_in_pocket	229	
+over-and-under-barreled_firearm	227	
+over_the_knee	226	
+on_scooter	220	
+orange_sports_bra	219	
+on_tree	215	
+okonomiyaki	214	
+on_flower	214	
+orange_pajamas	213	
+object_behind_ear	210	behind_ear
+older_female_and_younger_male	207	older_woman_and_teenage_boy,older_woman_and_younger_man
+oda_eiichirou_(style)	206	oda_eiichiro_(style)
+on_plate	206	
+open_for_all	204	
+orange_robe	204	
+oversized_zipper	202	
+orange_cloak	201	
+overflowing	200	
+original_remodel_(kantai_collection)	199	
+oarfish	198	
+orange_hood	197	
+orange_planet_uniform	196	
+otaku_room	194	
+olympos_xii	192	
+open-toe_boots	190	open-toed_boots,peep-toe_boots,toeless_boots
+orange_swim_trunks	187	
+orange_shrug	186	
+octagram	185	
+open_happi	185	
+ots-14_groza	185	
+origami_bird_(honkai:_star_rail)	184	
+oversized_jacket	183	
+ohitsu	180	
+other_with_female	180	
+omocat_(style)	178	
+orca_hair_ornament	177	
+opening	174	
+oversized_hat	174	
+omake	172	
+older_male_and_younger_female	171	older_male_younger_female,older_man_and_teenage_girl,older_man_and_younger_girl,older_man_and_younger_woman
+off-shoulder_kimono	170	
+order_of_the_black_knights_uniform	168	
+orange_umbrella	167	
+octopus_hair_ornament	166	
+orange_sarong	165	
+orange_buruma	163	
+orange_goggles	162	
+osiris_red_uniform	161	
+orbital_path	160	
+object_in_mouth	156	
+object_in_swimsuit	155	
+obi_bow	154	
+on_counter	154	
+otoshidama	153	
+omega_symbol	152	
+ominous_shadow	152	
+open_sweater	152	
+owl_boy	150	
+ohananomitsu_high_school_uniform	148	
+orange_brooch	147	
+orange_scales	146	
+on_hammock	144	
+orange_innertube	144	
+ofuda_earrings	142	
+orange_wrist_cuffs	142	
+objection	138	
+orange_sweater_vest	138	
+open_cockpit	137	
+outseal	137	
+onsen_symbol	136	
+osmanthus	136	
+officer	135	
+opposing_sides	133	
+orange_bandeau	133	
+oasis	132	
+on_banana	131	
+on_the_phone	131	
+one-piece_swimsuit_aside	131	
+overshirt	131	
+orbit	130	
+osechi	130	
+object_in_panties	128	
+open_hatch	128	
+onion_rings	127	
+open_leotard	127	
+open_sign	127	
+origami_family's_elite_guard_uniform	127	
+orange_tree	125	
+oversized_plant	125	
+on_ladder	123	
+oversized_insect	123	
+o-ring_arm_strap	122	
+on_mecha	120	
+orange-shaped_earrings	120	
+orange_helmet	118	
+organ_(instrument)	117	
+overalls_pull	117	
+oboe	115	
+onigiri_hair_ornament	114	
+open_drawer	114	
+orange_stripes	114	
+olu_mel	113	
+obelisk	112	
+ofuro	112	
+ogata_(daitikun0220)	112	
+one_eye_in_shadow	111	
+orange_mittens	111	
+obi_(1hp_club)	110	
+orange_visor	110	
+ox_tail	110	
+offering	109	
+other_with_male	108	
+open_magazine	106	
+oppai_shota	106	
+orange_light	106	
+official_alternate_skin_color	105	
+okawaii_koto	105	how_cute_(kaguya-sama)
+omnic	105	
+on_suitcase	105	
+outstretched_foot	105	
+ovulation	104	
+ouran_high_school_uniform	103	
+oyama_mahiro_(cosplay)	103	
+old-fashioned_doughnut	102	
+open_poke_ball	101	
+orange_streaks	101	
+occult_ball	100	
+octobrush_(splatoon)	100	
+official_seraphimon	100	
+orange_dougi	100	
+orange_petals	100	
+o-ring_bra	98	
+okapi_ears	98	
+our_life	98	
+off-shoulder_blouse	97	
+orange_serafuku	96	
+orange_fire	95	
+orange_suit	95	
+osafune_girls_academy_school_uniform	95	
+own_fingers_together	95	
+obscured_eyes	94	
+off-shoulder_cardigan	94	
+one-piece_dress	94	
+opaque_monocle	94	
+on_ball	93	
+on_tank	92	
+one-armed_hug	92	
+open_wetsuit	92	
+operating_table	92	
+ovum_with_heart	92	
+on_liquid	91	
+orca_boy	91	
+oval_background	91	
+octoshot_(splatoon)	90	
+okita_souji_(koha-ace)_(cosplay)	89	
+omoi_yo_hitotsu_ni_nare	89	
+okamochi_(container)	88	
+old_school_runescape	88	
+orchestra	87	
+organic	87	
+ouju	87	
+oval	87	
+ofuda_on_leg	86	
+ootori_gakuen_school_uniform	86	
+open_cuffs	86	
+on_cushion	84	
+orange_tube_top	84	
+odogaron_(armor)	83	
+okapi_tail	83	
+osaka_(city)	83	
+osakana_tomika	83	
+oval_image	83	
+one_glove	82	
+orange_hanfu	82	
+on_windowsill	81	
+orange_moon	81	
+orange_tulip	81	
+osouzai-kun	81	
+offscreen	79	
+over-and-under-barreled_pistol	79	
+oceana_(azur_lane)	78	
+only_pantyhose	78	pantyhose_only
+o-ring_garter_belt	77	
+observatory	77	
+offensive_handgun	76	
+on_all_four	76	
+onnomono	76	
+open_palm	75	
+open_zipper	74	
+orange_headphones	74	
+obon	73	
+on_top_of_pole	73	
+orange_hakama	73	
+odore_(suzukisakana001)	72	
+oracle_think_tank	72	
+orange_car	72	
+otome_gee_sekai_wa_mob_ni_kibishii_sekai_desu	72	
+octopus_tattoo	71	
+on_fence	71	
+one_eye_narrowed	71	
+ookuma_wakana	71	
+open_window_shutter	71	
+orange_shawl	71	
+ork_(warhammer)	71	ork_(warhammer_40k),orkz
+otonashi_kotori_(cosplay)	71	
+onahole_transformation	70	
+orange_leggings	70	
+obushideian	69	
+old-fashioned_swimsuit	69	
+object_and_personification	68	
+onibi	68	
+oozora_subaru_(cosplay)	68	
+oversized_spoon	68	
+odo_(song)	67	
+odradek	67	
+older_man_and_younger_man	67	
+open_can	67	
+otter_boy	67	
+official_underwear	66	
+older_man_and_younger_woman	66	
+overbarrel_grenade_launcher	66	
+oyasumina-san!	66	
+object_on_pectorals	65	
+obscured	65	
+offering_drink	65	
+oh?_you're_approaching_me?_(meme)	65	
+oral_sandwich	64	blue_plate_special_(sex)
+orgasm_counter	64	
+osmanthus_blade	64	
+o_ssion	63	
+obsumin	63	
+oihlf	63	
+omega_sword	63	
+orange_bloomers	63	
+orange_sleeve_cuffs	62	
+orangutan	62	
+orbital_frame_(zone_of_the_enders)	62	
+ochanomizu_hiroshi	61	
+octopus_print	61	
+olympic_rings	61	
+options	61	
+orel_cruise	61	
+o-ring_legwear_garter	60	
+office_lady_taiwan	60	
+open_swimsuit	60	
+oak_cake_roll_(honkai:_star_rail)	59	
+offering_food	59	
+omegaverse	59	
+opera_glasses	59	
+overall_dress	59	
+official_alternate_hair_ornament	58	
+official_alternate_horns	58	
+opening_can	58	
+o_medal	57	
+ooyodo_(kancolle)_(cosplay)	57	
+opal_(gemstone)	57	
+open_suitcase	57	
+overwatch_(logo)	57	
+one_way_sign	56	
+orbited	56	
+orokudesu	56	
+o-ring_leotard	55	
+ohisashiburi_(style)	55	
+on_air!	55	
+on_hind_legs	55	
+ooarai_(ibaraki)	55	
+original_form_pokemon_(meme)	55	
+oriuo_q	55	
+ottoman	55	
+overhead_lights	55	
+omodaka_romu	54	
+on_piano	54	
+one_more_sunshine_story	54	
+orihime_(cosplay)	54	
+osugaki	54	
+o'neill_cylinder	53	
+ohno	53	
+oikawa_shizuku_(cosplay)	53	
+onozuka_komachi_(cosplay)	53	
+oppai_oppai	53	
+orange_bracelet	53	
+orange_sandals	53	
+o_x	52	
+obscured_face	52	
+odagorom	52	
+ogami_matoi	52	
+old_maid	52	
+one_shoe	52	
+ookami_mio_(cosplay)	52	
+ootani_yoshitsugu_(sengoku_basara)	52	
+object_between_breasts	51	
+octopus_tentacles	51	
+oldest_dream	51	
+open_palms	51	
+old_tales_(nikke)	50	
+ophilia_clement	50	
+oversized_gloves	50	

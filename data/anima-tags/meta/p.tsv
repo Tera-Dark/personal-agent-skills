@@ -1,0 +1,35 @@
+# Anima 1.0 tag shard
+# category=meta
+# source=ShiroEirin/comfyui-good-anima/danbooru-tags/anima-1.0.csv
+# format=canonical<TAB>count<TAB>aliases
+paid_reward_available	63580	reward_available
+pixiv_commission	30307	pixiv_request
+painting_(medium)	23411	paint_(medium)
+partial_commentary	23267	
+photo_(medium)	10661	photo
+pixiv_sample	9371	pixiv_manga_sample
+photoshop_(medium)	9174	
+promotional_art	8440	
+photo-referenced	7110	
+partially_translated	6653	
+procreate_(medium)	4035	
+pixel-perfect_duplicate	3620	
+protected_link	2427	
+paid_reward	1490	
+painttool_sai_(medium)	1181	
+pen_(medium)	822	
+parody_request	717	
+pastel_(medium)	684	
+psd_available	421	
+phone_wallpaper	348	ios_wallpaper,mobile_wallpaper
+plant_request	243	
+pose_request	207	posture_request
+portuguese_commentary	194	
+panorama	153	
+papercraft_(medium)	152	
+partially_annotated	130	
+photoshop	115	
+paper_cutout_(medium)	96	
+pattern_request	62	print_request
+poorly_translated	58	
+patreon_reward	53	

@@ -1,0 +1,48 @@
+# Anima 1.0 tag shard
+# category=meta
+# source=ShiroEirin/comfyui-good-anima/danbooru-tags/anima-1.0.csv
+# format=canonical<TAB>count<TAB>aliases
+commentary_request	1492887	
+commentary	863923	
+commission	202321	comission,commission_art
+chinese_commentary	126648	
+character_request	126606	
+copyright_request	70599	
+colorized	10754	color_edit,colored_edit
+commissioner_upload	10000	
+concept_art	8388	
+check_translation	7060	translation_check
+cropped	6555	
+colored_pencil_(medium)	5946	
+check_commentary	5662	
+corrupted_twitter_file	5216	
+clothing_request	4699	
+clip_studio_paint_(medium)	4478	comic_studio_(medium),illust_studio_(medium),manga_studio_(medium)
+check_copyright	4340	
+check_character	4128	
+cosplay_photo	1451	
+check_artist	1404	
+cleaned	1010	
+cosplay_request	815	
+calligraphy_brush_(medium)	792	
+costume_request	559	
+comic_cover	493	
+corrupted_metadata	490	corrupted_exif_data
+check_clothing	392	
+card_(r)	366	
+color_ink_(medium)	261	
+card_(ur)	209	
+check_gender	209	
+card_(hr)	190	
+crayon_(medium)	148	
+card_(ex-sr)	144	
+character_check	137	
+card_(orange-r)	126	
+contest_winner	123	
+canvas_(medium)	117	
+check_weapon	117	
+card_(sr)	105	
+collaboration_request	79	
+charcoal_(medium)	63	
+check_flower	52	
+check_source	51	

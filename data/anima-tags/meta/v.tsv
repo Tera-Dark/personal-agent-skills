@@ -1,0 +1,12 @@
+# Anima 1.0 tag shard
+# category=meta
+# source=ShiroEirin/comfyui-good-anima/danbooru-tags/anima-1.0.csv
+# format=canonical<TAB>count<TAB>aliases
+variant_set	73274	
+vector_trace	3064	
+vehicle_request	1267	car_request
+vgen_commission	730	
+video_thumbnail	365	
+video	100	1sec_video,long_video,mp4,shorter_than_30_seconds,shorter_than_3_minutes,shorter_than_five_minutes,shorter_than_four_minutes,shorter_than_two_minutes,vertical_video,videos,webm
+video_game_cover_redraw	71	
+viral_marketing	61	

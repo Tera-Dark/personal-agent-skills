@@ -1,0 +1,28 @@
+# Anima 1.0 tag shard
+# category=meta
+# source=ShiroEirin/comfyui-good-anima/danbooru-tags/anima-1.0.csv
+# format=canonical<TAB>count<TAB>aliases
+absurdres	2408697	absurd_res,very_high_resolution
+artist_request	265936	unknown_artist
+animated	13153	2d_animated,2d_animation,animation,frame_by_frame,shorter_than_10_seconds
+animated_gif	12353	animated_image,frame_by_frame_gif,gif
+artbook	3584	
+anime_screenshot	3003	anime_cut,anime_screencap,screencap_(anime)
+ai-assisted	2810	ai_assisted
+aliasing	2732	resizing_artifacts
+acrylic_paint_(medium)	2029	
+ai-generated	1944	ai-created,ai_generated
+adversarial_noise	1875	glaze_artifacts,glaze_protected_image
+alt_text	1713	source_image_text
+annotated	1516	
+alpha_transparency	1424	
+archived_source	1354	
+artist_collaboration	1170	
+alternate_language	866	
+annotation_request	693	
+animal_request	581	
+animal_ear_request	162	
+art_trade	160	
+aircraft_request	138	
+animated_png	101	
+airbrush_(medium)	57	

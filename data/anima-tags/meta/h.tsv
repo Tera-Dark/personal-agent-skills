@@ -1,0 +1,18 @@
+# Anima 1.0 tag shard
+# category=meta
+# source=ShiroEirin/comfyui-good-anima/danbooru-tags/anima-1.0.csv
+# format=canonical<TAB>count<TAB>aliases
+highres	6964838	hi_res,high_res,high_resolution
+huge_filesize	34844	extremely_large_filesize
+hashtag-only_commentary	26459	hashtag_only_commentary
+hard-translated	8792	hard_translated
+has_bad_revision	5097	
+has_uncensored_version	3948	
+headwear_request	2529	
+has_censored_revision	2122	
+has_downscaled_revision	1523	
+hairstyle_request	378	hair_request,hair_style_request
+has_cropped_revision	146	
+hard-translated_(non-english)	145	hard_translated_(non-english)
+hair_ornament_request	96	
+has_watermarked_revision	56	

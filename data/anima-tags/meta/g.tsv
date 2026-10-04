@@ -1,0 +1,12 @@
+# Anima 1.0 tag shard
+# category=meta
+# source=ShiroEirin/comfyui-good-anima/danbooru-tags/anima-1.0.csv
+# format=canonical<TAB>count<TAB>aliases
+game_cg	210098	game_asset,gamecg,hcg
+gender_request	17845	
+graphite_(medium)	10196	
+gesture_request	174	
+glaze_artifacts	172	
+get	164	
+gouache_(medium)	164	
+gun_request	60	

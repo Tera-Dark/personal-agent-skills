@@ -1,0 +1,10 @@
+# Anima 1.0 tag shard
+# category=meta
+# source=ShiroEirin/comfyui-good-anima/danbooru-tags/anima-1.0.csv
+# format=canonical<TAB>count<TAB>aliases
+watercolor_(medium)	17311	water_color
+wide_image	5538	
+weapon_request	4653	
+webp-to-png_conversion	1073	
+waifu2x	878	
+watercolor_pencil_(medium)	765	

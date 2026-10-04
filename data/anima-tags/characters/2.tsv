@@ -1,0 +1,14 @@
+# Anima 1.0 tag shard
+# category=characters
+# source=ShiroEirin/comfyui-good-anima/danbooru-tags/anima-1.0.csv
+# format=canonical<TAB>count<TAB>aliases
+2b_(nier:automata)	13186	2b,2b_(nier),yorha_no._2_type_b
+2k-tan	623	
+25-ji_miku	521	25_miku
+2p_(nier:automata)	332	2p_(nier),yorha_no._2_type_p,yorha_type_p_no._2
+25-ji_rin	117	
+25-ji_kaito	108	
+25-ji_len	81	
+210_(reverse:1999)	73	
+25-ji_luka	62	
+25-ji_meiko	54	

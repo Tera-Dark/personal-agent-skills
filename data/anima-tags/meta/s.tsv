@@ -1,0 +1,21 @@
+# Anima 1.0 tag shard
+# category=meta
+# source=ShiroEirin/comfyui-good-anima/danbooru-tags/anima-1.0.csv
+# format=canonical<TAB>count<TAB>aliases
+symbol-only_commentary	77593	emoji_commentary,symbol_commentary
+skeb_commission	67873	
+scan	66604	
+second-party_source	47541	
+source_request	41160	no_source
+spoilers	34229	
+self-upload	14147	self_upload
+stitched	13249	
+source_smaller	10813	
+source_larger	8939	
+scan_artifacts	2729	scanning_artifacts
+screenshot_redraw	1045	screencap_redraw
+source_filmmaker_(medium)	308	sfm,source_filmmaker
+song_request	147	
+score	104	
+style_request	104	
+sound	103	audio,has_audio,video_with_sound

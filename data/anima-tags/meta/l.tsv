@@ -1,0 +1,11 @@
+# Anima 1.0 tag shard
+# category=meta
+# source=ShiroEirin/comfyui-good-anima/danbooru-tags/anima-1.0.csv
+# format=canonical<TAB>count<TAB>aliases
+lowres	120229	low_resolution
+large_variant_set	27677	
+long_image	19468	
+looping_animation	1558	loop,looping
+lossy-lossless	529	
+live2d	117	
+location_request	115	
