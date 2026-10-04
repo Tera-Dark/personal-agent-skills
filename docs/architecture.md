@@ -1,6 +1,6 @@
 # Architecture
 
-> v3.0.0 hardens the creative pipeline with explicit Aesthetic and Blueprint Gates.
+> v3.8.0 hardens the creative pipeline with explicit Aesthetic and Blueprint Gates plus an aesthetic floor beneath distinctiveness.
 
 > v2.1.0: a kernel and a build step were added on top of the v2.0 layered skills, turning the repository into a harness that a chat model can load from one URL.
 
