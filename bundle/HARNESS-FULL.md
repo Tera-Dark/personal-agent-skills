@@ -93,9 +93,9 @@ Rules:
 | `aesthetic-director-core` | 00_core | always | active | 17160 | OC, 人设, 插画, 服装, 审美, 创意方向, 人味, 高级感, 不要AI味, 太平淡, 太乱 | embedded below |
 | `personal-identity-profile` | 00_core | always | active | 5476 | 我的风格, 个人偏好, 按我习惯, any creative task | embedded below |
 | `creative-skill-router` | 01_router | always | active | 4616 | any request; 设计, 提示词, prompt, 反推, 分析, ComfyUI, LoRA | embedded below |
-| `anima-prompt-compiler` | 02_creation | on-demand | active | 8369 | Anima, Anima 提示词, Anima checkpoint | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-prompt-compiler.md` |
+| `anima-prompt-compiler` | 02_creation | on-demand | active | 8414 | Anima, Anima 提示词, Anima checkpoint | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-prompt-compiler.md` |
 | `anima-prompt-compressor` | 02_creation | on-demand | active | 1531 | Anima prompt compression, prompt shortening, token reduction, minimal prompt | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-prompt-compressor.md` |
-| `anima-prompt-skeleton` | 02_creation | on-demand | active | 1574 | Anima prompt skeleton, hard tags, natural language relations, nltags | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-prompt-skeleton.md` |
+| `anima-prompt-skeleton` | 02_creation | on-demand | active | 1703 | Anima prompt skeleton, hard tags, natural language relations, nltags | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-prompt-skeleton.md` |
 | `anima-tag-classifier` | 02_creation | on-demand | active | 1594 | Anima tag classification, Danbooru tag category, tag filtering, hard tag filtering | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-tag-classifier.md` |
 | `anima-tag-gate` | 02_creation | on-demand | active | 2068 | Anima tag validation, Danbooru tag check, hard tag verification | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-tag-gate.md` |
 | `anima-tag-serializer` | 02_creation | on-demand | active | 1394 | Anima tag serialization, Anima syntax escaping, 37 Reverse1999 syntax | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-tag-serializer.md` |
@@ -2262,7 +2262,7 @@ Skill 之间按**名字**引用（不是相对路径），因为它们可能被�
 ---
 
 ## MODULE: anima-prompt-compiler
-layer: 02_creation · load: on-demand · status: active · module version: 2.6.0 · harness 3.1.0
+layer: 02_creation · load: on-demand · status: active · module version: 2.7.0 · harness 3.1.0
 source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_creation/anima-prompt-compiler
 
 **description:** Model adapter that compiles a finished character or illustration blueprint into Anima-ready English prompts in a disciplined Tag block + Natural Language block format. Handles Anima-specific format contract, length budgets, positive-first output, V1 faithful / V2 enhanced modes, model profiles and artifact troubleshooting. Use when the user asks for Anima prompts, Anima 提示词, or names an Anima checkpoint. Does not design — if no blueprint exists, route through aesthetic-director-core and character-design-engine / illustration-direction first.
@@ -2296,7 +2296,7 @@ This skill is an adapter, not a design engine. It may compile only a finished bl
 - 不加 `masterpiece, best quality, 8k, ultra-detailed` 等空泛质量词（禁用清单见 `references/anima-model-profiles.md` § 5.2）。
 - 不加权重、CFG、steps、采样器、Clip Skip 等工作流参数，除非用户要。
 - 不改动 blueprint 的**锁定事实**。
-- **任何进入 Tag block 的 Danbooru hard anchor 必须先通过 `anima-tag-gate`，再通过 `anima-tag-classifier`，再通过 `anima-prompt-skeleton`，最后通过 `anima-tag-serializer`。**
+- **任何进入 Tag block 的 Danbooru hard anchor 必须先通过 `anima-tag-gate`，再通过 `anima-tag-classifier`，再通过 `anima-prompt-skeleton`，再通过 `anima-prompt-compressor`，最后通过 `anima-tag-serializer`。**
 
 #### 3. Pre-compile Tag Gate + Classifier + Serializer
 
@@ -2306,9 +2306,10 @@ This skill is an adapter, not a design engine. It may compile only a finished bl
 2. 只接受 `exact` / `alias`；`missing` / `unverified` 降级到 Natural Language。
 3. 将通过验证的 packet 交给 `anima-tag-classifier` 做 intent / identity scope / prompt role 分类。
 4. 过滤 `omit`、冗余和无关 support tags，只保留 core / structural / signature 与少量有用 support。
-5. 将过滤后的 design packet 交给 `anima-prompt-skeleton`，确定哪些事实进入 Tag block、哪些关系进入 NL，并压缩重复信息。
-6. 将保留下来的 hard-tag packet 交给 `anima-tag-serializer`，把 canonical identity 转成最终 Anima token。
-7. 本 Compiler 只组装 `serialized_tag` 与 skeleton 生成的 NL，不再重新定义 Anima 字符转义规则。
+5. 将过滤后的 design packet 交给 `anima-prompt-skeleton`，确定事实与关系的表达位置。
+6. 将 skeleton packet 交给 `anima-prompt-compressor`，执行最小充分压缩，决定最终保留的信息。
+7. 将压缩后的 hard-tag packet 交给 `anima-tag-serializer`，把 canonical identity 转成最终 Anima token。
+8. 本 Compiler 只组装 `serialized_tag` 与 compressor 输出的 NL，不再重新定义 Anima 字符转义规则。
 
 ##### Gate contract
 
@@ -2358,15 +2359,15 @@ The skeleton layer absorbs Good Anima's hard-tag / soft-phrase / relation split 
 The Compiler must not emit a separate soft-phrase block.
 
 Anima is compiled in one stable skeleton:
-1. Tag Lock — subject, framing, identity, appearance, hair/face, clothing, props and action.
-2. Natural-language Relations — garment hierarchy, asymmetry, spatial placement, pose causality, environment relation, light/material response, density and punctum.
-3. Optional Negative — only when positive constraints cannot express the exclusion.
+1. Minimal Tag Lock — only high-value subject, framing, identity and signature anchors.
+2. Minimal Natural-language Relations — only relations that materially control hierarchy, spatial placement, pose causality or subject/background separation.
+3. Optional Negative — only for a demonstrated or explicit exclusion.
 
 The compiler may compress within the model profile, but it does not redesign the concept.
 
 ##### Part B — Natural-language block
 
-一到两个连贯英文段落，承担标签表达不了的**关系**：
+默认一条连贯英文短句；仅复杂多人/强因果场景允许两句，承担标签表达不了的**关系**：
 
 - 服装层级、剪裁、内外关系（`open coat over`, `hem showing beneath`）
 - 轮廓的空间位置（`behind the head`, `descending from one shoulder`）
@@ -2391,14 +2392,14 @@ NL 段不是 Tag 段的同义词复述。它必须补充关系和层级。
 
 | 任务 | Tag + NL 合计词数 |
 |---|---|
-| 头像 / 半身 | 30–50 |
-| 角色立绘 / 时装 | 50–80 |
-| 多层展示板 | 70–100 |
-| 叙事场景插画 | 80–120 |
+| 头像 / 半身 | 18–32 |
+| 角色立绘 / 时装 | 28–50 |
+| 简单场景插画 | 35–60 |
+| 复杂叙事 / 多主体 | 50–75 |
 
-超预算时的删除顺序：重复形容词 → 次要配饰 → 背景枝节 → 材质细节。**不删**：命题结构、主锚点、刺点、锁定事实、因果链里的关键词。
+不把词数区间当填充目标。超出压缩目标时交给 `anima-prompt-compressor`，按视觉控制价值从低到高删除。
 
-验证、分类、skeleton 规划与序列化都不能增加预算：即使有更多 verified tags，也只保留对当前 blueprint 有价值的少数硬锚点。
+验证、分类、skeleton 与 compression 都不能为了“写全”而扩张 prompt。
 
 #### 6. 输出模式
 
@@ -2435,6 +2436,7 @@ NL 段不是 Tag 段的同义词复述。它必须补充关系和层级。
 - [ ] Anima hard anchors 已通过 `anima-tag-gate`？
 - [ ] 已通过 `anima-tag-classifier`？
 - [ ] 已通过 `anima-prompt-skeleton`？
+- [ ] 已通过 `anima-prompt-compressor`？
 - [ ] 已通过 `anima-tag-serializer`？
 - [ ] 每个进入 Tag block 的 Tag 都有 `exact` / `alias` 证据，或已降级到 NL？
 - [ ] 没有 fuzzy / candidate tag 混入 hard_tags？
@@ -2446,7 +2448,8 @@ NL 段不是 Tag 段的同义词复述。它必须补充关系和层级。
 - [ ] NL 段写了关系（层级 / 位置 / 因果 / 密度 / 刺点位置），不是复述 tag？
 - [ ] 锁定事实一字未改？
 - [ ] 无空泛质量词、无参数、无默认负面？
-- [ ] 长度在预算内，且删的是次要项？
+- [ ] prompt 已达到最小充分长度，而不是为了填满预算？
+- [ ] 只有高视觉价值信息被保留？
 - [ ] V2 没有改 V1 的事实？
 - [ ] canonical tag 与 Anima serialized syntax 分离？
 - [ ] serialization 未失败或误猜语法？
@@ -2458,7 +2461,8 @@ NL 段不是 Tag 段的同义词复述。它必须补充关系和层级。
 - `references/anima-troubleshooting.md` — 伪影诊断目录、最小修复、不确定性处理
 - `anima-tag-gate` — Web-first exact → alias → missing gate
 - `anima-tag-classifier` — P3 intent / identity scope / prompt-role filtering
-- `anima-prompt-skeleton` — P5 stable facts → compact Tag/NL structure
+- `anima-prompt-skeleton` — P5 stable facts → Tag/NL structure
+- `anima-prompt-compressor` — P6 minimum-sufficient reduction
 - `anima-tag-serializer` — P4 canonical identity → exact Anima syntax
 - 测试集：`tests/test-suite.md`
 
@@ -2939,7 +2943,7 @@ Anima should receive a **small control packet**, not a written description of th
 ---
 
 ## MODULE: anima-prompt-skeleton
-layer: 02_creation · load: on-demand · status: active · module version: 1.0.0 · harness 3.1.0
+layer: 02_creation · load: on-demand · status: active · module version: 1.1.0 · harness 3.1.0
 source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_creation/anima-prompt-skeleton
 
 **description:** Compact Anima prompt-structure layer that maps a finished blueprint into stable hard anchors and relational natural language. Absorbs Good Anima's hard_tags, soft_phrases, and nltags concepts without adding a third user-visible block. Use after tag classification and before serialization/compiler assembly.
@@ -2949,7 +2953,7 @@ source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_creation
 
 #### 1. Purpose
 
-This module defines how a finished blueprint is compressed into the existing two-part Anima prompt:
+This module defines the information structure of a finished blueprint inside the existing two-part Anima prompt. It does not perform final length optimization; `anima-prompt-compressor` does that.
 
 Part A — verified Tag block
 Part B — Natural-language block
@@ -3083,7 +3087,21 @@ soft side light catches the satin edge while the deeper folds remain subdued
 
 These are relation clauses, not tag synonyms.
 
-#### 6. Information compression
+#### 6. Information handoff
+
+The skeleton identifies what *could* be useful; the P6 compressor decides what survives.
+
+Pass forward:
+- all locked facts;
+- candidate signature/structural relations;
+- compact NL relations;
+- optional support information marked as removable.
+
+Do not assume every item here must appear in the final prompt.
+
+For actual deletion, use `anima-prompt-compressor`.
+
+#### 7. Information compression
 
 When the prompt is too long:
 
@@ -3108,7 +3126,7 @@ generic adjectives → secondary accessories → redundant hard tags → decorat
 
 Never delete a proposition merely because it is not a Danbooru tag.
 
-#### 7. What this layer must not do
+#### 8. What this layer must not do
 
 - no tag verification;
 - no alias lookup;
@@ -3129,11 +3147,13 @@ anima-tag-classifier
   ↓
 anima-prompt-skeleton
   ↓
+anima-prompt-compressor
+  ↓
 anima-tag-serializer
   ↓
 anima-prompt-compiler
 
-#### 8. Acceptance checklist
+#### 9. Acceptance checklist
 
 - [ ] Output remains two visible parts: Tag + NL.
 - [ ] Hard tags contain only verified/classifier-approved anchors.

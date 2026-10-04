@@ -8,7 +8,7 @@
   "harness_full_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS-FULL.md",
   "handshake": "Harness v3.1.0 loaded · 19 modules · 说需求，或发参考图。",
   "core_tokens": 28322,
-  "full_tokens": 94641,
+  "full_tokens": 94815,
   "pipeline": {
     "aesthetic_gate": "aesthetic-director-core",
     "blueprint_gate": {
@@ -93,7 +93,7 @@
       "layer": "02_creation",
       "load": "on-demand",
       "status": "active",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "description": "Model adapter that compiles a finished character or illustration blueprint into Anima-ready English prompts in a disciplined Tag block + Natural Language block format. Handles Anima-specific format contract, length budgets, positive-first output, V1 faithful / V2 enhanced modes, model profiles and artifact troubleshooting. Use when the user asks for Anima prompts, Anima 提示词, or names an Anima checkpoint. Does not design — if no blueprint exists, route through aesthetic-director-core and character-design-engine / illustration-direction first.",
       "triggers": "Anima, Anima 提示词, Anima checkpoint",
       "path": "02_creation/anima-prompt-compiler",
@@ -103,8 +103,8 @@
         "references/anima-model-profiles.md",
         "references/anima-troubleshooting.md"
       ],
-      "tokens_skill": 3115,
-      "tokens_bundle": 8369
+      "tokens_skill": 3160,
+      "tokens_bundle": 8414
     },
     {
       "name": "anima-prompt-compressor",
@@ -126,15 +126,15 @@
       "layer": "02_creation",
       "load": "on-demand",
       "status": "active",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "description": "Compact Anima prompt-structure layer that maps a finished blueprint into stable hard anchors and relational natural language. Absorbs Good Anima's hard_tags, soft_phrases, and nltags concepts without adding a third user-visible block. Use after tag classification and before serialization/compiler assembly.",
       "triggers": "Anima prompt skeleton, hard tags, natural language relations, nltags",
       "path": "02_creation/anima-prompt-skeleton",
       "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_creation/anima-prompt-skeleton",
       "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-prompt-skeleton.md",
       "references": [],
-      "tokens_skill": 1429,
-      "tokens_bundle": 1574
+      "tokens_skill": 1558,
+      "tokens_bundle": 1703
     },
     {
       "name": "anima-tag-classifier",
