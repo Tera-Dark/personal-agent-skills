@@ -7,8 +7,8 @@
   "harness_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS.md",
   "harness_full_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS-FULL.md",
   "handshake": "Harness v3.1.0 loaded · 20 modules · 说需求，或发参考图。",
-  "core_tokens": 28477,
-  "full_tokens": 96291,
+  "core_tokens": 28621,
+  "full_tokens": 96648,
   "pipeline": {
     "aesthetic_gate": "aesthetic-director-core",
     "blueprint_gate": {
@@ -72,7 +72,7 @@
       "layer": "01_router",
       "load": "always",
       "status": "active",
-      "version": "3.3.0",
+      "version": "3.4.0",
       "description": "Entry point for all creative requests in this skill hub. Classifies intent (OC/character design, illustration, fashion, NAI5 prompt, Anima prompt, image reverse analysis, prompt review, ComfyUI/LoRA/dataset), loads identity + aesthetic direction first, then hands off to the right specialist and model adapter. Use whenever a request involves 设计, OC, 人设, 立绘, 插画, 服装, 提示词, prompt, NAI, NovelAI, Anima, 反推, 分析图片, ComfyUI, LoRA, or when it is unclear which skill should handle a creative task.",
       "triggers": "any request; 设计, 提示词, prompt, 反推, 分析, ComfyUI, LoRA",
       "path": "01_router/creative-skill-router",
@@ -85,8 +85,8 @@
         "references/execution-flow.md",
         "references/skill-map.md"
       ],
-      "tokens_skill": 2301,
-      "tokens_bundle": 4616
+      "tokens_skill": 2444,
+      "tokens_bundle": 4760
     },
     {
       "name": "anima-aesthetic-protection",
@@ -108,7 +108,7 @@
       "layer": "02_creation",
       "load": "on-demand",
       "status": "active",
-      "version": "2.7.0",
+      "version": "2.8.0",
       "description": "Model adapter that compiles a finished character or illustration blueprint into Anima-ready English prompts in a disciplined Tag block + Natural Language block format. Handles Anima-specific format contract, length budgets, positive-first output, V1 faithful / V2 enhanced modes, model profiles and artifact troubleshooting. Use when the user asks for Anima prompts, Anima 提示词, or names an Anima checkpoint. Does not design — if no blueprint exists, route through aesthetic-director-core and character-design-engine / illustration-direction first.",
       "triggers": "Anima, Anima 提示词, Anima checkpoint",
       "path": "02_creation/anima-prompt-compiler",
@@ -118,23 +118,23 @@
         "references/anima-model-profiles.md",
         "references/anima-troubleshooting.md"
       ],
-      "tokens_skill": 3160,
-      "tokens_bundle": 8414
+      "tokens_skill": 3253,
+      "tokens_bundle": 8507
     },
     {
       "name": "anima-prompt-compressor",
       "layer": "02_creation",
       "load": "on-demand",
       "status": "active",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "description": "Minimal-sufficient prompt compression layer for Anima. Removes low-impact, redundant, decorative and merely explanatory text after skeleton planning while protecting identity, locked facts, silhouette, key garment structure, pose and one visual punctum. Use before final Anima syntax serialization and compilation.",
       "triggers": "Anima prompt compression, prompt shortening, token reduction, minimal prompt",
       "path": "02_creation/anima-prompt-compressor",
       "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_creation/anima-prompt-compressor",
       "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-prompt-compressor.md",
       "references": [],
-      "tokens_skill": 1385,
-      "tokens_bundle": 1531
+      "tokens_skill": 1504,
+      "tokens_bundle": 1650
     },
     {
       "name": "anima-prompt-skeleton",

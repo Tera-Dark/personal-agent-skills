@@ -92,10 +92,10 @@ Rules:
 |---|---|---|---|---|---|---|
 | `aesthetic-director-core` | 00_core | always | active | 17160 | OC, 人设, 插画, 服装, 审美, 创意方向, 人味, 高级感, 不要AI味, 太平淡, 太乱 | embedded below |
 | `personal-identity-profile` | 00_core | always | active | 5476 | 我的风格, 个人偏好, 按我习惯, any creative task | embedded below |
-| `creative-skill-router` | 01_router | always | active | 4616 | any request; 设计, 提示词, prompt, 反推, 分析, ComfyUI, LoRA | embedded below |
+| `creative-skill-router` | 01_router | always | active | 4760 | any request; 设计, 提示词, prompt, 反推, 分析, ComfyUI, LoRA | embedded below |
 | `anima-aesthetic-protection` | 02_creation | on-demand | active | 1316 | Anima aesthetic protection, design lock, prompt design drift, aesthetic audit | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-aesthetic-protection.md` |
-| `anima-prompt-compiler` | 02_creation | on-demand | active | 8414 | Anima, Anima 提示词, Anima checkpoint | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-prompt-compiler.md` |
-| `anima-prompt-compressor` | 02_creation | on-demand | active | 1531 | Anima prompt compression, prompt shortening, token reduction, minimal prompt | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-prompt-compressor.md` |
+| `anima-prompt-compiler` | 02_creation | on-demand | active | 8507 | Anima, Anima 提示词, Anima checkpoint | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-prompt-compiler.md` |
+| `anima-prompt-compressor` | 02_creation | on-demand | active | 1650 | Anima prompt compression, prompt shortening, token reduction, minimal prompt | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-prompt-compressor.md` |
 | `anima-prompt-skeleton` | 02_creation | on-demand | active | 1703 | Anima prompt skeleton, hard tags, natural language relations, nltags | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-prompt-skeleton.md` |
 | `anima-tag-classifier` | 02_creation | on-demand | active | 1594 | Anima tag classification, Danbooru tag category, tag filtering, hard tag filtering | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-tag-classifier.md` |
 | `anima-tag-gate` | 02_creation | on-demand | active | 2068 | Anima tag validation, Danbooru tag check, hard tag verification | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-tag-gate.md` |
@@ -1839,7 +1839,7 @@ Visual effects should not replace character thinking.
 ---
 
 ## MODULE: creative-skill-router
-layer: 01_router · load: always · status: active · module version: 3.3.0 · harness 3.1.0
+layer: 01_router · load: always · status: active · module version: 3.4.0 · harness 3.1.0
 source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/01_router/creative-skill-router
 
 **description:** Entry point for all creative requests in this skill hub. Classifies intent (OC/character design, illustration, fashion, NAI5 prompt, Anima prompt, image reverse analysis, prompt review, ComfyUI/LoRA/dataset), loads identity + aesthetic direction first, then hands off to the right specialist and model adapter. Use whenever a request involves 设计, OC, 人设, 立绘, 插画, 服装, 提示词, prompt, NAI, NovelAI, Anima, 反推, 分析图片, ComfyUI, LoRA, or when it is unclear which skill should handle a creative task.
@@ -1849,7 +1849,7 @@ source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/01_router/c
 
 #### Purpose
 
-把用户请求送进正确的创作管线。Router 不产出最终 prompt，只做：**分类 → 设计就绪判定 → Aesthetic Gate → specialist → Blueprint Gate → tag verification → tag classification/filtering → prompt skeleton → prompt compression → tag serialization → adapter / evaluation**。
+把用户请求送进正确的创作管线。Router 不产出最终 prompt，只做：**分类 → 设计就绪判定 → Aesthetic Gate → specialist → Blueprint Gate → tag verification → tag classification/filtering → prompt skeleton → aesthetic protection → prompt compression → tag serialization → adapter / evaluation**。
 
 ```
 Request
@@ -1869,6 +1869,8 @@ Anima: anima-tag-gate           (verify hard anchors only)
 Anima: anima-tag-classifier     (classify + filter verified tags)
   ↓
 Anima: anima-prompt-skeleton     (stable facts → Tag/NL structure)
+  ↓
+Anima: anima-aesthetic-protection (design lock audit)
   ↓
 Anima: anima-prompt-compressor    (minimum-sufficient reduction)
   ↓
@@ -1912,6 +1914,12 @@ For Anima only, the skeleton maps a finished blueprint into the existing two-par
 - Good Anima's soft-phrase concept may be absorbed as compact NL clauses, but never becomes a third visible block;
 - the skeleton compresses rather than expanding the prompt and never makes design decisions.
 
+##### Anima Aesthetic Protection
+For Anima only, adaptation must preserve the upstream design packet.
+- protect thesis, macro silhouette, framing, focal hierarchy, asymmetry, signature garment construction, palette hierarchy and environment relationship;
+- translation may shorten wording but may not normalize or redesign the image;
+- if compression would alter a protected decision, mark design drift and restore the decision instead of inventing a substitute.
+
 ##### Anima Prompt Compressor
 For Anima only, compression is a subtractive pass after skeleton planning and before serialization.
 - remove information that does not materially change the intended image;
@@ -1946,7 +1954,7 @@ For Anima only, the serializer is the final syntax boundary between canonical id
 |---|---|---|
 | 角色 / OC / 服装设计 | OC, 人设, 角色设计, 服装设计, 立绘, 高定, 二游角色 | identity → Aesthetic Gate FULL → `character-design-engine` → Blueprint Gate → adapter |
 | 插画 / 氛围图 / 故事感 | 插画, 氛围图, 竖屏, 半留白, 印象风, 故事感, key visual | identity → Aesthetic Gate FULL → `illustration-direction` → Blueprint Gate → adapter |
-| 已有设计 → Anima 提示词 | 提示词, prompt, tag, Anima（且设计已完整） | identity → Aesthetic Gate AUDIT → verified design packet → `anima-tag-gate` → `anima-tag-classifier` → `anima-prompt-skeleton` → `anima-prompt-compressor` → `anima-tag-serializer` → `anima-prompt-compiler` |
+| 已有设计 → Anima 提示词 | 提示词, prompt, tag, Anima（且设计已完整） | identity → Aesthetic Gate AUDIT → verified design packet → `anima-tag-gate` → `anima-tag-classifier` → `anima-prompt-skeleton` → `anima-aesthetic-protection` → `anima-prompt-compressor` → `anima-tag-serializer` → `anima-prompt-compiler` |
 | 已有设计 → NAI5 提示词 | NAI5, NovelAI（且设计已完整） | identity → Aesthetic Gate AUDIT → verified design packet → `nai5-community-prompt-engineering` |
 | 参考图反推 | 反推, 分析图片, 提取提示词, 还原风格, 参考这张 | identity → `image-reverse-analysis` → Aesthetic Gate FULL（原创）/ AUDIT（忠实）→ specialist/adapter |
 | 提示词审查 / 优化 | 优化提示词, 这个 prompt 哪里有问题 | `prompt-analysis` → (adapter if rewrite needed) |
@@ -2414,7 +2422,7 @@ Model adaptation can change wording, not the design thesis.
 ---
 
 ## MODULE: anima-prompt-compiler
-layer: 02_creation · load: on-demand · status: active · module version: 2.7.0 · harness 3.1.0
+layer: 02_creation · load: on-demand · status: active · module version: 2.8.0 · harness 3.1.0
 source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_creation/anima-prompt-compiler
 
 **description:** Model adapter that compiles a finished character or illustration blueprint into Anima-ready English prompts in a disciplined Tag block + Natural Language block format. Handles Anima-specific format contract, length budgets, positive-first output, V1 faithful / V2 enhanced modes, model profiles and artifact troubleshooting. Use when the user asks for Anima prompts, Anima 提示词, or names an Anima checkpoint. Does not design — if no blueprint exists, route through aesthetic-director-core and character-design-engine / illustration-direction first.
@@ -2448,7 +2456,7 @@ This skill is an adapter, not a design engine. It may compile only a finished bl
 - 不加 `masterpiece, best quality, 8k, ultra-detailed` 等空泛质量词（禁用清单见 `references/anima-model-profiles.md` § 5.2）。
 - 不加权重、CFG、steps、采样器、Clip Skip 等工作流参数，除非用户要。
 - 不改动 blueprint 的**锁定事实**。
-- **任何进入 Tag block 的 Danbooru hard anchor 必须先通过 `anima-tag-gate`，再通过 `anima-tag-classifier`，再通过 `anima-prompt-skeleton`，再通过 `anima-prompt-compressor`，最后通过 `anima-tag-serializer`。**
+- **任何进入 Tag block 的 Danbooru hard anchor 必须先通过 `anima-tag-gate`，再通过 `anima-tag-classifier`，再通过 `anima-prompt-skeleton`，再通过 `anima-aesthetic-protection`，再通过 `anima-prompt-compressor`，最后通过 `anima-tag-serializer`。**
 
 #### 3. Pre-compile Tag Gate + Classifier + Serializer
 
@@ -2459,9 +2467,10 @@ This skill is an adapter, not a design engine. It may compile only a finished bl
 3. 将通过验证的 packet 交给 `anima-tag-classifier` 做 intent / identity scope / prompt role 分类。
 4. 过滤 `omit`、冗余和无关 support tags，只保留 core / structural / signature 与少量有用 support。
 5. 将过滤后的 design packet 交给 `anima-prompt-skeleton`，确定事实与关系的表达位置。
-6. 将 skeleton packet 交给 `anima-prompt-compressor`，执行最小充分压缩，决定最终保留的信息。
-7. 将压缩后的 hard-tag packet 交给 `anima-tag-serializer`，把 canonical identity 转成最终 Anima token。
-8. 本 Compiler 只组装 `serialized_tag` 与 compressor 输出的 NL，不再重新定义 Anima 字符转义规则。
+6. 将 skeleton packet 交给 `anima-aesthetic-protection`，冻结可变成设计漂移的核心决策。
+7. 将受保护 packet 交给 `anima-prompt-compressor`，执行最小充分压缩，决定最终保留的信息。
+8. 将压缩后的 hard-tag packet 交给 `anima-tag-serializer`，把 canonical identity 转成最终 Anima token。
+9. 本 Compiler 只组装 `serialized_tag` 与 compressor 输出的 NL，不再重新定义 Anima 字符转义规则。
 
 ##### Gate contract
 
@@ -2588,7 +2597,9 @@ NL 段不是 Tag 段的同义词复述。它必须补充关系和层级。
 - [ ] Anima hard anchors 已通过 `anima-tag-gate`？
 - [ ] 已通过 `anima-tag-classifier`？
 - [ ] 已通过 `anima-prompt-skeleton`？
+- [ ] 已通过 `anima-aesthetic-protection`？
 - [ ] 已通过 `anima-prompt-compressor`？
+- [ ] 压缩后重新核对 protected design packet，无 design drift？
 - [ ] 已通过 `anima-tag-serializer`？
 - [ ] 每个进入 Tag block 的 Tag 都有 `exact` / `alias` 证据，或已降级到 NL？
 - [ ] 没有 fuzzy / candidate tag 混入 hard_tags？
@@ -2614,6 +2625,7 @@ NL 段不是 Tag 段的同义词复述。它必须补充关系和层级。
 - `anima-tag-gate` — Web-first exact → alias → missing gate
 - `anima-tag-classifier` — P3 intent / identity scope / prompt-role filtering
 - `anima-prompt-skeleton` — P5 stable facts → Tag/NL structure
+- `anima-aesthetic-protection` — P7 design lock / drift audit
 - `anima-prompt-compressor` — P6 minimum-sufficient reduction
 - `anima-tag-serializer` — P4 canonical identity → exact Anima syntax
 - 测试集：`tests/test-suite.md`
@@ -2893,7 +2905,7 @@ Step 4: 单变量回测验证 (Re-test while keeping other variables strictly un
 ---
 
 ## MODULE: anima-prompt-compressor
-layer: 02_creation · load: on-demand · status: active · module version: 1.0.0 · harness 3.1.0
+layer: 02_creation · load: on-demand · status: active · module version: 1.1.0 · harness 3.1.0
 source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_creation/anima-prompt-compressor
 
 **description:** Minimal-sufficient prompt compression layer for Anima. Removes low-impact, redundant, decorative and merely explanatory text after skeleton planning while protecting identity, locked facts, silhouette, key garment structure, pose and one visual punctum. Use before final Anima syntax serialization and compilation.
@@ -2905,7 +2917,7 @@ source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_creation
 
 > Keep the smallest prompt that still produces the intended image.
 
-This is a **subtractive layer**. It does not make the prompt richer. It assumes the skeleton is already correct, then removes anything whose deletion is unlikely to change the rendered result or violates a locked fact.
+This is a **subtractive layer**. It does not make the prompt richer. It assumes the skeleton is already correct and the design packet is protected by `anima-aesthetic-protection`, then removes anything whose deletion is unlikely to change the rendered result.
 
 Do not optimize for descriptive completeness. Optimize for **visual control per token**.
 
@@ -3055,7 +3067,13 @@ Only retain a negative concept when:
 
 Negative text is outside the positive prompt compression budget but should also be minimal.
 
-#### 10. No aesthetic redesign
+#### 10. Protected design boundary
+
+Before deletion, load the protected design packet from `anima-aesthetic-protection`. A deletion is allowed only when the protected thesis, silhouette, framing, focal hierarchy, asymmetry, signature construction and locked facts remain reconstructable.
+
+If deletion changes one of those, keep the element even when it costs more tokens.
+
+#### 11. No aesthetic redesign
 
 Compression may not:
 
@@ -3067,7 +3085,7 @@ Compression may not:
 
 When the prompt cannot fit without losing a locked fact, report a budget conflict internally and prioritize the locked fact.
 
-#### 11. Final shape
+#### 12. Final shape
 
 Preferred result:
 
@@ -3079,7 +3097,7 @@ Preferred result:
 
 Anima should receive a **small control packet**, not a written description of the artwork.
 
-#### 12. Acceptance checklist
+#### 13. Acceptance checklist
 
 - [ ] Every retained element passes the deletion test.
 - [ ] Prompt is shorter than the uncompressed skeleton unless a locked fact prevents reduction.
@@ -3091,6 +3109,7 @@ Anima should receive a **small control packet**, not a written description of th
 - [ ] Identity, framing, silhouette, locked facts and essential action survive.
 - [ ] No decorative completeness is added.
 - [ ] Compression does not redesign the blueprint.
+- [ ] Protected aesthetic packet was audited before compression.
 
 ---
 
