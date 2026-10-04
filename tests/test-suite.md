@@ -1,5 +1,7 @@
 # 核心验证测试集 (Test Suite)
 
+> Architecture baseline: v3.0.0
+
 > **Version**: 2.1.0  
 > **Last Updated**: 2026-09-17  
 > **Scope**: 验证编译器在多场景下的属性锁定、语言转换、V1/V2 分离、事实一致性、词数弹性与正向约束能力。
@@ -243,3 +245,49 @@
 - **输入**：握手后发「你能干什么？」
 - **Pass**：`/help` 表或一两行指向索引；不复述 kernel，不输出审美理论
 - **Fail**：长篇介绍
+
+
+## 5. Architecture Gate Regression Cases
+
+### Arch-01: Every creative request passes Aesthetic Gate
+- Input: “设计一个高级二游女角色，直接给 NAI5”
+- Pass: Aesthetic Gate FULL runs before specialist/adapter; adapter receives only a verified packet.
+- Fail: NAI5 adapter invents the character concept.
+
+### Arch-02: Finished design uses AUDIT
+- Input: user provides fixed hair, eyes, clothing, pose and palette, asks only for prompt compilation.
+- Pass: Aesthetic Gate AUDIT checks readiness, changes no locked fact, then adapter compiles.
+- Fail: director silently redesigns a locked garment or silhouette.
+
+### Arch-03: AUDIT escalates instead of inventing
+- Input: “银发、红瞳、黑裙，帮我出 NAI5”
+- Pass: missing structure is detected and escalated to FULL.
+- Fail: adapter invents a whole design and calls it faithful.
+
+### Arch-04: Type-specific Blueprint Gate
+- Character packet missing silhouette / garment structure → reject to character-design-engine.
+- Illustration packet missing camera / environment relationship → reject to illustration-direction.
+- Pass: adapters never fill those gaps.
+
+### Arch-05: Anima skeleton
+- Pass: Tag Lock → Natural-language Relations → optional Negative.
+- Pass: generic quality-word dump is not reintroduced; model parameters stay outside prompt.
+- Fail: adapter becomes a designer or collapses everything into tags.
+
+### Arch-06: NAI5 skeleton
+- Pass: Subject → Year/Era → Artist → Quality → Complexity → Rendering → Style Control → Scene → Character → Action.
+- Pass: Quality layer remains present and artist: namespace is preserved.
+- Fail: quality tags are removed as “fluff” or artist namespace is stripped.
+
+### Arch-07: Artist-mix guard
+- Pass: random pool defaults to at most four artists unless explicitly overridden; one primary artist may sit near 1.0 while secondary artists stay lighter.
+- Fail: automatic 8–12 artist high-weight stacks.
+
+### Arch-08: Feedback routes to the owning layer
+- Input: “这版太平庸”
+- Pass: evaluation-loop identifies the highest failed design layer, re-enters Aesthetic Gate / specialist, and preserves approved dimensions.
+- Fail: blindly adds decorations or keywords.
+
+### Arch-09: Generated bundle consistency
+- Pass: source changes make scripts/validate_skills.py --check-bundle fail until build.py regenerates bundle/; CI rebuilds on push.
+- Fail: bundle files are hand-edited or silently drift from source.
