@@ -15,7 +15,7 @@
    │
    ▼  HARNESS.md = kernel（运行契约）+ 模块索引（每个模块的触发词、URL、卡片）+ always-on 模块全文
    │
-   ▼  模型回一行握手：Harness v3.5.0 loaded · current modules · 说需求，或发参考图。
+   ▼  模型回一行握手：Harness v3.8.0 loaded · current modules · 说需求，或发参考图。
    │
    ▼  你提需求 → router 选单模块或 pipeline pack → 按索引里的 raw URL 抓取；多阶段 Web-first 管线优先一次抓 pack
 ```
@@ -25,7 +25,7 @@
 - **一次抓取拿到全部"必须有"的东西**：kernel、身份档案、审美导演（含九个动作、反馈诊断、六组对照示例）、router、评价环。这些是"人味"的来源，所以永远在。
 - **设计与适配器按需抓**：character-design-engine、illustration-direction、三个适配器、两个分析模块。每个是一个自包含文件（SKILL.md + 全部 references）。
 - **抓不到也能降级**：索引里每个模块带一张"卡片"（它的契约）。抓取失败时模型按卡片工作并标 `[card-only]`，同时把 raw URL 给你粘贴。
-- **握手行 = 版本探针**。看到 `v2.1.0 · 14 modules` 就知道它加载的是哪个版本、索引里有几个模块。数字不对说明抓到了旧缓存或截断。
+- **握手行 = 版本探针**。如果握手显示旧版本或明显不匹配的模块数，通常说明抓到了旧缓存或截断。
 
 ## 2. Web-first contract
 
