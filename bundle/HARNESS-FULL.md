@@ -93,7 +93,7 @@ Rules:
 | `aesthetic-director-core` | 00_core | always | active | 17160 | OC, 人设, 插画, 服装, 审美, 创意方向, 人味, 高级感, 不要AI味, 太平淡, 太乱 | embedded below |
 | `personal-identity-profile` | 00_core | always | active | 5476 | 我的风格, 个人偏好, 按我习惯, any creative task | embedded below |
 | `creative-skill-router` | 01_router | always | active | 4304 | any request; 设计, 提示词, prompt, 反推, 分析, ComfyUI, LoRA | embedded below |
-| `anima-prompt-compiler` | 02_creation | on-demand | active | 7958 | Anima, Anima 提示词, Anima checkpoint | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-prompt-compiler.md` |
+| `anima-prompt-compiler` | 02_creation | on-demand | active | 8174 | Anima, Anima 提示词, Anima checkpoint | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-prompt-compiler.md` |
 | `anima-tag-classifier` | 02_creation | on-demand | active | 1594 | Anima tag classification, Danbooru tag category, tag filtering, hard tag filtering | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-tag-classifier.md` |
 | `anima-tag-gate` | 02_creation | on-demand | active | 2068 | Anima tag validation, Danbooru tag check, hard tag verification | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-tag-gate.md` |
 | `anima-tag-serializer` | 02_creation | on-demand | active | 1394 | Anima tag serialization, Anima syntax escaping, 37 Reverse1999 syntax | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-tag-serializer.md` |
@@ -2239,7 +2239,7 @@ Skill 之间按**名字**引用（不是相对路径），因为它们可能被�
 ---
 
 ## MODULE: anima-prompt-compiler
-layer: 02_creation · load: on-demand · status: active · module version: 2.4.0 · harness 3.1.0
+layer: 02_creation · load: on-demand · status: active · module version: 2.5.0 · harness 3.1.0
 source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_creation/anima-prompt-compiler
 
 **description:** Model adapter that compiles a finished character or illustration blueprint into Anima-ready English prompts in a disciplined Tag block + Natural Language block format. Handles Anima-specific format contract, length budgets, positive-first output, V1 faithful / V2 enhanced modes, model profiles and artifact troubleshooting. Use when the user asks for Anima prompts, Anima 提示词, or names an Anima checkpoint. Does not design — if no blueprint exists, route through aesthetic-director-core and character-design-engine / illustration-direction first.
@@ -2263,7 +2263,7 @@ This skill is an adapter, not a design engine. It may compile only a finished bl
 
 **输入检查**：收到的东西有没有一句带动词的命题、明确的轮廓、四层服装、一个刺点、锁定事实？没有 → 这不是 blueprint，退回 `creative-skill-router`。用户直接说"帮我写个 Anima 提示词，一个月光祭司"时，**不要**在这里补设计。
 
-保留在本 Skill 的只有 Anima 相关的东西：格式契约、长度预算、输出模式、模型档案、伪影排查，以及对已验证、已分类 tag packet 的序列化。
+保留在本 Skill 的只有 Anima 相关的东西：格式契约、长度预算、输出模式、模型档案、伪影排查，以及对已验证、已分类、已序列化 tag packet 的最终组装。
 
 #### 2. 默认行为
 
@@ -2273,9 +2273,9 @@ This skill is an adapter, not a design engine. It may compile only a finished bl
 - 不加 `masterpiece, best quality, 8k, ultra-detailed` 等空泛质量词（禁用清单见 `references/anima-model-profiles.md` § 5.2）。
 - 不加权重、CFG、steps、采样器、Clip Skip 等工作流参数，除非用户要。
 - 不改动 blueprint 的**锁定事实**。
-- **任何进入 Tag block 的 Danbooru hard anchor 必须先通过 `anima-tag-gate`，再通过 `anima-tag-classifier`。**
+- **任何进入 Tag block 的 Danbooru hard anchor 必须先通过 `anima-tag-gate`，再通过 `anima-tag-classifier`，最后通过 `anima-tag-serializer`。**
 
-#### 3. Pre-compile Tag Gate + Classifier
+#### 3. Pre-compile Tag Gate + Classifier + Serializer
 
 在组装最终 prompt 前：
 
@@ -2283,7 +2283,8 @@ This skill is an adapter, not a design engine. It may compile only a finished bl
 2. 只接受 `exact` / `alias`；`missing` / `unverified` 降级到 Natural Language。
 3. 将通过验证的 packet 交给 `anima-tag-classifier` 做 intent / identity scope / prompt role 分类。
 4. 过滤 `omit`、冗余和无关 support tags，只保留 core / structural / signature 与少量有用 support。
-5. 将精简后的 packet交给本 Compiler 序列化。
+5. 将剩余 packet 交给 `anima-tag-serializer`，把 canonical identity 转成最终 Anima token。
+6. 本 Compiler 只组装 `serialized_tag`，不再重新定义 Anima 字符转义规则。
 
 ##### Gate contract
 
@@ -2294,15 +2295,17 @@ This skill is an adapter, not a design engine. It may compile only a finished bl
 
 Classifier 只允许**减法过滤与角色标注**，不能发现、改写、替换或创造 tag。
 
+Serializer 只允许**显式注册的语法变换**，不能验证、分类、发现、改写或创造 identity。
+
 ##### Canonical vs serialized syntax
 
-Tag Gate 输出的是 **canonical identity**，Classifier 不改变 canonical identity，最终序列化才发生在本 Compiler。
+Tag Gate 输出的是 **canonical identity**，Classifier 不改变 canonical identity，Serializer 才负责最终 Anima syntax。
 
 例如：
 
 `37_(reverse:1999)` → `37\\(reverse1999\\)`
 
-不得在验证阶段把它拆成 `37`, `reverse`, `1999`，也不得让分类层承担 Anima 字符转义。
+这不是 Compiler 的全局转义规则。不得在验证或分类阶段把它拆成 `37`, `reverse`, `1999`，也不得对所有括号、冒号、下划线做批量转义。只有 `anima-tag-serializer` 的显式规则可以改变 `serialized_tag`。
 
 #### 4. 格式契约：Tag + Natural Language
 
@@ -2317,7 +2320,7 @@ Tag Gate 输出的是 **canonical identity**，Classifier 不改变 canonical id
 - 道具与动作：`holding curved scissors`, `tucking hair behind ear`
 - 角色身份（如果 blueprint 有）
 - **角色 / 系列触发词优先按 Anima 的 Danbooru 训练集实际 token 写法输出**，不要把角色名和作品名拆成多个 token。
-- 只有 Tag Gate `exact` / `alias` 且 Classifier `prompt_role != omit` 的 hard anchors 才能进入这里。
+- 只有 Tag Gate `exact` / `alias` 且 Classifier `prompt_role != omit`，并且 Serializer `serialization_status != unverified` 的 hard anchors 才能进入这里。
 
 Tag block 简洁、可扫描、不重复同义词。设计逻辑不塞进标签。
 
@@ -2348,7 +2351,7 @@ NL 段不是 Tag 段的同义词复述。它必须补充关系和层级。
 ##### 模板
 
 ```text
-[comma-separated verified tags]
+[comma-separated serialized verified tags]
 
 [One or two paragraphs: garment hierarchy, silhouette placement, asymmetry, pose causality, density, light, palette hierarchy, punctum location.]
 ```
@@ -2364,7 +2367,7 @@ NL 段不是 Tag 段的同义词复述。它必须补充关系和层级。
 
 超预算时的删除顺序：重复形容词 → 次要配饰 → 背景枝节 → 材质细节。**不删**：命题结构、主锚点、刺点、锁定事实、因果链里的关键词。
 
-验证与分类都不能增加预算：即使有更多 verified tags，也只保留对当前 blueprint 有价值的少数硬锚点。
+验证、分类与序列化都不能增加预算：即使有更多 verified tags，也只保留对当前 blueprint 有价值的少数硬锚点。
 
 #### 6. 输出模式
 
@@ -2400,9 +2403,11 @@ NL 段不是 Tag 段的同义词复述。它必须补充关系和层级。
 - [ ] 输入已通过 Aesthetic/Blueprint Gate？
 - [ ] Anima hard anchors 已通过 `anima-tag-gate`？
 - [ ] 已通过 `anima-tag-classifier`？
+- [ ] 已通过 `anima-tag-serializer`？
 - [ ] 每个进入 Tag block 的 Tag 都有 `exact` / `alias` 证据，或已降级到 NL？
 - [ ] 没有 fuzzy / candidate tag 混入 hard_tags？
 - [ ] Classifier 没有改写 canonical tag？
+- [ ] Serializer 没有改变 canonical tag？
 - [ ] redundant / omit tags 已删除？
 - [ ] core / structural / signature anchors 未被误删？
 - [ ] Tag 段简洁、具体、无同义重复？
@@ -2412,6 +2417,7 @@ NL 段不是 Tag 段的同义词复述。它必须补充关系和层级。
 - [ ] 长度在预算内，且删的是次要项？
 - [ ] V2 没有改 V1 的事实？
 - [ ] canonical tag 与 Anima serialized syntax 分离？
+- [ ] serialization 未失败或误猜语法？
 - [ ] 遵守用户要求的输出格式？
 
 #### References
@@ -2420,6 +2426,7 @@ NL 段不是 Tag 段的同义词复述。它必须补充关系和层级。
 - `references/anima-troubleshooting.md` — 伪影诊断目录、最小修复、不确定性处理
 - `anima-tag-gate` — Web-first exact → alias → missing gate
 - `anima-tag-classifier` — P3 intent / identity scope / prompt-role filtering
+- `anima-tag-serializer` — P4 canonical identity → exact Anima syntax
 - 测试集：`tests/test-suite.md`
 
 ---

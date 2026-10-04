@@ -8,7 +8,7 @@
   "harness_full_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS-FULL.md",
   "handshake": "Harness v3.1.0 loaded · 17 modules · 说需求，或发参考图。",
   "core_tokens": 27707,
-  "full_tokens": 90497,
+  "full_tokens": 90713,
   "pipeline": {
     "aesthetic_gate": "aesthetic-director-core",
     "blueprint_gate": {
@@ -93,7 +93,7 @@
       "layer": "02_creation",
       "load": "on-demand",
       "status": "active",
-      "version": "2.4.0",
+      "version": "2.5.0",
       "description": "Model adapter that compiles a finished character or illustration blueprint into Anima-ready English prompts in a disciplined Tag block + Natural Language block format. Handles Anima-specific format contract, length budgets, positive-first output, V1 faithful / V2 enhanced modes, model profiles and artifact troubleshooting. Use when the user asks for Anima prompts, Anima 提示词, or names an Anima checkpoint. Does not design — if no blueprint exists, route through aesthetic-director-core and character-design-engine / illustration-direction first.",
       "triggers": "Anima, Anima 提示词, Anima checkpoint",
       "path": "02_creation/anima-prompt-compiler",
@@ -103,8 +103,8 @@
         "references/anima-model-profiles.md",
         "references/anima-troubleshooting.md"
       ],
-      "tokens_skill": 2704,
-      "tokens_bundle": 7958
+      "tokens_skill": 2921,
+      "tokens_bundle": 8174
     },
     {
       "name": "anima-tag-classifier",
