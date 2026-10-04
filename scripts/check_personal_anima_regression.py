@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Deterministic P12 contract checks.
+Deterministic personal Anima regression contract checks (P12 + P13 + P14).
 
 This checker is deliberately offline. It never fetches the Good Anima corpus and
 never pretends to judge visual quality. Live-index and image-output cases remain
@@ -133,7 +133,7 @@ def main() -> int:
             failures,
         )
     require(len(case_ids) == 36, f"expected 36 P12 cases, found {len(case_ids)}", failures)
-    require(version == "3.7.0", f"VERSION must be 3.7.0, found {version}", failures)
+    require(version == "3.8.0", f"VERSION must be 3.8.0, found {version}", failures)
 
     p13 = read("tests/p13-real-task-regression.md")
     p13_cases = re.findall(r"^### (P13-(?:\d{2}|X-\d{2}))\s+—", p13, re.M)
@@ -156,13 +156,22 @@ def main() -> int:
     ):
         require(needle.lower() in p13.lower(), f"P13 matrix lost required regression concept: {needle}", failures)
 
+    p14 = read("tests/test-suite.md")
+    for needle in (
+        "P14 — Aesthetic Floor Regression",
+        "怪 ≠ 丑",
+        "第一眼美感",
+        "丑的很有特点",
+    ):
+        require(needle.lower() in p14.lower(), f"P14 regression contract lost required concept: {needle}", failures)
+
     if failures:
-        print("P12 regression contract: FAIL")
+        print("Personal Anima regression contract: FAIL")
         for item in failures:
             print(f"  ERROR {item}")
         return 1
 
-    print(f"P12 regression contract: PASS — {len(case_ids)} matrix cases, version {version}")
+    print(f"Personal Anima regression contract: PASS — {len(case_ids)} P12 cases + 16 P13 cases, version {version}")
     return 0
 
 
