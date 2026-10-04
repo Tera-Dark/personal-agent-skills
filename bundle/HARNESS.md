@@ -113,16 +113,16 @@ Claims about model behavior, syntax, parameters, tags or generation effects requ
 Modules come in two tiers.
 
 - **ALWAYS-ON** modules are embedded in this harness file below the index. They are already in your context; do not fetch them.
-- **ON-DEMAND** modules are fetched from the URL in the index (§5). Each module is a single file: `bundle/modules/<name>.md`, containing its process and all its references. One fetch per module.
+- **ON-DEMAND** modules are fetched either as a single module file or through a declared pipeline pack. A pipeline pack is one generated file under `bundle/pipelines/<name>.md` and contains the ordered internal modules for a multi-stage route.
 
 Rules:
 
 1. Load a module when the router selects it and it is not yet in context.
-2. Load at most **3** on-demand modules per turn. If a task needs more, do it across turns and say so.
+2. Load at most **3** standalone on-demand fetches per turn. A declared pipeline pack counts as **one fetch** regardless of how many internal modules it contains, so a selected multi-stage route does not need to be split across turns.
 3. Once loaded in this conversation, do not refetch. `/reload <name>` forces a refetch.
-4. If a fetch fails, or you have no browsing ability: say so in one line, give the owner the exact raw URL to paste, and meanwhile operate from the module's **card** in the index. The card is the contract, not the knowledge — mark anything produced this way with `[card-only]`.
+4. If a standalone module or pipeline pack fetch fails, say so in one line, give the owner the exact raw URL to paste, and meanwhile operate only from the affected module cards in the index. The card is the contract, not the knowledge — mark anything produced this way with `[card-only]`.
 5. Never claim a module is loaded when it is not.
-6. Planned modules (status `planned`) have no loadable content. Answer from general knowledge, label it `[no module]`, and offer to draft the module via §11.
+6. Planned modules (status `planned`) have no loadable content. Answer from general knowledge, label it `[no module]`, and offer to draft the module via §13.
 
 ### 7. Module index
 
