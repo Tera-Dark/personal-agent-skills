@@ -3,7 +3,7 @@ name: creative-skill-router
 description: Entry point for all creative requests in this skill hub. Classifies intent (OC/character design, illustration, fashion, NAI5 prompt, Anima prompt, image reverse analysis, prompt review, ComfyUI/LoRA/dataset), loads identity + aesthetic direction first, then hands off to the right specialist and model adapter. Use whenever a request involves 设计, OC, 人设, 立绘, 插画, 服装, 提示词, prompt, NAI, NovelAI, Anima, 反推, 分析图片, ComfyUI, LoRA, or when it is unclear which skill should handle a creative task.
 metadata:
   author: Tera-Dark
-  version: "3.1.0"
+  version: "3.2.0"
   layer: "01_router"
   load: "always"
   status: "active"
@@ -14,7 +14,7 @@ metadata:
 
 ## Purpose
 
-把用户请求送进正确的创作管线。Router 不产出最终 prompt，只做：**分类 → 设计就绪判定 → Aesthetic Gate → specialist → Blueprint Gate → tag verification → tag classification/filtering → tag serialization → adapter / evaluation**。
+把用户请求送进正确的创作管线。Router 不产出最终 prompt，只做：**分类 → 设计就绪判定 → Aesthetic Gate → specialist → Blueprint Gate → tag verification → tag classification/filtering → prompt skeleton → tag serialization → adapter / evaluation**。
 
 ```
 Request
@@ -32,6 +32,8 @@ Blueprint Gate
 Anima: anima-tag-gate           (verify hard anchors only)
   ↓
 Anima: anima-tag-classifier     (classify + filter verified tags)
+  ↓
+Anima: anima-prompt-skeleton     (stable facts → compact Tag/NL structure)
   ↓
 Anima: anima-tag-serializer     (canonical identity → exact Anima syntax)
   ↓
@@ -66,6 +68,13 @@ For Anima only, verified tags are classified and filtered before serialization.
 - core, structural, and signature anchors survive unless the blueprint explicitly leaves them unlocked;
 - classification never changes creative decisions or prompt budget.
 
+### Anima Prompt Skeleton
+For Anima only, the skeleton maps a finished blueprint into the existing two-part user-visible prompt.
+- verified hard anchors become the compact Tag block;
+- relation, hierarchy, asymmetry, causality, spatial placement, light/material behavior and punctum become Natural Language;
+- Good Anima's soft-phrase concept may be absorbed as compact NL clauses, but never becomes a third visible block;
+- the skeleton compresses rather than expanding the prompt and never makes design decisions.
+
 ### Anima Tag Serializer
 For Anima only, the serializer is the final syntax boundary between canonical identity and emitted prompt text.
 - it receives only Gate-verified, Classifier-approved tags;
@@ -92,7 +101,7 @@ For Anima only, the serializer is the final syntax boundary between canonical id
 |---|---|---|
 | 角色 / OC / 服装设计 | OC, 人设, 角色设计, 服装设计, 立绘, 高定, 二游角色 | identity → Aesthetic Gate FULL → `character-design-engine` → Blueprint Gate → adapter |
 | 插画 / 氛围图 / 故事感 | 插画, 氛围图, 竖屏, 半留白, 印象风, 故事感, key visual | identity → Aesthetic Gate FULL → `illustration-direction` → Blueprint Gate → adapter |
-| 已有设计 → Anima 提示词 | 提示词, prompt, tag, Anima（且设计已完整） | identity → Aesthetic Gate AUDIT → verified design packet → `anima-tag-gate` → `anima-tag-classifier` → `anima-tag-serializer` → `anima-prompt-compiler` |
+| 已有设计 → Anima 提示词 | 提示词, prompt, tag, Anima（且设计已完整） | identity → Aesthetic Gate AUDIT → verified design packet → `anima-tag-gate` → `anima-tag-classifier` → `anima-prompt-skeleton` → `anima-tag-serializer` → `anima-prompt-compiler` |
 | 已有设计 → NAI5 提示词 | NAI5, NovelAI（且设计已完整） | identity → Aesthetic Gate AUDIT → verified design packet → `nai5-community-prompt-engineering` |
 | 参考图反推 | 反推, 分析图片, 提取提示词, 还原风格, 参考这张 | identity → `image-reverse-analysis` → Aesthetic Gate FULL（原创）/ AUDIT（忠实）→ specialist/adapter |
 | 提示词审查 / 优化 | 优化提示词, 这个 prompt 哪里有问题 | `prompt-analysis` → (adapter if rewrite needed) |
