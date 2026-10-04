@@ -7,7 +7,7 @@ The declared order is authoritative; do not skip, reorder, or replace stages wit
 --- MODULE anima-tag-gate ---
 
 ## MODULE: anima-tag-gate
-layer: 02_creation · load: on-demand · status: active · module version: 1.0.0 · harness 3.4.0
+layer: 02_creation · load: on-demand · status: active · module version: 1.1.0 · harness 3.4.0
 source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_creation/anima-tag-gate
 
 **description:** Web-first validation gate for Anima Danbooru hard tags. Resolves exact canonical tags, exact aliases, or missing without fuzzy promotion. Uses the Anima 1.0 tag index protocol and never changes creative decisions. Triggers: Anima tag validation, Danbooru tag check, hard tag verification.
@@ -155,12 +155,14 @@ Do not perform this conversion inside the tag database or validation result. Thi
 
 #### 9. Failure / degradation
 
-If the web source cannot be read, the JSON is malformed, the expected group is absent, or the lookup cannot be proven:
+If the web source cannot be read, the JSON is malformed, the expected group is absent, or the lookup cannot be proven, enter **`tag-index-unavailable`** mode:
 
 - do not invent a tag;
-- mark the anchor `unverified` internally;
-- route its meaning to NL;
-- optionally tell the user that tag verification was unavailable only when it materially affects the requested output.
+- mark every affected anchor `unverified` internally, regardless of model memory or prior runs;
+- route its meaning to Natural Language;
+- no affected tag may enter `hard_tags`;
+- never use fuzzy, semantic, search-engine, or remembered candidates as a substitute;
+- expose `[tag-index-unavailable]` only when the missing verification materially affects the requested output.
 
 A source failure is never permission to use fuzzy matching.
 
@@ -1178,7 +1180,7 @@ The compiler consumes `serialized_tag`; Gate/Classifer continue to reason over `
 --- MODULE anima-prompt-compiler ---
 
 ## MODULE: anima-prompt-compiler
-layer: 02_creation · load: on-demand · status: active · module version: 2.8.0 · harness 3.4.0
+layer: 02_creation · load: on-demand · status: active · module version: 2.9.0 · harness 3.4.0
 source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_creation/anima-prompt-compiler
 
 **description:** Model adapter that compiles a finished character or illustration blueprint into Anima-ready English prompts in a disciplined Tag block + Natural Language block format. Handles Anima-specific format contract, length budgets, positive-first output, V1 faithful / V2 enhanced modes, model profiles and artifact troubleshooting. Use when the user asks for Anima prompts, Anima 提示词, or names an Anima checkpoint. Does not design — if no blueprint exists, route through aesthetic-director-core and character-design-engine / illustration-direction first.
@@ -1203,6 +1205,14 @@ This skill is an adapter, not a design engine. It may compile only a finished bl
 **输入检查**：收到的东西有没有一句带动词的命题、明确的轮廓、四层服装、一个刺点、锁定事实？没有 → 这不是 blueprint，退回 `creative-skill-router`。用户直接说"帮我写个 Anima 提示词，一个月光祭司"时，**不要**在这里补设计。
 
 保留在本 Skill 的只有 Anima 相关的东西：格式契约、长度预算、输出模式、模型档案、伪影排查，以及对已验证、已分类、经过 prompt skeleton 规划、已序列化 tag packet 的最终组装。
+
+#### 2.1 Failure boundary
+
+This adapter has a strict fail-closed boundary:
+
+- If the Anima pipeline pack is unavailable, do not claim the missing stages were executed and do not emit a model-specific final prompt from unavailable rules.
+- If only the tag index is unavailable, compilation may continue using Natural Language for affected tag meanings, but no unverified hard tag may enter the Tag block.
+- If a required upstream stage is missing, stop at the last verified stage and surface the degradation state rather than silently skipping ahead.
 
 #### 2. 默认行为
 
