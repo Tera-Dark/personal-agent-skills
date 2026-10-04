@@ -78,11 +78,36 @@ artist:mr.owlish
 -1::artist collaboration::
 
 画师 Stack 服务 blueprint 的视觉语言，不替代角色设计或构图设计。见 references/artist-stack.md。
-### 4. Global Style Layer
+### 4. Global Style + Quality Layer
 
 风格与角色数据分离。见 `references/style-layer.md`。
 
-**关于质量词的模型特例**：`personal-identity-profile/references/workflow-style.md` 说“避免通用质量词”——那是针对 Anima 等模型。NovelAI 的质量 / 美学标签是训练过的有效 token，在 NAI 上**保留**：quality（如 `masterpiece, best quality, very aesthetic`）、complexity、rendering 三组各取所需，不堆叠。这是适配器层面的合法例外，不是对上游规则的违反。
+**NAI5 需要显式保留质量词。** NovelAI 官方文档说明 V5 Full 的 Quality Tags 会自动加入 `very aesthetic, masterpiece, no text`；Light 质量预设还会使用 `amazing quality`。官方 Prompt Tips 也明确建议在成图质量不足时加入 `very aesthetic`、`best quality`、`high quality`。因此不要再把 quality tags 当成可有可无的废话。
+
+#### NAI5 推荐全局层级
+
+按功能组织全局层，而不是把所有“看起来高级”的词混成一团：
+
+1. **Quality / Aesthetic anchor**  
+   常用：`masterpiece, best quality, high quality, very aesthetic, amazing quality, absurdres`
+2. **Complexity / Illustration density**  
+   V5 可用：`high complexity` / `ultra complexity`；辅助：`intricate details`、`best illustration`
+3. **Rendering / Material**  
+   按目标选择：`detailed shading`、`smooth gradients`、`realistic texture`、`anime coloring`、`painterly`、`ligne claire`、`cinematic lighting` 等
+4. **Style suppression / control**  
+   只在有明确冲突时使用数值负权重，例如 `-2::simple illustration::`、`-5::artist collaboration::`
+
+允许有多个质量 token，但不是同义词越多越好；质量层应服务于目标渲染风格。
+
+NovelAI 官方还说明 Quality Tags toggle 会把 V5 Full 的标准质量词加到 prompt 尾部。因此开启自动 Quality Tags 时，不必机械重复完全相同的一组词。
+
+#### 用户社区样例暴露出的有效结构
+
+一个实用的 NAI5 prompt 结构可以是：
+
+`subject → year/era → weighted artist stack → quality/aesthetic → complexity → rendering → targeted style control → framing/scene → character detail/action → quality tail`
+
+这里每组词承担不同控制任务，而不是简单堆词。
 
 ### 5. Character Block
 
@@ -101,9 +126,19 @@ girl, [identity], [hair], [eyes], [expression], [outfit base→structural→exte
 
 多角色用 `source#` / `target#` / `mutual#`，动作紧跟所属角色。见 `references/interaction-tags.md`。
 
-### 7. Scene Block
+### 7. Prompt Order / Scene Block
 
-角色情绪与动作先于背景装饰。背景只保留能解释光或动作的一层。见 `references/scene-block.md`。
+NAI5 prompt 应视为有优先级的控制序列，而不是 Markdown 文档。实用顺序：
+
+1. subject / identity / framing anchor
+2. year / era / major artist
+3. quality / aesthetic / complexity / rendering
+4. targeted style suppression
+5. framing / scene / environment
+6. character detail / expression / clothing / pose
+7. optional quality tail / `no text`
+
+**重要主体与构图锚点尽量放在前半段。** NovelAI 官方明确说明 prompt 顺序会影响结果，并建议把最重要的信息放在前半段。Scene 仍然只保留能解释构图、动作或光线的环境信息。见 `references/scene-block.md`。
 
 ### 8. Weighting & Negative
 
@@ -152,6 +187,9 @@ Tag 格式天然会丢失“关系”。补救：
 - [ ] 其他画师是否全部 <=0.6？
 - [ ] 是否保留用户原始 artist: namespace？
 - [ ] 用户原始 artist tag 的转义/特殊语法是否被保留？
+- [ ] subject / framing 是否靠前？
+- [ ] quality / aesthetic / complexity / rendering 是否形成明确的全局层？
+- [ ] 是否避免无限堆叠同义质量词？
 - [ ] char block 顺序反映了主锚点 / 安静区？
 - [ ] 刺点颜色只出现一次？
 - [ ] 被删掉的物件没有以 tag 回流？
@@ -240,54 +278,104 @@ Prefer dense visual tokens over long descriptive paragraphs, while preserving th
 
 ### NAI5 Style and Render Layer
 
-#### Global Style Layer
+#### Global Style + Quality Layer
 
-Place global visual direction before character blocks.
+Place global visual direction before character blocks, while keeping the main subject and framing in the front half of the prompt.
 
-#### Categories
+#### Quality / Aesthetic
 
-##### Quality
+NovelAI's V5 Full Quality Tags include:
+`very aesthetic, masterpiece, no text`
 
-```text
+Its Light quality preset includes:
+`very aesthetic, amazing quality, no text`
+
+Official Prompt Tips also recommend `very aesthetic`, `best quality`, and `high quality` when a generation lacks quality.
+
+Common community quality tokens:
+```
 masterpiece
 best quality
-highres
+high quality
 very aesthetic
+amazing quality
+absurdres
+highres
+best illustration
 ```
 
-##### Complexity
+Use a coherent subset rather than mechanically stacking every synonym. The goal is a strong quality prior plus the intended visual language.
 
-```text
+#### Complexity
+
+V5 supports:
+```
+low complexity
+medium complexity
 high complexity
 ultra complexity
-intricate details
 ```
 
-##### Rendering
+For dense premium character illustration, `high complexity` is a sensible starting point. Use `ultra complexity` when the blueprint genuinely calls for very high visual density.
 
-```text
-color shading
+Supporting terms:
+```
+high detail
+intricate details
+fine details
+```
+
+#### Rendering / Material
+
+Choose rendering terms that reinforce the intended look:
+```
+detailed shading
+smooth gradients
+realistic texture
+anime coloring
+painterly
+ligne claire
 cinematic lighting
 depth of field
-global illumination
 ambient occlusion
+global illumination
 ```
 
-##### Style Suppression
+Avoid contradictory rendering directions simply because each is individually “high quality”.
 
-Use negative weights when a style conflicts with the target.
+#### Style Suppression / Control
 
-Examples:
-
-```text
--3::monochrome::
--2::flat color::
--3::toon (style)::
+Use targeted negative numerical emphasis when a known style conflict needs suppression:
 ```
+-2::simple illustration::
+-5::artist collaboration::
+-1::censored::
+```
+
+This is control, not a substitute for positive design.
+
+#### Prompt Order
+
+A practical structure:
+```
+subject + framing,
+year / era,
+weighted artist stack,
+quality + aesthetic,
+complexity,
+rendering,
+targeted style control,
+scene / environment,
+character detail,
+expression / clothing / pose,
+optional quality tail / no text
+```
+
+NovelAI explicitly notes that prompt order matters and recommends keeping the most important information in the front half.
 
 #### Principle
 
-Style tokens should reinforce the intended visual language rather than replace character design.
+Quality tags establish the generation's quality/aesthetic prior; complexity controls density; rendering terms define the material/light treatment; artist tags establish a style prior. None of these replace the underlying character and composition blueprint.
 
 ---
 

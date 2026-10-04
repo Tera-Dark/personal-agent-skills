@@ -8,7 +8,7 @@
   "harness_full_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS-FULL.md",
   "handshake": "Harness v2.2.0 loaded · 14 modules · 说需求，或发参考图。",
   "core_tokens": 22919,
-  "full_tokens": 75210,
+  "full_tokens": 76222,
   "modules": [
     {
       "name": "aesthetic-director-core",
@@ -172,8 +172,8 @@
         "references/weighting.md",
         "references/negative-strategy.md"
       ],
-      "tokens_skill": 2352,
-      "tokens_bundle": 4641
+      "tokens_skill": 2927,
+      "tokens_bundle": 5653
     },
     {
       "name": "image-reverse-analysis",
