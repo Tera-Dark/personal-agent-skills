@@ -311,3 +311,4 @@
 ### Arch-09: Generated bundle consistency
 - Pass: source changes make scripts/validate_skills.py --check-bundle fail until build.py regenerates bundle/; CI rebuilds on push.
 - Fail: bundle files are hand-edited or silently drift from source.
+\n\n## P12 Personal Anima Regression\n\nThe detailed P12 regression matrix is in `tests/personal-anima-regression.md`.\n\nP12 adds 36 cases across exact/alias/missing/fuzzy tags, character/IP/artist isolation, appearance/clothing/action classification, composite packets, exact Anima syntax and idempotence, Tag/NL skeleton boundaries, compression priorities, aesthetic protection, all P11 failure scopes, Web-first pipeline loading, and the owner's recent gacha/full-body/high-fashion/illustration/reference/token-pressure tasks.\n\nThe deterministic CI gate is `scripts/check_personal_anima_regression.py`; live-index and visual/aesthetic judgments remain manual.\n
