@@ -128,6 +128,17 @@ def cards(entries):
 
 
 
+def failure_policy_table(cfg):
+    policy = cfg.get("failure_policy") or {}
+    standalone = policy.get("standalone_module") or {}
+    pack = policy.get("pipeline_pack") or {}
+    tag = policy.get("anima_tag_index") or {}
+    rows = ["| scope | failure state | label | allowed continuation | forbidden |", "|---|---|---|---|---|"]
+    rows.append("| standalone module | `{}` | `{}` | other loaded modules may continue | memory substitution |".format(standalone.get("on_fetch_failure", "card_only"), standalone.get("label", "[card-only]")))
+    rows.append("| pipeline pack | `{}` | `{}` | already-loaded stages only | model-specific compile from missing stages |".format(pack.get("on_fetch_failure", "pipeline_unavailable"), pack.get("label", "[pipeline-unavailable]")))
+    rows.append("| Anima tag index | `{}` | `{}` | route affected tag meaning to NL | hard tags / fuzzy promotion |".format(tag.get("on_fetch_failure", "unverified_to_nl"), tag.get("label", "[tag-index-unavailable]")))
+    return "\n".join(rows)
+
 def build_anima_pipeline_pack_entry(cfg):
     packs = (cfg.get("pipeline") or {}).get("pipeline_packs") or {}
     if "anima" not in packs:
@@ -182,6 +193,7 @@ def render_kernel(root, cfg, version, entries):
         "{{MANIFEST_TABLE}}": manifest_table(entries) + "\n\n### Module cards (contracts for on-demand modules; use only if a fetch fails)\n\n" + cards(entries),
         "{{PIPELINE_PACK_TABLE}}": pipeline_pack_table(cfg),
         "{{ANIMA_PIPELINE_PACK_ENTRY}}": build_anima_pipeline_pack_entry(cfg),
+        "{{FAILURE_POLICY_TABLE}}": failure_policy_table(cfg),
     }
     for k, v in subs.items():
         text = text.replace(k, v)
