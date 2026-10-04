@@ -1,3 +1,11 @@
+## [3.8.0] - 2026-10-05
+
+### Aesthetic floor
+- Added an explicit aesthetic floor: distinctiveness must remain subordinate to proportion, silhouette, color hierarchy and garment construction.
+- Clarified that the “one strange thing” is a local tension device, not permission to make the whole design awkward or ugly.
+- Added P14 regression coverage for aesthetic floor, removal tests, feedback routing, Modern Key Visual impact, compression and long-term taste boundaries.
+- Refined the evaluation loop so “ugly” feedback is diagnosed as a design-layer failure instead of defended as intentional.
+
 ## [3.7.0] - 2026-10-05
 
 ### Real-task regression
