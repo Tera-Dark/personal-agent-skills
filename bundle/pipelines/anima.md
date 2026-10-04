@@ -7,7 +7,7 @@ The declared order is authoritative; do not skip, reorder, or replace stages wit
 --- MODULE anima-tag-gate ---
 
 ## MODULE: anima-tag-gate
-layer: 02_creation · load: on-demand · status: active · module version: 1.1.0 · harness 3.7.0
+layer: 02_creation · load: on-demand · status: active · module version: 1.1.0 · harness 3.8.0
 source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_creation/anima-tag-gate
 
 **description:** Web-first validation gate for Anima Danbooru hard tags. Resolves exact canonical tags, exact aliases, or missing without fuzzy promotion. Uses the Anima 1.0 tag index protocol and never changes creative decisions. Triggers: Anima tag validation, Danbooru tag check, hard tag verification.
@@ -223,7 +223,7 @@ The personal harness is designed to be pasted into web AI sessions. A giant stat
 --- MODULE anima-tag-classifier ---
 
 ## MODULE: anima-tag-classifier
-layer: 02_creation · load: on-demand · status: active · module version: 1.0.0 · harness 3.7.0
+layer: 02_creation · load: on-demand · status: active · module version: 1.0.0 · harness 3.8.0
 source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_creation/anima-tag-classifier
 
 **description:** Lightweight classification and filtering layer for verified Anima Danbooru tags. Assigns intent groups, identity sensitivity, and prompt-role classes without inventing or fuzzy-matching tags. Use after anima-tag-gate and before prompt compilation when tag selection needs category-aware filtering.
@@ -395,7 +395,7 @@ Only entries with `status=verified` and `prompt_role != omit` are eligible for c
 --- MODULE anima-prompt-skeleton ---
 
 ## MODULE: anima-prompt-skeleton
-layer: 02_creation · load: on-demand · status: active · module version: 1.1.0 · harness 3.7.0
+layer: 02_creation · load: on-demand · status: active · module version: 1.1.0 · harness 3.8.0
 source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_creation/anima-prompt-skeleton
 
 **description:** Compact Anima prompt-structure layer that maps a finished blueprint into stable hard anchors and relational natural language. Absorbs Good Anima's hard_tags, soft_phrases, and nltags concepts without adding a third user-visible block. Use after tag classification and before serialization/compiler assembly.
@@ -622,7 +622,7 @@ anima-prompt-compiler
 --- MODULE anima-aesthetic-protection ---
 
 ## MODULE: anima-aesthetic-protection
-layer: 02_creation · load: on-demand · status: active · module version: 1.0.0 · harness 3.7.0
+layer: 02_creation · load: on-demand · status: active · module version: 1.0.0 · harness 3.8.0
 source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_creation/anima-aesthetic-protection
 
 **description:** Protection boundary for Anima prompt compilation. Prevents tag verification, classification, compression, serialization and model-adapter rules from altering finished aesthetic decisions, composition, silhouette, asymmetry, focal hierarchy or visual grammar. Use as an audit layer before final Anima output.
@@ -772,7 +772,7 @@ Model adaptation can change wording, not the design thesis.
 --- MODULE anima-prompt-compressor ---
 
 ## MODULE: anima-prompt-compressor
-layer: 02_creation · load: on-demand · status: active · module version: 1.1.0 · harness 3.7.0
+layer: 02_creation · load: on-demand · status: active · module version: 1.1.0 · harness 3.8.0
 source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_creation/anima-prompt-compressor
 
 **description:** Minimal-sufficient prompt compression layer for Anima. Removes low-impact, redundant, decorative and merely explanatory text after skeleton planning while protecting identity, locked facts, silhouette, key garment structure, pose and one visual punctum. Use before final Anima syntax serialization and compilation.
@@ -981,7 +981,7 @@ Anima should receive a **small control packet**, not a written description of th
 --- MODULE anima-tag-serializer ---
 
 ## MODULE: anima-tag-serializer
-layer: 02_creation · load: on-demand · status: active · module version: 1.0.0 · harness 3.7.0
+layer: 02_creation · load: on-demand · status: active · module version: 1.0.0 · harness 3.8.0
 source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_creation/anima-tag-serializer
 
 **description:** Final serialization layer for verified Anima Danbooru tags. Converts canonical tag identities into exact Anima-safe syntax only for explicitly registered syntax rules, preserving ordinary tags and never discovering, rewriting, or inventing identities. Use after anima-tag-classifier and before anima-prompt-compiler serialization.
@@ -1180,7 +1180,7 @@ The compiler consumes `serialized_tag`; Gate/Classifer continue to reason over `
 --- MODULE anima-prompt-compiler ---
 
 ## MODULE: anima-prompt-compiler
-layer: 02_creation · load: on-demand · status: active · module version: 2.9.0 · harness 3.7.0
+layer: 02_creation · load: on-demand · status: active · module version: 2.9.0 · harness 3.8.0
 source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_creation/anima-prompt-compiler
 
 **description:** Model adapter that compiles a finished character or illustration blueprint into Anima-ready English prompts in a disciplined Tag block + Natural Language block format. Handles Anima-specific format contract, length budgets, positive-first output, V1 faithful / V2 enhanced modes, model profiles and artifact troubleshooting. Use when the user asks for Anima prompts, Anima 提示词, or names an Anima checkpoint. Does not design — if no blueprint exists, route through aesthetic-director-core and character-design-engine / illustration-direction first.
