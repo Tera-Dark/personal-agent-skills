@@ -3,7 +3,7 @@ name: creative-skill-router
 description: Entry point for all creative requests in this skill hub. Classifies intent (OC/character design, illustration, fashion, NAI5 prompt, Anima prompt, image reverse analysis, prompt review, ComfyUI/LoRA/dataset), loads identity + aesthetic direction first, then hands off to the right specialist and model adapter. Use whenever a request involves 设计, OC, 人设, 立绘, 插画, 服装, 提示词, prompt, NAI, NovelAI, Anima, 反推, 分析图片, ComfyUI, LoRA, or when it is unclear which skill should handle a creative task.
 metadata:
   author: Tera-Dark
-  version: "3.0.0"
+  version: "3.0.1"
   layer: "01_router"
   load: "always"
   status: "active"
@@ -14,7 +14,7 @@ metadata:
 
 ## Purpose
 
-把用户请求送进正确的创作管线。Router 不产出最终 prompt，只做：**分类 → 设计就绪判定 → Aesthetic Gate → specialist → Blueprint Gate → adapter / evaluation**。
+把用户请求送进正确的创作管线。Router 不产出最终 prompt，只做：**分类 → 设计就绪判定 → Aesthetic Gate → specialist → Blueprint Gate → tag verification → adapter / evaluation**。
 
 ```
 Request
@@ -26,6 +26,10 @@ personal-identity-profile      (always, for any creative task)
 aesthetic-director-core        (always for creative tasks → produces a Creative Brief)
   ↓
 Specialist                     (character-design-engine / illustration-direction / image-reverse-analysis / prompt-analysis)
+  ↓
+Blueprint Gate
+  ↓
+Anima: anima-tag-gate           (verify hard anchors only)
   ↓
 Model Adapter                  (anima-prompt-compiler / nai5-community-prompt-engineering)
   ↓
@@ -43,6 +47,13 @@ Every creative request passes the gate.
 ### Blueprint Gate
 Before any model adapter, verify a type-specific blueprint or a verified finished-design packet. Adapters never fill missing design decisions.
 
+### Anima Tag Gate
+For Anima only, hard anchors are validated after the blueprint is ready and before prompt compilation.
+- `exact` and `alias` may become verified hard tags.
+- `missing` becomes NL; it is never fabricated.
+- fuzzy matches and candidate pools never become hard tags.
+- canonical Danbooru identity remains separate from Anima syntax escaping.
+
 ## Core Rules
 
 1. **创作类请求不得绕过 Aesthetic Gate。** 未完成请求走 FULL；完成设计走 AUDIT。只有 AUDIT PASS 或 FULL 产出通过 Blueprint Gate 后，才允许进入 adapter。
@@ -51,6 +62,7 @@ Before any model adapter, verify a type-specific blueprint or a verified finishe
 4. **用户明确要求 > 身份档案 > 审美方向 > 专家 Skill > 模型语法。**
 5. **混合请求拆开。** "设计 OC + 训 LoRA" → `character-design-engine` 完成后再进 `dataset-management` / `lora-training`。
 6. **反馈轮走 `evaluation-loop` + `aesthetic-director-core/references/feedback-diagnosis.md`**，不是直接改 prompt。
+7. **Anima hard tags 必须经过 `anima-tag-gate`。** 不得因为模型记忆、搜索引擎近似结果或语义相似而跳过验证。
 
 ## Quick Routing Table
 
@@ -58,7 +70,8 @@ Before any model adapter, verify a type-specific blueprint or a verified finishe
 |---|---|---|
 | 角色 / OC / 服装设计 | OC, 人设, 角色设计, 服装设计, 立绘, 高定, 二游角色 | identity → Aesthetic Gate FULL → `character-design-engine` → Blueprint Gate → adapter |
 | 插画 / 氛围图 / 故事感 | 插画, 氛围图, 竖屏, 半留白, 印象风, 故事感, key visual | identity → Aesthetic Gate FULL → `illustration-direction` → Blueprint Gate → adapter |
-| 已有设计 → 提示词 | 提示词, prompt, tag, NAI5, NovelAI, Anima（且设计已完整） | identity → Aesthetic Gate AUDIT → verified design packet → adapter |
+| 已有设计 → Anima 提示词 | 提示词, prompt, tag, Anima（且设计已完整） | identity → Aesthetic Gate AUDIT → verified design packet → `anima-tag-gate` → `anima-prompt-compiler` |
+| 已有设计 → NAI5 提示词 | NAI5, NovelAI（且设计已完整） | identity → Aesthetic Gate AUDIT → verified design packet → `nai5-community-prompt-engineering` |
 | 参考图反推 | 反推, 分析图片, 提取提示词, 还原风格, 参考这张 | identity → `image-reverse-analysis` → Aesthetic Gate FULL（原创）/ AUDIT（忠实）→ specialist/adapter |
 | 提示词审查 / 优化 | 优化提示词, 这个 prompt 哪里有问题 | `prompt-analysis` → (adapter if rewrite needed) |
 | 反馈 / 迭代 | 太平淡, 太乱, 不像, 这版可以, 换个方向 | `evaluation-loop` → feedback-diagnosis → 回到失败层 |
