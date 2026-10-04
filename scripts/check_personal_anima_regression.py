@@ -103,13 +103,13 @@ def main() -> int:
     for needle in ("Tier A", "Tier B", "Tier C", "smallest prompt", "identity", "punctum"):
         require(needle.lower() in sources["compressor"].lower(), f"Compressor lost contract token: {needle}", failures)
 
-    for needle in ("canonical_tag", "serialized_tag", "37\\(reverse1999\\)", "idempot"):
+    for needle in ("canonical_tag", "serialized_tag", "serialized: 37\\\\", "idempot"):
         require(needle in sources["serializer"], f"Serializer lost contract token: {needle}", failures)
 
     for needle in ("not an aesthetic generator", "design-drift", "asymmetry", "quiet field", "punctum"):
         require(needle.lower() in sources["protection"].lower(), f"Protection lost contract token: {needle}", failures)
 
-    for needle in ("Blueprint Gate", "Failure boundary", "37\\(reverse1999\\)"):
+    for needle in ("Blueprint Gate", "Failure boundary", "37_(reverse:1999)", "reverse1999"):
         require(needle.lower() in sources["compiler"].lower(), f"Compiler lost boundary token: {needle}", failures)
 
     require(
