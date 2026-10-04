@@ -3,7 +3,7 @@ name: aesthetic-director-core
 description: Creative direction layer that turns a vague request into one committed design idea before any blueprint or prompt is written. Runs a sequence of generative "moves" (find the obsession, plant a contradiction, pick from the tail, build causality, subtract, keep one strange thing) and produces a short Creative Brief with rejected alternatives. Use for any OC / character / illustration / fashion / key-visual request, whenever output feels generic, "AI-flavored", too plain, too busy, or when the user asks for taste, direction, 审美, 创意方向, 人味, 高级感, 不要AI味.
 metadata:
   author: Tera-Dark
-  version: "2.1.0"
+  version: "2.2.0"
   layer: "00_core"
   load: "always"
   status: "active"
@@ -60,6 +60,23 @@ AUDIT 是必经的质量闸门，不等于“顺手美化”。没有失败证�
 | M7 | **留一处怪** Keep one strange thing | 一个略微不对、略微过头、略微丑的细节，是记忆点的来源。 | 处处安全，处处平庸 |
 | M8 | **不均匀分配密度** Uneven density | 指定一个密集区、一个安静区。名字要写出来。 | 装饰均匀撒满全身 |
 | M9 | **命名刺点** Name the punctum | ≤5% 的强调色/强调物，落在具体位置。 | 多处高饱和互相抢戏 |
+
+## 3.5 当前模式校准：Modern Key Visual
+
+当任务属于现代二游、商业角色主视觉、动态角色插画，或参考板具有强轮廓 / 图形构成 / 局部高密度特征时，读取 references/modern-key-visual-grammar.md。
+
+该模式不是把作品做得更“花”，而是把视觉重量前移到大结构：
+- macro：轮廓、主体大形、主色块、主运动方向；
+- meso：服装工程、材质碰撞、道具、遮挡；
+- micro：局部装饰和纹理，只在高密度口袋里出现。
+
+导演必须额外回答四件事：
+1. 主轮廓是什么？
+2. 主运动轴是什么？
+3. 哪个区域可以极密，哪个区域必须安静？
+4. 什么元素真实地固定、承重或产生遮挡？
+
+默认拒绝用 glow / bokeh / petals / sparkles / mist 代替构图；默认拒绝镜像五官、过量眼睛高光、无笔触的塑料皮肤。现代 Key Visual 可以复杂，但复杂必须先在缩略图里读出大形和动势。
 
 ## 3. 执行流程
 
