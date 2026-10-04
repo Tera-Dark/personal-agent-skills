@@ -6,9 +6,9 @@
   "raw_base": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/",
   "harness_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS.md",
   "harness_full_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS-FULL.md",
-  "handshake": "Harness v3.1.0 loaded · 19 modules · 说需求，或发参考图。",
-  "core_tokens": 28322,
-  "full_tokens": 94815,
+  "handshake": "Harness v3.1.0 loaded · 20 modules · 说需求，或发参考图。",
+  "core_tokens": 28477,
+  "full_tokens": 96291,
   "pipeline": {
     "aesthetic_gate": "aesthetic-director-core",
     "blueprint_gate": {
@@ -87,6 +87,21 @@
       ],
       "tokens_skill": 2301,
       "tokens_bundle": 4616
+    },
+    {
+      "name": "anima-aesthetic-protection",
+      "layer": "02_creation",
+      "load": "on-demand",
+      "status": "active",
+      "version": "1.0.0",
+      "description": "Protection boundary for Anima prompt compilation. Prevents tag verification, classification, compression, serialization and model-adapter rules from altering finished aesthetic decisions, composition, silhouette, asymmetry, focal hierarchy or visual grammar. Use as an audit layer before final Anima output.",
+      "triggers": "Anima aesthetic protection, design lock, prompt design drift, aesthetic audit",
+      "path": "02_creation/anima-aesthetic-protection",
+      "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_creation/anima-aesthetic-protection",
+      "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-aesthetic-protection.md",
+      "references": [],
+      "tokens_skill": 1172,
+      "tokens_bundle": 1316
     },
     {
       "name": "anima-prompt-compiler",
