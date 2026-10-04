@@ -1,14 +1,14 @@
 {
   "name": "personal-agent-skills",
-  "version": "3.7.0",
+  "version": "3.8.0",
   "repo": "Tera-Dark/personal-agent-skills",
   "branch": "main",
   "raw_base": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/",
   "harness_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS.md",
   "harness_full_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS-FULL.md",
-  "handshake": "Harness v3.7.0 loaded · 20 modules · 说需求，或发参考图。",
-  "core_tokens": 29963,
-  "full_tokens": 98184,
+  "handshake": "Harness v3.8.0 loaded · 20 modules · 说需求，或发参考图。",
+  "core_tokens": 30429,
+  "full_tokens": 93887,
   "pipeline": {
     "aesthetic_gate": "aesthetic-director-core",
     "blueprint_gate": {
@@ -78,7 +78,7 @@
       "layer": "00_core",
       "load": "always",
       "status": "active",
-      "version": "2.2.0",
+      "version": "2.3.0",
       "description": "Creative direction layer that turns a vague request into one committed design idea before any blueprint or prompt is written. Runs a sequence of generative \"moves\" (find the obsession, plant a contradiction, pick from the tail, build causality, subtract, keep one strange thing) and produces a short Creative Brief with rejected alternatives. Use for any OC / character / illustration / fashion / key-visual request, whenever output feels generic, \"AI-flavored\", too plain, too busy, or when the user asks for taste, direction, 审美, 创意方向, 人味, 高级感, 不要AI味.",
       "triggers": "OC, 人设, 插画, 服装, 审美, 创意方向, 人味, 高级感, 不要AI味, 太平淡, 太乱",
       "path": "00_core/aesthetic-director-core",
@@ -93,8 +93,8 @@
         "references/emotional-design.md",
         "references/modern-key-visual-grammar.md"
       ],
-      "tokens_skill": 2719,
-      "tokens_bundle": 17160
+      "tokens_skill": 2934,
+      "tokens_bundle": 13380
     },
     {
       "name": "personal-identity-profile",
@@ -115,7 +115,7 @@
         "references/business-objectives.md"
       ],
       "tokens_skill": 589,
-      "tokens_bundle": 5476
+      "tokens_bundle": 4832
     },
     {
       "name": "creative-skill-router",
@@ -413,15 +413,15 @@
       "layer": "05_evaluation",
       "load": "always",
       "status": "active",
-      "version": "2.2.0",
+      "version": "2.3.0",
       "description": "Evaluates a generated image or compiled prompt against the original Creative Brief and blueprint, using a fixed rubric (identity preservation, outfit binding, spatial clarity, unrequested additions, V1/V2 consistency, output contract) plus a design-layer read (thesis, silhouette, causality, density, punctum, one strange thing). Diagnoses which layer failed and routes the fix to that layer with a single-variable change. Use on any feedback round: 太平淡, 太乱, 不像, 没人味, 这版可以, 评价一下, 哪里不对, compare versions.",
       "triggers": "太平淡, 太乱, 不像, 没人味, 这版可以, 评价一下, 哪里不对, compare",
       "path": "05_evaluation/evaluation-loop",
       "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/05_evaluation/evaluation-loop",
       "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/evaluation-loop.md",
       "references": [],
-      "tokens_skill": 1286,
-      "tokens_bundle": 1490
+      "tokens_skill": 1395,
+      "tokens_bundle": 1599
     }
   ]
 }
