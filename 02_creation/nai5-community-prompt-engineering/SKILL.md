@@ -58,6 +58,8 @@ NovelAI 官方数值 emphasis 规则：
 
 ### 用户画师池的默认随机策略
 
+**Blacklist gate:** Any artist tag whose final character is a digit is ineligible for all new stacks by default. This includes random selection, manual recommendations, and single-artist tests unless the user explicitly overrides the rule.
+
 当用户提供一个画师池并要求随机生成：
 - 随机抽 3–8 位 artist
 - 每位 artist 权重范围 0.3–1.2
@@ -79,7 +81,7 @@ artist:mr.owlish
 
 其中明显异常/不完整的条目不要猜测含义并推到主画师位置；可跳过，或仅在低影响位置使用。
 
-特殊条目 vlfdus 0 视为含义不明确，不要擅自猜测成某个画师名。
+特殊条目或任何末尾数字画师均不得进入新 stack；`artist:vlfdus_0` 已因末尾数字规则进入黑名单，不再测试。
 
 必要时控制：
 
@@ -227,6 +229,7 @@ Tag 格式天然会丢失“关系”。补救：
 - [ ] 每个 artist 权重是否在 0.3–1.2？
 - [ ] 是否至少存在 1 个 >1.0 的 artist？
 - [ ] 是否保留用户原始 artist: namespace？
+- [ ] 是否排除了所有 artist tag 末尾为数字的画师？
 - [ ] 用户原始 artist tag 的转义/特殊语法是否被保留？
 - [ ] subject / framing 是否靠前？
 - [ ] 是否遵循 Subject → Year/Era → Artist → Quality → Complexity → Rendering → Control → Scene → Character → Action 的骨架？
