@@ -19,6 +19,8 @@ So 0.8 is **not** a high-strength artist weight; it is a weakened emphasis. For 
 
 ## Principles
 
+For this personal workflow, the current random experiment mode is authoritative: 3–8 artists, 0.3–1.2 each, and at least one artist >1.0. The conservative single-primary / <=0.6-secondary recipe remains a generic fallback only when no personal experiment rule is specified.
+
 Artist tags are not decoration. They influence the visual prior of the generation:
 - line quality
 - color language
