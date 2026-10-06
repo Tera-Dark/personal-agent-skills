@@ -165,7 +165,72 @@ These are user-scored individual tests. **Scores do not automatically change the
 - User feedback: "没效果".
 - Status: negative/low-signal evidence; do not prioritize in future experiments unless specifically revisiting.
 
-## 5. Confirmed liked / high-value combinations
+## 5. Single-artist test records — 2026-10-06 (continued)
+
+### `artist:kelezi`
+- Score: **7.5/10**
+- User feedback:画风比较精致，适合精细人设造型类.
+- Style tags: **精致 / 人设造型 / 细节型 / 角色设计**
+- Best-fit elements: detailed costume construction, character sheets, accessories, hairstyle design, refined silhouette.
+
+### `artist:diurtion`
+- Score: **7.5/10**
+- User feedback:画风质感适合情绪流，笔触偏概括，适合简单情绪画面.
+- Style tags: **情绪流 / 概括笔触 / 质感 / 简洁叙事**
+- Best-fit elements: restrained composition, emotional expression, simple props, atmospheric lighting, minimal scenes.
+
+### `artist:fengjian_yuzhi`
+- Score: **8.0/10**
+- User feedback:画面清丽甜美，适合精致人物肖像.
+- Style tags: **清丽 / 甜美 / 精致肖像 / 少女向**
+- Best-fit elements: soft colors, clean portraits, delicate hair, elegant clothing, gentle expressions, pale backgrounds.
+
+### `artist:duoqing_tie_ban_shao`
+- Score: **7.5/10**
+- User feedback:画面张力十足、色调华丽，人物姿势又有一些克制；适合御姐、张力感插画.
+- Style tags: **华丽 / 张力 / 克制姿势 / 御姐 / 高戏剧性**
+- Best-fit elements: mature female characters, dramatic poses, rich color palettes, fashion details, dynamic framing.
+
+### `artist:baifeidaiwang`
+- Score: **9.0/10**
+- User feedback:非常特殊；属于精美人像插画类，画风独特，有点伪厚涂；个人给到9分，但仅适配肖像类.
+- Style tags: **精美人像 / 独特画风 / 伪厚涂 / 高级感 / 肖像专用**
+- Best-fit elements: close portraits, bust shots, facial rendering, elegant hair, premium costume details, controlled backgrounds.
+- Constraint: **portrait-only specialist**; do not treat as a general scene/pose artist.
+
+### `artist:cuso4_suiwabutu`
+- Score: **8.0/10**
+- User feedback:精美概念人像设计类.
+- Style tags: **精美 / 概念人像 / 人物设计 / 高完成度**
+- Best-fit elements: conceptual costumes, distinctive character motifs, ornate accessories, designed portraits, fantasy elements.
+
+### `artist:baicumikuo`
+- Score: **6.0/10**
+- User feedback:本身属于高级精品人物场景插画类，但可能因训练集太少，当前肖像测试效果只有6分.
+- Style tags: **高级精品 / 人物场景 / 场景插画 / 训练集敏感**
+- Best-fit elements: full scene illustration, environmental storytelling, character-in-world compositions, architecture and props.
+- Constraint: **low confidence for portrait testing due to possible training-data limitation**; do not equate the 6/10 portrait score with overall style quality.
+
+### `artist:vlfdus_0`
+- Score: **7.0/10**
+- User feedback:画风偏西方半写实风.
+- Style tags: **西方半写实 / 半写实 / 成熟质感 / 非典型二次元**
+- Best-fit elements: mature characters, restrained anime features, realistic costume rendering, dramatic lighting.
+- Note: artist identity remains unresolved/ambiguous; preserve exact token and do not infer a different canonical identity.
+
+### `artist:aniao_ya`
+- Score: **7.5/10**
+- User feedback:偏二游商业海报风格，比较精美.
+- Style tags: **二游商业海报 / 商业插画 / 精美 / 宣传视觉**
+- Best-fit elements: game-promo composition, character key visuals, strong focal framing, readable costume design, polished lighting.
+
+### `artist:mihiro_00122`
+- Status: **permanently blacklisted by user**
+- User feedback:使用时出现与 `yellowshark601` 类似的糊图问题.
+- Blacklist rule: user explicitly requests that **artists whose canonical artist tag contains digits be blacklisted and not considered for future use**.
+- Do not include in random artist selection, single-artist testing, or recommended stacks.
+
+## 6. Confirmed liked / high-value combinations
 
 These artists have been validated through the user's actual NAI5 experiments and should be treated as strong anchors for future exploration.
 
@@ -186,7 +251,7 @@ Use it as a **structural reference**, not as a permanent three-artist recipe:
 - mido_(mido_chen) — 二次元角色原画 / 可爱角色 / 二游完成度
 - pekopeco — 古风 / 服装 / 柔和留白
 
-## 6. Newly validated experiment combinations — 2026-10-06
+## 7. Newly validated experiment combinations — 2026-10-06
 
 **Experiment 17 — liked**
 
@@ -212,7 +277,7 @@ User feedback: "这个组合的效果不错".
 
 Keep this as a high-value combination sample. This approves the combination, not automatic individual tier promotion.
 
-## 7. Existing aesthetic-good candidate pool
+## 8. Existing aesthetic-good candidate pool
 
 These are retained from the personal aesthetic pool. Artists tested individually are still useful pool members; their current classification and role tags are recorded above.
 
@@ -227,7 +292,6 @@ artist:qingming_tiaohetu
 artist:qing_yan_xia
 artist:mr._owlish
 artist:guigui_rongrong
-artist:mihiro_00122
 artist:kelezi
 artist:diurtion
 artist:fengjian_yuzhi
@@ -262,7 +326,7 @@ artist:luckyia
 artist:bochishiraita
 ~~~
 
-## 8. Current exploration queue
+## 9. Current exploration queue
 
 ### Tier A — verified Red-direction exploration candidates
 
@@ -289,7 +353,7 @@ The three already tested above should now be treated as **measured controls**, n
 - User feedback: "蛮可爱".
 - Keep the exact combination as a positive cute-small-artist reference.
 
-## 9. Discovery protocol
+## 10. Discovery protocol
 
 When expanding the pool, use this order:
 
@@ -309,15 +373,23 @@ When expanding the pool, use this order:
 
 Do not reverse this order by discovering a random Danbooru artist first and retroactively calling them a "小画师".
 
-## 10. Permanent exclusion
+## 11. Permanent exclusion
 
 ~~~text
 artist:yellowshark601
+artist:mihiro_00122
 ~~~
 
-Never use this artist in random selection.
+Never use these artists in random selection.
 
-## 11. Maintenance rules
+### Global user blacklist rule
+
+- **Any artist tag containing digits is now blacklisted by default.**
+- Do not test, recommend, or randomly select numeric artist tags unless the user explicitly overrides this rule.
+- This rule was added after `artist:mihiro_00122` produced the same type of blurry output the user associated with `artist:yellowshark601`.
+- Do not retroactively assume every numeric tag has the same technical cause; this is a user-level practical exclusion rule based on observed results.
+
+## 12. Maintenance rules
 
 - Do not silently rename, normalize, split, or "fix" artist tags.
 - Preserve underscores, periods, parentheses, suffixes, and other syntax exactly.
