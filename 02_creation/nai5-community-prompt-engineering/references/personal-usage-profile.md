@@ -107,8 +107,10 @@ Add detailed shading, smooth gradients, or anime coloring only when they test a 
 - Preserve underscores, parentheses, periods, suffixes, and other exact syntax.
 - Never invent a tag from a creator display name.
 - Exact tag verification belongs to the exploration stage.
-- artist:vlfdus_0 remains ambiguous and must not be guessed.
-- artist:yellowshark601 is permanently excluded.
+- Any artist tag whose **final character is a digit** is blacklisted by default and must not be tested, recommended, or randomly selected unless the user explicitly overrides it.
+- Current examples: `artist:yellowshark601`, `artist:mihiro_00122`, `artist:vlfdus_0`, `artist:zishengtian123`.
+- Historical combination records may retain these names for provenance, but they must never be emitted into new prompts.
+- Preserve exact artist syntax for eligible artists; do not guess unresolved tags.
 
 ## 10. Feedback memory
 
