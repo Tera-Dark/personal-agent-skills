@@ -96,7 +96,76 @@ Use these tags to choose artists by **function**, not only by overall score.
   - useful elements to test next: environmental lighting, props, architecture, atmospheric perspective
   - status: **scene/concept hypothesis only**, not yet confirmed.
 
-## 4. Confirmed liked / high-value combinations
+## 4. Single-artist test records — 2026-10-06
+
+These are user-scored individual tests. **Scores do not automatically change the four manual preference tiers.** Artists remain manually tiered unless the user explicitly reassigns them.
+
+### `artist:zhi_xu_li_ming`
+- Score: **8.0/10**
+- User feedback: "还可以".
+- Style tags: **精致柔和 / 细腻笔触 / 精致风肖像**
+- Best-fit elements: delicate facial details, refined hair, elegant costume details, restrained lighting, portrait framing.
+- Status: individually positive, tier remains manually unassigned.
+
+### `artist:kurikabacha`
+- Score: **8.0/10**
+- User feedback: "还可以".
+- Style tags: **精致柔和 / 细腻笔触 / 精致风肖像**
+- Best-fit elements: delicate portrait, soft rendering, refined clothing details, gentle light, decorative close-up composition.
+- Status: individually positive, tier remains manually unassigned.
+
+### `artist:zhanzhan_lan`
+- Score: **7.5/10**
+- User feedback: suitable for "精致肖像"; brushwork is slightly light and blurry.
+- Style tags: **精致肖像 / 淡雅 / 轻柔笔触 / 低对比 / 轻微朦胧**
+- Best-fit elements: pale palettes, soft portraits, elegant clothing, diffuse light, airy backgrounds.
+- Caution: can become too soft or lose edge clarity.
+
+### `artist:shu_bing`
+- Score: **7.0/10**
+- User feedback: "效果一般，适合插画类".
+- Style tags: **插画型 / 场景插画 / 非纯人物向**
+- Best-fit elements: narrative illustration, environmental composition, decorative props, scene-led character pieces.
+- Status: stronger as illustration than pure portrait.
+
+### `artist:sanfu_qwq`
+- Score: **7.0/10**
+- User feedback: somewhat like **古风精美场景立绘型**.
+- Style tags: **古风 / 精美场景 / 角色立绘 / 装饰型**
+- Best-fit elements: Chinese costume, architectural scenery, flowers, lanterns, traditional props, elegant standing poses.
+
+### `artist:ruoganzhao`
+- Score: **8.0/10**
+- User feedback: **精致柔细感 + 场景画风**, but the palette tends yellow and images easily become blurry.
+- Style tags: **精致柔细 / 场景型 / 氛围插画 / 暖黄调 / 易糊**
+- Best-fit elements: warm environmental light, atmospheric scenes, soft costume details, flowers, architecture, narrative backgrounds.
+- Caution: watch yellow cast and loss of detail.
+
+### `artist:qingming_tiaohetu`
+- Score: **7.5/10**
+- User feedback: distinctive "宝石感", similar to **turino**; considered very good.
+- Style tags: **宝石感 / 晶莹质感 / 独特平涂 / 高辨识**
+- Best-fit elements: jewel-like eyes, glossy accessories, gemstones, crisp color blocks, decorative fantasy costumes.
+- Status: high-value style reference despite mid-range numerical score.
+
+### `artist:qing_yan_xia`
+- Score: **7.0/10**
+- User feedback: **克制、淡雅、人物设计向的平涂**.
+- Style tags: **克制 / 淡雅 / 平涂 / 人物设计 / 简洁色块**
+- Best-fit elements: clean costume design, controlled color palettes, graphic silhouettes, subtle accessories, white/empty backgrounds.
+
+### `artist:guigui_rongrong`
+- Score: **7.5/10**
+- User feedback: **复古亚比感 / 人物动态展示型**.
+- Style tags: **复古 / 亚比感 / 动态展示 / 角色表现**
+- Best-fit elements: dynamic poses, character showcases, fashion-forward silhouettes, retro styling, presentation-oriented framing.
+
+### `artist:mr._owlish`
+- Score: **N/A — no visible effect / excluded from current style-mixing consideration**
+- User feedback: "没效果".
+- Status: negative/low-signal evidence; do not prioritize in future experiments unless specifically revisiting.
+
+## 5. Confirmed liked / high-value combinations
 
 These artists have been validated through the user's actual NAI5 experiments and should be treated as strong anchors for future exploration.
 
@@ -117,7 +186,7 @@ Use it as a **structural reference**, not as a permanent three-artist recipe:
 - mido_(mido_chen) — 二次元角色原画 / 可爱角色 / 二游完成度
 - pekopeco — 古风 / 服装 / 柔和留白
 
-## 5. Newly validated experiment combinations — 2026-10-06
+## 6. Newly validated experiment combinations — 2026-10-06
 
 **Experiment 17 — liked**
 
@@ -143,7 +212,7 @@ User feedback: "这个组合的效果不错".
 
 Keep this as a high-value combination sample. This approves the combination, not automatic individual tier promotion.
 
-## 6. Existing aesthetic-good candidate pool
+## 7. Existing aesthetic-good candidate pool
 
 These are retained from the personal aesthetic pool. Artists tested individually are still useful pool members; their current classification and role tags are recorded above.
 
@@ -193,7 +262,7 @@ artist:luckyia
 artist:bochishiraita
 ~~~
 
-## 7. Current exploration queue
+## 8. Current exploration queue
 
 ### Tier A — verified Red-direction exploration candidates
 
@@ -220,7 +289,7 @@ The three already tested above should now be treated as **measured controls**, n
 - User feedback: "蛮可爱".
 - Keep the exact combination as a positive cute-small-artist reference.
 
-## 8. Discovery protocol
+## 9. Discovery protocol
 
 When expanding the pool, use this order:
 
@@ -240,7 +309,7 @@ When expanding the pool, use this order:
 
 Do not reverse this order by discovering a random Danbooru artist first and retroactively calling them a "小画师".
 
-## 9. Permanent exclusion
+## 10. Permanent exclusion
 
 ~~~text
 artist:yellowshark601
@@ -248,7 +317,7 @@ artist:yellowshark601
 
 Never use this artist in random selection.
 
-## 10. Maintenance rules
+## 11. Maintenance rules
 
 - Do not silently rename, normalize, split, or "fix" artist tags.
 - Preserve underscores, periods, parentheses, suffixes, and other syntax exactly.
