@@ -29,15 +29,16 @@ Avoid blindly stacking artists.
 
 ### Default random-mix habit
 
-When the user provides an artist pool and asks for a random artist stack:
+Current personal experiment mode:
 
-- Randomly select 3–4 artists by default; use 3–4 for lighter designs.
-- Pick one primary artist at approximately 0.95–1.10, normally starting at 1.0 or 1.05.
-- Put all secondary artists at <=0.6, commonly 0.35–0.6.
-- Do not use multiple 0.8+ artist weights by default.
-- Keep the primary artist visibly dominant; secondary artists should lightly tint the result rather than compete for control.
-- If the selected artists have strongly conflicting visual languages, reduce the number of artists rather than increasing weights.
-- If the image becomes noisy, dirty, or stylistically torn, inspect artist count and weights before adding prompt detail.
+- Randomly select **3–8 artists**.
+- Every artist weight must be **0.3–1.2**.
+- At least **one artist must be >1.0**.
+- Do not force a single-primary / low-secondary gradient unless the user explicitly asks for it.
+- Avoid duplicate artists within one stack.
+- Across sequential experiments, minimize short-cycle repeats while preserving high-value combinations for re-tests.
+- When visual languages strongly conflict, reduce artist count rather than adding more weights.
+- If the result becomes noisy, dirty, or stylistically torn, inspect artist count and weight conflict before adding prompt content.
 
 ### Preserve user syntax
 
