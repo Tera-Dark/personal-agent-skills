@@ -141,35 +141,39 @@ artist:bochishiraita
 ### Tier A — verified new exploration candidates; ready for NAI5 controlled testing
 
 ~~~text
-artist:red_medicine
-artist:chunye_xiuluo
-artist:yuanbanshao
-artist:findoworld
+artist:memuro
+artist:inoriac
+artist:kuuus
+artist:youlizi-yuri
 ~~~
 
-#### red_medicine
-- Exact artist tag: `artist:red_medicine`
-- Verified observed count: 72
-- Evidence: public Danbooru-family post with the Red_Medicine artist tag and an external interview describing a Chinese free illustrator focused on Japanese-style anime and cute girls.
-- Status: verified exploration candidate; not individually tiered by user.
+#### memuro
+- Exact artist tag: `artist:memuro`
+- Observed count: 167–171 posts in recent Danbooru-family results.
+- Ecosystem: Chinese-language illustrator; social profile identifies a Chinese-language creator and links Chinese social accounts. Recent work includes cute anime girls, frills, ribbons, simple/white backgrounds and character-centered composition.
+- Visual fit: **high** for cute, soft, decorative character tests.
+- Status: verified exploration candidate; not user-tiered.
 
-#### chunye_xiuluo
-- Exact artist tag: `artist:chunye_xiuluo`
-- Verified observed count: 69
-- Evidence: Danbooru-family posts sourced from Xiaohongshu; character/portrait work with decorative clothing and authored graphic details.
-- Status: verified exploration candidate; not individually tiered by user.
+#### inoriac
+- Exact artist tag: `artist:inoriac`
+- Verified artist profile count: 238 posts.
+- Ecosystem: artist profile links Weibo, Bilibili, Lofter and Xiaohongshu; recent posts include character illustration, fashion/costume and anime game work.
+- Visual fit: **high** for polished anime character art with stronger color/motif structure.
+- Status: verified exploration candidate; not user-tiered.
 
-#### yuanbanshao
-- Exact artist tag: `artist:yuanbanshao`
-- Verified observed count: 56
-- Evidence: Danbooru-family post sourced from Xiaohongshu; upper-body character illustration with frills, ribbons, flowers and strong character-fashion emphasis.
-- Status: verified exploration candidate; not individually tiered by user.
+#### kuuus
+- Exact artist tag: `artist:kuuus`
+- Verified observed count: 193 posts.
+- Ecosystem: recent Danbooru-family post is sourced from Xiaohongshu; external artwork indexing identifies kuuus as a Chinese anime artist.
+- Visual fit: **high** for elegant game-character illustration, costume, flowing hair and larger compositional motion.
+- Status: verified exploration candidate; not user-tiered.
 
-#### findoworld
-- Exact artist tag: `artist:findoworld`
-- Verified observed count: 233
-- Evidence: Danbooru-family posts with Weibo/X sources; established anime-character illustration archive with clear costume, silhouette and character-presentation strengths.
-- Status: verified exploration candidate; experimental visual contributor, not yet labeled as a core "小画师" anchor.
+#### youlizi-yuri
+- Exact artist tag: `artist:youlizi-yuri`
+- Verified observed count: 134 posts on recent Danbooru-family results.
+- Ecosystem: multiple indexed works are directly sourced from Xiaohongshu and Weibo, including original/OC, commission, school-uniform and Chinese-style character illustrations.
+- Visual fit: **high** for character-focused commission work, expressive faces, costume and decorative detail.
+- Status: verified exploration candidate; not user-tiered.
 
 ### Tier B — ecosystem leads; exact artist tag and post count still need verification
 
