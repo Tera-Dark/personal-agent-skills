@@ -1,3 +1,13 @@
+## [3.10.0] - 2026-10-06
+
+### Small-artist mixer refinement
+- Refined discovery to start from mainland-China Xiaohongshu / Mihuashi / Weibo creator ecosystem, then verify Danbooru tags and post counts.
+- Made Danbooru >50 posts a hard candidate-screening threshold for newly discovered artists.
+- Added the user-validated trio artist:banbanimi + artist:mido_(mido_chen) + artist:pekopeco as a high-value small-artist combination sample.
+- Added these three artists to the active small-artist pool.
+- Temporarily replaced the 1-main+3-support mixer with 3–8 artists per experiment and random weights from 0.3–1.2.
+- Kept artist:yellowshark601 explicitly excluded.
+
 ## [3.9.0] - 2026-10-06
 
 ### Small-artist aesthetic calibration
