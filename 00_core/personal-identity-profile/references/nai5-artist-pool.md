@@ -6,17 +6,39 @@
 
 ## 1. Pool semantics
 
-This file stores **artist identity candidates**, not permanent weights.
+This file stores artist identity, evidence, manual tiering, and successful combination history, not permanent weights.
 
-Weights belong to an individual NAI5 experiment and must follow the current NAI5 emitter rule:
-- one primary artist: approximately `0.95–1.10`
-- secondary artists: `<=0.6`
+Current personal NAI5 experiment rule:
+- 3–8 artists per experiment
+- every artist weight: 0.3–1.2
+- at least one artist must be >1.0
 - canonical artist syntax: `1.05::artist:name::`
 - preserve the `artist:` namespace and any special spelling exactly
 
+Weights belong to a specific experiment. They are not a permanent artist ranking.
+
 Do not persist a weight beside an artist in this pool. A good artist can be used as primary in one experiment and secondary in another.
 
-## 2. Confirmed liked / high-value combinations
+## 2. Manual preference tiers
+
+The user will manually classify the artist pool into four levels. Do not infer or auto-promote between these levels.
+
+### 夯
+_(manual assignment)_
+
+### 顶级
+_(manual assignment)_
+
+### 中等
+_(manual assignment)_
+
+### 次等
+- `artist:harrymiao` — user says '还可以', classify as second-tier for now.
+
+### 未分级 / experimental
+All other artists remain here until manually assigned.
+
+## 3. Confirmed liked / high-value combinations
 
 These artists have been validated through the user's actual NAI5 experiments and should be treated as the strongest current anchors for future exploration.
 
@@ -37,7 +59,7 @@ Use it as a **structural reference**, not as a permanent three-artist recipe:
 - mido_(mido_chen) — 二次元角色原画 / 可爱角色 / 二游完成度
 - pekopeco — 古风 / 服装 / 柔和留白
 
-## 3. Newly validated experiment combinations — 2026-10-06
+## 4. Newly validated experiment combinations — 2026-10-06
 
 **Experiment 17 — liked**
 
@@ -56,9 +78,17 @@ User feedback: "19也不错".
 Keep this as a secondary positive combination sample. Do not infer that every individual artist is independently approved.
 
 
-## 4. Existing aesthetic-good candidate pool
+**Experiment 30 — liked**
 
-These are retained from the personal aesthetic pool. They are valid candidates for experiments, but unless listed in §2 they should not be described as individually validated favorites.
+1.15::artist:tatatsu::, 0.86::artist:mr._owlish::, 0.69::artist:mafuin_da::, 0.57::artist:zishengtian123::, 0.48::artist:wolrero::, 0.39::artist:bochishiraita::, 0.31::artist:vlfdus_0::
+
+User feedback: '这个组合的效果不错'.
+
+Keep this as a high-value combination sample. This approves the combination, not automatic individual tier promotion.
+
+## 5. Existing aesthetic-good candidate pool
+
+These are retained from the personal aesthetic pool. They are eligible experiment candidates, but individual preference tier is intentionally left unassigned until the user performs manual comparison.
 
 ~~~text
 artist:zhi_xu_li_ming
@@ -106,7 +136,7 @@ artist:luckyia
 artist:bochishiraita
 ~~~
 
-## 5. Current exploration queue
+## 6. Current exploration queue
 
 ### Tier A — promising ecosystem hits; verify before adding to the experimental pool
 
@@ -130,7 +160,7 @@ Reason:
 
 These names are useful discovery leads because they are explicitly featured by 米画师's current OC-focused DreamMaker project, but they must not be converted into NAI5 artist tags until the exact Danbooru artist identifier and >50-post threshold are independently verified.
 
-## 6. Discovery protocol
+## 7. Discovery protocol
 
 When expanding the pool, use this order:
 
@@ -149,7 +179,7 @@ When expanding the pool, use this order:
 
 Do not reverse this order by discovering a random Danbooru artist first and retroactively calling them a "小画师".
 
-## 7. Permanent exclusion
+## 8. Permanent exclusion
 
 ~~~text
 artist:yellowshark601
@@ -157,7 +187,7 @@ artist:yellowshark601
 
 Never use this artist in random selection.
 
-## 8. Maintenance rules
+## 9. Maintenance rules
 
 - Do not silently rename, normalize, split, or "fix" artist tags.
 - Preserve underscores, periods, parentheses, suffixes, and other syntax exactly.
