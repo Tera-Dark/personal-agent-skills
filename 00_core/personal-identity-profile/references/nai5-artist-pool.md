@@ -138,27 +138,51 @@ artist:bochishiraita
 
 ## 6. Current exploration queue
 
-### Tier A — promising ecosystem hits; verify before adding to the experimental pool
+### Tier A — verified new exploration candidates; ready for NAI5 controlled testing
 
 ~~~text
-artist:eteru
-artist:harrymiao
+artist:red_medicine
+artist:chunye_xiuluo
+artist:yuanbanshao
+artist:findoworld
 ~~~
 
-Reason:
-- Both are featured creators in the 2026 米画师 × 中信出版《梦绘师 DreamMaker》 OC project.
-- `eteru` has an observed Danbooru-family artist count above the current >50-post gate.
-- `harrymiao` likewise clears the current >50-post gate in the observed Danbooru-family index.
-- They still need personal-aesthetic scoring and controlled NAI5 tests before becoming confirmed favorites.
+#### red_medicine
+- Exact artist tag: `artist:red_medicine`
+- Verified observed count: 72
+- Evidence: public Danbooru-family post with the Red_Medicine artist tag and an external interview describing a Chinese free illustrator focused on Japanese-style anime and cute girls.
+- Status: verified exploration candidate; not individually tiered by user.
+
+#### chunye_xiuluo
+- Exact artist tag: `artist:chunye_xiuluo`
+- Verified observed count: 69
+- Evidence: Danbooru-family posts sourced from Xiaohongshu; character/portrait work with decorative clothing and authored graphic details.
+- Status: verified exploration candidate; not individually tiered by user.
+
+#### yuanbanshao
+- Exact artist tag: `artist:yuanbanshao`
+- Verified observed count: 56
+- Evidence: Danbooru-family post sourced from Xiaohongshu; upper-body character illustration with frills, ribbons, flowers and strong character-fashion emphasis.
+- Status: verified exploration candidate; not individually tiered by user.
+
+#### findoworld
+- Exact artist tag: `artist:findoworld`
+- Verified observed count: 233
+- Evidence: Danbooru-family posts with Weibo/X sources; established anime-character illustration archive with clear costume, silhouette and character-presentation strengths.
+- Status: verified exploration candidate; experimental visual contributor, not yet labeled as a core "小画师" anchor.
 
 ### Tier B — ecosystem leads; exact artist tag and post count still need verification
 
 ~~~text
 圈点儿
 桑杰尔
+律秋 / lvqiu
+華野 / Hananohara_Cano
+-蒸ZHENG--
+极度缺米的小草草 / carol_cao_
 ~~~
 
-These names are useful discovery leads because they are explicitly featured by 米画师's current OC-focused DreamMaker project, but they must not be converted into NAI5 artist tags until the exact Danbooru artist identifier and >50-post threshold are independently verified.
+These names remain leads only and must not be emitted as NAI5 artist tokens until their exact Danbooru identifier and >50-post threshold are independently verified.
 
 ## 7. Discovery protocol
 
