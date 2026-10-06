@@ -3,7 +3,7 @@ name: nai5-community-prompt-engineering
 description: Model adapter that compiles a finished character or illustration blueprint into NovelAI V5 community-format prompts — weighted artist stack, global style layer, scene base, char1/char2 blocks, source#/target#/mutual# interaction tags, and optional targeted negative steering with weight::tag:: syntax. Use when the user asks for NAI5, NovelAI, NAI提示词, tag prompt, Danbooru-style prompt. Does not design — if no blueprint exists, route through aesthetic-director-core and character-design-engine / illustration-direction first.
 metadata:
   author: Tera-Dark
-  version: "2.5.0"
+  version: "2.6.0"
   layer: "02_creation"
   load: "on-demand"
   status: "active"
@@ -20,7 +20,7 @@ This skill is an adapter, not a design engine. It may compile only a finished bl
 
 本 Skill 是**适配器**：把已经做完设计决定的 blueprint 翻译成 NovelAI V5 社区格式。
 
-v2.3.0 起进一步锁定 NAI5 质量词、复杂度、渲染层与 prompt 顺序，并保留 v2.2.0 的权重与 artist tag 规则：1.0 是数值 emphasis 基准；>1.0 加强，0.0–1.0 削弱；用户提供画师池时保留 artist: namespace，不擅自改成裸画师名；随机画师模式默认允许 3–8 位 artist；每位权重在 0.3–1.2；至少 1 位 artist 权重必须 >1.0；用户通常已有自己的 Negative，因此默认不输出。
+本 Skill 遵循 NAI5 数值 emphasis 语义与本用户的个人实验规则。个人覆盖层见 references/personal-usage-profile.md。默认实验模式为 3–8 位 artist、每位 0.3–1.2、至少 1 位 >1.0；默认直接给一段可复制 prompt；用户通常已有自己的 Negative，因此默认不输出。
 
 **输入检查**：同 `anima-prompt-compiler`。没有命题 / 轮廓 / 四层服装 / 刺点 / 锁定事实的输入不是 blueprint，退回 router。
 
@@ -64,7 +64,7 @@ NovelAI 官方数值 emphasis 规则：
 - 至少 1 位 artist 权重必须 >1.0
 - 不强制主 + 低辅梯度；以组合整体实验为目标
 - 同组不得重复 artist
-- 画师跨度很大时宁可减少人数，也不要通过高权重硬压成平均融合
+- 画师跨度很大时先减少冲突 artist；如果用户明确要求当前实验模式，仍保持 3–8 位范围内做组合测试
 - 如果出现噪点、脏图、风格撕裂，第一排查项是 artist 数量、主次权重与冲突 tag，而不是继续增加 prompt 内容
 
 ### Preserve user syntax
@@ -125,7 +125,7 @@ For a single subject, a flat comma-separated prompt is valid. Use char1/char2 bl
 4. **Style suppression / control**  
    只在有明确冲突时使用数值负权重，例如 `-2::simple illustration::`、`-5::artist collaboration::`
 
-允许有多个质量 token，但不是同义词越多越好；质量层应服务于目标渲染风格。
+允许多个质量 token，但个人默认只保留最小充分质量层；常用 masterpiece, very aesthetic, high complexity。若已开启 NovelAI Quality Tags，不重复完整自动前缀。
 
 NovelAI 官方还说明 Quality Tags toggle 会把 V5 Full 的标准质量词加到 prompt 尾部。因此开启自动 Quality Tags 时，不必机械重复完全相同的一组词。
 
@@ -206,7 +206,9 @@ Tag 格式天然会丢失“关系”。补救：
 
 ## 10. 输出
 
-用户要 NAI5 时默认输出社区格式代码块。
+用户要 NAI5 时默认输出一个单独、可整段复制的代码块，把 weighted artist stack 与测试内容放在同一段里。
+
+不要默认输出 Artist Stack / Global Style / Scene 等方括号标题。
 
 **默认不输出 Negative。** 用户已有自己的 Negative，除非用户明确要求，否则不要附带 `[Negative]` 段，也不要重复常见负面词。
 
