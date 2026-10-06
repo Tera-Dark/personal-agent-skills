@@ -1,3 +1,11 @@
+## [3.9.0] - 2026-10-06
+
+### Small-artist aesthetic calibration
+- Added a dedicated “小画师审美模式” to the personal taste layer, distinguishing this female-oriented 2D character ecosystem from generic anime illustration and template-heavy commercial game art.
+- Added confirmed calibration samples and explicit boundaries between mainstream少女向 and 2D/OC/亚文化向 branches.
+- Added the current NAI5 artist pool, 1主+3辅 mixer contract, weighted hierarchy, Danbooru-first screening preference (preferably >50 posts), and the explicit exclusion of artist:yellowshark601.
+- Kept the artist pool as a taste/runtime preference source rather than claiming all tags have equal or permanent stability.
+
 ## [3.8.0] - 2026-10-05
 
 ### Aesthetic floor
