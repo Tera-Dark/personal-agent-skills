@@ -58,6 +58,10 @@ If an entry contains an obvious malformed or ambiguous trailing weight/value, do
 
 The special entry vlfdus 0 is treated as ambiguous unless the user confirms it; do not silently convert it into a guessed artist name.
 
+### Personal blacklist gate
+
+Before emitting any new artist stack, exclude every artist token whose **final character is a digit**. This rule overrides random selection and combination design unless the user explicitly overrides it. Historical-only records containing such artists must never be emitted into new prompts.
+
 A good stack balances the blueprint's needs across:
 - character design
 - rendering
@@ -86,3 +90,8 @@ Always keep artist collaboration controlled when needed:
 0.45::artist:third::
 
 The exact values are starting points, not guarantees. Tune one variable at a time.
+
+
+## Cold-dark pseudo-painterly specialist
+
+When the prompt needs a gray, cold, bleak, rough-painterly or post-apocalyptic visual language, `artist:huke` is a valid external experimental candidate. Its current indexed artist tag is verified and has substantial coverage; use it as a contrast/rendering component rather than assuming it is a permanent personal favorite. citeturn659470search0turn659470search1
