@@ -1,0 +1,123 @@
+# Personal NAI5 Usage Profile
+
+> Personal override layer for the user's NovelAI V5 workflow.
+
+## 1. Primary use case
+
+The user mainly uses NAI5 as a rapid visual experimentation tool for female-oriented anime, OC, character illustration, portrait, and small-artist style discovery.
+
+Priority:
+1. artist-stack exploration and style discovery
+2. attractive character / portrait result
+3. clothing and character-design readability
+4. compact prompt control
+5. reproducible copy-paste formatting
+
+Do not drift into long explanatory prompts, generic quality-word soup, or cinematic prose unless explicitly requested.
+
+## 2. Default output mode
+
+When the user asks for an NAI5 prompt or artist string:
+- Put the artist stack and the test content in one copyable code block by default.
+- Do not split the artist string into a separate block unless requested.
+- Keep prose outside the block to one short note at most.
+- Do not output a Negative block by default; the user generally maintains their own Undesired Content configuration.
+- Do not add workflow parameters such as steps, CFG, sampler, LoRA strength, or ComfyUI syntax unless requested.
+
+## 3. Personal artist-stack experiment mode
+
+Unless the user explicitly requests a conservative stack:
+- 3–8 artists per experiment
+- every weight: 0.3–1.2
+- at least one artist must be >1.0
+- no duplicate artist names within one stack
+- no requirement for a single primary + low-weight secondary hierarchy
+- use weights as experiment variables, not permanent artist rankings
+- avoid excessive short-cycle repetition between consecutive experiments
+
+The artist pool stores identity and evidence, not permanent weights.
+
+## 4. Manual artist tiers
+
+The user will manually classify artists into four levels:
+- 夯
+- 顶级
+- 中等
+- 次等
+
+Do not infer or auto-promote between these tiers.
+
+Keep the four tiers separate from exploration candidates, liked-combination history, and unverified ecosystem leads.
+
+## 5. Two operating modes
+
+### Selection mode
+
+When the user asks for a new artist string from the personal pool, use eligible artists from the current pool and respect manually assigned tiers when available.
+
+### Exploration mode
+
+When the user asks to continue exploring or explicitly says not to use the existing pool, do not sample the personal pool.
+
+Use:
+domestic creator ecosystem → visual fit → exact Danbooru artist tag → >50 posts → controlled NAI5 portrait test → user feedback → pool promotion
+
+Candidates without an exact verified artist tag must not be emitted as NAI5 artist tokens.
+
+## 6. Default test image
+
+The default comparison test is a refined female character portrait / half-body illustration because it exposes artist differences efficiently.
+
+Test for:
+- face design
+- hair rendering
+- eye treatment
+- clothing construction
+- accessory density
+- line / shading language
+- color organization
+- female-oriented OC / commission feel
+
+Avoid elaborate backgrounds during basic artist comparison.
+
+## 7. Compactness
+
+Prefer the smallest prompt that controls the image.
+
+Default skeleton:
+subject + framing + weighted artist stack + compact quality/complexity + rendering + character appearance + outfit + accessories + expression + pose + minimal background
+
+Do not restate the same information with multiple synonyms.
+
+## 8. Quality and complexity
+
+For normal V5 portrait / character tests:
+- high complexity is the default
+- ultra complexity is reserved for intentionally dense portrait experiments
+- keep quality tags compact
+- if NovelAI Quality Tags is already enabled, do not mechanically duplicate the complete automatic quality preamble
+
+A practical explicit quality base is usually: masterpiece, very aesthetic, high complexity.
+
+Add detailed shading, smooth gradients, or anime coloring only when they test a deliberate rendering direction.
+
+## 9. Artist-tag discipline
+
+- Preserve artist: namespace.
+- Preserve underscores, parentheses, periods, suffixes, and other exact syntax.
+- Never invent a tag from a creator display name.
+- Exact tag verification belongs to the exploration stage.
+- artist:vlfdus_0 remains ambiguous and must not be guessed.
+- artist:yellowshark601 is permanently excluded.
+
+## 10. Feedback memory
+
+Record exact artist stack, exact weights, user feedback, date, and whether the feedback approves the combination or an individual artist.
+
+Do not collapse 'this combination looks good' into 'every artist is individually top-tier'.
+
+## 11. Negative / correction strategy
+
+Negative prompting is not part of the default copy block.
+
+Use negative numerical emphasis only for a demonstrated conflict or targeted removal, not as a generic negative list.
