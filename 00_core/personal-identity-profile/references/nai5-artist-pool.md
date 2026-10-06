@@ -138,55 +138,52 @@ artist:bochishiraita
 
 ## 6. Current exploration queue
 
-### Tier A — verified new exploration candidates; ready for NAI5 controlled testing
+### Tier A — verified Red-direction exploration candidates
 
 ~~~text
-artist:memuro
-artist:inoriac
-artist:kuuus
-artist:youlizi-yuri
+artist:yalmyu
+artist:starshadowmagician
+artist:ask_(askzy)
+artist:krab_(fumekrab)
 ~~~
 
-#### memuro
-- Exact artist tag: `artist:memuro`
-- Observed count: 167–171 posts in recent Danbooru-family results.
-- Ecosystem: Chinese-language illustrator; social profile identifies a Chinese-language creator and links Chinese social accounts. Recent work includes cute anime girls, frills, ribbons, simple/white backgrounds and character-centered composition.
-- Visual fit: **high** for cute, soft, decorative character tests.
-- Status: verified exploration candidate; not user-tiered.
+#### yalmyu
+- Exact artist tag: `artist:yalmyu`
+- Observed artist count: 298
+- Strong fit for mature domestic illustration, avatar and character-portrait exploration; indexed works include many white-background portraits, ribbons and fashion-focused anime character pieces.
+- Status: Red-direction exploration candidate; not user-tiered.
 
-#### inoriac
-- Exact artist tag: `artist:inoriac`
-- Verified artist profile count: 238 posts.
-- Ecosystem: artist profile links Weibo, Bilibili, Lofter and Xiaohongshu; recent posts include character illustration, fashion/costume and anime game work.
-- Visual fit: **high** for polished anime character art with stronger color/motif structure.
-- Status: verified exploration candidate; not user-tiered.
+#### starshadowmagician
+- Exact artist tag: `artist:starshadowmagician`
+- Observed artist count: 745–748
+- Strong fit for authored character illustration, costume design, graphic motifs and polished anime presentation; original and game-character works are both represented.
+- Status: Red-direction exploration candidate; not user-tiered.
 
-#### kuuus
-- Exact artist tag: `artist:kuuus`
-- Verified observed count: 193 posts.
-- Ecosystem: recent Danbooru-family post is sourced from Xiaohongshu; external artwork indexing identifies kuuus as a Chinese anime artist.
-- Visual fit: **high** for elegant game-character illustration, costume, flowing hair and larger compositional motion.
-- Status: verified exploration candidate; not user-tiered.
+#### ask_(askzy)
+- Exact artist tag: `artist:ask_(askzy)`
+- Observed artist count: 320
+- Strong fit for high-end character illustration, costume construction, elegant posing and controlled rendering.
+- Status: Red-direction exploration candidate; not user-tiered.
 
-#### youlizi-yuri
-- Exact artist tag: `artist:youlizi-yuri`
-- Verified observed count: 134 posts on recent Danbooru-family results.
-- Ecosystem: multiple indexed works are directly sourced from Xiaohongshu and Weibo, including original/OC, commission, school-uniform and Chinese-style character illustrations.
-- Visual fit: **high** for character-focused commission work, expressive faces, costume and decorative detail.
-- Status: verified exploration candidate; not user-tiered.
+#### krab_(fumekrab)
+- Exact artist tag: `artist:krab_(fumekrab)`
+- Observed artist count: 126–237 depending on indexed mirror snapshot
+- Strong fit for game-character illustration, costume structure, lighting and dynamic presentation; use as a contrast test because it is less directly aligned with the sweet-girl branch.
+- Status: Red-direction exploration candidate; not user-tiered.
 
-### Tier B — ecosystem leads; exact artist tag and post count still need verification
+### Positive experiment history — 2026-10-06
 
-~~~text
-圈点儿
-桑杰尔
-律秋 / lvqiu
-華野 / Hananohara_Cano
--蒸ZHENG--
-极度缺米的小草草 / carol_cao_
-~~~
+**Experiment 35 — liked**
+- User feedback: "蛮可爱".
+- Keep the exact combination as a positive cute-small-artist reference.
 
-These names remain leads only and must not be emitted as NAI5 artist tokens until their exact Danbooru identifier and >50-post threshold are independently verified.
+**Experiment 36 — liked**
+- User feedback: "蛮可爱".
+- Keep the exact combination as a positive cute-small-artist reference.
+
+**Experiment 39 — liked**
+- User feedback: "蛮可爱".
+- Keep the exact combination as a positive cute-small-artist reference.
 
 ## 7. Discovery protocol
 
