@@ -1,3 +1,11 @@
+## [3.11.0] - 2026-10-06
+
+### High-density small-artist aesthetic calibration
+- Added the validated “高密度花哨人物肖像” mode based on the user's domestic small-artist commission reference board.
+- Clarified that dense ornament belongs around the character: hair, face, shoulders, chest, hands and costume, rather than being interpreted as a complex scenic background.
+- Added dense sweet/ornate OC portrait principles: character nearly fills frame, coordinated ornament clusters, layered costume detail, controlled high-saturation color groups, and collectible commission-illustration logic.
+- Added artist:xixizi, artist:luckyia, and artist:bochishiraita to the candidate pool after Danbooru >50-post and domestic-platform evidence checks.
+- Preserved the user's current 3–8 artist, 0.3–1.2 random-weight experiment rule and excluded artist:yellowshark601.
 ## [3.10.0] - 2026-10-06
 
 ### Small-artist mixer refinement
