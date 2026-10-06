@@ -27,7 +27,9 @@ The user will manually classify the artist pool into four levels. Do not infer o
 _(manual assignment)_
 
 ### 顶级
-_(manual assignment)_
+- `artist:starshadowmagician` — user says '都很喜欢'.
+- `artist:ask_(askzy)` — user says '都很喜欢'.
+
 
 ### 中等
 _(manual assignment)_
