@@ -150,73 +150,25 @@
 
 #### NAI5 画师串规则
 
-- 用户的画师池是**审美好球区池**，但新候选不应只从既有池扩散；当用户要求“找新的小画师”时，先从**国内小红书 / 米画师 / 微博生态**寻找符合“小画师”定义的创作者，再反查 Danbooru artist tag。
-- **来源顺序很重要：国内小画师生态 → 作品审美判断 → Danbooru 精确 tag 校验 → post 数量门槛 → NAI5 组合实验。** 不得反过来先从 Danbooru 找一个“看起来二次元”的人，再硬解释成小画师。
-- 新 artist 的硬筛选线：**Danbooru > 50 posts**。这是当前用户要求的筛选门槛，不把“接近 50”视作通过；post 数随站点更新会变化。
-- 通过门槛后仍要做**审美相关性筛选**：优先保留女性向二次元角色、美少女 / OC、服装设计、精致立绘、半留白、角色中心、少女时尚或二次元 OC / 亚文化方向；泛商业游戏概念、真人感、纯摄影感、武侠黑白漫、男性向厚重幻想等不应因为 post 数达标就自动进入池。
-- “小画师”候选要看**整体生态位置与作品消费场景**，不是只看画风标签。核心指标是：角色第一、第一眼美感、服设与人设绑定、可约稿/可收藏、缩略图抓眼、背景服从角色。
-- 用户已确认一组新的有效组合：artist:banbanimi + artist:mido_(mido_chen) + artist:pekopeco。这一组合的实验结果被用户明确评价为“真正想要的组合搭配效果”，因此应作为**高价值小画师组合样本**保存，并用于以后继续寻找结构相近的新组合。
-- 这三个 artist 的角色分工可作为组合理解样本，而不是永久权重模板：banbanimi 偏时尚少女 / OC / 小红书传播感，mido_(mido_chen) 偏二次元角色原画 / 可爱角色 / 二游完成度，pekopeco 补古风、服装与柔和留白。后续新组合应寻找类似的**互补结构**，而不是机械复制这三个名字。
-- 当前组合规模规则已更新：**暂时不强制“1 主 + 3 辅”**。新实验允许 **3–8 个 artist**；下限 3、上限 8。
-- 当前实验权重全部在 **0.3–1.2** 之间随机；不强制主辅梯度、不要求最高权重一定属于第一个 artist。除非用户重新指定，否则以**组合整体结果**而不是“主画师 + 辅助画师”框架评估。
-- 同组不得重复 artist；连续多组实验时尽量减少短周期重复，同时保留高价值组合的复测机会。
-- 当前池中的 artist 前缀和 Danbooru/NAI5 可用写法应原样保留；不要擅自改名、拆分或规范化。
-- artist:yellowshark601 已被用户明确排除，永远不作为随机池候选。
-#### 当前审美好球区 NAI5 artist pool
+- 个人 artist 身份池已独立存放于 `references/nai5-artist-pool.md`；这里保留规则，不再重复维护完整名单。
+- 小画师新候选的来源顺序固定为：**国内小红书 / 米画师 / 微博等生态 → 作品审美判断 → Danbooru 精确 artist tag → >50 posts → NAI5 controlled test**。
+- 新 artist 必须先通过 **>50 posts** 门槛，再进入实验池；“接近 50”不算通过。
+- 进入实验池后仍需满足女性向二次元角色、OC / 二游、服设绑定、第一眼美感、收藏/约稿属性等小画师相关性，不以 post 数单独决定。
+- **NAI5 输出严格遵循当前 `nai5-community-prompt-engineering` 标准**：
+  - 画师语法：`1.05::artist:name::`
+  - 1 名主画师：约 `0.95–1.10`
+  - 其余辅画师：全部 `<=0.6`
+  - 默认 3–4 位 artist；冲突明显时宁可减少人数
+  - 不再默认使用多个 `0.8+` artist
+- 画师池只存 artist identity，不存永久权重；权重属于具体实验组合。
+- 已验证的高价值组合：`artist:banbanimi + artist:mido_(mido_chen) + artist:pekopeco`。这是组合校准样本，不是永久模板。
+- `artist:yellowshark601` 永久排除。
 
-~~~
-artist:zhi_xu_li_ming
-artist:zhanzhan_lan
-artist:kurikabacha
-artist:shu_bing
-artist:sanfu_qwq
-artist:ruoganzhao
-artist:qingming_tiaohetu
-artist:qing_yan_xia
-artist:mr._owlish
-artist:guigui_rongrong
-artist:mihiro_00122
-artist:kelezi
-artist:diurtion
-artist:fengjian_yuzhi
-artist:duoqing_tie_ban_shao
-artist:baifeidaiwang
-artist:cuso4_suiwabutu
-artist:baicumikuo
-artist:vlfdus_0
-artist:aniao_ya
-artist:liduke
-artist:jadetilaurant
-artist:wolrero
-artist:tatatsu
-artist:sencha_(senchat)
-artist:seapall
-artist:rella
-artist:rei_(sanbonzakura)
-artist:mafuin_da
-artist:infukun
-artist:pengren_siya
-artist:messikid
-artist:ergouzi_echo
-artist:kikihuihui
-artist:tracyton
-artist:saku_nosuke
-artist:taiki_(luster)
-artist:natsuiro_xx
-artist:repi
-artist:zishengtian123
-artist:banbanimi
-artist:mido_(mido_chen)
-artist:pekopeco
-artist:xixizi
-artist:luckyia
-artist:bochishiraita
-~~~
+#### 当前个人 artist pool
 
-**明确排除：**
-~~~
-artist:yellowshark601
-~~~
+完整名单、验证状态、探索候选及维护规则见：
+
+`00_core/personal-identity-profile/references/nai5-artist-pool.md`
 
 ### Tier D — 明确不做（见 `design-dislikes.md`）
 
@@ -244,7 +196,7 @@ artist:yellowshark601
 ## 6. 更新记录 · 用户明确确认现代二游 / Character Key Visual 是重要目标方向；新增强轮廓、主运动方向、大色块、局部高密度、材质对比、清晰阴影、物理装饰固定和手绘不完美等核心判断，并区分 clean plate 与 modern key visual 的复杂度模式。
 
 - 2026-10-06 · **小画师审美校准** · 用户确认“小画师”应理解为米画师 / 小红书 / 微博生态中的女性向二次元角色创作者，而不是泛二次元插画师；确认淮尘類、云间蓝、普通小狗、小邬帅为有效审美校准样本，并明确鸡牡蛎属于生态但不是核心审美锚点。
-- 2026-10-06 · **NAI5 artist mixer** · 建立个人小画师 artist pool；默认 1 主 + 3 辅，主 1.10–1.20，辅约 0.80 / 0.60 / 0.40–0.50；推荐新 artist 时优先 Danbooru 精确校验且最好 >50 posts；artist:yellowshark601 明确从池中剔除。
+- 2026-10-06 · **NAI5 artist mixer 校正** · artist pool 独立存档；NAI5 采用 1 名主画师约 0.95–1.10、其余 <=0.6 的标准社区权重语法，并把小红书 / 米画师生态作为新 artist 的第一发现源。
 
 - 2026-10-05 · **Aesthetic Floor** · 明确“怪 ≠ 丑”：局部辨识度必须从属于比例、轮廓、色块与服装结构的整体美感；测试反馈“丑的很有特点”作为这轮系统回归证据。
 
