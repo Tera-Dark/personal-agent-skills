@@ -89,6 +89,15 @@ Use these tags to choose artists by **function**, not only by overall score.
   - useful elements: fashionable costumes, decorative hair, controlled lighting, presentation-focused framing
   - personal-fit note: overall style is respected, but the user does not currently prefer the face.
 
+
+### Cold dark / rough painterly
+- `huke`
+  - verification: exact Safebooru/Danbooru artist tag confirmed; indexed artist count observed at **2790** on 2026-10-06. citeturn659470search0turn659470search1
+  - style tags: **冷灰 / 阴郁 / 粗粝线条 / 概括感 / 半厚涂倾向 / 工业感**
+  - strongest use: bleak sci-fi posters, weathered character key visuals, industrial or post-apocalyptic scenes
+  - best-fit elements: blue-gray palettes, black technical clothing, rain, ruins, hard rim light, rough material surfaces, sparse environments
+  - status: newly added external experimental artist; not user-tiered.
+
 ### Scene / concept candidate
 - `inoriac`
   - style tags: **清爽二次元 / 场景潜力 / 概念插画候选**
@@ -299,7 +308,6 @@ artist:duoqing_tie_ban_shao
 artist:baifeidaiwang
 artist:cuso4_suiwabutu
 artist:baicumikuo
-artist:vlfdus_0
 artist:aniao_ya
 artist:liduke
 artist:jadetilaurant
@@ -320,7 +328,6 @@ artist:saku_nosuke
 artist:taiki_(luster)
 artist:natsuiro_xx
 artist:repi
-artist:zishengtian123
 artist:xixizi
 artist:luckyia
 artist:bochishiraita
@@ -384,10 +391,11 @@ Never use these artists in random selection.
 
 ### Global user blacklist rule
 
-- **Any artist tag containing digits is now blacklisted by default.**
-- Do not test, recommend, or randomly select numeric artist tags unless the user explicitly overrides this rule.
-- This rule was added after `artist:mihiro_00122` produced the same type of blurry output the user associated with `artist:yellowshark601`.
-- Do not retroactively assume every numeric tag has the same technical cause; this is a user-level practical exclusion rule based on observed results.
+- **Any artist tag ending with a digit is blacklisted by default.**
+- Do not test, recommend, or randomly select artist tags whose final character is a digit unless the user explicitly overrides this rule.
+- Current confirmed examples: `artist:yellowshark601`, `artist:mihiro_00122`, `artist:vlfdus_0`, and `artist:zishengtian123`.
+- This is a user-level practical exclusion rule based on repeated observed workflow problems, not a claim about the technical cause of blurry output.
+- Historical combinations may retain blacklisted artists as records, but blacklisted artists must never be emitted into new artist stacks.
 
 ## 12. Maintenance rules
 
