@@ -37,7 +37,26 @@ Use it as a **structural reference**, not as a permanent three-artist recipe:
 - mido_(mido_chen) — 二次元角色原画 / 可爱角色 / 二游完成度
 - pekopeco — 古风 / 服装 / 柔和留白
 
-## 3. Existing aesthetic-good candidate pool
+## 3. Newly validated experiment combinations — 2026-10-06
+
+**Experiment 17 — liked**
+
+1.05::artist:eteru::, 0.55::artist:banbanimi::, 0.45::artist:pekopeco::
+
+User feedback: "17的那组很好看".
+
+Keep this as a high-value combination sample. Do not infer that every individual artist is independently approved.
+
+**Experiment 19 — liked**
+
+1.04::artist:qing_yan_xia::, 0.56::artist:pekopeco::, 0.48::artist:rei_(sanbonzakura)::
+
+User feedback: "19也不错".
+
+Keep this as a secondary positive combination sample. Do not infer that every individual artist is independently approved.
+
+
+## 4. Existing aesthetic-good candidate pool
 
 These are retained from the personal aesthetic pool. They are valid candidates for experiments, but unless listed in §2 they should not be described as individually validated favorites.
 
@@ -87,7 +106,7 @@ artist:luckyia
 artist:bochishiraita
 ~~~
 
-## 4. Current exploration queue
+## 5. Current exploration queue
 
 ### Tier A — promising ecosystem hits; verify before adding to the experimental pool
 
@@ -111,7 +130,7 @@ Reason:
 
 These names are useful discovery leads because they are explicitly featured by 米画师's current OC-focused DreamMaker project, but they must not be converted into NAI5 artist tags until the exact Danbooru artist identifier and >50-post threshold are independently verified.
 
-## 5. Discovery protocol
+## 6. Discovery protocol
 
 When expanding the pool, use this order:
 
@@ -130,7 +149,7 @@ When expanding the pool, use this order:
 
 Do not reverse this order by discovering a random Danbooru artist first and retroactively calling them a "小画师".
 
-## 6. Permanent exclusion
+## 7. Permanent exclusion
 
 ~~~text
 artist:yellowshark601
@@ -138,7 +157,7 @@ artist:yellowshark601
 
 Never use this artist in random selection.
 
-## 7. Maintenance rules
+## 8. Maintenance rules
 
 - Do not silently rename, normalize, split, or "fix" artist tags.
 - Preserve underscores, periods, parentheses, suffixes, and other syntax exactly.
