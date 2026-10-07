@@ -19,6 +19,14 @@ Weights belong to a specific experiment. They are not a permanent artist ranking
 
 Do not persist a weight beside an artist in this pool. A good artist can be used as primary in one experiment and secondary in another.
 
+## 1.1 Current standby small-artist stack
+
+User-confirmed on 2026-10-07 as the current **常备串** for normal NAI5 design work:
+
+1.08::artist:qianben_shan::, 0.91::artist:ruoganzhao::, 0.76::artist:miv4t::, 0.58::artist:min_(120716)::, 0.41::artist:kieed::
+
+Do not treat these weights as permanent artist rankings. This is a confirmed working combination. Individual artists remain separately tiered or experimental unless the user explicitly scores them.
+
 ## 2. Manual preference tiers
 
 These four levels represent the user's long-term preference classification. A recent test score is evidence, but historical explicit manual assignments remain authoritative unless the user changes them.
