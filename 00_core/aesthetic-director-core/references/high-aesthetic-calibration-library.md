@@ -1,0 +1,264 @@
+# High-Aesthetic Calibration Library — 高审美校准库
+
+> Personal taste calibration derived from the user's direct ratings and reference approvals through 2026-10-07.
+>
+> This is not a style-copy library. Extract decision quality, visual relationships, narrative devices, density control, and compositional intelligence.
+>
+> Core user demand: 拒绝平庸、拒绝平淡、拒绝“看起来什么都有但没有一个决定值得记住”的 AI 插画。
+
+## 0. What the user actually rewards
+
+The user's higher scores repeatedly favor:
+1. Immediate beauty — face, proportion, silhouette, color mass and costume work before complexity is noticed.
+2. A specific visual idea — one relationship is memorable enough to describe without generic mood words.
+3. Designed integration — character, prop, environment, motif, typography or material act as one system.
+4. Controlled complexity — dense in selected pockets, quiet elsewhere.
+5. Emotional evidence — gaze, hand, posture, movement, light, wear or object state carry the story.
+6. Hand-authored irregularity — one deliberate deviation makes the work feel observed rather than averaged.
+7. Rendering that serves design — painterly softness, pseudo-thick-paint, translucency or paper texture amplify an already-good structure.
+
+A high score is NOT awarded merely for more detail, atmosphere, glow, flowers, cinematic adjectives or unusual objects.
+
+## 1. Anti-Mediocrity Gate
+
+Before committing to a design, run all gates below.
+
+### Gate A — Concept ownership
+Can the design be described as a concrete noun + action / relationship?
+
+If it can be summarized as “beautiful girl + theme + environment”, reject it.
+
+### Gate B — Swap test
+Replace the protagonist with another attractive anime girl.
+If most of the image still works unchanged, the design is not character-authored enough.
+At least one major visual decision must depend on this character's identity, habit, role, body language or signature object.
+
+### Gate C — Object necessity
+Remove the main prop / motif.
+If the image remains equally interesting, the prop was decoration rather than design.
+A core object should alter composition, pose, silhouette, narrative, material or color hierarchy.
+
+### Gate D — Thumbnail test
+At thumbnail size, identify the primary shape, motion / gaze path, primary color mass and story punctum.
+If these cannot be read before micro-detail, rebuild the macro structure.
+
+### Gate E — Mood-board test
+If mood words such as dreamy, elegant, melancholy, cinematic or ethereal do more work than concrete nouns + actions + positions, reject the brief.
+
+### Gate F — Existing-art test
+Ask: could this be confused with ten thousand Pinterest / Danbooru / AI examples?
+If yes, change the relationship, not the rendering.
+
+### Gate G — One unforgettable decision
+Require at least one decision a competent illustrator would not make automatically:
+- spatial contradiction
+- material transformation
+- scale reversal
+- character-object relationship
+- visual metaphor
+- typography-image integration
+- non-default pose caused by a specific action
+
+### Gate H — Beauty floor
+Novelty may not damage face attractiveness, anatomy, silhouette, garment plausibility or color hierarchy.
+Strangeness is a bonus layer, never a substitute for beauty.
+
+## 2. High-score case — 追蝶 / 追逐童年 — 8.5/10
+
+### Why it worked
+- Butterfly is both target and narrative mechanism.
+- The reaching hand creates real depth through perspective.
+- The eyes follow the butterfly, giving the gaze a reason.
+- Childhood is embedded inside a visual target instead of explained with text.
+- Hair / ribbons share the same motion direction as the reach.
+- The emotional idea is physically irreversible: she tries to catch something that is already leaving.
+- Close framing creates intimacy while the reaching gesture creates tension.
+
+### Transferable rule
+Abstract emotion becomes stronger when it is converted into a physical target that changes composition.
+
+Do not repeat butterfly + childhood literally. Reuse the mechanism:
+memory / loss / desire → physical target → directional reach → irreversible distance.
+
+### Reject the mediocre version
+Girl under a tree + butterflies + sad smile + petals + sunset = mood board, not concept.
+
+## 3. High-score case — qianben shan — 9/10
+
+### User judgment
+古风精致类画风 Top / 9分.
+
+### What was rewarded
+- clear and delicate oriental character presentation;
+- premium classical atmosphere without decorative overload;
+- culturally coherent material and costume language;
+- portrait and environment reading as one illustration.
+
+### Transferable rule
+For classical oriental work, prioritize silhouette + garment rhythm + culturally specific material + light / air + restrained ornament.
+
+Do not define 古风 as hanfu + flowers + mist + mountains + gold.
+High-end feeling comes from fabric behavior, sleeve shape, hair/accessory integration, culturally coherent objects, controlled negative space and an authored gesture.
+
+## 4. High-score case — tidsean — 8.5/10
+
+### User judgment
+蛮清透 / 8.5分.
+
+### What was rewarded
+- translucent and airy rendering;
+- light visual weight;
+- refined portrait;
+- soft integration between character and environment;
+- clean feeling without becoming empty.
+
+### Transferable rule
+清透 is structural, not a brightness filter.
+Use pale value relationships, readable edge hierarchy, large quiet areas, selective translucency and softer secondary edges.
+Do not substitute glow + bloom + bokeh + white haze for airy structure.
+
+## 5. High-score case — sainker — 8/10
+
+### User judgment
+风格极为独特的艺术插画古典风 / 8分.
+
+### What was rewarded
+- classical visual language treated as a graphic system;
+- ornamental framing, page-like composition and typography acting as one artwork;
+- dense decorative regions balanced by quiet fields;
+- art-plate / book-page / designed-artifact feeling.
+
+### Transferable rule
+When the user asks for classical ornate art-board work, build:
+frame / page geometry + figure + recurring motif + type or annotation + density rhythm.
+
+Do not solve classical design by simply adding gold, flowers, hanfu, architecture and ornaments.
+
+## 6. Reference case — botanical specimen portrait — explicitly liked
+
+### Structural observations
+- large female portrait dominates the frame;
+- botanical forms physically surround and enter the figure;
+- hair, flowers and garment share an organic contour language;
+- pale paper ground contrasts with a dense botanical perimeter;
+- plant structures behave like a specimen system, not random decoration;
+- face remains the calm anchor despite high surrounding complexity.
+
+### Transferable rule
+For 精美人像展示, the theme should alter anatomy, costume, silhouette or frame relationship.
+
+Strong: hair becomes vines; dress is built from petals; specimen labels align with composition; branches create a framing arc.
+Weak: pretty girl standing in a flower garden.
+
+## 7. Reference case — emotional-flow portrait — explicitly liked
+
+### Structural observations
+- face and upper torso occupy most of the frame;
+- a small hand gesture carries emotional information;
+- hair and coat create large flowing shapes;
+- environment is soft but not empty;
+- cool teal / white masses contrast against warm skin;
+- foreground softness and environmental framing create depth;
+- the image feels caught at a specific instant instead of posed for a character sheet.
+
+### Transferable rule
+For emotional-flow illustration:
+large human presence + one meaningful hand / gaze action + one environmental color field + one directional flow.
+
+Reject the formula:
+girl + scenery + sad expression + soft light.
+
+## 8. Successful progression case — Ling × Inception — direction validated
+
+This was not among the strongest scores, but the redesign clearly improved over the earlier 4–5/10 attempts.
+
+Weak:
+character + environment + title.
+
+Improved:
+giant wine vessel as the graphic container; impossible dream architecture inside the wine; character sitting on the rim; typography and circular diagram lines sharing the same geometry.
+
+### Transferable rule
+The crossover concept became the composition itself.
+
+## 9. Preferred visual relationships
+
+### Character ↔ motif
+The motif physically changes the body, costume or silhouette.
+
+### Character ↔ object
+The object causes the pose.
+
+### Character ↔ environment
+The environment frames, compresses, mirrors or contrasts the character instead of merely existing behind it.
+
+### Emotion ↔ physical residue
+A worn sleeve, held object, unfinished gesture, dropped item, distorted reflection, disappearing light or other residue carries history.
+
+### Complexity ↔ quiet field
+Dense around the focal subject / motif, quiet elsewhere.
+
+### Beauty ↔ one strange decision
+Keep the visual floor beautiful, then add one non-default relationship.
+
+## 10. Failure signatures
+
+### Pretty but empty
+Rendering and face are good; nothing happens.
+→ add a specific action or object relationship, not more decoration.
+
+### Interesting but ugly
+Concept is clever; beauty floor is broken.
+→ simplify novelty until face / silhouette / palette recover.
+
+### Detailed but generic
+Every area has detail, but every detail belongs to familiar categories.
+→ replace one major relationship, not ten micro details.
+
+### Dreamy but mushy
+Atmosphere is high; edges and hierarchy collapse.
+→ restore hard / soft edge hierarchy and a physical focal object.
+
+### Cinematic but distant
+Huge environment makes the character irrelevant.
+→ restore character presence or add a scale-defining counter-object.
+
+### Emotional but melodramatic
+Tears + wind + sunset + petals + dramatic eyes.
+→ replace emotional adjectives with a tiny specific action + residue.
+
+## 11. User-specific quality ceiling
+
+For this user's target, a design should normally contain at least three of these five authored signals:
+1. non-default visual relationship;
+2. clear macro composition decision;
+3. specific narrative moment;
+4. controlled motif / material system;
+5. memorable irregularity.
+
+For poster / crossover work, require four of five plus:
+- an identifiable visual metaphor or central graphic device;
+- typography integrated into image architecture when text is requested.
+
+## 12. Generation discipline
+
+If a candidate fails the Anti-Mediocrity Gate:
+- do not move to blueprint or NAI5 prompt writing;
+- do not ask the adapter to make it more artistic;
+- return to concept, macro structure or causality.
+
+When a design passes:
+- keep the prompt compact;
+- preserve the major decisions;
+- let rendering words describe material behavior, not substitute for concept.
+
+## 13. Calibration priority
+
+When evidence conflicts, use:
+explicit user score / direct approval
+→ explicit rejection
+→ repeated patterns across references
+→ general aesthetic theory
+→ generic model defaults.
+
+Never override a direct user judgment with a generalized style rule.
