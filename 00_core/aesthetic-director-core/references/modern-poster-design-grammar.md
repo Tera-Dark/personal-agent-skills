@@ -13,6 +13,19 @@ For this user's target, the poster itself must be conceived as a graphic artifac
 
 A successful poster should still communicate its core idea when the title and small decorative details are removed.
 
+## 0.5 Anti-Mediocrity Preflight
+
+Reject any poster concept that can be summarized as:
+**character + genre mood + scenic background + title**.
+
+Before execution, the concept must pass:
+- **swap test**: changing the character breaks at least one major visual relationship;
+- **removal test**: removing the central object / graphic device destroys the poster identity;
+- **thumbnail test**: core shape and hierarchy survive without typography or micro-detail.
+
+For this user, a crossover poster normally needs:
+**one visual metaphor + one macro graphic device + one character-specific action / relationship**.
+
 ## 1. Concept first, character second
 
 Before designing the character placement, answer:
@@ -54,6 +67,8 @@ Example:
 It can become **"a wine cup containing a folded dream world"**, combining Ling's wine/poetry symbolism with Inception's nested impossible space.
 
 The crossover should feel difficult to separate afterward: removing either IP should weaken the concept.
+
+**Reject costume-swap fusion:** if the crossover is only a costume, logo, background, palette or a few props, the concept is unfinished.
 
 ## 3. Graphic mass hierarchy
 
@@ -236,6 +251,7 @@ Do not default to:
 - giant cinematic adjectives without geometric decisions;
 - generic crossover costume swap;
 - title pasted into empty sky;
+- beautiful character + cinematic environment + floating logo with no graphic relationship;
 - five different surreal objects with no shared logic;
 - highly detailed rendering on top of a weak thumbnail;
 - making the character more provocative or heroic when the source character would not behave that way.
@@ -290,3 +306,8 @@ Successful concept:
 
 This worked better because the dreamcore feeling came from **one coherent spatial error**, not a collection of horror props.
 
+
+
+## 14. High-aesthetic calibration linkage
+
+For every poster request, read `high-aesthetic-calibration-library.md` before committing to the visual concept. The user's direct high-score evidence outranks generic poster conventions when they conflict.
