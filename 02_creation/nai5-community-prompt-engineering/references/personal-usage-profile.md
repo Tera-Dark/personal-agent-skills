@@ -26,6 +26,13 @@ When the user asks for an NAI5 prompt or artist string:
 
 ## 3. Personal artist-stack experiment mode
 
+### Fixed current artist stack
+Unless the user explicitly overrides it, the current fixed NAI5 artist stack is:
+`1.12::artist:baifeidaiwang::, 0.98::artist:diurtion::, 0.76::artist:ask_(askzy)::`
+
+Treat this as a **fixed stack**, not a recommendation to add other artists. Do not append additional artists to it unless the user explicitly asks to experiment with the stack.
+
+
 Unless the user explicitly requests a conservative stack:
 - 3–8 artists per experiment
 - every weight: 0.3–1.2
