@@ -28,7 +28,7 @@ When the user asks for an NAI5 prompt or artist string:
 
 ### Fixed current artist stack
 Unless the user explicitly overrides it, the current fixed NAI5 artist stack is:
-`1.12::artist:baifeidaiwang::, 0.98::artist:diurtion::, 0.76::artist:ask_(askzy)::`
+`1.11::artist:qianben_shan::, 0.84::artist:ichisaku::, 0.75::artist:yang_lizi::, 0.59::artist:chunbuchou::, 0.43::artist:ajiu_nine_ajiu::`
 
 Treat this as a **fixed stack**, not a recommendation to add other artists. Do not append additional artists to it unless the user explicitly asks to experiment with the stack.
 
