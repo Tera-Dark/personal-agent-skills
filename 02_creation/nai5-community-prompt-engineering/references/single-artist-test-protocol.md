@@ -15,10 +15,12 @@ Format:
 
 For a benchmark batch, keep the non-artist content stable. Change only the artist identity, or the artist weight when intentionally testing weight sensitivity.
 
+**Current mandatory test baseline:** include both year tokens `2025, 2026` and an explicit compact quality layer in every single-artist test. Do not omit them unless the user explicitly requests a different baseline.
+
 ## 2. Neutral benchmark
 
 ```text
-1.08::artist:name::, 1girl, solo, upper body, portrait, three-quarter view, beautiful young woman, long soft hair, clear large eyes, gentle confident expression, refined layered outfit, lace collar, ribbon detail, small hair ornament, one hand lightly touching the collar, clean pale background, masterpiece, very aesthetic, high complexity, detailed shading, smooth gradients, anime coloring
+1.08::artist:name::, 2025, 2026, 1girl, solo, upper body, portrait, three-quarter view, beautiful young woman, long soft hair, clear large eyes, gentle confident expression, refined layered outfit, lace collar, ribbon detail, small hair ornament, one hand lightly touching the collar, clean pale background, masterpiece, best quality, high quality, very aesthetic, high complexity, detailed shading, smooth gradients, anime coloring
 ```
 
 This exposes face, eyes, hair, linework, shading, clothing construction, accessory handling, color grouping, and commission/OC appeal.
@@ -28,7 +30,7 @@ This exposes face, eyes, hair, linework, shading, clothing construction, accesso
 For mature/high-demand Red-direction artists, use this after the neutral pass:
 
 ```text
-1.08::artist:name::, 1girl, solo, upper body, elegant character portrait, three-quarter view, beautiful young woman, long flowing hair, expressive eyes, refined layered costume, intricate collar and sleeve construction, one distinctive accessory, poised gesture, clean negative space, strong focal face and chest area, controlled color palette, soft directional light, masterpiece, very aesthetic, high complexity, intricate details, detailed shading, smooth gradients, anime coloring
+1.08::artist:name::, 2025, 2026, 1girl, solo, upper body, elegant character portrait, three-quarter view, beautiful young woman, long flowing hair, expressive eyes, refined layered costume, intricate collar and sleeve construction, one distinctive accessory, poised gesture, clean negative space, strong focal face and chest area, controlled color palette, soft directional light, masterpiece, best quality, high quality, very aesthetic, high complexity, intricate details, detailed shading, smooth gradients, anime coloring
 ```
 
 Do not change the benchmark content between artists in the same comparison batch.
