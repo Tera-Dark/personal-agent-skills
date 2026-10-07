@@ -98,3 +98,18 @@ Interpret feedback by design layer:
 - `atmosphere weak` → specify light direction and material response only after the design reads clearly
 
 Do not automatically turn one experimental rejection into a permanent ban. Promote a preference to a lasting rule only when it is explicit or repeatedly confirmed.
+
+
+## 7. High-Aesthetic Calibration Update — 2026-10-07
+
+The dedicated `high-aesthetic-calibration-library.md` is now the primary few-shot layer for the user's current taste.
+
+Priority evidence:
+- **追蝶 / 追逐童年 — 8.5/10:** emotion becomes a physical target; reaching hand creates depth; butterfly carries memory; hair / ribbons share one motion vector.
+- **qianben shan — 9/10:** refined classical oriental portrait; cultural material, costume rhythm, air and restrained ornament work as one.
+- **tidsean — 8.5/10:** translucent / airy portrait structure; softness without collapse.
+- **sainker — 8/10:** classical art-plate language; frame, ornament, typography and page layout form one artwork.
+- **botanical specimen portrait — explicitly liked:** theme enters the body / costume / frame relationship; specimen logic beats “girl in flower garden”.
+- **emotional-flow portrait — explicitly liked:** large face / torso presence, meaningful hand action, one environmental color field and directional hair / fabric flow.
+
+These references calibrate **decision quality**, not surface style. Do not mechanically reuse their objects.
