@@ -2,7 +2,7 @@
 
 > Canonical personal artist pool for NovelAI V5 experiments.
 >
-> Updated: 2026-10-06
+> Updated: 2026-10-07
 
 ## 1. Pool semantics
 
@@ -238,6 +238,14 @@ These are user-scored individual tests. **Scores do not automatically change the
 - User feedback:使用时出现与 `yellowshark601` 类似的糊图问题.
 - Blacklist rule: user explicitly requests that **artists whose canonical artist tag contains digits be blacklisted and not considered for future use**.
 - Do not include in random artist selection, single-artist testing, or recommended stacks.
+
+### `artist:tidsean`
+- Score: **8.5/10**
+- User feedback: "蛮清透".
+- Test subject: clear-aesthetic ancient Chinese portrait.
+- Style tags: **清透 / 清美古风 / 艺术肖像 / 柔和光感 / 东方人物**
+- Best-fit elements: pale hanfu, flowing sleeves, refined hair ornaments, mist, water, willow/plum motifs, restrained cool palettes, airy negative space.
+- Status: individually liked; **tier remains manually unassigned**.
 
 ## 6. Confirmed liked / high-value combinations
 
