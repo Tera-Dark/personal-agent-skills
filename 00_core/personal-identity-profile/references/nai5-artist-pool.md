@@ -247,6 +247,15 @@ These are user-scored individual tests. **Scores do not automatically change the
 - Best-fit elements: pale hanfu, flowing sleeves, refined hair ornaments, mist, water, willow/plum motifs, restrained cool palettes, airy negative space.
 - Status: individually liked; **tier remains manually unassigned**.
 
+### `artist:sainker`
+- Score: **8.0/10**
+- User feedback: **风格极为独特的艺术插画古典风**.
+- Test direction: ornate classical oriental illustration with integrated page / poster layout.
+- Style tags: **古典艺术插画 / 极繁 / 独特画风 / 版式设计 / 精品画板 / 装饰构成**
+- Best-fit elements: ornamental frames, classical architecture, botanical motifs, antique gold, patterned borders, embedded vignettes, title panels, exhibition / book-plate layouts.
+- Best use: **art-board / poster / decorative illustration / premium classical composition**, rather than ordinary clean character portrait.
+- Status: individually liked; **tier remains manually unassigned**.
+
 ## 6. Confirmed liked / high-value combinations
 
 These artists have been validated through the user's actual NAI5 experiments and should be treated as strong anchors for future exploration.
