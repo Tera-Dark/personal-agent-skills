@@ -3,7 +3,7 @@ name: aesthetic-director-core
 description: Creative direction layer that turns a vague request into one committed design idea before any blueprint or prompt is written. Runs a sequence of generative "moves" (find the obsession, plant a contradiction, pick from the tail, build causality, subtract, keep one strange thing) and produces a short Creative Brief with rejected alternatives. Use for any OC / character / illustration / fashion / key-visual request, whenever output feels generic, "AI-flavored", too plain, too busy, or when the user asks for taste, direction, 审美, 创意方向, 人味, 高级感, 不要AI味.
 metadata:
   author: Tera-Dark
-  version: "2.4.0"
+  version: "2.5.0"
   layer: "00_core"
   load: "always"
   status: "active"
@@ -46,6 +46,30 @@ AUDIT 是必经的质量闸门，不等于“顺手美化”。没有失败证�
 - **保留一处怪**。每个设计里至少有一个略微不合理的细节，并说明为什么保留它；**怪 ≠ 丑**，它不能破坏整体比例、姿态、色块或服装结构的第一眼美感。
 - **美感底盘先成立**。辨识度不能靠故意做丑获得。先让轮廓、比例、姿态、色块与服装结构形成舒服且有收藏欲的整体，再把“怪”压在局部作为张力。
 - **不布道**。不向用户输出审美理论、不复述本文件原则、不空夸。只给判断和结果。
+
+## 2.1 Anti-Mediocrity Gate — 反平庸审美闸门
+
+在进入 blueprint / prompt 之前，必须读取 `references/high-aesthetic-calibration-library.md`，先证明方案值得做，再允许进入执行层。
+
+**硬门槛：**
+- 不能只有“角色 + 主题 + 氛围 + 背景”；必须有至少一个不可替换的视觉关系。
+- 至少一个核心决定必须依赖该角色，而不是换成任意美女都成立。
+- 至少一个大结构必须在缩略图里读出来。
+- 至少一个具体物件 / 空间 / 材质承担叙事或构图职责。
+- 必须存在一个值得记住的非默认决定。
+- 海报 / 联动作品必须额外存在视觉隐喻或主图形；标题若存在，必须进入设计系统。
+- 梦核 / 超现实作品优先使用一个主空间矛盾，不靠随机怪物、随机道具或光效制造“怪”。
+- 如果“漂亮、梦幻、电影感、精致、神秘”等形容词比具体名词、动词、位置更多，退回重做。
+
+### Anti-Mediocrity Reject Test
+1. **一句话压缩**：不能只是一个通用 Pinterest 标题。
+2. **角色替换**：换人后至少一项核心结构必须失效。
+3. **元素删除**：删掉主物件后，画面应明显失去意义或结构。
+4. **缩略图**：先读到大形、主方向、主色块，再读细节。
+5. **创意距离**：三个候选方向必须使用不同的视觉机制，而不是同一方案换几个主题词。
+6. **平庸回退**：如果前三个方向都是“漂亮女孩在一个漂亮地方”，全部作废，从器物、建筑、服装史、生物、编辑设计等相邻领域借结构重新起题。
+
+**目标不是更怪，而是更有选择。新颖度不得牺牲脸、比例、轮廓、服装成立性和第一眼美感。**
 
 ## 2. 九个创作动作（Creative Moves）
 
@@ -130,7 +154,7 @@ AUDIT 是必经的质量闸门，不等于“顺手美化”。没有失败证�
    ↓
 AUDIT：只审不改；失败则 ESCALATE → FULL
    ↓
-FULL：M1–M3：生成 3 个互不重叠的方向 → 淘汰 2 个（写理由）
+FULL：先过 Anti-Mediocrity Gate → M0 破平庸筛选 → M1–M3：生成 3 个结构机制不同的方向 → 淘汰 2 个（写理由）
    ↓
 M4–M5：给幸存方向建因果链、定瞬间
    ↓
@@ -192,7 +216,8 @@ Brief 用中文或英文均可，跟随用户当前语言。不加解释段落�
 
 - `references/creative-moves.md` — 九个动作的具体手法、每个动作的"AI 会怎么做 vs 设计师会怎么做"
 - `references/taste-calibration-pairs.md` — 成对示例：同一需求的通用答案与有判断的答案
-- `references/design-calibration-examples.md` — 用户认可的参考设计拆解、必须做出的设计决定、禁止的捷径
+- `references/design-calibration-examples.md` — 基础参考设计拆解、必须做出的设计决定、禁止的捷径
+- `references/high-aesthetic-calibration-library.md` — 用户高分 / 明确喜欢作品的结构拆解、反平庸闸门、可迁移的高审美模式
 - `references/feedback-diagnosis.md` — 反馈 → 失败层级 → 修正动作
 - `references/anti-ai-patterns.md` — AI 味模式清单：模式 → 成因 → 替换动作
 - `references/emotional-design.md` — 情绪与叙事如何落到可见的视觉决定上
