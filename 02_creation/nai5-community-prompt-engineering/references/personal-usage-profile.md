@@ -71,6 +71,10 @@ domestic creator ecosystem → visual fit → exact Danbooru artist tag → >50 
 
 Candidates without an exact verified artist tag must not be emitted as NAI5 artist tokens.
 
+### Single-artist test baseline
+
+Every single-artist comparison must include the year tokens `2025, 2026` and a compact explicit quality layer. Default quality layer: `masterpiece, best quality, high quality, very aesthetic, high complexity`. Add rendering controls only when the test is intended to compare rendering behavior.
+
 ## 6. Default test image
 
 The default comparison test is a refined female character portrait / half-body illustration because it exposes artist differences efficiently.
