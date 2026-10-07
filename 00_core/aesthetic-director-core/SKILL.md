@@ -3,11 +3,11 @@ name: aesthetic-director-core
 description: Creative direction layer that turns a vague request into one committed design idea before any blueprint or prompt is written. Runs a sequence of generative "moves" (find the obsession, plant a contradiction, pick from the tail, build causality, subtract, keep one strange thing) and produces a short Creative Brief with rejected alternatives. Use for any OC / character / illustration / fashion / key-visual request, whenever output feels generic, "AI-flavored", too plain, too busy, or when the user asks for taste, direction, 审美, 创意方向, 人味, 高级感, 不要AI味.
 metadata:
   author: Tera-Dark
-  version: "2.3.0"
+  version: "2.4.0"
   layer: "00_core"
   load: "always"
   status: "active"
-  triggers: "OC, 人设, 插画, 服装, 审美, 创意方向, 人味, 高级感, 不要AI味, 太平淡, 太乱"
+  triggers: "OC, 人设, 插画, 服装, 海报, 联动海报, 艺术海报, key visual, crossover poster, 审美, 创意方向, 人味, 高级感, 不要AI味, 太平淡, 太乱"
 ---
 
 # Aesthetic Director Core
@@ -79,6 +79,47 @@ AUDIT 是必经的质量闸门，不等于“顺手美化”。没有失败证�
 4. 什么元素真实地固定、承重或产生遮挡？
 
 默认拒绝用 glow / bokeh / petals / sparkles / mist 代替构图；默认拒绝镜像五官、过量眼睛高光、无笔触的塑料皮肤。现代 Key Visual 可以复杂，但复杂必须先在缩略图里读出大形和动势。
+
+## 3.6 当前模式校准：Modern Poster Design
+
+当请求涉及**艺术海报、联动海报、电影式角色海报、游戏 crossover key visual、梦核 / 超现实海报、标题驱动的宣传主视觉**时，必须读取 `references/modern-poster-design-grammar.md`。
+
+该模式的硬前提：
+
+> **海报不是“精美插画 + 标题”。海报必须先有一个可被记住的视觉概念，再让角色、环境、道具和文字共同服务这个概念。**
+
+导演必须先确定：
+1. **一句话视觉概念**：名词 + 动作 / 关系；
+2. **IP 交叉母题**：两个 IP 为什么能在这张图里自然相遇；
+3. **主图形 / 容器**：什么巨大形状、物体、空间或文字构成视觉骨架；
+4. **角色的构图职责**：角色是锚点、破框、尺度参照、连接物还是符号；
+5. **尺度关系**：至少一个有意的大小 / 空间错位；
+6. **信息层级**：标题、主角、核心物件、环境谁先被看到；
+7. **安静区与密集区**：不能全画满；
+8. **OOC-safe 瞬间**：人物动作必须能从角色性格和当下情境解释；
+9. **一个主怪点 / 空间矛盾**：尤其梦核与超现实主题，不准靠随机怪物和随机装饰堆“怪”；
+10. **标题与图形关系**：标题必须成为设计系统的一部分，而不是贴在空白处。
+
+### Poster first / illustration second
+
+不要先写“角色站在某某世界里”，再补背景和 Logo。
+
+优先采用：
+**IP intersection → visual metaphor → macro graphic structure → character role → spatial / scale relation → typography integration → rendering**
+
+一个合格的联动海报，即使删除小装饰和标题，仍应保留可辨识的独立构图概念。
+
+### 用户当前海报审美的重点
+
+用户明确偏好：
+- 有独立创意母题的视觉海报；
+- 1999 式的概念先行、错位嫁接、尺度反差、图形化构图与出版物 / 电影海报感；
+- 人物必须有足够视觉存在感，但“大人物”不是唯一解决方案；
+- 伪厚涂、概括笔触、精巧构图可以同时存在；
+- 海报应像一个**被策划过的视觉作品**，而不是一张插画加标题。
+
+当用户说“人物太小、艺术设计感不足、张力不足”时，先重做**宏观概念、图形质量、尺度层级、视觉路径**；不要只放大人物或增加装饰。
+当用户说“联动感不够”时，优先重做**交叉母题与视觉隐喻**；不要直接增加另一个 IP 的服装、Logo、道具数量。
 
 ## 3. 执行流程
 
@@ -155,6 +196,7 @@ Brief 用中文或英文均可，跟随用户当前语言。不加解释段落�
 - `references/feedback-diagnosis.md` — 反馈 → 失败层级 → 修正动作
 - `references/anti-ai-patterns.md` — AI 味模式清单：模式 → 成因 → 替换动作
 - `references/emotional-design.md` — 情绪与叙事如何落到可见的视觉决定上
+- `references/modern-poster-design-grammar.md` — 联动 / 艺术海报的概念先行、图形结构、尺度关系、字体整合与梦核海报语法
 
 
 ### AUDIT → Design Audit Record
