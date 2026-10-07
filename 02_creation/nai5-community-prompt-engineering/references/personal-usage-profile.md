@@ -28,7 +28,7 @@ When the user asks for an NAI5 prompt or artist string:
 
 ### Fixed current artist stack
 Unless the user explicitly overrides it, the current fixed NAI5 artist stack is:
-`1.11::artist:qianben_shan::, 0.84::artist:ichisaku::, 0.75::artist:yang_lizi::, 0.59::artist:chunbuchou::, 0.43::artist:ajiu_nine_ajiu::`
+`1.08::artist:qianben_shan::, 0.91::artist:ruoganzhao::, 0.76::artist:miv4t::, 0.58::artist:min_(120716)::, 0.41::artist:kieed::`
 
 Treat this as a **fixed stack**, not a recommendation to add other artists. Do not append additional artists to it unless the user explicitly asks to experiment with the stack.
 
@@ -134,3 +134,30 @@ Do not collapse 'this combination looks good' into 'every artist is individually
 Negative prompting is not part of the default copy block.
 
 Use negative numerical emphasis only for a demonstrated conflict or targeted removal, not as a generic negative list.
+
+## 12. Current normal design mode · 2026-10-07
+
+The artist stack and quality layer are now preset for normal design work.
+
+For ordinary requests such as “设计一个插画 / 做个海报 / 继续设计”, do not repeat the preset artist or quality layer unless the user asks for a full NAI5 prompt.
+
+Spend prompt space on:
+- concept and visual metaphor
+- macro composition and reading path
+- camera / viewpoint / crop / foreground occlusion
+- character action and causal storytelling
+- environment and object relationships
+- typography / graphic layout when relevant
+- painterly texture, soft color transitions, and controlled detail density
+
+Current default visual bias:
+- domestic female-oriented small-artist commission aesthetics
+- softer, atmospheric, painterly rendering rather than hyper-sharp polish
+- attractive anime character design without generic moe emphasis
+- fashion / costume as part of character identity
+- close-up / near-camera compositions when the concept benefits
+- photography and film composition translated into illustration
+- semi-blank or controlled high-density layouts according to the concept
+- poster treated as graphic design first
+
+Single-artist tests remain separate and keep their explicit year and quality tags.
