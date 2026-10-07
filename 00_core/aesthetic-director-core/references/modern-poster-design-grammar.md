@@ -97,6 +97,66 @@ Character scale is not inherently "better" when larger. What matters is **hierar
 
 Never use "make the character bigger" as the only fix for weak poster impact.
 
+## 3.5 Layout-first hierarchy — 版式优先
+
+For this user's poster target, **layout is a first-order visual asset, not a finishing layer**.
+
+The first impression should be controlled by:
+**layout / information hierarchy → major graphic masses → character → micro-detail**.
+
+A technically good illustration can still feel cheap when:
+- title placement is arbitrary;
+- margins are accidental;
+- elements have equal visual weight;
+- the eye has no entry point or reading order;
+- text, character and motif compete instead of forming a hierarchy;
+- the composition resembles a character illustration placed inside a rectangular canvas.
+
+### Poster reading order
+
+Before adding detail, establish a deliberate sequence such as:
+**title → main graphic → face → secondary narrative object**
+or
+**face → graphic container → title → environmental residue**.
+
+Only one element should own the first glance.
+
+### Layout mechanisms
+
+Use at least two of:
+- strong asymmetrical grid;
+- deliberate crop;
+- oversized title block;
+- framed inset / nested image;
+- split field;
+- offset caption block;
+- large quiet margin;
+- geometric alignment between title, figure and object;
+- edge-to-edge graphic mass;
+- visual interruption / overlap.
+
+### Information hierarchy test
+
+Squint at the poster or reduce it to grayscale:
+1. what do you see first?
+2. what do you see second?
+3. where does your eye exit?
+
+If everything appears equally important, the layout has failed.
+
+### Content-quality compensation rule
+
+**Strong layout can make moderately complex content immediately attractive, but strong rendering cannot rescue weak layout.**
+
+Therefore:
+- fix hierarchy before adding detail;
+- fix spacing before adding atmosphere;
+- fix title placement before changing the artist stack;
+- fix major masses before refining costume micro-detail.
+
+This is not permission to use mediocre character design. The beauty floor still matters. The correct order is:
+**good layout + good character + controlled content**, not "great character compensates for bad layout".
+
 ## 4. Scale contradiction
 
 Use at least one deliberate scale relationship:
@@ -195,6 +255,12 @@ Poster detail must be intentionally uneven:
 Do not texture every surface.
 
 The empty area is part of the design.
+
+## 10.5 Layout is not decoration
+
+Do not add title, captions, labels, decorative frames or graphic marks after the illustration is finished as an afterthought. Their bounding boxes, alignment, scale and overlaps are part of the initial composition.
+
+For high-end poster work, reserve space for typography and graphic elements **before** assigning the final character crop.
 
 ## 11. Punctum and color discipline
 
