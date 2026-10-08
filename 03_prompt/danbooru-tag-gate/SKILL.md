@@ -114,3 +114,6 @@ source: danbooru-index
 - [ ] canonical identity 未被改写。
 - [ ] 不包含任何 Anima / NAI5 独占语法。
 - [ ] source failure 时 fail-closed。
+
+## References
+- references/tag-index.md — Web-first index source, schema and provenance notes.
