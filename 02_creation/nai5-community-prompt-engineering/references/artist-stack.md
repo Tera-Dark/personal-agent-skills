@@ -19,7 +19,7 @@ So 0.8 is **not** a high-strength artist weight; it is a weakened emphasis. For 
 
 ## Principles
 
-For this personal workflow, the current random experiment mode is authoritative: 3–8 artists, 0.3–1.2 each, and at least one artist >1.0. The conservative single-primary / <=0.6-secondary recipe remains a generic fallback only when no personal experiment rule is specified.
+For this personal workflow, the current random experiment mode is authoritative: 4–8 artists total, 1–2 master anchors + 2–6 randomly selected assistants, each 0.3–1.2, with at least one artist >1.0. The conservative single-primary recipe remains only a generic fallback when no personal experiment rule is specified.
 
 Artist tags are not decoration. They influence the visual prior of the generation:
 - line quality
@@ -33,10 +33,14 @@ Avoid blindly stacking artists.
 
 Current personal experiment mode:
 
-- Randomly select **3–8 artists**.
+- Roll a total of **4–8 artists**.
+- Lock **1–2 master anchors** first.
+- Randomly fill **2–6 assistants** from the eligible exploration / personal pool.
 - Every artist weight must be **0.3–1.2**.
-- At least **one artist must be >1.0**.
-- Do not force a single-primary / low-secondary gradient unless the user explicitly asks for it.
+- At least **one master or other artist must be >1.0**.
+- Keep masters visibly stronger than the low-end assistants unless a specific test is intended to break that hierarchy.
+- Append **artist collaboration** by default for this multi-artist experiment mode.
+- Exclude yellow-pool artists from the main roll.
 - Avoid duplicate artists within one stack.
 - Across sequential experiments, minimize short-cycle repeats while preserving high-value combinations for re-tests.
 - When visual languages strongly conflict, reduce artist count rather than adding more weights.
@@ -62,6 +66,14 @@ The special entry vlfdus 0 is treated as ambiguous unless the user confirms it; 
 
 Before emitting any new artist stack, exclude every artist token whose **final character is a digit**. This rule overrides random selection and combination design unless the user explicitly overrides it. Historical-only records containing such artists must never be emitted into new prompts.
 
+### Yellow pool gate
+
+The main artist roll must exclude all artists currently classified by the user as yellow-pool. Current yellow-pool records:
+- artist:qiandaiyiyu — 7/10
+- artist:mimonel — 7/10
+
+Do not recommend, explore, or randomly select these for the mainstream pool unless the user explicitly requests the yellow pool.
+
 A good stack balances the blueprint's needs across:
 - character design
 - rendering
@@ -70,8 +82,11 @@ A good stack balances the blueprint's needs across:
 
 The stack supports the blueprint; it does not replace character or composition design.
 
-Always keep artist collaboration controlled when needed:
+For the current mainstream 4–8 artist experiment mode, artist collaboration is enabled by default.
 
+Treat it as a community experimental control tag, not an official guaranteed fusion mechanism. When debugging, A/B test the same seed and prompt with and without it rather than assuming it must help.
+
+Optional suppression when a clean separation is desired:
 -1::artist collaboration::
 
 ## Practical templates
