@@ -61,3 +61,7 @@ Do not add section labels that are not part of the established user-facing Anima
 - [ ] relations are represented
 - [ ] no redesign
 - [ ] prompt is minimum-sufficient rather than merely short
+
+## References
+- references/anima-model-profiles.md — model-specific behavior notes and output constraints.
+- references/anima-troubleshooting.md — artifact and compilation troubleshooting patterns.
