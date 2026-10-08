@@ -1,6 +1,6 @@
 # 核心验证测试集 (Test Suite)
 
-> Architecture baseline: v4.0.0
+> Architecture baseline: v4.0 shared Prompt Core
 
 > **Version**: 4.0.0  
 > **Last Updated**: 2026-10-05  
