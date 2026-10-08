@@ -1,6 +1,6 @@
-# P12 Personal Anima Regression Matrix
+# P12 Shared Prompt Architecture Regression Matrix
 
-> Manual/model-behavior regression suite for the Anima Web-first chain after P2–P11.
+> Manual/model-behavior regression suite for the shared Prompt Core and Anima / NAI5 renderer architecture.
 > Machine-checkable contracts are enforced by scripts/check_personal_anima_regression.py.
 > BLOCKED means required evidence is unavailable; it must never be converted to PASS by memory or fuzzy matching.
 
@@ -19,50 +19,50 @@ notes:
 ### P12-TAG-01 — exact canonical
 - Input: 1girl
 - Expect: exact canonical match; eligible for hard_tags.
-- Owner: anima-tag-gate
+- Owner: danbooru-tag-gate
 
 ### P12-TAG-02 — exact alias
 - Input: one alias taken from the live Anima 1.0 index.
 - Expect: alias → indexed canonical tag; alias kept only as trace metadata.
-- Owner: anima-tag-gate
+- Owner: danbooru-tag-gate
 - Evidence: record the live index entry.
 
 ### P12-TAG-03 — missing tag
 - Input: definitely_not_a_real_anima_tag_xyz
 - Expect: missing; never enters hard_tags; meaning may fall back to NL.
-- Owner: anima-tag-gate
+- Owner: danbooru-tag-gate
 
 ### P12-TAG-04 — fuzzy trap
 - Input: an intentional misspelling near a known tag.
 - Expect: never promoted to exact/alias and never inserted into hard_tags.
-- Owner: anima-tag-gate
+- Owner: danbooru-tag-gate
 
 ### P12-TAG-05 — character / IP isolation
 - Input: a verified character anchor plus a plausible same-name general term.
 - Expect: character identity requires character-group evidence; general wording cannot be upgraded.
-- Owner: anima-tag-gate + classifier
+- Owner: danbooru-tag-gate + classifier
 
 ### P12-TAG-06 — artist isolation
 - Input: a verified artist token plus a similar-looking non-artist token.
 - Expect: artist identity requires artist-group evidence.
-- Owner: anima-tag-gate + classifier
+- Owner: danbooru-tag-gate + classifier
 
 ## 2. Appearance / clothing / action / composite
 
 ### P12-TAG-07 — appearance classification
 - Input: verified hair / face / appearance anchors.
 - Expect: smallest defensible intent classes; no identity inference from spelling.
-- Owner: anima-tag-classifier
+- Owner: visual-prompt-core
 
 ### P12-TAG-08 — clothing classification
 - Input: verified layered garment and accessory anchors.
 - Expect: clothing and accessory remain distinct; redundant items may become omit.
-- Owner: anima-tag-classifier
+- Owner: visual-prompt-core
 
 ### P12-TAG-09 — action vs pose
 - Input: one stable pose anchor and one event/action anchor.
 - Expect: pose and action stay separate.
-- Owner: anima-tag-classifier
+- Owner: visual-prompt-core
 
 ### P12-TAG-10 — composite tag packet
 - Input: subject + identity + hair + clothing + accessory + pose + decorative extras.
@@ -74,17 +74,17 @@ notes:
 ### P12-SYN-01 — Reverse:1999 canonical identity
 - Input: 37_(reverse:1999)
 - Expect serialized form exactly 37\(reverse1999\).
-- Owner: anima-tag-serializer
+- Owner: anima-renderer
 
 ### P12-SYN-02 — ordinary tags stay ordinary
 - Input: 1girl, long_hair, and another normal verified tag.
 - Expect: no global escaping or unrelated rewriting.
-- Owner: anima-tag-serializer
+- Owner: anima-renderer
 
 ### P12-SYN-03 — serialization idempotence
 - Input: already serialized 37\(reverse1999\).
 - Expect: serializing again produces the same string.
-- Owner: anima-tag-serializer
+- Owner: anima-renderer
 
 ### P12-SYN-04 — punctuation is identity-sensitive
 - Input: a tag containing parentheses / colon / underscore.
@@ -96,17 +96,17 @@ notes:
 ### P12-SKL-01 — what vs relation
 - Input: finished blueprint with concrete anchors plus garment overlap, asymmetry and pose causality.
 - Expect: stable facts go to Tag block; relations go to compact NL; no third visible block.
-- Owner: anima-prompt-skeleton
+- Owner: visual-prompt-core
 
 ### P12-SKL-02 — no noun-pile replacement
 - Input: multi-layer outfit with explicit hierarchy.
 - Expect: NL contains a relational clause instead of repeating garment nouns.
-- Owner: anima-prompt-skeleton
+- Owner: visual-prompt-core
 
 ### P12-CMP-01 — core survives compression
 - Input: intentionally overlong prompt with identity, framing, signature garment, pose, critical relation and decorative prose.
 - Expect: core facts survive; decorative prose is removed first.
-- Owner: anima-prompt-compressor
+- Owner: visual-prompt-core
 
 ### P12-CMP-02 — small prompts stay small
 - Input: simple full-body character.
@@ -161,13 +161,13 @@ notes:
 - Expect: current generated handshake; no stale hard-coded version/module count.
 - Owner: Kernel + build
 
-### P12-WEB-02 — one Anima pack fetch
+### P12-WEB-02 — one target prompt pack fetch
 - Input: unfinished character idea + request for Anima prompt.
-- Expect: declared Anima pipeline pack is selected as one fetch; constituent stages are loaded together.
+- Expect: declared Anima or NAI5 pipeline pack is selected as one fetch; constituent stages are loaded together.
 - Owner: Router + Kernel
 
-### P12-WEB-03 — exact stage order
-- Expect: Gate → Classifier → Skeleton → Protection → Compressor → Serializer → Compiler.
+### P12-WEB-03 — shared stage order
+- Expect: Visual Prompt Core → Danbooru Tag Gate → target renderer.
 - Owner: harness.json + generated pipeline
 
 ### P12-WEB-04 — no redundant refetch
@@ -210,7 +210,7 @@ notes:
 - [ ] compression tests deletion priority, not just word count
 - [ ] aesthetic protection proves design facts survive compilation
 - [ ] all three P11 failure scopes are exercised
-- [ ] one-fetch Anima pipeline and exact stage order are exercised
+- [ ] one-fetch Anima pipeline and shared stage order are exercised
 - [ ] recent real tasks cover gacha / full-body / high-fashion / illustration / reference / token pressure
 - [ ] deterministic P12 contract checker passes in CI
 - [ ] no degraded path promotes unverified tags into hard_tags
