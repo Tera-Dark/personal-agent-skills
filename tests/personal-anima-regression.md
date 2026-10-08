@@ -40,12 +40,12 @@ notes:
 ### P12-TAG-05 — character / IP isolation
 - Input: a verified character anchor plus a plausible same-name general term.
 - Expect: character identity requires character-group evidence; general wording cannot be upgraded.
-- Owner: danbooru-tag-gate + classifier
+- Owner: danbooru-tag-gate
 
 ### P12-TAG-06 — artist isolation
 - Input: a verified artist token plus a similar-looking non-artist token.
 - Expect: artist identity requires artist-group evidence.
-- Owner: danbooru-tag-gate + classifier
+- Owner: danbooru-tag-gate
 
 ## 2. Appearance / clothing / action / composite
 
@@ -67,7 +67,7 @@ notes:
 ### P12-TAG-10 — composite tag packet
 - Input: subject + identity + hair + clothing + accessory + pose + decorative extras.
 - Expect: verified core/structural/signature survive before support/omit extras.
-- Owner: classifier + skeleton + compressor
+- Owner: visual-prompt-core + danbooru-tag-gate
 
 ## 3. Special syntax / identity preservation
 
@@ -111,29 +111,29 @@ notes:
 ### P12-CMP-02 — small prompts stay small
 - Input: simple full-body character.
 - Expect: no padding to hit a word count; stop at minimum sufficient control.
-- Owner: compressor + compiler
+- Owner: visual-prompt-core + renderer
 
 ### P12-CMP-03 — punctum survives
 - Input: one explicit punctum and one strange detail.
 - Expect: both remain visible design facts; generic decoration cannot replace them.
-- Owner: compressor + aesthetic protection
+- Owner: compressor + visual-prompt-core
 
 ## 5. Aesthetic protection / design drift
 
 ### P12-PRT-01 — no redesign during compilation
 - Input: locked silver hair, gold eyes, asymmetric black garment architecture, fixed pose and palette.
 - Expect: all locked facts survive unchanged.
-- Owner: aesthetic protection + compiler
+- Owner: visual-prompt-core + anima-renderer
 
 ### P12-PRT-02 — asymmetry protection
 - Input: blueprint intentionally weighted to one side.
 - Expect: compression/serialization do not normalize it into bilateral symmetry.
-- Owner: aesthetic protection
+- Owner: visual-prompt-core
 
 ### P12-PRT-03 — quiet field protection
 - Input: white-background character plate with one dense focal pocket.
 - Expect: no automatic flowers, particles, ribbons, glow, butterflies, scenery or filler.
-- Owner: aesthetic protection
+- Owner: visual-prompt-core
 
 ## 6. P11 failure regression
 
@@ -150,9 +150,9 @@ notes:
 - Owner: Tag Gate
 
 ### P12-FLR-04 — no silent stage skip
-- Input: upstream Anima stage unavailable while compiler is named.
-- Expect: pipeline never jumps directly to compiler.
-- Owner: Router + compiler
+- Input: upstream Anima stage unavailable while renderer is named.
+- Expect: pipeline never jumps directly to renderer.
+- Owner: Router + renderer
 
 ## 7. Web-first / pipeline integrity
 
@@ -183,11 +183,11 @@ notes:
 
 ### P12-REAL-02 — full-body standing character
 - Pass: full-body framing survives; prompt stays compact; pose/anatomy facts are not buried under atmosphere prose.
-- Owner: character-design-engine + compiler
+- Owner: character-design-engine + renderer
 
 ### P12-REAL-03 — high-fashion outfit
 - Pass: garment architecture and physical attachment remain legible; tags do not flatten layering into a noun pile.
-- Owner: character-design-engine + skeleton + compiler
+- Owner: character-design-engine + visual-prompt-core + renderer
 
 ### P12-REAL-04 — authored illustration
 - Pass: illustration thesis, camera and environment-character relationship survive; image does not collapse to a character plate.
@@ -199,7 +199,7 @@ notes:
 
 ### P12-REAL-06 — prompt under token pressure
 - Pass: secondary details disappear before identity, silhouette, garment architecture, action or punctum.
-- Owner: compressor + compiler
+- Owner: visual-prompt-core + renderer
 
 ## 9. P12 exit criteria
 
@@ -208,7 +208,7 @@ notes:
 - [ ] special syntax has exact-output + idempotence checks
 - [ ] Tag/NL boundary is tested
 - [ ] compression tests deletion priority, not just word count
-- [ ] aesthetic protection proves design facts survive compilation
+- [ ] visual-prompt-core proves design facts survive compilation
 - [ ] all three P11 failure scopes are exercised
 - [ ] one-fetch Anima pipeline and shared stage order are exercised
 - [ ] recent real tasks cover gacha / full-body / high-fashion / illustration / reference / token pressure
