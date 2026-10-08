@@ -1,3 +1,14 @@
+## [4.0.0] - 2026-10-08
+
+### Shared visual prompt architecture
+- Replaced parallel Anima / NAI5 prompt-planning responsibilities with a shared `visual-prompt-core`.
+- Added shared `danbooru-tag-gate` for exact / alias / missing verification.
+- Added thin `anima-renderer` and `nai5-renderer` model-specific endpoints.
+- Moved design, prompt, analysis, tools, evaluation and extension skills into explicit v4 layers.
+- Reduced the always-on runtime to persistent identity + routing policy.
+- Removed duplicated workflow voice and duplicated NAI5 personal artist policy from non-owner modules.
+- Preserved Anima and NAI5 regression material under the new owners instead of deleting the knowledge.
+
 ## [3.11.0] - 2026-10-06
 
 ### High-density small-artist aesthetic calibration
