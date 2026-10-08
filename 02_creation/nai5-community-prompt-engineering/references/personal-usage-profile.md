@@ -26,19 +26,21 @@ When the user asks for an NAI5 prompt or artist string:
 
 ## 3. Personal artist-stack experiment mode
 
-### Fixed current artist stack
-Unless the user explicitly overrides it, the current fixed NAI5 artist stack is:
-`1.08::artist:qianben_shan::, 0.91::artist:ruoganzhao::, 0.76::artist:miv4t::, 0.58::artist:min_(120716)::, 0.41::artist:kieed::`
+### Current proven core + experiment mode
 
-Treat this as a **fixed stack**, not a recommendation to add other artists. Do not append additional artists to it unless the user explicitly asks to experiment with the stack.
+The user's current proven core anchors for the “small-artist / feminine illustration” direction are:
+`1.15::artist:starshadowmagician::, 0.92::artist:fengjian_yuzhi::`
 
+This is **not a permanent fixed stack**. Treat the two artists as strong candidate master anchors when building experimental ensembles.
 
 Unless the user explicitly requests a conservative stack:
-- 3–8 artists per experiment
+- total 4–8 artists per experiment
+- 1–2 master anchors + 2–6 randomly selected assistants
 - every weight: 0.3–1.2
 - at least one artist must be >1.0
 - no duplicate artist names within one stack
-- no requirement for a single primary + low-weight secondary hierarchy
+- default to ending the ensemble with `artist collaboration`
+- do not mix yellow-pool artists into the main roll
 - use weights as experiment variables, not permanent artist rankings
 - avoid excessive short-cycle repetition between consecutive experiments
 
@@ -67,7 +69,20 @@ When the user asks for a new artist string from the personal pool, use eligible 
 When the user asks to continue exploring or explicitly says not to use the existing pool, do not sample the personal pool.
 
 Use:
-domestic creator ecosystem → visual fit → exact Danbooru artist tag → >50 posts → controlled NAI5 portrait test → user feedback → pool promotion
+domestic creator ecosystem → **小红书 / 米画师审美匹配** → visual fit → exact Danbooru / NovelAI artist tag → sufficient coverage → controlled NAI5 portrait test → user feedback → pool promotion
+
+Exploration target:
+- female-oriented anime illustration
+- refined portrait / character illustration
+- small-artist / personal style feel
+- tasteful character design
+- commercial commission / 小画师投稿审美
+- Chinese-oriental / fantasy / modern anime directions are all acceptable when visually strong
+
+Hard exclusions:
+- do not proactively explore artists whose dominant indexed work is NSFW / erotic / fetish-oriented
+- yellow-pool artists are tracked separately and never sampled into the main exploration or roll
+- current yellow pool: `artist:qiandaiyiyu` (7/10), `artist:mimonel` (7/10)
 
 Candidates without an exact verified artist tag must not be emitted as NAI5 artist tokens.
 
@@ -119,7 +134,8 @@ Add detailed shading, smooth gradients, or anime coloring only when they test a 
 - Never invent a tag from a creator display name.
 - Exact tag verification belongs to the exploration stage.
 - Any artist tag whose **final character is a digit** is blacklisted by default and must not be tested, recommended, or randomly selected unless the user explicitly overrides it.
-- Current examples: `artist:yellowshark601`, `artist:mihiro_00122`, `artist:vlfdus_0`, `artist:zishengtian123`.
+- Historical examples: `artist:yellowshark601`, `artist:mihiro_00122`, `artist:vlfdus_0`, `artist:zishengtian123`.
+- These historical names may remain for provenance but must never be emitted into new stacks.
 - Historical combination records may retain these names for provenance, but they must never be emitted into new prompts.
 - Preserve exact artist syntax for eligible artists; do not guess unresolved tags.
 
