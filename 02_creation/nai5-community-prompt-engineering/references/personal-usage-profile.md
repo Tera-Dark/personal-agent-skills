@@ -68,6 +68,25 @@ The following are explicit user test results and should be treated as evidence r
 
 These records preserve the user's qualitative judgments. Do not auto-convert scores into the manual tiers (夯 / 顶级 / 中等 / 次等) unless the user explicitly assigns a tier.
 
+## 4.6. User artist rating tiers
+
+The user's manual rating-to-tier mapping is:
+- **夯**: 8.5–10.0
+- **顶级**: 7.5–8.4
+- **中等**: 6.5–7.4
+- **次等 / 不入流**: below 6.5, effectively not worth retaining unless specifically requested
+
+Scored mainstream / non-yellow records currently classified from the user's explicit ratings:
+- 夯: `artist:baifeidaiwang` — 9/10; `artist:starshadowmagician` — 8.5/10; `artist:yan_zi_yao_yu` — 8.5/10
+- 顶级: `artist:shen_a_fang` — 8/10; `artist:mgong520` — 8/10; `artist:fengjian_yuzhi` — 8/10; `artist:kurikabacha` — 8/10; `artist:zhi_xu_li_ming` — 8/10; `artist:ruoganzhao` — 8/10; `artist:cuso4_suiwabutu` — 8/10; `artist:yalmyu` — 8/10; `artist:ask_(askzy)` — 7.5/10; `artist:youlizi-yuri` — 7.5/10; `artist:zhanzhan_lan` — 7.5/10; `artist:qingming_tiaohetu` — 7.5/10; `artist:guigui_rongrong` — 7.5/10; `artist:kelezi` — 7.5/10; `artist:diurtion` — 7.5/10; `artist:duoqing_tie_ban_shao` — 7.5/10; `artist:jacknife` — 7.5/10; `artist:contactz` — 7/10; `artist:memuro` — 7/10; `artist:kuuus` — 7/10; `artist:qing_yan_xia` — 7/10; `artist:inoriac` — 7/10; `artist:harrymiao` — 7/10
+- 中等: `artist:dino_(dinoartforame)` — 6.5/10
+
+Yellow pool remains independent from the mainstream tier roll:
+- `artist:qiandaiyiyu` — 7/10 — yellow pool
+- `artist:mimonel` — 7/10 — yellow pool
+
+Unscored / only provisionally mentioned artists are not auto-classified. Historical blacklist records remain ineligible regardless of prior score or provenance.
+
 ## 5. Two operating modes
 
 ### Selection mode
