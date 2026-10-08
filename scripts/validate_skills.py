@@ -142,7 +142,7 @@ def main():
     required_failure_scopes = {
         'standalone_module': 'card_only',
         'pipeline_pack': 'pipeline_unavailable',
-        'anima_tag_index': 'unverified_to_nl',
+        'danbooru_tag_index': 'unverified_to_nl',
     }
     for scope, state in required_failure_scopes.items():
         actual = (failure.get(scope) or {}).get('on_fetch_failure')
@@ -151,11 +151,11 @@ def main():
         label = (failure.get(scope) or {}).get('label')
         if not label:
             errors.append(f"harness.json failure_policy.{scope}.label missing")
-    tag_failure = failure.get('anima_tag_index') or {}
+    tag_failure = failure.get('danbooru_tag_index') or {}
     if tag_failure.get('hard_tags_allowed') is not False:
-        errors.append("harness.json failure_policy.anima_tag_index.hard_tags_allowed must be false")
+        errors.append("harness.json failure_policy.danbooru_tag_index.hard_tags_allowed must be false")
     if tag_failure.get('fuzzy_promotion') is not False:
-        errors.append("harness.json failure_policy.anima_tag_index.fuzzy_promotion must be false")
+        errors.append("harness.json failure_policy.danbooru_tag_index.fuzzy_promotion must be false")
 
     packs = pipeline.get('pipeline_packs') or {}
     if not isinstance(packs, dict):
@@ -179,9 +179,12 @@ def main():
                 errors.append(f'harness.json pipeline.pipeline_packs.{pack_name}: planned skill `{name}` cannot be packed')
             elif skill['metadata'].get('load') == 'always':
                 errors.append(f'harness.json pipeline.pipeline_packs.{pack_name}: always-on skill `{name}` should remain embedded, not packed')
-    expected_anima = ['anima-tag-gate', 'anima-tag-classifier', 'anima-prompt-skeleton', 'anima-aesthetic-protection', 'anima-prompt-compressor', 'anima-tag-serializer', 'anima-prompt-compiler']
+    expected_anima = ['visual-prompt-core', 'danbooru-tag-gate', 'anima-renderer']
+    expected_nai5 = ['visual-prompt-core', 'danbooru-tag-gate', 'nai5-renderer']
     if 'anima' in packs and packs.get('anima') != expected_anima:
-        errors.append('harness.json pipeline.pipeline_packs.anima: order must be Gate → Classifier → Skeleton → Protection → Compressor → Serializer → Compiler')
+        errors.append('harness.json pipeline.pipeline_packs.anima: expected Visual Prompt Core → Danbooru Tag Gate → Anima Renderer')
+    if 'nai5' in packs and packs.get('nai5') != expected_nai5:
+        errors.append('harness.json pipeline.pipeline_packs.nai5: expected Visual Prompt Core → Danbooru Tag Gate → NAI5 Renderer')
 
     director = skills.get('aesthetic-director-core')
     if director:
@@ -192,7 +195,7 @@ def main():
         skill = skills.get(name)
         if skill and 'Blueprint Gate Contract' not in skill['body']:
             errors.append(f'{name}: missing Blueprint Gate Contract')
-    for name in ('anima-prompt-compiler', 'nai5-community-prompt-engineering', 'general-image-prompt-adapter'):
+    for name in ('anima-renderer', 'nai5-renderer', 'general-image-prompt-adapter'):
         skill = skills.get(name)
         if skill:
             body = skill['body'].lower()
