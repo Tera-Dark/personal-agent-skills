@@ -201,6 +201,28 @@ notes:
 - Pass: secondary details disappear before identity, silhouette, garment architecture, action or punctum.
 - Owner: visual-prompt-core + renderer
 
+## 9. Shared renderer invariance
+
+### P12-SHR-01 — one Packet, two renderers
+- Input: one locked Visual Prompt Packet with identical subject, silhouette, framing, outfit structure, action and punctum.
+- Expect: Anima and NAI5 render from the same Packet; only target syntax differs.
+- Owner: visual-prompt-core + anima-renderer + nai5-renderer
+
+### P12-SHR-02 — renderer syntax does not rewrite design
+- Input: one Packet with asymmetric composition, fixed palette and signature garment.
+- Expect: NAI5 weight/order syntax and Anima Tag + NL syntax preserve the same design facts.
+- Owner: anima-renderer + nai5-renderer
+
+### P12-SHR-03 — shared tag identity
+- Input: one verified Danbooru canonical tag and one missing tag used by both targets.
+- Expect: exact canonical identity is shared; missing identity falls back without renderer-specific fabrication.
+- Owner: danbooru-tag-gate + both renderers
+
+### P12-SHR-04 — shared output policy
+- Input: Packet with hidden-by-default artist/quality policy.
+- Expect: both renderers honor the same output policy unless the user explicitly requests the hidden layer.
+- Owner: visual-prompt-core + both renderers
+
 ## 9. P12 exit criteria
 
 - [ ] exact / alias / missing / fuzzy / character / IP / artist covered
