@@ -58,6 +58,16 @@ Do not infer or auto-promote between these tiers.
 
 Keep the four tiers separate from exploration candidates, liked-combination history, and unverified ecosystem leads.
 
+## 4.5. User-validated artist evidence
+
+The following are explicit user test results and should be treated as evidence records, not automatic permanent weights:
+
+- `artist:yan_zi_yao_yu` — **8.5/10**. Extremely distinctive visual language; use only for special cases where an intentionally dense, highly elaborate overall image treatment is desired. Do **not** treat as a routine mainstream-roll artist.
+- `artist:shen_a_fang` — **8/10**. Light, distinctive coloring; especially suitable for conceptual / atmospheric illustration.
+- `artist:contactz` — **7/10**. Distinctive high-end small-artist portrait style; good for refined portrait-oriented tests and combinations.
+
+These records preserve the user's qualitative judgments. Do not auto-convert scores into the manual tiers (夯 / 顶级 / 中等 / 次等) unless the user explicitly assigns a tier.
+
 ## 5. Two operating modes
 
 ### Selection mode
