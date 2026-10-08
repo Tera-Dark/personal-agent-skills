@@ -5,7 +5,7 @@ metadata:
   author: Tera-Dark
   version: "2.3.0"
   layer: "05_evaluation"
-  load: "always"
+  load: "on-demand"
   status: "active"
   triggers: "太平淡, 太乱, 不像, 没人味, 这版可以, 评价一下, 哪里不对, compare"
 ---
