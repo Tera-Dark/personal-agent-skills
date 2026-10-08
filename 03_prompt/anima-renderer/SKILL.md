@@ -21,6 +21,10 @@ metadata:
 下游：user-facing Anima prompt
 不做：不设计、不发现 tag、不做 fuzzy matching、不重新定义用户审美。
 
+## Blueprint boundary
+
+This module is a target-model adapter. It accepts only a validated blueprint or Visual Prompt Packet and **does not design**. Missing design decisions must route upstream.
+
 ## 硬规则
 
 - 只有 verified exact / alias canonical tags 才能进入 Tag block。
