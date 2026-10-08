@@ -116,4 +116,4 @@ source: danbooru-index
 - [ ] source failure 时 fail-closed。
 
 ## References
-- references/tag-index.md — Web-first index source, schema and provenance notes.
+- `references/tag-index.md` — Web-first index source, schema and provenance notes.
