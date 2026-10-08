@@ -17,9 +17,10 @@
     "00_core",
     "01_router",
     "02_creation",
-    "03_analysis",
-    "04_tools",
-    "05_evaluation",
+    "03_prompt",
+    "04_analysis",
+    "05_tools",
+    "06_evaluation",
     "06_extensions"
   ],
   "always_on": {
@@ -67,7 +68,13 @@
         "anima-tag-serializer",
         "anima-prompt-compiler"
       ]
-    }
+    },
+    "prompt_core": "visual-prompt-core",
+    "danbooru_tag_gate": "danbooru-tag-gate",
+    "renderers": [
+      "anima-renderer",
+      "nai5-renderer"
+    ]
   },
   "failure_policy": {
     "default_mode": "fail_closed",
