@@ -54,3 +54,7 @@ metadata:
 - `references/design-dislikes.md` — 否决清单与否决理由
 - `references/visual-preferences.md` — 偏好的类型、构图、参考来源
 - `references/business-objectives.md` — 商业目标与评价标准
+
+
+## References
+- `references/nai5-artist-pool.md` — bundled reference for this module.
