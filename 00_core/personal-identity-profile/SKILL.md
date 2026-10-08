@@ -24,7 +24,7 @@ metadata:
 
 1. 读 `references/taste-signature.md` —— 品味是什么（不是"避免什么"，是"是什么"）。
 2. 读 `references/design-dislikes.md` —— 历史上反复否决的东西。
-3. 读 `references/workflow-style.md` —— 怎么和用户说话、怎么交付。
+3. 沟通与交付协议由 Kernel 统一管理。
 4. 把签名交给 `aesthetic-director-core`，由它做具体决定。
 
 ## 优先级（冲突时）
