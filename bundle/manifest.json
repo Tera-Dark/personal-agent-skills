@@ -8,7 +8,7 @@
   "harness_full_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS-FULL.md",
   "handshake": "Harness v4.0.0 loaded · 16 modules · 说需求，或发参考图。",
   "core_tokens": 16278,
-  "full_tokens": 102424,
+  "full_tokens": 102374,
   "pipeline": {
     "aesthetic_gate": "aesthetic-director-core",
     "blueprint_gate": {
@@ -239,8 +239,8 @@
       "references": [
         "references/target-notes.md"
       ],
-      "tokens_skill": 1290,
-      "tokens_bundle": 2210
+      "tokens_skill": 1241,
+      "tokens_bundle": 2161
     },
     {
       "name": "nai5-renderer",

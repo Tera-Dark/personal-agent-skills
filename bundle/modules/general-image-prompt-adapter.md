@@ -17,10 +17,6 @@ source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/03_prompt/g
 
 ### Blueprint boundary
 
-This module is a target-model adapter. It accepts only a validated blueprint or Visual Prompt Packet and **does not design**. Missing design decisions must route upstream.
-
-### Blueprint boundary
-
 This module is a target-model renderer. It accepts only a validated Visual Prompt Packet and does not design. If the Packet is missing or incomplete, route upstream to visual-prompt-core and the appropriate design gate.
 
 ### 硬规则
