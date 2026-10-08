@@ -54,4 +54,3 @@ metadata:
 - `references/design-dislikes.md` — 否决清单与否决理由
 - `references/visual-preferences.md` — 偏好的类型、构图、参考来源
 - `references/business-objectives.md` — 商业目标与评价标准
-- `references/workflow-style.md` — 沟通、交付格式、迭代方式
