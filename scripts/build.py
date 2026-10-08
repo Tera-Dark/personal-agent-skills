@@ -132,7 +132,7 @@ def failure_policy_table(cfg):
     policy = cfg.get("failure_policy") or {}
     standalone = policy.get("standalone_module") or {}
     pack = policy.get("pipeline_pack") or {}
-    tag = policy.get("anima_tag_index") or {}
+    tag = policy.get("danbooru_tag_index") or {}
     rows = ["| scope | failure state | label | allowed continuation | forbidden |", "|---|---|---|---|---|"]
     rows.append("| standalone module | `{}` | `{}` | other loaded modules may continue | memory substitution |".format(standalone.get("on_fetch_failure", "card_only"), standalone.get("label", "[card-only]")))
     rows.append("| pipeline pack | `{}` | `{}` | already-loaded stages only | model-specific compile from missing stages |".format(pack.get("on_fetch_failure", "pipeline_unavailable"), pack.get("label", "[pipeline-unavailable]")))
