@@ -136,14 +136,14 @@ Claims about model behavior, syntax, parameters, tags or generation effects use 
 
 | module | layer | load | status | ~tokens | triggers | fetch |
 |---|---|---|---|---|---|---|
-| `personal-identity-profile` | 00_core | always | active | 15353 | 我的风格, 个人偏好, 按我习惯, any creative task | embedded below |
+| `personal-identity-profile` | 00_core | always | active | 16312 | 我的风格, 个人偏好, 按我习惯, any creative task | embedded below |
 | `aesthetic-director-core` | 00_core | on-demand | active | 26085 | OC, 人设, 插画, 服装, 海报, 联动海报, 艺术海报, key visual, crossover poster, 审美, 创意方向, 人味, 高级感, 不要AI味, 太平淡, 太乱 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/aesthetic-director-core.md` |
 | `creative-skill-router` | 01_router | always | active | 3040 | any request, 设计, 提示词, prompt, 反推, 分析, ComfyUI, LoRA, NAI5, Anima | embedded below |
 | `character-design-engine` | 02_design | on-demand | active | 15337 | OC, 人设, 角色设计, 服装设计, 立绘, 高定服设, 二游角色, character sheet, 极繁, 极繁精美, 华丽人设, 原创圈 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/character-design-engine.md` |
 | `illustration-direction` | 02_design | on-demand | active | 16908 | 插画, 氛围图, 竖屏, 半留白, 印象风, 故事感, key visual, poster, scene, 极繁, 特写垫底, 大头贴, 元素贴, 角色拼贴 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/illustration-direction.md` |
 | `anima-renderer` | 03_prompt | on-demand | active | 5876 | Anima, Anima prompt, Anima 提示词, Anima checkpoint | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-renderer.md` |
 | `danbooru-tag-gate` | 03_prompt | on-demand | active | 1404 | Danbooru tag, tag validation, tag check, exact tag, alias, tag verification | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/danbooru-tag-gate.md` |
-| `general-image-prompt-adapter` | 03_prompt | on-demand | active | 2234 | Midjourney, MJ, DALL-E, GPT Image, Imagen, Gemini image, Nano Banana, Flux, SDXL, Stable Diffusion, 通用提示词, 其他模型, 不知道用什么模型 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/general-image-prompt-adapter.md` |
+| `general-image-prompt-adapter` | 03_prompt | on-demand | active | 2210 | Midjourney, MJ, DALL-E, GPT Image, Imagen, Gemini image, Nano Banana, Flux, SDXL, Stable Diffusion, 通用提示词, 其他模型, 不知道用什么模型 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/general-image-prompt-adapter.md` |
 | `nai5-renderer` | 03_prompt | on-demand | active | 4188 | NAI5, NovelAI, NAI提示词, tag prompt, Danbooru prompt, artist stack | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/nai5-renderer.md` |
 | `visual-prompt-core` | 03_prompt | on-demand | active | 1551 | prompt packet, visual prompt, prompt core, 提示词编译, 提示词规划, NAI5, Anima | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/visual-prompt-core.md` |
 | `image-reverse-analysis` | 04_analysis | on-demand | active | 1621 | 反推, 分析图片, 提取提示词, 还原风格, 参考这张, reverse prompt, reference image | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/image-reverse-analysis.md` |
@@ -153,14 +153,17 @@ Claims about model behavior, syntax, parameters, tags or generation effects use 
 | `lora-training` | 05_tools | on-demand | planned | 270 | LoRA, 训练, fine-tune, 炼丹 | none (planned) |
 | `evaluation-loop` | 06_evaluation | on-demand | active | 1600 | 太平淡, 太乱, 不像, 没人味, 这版可以, 评价一下, 哪里不对, compare | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/evaluation-loop.md` |
 
-#### Module cards (contracts for on-demand modules; use only if a fetch fails)
+Raw URL pattern:
+`https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/<name>.md`
+
+### Module cards (contracts for on-demand modules; use only if a fetch fails)
 
 - **aesthetic-director-core** — Creative direction layer that turns a vague request into one committed design idea before any blueprint or prompt is written. Runs a sequence of generative "moves" (find the obsession, plant a contradiction, pick from the tail, build causality, subtract, keep one strange thing) and produces a short Creative Brief with rejected alternatives. Use for any OC / character / illustration / fashion / key-visual request, whenever output feels generic, "AI-flavored", too plain, too busy, or when the user asks for taste, direction, 审美, 创意方向, 人味, 高级感, 不要AI味.
 - **character-design-engine** — Turns a Creative Brief (from aesthetic-director-core) into a complete, model-agnostic character blueprint — design thesis, silhouette architecture, visual anchors, garment engineering (base / structural / signature extension / accessory system), material contrast, palette hierarchy, behavioral pose + camera, narrative residue, presentation format — then runs a subtraction pass. Use for OC, 人设, 角色设计, 服装设计, 立绘, 高定服设, 二游角色, character sheet, fashion concept. Never writes model-specific prompt syntax.
 - **illustration-direction** — Turns a Creative Brief into an authored, model-agnostic illustration blueprint — the image thesis, captured moment, visual motif, environment-character relationship, camera and framing, scale contrast, negative space, physical light sources, density map, narrative residue, and one coherent surreal detail. Use for 插画, 氛围图, 竖屏, 半留白, 印象风, 故事感, key visual, poster, scene illustration, cinematic composition, or whenever a character needs to be placed into a designed moment rather than displayed on a plate. Never writes model-specific prompt syntax.
 - **anima-renderer** — Thin Anima-specific renderer that converts a Visual Prompt Packet plus verified Danbooru tags into the established Anima Tag + Natural Language prompt. Handles only Anima syntax, tag serialization, relation wording, output modes, and final target-specific checks. Does not design.
 - **danbooru-tag-gate** — Web-first validation boundary for Danbooru-derived hard tags shared by Anima and NAI5 workflows. Resolves exact canonical tags, exact aliases, or missing without fuzzy promotion. Use whenever a prompt packet needs verified Danbooru identity.
-- **general-image-prompt-adapter** — Model adapter that compiles a finished character or illustration blueprint into a natural-language image prompt for models that are not Anima or NAI5 — Midjourney, DALL-E / GPT Image, Google Imagen / Gemini image, Flux, SDXL-style checkpoints, or an unnamed target. Keeps parameters out of the prompt unless the target officially supports them, and labels every model-specific claim with an evidence level. Use when the user names any other image model, says 通用提示词, MJ, Midjourney, DALL-E, Imagen, Flux, SD, 或没说用什么模型. Does not design — if no blueprint exists, route through aesthetic-director-core first.
+- **general-image-prompt-adapter** — Generic target renderer that converts a Visual Prompt Packet into a natural-language image prompt for models that are not Anima or NAI5 — Midjourney, DALL-E / GPT Image, Google Imagen / Gemini image, Flux, SDXL-style checkpoints, or an unnamed target. Use after the shared Prompt Core. Does not design.
 - **nai5-renderer** — Thin NovelAI V5 community renderer that converts a Visual Prompt Packet plus verified Danbooru tags into the user's compact NAI5 prompt format. Handles artist namespace, weighting syntax, scene and character blocks, interaction tags, ordering, and optional targeted negatives. Does not design.
 - **visual-prompt-core** — Model-agnostic prompt planning layer that converts a validated character or illustration blueprint into one compact Visual Prompt Packet shared by Anima, NAI5, and future image-model renderers. Use after design is complete and before any model-specific prompt syntax. Does not redesign the concept or emit target-model syntax.
 - **image-reverse-analysis** — Decomposes a reference image into transferable design language — silhouette and mass distribution, motif grammar, garment construction, material contrast, palette hierarchy, pose logic, negative space and presentation format — instead of a tag dump. Output feeds aesthetic-director-core (for original work) or a model adapter (for faithful reproduction). Use for 反推, 分析图片, 提取提示词, 还原风格, 参考这张图, reverse prompt, image analysis.
@@ -170,10 +173,9 @@ Claims about model behavior, syntax, parameters, tags or generation effects use 
 - **lora-training** — Technical placeholder for LoRA training pipelines: dataset prep, caption organization, training configuration, evaluation. Use when the user mentions LoRA, 训练, fine-tune, 炼丹. Does not decide character concepts or artistic direction.
 - **evaluation-loop** — Evaluates a generated image or compiled prompt against the original Creative Brief and blueprint, using a fixed rubric (identity preservation, outfit binding, spatial clarity, unrequested additions, V1/V2 consistency, output contract) plus a design-layer read (thesis, silhouette, causality, density, punctum, one strange thing). Diagnoses which layer failed and routes the fix to that layer with a single-variable change. Use on any feedback round: 太平淡, 太乱, 不像, 没人味, 这版可以, 评价一下, 哪里不对, compare versions.
 
-Raw URL pattern:
-\`https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/<name>.md\`
-
 #### Pipeline packs
+
+
 
 | pack | modules | fetch |
 |---|---|---|
@@ -288,61 +290,1166 @@ Full extension rules remain in \`kernel/EXTENSION-PROTOCOL.md\`.
 ## ALL MODULES
 
 ## MODULE: personal-identity-profile
-layer: 00_core · load: always · status: active · module version: 2.4.0 · harness 4.0.0
+layer: 00_core · load: always · status: active · module version: 2.5.0 · harness 4.0.0
 source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/00_core/personal-identity-profile
 
-**description:** Persistent identity and taste layer for Tera-Dark's creative work. Holds the aesthetic signature (structured foundation, one strange thing, a hint of danger, modern key-visual impact, fashion-grade garment construction, female-oriented OC/gacha sensibility, Xiao-artist female-oriented 2D taste and NAI5 artist-mixing rules), hard dislikes (watches, cyber/mech, random butterflies-roses-particles, adjective costumes), business goals. Does not generate prompts. Load first for any creative, design, illustration, prompt or aesthetic-judgment task; also when the user says 我的风格, 我喜欢, 按我习惯, 个人偏好.
+**description:** Persistent identity and taste layer for Tera-Dark's creative work. Holds the owner's stable aesthetic signature, hard dislikes, business objectives, and compact NAI5 artist-pool card. Does not generate prompts. Load first for creative, design, illustration, prompt, or aesthetic-judgment tasks; also when the user says 我的风格, 我喜欢, 按我习惯, 个人偏好.
 
 
 ### Personal Identity Profile
 
 #### 定位
 
-这是整个系统里**唯一**存放用户长期品味的地方。其它任何 Skill（包括模型适配器）不得再维护自己的"个人审美规则"副本——它们只引用这里。
+这是系统里唯一存放用户长期品味、长期禁区和个人 NAI5 artist identity 的地方。其它 Skill 不得复制这些长期偏好。
 
-本 Skill 不生成任何 prompt。它回答一个问题：**这是给谁做的。**
+本 Skill 不生成 prompt。它回答：这是给谁做的。
 
 #### 用法
 
 任何创作类任务开始前：
 
-1. 读 `references/taste-signature.md` —— 品味是什么（不是"避免什么"，是"是什么"）。
-2. 读 `references/design-dislikes.md` —— 历史上反复否决的东西。
-3. 沟通与交付协议由 Kernel 统一管理。
-4. 把签名交给 `aesthetic-director-core`，由它做具体决定。
+1. 读 references/taste-signature.md —— 稳定品味签名。
+2. 读 references/design-dislikes.md —— 高频否决与永久禁区。
+3. 读 references/nai5-artist-pool.md —— 当前 NAI5 artist 运行卡片。
+4. 沟通与交付协议由 Kernel 统一管理。
+5. 详细历史证据仅在需要追溯 artist 实验时读取 references/nai5-artist-evidence.md。
 
-#### 优先级（冲突时）
+#### 优先级
 
-```
-1. 本回合用户的明确要求
-2. 用户锁定的角色事实 / 参考图事实
-3. 最近一次明确的否定反馈
-4. taste-signature.md 里的 Tier A 签名
-5. taste-signature.md 里的 Tier B 倾向
+1. 本回合用户明确要求
+2. 用户锁定事实 / 参考图事实
+3. 最近一次明确否定反馈
+4. taste-signature Tier A
+5. taste-signature Tier B
 6. 自由发挥
-```
 
-用户一次性的实验不自动变成永久规则；只有明确说"以后都这样"或反复确认三次以上，才升级写入 references。
+一次性实验不自动升级为永久规则；只有用户明确说以后都这样或反复确认才写入长期 profile。
 
-#### 什么时候更新本 Skill
+#### 更新边界
 
-- 用户明确说"我喜欢这个方向 / 以后都这样" → 写入 `taste-signature.md` 对应 Tier
-- 用户反复（≥3 次）否决同一类东西 → 写入 `design-dislikes.md`
-- 用户认可了一版输出 → 把该版的命题类型、轮廓策略、密度分布、刺点位置记到 `taste-signature.md` § 5「被认可的样本」
-
-更新时保留日期。旧条目不删，标记为"已被 X 取代"。
+- 用户偏好 / 禁区 → 更新 taste-signature 或 design-dislikes。
+- NAI5 artist 身份、池状态、永久排除、当前组合 → 更新 nai5-artist-pool。
+- 历史评分、单人测试、组合实验、来源证据 → 更新 nai5-artist-evidence。
+- 模型语法和 renderer 规则不进入 Identity。
 
 #### References
 
-- `references/taste-signature.md` — 品味签名：核心、Tier A/B/C、被认可的样本
-- `references/design-dislikes.md` — 否决清单与否决理由
-- `references/visual-preferences.md` — 偏好的类型、构图、参考来源
-- `references/business-objectives.md` — 商业目标与评价标准
+- `references/taste-signature.md` — 稳定审美与当前方向。
+- `references/design-dislikes.md` — 历史否决与禁区。
+- `references/nai5-artist-pool.md` — NAI5 当前运行卡片。
+- `references/nai5-artist-evidence.md` — 历史 artist 测试与组合证据。
+- `references/visual-preferences.md` — 偏好的类型与参考来源。
+- `references/business-objectives.md` — 商业目标与评价标准。
+
+---
+
+### Reference: references/taste-signature.md
+
+#### Taste Signature — 品味签名
+
+> 市场标签（"女性向、二游、商业插画"）描述的是**卖给谁**，不是**品味是什么**。一个只知道市场标签的 AI 会产出该市场的平均值。
+> 本文件试图把散落在整个仓库里的偏好证据（参考图拆解、否决记录、被认可的输出）收敛成一个**可以被复述的签名**。
+> 它是活的：Tier 会随反馈升降。每条带日期。
+
+---
+
+##### 1. 一句话签名
+
+**精致的结构基底上，一处怪，一点危险；复杂度由轮廓、动势和材质关系构成。**
+
+展开：
+- **精致**：来自真实的服装结构（剪裁、层次、材质行为），不来自装饰数量和形容词。
+- **克制的基底**：浅色 / 生丝 / 象牙 / 雾灰做大面积；墨黑 / 深褐 / 炭色做结构；≤5% 一个刺点。
+- **一处怪**：一个评审会删掉的局部偏差——有理由的不对称、轻微错位、克制的材质冲突。只有一处；它是张力，不是审美底盘，更不能让角色第一眼变丑。
+- **一点危险**：优雅之下有东西不对劲。不是血和武器；是一只生物的眼睛、一个过于松弛的姿态、一个不合时宜的举动。
+- **女性向**：观者想问"她是谁"，而不是"她好不好看"。性感存在，但通过廓形、腰线、露背、开衩这些**服装语言**实现，不通过露肤面积。
+- **可收藏**：能作为高完成度二游立绘、卡面、时装设计图被记住；缩略图里靠轮廓就能认出。
+
+##### 2. 签名的来源（证据）
+
+| 证据 | 它说明了什么 |
+|---|---|
+| 认可的参考：白底蛇形环绕坐姿少女 | 大环形轮廓；同源生物形态成组；非人结构与身体物理接触；密度集中头/躯干/手；"漂亮但有点危险" |
+| 认可的参考：长仪式性垂坠轮廓 | 细长的、悬挂的、仪式性的形态语法在多处重复 |
+| 认可的参考：哥特新娘 + 鸟翼 | 翅膀参与整体轮廓而不是配饰；黑白对比 |
+| 认可的参考：荆棘面具骑士 | 尖锐感分布在整个系统里而不是一件道具上 |
+| 认可的参考：黑白绯红抽象生物 | 异常解剖 + 极简色彩层级 + 大可读形状 |
+| 认可的参考：兔耳军装骑士 | 装备是身份的一部分；干净的军装幻想语法 |
+| 最高频否决：手表/怀表 | 对"无来源的高级感补丁"零容忍 |
+| 高频否决：赛博/机甲/techwear | 偏好有机、织物、生物、器物；不偏好机械和发光界面 |
+| 高频否决：蝴蝶/玫瑰/魔法阵/粒子 | 对"氛围填充物"零容忍 |
+| 高频否决：形容词服装 | 要求服装有可描述的剪裁和结构 |
+| 反复要求：白底立绘 / 竖屏半留白 | 偏好负空间和干净的展示 |
+
+##### 3. 分层
+
+###### Tier A — 签名核心（除非用户本回合明确要求，否则始终成立）
+
+- 设计有一个可用一句话（含动词）复述的命题
+- **第一眼美感成立**：比例、姿态、色块和服装结构先形成顺眼、可收藏的整体关系；辨识度不能靠故意做丑获得
+- 轮廓在缩略图尺寸可辨认
+- 服装有真实的剪裁和层次关系（base / structural / signature extension / accessory system）
+- 配色有基底 / 结构 / 刺点三级分工，刺点只有一个
+- 至少一处有理由的不对称
+- 母题在 2–3 处以变形的方式回声，不是复读
+- 密度不均匀：一个密集区、一个安静区
+- 姿势由道具、习惯或正在发生的事引起，不是摆的
+- 没有无来源的饰品、光效、飘浮物
+
+###### 现代二游 / Character Key Visual 模式
+
+当任务属于现代二游、商业角色主视觉、动态角色插画或用户给出类似本次参考板的视觉目标时，Tier A 还必须满足：
+
+- 视觉冲击来自强轮廓、主运动势、大色块、材质对比与平面构成，不是柔光和氛围特效
+- 复杂度允许很高，但必须是 macro → meso → micro 的结构复杂；局部可以极密，不能全画面平均堆细节
+- 人物、服装、头发、武器/道具和背景至少共享一条主运动方向或构图轴
+- 允许有目的的遮挡、切边、非对称裁切和图形框景
+- 光影优先建立体积与材质：清晰阴影、接触阴影、方向性高光；全局 bloom / bokeh / 雾光不是默认
+- 面部避免美容滤镜式完美：眼睛不要求镜像一致，高光克制，皮肤保留细微色阶与笔触变化
+- 可佩戴、悬挂的装饰必须能解释固定点、承重和垂坠方向
+- 头发先是有体积的发量结构，再是少量发丝；不要用满天碎发代替发型工程
+
+###### 复杂度模式切换
+
+- Clean plate / 白底立绘：允许克制、清晰、留白。
+- Modern key visual / 商业主视觉：允许高密度、强动势、局部极端复杂，但必须保留明确安静区。
+- 东方装饰叙事 / art-print：允许平面化、母题化、书法式构成；不要套用现代二游的所有强对比手法。
+
+###### Tier B — 强倾向（默认应用，遇到新反馈时调整）
+
+- 浅色基底 + 深色结构 + 一个饱和刺点
+- 有机 / 织物 / 生物 / 器物的材质语言，胜过金属 / 机械 / 发光
+- 时装编辑感的构图（人物偏置、留白、非对称裁切）
+- 有点怪、有点危险的优雅，胜过纯甜或纯暗
+- 白底立绘时靠接地影和包边线解决融边，不靠加背景物
+- 东方幻想、童话、哥特优雅、现代时装——这四个方向是舒适区，但每个都要有独特结构而不是类型默认值
+
+###### Tier C — 可选模块（按任务选用，永不全开）
+
+- 发光的东方高定（luminous oriental couture）
+- 工作室时装 / 编辑造型（atelier fashion / editorial styling）
+- 电影感环境小景（cinematic environmental vignette）
+- 暗色叙事光（dark narrative lighting）
+- 柔软的家居暖调（soft domestic warmth）
+- 超现实生物装饰（surreal biological ornament）
+- 极简图形化展示板（minimal graphic design plate）
+- 有意的不完美与自然材质行为（delicate imperfection）
 
 
-#### References
-- `references/nai5-artist-pool.md` — bundled reference for this module.
+###### 小画师审美模式 — 2026-10-06 新增
 
+这里的“小画师”不是泛指二次元插画师，而是用户反复确认的一类**以米画师 / 小红书 / 微博等为主要生态、以女性向二次元角色内容为核心的独立创作者审美**。它是本个人审美的一个重要市场化表达层，但不能被简化成“商业插画”或“二次元美少女”。
+
+####### 核心判断
+
+- **第一眼先好看，再让人想认识角色。** 五官、脸型、发型、比例、姿态、主色块必须先成立；不靠故意做丑换记忆点。
+- **角色是商品，也是内容。** OC / 同人 / 二游角色 / 服设 / 头像 / 壁纸都围绕角色本身组织；背景、道具和氛围为角色服务。
+- **女性向审美优先。** 美型、气质、服装、发型和颜色要让观者产生“这个角色是谁、我想保存/收藏/约稿”的欲望；性感更多通过轮廓、腰线、露背、开衩、贴身与层次实现，而不是堆露肤。
+- **二次元底盘必须明确。** 偏角色原画、插画和 OC 视觉，而不是摄影拟真、真人 CG、纯概念艺术或武侠黑白漫。
+- **“商业感”有边界。** 可以精致、时尚、完成度高、适合传播和接稿，但不要滑向模板化商业游戏海报、统一的“产品图”脸、无个性的豪华堆料。
+- **服装设计是人设的一部分。** 发型、衣领、袖型、腰线、裙型、鞋、配饰与材质关系承担角色识别；装饰必须有来源、固定点和结构。
+- **半留白是高频优势。** 角色占主要视觉份额，背景通常只保留一个能托住人物的空间线索；大面积安静区比满屏古建筑、花瓣、粒子、光斑更有价值。
+- **氛围来自颜色、光线、动作和环境关系。** 不用“梦幻、唯美、氛围感”等形容词替代具体画面决定。
+- **可传播的构图优先。** 肖像、半身、立绘、卡面、壁纸等都应在缩略图和第一眼阅读里成立；偏置构图、非对称裁切、局部遮挡、发丝/衣摆形成的动势都是可用工具。
+- **复杂度局部化。** 脸、头发、领口、手、服装关键结构可以高密，其他区域主动留空；不能全画面同一密度。
+- **独特性来自“小处有想法”。** 一个特别的发饰、袖口、道具、动作习惯、颜色刺点或关系结构足够；不需要同时叠十种奇观。
+
+####### 高密度花哨人物肖像模式 — 2026-10-06 新增
+
+用户用一组国内小画师委托成稿参考图明确锁定了另一条重要分支：**高密度、甜系、花哨、人物撑满画面的少女肖像**。这不是“复杂背景”，而是把角色的人设、服装、饰品、兴趣物件与装饰母题压缩进一张可收藏的肖像稿。
+
+- **人物几乎填满画面。** 极近景、头肩/半身甚至脸部占比很高；边缘允许头发、袖子、饰品和道具自然出框。
+- **高密度围绕人物，而不是平均铺满。** 脸、发型、胸口、肩颈、双手是核心密集区；背景只留下装饰缝隙与少量底色。
+- **装饰必须成为角色的一部分。** 花、缎带、蝴蝶结、玩偶、甜点、首饰、文具、包装、小动物等可以很多，但要与服装、人设或动作建立关系，不能随机撒粒子。
+- **“花哨”本身是设计语言。** 可以明显比常规半留白稿更满、更甜、更亮、更繁复；不要因为个人审美模块里的减法原则而把它强行压回极简。
+- **颜色允许高饱和但要成组。** 通常以白/粉/浅蓝/淡紫等大面积甜色为底，配 1–2 个较强的粉红、红、蓝、青等视觉刺点；避免无组织的彩虹色。
+- **服装本身需要足够复杂。** 褶边、蕾丝、蝴蝶结、分层裙摆、袖型、胸前结构、局部透明材质和发饰共同构成“约稿成稿”的完成度。
+- **人物表情与动作保持少女向。** 大眼、美型、亲近观者、轻微卖萌或精致姿态都可以；重点不是叙事电影感，而是“角色可爱、好看、想收藏”。
+- **可用一个装饰母题统摄画面。** 例如兔子 + 草莓 + 粉色蝴蝶结、蓝色花朵 + 天使羽毛、甜点 + 玩偶等，让高密度依然有视觉语法。
+- **禁止把高密度误解成背景复杂。** 优先增加角色周边的服装层次、首饰、玩偶、花束、食物和局部叠压，而不是增加街景、建筑、风景层级。
+
+####### 小画师来源判断更新
+
+当用户要求“真正的小画师味”时，**国内创作者生态证据优先于 Danbooru 风格相似度**。小红书 / 米画师 / 微博上的真实约稿、OC、立绘、头像、服装和少女向作品，是第一层证据；Danbooru >50 posts 只是第二层的可检索性门槛。
+
+高密度甜系参考图确认后，当前“小画师好球区”不再只包含“精致、半留白、轻时尚”，还明确包含**高密度花哨 OC 委托肖像**这一极。
+
+####### 小画师审美的两条主流支线
+
+- **主流少女向**：漂亮、清透、时尚、轻盈、可爱或温柔；服装和配色讨喜，缩略图吸引力强，适合 OC / 头像 / 约稿展示。
+- **二次元 OC / 亚文化向**：角色设定更重，动作更有个性，服装与符号更敢做，可能出现特殊主题或小众审美，但仍必须先满足美型与可读性。
+
+两者共享同一个底盘：**角色第一、第一眼美感、服设与人设绑定、局部设计点、情绪传播、半留白和收藏/约稿属性**。
+
+####### 已确认的校准样本
+
+- **淮尘類**：用户确认属于更符合主流审美的小画师代表。
+- **云间蓝**：用户明确确认非常符合“小画师”理解。
+- **普通小狗**：作为主流少女向、萌系和角色商品感样本。
+- **小邬帅**：作为更二次元、OC、少女亚文化向样本。
+- **鸡牡蛎**：用户确认其仍属于小画师生态，但商业味更重、武侠黑白漫倾向明显，**不作为本人的核心审美锚点**。
+
+这些样本用于理解生态边界，不允许把某一位作者的具体画面、构图或固定元素复制成永久模板。
+
+- 2026-10-06 · **高密度花哨肖像校准** · 用户提供高密度少女 OC 委托成稿拼图，并明确评价按该逻辑生成的结果“纯正小画师味”。该参考成为高密度花哨人物肖像模式的主要视觉校准证据。
+
+- 2026-10-06 · **小画师组合校准** · artist:banbanimi + artist:mido_(mido_chen) + artist:pekopeco 通过用户实际出图验证，被明确评价为“真正想要的组合搭配效果”。该结果证明：国内小画师来源优先、Danbooru >50 post 过滤、3 人互补组合，可以比泛二次元名家混合更稳定地进入用户的“小画师好球区”。
+
+####### NAI5 Artist Policy Ownership
+
+- Artist identity, eligibility, blacklist, exploration status and current mixer policy live only in `references/nai5-artist-pool.md`.
+- This file records only the aesthetic meaning of the artist ecosystem (for example, the user's preference for domestic female-oriented small-artist work).
+- Do not duplicate artist counts, weights, syntax or pool membership here.
+- Renderer modules may serialize the selected policy, but may not redefine it.
+
+####### 当前个人 artist pool
+
+完整名单、验证状态、探索候选及维护规则见：
+
+`00_core/personal-identity-profile/references/nai5-artist-pool.md`
+
+###### Tier D — 明确不做（见 `design-dislikes.md`）
+
+---
+
+##### 4. 边界：签名不是什么
+
+- 签名不是"每次都要蛇、都要白底、都要一处红"。这些是**样本**，签名是样本背后的**决策方式**。
+- 签名不是"越怪越好"。怪只有一处，其余在精致的基底里。
+- 签名不是"禁止可爱"。可爱可以做，但要有结构（Pair 见 `aesthetic-director-core/references/taste-calibration-pairs.md`）。
+- 签名不排斥用户本回合的任何明确要求。用户说要赛博，就做赛博——但用签名的方式做（有理由的结构、一处怪、一个刺点）。
+
+---
+
+##### 5. 被认可的样本（随时间追加）
+
+> 格式：日期 · 任务类型 · 命题 · 轮廓策略 · 密度分布 · 刺点 · 用户原话（如有）
+
+- 2026-09 · 白底 OC 参考 · 被蛇形结构环绕的坐姿少女 · halo/radial · 头 + 躯干 + 手密 / 腿 + 地面空 · 冷色小面积 · （用户提供为校准参考）
+
+*（后续由用户或 AI 在得到认可后追加）*
+
+---
+
+##### 6. 更新记录 · 用户明确确认现代二游 / Character Key Visual 是重要目标方向；新增强轮廓、主运动方向、大色块、局部高密度、材质对比、清晰阴影、物理装饰固定和手绘不完美等核心判断，并区分 clean plate 与 modern key visual 的复杂度模式。
+
+- 2026-10-06 · **小画师审美校准** · 用户确认“小画师”应理解为米画师 / 小红书 / 微博生态中的女性向二次元角色创作者，而不是泛二次元插画师；确认淮尘類、云间蓝、普通小狗、小邬帅为有效审美校准样本，并明确鸡牡蛎属于生态但不是核心审美锚点。
+- 2026-10-06 · **NAI5 artist mixer 校正** · artist pool 独立存档；NAI5 采用 1 名主画师约 0.95–1.10、其余 <=0.6 的标准社区权重语法，并把小红书 / 米画师生态作为新 artist 的第一发现源。
+
+- 2026-10-05 · **Aesthetic Floor** · 明确“怪 ≠ 丑”：局部辨识度必须从属于比例、轮廓、色块与服装结构的整体美感；测试反馈“丑的很有特点”作为这轮系统回归证据。
+
+##### 6. 更新记录
+
+- 2026-09-27 · v2.0.0 · 初版。合并自 `docs/tera-aesthetic-profile.md`（已删除）、`anima-prompt-compiler/references/anima-user-aesthetic-profile.md`（已删除）、`skills/nai5-prompt-engineering/SKILL.md § Personal Aesthetic Rules`（已删除）、`visual-preferences.md`。
+
+##### 2026-10-07 当前审美与工作模式校准
+###### 1. 当前最重要的“小画师”视觉方向
+
+用户近期进一步收敛了“小画师”的定义：不是“清晰的二次元美型”，而是**国内女性向独立画师 / 约稿生态的成稿质感**。核心视觉倾向：
+
+- **柔和、带空气和笔触的画面优先**：允许轻微虚、软、晕染、色彩相互渗透，不追求无条件的锐利、硬边、高清塑料感。
+- **女性向小画师，而非媚宅二次元**：美型必须成立，但吸引力更多来自气质、服装、色彩、构图和角色关系，而不是胸部、露肤、卖萌或标准“二次元美女脸”。
+- **国内创作者生态优先**：用户明确以云间蓝、千本山、若干爪这一带的视觉气质作为重要参照；希望看到像国内女性向约稿成稿的“人画感”，而不是国际大牌二次元 artist mix 的平均值。
+- **柔和不等于寡淡**：可以精美、复杂、花哨，但复杂度应该服务人物、服设、情绪和画面组织，而不是把所有边缘都锐化。
+- **摄影 / 电影构图思维进入插画**：近景、特写、前中后景、遮挡、切边、引导线、视线路径、框景、焦点层级都应被主动设计；“像摄影师拍出来的一瞬间”比“人物站在背景里”更优先。
+- **叙事型插画优先于纯展示**：人物正在发生一件事，物件、环境和动作之间要存在因果；好的画面要能让人猜故事。
+- **美型造景**：古风、旗袍、烟雨江南等主题不应只是“漂亮角色 + 景点背景”，而要让建筑线、枝叶、水面、伞、衣摆、发丝等共同参与构图与视觉路径。
+- **半留白与高密度两端都可成立**：半留白让角色成为主要视觉份额；高密度则让服装、饰品、玩偶、花束、物件在角色周围形成高密度“约稿成稿区”，但不能平均铺满。
+- **海报先设计、插画后渲染**：海报类作品必须先解决版式、主图形、阅读顺序、尺度关系和排版；不能是“插画完成后再贴标题”。
+- **抽象概念允许更大胆**：解离、轮回、时空交错、破壳等主题可以通过视觉结构表达，而不是靠大量随机超现实元素。角色本身可以成为循环结构、容器、裂缝、镜像或时间路径。
+
+###### 2. 当前最成功的构图判断
+
+用户明确给出高评价的近期方向：
+- **Miku「无尽轮回 / 时空交错 / 追寻」叙事海报：8.5/10**。
+- 成功原因：多时间版本围绕“追寻”形成视觉路径；头发 / 丝带 / 时间结构成为连续运动线；排版进入构图系统；画面具有明确的追逐方向与终点。
+- **摄影师思维**成为默认升级项：先找机位、焦点、前景遮挡、引导线和瞬间，再安排角色与背景。
+
+因此，新的海报 / 插画设计优先回答：
+**镜头在哪里？观者第一眼看哪里？第二眼如何被引导？这个瞬间为什么值得被冻结？**
+
+###### 3. 当前明确的反方向
+
+- 过度清晰、锐化、塑料质感、AI高清感
+- 泛二次元媚宅、标准萌妹模板、只靠脸取胜
+- “漂亮女孩 + 漂亮背景 + 氛围光”的平均值方案
+- 用大量花瓣、粒子、蝴蝶、魔法阵、光斑填空
+- 海报只做插画 + 标题的后贴式排版
+- 摄影构图只写“cinematic”而没有具体机位、遮挡、引导线和焦点关系
+- 抽象题材只堆碎脸、多眼、碎片、镜子等符号，却没有统一的视觉机制
+
+###### 4. 当前 NAI5 常规设计习惯
+
+- 用户已经将**画师串 + 质量词预设为常备配置**；常规海报 / 插画提示词默认不重复这些预设内容。
+- 用户直接说“设计一个插画 / 海报”时，默认只负责：**创意命题、构图、人物动作、服装、造景、视觉叙事、排版 / 图形系统、渲染方向**。
+- 用户不需要每次重新塞质量词或重复常备画师串。
+- 只有在用户明确要求“重新给完整 NAI5 prompt”或进行画师测试时，才恢复完整 artist / quality 层。
+
+###### 5. 更新记录
+
+- 2026-10-07 · **小画师审美再校准** · 用户明确否定“过于清晰的精致二次元”方向，进一步锁定为国内女性向小画师 / 约稿成稿感：柔和、空气、轻晕染、笔触、人画感。
+- 2026-10-07 · **构图方法更新** · 摄影师思维、引导性构图、近景 / 特写、瞬间叙事成为默认插画升级方向。
+- 2026-10-07 · **海报校准** · Miku“无尽轮回 / 时空交错 / 追寻”叙事海报获用户 8.5/10，确认“概念 + 引导线 + 排版一体化”是当前高分海报方向。
+
+##### 2026-10-07 当前审美校准
+
+###### 小画师方向进一步收敛
+用户当前要的“女性向小画师”不是清晰锐利的二次元商业图，而是更接近国内女性向约稿成稿的视觉质感：柔和、空气感、轻晕染、可见笔触、颜色有渗化，人物美型但不塑料。
+
+重要参考气质：云间蓝、千本山、若干爪这一带。核心不是复制具体画风，而是学习其共同的**柔和绘制 + 女性向人物审美 + 约稿成稿感**。
+
+默认优先：
+- 女性向、国内小画师 / 约稿生态
+- 美型但不过度媚宅
+- 柔和边缘、轻微虚化、颜色晕染和材质笔触
+- 服装、发型、姿态与角色气质共同承担吸引力
+- 近景、特写、局部切边、前景遮挡和视觉引导
+- 叙事型冻结瞬间，而不是人物站立展示
+- 半留白与受控高密度两种模式并存
+- 海报先解决版式、主图形、阅读顺序，再处理渲染
+
+明确回避：过度清晰锐化、塑料皮肤、平均值“角色+漂亮背景+氛围光”、模板化媚宅感、用粒子花瓣等填空、把 cinematic 当成具体构图。
+
+###### 当前构图习惯
+用户希望把摄影师思维正式纳入插画设计：每张画优先考虑**机位、景别、焦点、前景遮挡、引导线、视觉路径、瞬间**。环境不是背景板，而是参与阅读顺序的结构。
+
+古风 / 烟雨江南等题材尤其强调“美型造景”：建筑线、水面、枝叶、伞、衣摆、发丝和人物动作共同形成引导性构图。
+
+###### 当前海报 / 概念插画习惯
+用户喜欢解构、解离、循环、追寻、时空交错等抽象主题，但希望抽象来自一个统一视觉机制，而不是符号堆砌。人物可以直接成为循环结构、容器、裂缝、镜像、时间路径的一部分。
+
+2026-10-07 · Miku“无尽轮回 / 时空交错 / 追寻”叙事海报获得 **8.5/10**，确认“概念 + 引导线 + 排版一体化 + 叙事瞬间”是当前海报高分方向。
+
+###### NAI5 常规设计习惯
+用户已经固定常备画师串与质量层。后续普通“设计一个插画 / 海报”请求默认不重复这些预设内容，重点输出创意、构图、人物、造景、叙事、排版和渲染方向。只有完整 NAI5 prompt 或单画师测试才显式展开。
+
+---
+
+### Reference: references/design-dislikes.md
+
+#### Design Dislikes — 否决清单
+
+> 每一条都是历史反馈里反复出现过的。这不是"永远禁止"清单，是"没有因果链就默认不出现"清单。
+> 判断标准只有一个：**能不能说出她为什么会有这个**（`aesthetic-director-core/references/creative-moves.md` M4）。一只怀表在"以记忆为燃料的钟表裁缝"身上是命题本身；挂在随便哪个少女腰上就是 AI 味。
+> 升格规则：某样东西被否决 ≥3 次，或用户明确说"以后都不要"，才写入本文件。写入时注明日期。
+
+##### General Principle
+
+Avoid adding elements only because they are considered "cool".
+
+Every element should have a design reason and contribute to character identity.
+
+##### 最高优先级否决项（2026-09 之前已反复确认）
+
+- **手表 / 怀表 / 钟表** —— 除非与时间、职业、剧情或服装主题高度适配，否则禁止主动加入。这是历史上最高频的否决。
+- **无来源的饰品作为"高级感补丁"** —— 随机金属链、随机宝石、随机蝴蝶、随机玫瑰、魔法阵、荧光粒子。
+
+---
+
+#### Newly promoted anti-patterns — 2026-10-04
+
+These are now explicit dislikes when they appear without a strong reason:
+
+- Beauty-filter face — mirrored eyes, identical eyelid geometry, excessive iris sparkles, porcelain-smooth skin and zero painterly irregularity.
+- Soft-light soup — the whole image dissolved into bloom, haze, bokeh and floating particles with no decisive cast shadow.
+- Surface-only hair — large hairstyles rendered as a shell covered in random flyaway strands, with no readable roots, mass, wrapping or fastening.
+- Accessory wallpaper — flowers, pearls, chains, tassels and ornaments accumulated for luxury without visible attachment points or shared construction logic.
+- Atmosphere as background — using fog, light spots, petals or dreamy color wash instead of a designed environment or a clean white field.
+- Detail without hierarchy — uniformly high detail everywhere, so the image has no dominant mass, quiet field or visual route.
+
+These are defaults to reject because they repeatedly weaken identity and authored design; explicit current-turn requests can override them.
+
+---
+
+#### Overused AI Elements
+
+Avoid unless specifically requested:
+
+- random watches
+- unnecessary necklaces
+- meaningless earrings
+- decorative belts
+- excessive straps
+- arbitrary accessories
+
+Reason:
+These often create artificial complexity without improving the design.
+
+---
+
+#### Mechanical / Cyber Elements
+
+Avoid excessive use of:
+
+- cyberpunk aesthetics
+- techwear
+- mechanical armor
+- futuristic machinery
+- glowing interfaces
+
+Small mechanical details are acceptable when they support the theme.
+
+Preferred direction:
+Fantasy, fashion, elegance, personality.
+
+---
+
+#### Complexity Problems
+
+Avoid complexity for its own sake.
+
+Bad:
+
+- random decorations everywhere
+- unrelated patterns
+- too many competing elements
+- excessive asymmetry
+- overloaded color schemes
+
+Preferred:
+
+Complex but organized.
+Rich but readable.
+
+---
+
+#### Character Problems
+
+Avoid:
+
+- generic fantasy girl
+- emotionless beauty model
+- empty standing pose
+- no personality
+- no story implication
+
+A character should feel like a person, not a mannequin.
+
+---
+
+#### Style Problems
+
+Avoid:
+
+- generic AI fantasy aesthetics
+- male-oriented armor fantasy
+- meaningless sexy elements
+- visual noise
+- trend chasing without identity
+
+Design priority:
+
+Character identity > decoration.
+
+---
+
+### Reference: references/nai5-artist-pool.md
+
+#### Personal NAI5 Artist Pool
+
+> Runtime card for the owner's current NovelAI V5 artist workflow.
+> Detailed historical scores, experiments and discovery notes live in references/nai5-artist-evidence.md.
+
+##### Runtime rules
+
+- Current experiment range: 3–8 artists when the user explicitly explores/mixes artists.
+- Weight range: 0.3–1.2; at least one selected artist may be >1.0.
+- Preserve exact artist: namespace and spelling.
+- Artist weights are experiment-local, not permanent rankings.
+- Any artist tag whose final character is a digit is globally blacklisted unless the owner explicitly overrides it.
+- Permanent exclusions include artist:yellowshark601 and artist:mihiro_00122.
+- artist:vlfdus_0 is also excluded under the trailing-digit rule.
+- Yellow-pool artists are excluded from mainstream selection unless explicitly requested.
+- New artist candidates require exact Danbooru artist verification; fuzzy or remembered identities never enter the pool.
+
+##### Current standby stack
+
+1.08::artist:qianben_shan::, 0.91::artist:ruoganzhao::, 0.76::artist:miv4t::, 0.58::artist:min_(120716)::, 0.41::artist:kieed::
+
+Treat this as a validated working combination, not a permanent ranking.
+
+##### Manual preference tiers
+
+###### 顶级
+- artist:starshadowmagician — soft/feminine lines, soft coloring, refined female portrait.
+- artist:ask_(askzy) — highly distinctive simplification/design language; specialized reference rather than default personal-style anchor.
+
+###### 中等
+- artist:yalmyu — cute/moe branch.
+- artist:youlizi-yuri — refined decorative character illustration.
+- artist:inoriac — scene/concept candidate.
+- artist:memuro — cute/moe branch.
+- artist:kuuus — stable classic anime base.
+
+###### 次等
+- artist:dino_(dinoartforame) — strong polish but face is currently not preferred.
+- artist:harrymiao — acceptable / lower-priority.
+
+###### Not yet tiered
+artist:zhi_xu_li_ming, artist:kurikabacha, artist:zhanzhan_lan, artist:qingming_tiaohetu, artist:qing_yan_xia, artist:guigui_rongrong, artist:kelezi, artist:diurtion, artist:fengjian_yuzhi, artist:duoqing_tie_ban_shao, artist:baifeidaiwang, artist:cuso4_suiwabutu, artist:baicumikuo, artist:aniao_ya, artist:tidsean, artist:sainker
+
+##### Confirmed high-value combinations
+
+These are combination evidence, not automatic individual approvals:
+
+artist:banbanimi + artist:mido_(mido_chen) + artist:pekopeco
+1.05::artist:eteru::, 0.55::artist:banbanimi::, 0.45::artist:pekopeco::
+1.04::artist:qing_yan_xia::, 0.56::artist:pekopeco::, 0.48::artist:rei_(sanbonzakura)::
+
+##### Style-role quick map
+
+- Soft / feminine / polished: starshadowmagician, fengjian_yuzhi, kurikabacha, zhi_xu_li_ming
+- Cute / moe: yalmyu, memuro
+- Refined / ornate: youlizi-yuri, baifeidaiwang, cuso4_suiwabutu
+- Graphic / distinctive: ask_(askzy), qingming_tiaohetu, qing_yan_xia
+- Scene / concept: inoriac, ruoganzhao, baicumikuo, sainker
+- Dynamic / dramatic: duoqing_tie_ban_shao, guigui_rongrong
+- Cold / rough-painterly experimental: huke
+
+##### Eligible experimental pool
+
+artist:zhi_xu_li_ming, artist:zhanzhan_lan, artist:kurikabacha, artist:shu_bing, artist:sanfu_qwq, artist:ruoganzhao, artist:qingming_tiaohetu, artist:qing_yan_xia, artist:guigui_rongrong, artist:kelezi, artist:diurtion, artist:fengjian_yuzhi, artist:duoqing_tie_ban_shao, artist:baifeidaiwang, artist:cuso4_suiwabutu, artist:baicumikuo, artist:aniao_ya, artist:liduke, artist:jadetilaurant, artist:wolrero, artist:tatatsu, artist:sencha_(senchat), artist:seapall, artist:rella, artist:rei_(sanbonzakura), artist:mafuin_da, artist:infukun, artist:pengren_siya, artist:messikid, artist:ergouzi_echo, artist:kikihuihui, artist:tracyton, artist:saku_nosuke, artist:taiki_(luster), artist:natsuiro_xx, artist:repi, artist:xixizi, artist:luckyia, artist:bochishiraita
+
+##### Discovery / promotion rule
+
+Domestic female-oriented creator ecosystem first → inspect actual work → exact Danbooru artist tag → >50 posts → controlled NAI5 test → owner feedback → tier / role update.
+
+Single test, combination test, and permanent tier are separate evidence types.
+
+---
+
+### Reference: references/nai5-artist-evidence.md
+
+#### NAI5 Artist Evidence Archive
+
+> Historical working archive moved out of the always-on identity runtime during the v4.0 prompt architecture refactor.
+> Source snapshot: 2026-10-08 before runtime-card compaction.
+
+#### Personal NAI5 Artist Pool
+
+> Canonical personal artist pool for NovelAI V5 experiments.
+>
+> Updated: 2026-10-07
+
+##### 1. Pool semantics
+
+This file stores artist identity, evidence, manual tiering, style-role tags, and successful combination history.
+
+Current personal NAI5 experiment rule:
+- 3–8 artists per experiment
+- every artist weight: 0.3–1.2
+- at least one artist must be >1.0
+- canonical artist syntax: `1.05::artist:name::`
+- preserve the `artist:` namespace and any special spelling exactly
+
+Weights belong to a specific experiment. They are not a permanent artist ranking.
+
+Do not persist a weight beside an artist in this pool. A good artist can be used as primary in one experiment and secondary in another.
+
+##### 1.1 Current standby small-artist stack
+
+User-confirmed on 2026-10-07 as the current **常备串** for normal NAI5 design work:
+
+1.08::artist:qianben_shan::, 0.91::artist:ruoganzhao::, 0.76::artist:miv4t::, 0.58::artist:min_(120716)::, 0.41::artist:kieed::
+
+Do not treat these weights as permanent artist rankings. This is a confirmed working combination. Individual artists remain separately tiered or experimental unless the user explicitly scores them.
+
+##### 2. Manual preference tiers
+
+These four levels represent the user's long-term preference classification. A recent test score is evidence, but historical explicit manual assignments remain authoritative unless the user changes them.
+
+###### 夯
+_(manual assignment)_
+
+###### 顶级
+- `artist:starshadowmagician` — user explicitly placed in 顶级; latest single-artist score: **8.5/10**; user says they especially like the soft, feminine line quality and coloring.
+- `artist:ask_(askzy)` — user explicitly placed in 顶级; latest single-artist score: **7.5/10**; user says it is not their personal taste, but the style is highly distinctive and strongly summarized. Keep as a **specialized high-value style reference**, not a default personal-style anchor.
+
+###### 中等
+- `artist:yalmyu` — latest single-artist score: **8.0/10**; particularly strong in the user's **萌系** branch.
+- `artist:youlizi-yuri` — latest single-artist score: **7.5/10**; reads as **精美插画 / 华丽角色插画** rather than pure cute-style work.
+- `artist:inoriac` — latest single-artist score: **7.0/10**; user found the character output somewhat ordinary, with a possible **场景 / 概念插画** strength that remains to be verified.
+- `artist:memuro` — latest single-artist score: **7.0/10**; useful **萌系** reference.
+- `artist:kuuus` — latest single-artist score: **7.0/10**; useful **经典王道二次元** reference.
+
+###### 次等
+- `artist:dino_(dinoartforame)` — latest single-artist score: **6.5/10**; user dislikes the face, although they recognize the overall illustration style as strong.
+- `artist:harrymiao` — user says '还可以', classified as second-tier before the current single-artist testing phase.
+
+> Tier note: the latest score is a preference signal, not a mathematical conversion rule. The user may reassign any artist later.
+
+##### 3. Style-role taxonomy
+
+Use these tags to choose artists by **function**, not only by overall score.
+
+###### Soft / feminine / polished
+- `starshadowmagician`
+  - style tags: **柔美 / 软线条 / 柔和上色 / 高完成度 / 少女向 / 精美角色插画**
+  - strongest use: elegant female portraits, delicate fashion, soft facial appeal, romantic or gentle lighting
+  - useful elements: ribbons, lace, flowing hair, jewelry, refined sleeves/collars, pastel or restrained color palettes
+
+###### Cute / moe
+- `yalmyu`
+  - style tags: **萌系 / 甜妹 / 软糯 / 可爱脸 / 轻量装饰**
+  - strongest use: cute OC, mascot-like girls, sweet commissions, playful poses
+  - useful elements: bows, hair clips, rounded silhouettes, small props, frills, candy/flower motifs
+- `memuro`
+  - style tags: **萌系 / 童话感 / 小装饰密度 / 可爱角色**
+  - strongest use: cute character commissions, animal motifs, maid/frill details, playful accessories
+  - useful elements: rabbit/animal motifs, maid elements, frills, ribbons, tiny ornaments
+
+###### Elegant / refined illustration
+- `youlizi-yuri`
+  - style tags: **精美插画 / 华丽角色 / 细节装饰 / 花卉 / 约稿感**
+  - strongest use: decorative portraits, refined outfits, floral or romantic themes
+  - useful elements: flowers, lace, ornate collars, layered skirts, jewelry, elegant framing
+
+###### Classic anime / stable base
+- `kuuus`
+  - style tags: **经典二次元 / 王道日系 / 清爽角色表现 / 立绘友好**
+  - strongest use: stable anime character design, conventional gacha-style girls, clean OC bases
+  - useful elements: simple accessories, readable costume blocks, bows, long hair, clean backgrounds
+
+###### Strong summarization / design-forward
+- `ask_(askzy)`
+  - style tags: **强概括 / 高辨识度 / 设计感 / 平面化倾向 / 独特造型语言**
+  - strongest use: style contrast, graphic character design, distinctive silhouettes
+  - useful elements: bold shape language, simplified accessories, strong costume silhouette, graphic color blocks
+  - personal-fit note: aesthetically interesting but not a default personal-style choice.
+
+###### Polished commercial illustration / face-sensitive
+- `dino_(dinoartforame)`
+  - style tags: **商业插画 / 高完成度 / 精致刻画 / 人物脸型辨识强**
+  - strongest use: polished character illustration where face design is deliberately chosen
+  - useful elements: fashionable costumes, decorative hair, controlled lighting, presentation-focused framing
+  - personal-fit note: overall style is respected, but the user does not currently prefer the face.
+
+
+###### Cold dark / rough painterly
+- `huke`
+  - verification: exact Safebooru/Danbooru artist tag confirmed; indexed artist count observed at **2790** on 2026-10-06. citeturn659470search0turn659470search1
+  - style tags: **冷灰 / 阴郁 / 粗粝线条 / 概括感 / 半厚涂倾向 / 工业感**
+  - strongest use: bleak sci-fi posters, weathered character key visuals, industrial or post-apocalyptic scenes
+  - best-fit elements: blue-gray palettes, black technical clothing, rain, ruins, hard rim light, rough material surfaces, sparse environments
+  - status: newly added external experimental artist; not user-tiered.
+
+###### Scene / concept candidate
+- `inoriac`
+  - style tags: **清爽二次元 / 场景潜力 / 概念插画候选**
+  - strongest use: scene-led illustrations, worldbuilding, character-in-environment tests
+  - useful elements to test next: environmental lighting, props, architecture, atmospheric perspective
+  - status: **scene/concept hypothesis only**, not yet confirmed.
+
+##### 4. Single-artist test records — 2026-10-06
+
+These are user-scored individual tests. **Scores do not automatically change the four manual preference tiers.** Artists remain manually tiered unless the user explicitly reassigns them.
+
+###### `artist:zhi_xu_li_ming`
+- Score: **8.0/10**
+- User feedback: "还可以".
+- Style tags: **精致柔和 / 细腻笔触 / 精致风肖像**
+- Best-fit elements: delicate facial details, refined hair, elegant costume details, restrained lighting, portrait framing.
+- Status: individually positive, tier remains manually unassigned.
+
+###### `artist:kurikabacha`
+- Score: **8.0/10**
+- User feedback: "还可以".
+- Style tags: **精致柔和 / 细腻笔触 / 精致风肖像**
+- Best-fit elements: delicate portrait, soft rendering, refined clothing details, gentle light, decorative close-up composition.
+- Status: individually positive, tier remains manually unassigned.
+
+###### `artist:zhanzhan_lan`
+- Score: **7.5/10**
+- User feedback: suitable for "精致肖像"; brushwork is slightly light and blurry.
+- Style tags: **精致肖像 / 淡雅 / 轻柔笔触 / 低对比 / 轻微朦胧**
+- Best-fit elements: pale palettes, soft portraits, elegant clothing, diffuse light, airy backgrounds.
+- Caution: can become too soft or lose edge clarity.
+
+###### `artist:shu_bing`
+- Score: **7.0/10**
+- User feedback: "效果一般，适合插画类".
+- Style tags: **插画型 / 场景插画 / 非纯人物向**
+- Best-fit elements: narrative illustration, environmental composition, decorative props, scene-led character pieces.
+- Status: stronger as illustration than pure portrait.
+
+###### `artist:sanfu_qwq`
+- Score: **7.0/10**
+- User feedback: somewhat like **古风精美场景立绘型**.
+- Style tags: **古风 / 精美场景 / 角色立绘 / 装饰型**
+- Best-fit elements: Chinese costume, architectural scenery, flowers, lanterns, traditional props, elegant standing poses.
+
+###### `artist:ruoganzhao`
+- Score: **8.0/10**
+- User feedback: **精致柔细感 + 场景画风**, but the palette tends yellow and images easily become blurry.
+- Style tags: **精致柔细 / 场景型 / 氛围插画 / 暖黄调 / 易糊**
+- Best-fit elements: warm environmental light, atmospheric scenes, soft costume details, flowers, architecture, narrative backgrounds.
+- Caution: watch yellow cast and loss of detail.
+
+###### `artist:qingming_tiaohetu`
+- Score: **7.5/10**
+- User feedback: distinctive "宝石感", similar to **turino**; considered very good.
+- Style tags: **宝石感 / 晶莹质感 / 独特平涂 / 高辨识**
+- Best-fit elements: jewel-like eyes, glossy accessories, gemstones, crisp color blocks, decorative fantasy costumes.
+- Status: high-value style reference despite mid-range numerical score.
+
+###### `artist:qing_yan_xia`
+- Score: **7.0/10**
+- User feedback: **克制、淡雅、人物设计向的平涂**.
+- Style tags: **克制 / 淡雅 / 平涂 / 人物设计 / 简洁色块**
+- Best-fit elements: clean costume design, controlled color palettes, graphic silhouettes, subtle accessories, white/empty backgrounds.
+
+###### `artist:guigui_rongrong`
+- Score: **7.5/10**
+- User feedback: **复古亚比感 / 人物动态展示型**.
+- Style tags: **复古 / 亚比感 / 动态展示 / 角色表现**
+- Best-fit elements: dynamic poses, character showcases, fashion-forward silhouettes, retro styling, presentation-oriented framing.
+
+###### `artist:mr._owlish`
+- Score: **N/A — no visible effect / excluded from current style-mixing consideration**
+- User feedback: "没效果".
+- Status: negative/low-signal evidence; do not prioritize in future experiments unless specifically revisiting.
+
+##### 5. Single-artist test records — 2026-10-06 (continued)
+
+###### `artist:kelezi`
+- Score: **7.5/10**
+- User feedback:画风比较精致，适合精细人设造型类.
+- Style tags: **精致 / 人设造型 / 细节型 / 角色设计**
+- Best-fit elements: detailed costume construction, character sheets, accessories, hairstyle design, refined silhouette.
+
+###### `artist:diurtion`
+- Score: **7.5/10**
+- User feedback:画风质感适合情绪流，笔触偏概括，适合简单情绪画面.
+- Style tags: **情绪流 / 概括笔触 / 质感 / 简洁叙事**
+- Best-fit elements: restrained composition, emotional expression, simple props, atmospheric lighting, minimal scenes.
+
+###### `artist:fengjian_yuzhi`
+- Score: **8.0/10**
+- User feedback:画面清丽甜美，适合精致人物肖像.
+- Style tags: **清丽 / 甜美 / 精致肖像 / 少女向**
+- Best-fit elements: soft colors, clean portraits, delicate hair, elegant clothing, gentle expressions, pale backgrounds.
+
+###### `artist:duoqing_tie_ban_shao`
+- Score: **7.5/10**
+- User feedback:画面张力十足、色调华丽，人物姿势又有一些克制；适合御姐、张力感插画.
+- Style tags: **华丽 / 张力 / 克制姿势 / 御姐 / 高戏剧性**
+- Best-fit elements: mature female characters, dramatic poses, rich color palettes, fashion details, dynamic framing.
+
+###### `artist:baifeidaiwang`
+- Score: **9.0/10**
+- User feedback:非常特殊；属于精美人像插画类，画风独特，有点伪厚涂；个人给到9分，但仅适配肖像类.
+- Style tags: **精美人像 / 独特画风 / 伪厚涂 / 高级感 / 肖像专用**
+- Best-fit elements: close portraits, bust shots, facial rendering, elegant hair, premium costume details, controlled backgrounds.
+- Constraint: **portrait-only specialist**; do not treat as a general scene/pose artist.
+
+###### `artist:cuso4_suiwabutu`
+- Score: **8.0/10**
+- User feedback:精美概念人像设计类.
+- Style tags: **精美 / 概念人像 / 人物设计 / 高完成度**
+- Best-fit elements: conceptual costumes, distinctive character motifs, ornate accessories, designed portraits, fantasy elements.
+
+###### `artist:baicumikuo`
+- Score: **6.0/10**
+- User feedback:本身属于高级精品人物场景插画类，但可能因训练集太少，当前肖像测试效果只有6分.
+- Style tags: **高级精品 / 人物场景 / 场景插画 / 训练集敏感**
+- Best-fit elements: full scene illustration, environmental storytelling, character-in-world compositions, architecture and props.
+- Constraint: **low confidence for portrait testing due to possible training-data limitation**; do not equate the 6/10 portrait score with overall style quality.
+
+###### `artist:vlfdus_0`
+- Score: **7.0/10**
+- User feedback:画风偏西方半写实风.
+- Style tags: **西方半写实 / 半写实 / 成熟质感 / 非典型二次元**
+- Best-fit elements: mature characters, restrained anime features, realistic costume rendering, dramatic lighting.
+- Note: artist identity remains unresolved/ambiguous; preserve exact token and do not infer a different canonical identity.
+
+###### `artist:aniao_ya`
+- Score: **7.5/10**
+- User feedback:偏二游商业海报风格，比较精美.
+- Style tags: **二游商业海报 / 商业插画 / 精美 / 宣传视觉**
+- Best-fit elements: game-promo composition, character key visuals, strong focal framing, readable costume design, polished lighting.
+
+###### `artist:mihiro_00122`
+- Status: **permanently blacklisted by user**
+- User feedback:使用时出现与 `yellowshark601` 类似的糊图问题.
+- Blacklist rule: user explicitly requests that **artists whose canonical artist tag contains digits be blacklisted and not considered for future use**.
+- Do not include in random artist selection, single-artist testing, or recommended stacks.
+
+###### `artist:tidsean`
+- Score: **8.5/10**
+- User feedback: "蛮清透".
+- Test subject: clear-aesthetic ancient Chinese portrait.
+- Style tags: **清透 / 清美古风 / 艺术肖像 / 柔和光感 / 东方人物**
+- Best-fit elements: pale hanfu, flowing sleeves, refined hair ornaments, mist, water, willow/plum motifs, restrained cool palettes, airy negative space.
+- Status: individually liked; **tier remains manually unassigned**.
+
+###### `artist:sainker`
+- Score: **8.0/10**
+- User feedback: **风格极为独特的艺术插画古典风**.
+- Test direction: ornate classical oriental illustration with integrated page / poster layout.
+- Style tags: **古典艺术插画 / 极繁 / 独特画风 / 版式设计 / 精品画板 / 装饰构成**
+- Best-fit elements: ornamental frames, classical architecture, botanical motifs, antique gold, patterned borders, embedded vignettes, title panels, exhibition / book-plate layouts.
+- Best use: **art-board / poster / decorative illustration / premium classical composition**, rather than ordinary clean character portrait.
+- Status: individually liked; **tier remains manually unassigned**.
+
+##### 6. Confirmed liked / high-value combinations
+
+These artists have been validated through the user's actual NAI5 experiments and should be treated as strong anchors for future exploration.
+
+~~~text
+artist:banbanimi
+artist:mido_(mido_chen)
+artist:pekopeco
+~~~
+
+###### Validated combination
+
+`artist:banbanimi + artist:mido_(mido_chen) + artist:pekopeco`
+
+User feedback: this combination produced the intended "真正想要的组合搭配效果".
+
+Use it as a **structural reference**, not as a permanent three-artist recipe:
+- banbanimi — fashion少女 / OC / 小红书传播感
+- mido_(mido_chen) — 二次元角色原画 / 可爱角色 / 二游完成度
+- pekopeco — 古风 / 服装 / 柔和留白
+
+##### 7. Newly validated experiment combinations — 2026-10-06
+
+**Experiment 17 — liked**
+
+1.05::artist:eteru::, 0.55::artist:banbanimi::, 0.45::artist:pekopeco::
+
+User feedback: "17的那组很好看".
+
+Keep this as a high-value combination sample. Do not infer that every individual artist is independently approved.
+
+**Experiment 19 — liked**
+
+1.04::artist:qing_yan_xia::, 0.56::artist:pekopeco::, 0.48::artist:rei_(sanbonzakura)::
+
+User feedback: "19也不错".
+
+Keep this as a secondary positive combination sample. Do not infer that every individual artist is independently approved.
+
+**Experiment 30 — liked**
+
+1.15::artist:tatatsu::, 0.86::artist:mr._owlish::, 0.69::artist:mafuin_da::, 0.57::artist:zishengtian123::, 0.48::artist:wolrero::, 0.39::artist:bochishiraita::, 0.31::artist:vlfdus_0::
+
+User feedback: "这个组合的效果不错".
+
+Keep this as a high-value combination sample. This approves the combination, not automatic individual tier promotion.
+
+##### 8. Existing aesthetic-good candidate pool
+
+These are retained from the personal aesthetic pool. Artists tested individually are still useful pool members; their current classification and role tags are recorded above.
+
+~~~text
+artist:zhi_xu_li_ming
+artist:zhanzhan_lan
+artist:kurikabacha
+artist:shu_bing
+artist:sanfu_qwq
+artist:ruoganzhao
+artist:qingming_tiaohetu
+artist:qing_yan_xia
+artist:mr._owlish
+artist:guigui_rongrong
+artist:kelezi
+artist:diurtion
+artist:fengjian_yuzhi
+artist:duoqing_tie_ban_shao
+artist:baifeidaiwang
+artist:cuso4_suiwabutu
+artist:baicumikuo
+artist:aniao_ya
+artist:liduke
+artist:jadetilaurant
+artist:wolrero
+artist:tatatsu
+artist:sencha_(senchat)
+artist:seapall
+artist:rella
+artist:rei_(sanbonzakura)
+artist:mafuin_da
+artist:infukun
+artist:pengren_siya
+artist:messikid
+artist:ergouzi_echo
+artist:kikihuihui
+artist:tracyton
+artist:saku_nosuke
+artist:taiki_(luster)
+artist:natsuiro_xx
+artist:repi
+artist:xixizi
+artist:luckyia
+artist:bochishiraita
+~~~
+
+##### 9. Current exploration queue
+
+###### Tier A — verified Red-direction exploration candidates
+
+~~~text
+artist:yalmyu
+artist:starshadowmagician
+artist:ask_(askzy)
+artist:krab_(fumekrab)
+~~~
+
+The three already tested above should now be treated as **measured controls**, not pending candidates. `krab_(fumekrab)` remains pending for a future Red-direction single-artist test.
+
+###### Positive experiment history — 2026-10-06
+
+**Experiment 35 — liked**
+- User feedback: "蛮可爱".
+- Keep the exact combination as a positive cute-small-artist reference.
+
+**Experiment 36 — liked**
+- User feedback: "蛮可爱".
+- Keep the exact combination as a positive cute-small-artist reference.
+
+**Experiment 39 — liked**
+- User feedback: "蛮可爱".
+- Keep the exact combination as a positive cute-small-artist reference.
+
+##### 10. Discovery protocol
+
+When expanding the pool, use this order:
+
+1. domestic creator ecosystem first: 小红书 / 米画师 / 微博 / OC-focused Chinese communities
+2. inspect the creator's actual body of work for the user's target zone:
+   - female-oriented anime character work
+   - OC / 二游 / character illustration
+   - attractive first impression
+   - clothing and character identity strongly linked
+   - collectible / commission appeal
+   - clean or intentionally localized high density
+3. verify the **exact Danbooru artist tag**
+4. require **>50 posts** before entering the experimental pool
+5. run a controlled NAI5 portrait test
+6. classify by user feedback, with style-role tags recorded alongside the score
+7. only treat a style-role hypothesis as confirmed when the user's actual NAI5 output supports it
+
+Do not reverse this order by discovering a random Danbooru artist first and retroactively calling them a "小画师".
+
+##### 11. Permanent exclusion
+
+~~~text
+artist:yellowshark601
+artist:mihiro_00122
+~~~
+
+Never use these artists in random selection.
+
+###### Global user blacklist rule
+
+- **Any artist tag ending with a digit is blacklisted by default.**
+- Do not test, recommend, or randomly select artist tags whose final character is a digit unless the user explicitly overrides this rule.
+- Current confirmed examples: `artist:yellowshark601`, `artist:mihiro_00122`, `artist:vlfdus_0`, and `artist:zishengtian123`.
+- This is a user-level practical exclusion rule based on repeated observed workflow problems, not a claim about the technical cause of blurry output.
+- Historical combinations may retain blacklisted artists as records, but blacklisted artists must never be emitted into new artist stacks.
+
+##### 12. Maintenance rules
+
+- Do not silently rename, normalize, split, or "fix" artist tags.
+- Preserve underscores, periods, parentheses, suffixes, and other syntax exactly.
+- `artist:vlfdus_0` remains unresolved/ambiguous; do not invent a different artist identity.
+- Keep confirmed favorites separate from experimental candidates.
+- Record user-approved combinations separately from individual artist approval.
+- For each single-artist test, record: artist, weight, benchmark, test date, user score, concise feedback, style-role tags, and any confirmed/uncertain suitability.
+- When a new artist is promoted, add the evidence source, exact artist tag, verification date, and a short aesthetic role description.
+
+---
+
+### Reference: references/visual-preferences.md
+
+#### Visual Preferences
+
+> 本文件列举偏好的**类型和形式**。品味本身（决策方式、Tier 分层、认可样本）以 `taste-signature.md` 为准；两者冲突时以 `taste-signature.md` 为准。
+
+##### Overall Direction
+
+The user's primary creative field:
+
+- female-oriented character design
+- anime style original characters
+- gacha game style design
+- commercial character illustration
+
+Core goal:
+
+Create characters that feel collectible, memorable and emotionally attractive.
+
+---
+
+#### Character Design Preference
+
+Prefer:
+
+- strong silhouette
+- elegant costume design
+- high-fashion feeling
+- layered clothing
+- meaningful accessories
+- personality-driven outfits
+
+Character should feel like:
+
+"a character from a high-quality game IP"
+
+not:
+
+"a collection of beautiful elements."
+
+---
+
+#### Female-Oriented Aesthetic
+
+Beauty is not only appearance.
+
+Prioritize:
+
+- charm
+- atmosphere
+- personality
+- emotional connection
+- fantasy appeal
+
+The viewer should want to know:
+
+"Who is she?"
+
+not only:
+
+"Is she pretty?"
+
+---
+
+#### Preferred Visual Categories
+
+Frequently suitable:
+
+- gacha character design
+- anime heroine design
+- fantasy fashion
+- eastern fantasy
+- fairy tale aesthetics
+- gothic elegance
+- modern cute fashion
+- high-end illustration
+
+---
+
+#### Composition Preference
+
+Preferred:
+
+- white background character sheets
+- full-body standing designs
+- seven-head portrait illustration
+- half-body artistic portrait
+- atmospheric vertical illustration
+- semi-empty compositions
+
+---
+
+#### Reference Sources
+
+When researching visual inspiration:
+
+Prioritize:
+
+- Pinterest
+- high-quality game art
+- anime illustration communities
+- fashion references
+
+Focus on:
+
+design language,
+not direct copying.
+
+---
+
+### Reference: references/business-objectives.md
+
+#### Business Objectives
+
+##### Creative Purpose
+
+The user's artwork is created with both artistic and practical goals.
+
+Primary objectives:
+
+- OC character design
+- character IP development
+- commercial illustration
+- collectible character appeal
+- design-based product creation
+
+
+---
+
+#### Evaluation Criteria
+
+A successful design should consider:
+
+##### Recognition
+
+Can viewers remember the character after seeing it once?
+
+A strong character needs a clear visual identity rather than only high rendering quality.
+
+
+##### Appeal
+
+Would someone want to save, collect, or own this character design?
+
+Prioritize emotional connection and fantasy fulfillment.
+
+
+##### Differentiation
+
+Avoid generic AI character patterns.
+
+The design should have:
+
+- unique concept
+- memorable silhouette
+- meaningful costume language
+- recognizable personality
+
+
+##### Market Compatibility
+
+Consider suitability for:
+
+- anime audience
+- gacha-style character appreciation
+- female-oriented character design
+- OC communities
+
+
+---
+
+#### Design Priority
+
+Preferred priority order:
+
+1. Character charm
+
+2. Visual identity
+
+3. Costume quality
+
+4. Emotional expression
+
+5. Rendering quality
+
+
+Rendering exists to support design.
+
+Visual effects should not replace character thinking.
 ---
 
 ### Reference: references/taste-signature.md
@@ -6355,10 +7462,10 @@ The personal harness is designed to be pasted into web AI sessions. A giant stat
 ---
 
 ## MODULE: general-image-prompt-adapter
-layer: 03_prompt · load: on-demand · status: active · module version: 0.2.0 · harness 4.0.0
+layer: 03_prompt · load: on-demand · status: active · module version: 0.3.0 · harness 4.0.0
 source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/03_prompt/general-image-prompt-adapter
 
-**description:** Model adapter that compiles a finished character or illustration blueprint into a natural-language image prompt for models that are not Anima or NAI5 — Midjourney, DALL-E / GPT Image, Google Imagen / Gemini image, Flux, SDXL-style checkpoints, or an unnamed target. Keeps parameters out of the prompt unless the target officially supports them, and labels every model-specific claim with an evidence level. Use when the user names any other image model, says 通用提示词, MJ, Midjourney, DALL-E, Imagen, Flux, SD, 或没说用什么模型. Does not design — if no blueprint exists, route through aesthetic-director-core first.
+**description:** Generic target renderer that converts a Visual Prompt Packet into a natural-language image prompt for models that are not Anima or NAI5 — Midjourney, DALL-E / GPT Image, Google Imagen / Gemini image, Flux, SDXL-style checkpoints, or an unnamed target. Use after the shared Prompt Core. Does not design.
 
 
 ### General Image Prompt Adapter
@@ -6373,6 +7480,10 @@ source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/03_prompt/g
 #### Blueprint boundary
 
 This module is a target-model adapter. It accepts only a validated blueprint or Visual Prompt Packet and **does not design**. Missing design decisions must route upstream.
+
+#### Blueprint boundary
+
+This module is a target-model renderer. It accepts only a validated Visual Prompt Packet and does not design. If the Packet is missing or incomplete, route upstream to visual-prompt-core and the appropriate design gate.
 
 #### 硬规则
 
@@ -6435,6 +7546,41 @@ Standard mode 下同 `anima-prompt-compiler`：V1 忠实 + V2 增强，V2 不改
 
 - `references/target-notes.md` — 常见目标的格式笔记，逐条带证据标签；表外目标一律 [Unverified]
 
+---
+
+### Reference: references/target-notes.md
+
+#### Target Notes — 常见图像模型的格式笔记
+
+> 归属：`02_creation/general-image-prompt-adapter`。用途：Step 2 查目标格式。
+> **每条都带证据标签。** 这些模型更新很快；标签是写下时的状态，不是永久事实。表外的目标一律按 `[Unverified]` 处理：用通用自然语言，不加参数。
+> 标签含义：`[Official]` 官方文档可查 · `[Community]` 社区广泛实践 · `[Personal experiment]` owner 实测 · `[Unverified]` 未核实
+
+| 目标 | 输入偏好 | 参数 | 注意 | 证据 |
+|---|---|---|---|---|
+| **Midjourney** | 自然语言短段落；前置信息权重更高 | `--ar W:H`、`--no <x>`、`--stylize`、`--chaos`、`--v` 等为官方参数，放在 prompt 末尾 | `--no` 是唯一可靠的排除方式；正文里的 "no X" 常被当正向 | 参数 `[Official]`；"前置权重更高" `[Community]` |
+| **DALL-E 3 / GPT Image (OpenAI)** | 自然语言；接受长句 | 无正文参数；比例等由界面/API 设定 | 服务端可能改写 prompt（DALL-E 3 官方说明有改写机制）；关键事实放前面并写成完整句 | 无参数 `[Official]`；DALL-E 3 改写 `[Official]`；GPT Image 改写行为 `[Unverified]` |
+| **Google Imagen / Gemini 图像生成** | 自然语言；支持对话式修改 | 无正文参数；比例由 API/界面设定 | 描述性长句表现好；用正向约束替代否定 | 自然语言 `[Official]`；其它 `[Community]` |
+| **Flux (Black Forest Labs)** | 自然语言长描述 | 基础模型无正文权重语法；前端可能提供 | 对空间关系词响应好 | `[Community]` |
+| **SDXL 及衍生 checkpoint** | tag + 短句混合 | `(word:1.2)` 权重是 WebUI/ComfyUI 的前端语法，不是模型的 | 各 checkpoint 差异大；owner 未指定 checkpoint 时按通用 NL | `[Community]` |
+| **未命名 / generic** | 自然语言 60–120 词 | 无 | 前 40 词放锁定事实与刺点 | — |
+
+##### 通用顺序（所有目标）
+
+```
+[count + framing] [presentation/background]
+[thesis structure: the big shape and where it sits]
+[appearance: hair as shape distribution, eyes, skin]
+[garment: base → structural → signature extension → accessory system; each as shape + position + behavior]
+[pose causality + the moment]
+[environment: the one layer that explains light or action]
+[key light: source, direction, falloff; shadow region]
+[palette: dominant / structural / the only saturated color is ___ at ___]
+```
+
+##### 更新记录
+
+- 2026-09-28 · 初版 · Midjourney 参数依据 docs.midjourney.com 参数页；DALL-E 3 改写依据 OpenAI 官方 DALL-E 3 说明；其余为社区实践或未核实。
 ---
 
 ### Reference: references/target-notes.md
