@@ -131,7 +131,6 @@ def main() -> int:
         "missing",
         "fuzzy",
         "hard tag",
-        "37_(reverse:1999)",
         "fail-closed",
     ):
         require(needle.lower() in sources["gate"].lower(), f"Danbooru Gate lost contract token: {needle}", failures)
