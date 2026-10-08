@@ -27,7 +27,8 @@
     "personal-identity-profile": [
       "SKILL.md",
       "references/taste-signature.md",
-      "references/design-dislikes.md"
+      "references/design-dislikes.md",
+      "references/nai5-artist-pool.md"
     ],
     "creative-skill-router": [
       "SKILL.md"
