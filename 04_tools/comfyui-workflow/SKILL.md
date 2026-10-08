@@ -4,7 +4,7 @@ description: Technical placeholder for ComfyUI workflow organization, node troub
 metadata:
   author: Tera-Dark
   version: "0.1.0"
-  layer: "04_tools"
+  layer: "05_tools"
   load: "on-demand"
   status: "planned"
   triggers: "ComfyUI, workflow, nodes, 工作流"
