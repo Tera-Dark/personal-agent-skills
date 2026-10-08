@@ -86,8 +86,8 @@
       "layer": "00_core",
       "load": "always",
       "status": "active",
-      "version": "2.4.0",
-      "description": "Persistent identity and taste layer for Tera-Dark's creative work. Holds the aesthetic signature (structured foundation, one strange thing, a hint of danger, modern key-visual impact, fashion-grade garment construction, female-oriented OC/gacha sensibility, Xiao-artist female-oriented 2D taste and NAI5 artist-mixing rules), hard dislikes (watches, cyber/mech, random butterflies-roses-particles, adjective costumes), business goals. Does not generate prompts. Load first for any creative, design, illustration, prompt or aesthetic-judgment task; also when the user says 我的风格, 我喜欢, 按我习惯, 个人偏好.",
+      "version": "2.5.0",
+      "description": "Persistent identity and taste layer for Tera-Dark's creative work. Holds the owner's stable aesthetic signature, hard dislikes, business objectives, and compact NAI5 artist-pool card. Does not generate prompts. Load first for creative, design, illustration, prompt, or aesthetic-judgment tasks; also when the user says 我的风格, 我喜欢, 按我习惯, 个人偏好.",
       "triggers": "我的风格, 个人偏好, 按我习惯, any creative task",
       "path": "00_core/personal-identity-profile",
       "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/00_core/personal-identity-profile",
@@ -95,12 +95,13 @@
       "references": [
         "references/taste-signature.md",
         "references/design-dislikes.md",
+        "references/nai5-artist-pool.md",
+        "references/nai5-artist-evidence.md",
         "references/visual-preferences.md",
-        "references/business-objectives.md",
-        "references/nai5-artist-pool.md"
+        "references/business-objectives.md"
       ],
       "tokens_skill": 582,
-      "tokens_bundle": 15353
+      "tokens_bundle": 16312
     },
     {
       "name": "aesthetic-director-core",
@@ -229,8 +230,8 @@
       "layer": "03_prompt",
       "load": "on-demand",
       "status": "active",
-      "version": "0.2.0",
-      "description": "Model adapter that compiles a finished character or illustration blueprint into a natural-language image prompt for models that are not Anima or NAI5 — Midjourney, DALL-E / GPT Image, Google Imagen / Gemini image, Flux, SDXL-style checkpoints, or an unnamed target. Keeps parameters out of the prompt unless the target officially supports them, and labels every model-specific claim with an evidence level. Use when the user names any other image model, says 通用提示词, MJ, Midjourney, DALL-E, Imagen, Flux, SD, 或没说用什么模型. Does not design — if no blueprint exists, route through aesthetic-director-core first.",
+      "version": "0.3.0",
+      "description": "Generic target renderer that converts a Visual Prompt Packet into a natural-language image prompt for models that are not Anima or NAI5 — Midjourney, DALL-E / GPT Image, Google Imagen / Gemini image, Flux, SDXL-style checkpoints, or an unnamed target. Use after the shared Prompt Core. Does not design.",
       "triggers": "Midjourney, MJ, DALL-E, GPT Image, Imagen, Gemini image, Nano Banana, Flux, SDXL, Stable Diffusion, 通用提示词, 其他模型, 不知道用什么模型",
       "path": "03_prompt/general-image-prompt-adapter",
       "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/03_prompt/general-image-prompt-adapter",
@@ -238,8 +239,8 @@
       "references": [
         "references/target-notes.md"
       ],
-      "tokens_skill": 1229,
-      "tokens_bundle": 2234
+      "tokens_skill": 2210,
+      "tokens_bundle": 2210
     },
     {
       "name": "nai5-renderer",
