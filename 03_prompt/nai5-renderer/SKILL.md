@@ -21,6 +21,10 @@ metadata:
 下游：user-facing NAI5 prompt
 不做：不重新设计、不维护长期 artist pool、不发现未经验证的 artist tag、不负责通用审美。
 
+## Blueprint boundary
+
+This module is a target-model adapter. It accepts only a validated blueprint or Visual Prompt Packet and **does not design**. Missing design decisions must route upstream.
+
 ## 硬规则
 
 - Preserve canonical verified Danbooru identity.
