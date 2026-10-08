@@ -4,7 +4,7 @@ description: Technical placeholder for LoRA training pipelines: dataset prep, ca
 metadata:
   author: Tera-Dark
   version: "0.1.0"
-  layer: "04_tools"
+  layer: "05_tools"
   load: "on-demand"
   status: "planned"
   triggers: "LoRA, 训练, fine-tune, 炼丹"
