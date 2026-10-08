@@ -251,3 +251,7 @@ AUDIT 通常内部完成；只有用户明确要求审美评审时才展开。
 - 普通 NAI5 设计请求不重复已经预设的 artist stack 与质量层；只有完整 prompt 或单画师测试时显式展开。
 
 近期高分校准：Miku“无尽轮回 / 时空交错 / 追寻”叙事海报，用户评分 8.5/10。
+
+
+## References
+- `references/modern-key-visual-grammar.md` — bundled reference for this module.
