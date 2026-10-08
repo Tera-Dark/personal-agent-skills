@@ -5,7 +5,7 @@ metadata:
   author: Tera-Dark
   version: "2.5.0"
   layer: "00_core"
-  load: "always"
+  load: "on-demand"
   status: "active"
   triggers: "OC, 人设, 插画, 服装, 海报, 联动海报, 艺术海报, key visual, crossover poster, 审美, 创意方向, 人味, 高级感, 不要AI味, 太平淡, 太乱"
 ---
