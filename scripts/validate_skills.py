@@ -199,8 +199,8 @@ def main():
         skill = skills.get(name)
         if skill:
             body = skill['body'].lower()
-            if 'blueprint' not in body or 'adapter' not in body:
-                errors.append(f'{name}: missing adapter blueprint boundary')
+            if 'blueprint' not in body or 'does not design' not in body:
+                errors.append(f'{name}: missing renderer blueprint boundary')
 
     if not os.path.exists(os.path.join(root, cfg["kernel"])):
         errors.append(f"kernel file {cfg['kernel']} missing")
