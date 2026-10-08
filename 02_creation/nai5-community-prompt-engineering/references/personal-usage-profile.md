@@ -118,6 +118,13 @@ Hard exclusions:
 
 Candidates without an exact verified artist tag must not be emitted as NAI5 artist tokens.
 
+### 4.7. Additional user-validated artist records
+
+- `artist:eteru` — **7.5/10**, **顶级**. 精品大插画立绘型；画面细腻、复杂，但整体仍保持精美与和谐。
+- `artist:poppy_yuu` — **7.5/10**, **顶级**. 以白色主导的干净清爽色调，画风细腻精美，创意与画面张力很强；当前 Danbooru 收录量与 NAI5 实测表现限制了当前评分，不代表画师本体上限。
+
+Both records are mainstream candidates unless later reclassified by the user. Do not treat the current NAI5 score as a permanent overall quality ceiling.
+
 ### Single-artist test baseline
 
 Every single-artist comparison must include the year tags `year 2025, year 2026` and a compact explicit quality layer. Default quality layer: `masterpiece, best quality, high quality, very aesthetic, high complexity`. Add rendering controls only when the test is intended to compare rendering behavior.
