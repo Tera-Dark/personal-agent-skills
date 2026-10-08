@@ -4,7 +4,7 @@ description: Decomposes a reference image into transferable design language — 
 metadata:
   author: Tera-Dark
   version: "2.1.0"
-  layer: "03_analysis"
+  layer: "04_analysis"
   load: "on-demand"
   status: "active"
   triggers: "反推, 分析图片, 提取提示词, 还原风格, 参考这张, reverse prompt, reference image"
