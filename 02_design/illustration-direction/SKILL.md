@@ -153,3 +153,7 @@ An illustration blueprint is READY only when visual thesis, captured moment, mot
 - `references/composition-patterns.md` — 景别协议、分层展示板、设定图、三分偏置、sub-framing、极端机位（英文短语可直接进 prompt）。
 - `references/oc-maximalist-closeup-backdrop-preset.md` — 极繁 OC 展示专用构图预设：特写垫底 + 主全身立绘 + 大头贴/元素贴 + 前景碎片。
 - `references/atmosphere-presets.md` — 去 AI 塑料感六维度 + 五个氛围预设（商业头像 / 清新日系 / 高定极简 / 暗黑叙事 / 电影海报）+ 选择决策流。
+
+
+## References
+- `references/white-background-fashion-grammar.md` — bundled reference for this module.
