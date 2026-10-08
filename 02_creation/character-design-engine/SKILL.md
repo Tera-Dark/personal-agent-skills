@@ -4,7 +4,7 @@ description: Turns a Creative Brief (from aesthetic-director-core) into a comple
 metadata:
   author: Tera-Dark
   version: "2.5.0"
-  layer: "02_creation"
+  layer: "02_design"
   load: "on-demand"
   status: "active"
   triggers: "OC, 人设, 角色设计, 服装设计, 立绘, 高定服设, 二游角色, character sheet, 极繁, 极繁精美, 华丽人设, 原创圈"
