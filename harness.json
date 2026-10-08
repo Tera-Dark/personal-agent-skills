@@ -16,12 +16,12 @@
   "layers": [
     "00_core",
     "01_router",
-    "02_creation",
+    "02_design",
     "03_prompt",
     "04_analysis",
     "05_tools",
     "06_evaluation",
-    "06_extensions"
+    "07_extensions"
   ],
   "always_on": {
     "personal-identity-profile": [
