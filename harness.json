@@ -27,54 +27,40 @@
     "personal-identity-profile": [
       "SKILL.md",
       "references/taste-signature.md",
-      "references/design-dislikes.md",
-      "references/workflow-style.md"
-    ],
-    "aesthetic-director-core": [
-      "SKILL.md",
-      "references/creative-moves.md",
-      "references/feedback-diagnosis.md",
-      "references/taste-calibration-pairs.md",
-      "references/modern-key-visual-grammar.md"
+      "references/design-dislikes.md"
     ],
     "creative-skill-router": [
-      "SKILL.md"
-    ],
-    "evaluation-loop": [
       "SKILL.md"
     ]
   },
   "handshake": "Harness v{version} loaded · {modules} modules · 说需求，或发参考图。",
-  "core_budget_tokens": 40000,
+  "core_budget_tokens": 20000,
   "pipeline": {
     "aesthetic_gate": "aesthetic-director-core",
     "blueprint_gate": {
       "character": "character-design-engine",
       "illustration": "illustration-direction"
     },
+    "prompt_core": "visual-prompt-core",
+    "danbooru_tag_gate": "danbooru-tag-gate",
     "evaluation_gate": "evaluation-loop",
     "adapters": [
-      "anima-prompt-compiler",
-      "nai5-community-prompt-engineering",
+      "anima-renderer",
+      "nai5-renderer",
       "general-image-prompt-adapter"
     ],
     "pipeline_packs": {
       "anima": [
-        "anima-tag-gate",
-        "anima-tag-classifier",
-        "anima-prompt-skeleton",
-        "anima-aesthetic-protection",
-        "anima-prompt-compressor",
-        "anima-tag-serializer",
-        "anima-prompt-compiler"
+        "visual-prompt-core",
+        "danbooru-tag-gate",
+        "anima-renderer"
+      ],
+      "nai5": [
+        "visual-prompt-core",
+        "danbooru-tag-gate",
+        "nai5-renderer"
       ]
-    },
-    "prompt_core": "visual-prompt-core",
-    "danbooru_tag_gate": "danbooru-tag-gate",
-    "renderers": [
-      "anima-renderer",
-      "nai5-renderer"
-    ]
+    }
   },
   "failure_policy": {
     "default_mode": "fail_closed",
@@ -91,7 +77,7 @@
       "may_use_already_loaded_modules": true,
       "memory_substitution": false
     },
-    "anima_tag_index": {
+    "danbooru_tag_index": {
       "on_fetch_failure": "unverified_to_nl",
       "label": "[tag-index-unavailable]",
       "hard_tags_allowed": false,
