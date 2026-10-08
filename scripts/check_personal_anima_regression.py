@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """
-Deterministic personal Anima regression contract checks (P12 + P13 + P14).
+Deterministic prompt-architecture regression checks.
 
-This checker is deliberately offline. It never fetches the Good Anima corpus and
-never pretends to judge visual quality. Live-index and image-output cases remain
-manual in tests/personal-anima-regression.md.
+The visual quality cases remain manual. This checker verifies that the v4
+shared prompt architecture still preserves the critical Anima / NAI5 contracts:
+shared Visual Prompt Core, shared Danbooru verification, thin renderers,
+fail-closed behavior, and the existing P12/P13/P14 regression matrix.
 """
 from __future__ import annotations
 
@@ -30,18 +31,41 @@ def main() -> int:
     version = read("VERSION").strip()
     matrix = read("tests/personal-anima-regression.md")
 
-    expected_pack = [
-        "anima-tag-gate",
-        "anima-tag-classifier",
-        "anima-prompt-skeleton",
-        "anima-aesthetic-protection",
-        "anima-prompt-compressor",
-        "anima-tag-serializer",
-        "anima-prompt-compiler",
+    expected_anima = [
+        "visual-prompt-core",
+        "danbooru-tag-gate",
+        "anima-renderer",
     ]
+    expected_nai5 = [
+        "visual-prompt-core",
+        "danbooru-tag-gate",
+        "nai5-renderer",
+    ]
+
     require(
-        cfg["pipeline"]["pipeline_packs"].get("anima") == expected_pack,
-        "Anima pipeline order changed",
+        cfg["pipeline"]["pipeline_packs"].get("anima") == expected_anima,
+        "Anima pipeline pack changed",
+        failures,
+    )
+    require(
+        cfg["pipeline"]["pipeline_packs"].get("nai5") == expected_nai5,
+        "NAI5 pipeline pack changed",
+        failures,
+    )
+    require(
+        cfg["pipeline"].get("prompt_core") == "visual-prompt-core",
+        "shared prompt core is not registered",
+        failures,
+    )
+    require(
+        cfg["pipeline"].get("danbooru_tag_gate") == "danbooru-tag-gate",
+        "shared Danbooru gate is not registered",
+        failures,
+    )
+
+    require(
+        cfg["always_on"].keys() == {"personal-identity-profile", "creative-skill-router"},
+        "always-on scope drifted; only identity + router should be session-wide",
         failures,
     )
 
@@ -58,21 +82,21 @@ def main() -> int:
         failures,
     )
     require(
-        failure["anima_tag_index"].get("on_fetch_failure") == "unverified_to_nl",
-        "tag-index failure state is not unverified_to_nl",
+        failure["danbooru_tag_index"].get("on_fetch_failure") == "unverified_to_nl",
+        "Danbooru failure state is not unverified_to_nl",
         failures,
     )
     require(
-        failure["anima_tag_index"].get("hard_tags_allowed") is False,
-        "tag-index degradation permits hard_tags",
+        failure["danbooru_tag_index"].get("hard_tags_allowed") is False,
+        "Danbooru degradation permits hard_tags",
         failures,
     )
     require(
-        failure["anima_tag_index"].get("fuzzy_promotion") is False,
-        "tag-index degradation permits fuzzy promotion",
+        failure["danbooru_tag_index"].get("fuzzy_promotion") is False,
+        "Danbooru degradation permits fuzzy promotion",
         failures,
     )
-    for scope in ("standalone_module", "pipeline_pack", "anima_tag_index"):
+    for scope in ("standalone_module", "pipeline_pack", "danbooru_tag_index"):
         require(
             failure[scope].get("memory_substitution") is False,
             f"{scope} allows memory substitution",
@@ -80,45 +104,75 @@ def main() -> int:
         )
 
     sources = {
-        "gate": read("02_creation/anima-tag-gate/SKILL.md"),
-        "classifier": read("02_creation/anima-tag-classifier/SKILL.md"),
-        "skeleton": read("02_creation/anima-prompt-skeleton/SKILL.md"),
-        "compressor": read("02_creation/anima-prompt-compressor/SKILL.md"),
-        "serializer": read("02_creation/anima-tag-serializer/SKILL.md"),
-        "protection": read("02_creation/anima-aesthetic-protection/SKILL.md"),
-        "compiler": read("02_creation/anima-prompt-compiler/SKILL.md"),
+        "core": read("03_prompt/visual-prompt-core/SKILL.md"),
+        "gate": read("03_prompt/danbooru-tag-gate/SKILL.md"),
+        "anima": read("03_prompt/anima-renderer/SKILL.md"),
+        "nai5": read("03_prompt/nai5-renderer/SKILL.md"),
         "router": read("01_router/creative-skill-router/SKILL.md"),
         "kernel": read("kernel/KERNEL.md"),
     }
 
-    for needle in ("exact", "alias", "missing", "fuzzy", "hard_tags", "tag-index-unavailable", "37_(reverse:1999)"):
-        require(needle in sources["gate"], f"Tag Gate lost contract token: {needle}", failures)
+    for needle in (
+        "Visual Prompt Packet",
+        "style:",
+        "subject:",
+        "composition:",
+        "relations:",
+        "tag_candidates:",
+        "Compression",
+        "Design Lock",
+        "output_policy:",
+    ):
+        require(needle.lower() in sources["core"].lower(), f"Prompt Core lost contract token: {needle}", failures)
 
-    for needle in ("identity_scope", "artist", "character", "series", "appearance", "clothing", "action", "prompt_role"):
-        require(needle in sources["classifier"], f"Classifier lost contract token: {needle}", failures)
+    for needle in (
+        "exact",
+        "alias",
+        "missing",
+        "fuzzy",
+        "hard tag",
+        "37_(reverse:1999)",
+        "fail-closed",
+    ):
+        require(needle.lower() in sources["gate"].lower(), f"Danbooru Gate lost contract token: {needle}", failures)
 
-    for needle in ("hard_tags → Tag block", "nltags_block → Natural-language block", "garment hierarchy and overlap", "pose causality", "asymmetry distribution"):
-        require(needle in sources["skeleton"], f"Skeleton lost relation contract: {needle}", failures)
+    for needle in (
+        "Tag block",
+        "Natural Language",
+        "37_(reverse:1999)",
+        "37\\(reverse1999\\)",
+        "does not design",
+    ):
+        require(needle.lower() in sources["anima"].lower(), f"Anima renderer lost contract token: {needle}", failures)
 
-    for needle in ("Tier A", "Tier B", "Tier C", "smallest prompt", "identity", "punctum"):
-        require(needle.lower() in sources["compressor"].lower(), f"Compressor lost contract token: {needle}", failures)
+    for needle in (
+        "artist:",
+        "weight",
+        "char1",
+        "source#",
+        "target#",
+        "mutual#",
+        "does not design",
+    ):
+        require(needle.lower() in sources["nai5"].lower(), f"NAI5 renderer lost contract token: {needle}", failures)
 
-    for needle in ("canonical_tag", "serialized_tag", "serialized: 37\\\\", "idempot"):
-        require(needle in sources["serializer"], f"Serializer lost contract token: {needle}", failures)
+    for needle in (
+        "visual-prompt-core",
+        "danbooru-tag-gate",
+        "anima-renderer",
+        "nai5-renderer",
+    ):
+        require(needle.lower() in sources["router"].lower(), f"Router lost shared prompt route: {needle}", failures)
 
-    for needle in ("not an aesthetic generator", "design-drift", "asymmetry", "quiet field", "punctum"):
-        require(needle.lower() in sources["protection"].lower(), f"Protection lost contract token: {needle}", failures)
-
-    for needle in ("Blueprint Gate", "Failure boundary", "37_(reverse:1999)", "reverse1999"):
-        require(needle.lower() in sources["compiler"].lower(), f"Compiler lost boundary token: {needle}", failures)
-
-    require(
-        "pipeline pack" in sources["router"].lower() or "pipeline_packs.anima" in sources["router"],
-        "Router no longer names the Anima pipeline pack",
-        failures,
-    )
-    for needle in ("card-only", "pipeline-unavailable", "tag-index-unavailable", "memory", "silent"):
-        require(needle.lower() in sources["kernel"].lower(), f"Kernel lost failure guard: {needle}", failures)
+    for needle in (
+        "Visual Prompt Packet",
+        "renderer",
+        "card-only",
+        "pipeline-unavailable",
+        "tag-index-unavailable",
+        "memory",
+    ):
+        require(needle.lower() in sources["kernel"].lower(), f"Kernel lost architecture/failure guard: {needle}", failures)
 
     case_ids = re.findall(r"^### (P12-[A-Z]+-\d{2})\s+—", matrix, re.M)
     expected_prefixes = {
@@ -133,7 +187,7 @@ def main() -> int:
             failures,
         )
     require(len(case_ids) == 36, f"expected 36 P12 cases, found {len(case_ids)}", failures)
-    require(version == "3.8.0", f"VERSION must be 3.8.0, found {version}", failures)
+    require(version == "4.0.0", f"VERSION must be 4.0.0, found {version}", failures)
 
     p13 = read("tests/p13-real-task-regression.md")
     p13_cases = re.findall(r"^### (P13-(?:\d{2}|X-\d{2}))\s+—", p13, re.M)
@@ -166,12 +220,12 @@ def main() -> int:
         require(needle.lower() in p14.lower(), f"P14 regression contract lost required concept: {needle}", failures)
 
     if failures:
-        print("Personal Anima regression contract: FAIL")
+        print("Prompt architecture regression contract: FAIL")
         for item in failures:
             print(f"  ERROR {item}")
         return 1
 
-    print(f"Personal Anima regression contract: PASS — {len(case_ids)} P12 cases + 16 P13 cases, version {version}")
+    print(f"Prompt architecture regression contract: PASS — {len(case_ids)} P12 cases + 16 P13 cases, version {version}")
     return 0
 
 
