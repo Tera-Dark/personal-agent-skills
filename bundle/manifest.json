@@ -1,35 +1,38 @@
 {
   "name": "personal-agent-skills",
-  "version": "3.8.0",
+  "version": "4.0.0",
   "repo": "Tera-Dark/personal-agent-skills",
   "branch": "main",
   "raw_base": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/",
   "harness_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS.md",
   "harness_full_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS-FULL.md",
-  "handshake": "Harness v3.8.0 loaded · 20 modules · 说需求，或发参考图。",
-  "core_tokens": 30429,
-  "full_tokens": 93887,
+  "handshake": "Harness v4.0.0 loaded · 16 modules · 说需求，或发参考图。",
+  "core_tokens": 20989,
+  "full_tokens": 101571,
   "pipeline": {
     "aesthetic_gate": "aesthetic-director-core",
     "blueprint_gate": {
       "character": "character-design-engine",
       "illustration": "illustration-direction"
     },
+    "prompt_core": "visual-prompt-core",
+    "danbooru_tag_gate": "danbooru-tag-gate",
     "evaluation_gate": "evaluation-loop",
     "adapters": [
-      "anima-prompt-compiler",
-      "nai5-community-prompt-engineering",
+      "anima-renderer",
+      "nai5-renderer",
       "general-image-prompt-adapter"
     ],
     "pipeline_packs": {
       "anima": [
-        "anima-tag-gate",
-        "anima-tag-classifier",
-        "anima-prompt-skeleton",
-        "anima-aesthetic-protection",
-        "anima-prompt-compressor",
-        "anima-tag-serializer",
-        "anima-prompt-compiler"
+        "visual-prompt-core",
+        "danbooru-tag-gate",
+        "anima-renderer"
+      ],
+      "nai5": [
+        "visual-prompt-core",
+        "danbooru-tag-gate",
+        "nai5-renderer"
       ]
     }
   },
@@ -48,7 +51,7 @@
       "may_use_already_loaded_modules": true,
       "memory_substitution": false
     },
-    "anima_tag_index": {
+    "danbooru_tag_index": {
       "on_fetch_failure": "unverified_to_nl",
       "label": "[tag-index-unavailable]",
       "hard_tags_allowed": false,
@@ -60,49 +63,31 @@
   "pipeline_packs": {
     "anima": {
       "modules": [
-        "anima-tag-gate",
-        "anima-tag-classifier",
-        "anima-prompt-skeleton",
-        "anima-aesthetic-protection",
-        "anima-prompt-compressor",
-        "anima-tag-serializer",
-        "anima-prompt-compiler"
+        "visual-prompt-core",
+        "danbooru-tag-gate",
+        "anima-renderer"
       ],
       "fetches_as": 1,
       "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/pipelines/anima.md"
+    },
+    "nai5": {
+      "modules": [
+        "visual-prompt-core",
+        "danbooru-tag-gate",
+        "nai5-renderer"
+      ],
+      "fetches_as": 1,
+      "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/pipelines/nai5.md"
     }
   },
   "modules": [
-    {
-      "name": "aesthetic-director-core",
-      "layer": "00_core",
-      "load": "always",
-      "status": "active",
-      "version": "2.3.0",
-      "description": "Creative direction layer that turns a vague request into one committed design idea before any blueprint or prompt is written. Runs a sequence of generative \"moves\" (find the obsession, plant a contradiction, pick from the tail, build causality, subtract, keep one strange thing) and produces a short Creative Brief with rejected alternatives. Use for any OC / character / illustration / fashion / key-visual request, whenever output feels generic, \"AI-flavored\", too plain, too busy, or when the user asks for taste, direction, 审美, 创意方向, 人味, 高级感, 不要AI味.",
-      "triggers": "OC, 人设, 插画, 服装, 审美, 创意方向, 人味, 高级感, 不要AI味, 太平淡, 太乱",
-      "path": "00_core/aesthetic-director-core",
-      "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/00_core/aesthetic-director-core",
-      "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/aesthetic-director-core.md",
-      "references": [
-        "references/creative-moves.md",
-        "references/feedback-diagnosis.md",
-        "references/taste-calibration-pairs.md",
-        "references/design-calibration-examples.md",
-        "references/anti-ai-patterns.md",
-        "references/emotional-design.md",
-        "references/modern-key-visual-grammar.md"
-      ],
-      "tokens_skill": 2934,
-      "tokens_bundle": 13380
-    },
     {
       "name": "personal-identity-profile",
       "layer": "00_core",
       "load": "always",
       "status": "active",
-      "version": "2.1.0",
-      "description": "Persistent identity and taste layer for Tera-Dark's creative work. Holds the aesthetic signature (structured foundation, one strange thing, a hint of danger, modern key-visual impact, fashion-grade garment construction, female-oriented OC/gacha sensibility), hard dislikes (watches, cyber/mech, random butterflies-roses-particles, adjective costumes), business goals and workflow style. Does not generate prompts. Load first for any creative, design, illustration, prompt or aesthetic-judgment task; also when the user says 我的风格, 我喜欢, 按我习惯, 个人偏好.",
+      "version": "2.4.0",
+      "description": "Persistent identity and taste layer for Tera-Dark's creative work. Holds the aesthetic signature (structured foundation, one strange thing, a hint of danger, modern key-visual impact, fashion-grade garment construction, female-oriented OC/gacha sensibility, Xiao-artist female-oriented 2D taste and NAI5 artist-mixing rules), hard dislikes (watches, cyber/mech, random butterflies-roses-particles, adjective costumes), business goals. Does not generate prompts. Load first for any creative, design, illustration, prompt or aesthetic-judgment task; also when the user says 我的风格, 我喜欢, 按我习惯, 个人偏好.",
       "triggers": "我的风格, 个人偏好, 按我习惯, any creative task",
       "path": "00_core/personal-identity-profile",
       "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/00_core/personal-identity-profile",
@@ -110,154 +95,69 @@
       "references": [
         "references/taste-signature.md",
         "references/design-dislikes.md",
-        "references/workflow-style.md",
         "references/visual-preferences.md",
-        "references/business-objectives.md"
+        "references/business-objectives.md",
+        "references/nai5-artist-pool.md"
       ],
-      "tokens_skill": 589,
-      "tokens_bundle": 4832
+      "tokens_skill": 582,
+      "tokens_bundle": 15353
+    },
+    {
+      "name": "aesthetic-director-core",
+      "layer": "00_core",
+      "load": "on-demand",
+      "status": "active",
+      "version": "2.5.0",
+      "description": "Creative direction layer that turns a vague request into one committed design idea before any blueprint or prompt is written. Runs a sequence of generative \"moves\" (find the obsession, plant a contradiction, pick from the tail, build causality, subtract, keep one strange thing) and produces a short Creative Brief with rejected alternatives. Use for any OC / character / illustration / fashion / key-visual request, whenever output feels generic, \"AI-flavored\", too plain, too busy, or when the user asks for taste, direction, 审美, 创意方向, 人味, 高级感, 不要AI味.",
+      "triggers": "OC, 人设, 插画, 服装, 海报, 联动海报, 艺术海报, key visual, crossover poster, 审美, 创意方向, 人味, 高级感, 不要AI味, 太平淡, 太乱",
+      "path": "00_core/aesthetic-director-core",
+      "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/00_core/aesthetic-director-core",
+      "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/aesthetic-director-core.md",
+      "references": [
+        "references/high-aesthetic-calibration-library.md",
+        "references/creative-moves.md",
+        "references/modern-poster-design-grammar.md",
+        "references/feedback-diagnosis.md",
+        "references/taste-calibration-pairs.md",
+        "references/design-calibration-examples.md",
+        "references/anti-ai-patterns.md",
+        "references/emotional-design.md",
+        "references/modern-key-visual-grammar.md"
+      ],
+      "tokens_skill": 4779,
+      "tokens_bundle": 26085
     },
     {
       "name": "creative-skill-router",
       "layer": "01_router",
       "load": "always",
       "status": "active",
-      "version": "3.5.0",
-      "description": "Entry point for all creative requests in this skill hub. Classifies intent (OC/character design, illustration, fashion, NAI5 prompt, Anima prompt, image reverse analysis, prompt review, ComfyUI/LoRA/dataset), loads identity + aesthetic direction first, then hands off to the right specialist and model adapter. Use whenever a request involves 设计, OC, 人设, 立绘, 插画, 服装, 提示词, prompt, NAI, NovelAI, Anima, 反推, 分析图片, ComfyUI, LoRA, or when it is unclear which skill should handle a creative task.",
-      "triggers": "any request; 设计, 提示词, prompt, 反推, 分析, ComfyUI, LoRA",
+      "version": "4.0.0",
+      "description": "Entry point for all creative requests. Classifies intent and sends the task to design, analysis, shared prompt compilation, target-model rendering, evaluation, or technical modules. Use for 设计, OC, 人设, 立绘, 插画, 提示词, prompt, NAI, NovelAI, Anima, 反推, 分析图片, ComfyUI, LoRA, or ambiguous creative tasks.",
+      "triggers": "any request, 设计, 提示词, prompt, 反推, 分析, ComfyUI, LoRA, NAI5, Anima",
       "path": "01_router/creative-skill-router",
       "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/01_router/creative-skill-router",
       "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/creative-skill-router.md",
       "references": [
-        "references/model-selection.md",
-        "references/task-classification.md",
-        "references/routing-rules.md",
         "references/execution-flow.md",
-        "references/skill-map.md"
+        "references/model-selection.md",
+        "references/routing-rules.md",
+        "references/skill-map.md",
+        "references/task-classification.md"
       ],
-      "tokens_skill": 2545,
-      "tokens_bundle": 4860
-    },
-    {
-      "name": "anima-aesthetic-protection",
-      "layer": "02_creation",
-      "load": "on-demand",
-      "status": "active",
-      "version": "1.0.0",
-      "description": "Protection boundary for Anima prompt compilation. Prevents tag verification, classification, compression, serialization and model-adapter rules from altering finished aesthetic decisions, composition, silhouette, asymmetry, focal hierarchy or visual grammar. Use as an audit layer before final Anima output.",
-      "triggers": "Anima aesthetic protection, design lock, prompt design drift, aesthetic audit",
-      "path": "02_creation/anima-aesthetic-protection",
-      "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_creation/anima-aesthetic-protection",
-      "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-aesthetic-protection.md",
-      "references": [],
-      "tokens_skill": 1172,
-      "tokens_bundle": 1316
-    },
-    {
-      "name": "anima-prompt-compiler",
-      "layer": "02_creation",
-      "load": "on-demand",
-      "status": "active",
-      "version": "2.9.0",
-      "description": "Model adapter that compiles a finished character or illustration blueprint into Anima-ready English prompts in a disciplined Tag block + Natural Language block format. Handles Anima-specific format contract, length budgets, positive-first output, V1 faithful / V2 enhanced modes, model profiles and artifact troubleshooting. Use when the user asks for Anima prompts, Anima 提示词, or names an Anima checkpoint. Does not design — if no blueprint exists, route through aesthetic-director-core and character-design-engine / illustration-direction first.",
-      "triggers": "Anima, Anima 提示词, Anima checkpoint",
-      "path": "02_creation/anima-prompt-compiler",
-      "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_creation/anima-prompt-compiler",
-      "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-prompt-compiler.md",
-      "references": [
-        "references/anima-model-profiles.md",
-        "references/anima-troubleshooting.md"
-      ],
-      "tokens_skill": 3391,
-      "tokens_bundle": 8645
-    },
-    {
-      "name": "anima-prompt-compressor",
-      "layer": "02_creation",
-      "load": "on-demand",
-      "status": "active",
-      "version": "1.1.0",
-      "description": "Minimal-sufficient prompt compression layer for Anima. Removes low-impact, redundant, decorative and merely explanatory text after skeleton planning while protecting identity, locked facts, silhouette, key garment structure, pose and one visual punctum. Use before final Anima syntax serialization and compilation.",
-      "triggers": "Anima prompt compression, prompt shortening, token reduction, minimal prompt",
-      "path": "02_creation/anima-prompt-compressor",
-      "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_creation/anima-prompt-compressor",
-      "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-prompt-compressor.md",
-      "references": [],
-      "tokens_skill": 1504,
-      "tokens_bundle": 1650
-    },
-    {
-      "name": "anima-prompt-skeleton",
-      "layer": "02_creation",
-      "load": "on-demand",
-      "status": "active",
-      "version": "1.1.0",
-      "description": "Compact Anima prompt-structure layer that maps a finished blueprint into stable hard anchors and relational natural language. Absorbs Good Anima's hard_tags, soft_phrases, and nltags concepts without adding a third user-visible block. Use after tag classification and before serialization/compiler assembly.",
-      "triggers": "Anima prompt skeleton, hard tags, natural language relations, nltags",
-      "path": "02_creation/anima-prompt-skeleton",
-      "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_creation/anima-prompt-skeleton",
-      "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-prompt-skeleton.md",
-      "references": [],
-      "tokens_skill": 1558,
-      "tokens_bundle": 1703
-    },
-    {
-      "name": "anima-tag-classifier",
-      "layer": "02_creation",
-      "load": "on-demand",
-      "status": "active",
-      "version": "1.0.0",
-      "description": "Lightweight classification and filtering layer for verified Anima Danbooru tags. Assigns intent groups, identity sensitivity, and prompt-role classes without inventing or fuzzy-matching tags. Use after anima-tag-gate and before prompt compilation when tag selection needs category-aware filtering.",
-      "triggers": "Anima tag classification, Danbooru tag category, tag filtering, hard tag filtering",
-      "path": "02_creation/anima-tag-classifier",
-      "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_creation/anima-tag-classifier",
-      "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-tag-classifier.md",
-      "references": [],
-      "tokens_skill": 1454,
-      "tokens_bundle": 1594
-    },
-    {
-      "name": "anima-tag-gate",
-      "layer": "02_creation",
-      "load": "on-demand",
-      "status": "active",
-      "version": "1.1.0",
-      "description": "Web-first validation gate for Anima Danbooru hard tags. Resolves exact canonical tags, exact aliases, or missing without fuzzy promotion. Uses the Anima 1.0 tag index protocol and never changes creative decisions. Triggers: Anima tag validation, Danbooru tag check, hard tag verification.",
-      "triggers": "Anima tag validation, Danbooru tag check, hard tag verification",
-      "path": "02_creation/anima-tag-gate",
-      "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_creation/anima-tag-gate",
-      "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-tag-gate.md",
-      "references": [
-        "references/anima-tag-index.md"
-      ],
-      "tokens_skill": 1558,
-      "tokens_bundle": 2125
-    },
-    {
-      "name": "anima-tag-serializer",
-      "layer": "02_creation",
-      "load": "on-demand",
-      "status": "active",
-      "version": "1.0.0",
-      "description": "Final serialization layer for verified Anima Danbooru tags. Converts canonical tag identities into exact Anima-safe syntax only for explicitly registered syntax rules, preserving ordinary tags and never discovering, rewriting, or inventing identities. Use after anima-tag-classifier and before anima-prompt-compiler serialization.",
-      "triggers": "Anima tag serialization, Anima syntax escaping, 37 Reverse1999 syntax",
-      "path": "02_creation/anima-tag-serializer",
-      "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_creation/anima-tag-serializer",
-      "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-tag-serializer.md",
-      "references": [],
-      "tokens_skill": 1247,
-      "tokens_bundle": 1394
+      "tokens_skill": 775,
+      "tokens_bundle": 3040
     },
     {
       "name": "character-design-engine",
-      "layer": "02_creation",
+      "layer": "02_design",
       "load": "on-demand",
       "status": "active",
       "version": "2.5.0",
       "description": "Turns a Creative Brief (from aesthetic-director-core) into a complete, model-agnostic character blueprint — design thesis, silhouette architecture, visual anchors, garment engineering (base / structural / signature extension / accessory system), material contrast, palette hierarchy, behavioral pose + camera, narrative residue, presentation format — then runs a subtraction pass. Use for OC, 人设, 角色设计, 服装设计, 立绘, 高定服设, 二游角色, character sheet, fashion concept. Never writes model-specific prompt syntax.",
       "triggers": "OC, 人设, 角色设计, 服装设计, 立绘, 高定服设, 二游角色, character sheet, 极繁, 极繁精美, 华丽人设, 原创圈",
-      "path": "02_creation/character-design-engine",
-      "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_creation/character-design-engine",
+      "path": "02_design/character-design-engine",
+      "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_design/character-design-engine",
       "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/character-design-engine.md",
       "references": [
         "references/maximalist-oc-design-grammar.md",
@@ -266,35 +166,18 @@
         "references/garment-lexicon.md"
       ],
       "tokens_skill": 4151,
-      "tokens_bundle": 15338
-    },
-    {
-      "name": "general-image-prompt-adapter",
-      "layer": "02_creation",
-      "load": "on-demand",
-      "status": "active",
-      "version": "0.2.0",
-      "description": "Model adapter that compiles a finished character or illustration blueprint into a natural-language image prompt for models that are not Anima or NAI5 — Midjourney, DALL-E / GPT Image, Google Imagen / Gemini image, Flux, SDXL-style checkpoints, or an unnamed target. Keeps parameters out of the prompt unless the target officially supports them, and labels every model-specific claim with an evidence level. Use when the user names any other image model, says 通用提示词, MJ, Midjourney, DALL-E, Imagen, Flux, SD, 或没说用什么模型. Does not design — if no blueprint exists, route through aesthetic-director-core first.",
-      "triggers": "Midjourney, MJ, DALL-E, GPT Image, Imagen, Gemini image, Nano Banana, Flux, SDXL, Stable Diffusion, 通用提示词, 其他模型, 不知道用什么模型",
-      "path": "02_creation/general-image-prompt-adapter",
-      "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_creation/general-image-prompt-adapter",
-      "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/general-image-prompt-adapter.md",
-      "references": [
-        "references/target-notes.md"
-      ],
-      "tokens_skill": 1180,
-      "tokens_bundle": 2186
+      "tokens_bundle": 15337
     },
     {
       "name": "illustration-direction",
-      "layer": "02_creation",
+      "layer": "02_design",
       "load": "on-demand",
       "status": "active",
       "version": "2.4.0",
       "description": "Turns a Creative Brief into an authored, model-agnostic illustration blueprint — the image thesis, captured moment, visual motif, environment-character relationship, camera and framing, scale contrast, negative space, physical light sources, density map, narrative residue, and one coherent surreal detail. Use for 插画, 氛围图, 竖屏, 半留白, 印象风, 故事感, key visual, poster, scene illustration, cinematic composition, or whenever a character needs to be placed into a designed moment rather than displayed on a plate. Never writes model-specific prompt syntax.",
       "triggers": "插画, 氛围图, 竖屏, 半留白, 印象风, 故事感, key visual, poster, scene, 极繁, 特写垫底, 大头贴, 元素贴, 角色拼贴",
-      "path": "02_creation/illustration-direction",
-      "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_creation/illustration-direction",
+      "path": "02_design/illustration-direction",
+      "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_design/illustration-direction",
       "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/illustration-direction.md",
       "references": [
         "references/composition-patterns.md",
@@ -303,44 +186,112 @@
         "references/atmosphere-presets.md",
         "references/white-background-fashion-grammar.md"
       ],
-      "tokens_skill": 3551,
-      "tokens_bundle": 16883
+      "tokens_skill": 3577,
+      "tokens_bundle": 16908
     },
     {
-      "name": "nai5-community-prompt-engineering",
-      "layer": "02_creation",
+      "name": "anima-renderer",
+      "layer": "03_prompt",
       "load": "on-demand",
       "status": "active",
-      "version": "2.5.0",
-      "description": "Model adapter that compiles a finished character or illustration blueprint into NovelAI V5 community-format prompts — weighted artist stack, global style layer, scene base, char1/char2 blocks, source#/target#/mutual# interaction tags, and optional targeted negative steering with weight::tag:: syntax. Use when the user asks for NAI5, NovelAI, NAI提示词, tag prompt, Danbooru-style prompt. Does not design — if no blueprint exists, route through aesthetic-director-core and character-design-engine / illustration-direction first.",
-      "triggers": "NAI5, NovelAI, NAI提示词, tag prompt, Danbooru, artist stack, char1",
-      "path": "02_creation/nai5-community-prompt-engineering",
-      "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_creation/nai5-community-prompt-engineering",
-      "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/nai5-community-prompt-engineering.md",
+      "version": "0.1.0",
+      "description": "Thin Anima-specific renderer that converts a Visual Prompt Packet plus verified Danbooru tags into the established Anima Tag + Natural Language prompt. Handles only Anima syntax, tag serialization, relation wording, output modes, and final target-specific checks. Does not design.",
+      "triggers": "Anima, Anima prompt, Anima 提示词, Anima checkpoint",
+      "path": "03_prompt/anima-renderer",
+      "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/03_prompt/anima-renderer",
+      "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-renderer.md",
+      "references": [
+        "references/anima-model-profiles.md",
+        "references/anima-troubleshooting.md"
+      ],
+      "tokens_skill": 699,
+      "tokens_bundle": 5876
+    },
+    {
+      "name": "danbooru-tag-gate",
+      "layer": "03_prompt",
+      "load": "on-demand",
+      "status": "active",
+      "version": "1.2.0",
+      "description": "Web-first validation boundary for Danbooru-derived hard tags shared by Anima and NAI5 workflows. Resolves exact canonical tags, exact aliases, or missing without fuzzy promotion. Use whenever a prompt packet needs verified Danbooru identity.",
+      "triggers": "Danbooru tag, tag validation, tag check, exact tag, alias, tag verification",
+      "path": "03_prompt/danbooru-tag-gate",
+      "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/03_prompt/danbooru-tag-gate",
+      "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/danbooru-tag-gate.md",
+      "references": [
+        "references/tag-index.md"
+      ],
+      "tokens_skill": 850,
+      "tokens_bundle": 1404
+    },
+    {
+      "name": "general-image-prompt-adapter",
+      "layer": "03_prompt",
+      "load": "on-demand",
+      "status": "active",
+      "version": "0.2.0",
+      "description": "Model adapter that compiles a finished character or illustration blueprint into a natural-language image prompt for models that are not Anima or NAI5 — Midjourney, DALL-E / GPT Image, Google Imagen / Gemini image, Flux, SDXL-style checkpoints, or an unnamed target. Keeps parameters out of the prompt unless the target officially supports them, and labels every model-specific claim with an evidence level. Use when the user names any other image model, says 通用提示词, MJ, Midjourney, DALL-E, Imagen, Flux, SD, 或没说用什么模型. Does not design — if no blueprint exists, route through aesthetic-director-core first.",
+      "triggers": "Midjourney, MJ, DALL-E, GPT Image, Imagen, Gemini image, Nano Banana, Flux, SDXL, Stable Diffusion, 通用提示词, 其他模型, 不知道用什么模型",
+      "path": "03_prompt/general-image-prompt-adapter",
+      "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/03_prompt/general-image-prompt-adapter",
+      "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/general-image-prompt-adapter.md",
+      "references": [
+        "references/target-notes.md"
+      ],
+      "tokens_skill": 1229,
+      "tokens_bundle": 2234
+    },
+    {
+      "name": "nai5-renderer",
+      "layer": "03_prompt",
+      "load": "on-demand",
+      "status": "active",
+      "version": "0.1.0",
+      "description": "Thin NovelAI V5 community renderer that converts a Visual Prompt Packet plus verified Danbooru tags into the user's compact NAI5 prompt format. Handles artist namespace, weighting syntax, scene and character blocks, interaction tags, ordering, and optional targeted negatives. Does not design.",
+      "triggers": "NAI5, NovelAI, NAI提示词, tag prompt, Danbooru prompt, artist stack",
+      "path": "03_prompt/nai5-renderer",
+      "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/03_prompt/nai5-renderer",
+      "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/nai5-renderer.md",
       "references": [
         "references/community-format.md",
+        "references/artist-stack.md",
         "references/style-layer.md",
         "references/character-block.md",
-        "references/tag-taxonomy.md",
         "references/interaction-tags.md",
         "references/scene-block.md",
-        "references/artist-stack.md",
+        "references/tag-taxonomy.md",
+        "references/weighting.md",
         "references/negative-strategy.md",
-        "references/weighting.md"
+        "references/single-artist-test-protocol.md"
       ],
-      "tokens_skill": 3279,
-      "tokens_bundle": 6006
+      "tokens_skill": 1028,
+      "tokens_bundle": 4188
+    },
+    {
+      "name": "visual-prompt-core",
+      "layer": "03_prompt",
+      "load": "on-demand",
+      "status": "active",
+      "version": "0.1.0",
+      "description": "Model-agnostic prompt planning layer that converts a validated character or illustration blueprint into one compact Visual Prompt Packet shared by Anima, NAI5, and future image-model renderers. Use after design is complete and before any model-specific prompt syntax. Does not redesign the concept or emit target-model syntax.",
+      "triggers": "prompt packet, visual prompt, prompt core, 提示词编译, 提示词规划, NAI5, Anima",
+      "path": "03_prompt/visual-prompt-core",
+      "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/03_prompt/visual-prompt-core",
+      "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/visual-prompt-core.md",
+      "references": [],
+      "tokens_skill": 1406,
+      "tokens_bundle": 1551
     },
     {
       "name": "image-reverse-analysis",
-      "layer": "03_analysis",
+      "layer": "04_analysis",
       "load": "on-demand",
       "status": "active",
       "version": "2.1.0",
       "description": "Decomposes a reference image into transferable design language — silhouette and mass distribution, motif grammar, garment construction, material contrast, palette hierarchy, pose logic, negative space and presentation format — instead of a tag dump. Output feeds aesthetic-director-core (for original work) or a model adapter (for faithful reproduction). Use for 反推, 分析图片, 提取提示词, 还原风格, 参考这张图, reverse prompt, image analysis.",
       "triggers": "反推, 分析图片, 提取提示词, 还原风格, 参考这张, reverse prompt, reference image",
-      "path": "03_analysis/image-reverse-analysis",
-      "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/03_analysis/image-reverse-analysis",
+      "path": "04_analysis/image-reverse-analysis",
+      "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/04_analysis/image-reverse-analysis",
       "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/image-reverse-analysis.md",
       "references": [
         "references/design-language-extraction.md"
@@ -350,14 +301,14 @@
     },
     {
       "name": "prompt-analysis",
-      "layer": "03_analysis",
+      "layer": "04_analysis",
       "load": "on-demand",
       "status": "active",
       "version": "2.0.0",
       "description": "Reviews an existing image-generation prompt by separating design intent from model syntax — what it is trying to say, which design layer is weak (thesis, silhouette, garment structure, causality, density, punctum), what is noise, and what a rewrite should change. Use for 优化提示词, 这个 prompt 哪里有问题, prompt review, 分析这段提示词, why does this prompt not work.",
       "triggers": "优化提示词, prompt 哪里有问题, prompt review, 分析这段提示词",
-      "path": "03_analysis/prompt-analysis",
-      "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/03_analysis/prompt-analysis",
+      "path": "04_analysis/prompt-analysis",
+      "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/04_analysis/prompt-analysis",
       "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/prompt-analysis.md",
       "references": [],
       "tokens_skill": 546,
@@ -365,14 +316,14 @@
     },
     {
       "name": "comfyui-workflow",
-      "layer": "04_tools",
+      "layer": "05_tools",
       "load": "on-demand",
       "status": "planned",
       "version": "0.1.0",
       "description": "Technical placeholder for ComfyUI workflow organization, node troubleshooting, metadata and LoRA/model integration. Use when the user mentions ComfyUI, workflow json, nodes, 工作流. Does not handle design or prompt creativity.",
       "triggers": "ComfyUI, workflow, nodes, 工作流",
-      "path": "04_tools/comfyui-workflow",
-      "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/04_tools/comfyui-workflow",
+      "path": "05_tools/comfyui-workflow",
+      "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/05_tools/comfyui-workflow",
       "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/comfyui-workflow.md",
       "references": [],
       "tokens_skill": 162,
@@ -380,14 +331,14 @@
     },
     {
       "name": "dataset-management",
-      "layer": "04_tools",
+      "layer": "05_tools",
       "load": "on-demand",
       "status": "planned",
       "version": "0.1.0",
       "description": "Technical placeholder for image dataset organization, caption/tag management and training preparation. Use when the user mentions dataset, 数据集, 打标, captions, 训练集. Does not handle visual design decisions.",
       "triggers": "dataset, 数据集, 打标, captions, 训练集",
-      "path": "04_tools/dataset-management",
-      "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/04_tools/dataset-management",
+      "path": "05_tools/dataset-management",
+      "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/05_tools/dataset-management",
       "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/dataset-management.md",
       "references": [],
       "tokens_skill": 147,
@@ -395,14 +346,14 @@
     },
     {
       "name": "lora-training",
-      "layer": "04_tools",
+      "layer": "05_tools",
       "load": "on-demand",
       "status": "planned",
       "version": "0.1.0",
       "description": "Technical placeholder for LoRA training pipelines: dataset prep, caption organization, training configuration, evaluation. Use when the user mentions LoRA, 训练, fine-tune, 炼丹. Does not decide character concepts or artistic direction.",
       "triggers": "LoRA, 训练, fine-tune, 炼丹",
-      "path": "04_tools/lora-training",
-      "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/04_tools/lora-training",
+      "path": "05_tools/lora-training",
+      "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/05_tools/lora-training",
       "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/lora-training.md",
       "references": [],
       "tokens_skill": 151,
@@ -410,18 +361,18 @@
     },
     {
       "name": "evaluation-loop",
-      "layer": "05_evaluation",
-      "load": "always",
+      "layer": "06_evaluation",
+      "load": "on-demand",
       "status": "active",
       "version": "2.3.0",
       "description": "Evaluates a generated image or compiled prompt against the original Creative Brief and blueprint, using a fixed rubric (identity preservation, outfit binding, spatial clarity, unrequested additions, V1/V2 consistency, output contract) plus a design-layer read (thesis, silhouette, causality, density, punctum, one strange thing). Diagnoses which layer failed and routes the fix to that layer with a single-variable change. Use on any feedback round: 太平淡, 太乱, 不像, 没人味, 这版可以, 评价一下, 哪里不对, compare versions.",
       "triggers": "太平淡, 太乱, 不像, 没人味, 这版可以, 评价一下, 哪里不对, compare",
-      "path": "05_evaluation/evaluation-loop",
-      "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/05_evaluation/evaluation-loop",
+      "path": "06_evaluation/evaluation-loop",
+      "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/06_evaluation/evaluation-loop",
       "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/evaluation-loop.md",
       "references": [],
       "tokens_skill": 1395,
-      "tokens_bundle": 1599
+      "tokens_bundle": 1600
     }
   ]
 }
