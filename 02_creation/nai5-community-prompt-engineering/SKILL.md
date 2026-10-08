@@ -92,6 +92,12 @@ artist:mr.owlish
 
 `artist collaboration` 属于社区实验性控制词，不视为 NovelAI 官方保证的“强制合作机制”。社区测试中有人报告它能改善多画师混合时的风格统一，也有人使用负权重来抑制它；因此在本个人工作流里把它作为**默认正向实验变量**，而不是绝对规则。需要验证时保持同一 seed / prompt，只改变这一项。
 
+### Artist Collaboration 模式
+
+当前个人多画师实验默认在 artist stack 末尾加入 artist collaboration。
+
+artist collaboration 属于社区实验性控制词，不视为官方保证的特殊融合机制；需要验证时使用同 seed / prompt 做 A/B 测试。
+
 必要时控制：
 
 -1::artist collaboration::
@@ -244,6 +250,9 @@ Tag 格式天然会丢失“关系”。补救：
 - [ ] 若为当前个人随机模式，画师总数是否控制在 4–8 位？
 - [ ] 每个 artist 权重是否在 0.3–1.2？
 - [ ] 是否至少存在 1 个 >1.0 的 artist？
+- [ ] 是否采用 1–2 位主画师 + 2–6 位辅助画师？
+- [ ] 是否默认带 artist collaboration？
+- [ ] yellow pool 是否被排除？
 - [ ] 是否采用 1–2 位主画师 + 2–6 位辅助画师？
 - [ ] 当前个人随机模式是否默认带 `artist collaboration`？
 - [ ] 黄色池 artist 是否被排除？
