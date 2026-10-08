@@ -3,7 +3,7 @@ name: nai5-community-prompt-engineering
 description: Model adapter that compiles a finished character or illustration blueprint into NovelAI V5 community-format prompts — weighted artist stack, global style layer, scene base, char1/char2 blocks, source#/target#/mutual# interaction tags, and optional targeted negative steering with weight::tag:: syntax. Use when the user asks for NAI5, NovelAI, NAI提示词, tag prompt, Danbooru-style prompt. Does not design — if no blueprint exists, route through aesthetic-director-core and character-design-engine / illustration-direction first.
 metadata:
   author: Tera-Dark
-  version: "2.6.0"
+  version: "2.7.0"
   layer: "02_creation"
   load: "on-demand"
   status: "active"
@@ -20,7 +20,7 @@ This skill is an adapter, not a design engine. It may compile only a finished bl
 
 本 Skill 是**适配器**：把已经做完设计决定的 blueprint 翻译成 NovelAI V5 社区格式。
 
-本 Skill 遵循 NAI5 数值 emphasis 语义与本用户的个人实验规则。个人覆盖层见 references/personal-usage-profile.md。默认实验模式为 3–8 位 artist、每位 0.3–1.2、至少 1 位 >1.0；默认直接给一段可复制 prompt；用户通常已有自己的 Negative，因此默认不输出。
+本 Skill 遵循 NAI5 数值 emphasis 语义与本用户的个人实验规则。个人覆盖层见 references/personal-usage-profile.md。当前个人实验模式为 4–8 位 artist：固定 1–2 位主画师（master anchors）+ 随机抽取 2–6 位辅助画师（assistants），每位权重 0.3–1.2，至少 1 位 artist 权重 >1.0，并在该实验模式末尾加入 `artist collaboration`；默认直接给可复制结果，用户通常已有自己的 Negative，因此默认不输出。
 
 **输入检查**：同 `anima-prompt-compiler`。没有命题 / 轮廓 / 四层服装 / 刺点 / 锁定事实的输入不是 blueprint，退回 router。
 
@@ -60,13 +60,15 @@ NovelAI 官方数值 emphasis 规则：
 
 **Blacklist gate:** Any artist tag whose final character is a digit is ineligible for all new stacks by default. This includes random selection, manual recommendations, and single-artist tests unless the user explicitly overrides the rule.
 
-当用户提供一个画师池并要求随机生成：
-- 随机抽 3–8 位 artist
-- 每位 artist 权重范围 0.3–1.2
+当用户要求按当前个人实验模式随机生成：
+- 总数随机为 4–8 位 artist
+- 先固定 1–2 位主画师，再从辅助池随机抽 2–6 位
+- 主画师通常位于 1.05–1.20；辅助画师位于 0.3–1.0，具体值按实验需要调整
 - 至少 1 位 artist 权重必须 >1.0
-- 不强制主 + 低辅梯度；以组合整体实验为目标
 - 同组不得重复 artist
-- 画师跨度很大时先减少冲突 artist；如果用户明确要求当前实验模式，仍保持 3–8 位范围内做组合测试
+- 默认在末尾加入 `artist collaboration`
+- 不把黄色池 artist 混入主流 roll
+- 画师跨度很大时优先减少冲突 artist；不要靠无脑加人解决问题
 - 如果出现噪点、脏图、风格撕裂，第一排查项是 artist 数量、主次权重与冲突 tag，而不是继续增加 prompt 内容
 
 ### Preserve user syntax
@@ -82,6 +84,13 @@ artist:mr.owlish
 其中明显异常/不完整的条目不要猜测含义并推到主画师位置；可跳过，或仅在低影响位置使用。
 
 特殊条目或任何末尾数字画师均不得进入新 stack；`artist:vlfdus_0` 已因末尾数字规则进入黑名单，不再测试。
+
+### Artist Collaboration 模式
+
+当前个人多画师实验默认使用：
+`artist:A, artist:B, ..., artist collaboration`
+
+`artist collaboration` 属于社区实验性控制词，不视为 NovelAI 官方保证的“强制合作机制”。社区测试中有人报告它能改善多画师混合时的风格统一，也有人使用负权重来抑制它；因此在本个人工作流里把它作为**默认正向实验变量**，而不是绝对规则。需要验证时保持同一 seed / prompt，只改变这一项。
 
 必要时控制：
 
@@ -112,7 +121,7 @@ For a single subject, a flat comma-separated prompt is valid. Use char1/char2 bl
 
 风格与角色数据分离。见 `references/style-layer.md`。
 
-**NAI5 需要显式保留质量词。** NovelAI 官方文档说明 V5 Full 的 Quality Tags 会自动加入 `very aesthetic, masterpiece, no text`；Light 质量预设还会使用 `amazing quality`。官方 Prompt Tips 也明确建议在成图质量不足时加入 `very aesthetic`、`best quality`、`high quality`。因此不要再把 quality tags 当成可有可无的废话。
+**Quality 层服从用户当前输出模式。** NAI5 本身支持 Quality Tags，但本用户在普通创作与艺术家探索时通常不希望把固定 quality words 塞进可复制 prompt；只有用户明确要求“完整 NAI5 prompt”或要求质量层时才恢复。不要为了遵循旧模板而机械重复质量词。
 
 ### NAI5 推荐全局层级
 
@@ -183,7 +192,7 @@ NovelAI 数值 emphasis：
 - 负值：针对性抑制 / removal / inversion
 - 只给画师混合、关键风格方向、关键角色特征、不想要的风格抑制
 - 不给每个 token 都加权
-- 当前随机实验模式允许 3–8 位 artist、权重 0.3–1.2，且至少 1 位 >1.0；不再强制单一主画师 + 低权重辅画师
+- 当前个人随机实验模式为 4–8 位 artist：1–2 位主画师 + 2–6 位辅助画师；权重 0.3–1.2，至少 1 位 >1.0，并默认加入 `artist collaboration`
 - 用户已经有固定 Negative 时，不输出 Negative 段
 
 ## 8.5 Compact prompt discipline
@@ -208,7 +217,14 @@ Tag 格式天然会丢失“关系”。补救：
 
 ## 10. 输出
 
-用户要 NAI5 时默认输出一个单独、可整段复制的代码块，把 weighted artist stack 与测试内容放在同一段里。
+用户要完整 NAI5 时默认输出一个单独、可整段复制的代码块，把 weighted artist stack 与测试内容放在同一段里。
+
+用户若明确说“探索画师 / 单画师 / 探索模式”，默认进入**画师探索输出模式**：
+- 优先寻找国内女性向创作者生态的审美（小红书 / 米画师常见的二次元、角色设计、精致人物、商业约稿感）
+- 必须先验证 exact Danbooru / NovelAI artist tag，再输出
+- 不主动探索以 NSFW、色情、情色、fetish 为主的画师
+- 已判定为黄色池的 artist 只保留在独立 yellow pool，不参与主流 roll
+- 该模式默认只输出 artist token / artist string，不附带完整角色 prompt，不附带固定 quality layer
 
 不要默认输出 Artist Stack / Global Style / Scene 等方括号标题。
 
@@ -225,15 +241,18 @@ Tag 格式天然会丢失“关系”。补救：
 ## 12. 输出前检查
 
 - [ ] 输入是 blueprint？
-- [ ] 随机画师是否控制在 3–8 位？
+- [ ] 若为当前个人随机模式，画师总数是否控制在 4–8 位？
 - [ ] 每个 artist 权重是否在 0.3–1.2？
 - [ ] 是否至少存在 1 个 >1.0 的 artist？
+- [ ] 是否采用 1–2 位主画师 + 2–6 位辅助画师？
+- [ ] 当前个人随机模式是否默认带 `artist collaboration`？
+- [ ] 黄色池 artist 是否被排除？
 - [ ] 是否保留用户原始 artist: namespace？
 - [ ] 是否排除了所有 artist tag 末尾为数字的画师？
 - [ ] 用户原始 artist tag 的转义/特殊语法是否被保留？
 - [ ] subject / framing 是否靠前？
 - [ ] 是否遵循 Subject → Year/Era → Artist → Quality → Complexity → Rendering → Control → Scene → Character → Action 的骨架？
-- [ ] Quality layer 是否显式存在？
+- [ ] Quality layer 是否按用户当前输出模式处理，而不是机械重复？
 - [ ] 当前输入是否已经通过 Aesthetic/Blueprint Gate？
 - [ ] quality / aesthetic / complexity / rendering 是否形成明确的全局层？
 - [ ] 是否避免把设计说明塞进 tag？
