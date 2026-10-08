@@ -1,10 +1,10 @@
 # 核心验证测试集 (Test Suite)
 
-> Architecture baseline: v3.8.0
+> Architecture baseline: v4.0.0
 
-> **Version**: 3.8.0  
+> **Version**: 4.0.0  
 > **Last Updated**: 2026-10-05  
-> **Scope**: 验证创作决策、模型适配、Web-first harness、Anima Tag/NL 编译以及审美回归。
+> **Scope**: 验证创作决策、模型适配、Web-first harness、shared Prompt Core + Anima / NAI5 rendering以及审美回归。
 
 ---
 
@@ -45,7 +45,7 @@
 ### Test-02: 4 层复杂服装叠穿与高级材质碰撞
 - **用户输入**：
   > “设计一套冬日高级感穿搭：内搭米色针织高领毛衣，外面套深灰开衫西装，再披一件重磅黑色粗呢大衣，围着燕麦色围巾，下身直筒西装裤。”
-- **预期模式**：Standard Mode | Aesthetic: Preset C (High Fashion, see 02_creation/illustration-direction/references/atmosphere-presets.md)
+- **预期模式**：Standard Mode | Aesthetic: Preset C (High Fashion, see 02_design/illustration-direction/references/atmosphere-presets.md)
 - **评分记录表 (Evaluation Record)**：
   ```markdown
   - [ ] Identity Preservation: Pass / Fail
@@ -238,7 +238,7 @@
 
 ### Harness-07: 扩展协议
 - **输入**：`/new-module tweet-caption-writer`
-- **Pass**：先查索引说明无重叠；输出 `06_extensions/tweet-caption-writer/SKILL.md` 完整文件（frontmatter 含 name==目录、description 有触发词、metadata.layer/load/status）；六段齐全；末尾给出"提交到 main → CI 重建 → 下会话生效"两步；本会话按草稿工作
+- **Pass**：先查索引说明无重叠；输出 `07_extensions/tweet-caption-writer/SKILL.md` 完整文件（frontmatter 含 name==目录、description 有触发词、metadata.layer/load/status）；六段齐全；末尾给出"提交到 main → CI 重建 → 下会话生效"两步；本会话按草稿工作
 - **Fail**：片段、省略号、占位符；缺 frontmatter 字段；写成散文
 
 ### Harness-08: 不总结、不布道
@@ -345,7 +345,7 @@
 - **输入**：单次出现“丑”的反馈。
 - **Pass**：修正本次结果，但不把某个具体元素直接写成永久禁区；系统规则只升级为“怪 ≠ 丑”的通用约束。
 - **Fail**：把一次反馈直接永久化成“永远不要某种造型”。
-\n\n## P12 Personal Anima Regression\n\nThe detailed P12 regression matrix is in `tests/personal-anima-regression.md`.\n\nP12 adds 36 cases across exact/alias/missing/fuzzy tags, character/IP/artist isolation, appearance/clothing/action classification, composite packets, exact Anima syntax and idempotence, Tag/NL skeleton boundaries, compression priorities, aesthetic protection, all P11 failure scopes, Web-first pipeline loading, and the owner's recent gacha/full-body/high-fashion/illustration/reference/token-pressure tasks.\n\nThe deterministic CI gate is `scripts/check_personal_anima_regression.py`; live-index and visual/aesthetic judgments remain manual.\n
+\n\n## P12 Prompt Architecture Regression\n\nThe detailed P12 regression matrix is in `tests/personal-anima-regression.md`.\n\nP12 adds 36 cases across exact/alias/missing/fuzzy tags, character/IP/artist isolation, appearance/clothing/action classification, composite packets, exact Anima syntax and idempotence, Tag/NL skeleton boundaries, compression priorities, aesthetic protection, all P11 failure scopes, Web-first pipeline loading, and the owner's recent gacha/full-body/high-fashion/illustration/reference/token-pressure tasks.\n\nThe deterministic CI gate is `scripts/check_personal_anima_regression.py`; live-index and visual/aesthetic judgments remain manual.\n
 
 ## P13 Real-Task Regression
 
