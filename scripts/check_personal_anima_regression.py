@@ -139,10 +139,10 @@ def main() -> int:
         "Tag block",
         "Natural Language",
         "37_(reverse:1999)",
-        "37\\(reverse1999\\)",
         "does not design",
     ):
         require(needle.lower() in sources["anima"].lower(), f"Anima renderer lost contract token: {needle}", failures)
+    require("37\\\\(reverse1999\\\\)" in sources["anima"], "Anima renderer lost exact escaped 37 token", failures)
 
     for needle in (
         "artist:",
