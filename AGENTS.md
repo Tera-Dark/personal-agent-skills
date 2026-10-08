@@ -1,15 +1,25 @@
 # AGENTS.md
 
-This repository is an LLM **harness**: a kernel plus modular skills for Tera-Dark's creative work (OC design, illustration direction, image-prompt compilation for Anima / NovelAI / other models).
+This repository is an LLM harness for Tera-Dark's creative work: character / illustration design plus model-agnostic prompt planning and target renderers.
 
-**If you are an AI agent asked to operate under this repo** (Codex, Cursor, Claude Code, any coding agent):
+## When operating under the repository
 
-1. Read `bundle/HARNESS.md` and follow it. It contains the kernel (operating contract), the module index, and the always-on modules. On-demand modules are single files in `bundle/modules/`.
-2. Do not summarize the repository. Handshake as KERNEL §1 says, then work.
+1. Read \`bundle/HARNESS.md\` and follow it.
+2. Do not summarize the repository.
+3. Use the handshake and routing rules from the harness.
 
-**If you are editing this repo:**
+## When editing the repository
 
-- Sources are `kernel/`, `harness.json`, `VERSION`, and `<layer>/<skill>/SKILL.md` (+ `references/`). `bundle/` and `docs/skill-registry.md` are generated — never edit them by hand.
-- After any change: `python3 scripts/validate_skills.py && python3 scripts/build.py`. CI does the same and commits the bundle on `main`.
-- Adding a capability: follow `kernel/EXTENSION-PROTOCOL.md`; template in `kernel/templates/`.
-- To install skills into a runtime that discovers `~/.claude/skills/<name>/SKILL.md` (or similar): `scripts/install.sh [target]`.
+- Sources are \`kernel/\`, \`harness.json\`, \`VERSION\`, and the numbered source layers.
+- \`bundle/\` and \`docs/skill-registry.md\` are generated; do not edit them by hand.
+- After changes, run:
+  \`python3 scripts/validate_skills.py && python3 scripts/build.py\`
+- v4.0 ownership:
+  - \`personal-identity-profile\` owns persistent user taste and NAI5 artist identity.
+  - \`aesthetic-director-core\` owns creative decision-making.
+  - \`character-design-engine\` / \`illustration-direction\` own blueprints.
+  - \`visual-prompt-core\` owns model-agnostic prompt planning.
+  - \`danbooru-tag-gate\` owns tag evidence.
+  - \`anima-renderer\` / \`nai5-renderer\` own target syntax only.
+- Adding a capability follows \`kernel/EXTENSION-PROTOCOL.md\`.
+- \`scripts/install.sh [target]\` installs each discovered skill into the runtime skill directory.
