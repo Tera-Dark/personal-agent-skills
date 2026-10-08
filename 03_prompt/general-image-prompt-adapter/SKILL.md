@@ -19,6 +19,10 @@ metadata:
 不做：设计。收到的不是 blueprint（没有带动词的命题、轮廓、四层服装、一个刺点、锁定事实）就退回 `aesthetic-director-core`。
 不做：编造模型行为。本 Skill 覆盖的模型很多、变化很快；**不确定就写 `[Unverified]`**，不要猜参数。
 
+## Blueprint boundary
+
+This module is a target-model adapter. It accepts only a validated blueprint or Visual Prompt Packet and **does not design**. Missing design decisions must route upstream.
+
 ## 硬规则
 
 - 目标模型未知且会影响格式 → 问**一个**问题："用哪个模型出图？不确定就按通用自然语言写。" 不列选项清单。
