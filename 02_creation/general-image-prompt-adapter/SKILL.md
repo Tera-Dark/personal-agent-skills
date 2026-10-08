@@ -4,7 +4,7 @@ description: Model adapter that compiles a finished character or illustration bl
 metadata:
   author: Tera-Dark
   version: "0.2.0"
-  layer: "02_creation"
+  layer: "03_prompt"
   load: "on-demand"
   status: "active"
   triggers: "Midjourney, MJ, DALL-E, GPT Image, Imagen, Gemini image, Nano Banana, Flux, SDXL, Stable Diffusion, 通用提示词, 其他模型, 不知道用什么模型"
