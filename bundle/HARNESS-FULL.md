@@ -136,14 +136,14 @@ Claims about model behavior, syntax, parameters, tags or generation effects use 
 
 | module | layer | load | status | ~tokens | triggers | fetch |
 |---|---|---|---|---|---|---|
-| `personal-identity-profile` | 00_core | always | active | 15353 | 我的风格, 个人偏好, 按我习惯, any creative task | embedded below |
+| `personal-identity-profile` | 00_core | always | active | 16312 | 我的风格, 个人偏好, 按我习惯, any creative task | embedded below |
 | `aesthetic-director-core` | 00_core | on-demand | active | 26085 | OC, 人设, 插画, 服装, 海报, 联动海报, 艺术海报, key visual, crossover poster, 审美, 创意方向, 人味, 高级感, 不要AI味, 太平淡, 太乱 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/aesthetic-director-core.md` |
 | `creative-skill-router` | 01_router | always | active | 3040 | any request, 设计, 提示词, prompt, 反推, 分析, ComfyUI, LoRA, NAI5, Anima | embedded below |
 | `character-design-engine` | 02_design | on-demand | active | 15337 | OC, 人设, 角色设计, 服装设计, 立绘, 高定服设, 二游角色, character sheet, 极繁, 极繁精美, 华丽人设, 原创圈 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/character-design-engine.md` |
 | `illustration-direction` | 02_design | on-demand | active | 16908 | 插画, 氛围图, 竖屏, 半留白, 印象风, 故事感, key visual, poster, scene, 极繁, 特写垫底, 大头贴, 元素贴, 角色拼贴 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/illustration-direction.md` |
 | `anima-renderer` | 03_prompt | on-demand | active | 5876 | Anima, Anima prompt, Anima 提示词, Anima checkpoint | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-renderer.md` |
 | `danbooru-tag-gate` | 03_prompt | on-demand | active | 1404 | Danbooru tag, tag validation, tag check, exact tag, alias, tag verification | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/danbooru-tag-gate.md` |
-| `general-image-prompt-adapter` | 03_prompt | on-demand | active | 2234 | Midjourney, MJ, DALL-E, GPT Image, Imagen, Gemini image, Nano Banana, Flux, SDXL, Stable Diffusion, 通用提示词, 其他模型, 不知道用什么模型 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/general-image-prompt-adapter.md` |
+| `general-image-prompt-adapter` | 03_prompt | on-demand | active | 2161 | Midjourney, MJ, DALL-E, GPT Image, Imagen, Gemini image, Nano Banana, Flux, SDXL, Stable Diffusion, 通用提示词, 其他模型, 不知道用什么模型 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/general-image-prompt-adapter.md` |
 | `nai5-renderer` | 03_prompt | on-demand | active | 4188 | NAI5, NovelAI, NAI提示词, tag prompt, Danbooru prompt, artist stack | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/nai5-renderer.md` |
 | `visual-prompt-core` | 03_prompt | on-demand | active | 1551 | prompt packet, visual prompt, prompt core, 提示词编译, 提示词规划, NAI5, Anima | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/visual-prompt-core.md` |
 | `image-reverse-analysis` | 04_analysis | on-demand | active | 1621 | 反推, 分析图片, 提取提示词, 还原风格, 参考这张, reverse prompt, reference image | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/image-reverse-analysis.md` |
@@ -160,7 +160,7 @@ Claims about model behavior, syntax, parameters, tags or generation effects use 
 - **illustration-direction** — Turns a Creative Brief into an authored, model-agnostic illustration blueprint — the image thesis, captured moment, visual motif, environment-character relationship, camera and framing, scale contrast, negative space, physical light sources, density map, narrative residue, and one coherent surreal detail. Use for 插画, 氛围图, 竖屏, 半留白, 印象风, 故事感, key visual, poster, scene illustration, cinematic composition, or whenever a character needs to be placed into a designed moment rather than displayed on a plate. Never writes model-specific prompt syntax.
 - **anima-renderer** — Thin Anima-specific renderer that converts a Visual Prompt Packet plus verified Danbooru tags into the established Anima Tag + Natural Language prompt. Handles only Anima syntax, tag serialization, relation wording, output modes, and final target-specific checks. Does not design.
 - **danbooru-tag-gate** — Web-first validation boundary for Danbooru-derived hard tags shared by Anima and NAI5 workflows. Resolves exact canonical tags, exact aliases, or missing without fuzzy promotion. Use whenever a prompt packet needs verified Danbooru identity.
-- **general-image-prompt-adapter** — Model adapter that compiles a finished character or illustration blueprint into a natural-language image prompt for models that are not Anima or NAI5 — Midjourney, DALL-E / GPT Image, Google Imagen / Gemini image, Flux, SDXL-style checkpoints, or an unnamed target. Keeps parameters out of the prompt unless the target officially supports them, and labels every model-specific claim with an evidence level. Use when the user names any other image model, says 通用提示词, MJ, Midjourney, DALL-E, Imagen, Flux, SD, 或没说用什么模型. Does not design — if no blueprint exists, route through aesthetic-director-core first.
+- **general-image-prompt-adapter** — Generic target renderer that converts a Visual Prompt Packet into a natural-language image prompt for models that are not Anima or NAI5 — Midjourney, DALL-E / GPT Image, Google Imagen / Gemini image, Flux, SDXL-style checkpoints, or an unnamed target. Use after the shared Prompt Core. Does not design.
 - **nai5-renderer** — Thin NovelAI V5 community renderer that converts a Visual Prompt Packet plus verified Danbooru tags into the user's compact NAI5 prompt format. Handles artist namespace, weighting syntax, scene and character blocks, interaction tags, ordering, and optional targeted negatives. Does not design.
 - **visual-prompt-core** — Model-agnostic prompt planning layer that converts a validated character or illustration blueprint into one compact Visual Prompt Packet shared by Anima, NAI5, and future image-model renderers. Use after design is complete and before any model-specific prompt syntax. Does not redesign the concept or emit target-model syntax.
 - **image-reverse-analysis** — Decomposes a reference image into transferable design language — silhouette and mass distribution, motif grammar, garment construction, material contrast, palette hierarchy, pose logic, negative space and presentation format — instead of a tag dump. Output feeds aesthetic-director-core (for original work) or a model adapter (for faithful reproduction). Use for 反推, 分析图片, 提取提示词, 还原风格, 参考这张图, reverse prompt, image analysis.
@@ -288,60 +288,56 @@ Full extension rules remain in \`kernel/EXTENSION-PROTOCOL.md\`.
 ## ALL MODULES
 
 ## MODULE: personal-identity-profile
-layer: 00_core · load: always · status: active · module version: 2.4.0 · harness 4.0.0
+layer: 00_core · load: always · status: active · module version: 2.5.0 · harness 4.0.0
 source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/00_core/personal-identity-profile
 
-**description:** Persistent identity and taste layer for Tera-Dark's creative work. Holds the aesthetic signature (structured foundation, one strange thing, a hint of danger, modern key-visual impact, fashion-grade garment construction, female-oriented OC/gacha sensibility, Xiao-artist female-oriented 2D taste and NAI5 artist-mixing rules), hard dislikes (watches, cyber/mech, random butterflies-roses-particles, adjective costumes), business goals. Does not generate prompts. Load first for any creative, design, illustration, prompt or aesthetic-judgment task; also when the user says 我的风格, 我喜欢, 按我习惯, 个人偏好.
+**description:** Persistent identity and taste layer for Tera-Dark's creative work. Holds the owner's stable aesthetic signature, hard dislikes, business objectives, and compact NAI5 artist-pool card. Does not generate prompts. Load first for creative, design, illustration, prompt, or aesthetic-judgment tasks; also when the user says 我的风格, 我喜欢, 按我习惯, 个人偏好.
 
 
 ### Personal Identity Profile
 
 #### 定位
 
-这是整个系统里**唯一**存放用户长期品味的地方。其它任何 Skill（包括模型适配器）不得再维护自己的"个人审美规则"副本——它们只引用这里。
+这是系统里唯一存放用户长期品味、长期禁区和个人 NAI5 artist identity 的地方。其它 Skill 不得复制这些长期偏好。
 
-本 Skill 不生成任何 prompt。它回答一个问题：**这是给谁做的。**
+本 Skill 不生成 prompt。它回答：这是给谁做的。
 
 #### 用法
 
 任何创作类任务开始前：
 
-1. 读 `references/taste-signature.md` —— 品味是什么（不是"避免什么"，是"是什么"）。
-2. 读 `references/design-dislikes.md` —— 历史上反复否决的东西。
-3. 沟通与交付协议由 Kernel 统一管理。
-4. 把签名交给 `aesthetic-director-core`，由它做具体决定。
+1. 读 references/taste-signature.md —— 稳定品味签名。
+2. 读 references/design-dislikes.md —— 高频否决与永久禁区。
+3. 读 references/nai5-artist-pool.md —— 当前 NAI5 artist 运行卡片。
+4. 沟通与交付协议由 Kernel 统一管理。
+5. 详细历史证据仅在需要追溯 artist 实验时读取 references/nai5-artist-evidence.md。
 
-#### 优先级（冲突时）
+#### 优先级
 
-```
-1. 本回合用户的明确要求
-2. 用户锁定的角色事实 / 参考图事实
-3. 最近一次明确的否定反馈
-4. taste-signature.md 里的 Tier A 签名
-5. taste-signature.md 里的 Tier B 倾向
+1. 本回合用户明确要求
+2. 用户锁定事实 / 参考图事实
+3. 最近一次明确否定反馈
+4. taste-signature Tier A
+5. taste-signature Tier B
 6. 自由发挥
-```
 
-用户一次性的实验不自动变成永久规则；只有明确说"以后都这样"或反复确认三次以上，才升级写入 references。
+一次性实验不自动升级为永久规则；只有用户明确说以后都这样或反复确认才写入长期 profile。
 
-#### 什么时候更新本 Skill
+#### 更新边界
 
-- 用户明确说"我喜欢这个方向 / 以后都这样" → 写入 `taste-signature.md` 对应 Tier
-- 用户反复（≥3 次）否决同一类东西 → 写入 `design-dislikes.md`
-- 用户认可了一版输出 → 把该版的命题类型、轮廓策略、密度分布、刺点位置记到 `taste-signature.md` § 5「被认可的样本」
-
-更新时保留日期。旧条目不删，标记为"已被 X 取代"。
+- 用户偏好 / 禁区 → 更新 taste-signature 或 design-dislikes。
+- NAI5 artist 身份、池状态、永久排除、当前组合 → 更新 nai5-artist-pool。
+- 历史评分、单人测试、组合实验、来源证据 → 更新 nai5-artist-evidence。
+- 模型语法和 renderer 规则不进入 Identity。
 
 #### References
 
-- `references/taste-signature.md` — 品味签名：核心、Tier A/B/C、被认可的样本
-- `references/design-dislikes.md` — 否决清单与否决理由
-- `references/visual-preferences.md` — 偏好的类型、构图、参考来源
-- `references/business-objectives.md` — 商业目标与评价标准
-
-
-#### References
-- `references/nai5-artist-pool.md` — bundled reference for this module.
+- `references/taste-signature.md` — 稳定审美与当前方向。
+- `references/design-dislikes.md` — 历史否决与禁区。
+- `references/nai5-artist-pool.md` — NAI5 当前运行卡片。
+- `references/nai5-artist-evidence.md` — 历史 artist 测试与组合证据。
+- `references/visual-preferences.md` — 偏好的类型与参考来源。
+- `references/business-objectives.md` — 商业目标与评价标准。
 
 ---
 
@@ -745,199 +741,87 @@ Character identity > decoration.
 
 ---
 
-### Reference: references/visual-preferences.md
-
-#### Visual Preferences
-
-> 本文件列举偏好的**类型和形式**。品味本身（决策方式、Tier 分层、认可样本）以 `taste-signature.md` 为准；两者冲突时以 `taste-signature.md` 为准。
-
-##### Overall Direction
-
-The user's primary creative field:
-
-- female-oriented character design
-- anime style original characters
-- gacha game style design
-- commercial character illustration
-
-Core goal:
-
-Create characters that feel collectible, memorable and emotionally attractive.
-
----
-
-#### Character Design Preference
-
-Prefer:
-
-- strong silhouette
-- elegant costume design
-- high-fashion feeling
-- layered clothing
-- meaningful accessories
-- personality-driven outfits
-
-Character should feel like:
-
-"a character from a high-quality game IP"
-
-not:
-
-"a collection of beautiful elements."
-
----
-
-#### Female-Oriented Aesthetic
-
-Beauty is not only appearance.
-
-Prioritize:
-
-- charm
-- atmosphere
-- personality
-- emotional connection
-- fantasy appeal
-
-The viewer should want to know:
-
-"Who is she?"
-
-not only:
-
-"Is she pretty?"
-
----
-
-#### Preferred Visual Categories
-
-Frequently suitable:
-
-- gacha character design
-- anime heroine design
-- fantasy fashion
-- eastern fantasy
-- fairy tale aesthetics
-- gothic elegance
-- modern cute fashion
-- high-end illustration
-
----
-
-#### Composition Preference
-
-Preferred:
-
-- white background character sheets
-- full-body standing designs
-- seven-head portrait illustration
-- half-body artistic portrait
-- atmospheric vertical illustration
-- semi-empty compositions
-
----
-
-#### Reference Sources
-
-When researching visual inspiration:
-
-Prioritize:
-
-- Pinterest
-- high-quality game art
-- anime illustration communities
-- fashion references
-
-Focus on:
-
-design language,
-not direct copying.
-
----
-
-### Reference: references/business-objectives.md
-
-#### Business Objectives
-
-##### Creative Purpose
-
-The user's artwork is created with both artistic and practical goals.
-
-Primary objectives:
-
-- OC character design
-- character IP development
-- commercial illustration
-- collectible character appeal
-- design-based product creation
-
-
----
-
-#### Evaluation Criteria
-
-A successful design should consider:
-
-##### Recognition
-
-Can viewers remember the character after seeing it once?
-
-A strong character needs a clear visual identity rather than only high rendering quality.
-
-
-##### Appeal
-
-Would someone want to save, collect, or own this character design?
-
-Prioritize emotional connection and fantasy fulfillment.
-
-
-##### Differentiation
-
-Avoid generic AI character patterns.
-
-The design should have:
-
-- unique concept
-- memorable silhouette
-- meaningful costume language
-- recognizable personality
-
-
-##### Market Compatibility
-
-Consider suitability for:
-
-- anime audience
-- gacha-style character appreciation
-- female-oriented character design
-- OC communities
-
-
----
-
-#### Design Priority
-
-Preferred priority order:
-
-1. Character charm
-
-2. Visual identity
-
-3. Costume quality
-
-4. Emotional expression
-
-5. Rendering quality
-
-
-Rendering exists to support design.
-
-Visual effects should not replace character thinking.
-
----
-
 ### Reference: references/nai5-artist-pool.md
+
+#### Personal NAI5 Artist Pool
+
+> Runtime card for the owner's current NovelAI V5 artist workflow.
+> Detailed historical scores, experiments and discovery notes live in references/nai5-artist-evidence.md.
+
+##### Runtime rules
+
+- Current experiment range: 3–8 artists when the user explicitly explores/mixes artists.
+- Weight range: 0.3–1.2; at least one selected artist may be >1.0.
+- Preserve exact artist: namespace and spelling.
+- Artist weights are experiment-local, not permanent rankings.
+- Any artist tag whose final character is a digit is globally blacklisted unless the owner explicitly overrides it.
+- Permanent exclusions include artist:yellowshark601 and artist:mihiro_00122.
+- artist:vlfdus_0 is also excluded under the trailing-digit rule.
+- Yellow-pool artists are excluded from mainstream selection unless explicitly requested.
+- New artist candidates require exact Danbooru artist verification; fuzzy or remembered identities never enter the pool.
+
+##### Current standby stack
+
+1.08::artist:qianben_shan::, 0.91::artist:ruoganzhao::, 0.76::artist:miv4t::, 0.58::artist:min_(120716)::, 0.41::artist:kieed::
+
+Treat this as a validated working combination, not a permanent ranking.
+
+##### Manual preference tiers
+
+###### 顶级
+- artist:starshadowmagician — soft/feminine lines, soft coloring, refined female portrait.
+- artist:ask_(askzy) — highly distinctive simplification/design language; specialized reference rather than default personal-style anchor.
+
+###### 中等
+- artist:yalmyu — cute/moe branch.
+- artist:youlizi-yuri — refined decorative character illustration.
+- artist:inoriac — scene/concept candidate.
+- artist:memuro — cute/moe branch.
+- artist:kuuus — stable classic anime base.
+
+###### 次等
+- artist:dino_(dinoartforame) — strong polish but face is currently not preferred.
+- artist:harrymiao — acceptable / lower-priority.
+
+###### Not yet tiered
+artist:zhi_xu_li_ming, artist:kurikabacha, artist:zhanzhan_lan, artist:qingming_tiaohetu, artist:qing_yan_xia, artist:guigui_rongrong, artist:kelezi, artist:diurtion, artist:fengjian_yuzhi, artist:duoqing_tie_ban_shao, artist:baifeidaiwang, artist:cuso4_suiwabutu, artist:baicumikuo, artist:aniao_ya, artist:tidsean, artist:sainker
+
+##### Confirmed high-value combinations
+
+These are combination evidence, not automatic individual approvals:
+
+artist:banbanimi + artist:mido_(mido_chen) + artist:pekopeco
+1.05::artist:eteru::, 0.55::artist:banbanimi::, 0.45::artist:pekopeco::
+1.04::artist:qing_yan_xia::, 0.56::artist:pekopeco::, 0.48::artist:rei_(sanbonzakura)::
+
+##### Style-role quick map
+
+- Soft / feminine / polished: starshadowmagician, fengjian_yuzhi, kurikabacha, zhi_xu_li_ming
+- Cute / moe: yalmyu, memuro
+- Refined / ornate: youlizi-yuri, baifeidaiwang, cuso4_suiwabutu
+- Graphic / distinctive: ask_(askzy), qingming_tiaohetu, qing_yan_xia
+- Scene / concept: inoriac, ruoganzhao, baicumikuo, sainker
+- Dynamic / dramatic: duoqing_tie_ban_shao, guigui_rongrong
+- Cold / rough-painterly experimental: huke
+
+##### Eligible experimental pool
+
+artist:zhi_xu_li_ming, artist:zhanzhan_lan, artist:kurikabacha, artist:shu_bing, artist:sanfu_qwq, artist:ruoganzhao, artist:qingming_tiaohetu, artist:qing_yan_xia, artist:guigui_rongrong, artist:kelezi, artist:diurtion, artist:fengjian_yuzhi, artist:duoqing_tie_ban_shao, artist:baifeidaiwang, artist:cuso4_suiwabutu, artist:baicumikuo, artist:aniao_ya, artist:liduke, artist:jadetilaurant, artist:wolrero, artist:tatatsu, artist:sencha_(senchat), artist:seapall, artist:rella, artist:rei_(sanbonzakura), artist:mafuin_da, artist:infukun, artist:pengren_siya, artist:messikid, artist:ergouzi_echo, artist:kikihuihui, artist:tracyton, artist:saku_nosuke, artist:taiki_(luster), artist:natsuiro_xx, artist:repi, artist:xixizi, artist:luckyia, artist:bochishiraita
+
+##### Discovery / promotion rule
+
+Domestic female-oriented creator ecosystem first → inspect actual work → exact Danbooru artist tag → >50 posts → controlled NAI5 test → owner feedback → tier / role update.
+
+Single test, combination test, and permanent tier are separate evidence types.
+
+---
+
+### Reference: references/nai5-artist-evidence.md
+
+#### NAI5 Artist Evidence Archive
+
+> Historical working archive moved out of the always-on identity runtime during the v4.0 prompt architecture refactor.
+> Source snapshot: 2026-10-08 before runtime-card compaction.
 
 #### Personal NAI5 Artist Pool
 
@@ -1372,6 +1256,198 @@ Never use these artists in random selection.
 - Record user-approved combinations separately from individual artist approval.
 - For each single-artist test, record: artist, weight, benchmark, test date, user score, concise feedback, style-role tags, and any confirmed/uncertain suitability.
 - When a new artist is promoted, add the evidence source, exact artist tag, verification date, and a short aesthetic role description.
+
+---
+
+### Reference: references/visual-preferences.md
+
+#### Visual Preferences
+
+> 本文件列举偏好的**类型和形式**。品味本身（决策方式、Tier 分层、认可样本）以 `taste-signature.md` 为准；两者冲突时以 `taste-signature.md` 为准。
+
+##### Overall Direction
+
+The user's primary creative field:
+
+- female-oriented character design
+- anime style original characters
+- gacha game style design
+- commercial character illustration
+
+Core goal:
+
+Create characters that feel collectible, memorable and emotionally attractive.
+
+---
+
+#### Character Design Preference
+
+Prefer:
+
+- strong silhouette
+- elegant costume design
+- high-fashion feeling
+- layered clothing
+- meaningful accessories
+- personality-driven outfits
+
+Character should feel like:
+
+"a character from a high-quality game IP"
+
+not:
+
+"a collection of beautiful elements."
+
+---
+
+#### Female-Oriented Aesthetic
+
+Beauty is not only appearance.
+
+Prioritize:
+
+- charm
+- atmosphere
+- personality
+- emotional connection
+- fantasy appeal
+
+The viewer should want to know:
+
+"Who is she?"
+
+not only:
+
+"Is she pretty?"
+
+---
+
+#### Preferred Visual Categories
+
+Frequently suitable:
+
+- gacha character design
+- anime heroine design
+- fantasy fashion
+- eastern fantasy
+- fairy tale aesthetics
+- gothic elegance
+- modern cute fashion
+- high-end illustration
+
+---
+
+#### Composition Preference
+
+Preferred:
+
+- white background character sheets
+- full-body standing designs
+- seven-head portrait illustration
+- half-body artistic portrait
+- atmospheric vertical illustration
+- semi-empty compositions
+
+---
+
+#### Reference Sources
+
+When researching visual inspiration:
+
+Prioritize:
+
+- Pinterest
+- high-quality game art
+- anime illustration communities
+- fashion references
+
+Focus on:
+
+design language,
+not direct copying.
+
+---
+
+### Reference: references/business-objectives.md
+
+#### Business Objectives
+
+##### Creative Purpose
+
+The user's artwork is created with both artistic and practical goals.
+
+Primary objectives:
+
+- OC character design
+- character IP development
+- commercial illustration
+- collectible character appeal
+- design-based product creation
+
+
+---
+
+#### Evaluation Criteria
+
+A successful design should consider:
+
+##### Recognition
+
+Can viewers remember the character after seeing it once?
+
+A strong character needs a clear visual identity rather than only high rendering quality.
+
+
+##### Appeal
+
+Would someone want to save, collect, or own this character design?
+
+Prioritize emotional connection and fantasy fulfillment.
+
+
+##### Differentiation
+
+Avoid generic AI character patterns.
+
+The design should have:
+
+- unique concept
+- memorable silhouette
+- meaningful costume language
+- recognizable personality
+
+
+##### Market Compatibility
+
+Consider suitability for:
+
+- anime audience
+- gacha-style character appreciation
+- female-oriented character design
+- OC communities
+
+
+---
+
+#### Design Priority
+
+Preferred priority order:
+
+1. Character charm
+
+2. Visual identity
+
+3. Costume quality
+
+4. Emotional expression
+
+5. Rendering quality
+
+
+Rendering exists to support design.
+
+Visual effects should not replace character thinking.
 
 ---
 
@@ -6355,10 +6431,10 @@ The personal harness is designed to be pasted into web AI sessions. A giant stat
 ---
 
 ## MODULE: general-image-prompt-adapter
-layer: 03_prompt · load: on-demand · status: active · module version: 0.2.0 · harness 4.0.0
+layer: 03_prompt · load: on-demand · status: active · module version: 0.3.0 · harness 4.0.0
 source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/03_prompt/general-image-prompt-adapter
 
-**description:** Model adapter that compiles a finished character or illustration blueprint into a natural-language image prompt for models that are not Anima or NAI5 — Midjourney, DALL-E / GPT Image, Google Imagen / Gemini image, Flux, SDXL-style checkpoints, or an unnamed target. Keeps parameters out of the prompt unless the target officially supports them, and labels every model-specific claim with an evidence level. Use when the user names any other image model, says 通用提示词, MJ, Midjourney, DALL-E, Imagen, Flux, SD, 或没说用什么模型. Does not design — if no blueprint exists, route through aesthetic-director-core first.
+**description:** Generic target renderer that converts a Visual Prompt Packet into a natural-language image prompt for models that are not Anima or NAI5 — Midjourney, DALL-E / GPT Image, Google Imagen / Gemini image, Flux, SDXL-style checkpoints, or an unnamed target. Use after the shared Prompt Core. Does not design.
 
 
 ### General Image Prompt Adapter
@@ -6372,7 +6448,7 @@ source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/03_prompt/g
 
 #### Blueprint boundary
 
-This module is a target-model adapter. It accepts only a validated blueprint or Visual Prompt Packet and **does not design**. Missing design decisions must route upstream.
+This module is a target-model renderer. It accepts only a validated Visual Prompt Packet and does not design. If the Packet is missing or incomplete, route upstream to visual-prompt-core and the appropriate design gate.
 
 #### 硬规则
 

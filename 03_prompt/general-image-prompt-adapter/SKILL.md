@@ -1,9 +1,9 @@
 ---
 name: general-image-prompt-adapter
-description: Model adapter that compiles a finished character or illustration blueprint into a natural-language image prompt for models that are not Anima or NAI5 — Midjourney, DALL-E / GPT Image, Google Imagen / Gemini image, Flux, SDXL-style checkpoints, or an unnamed target. Keeps parameters out of the prompt unless the target officially supports them, and labels every model-specific claim with an evidence level. Use when the user names any other image model, says 通用提示词, MJ, Midjourney, DALL-E, Imagen, Flux, SD, 或没说用什么模型. Does not design — if no blueprint exists, route through aesthetic-director-core first.
+description: Generic target renderer that converts a Visual Prompt Packet into a natural-language image prompt for models that are not Anima or NAI5 — Midjourney, DALL-E / GPT Image, Google Imagen / Gemini image, Flux, SDXL-style checkpoints, or an unnamed target. Use after the shared Prompt Core. Does not design.
 metadata:
   author: Tera-Dark
-  version: "0.2.0"
+  version: "0.3.0"
   layer: "03_prompt"
   load: "on-demand"
   status: "active"
@@ -21,7 +21,7 @@ metadata:
 
 ## Blueprint boundary
 
-This module is a target-model adapter. It accepts only a validated blueprint or Visual Prompt Packet and **does not design**. Missing design decisions must route upstream.
+This module is a target-model renderer. It accepts only a validated Visual Prompt Packet and does not design. If the Packet is missing or incomplete, route upstream to visual-prompt-core and the appropriate design gate.
 
 ## 硬规则
 

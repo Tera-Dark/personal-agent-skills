@@ -176,7 +176,7 @@ def main() -> int:
     case_ids = re.findall(r"^### (P12-[A-Z]+-\d{2})\s+—", matrix, re.M)
     expected_prefixes = {
         "TAG": 10, "SYN": 4, "SKL": 2, "CMP": 3, "PRT": 3,
-        "FLR": 4, "WEB": 4, "REAL": 6,
+        "FLR": 4, "WEB": 4, "REAL": 6, "SHR": 4,
     }
     for prefix, expected_count in expected_prefixes.items():
         actual = len([x for x in case_ids if x.startswith(f"P12-{prefix}-")])
@@ -185,7 +185,7 @@ def main() -> int:
             f"matrix count for {prefix}: expected {expected_count}, got {actual}",
             failures,
         )
-    require(len(case_ids) == 36, f"expected 36 P12 cases, found {len(case_ids)}", failures)
+    require(len(case_ids) == 40, f"expected 40 P12 cases, found {len(case_ids)}", failures)
     require(version == "4.0.0", f"VERSION must be 4.0.0, found {version}", failures)
 
     p13 = read("tests/p13-real-task-regression.md")
