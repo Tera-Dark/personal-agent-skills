@@ -1,0 +1,71 @@
+---
+name: anima-renderer
+description: Thin Anima-specific renderer that converts a Visual Prompt Packet plus verified Danbooru tags into the established Anima Tag + Natural Language prompt. Handles only Anima syntax, tag serialization, relation wording, output modes, and final target-specific checks. Does not design.
+metadata:
+  author: Tera-Dark
+  version: "0.1.0"
+  layer: "03_prompt"
+  load: "on-demand"
+  status: "active"
+  triggers: "Anima, Anima prompt, Anima 提示词, Anima checkpoint"
+---
+
+# Anima Renderer
+
+## 定位
+
+输入：Visual Prompt Packet + verified Danbooru tag packet。
+输出：Anima-ready English prompt using the established Tag block + Natural Language block.
+
+上游：visual-prompt-core → danbooru-tag-gate
+下游：user-facing Anima prompt
+不做：不设计、不发现 tag、不做 fuzzy matching、不重新定义用户审美。
+
+## Blueprint boundary
+
+This module is a target-model adapter. It accepts only a validated blueprint or Visual Prompt Packet and **does not design**. Missing design decisions must route upstream.
+
+## 硬规则
+
+- 只有 verified exact / alias canonical tags 才能进入 Tag block。
+- missing / unverified tag meaning falls back to Natural Language.
+- Canonical tag identity remains separate from Anima serialized syntax.
+- Current explicit syntax rule: canonical 37_(reverse:1999) serializes as 37\\(reverse1999\\). This is an exact identity rule, not a global punctuation escape.
+- Do not globally rewrite underscores, parentheses, colons, slashes, or name_(series) forms.
+- Preserve Visual Prompt Packet design decisions exactly.
+- Default output stays positive-first and does not invent Negative sections.
+- Do not emit workflow parameters unless the user explicitly asks.
+- The renderer must not add decorative filler because the prompt feels sparse.
+- Model-behavior claims use Kernel evidence labels.
+
+## Rendering flow
+
+1. Select high-value verified tags from the Packet.
+2. Serialize only registered Anima syntax transforms.
+3. Map relations, hierarchy, asymmetry, spatial placement, material behavior and visual flow into compact English NL.
+4. Do not repeat a Tag in NL unless the relation adds information.
+5. Apply target output policy: default compact prompt; expand fixed artist/quality only when requested by the owner or packet policy.
+6. Run Design Lock: identity, framing, silhouette, action, signature construction, palette hierarchy, punctum and environment relation must survive.
+7. Emit exactly two visible parts: Tag block + Natural Language block, unless the user asks for a different format.
+
+## Output contract
+
+A normal final prompt is:
+
+1. compact verified Tag line;
+2. one concise Natural Language paragraph.
+
+Do not add section labels that are not part of the established user-facing Anima format unless necessary for clarity.
+
+## Acceptance
+
+- [ ] no unverified hard tag
+- [ ] exact Anima syntax preserved
+- [ ] Tag / NL division is clear
+- [ ] relations are represented
+- [ ] no redesign
+- [ ] prompt is minimum-sufficient rather than merely short
+
+## References
+- `references/anima-model-profiles.md` — model-specific behavior notes and output constraints.
+- `references/anima-troubleshooting.md` — artifact and compilation troubleshooting patterns.

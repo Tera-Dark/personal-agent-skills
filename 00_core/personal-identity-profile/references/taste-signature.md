@@ -148,21 +148,12 @@
 
 - 2026-10-06 · **小画师组合校准** · artist:banbanimi + artist:mido_(mido_chen) + artist:pekopeco 通过用户实际出图验证，被明确评价为“真正想要的组合搭配效果”。该结果证明：国内小画师来源优先、Danbooru >50 post 过滤、3 人互补组合，可以比泛二次元名家混合更稳定地进入用户的“小画师好球区”。
 
-#### NAI5 画师串规则
+#### NAI5 Artist Policy Ownership
 
-- 个人 artist 身份池已独立存放于 `references/nai5-artist-pool.md`；这里保留规则，不再重复维护完整名单。
-- 小画师新候选的来源顺序固定为：**国内小红书 / 米画师 / 微博等生态 → 作品审美判断 → Danbooru 精确 artist tag → >50 posts → NAI5 controlled test**。
-- 新 artist 必须先通过 **>50 posts** 门槛，再进入实验池；“接近 50”不算通过。
-- 进入实验池后仍需满足女性向二次元角色、OC / 二游、服设绑定、第一眼美感、收藏/约稿属性等小画师相关性，不以 post 数单独决定。
-- **NAI5 输出严格遵循当前 `nai5-community-prompt-engineering` 标准**：
-  - 画师语法：`1.05::artist:name::`
-  - 1 名主画师：约 `0.95–1.10`
-  - 其余辅画师：全部 `<=0.6`
-  - 默认 3–4 位 artist；冲突明显时宁可减少人数
-  - 不再默认使用多个 `0.8+` artist
-- 画师池只存 artist identity，不存永久权重；权重属于具体实验组合。
-- 已验证的高价值组合：`artist:banbanimi + artist:mido_(mido_chen) + artist:pekopeco`。这是组合校准样本，不是永久模板。
-- `artist:yellowshark601` 永久排除。
+- Artist identity, eligibility, blacklist, exploration status and current mixer policy live only in `references/nai5-artist-pool.md`.
+- This file records only the aesthetic meaning of the artist ecosystem (for example, the user's preference for domestic female-oriented small-artist work).
+- Do not duplicate artist counts, weights, syntax or pool membership here.
+- Renderer modules may serialize the selected policy, but may not redefine it.
 
 #### 当前个人 artist pool
 

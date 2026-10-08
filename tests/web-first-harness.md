@@ -36,9 +36,9 @@ Source changes must regenerate `bundle/HARNESS.md`, `bundle/HARNESS-FULL.md`, `b
 
 README and usage docs present the web/no-local-runtime path as the primary creative usage mode.
 
-## P8-10 — pipeline exposure
+## P8-10 — pipeline-pack exposure
 
-The generated manifest exposes the declarative `web_first` configuration and active module index.
+The generated manifest exposes `web_first`, shared prompt packs, and the active module index.
 
 ## P8 Exit Criteria
 

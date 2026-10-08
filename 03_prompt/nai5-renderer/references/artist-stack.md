@@ -1,0 +1,48 @@
+# NAI5 Artist Stack Engineering
+
+## Purpose
+
+Serialize an already-selected artist set into NovelAI V5 syntax. Artist identity, eligibility, tier, blacklist, and personal selection policy belong to personal-identity-profile. This reference owns only renderer-side syntax and composition rules.
+
+## Syntax
+
+Default artist syntax:
+
+1.0::artist:name::
+
+Numerical emphasis:
+- 1.0 is baseline.
+- >1.0 strengthens.
+- 0.0–1.0 weakens.
+- negative values are reserved for targeted suppression/removal.
+
+## Rendering rules
+
+- Preserve the artist: namespace exactly.
+- Preserve underscores, periods, parentheses, suffixes, and other exact tag syntax.
+- Never infer an artist tag from a display name.
+- Never silently normalize an unresolved artist token.
+- Serialize only artists already selected and verified upstream.
+- Artist count, weights, blacklist, yellow-pool membership, and exploration eligibility come from Identity; do not duplicate those rules here.
+- Do not treat artist collaboration as a guaranteed mechanism. When it is part of an explicit experiment policy, serialize it as requested; otherwise omit it.
+- If artist weights conflict strongly, prefer fewer selected artists rather than compensating with more weight.
+
+## Practical serialization
+
+Strong primary + light blend:
+
+1.05::artist:primary::
+0.55::artist:secondary::
+0.5::artist:third::
+
+Conservative blend:
+
+1.0::artist:primary::
+0.55::artist:secondary::
+0.45::artist:third::
+
+Weights are experiment variables, not permanent artist rankings.
+
+## Debugging
+
+If a mixed artist result becomes noisy, dirty, or stylistically torn, test artist count and weight conflict before changing design content.

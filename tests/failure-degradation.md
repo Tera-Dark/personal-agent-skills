@@ -12,9 +12,9 @@ When a standalone module cannot be fetched, enter `card-only`, never reconstruct
 
 When a selected pipeline pack cannot be fetched, enter `pipeline-unavailable`. Do not claim internal stages are loaded and do not jump directly to a model adapter that depends on those stages.
 
-## P11-04 — Anima Tag Index failure
+## P11-04 — Danbooru Tag Index failure
 
-When the Anima 1.0 tag index is unavailable, enter `tag-index-unavailable`; affected anchors remain `unverified`, are excluded from `hard_tags`, and their meaning is routed to Natural Language.
+When the shared Danbooru index is unavailable, enter `tag-index-unavailable`; affected anchors remain `unverified`, are excluded from `hard_tags`, and their meaning is routed to Natural Language.
 
 ## P11-05 — no fuzzy rescue
 
@@ -30,7 +30,7 @@ A failed source is never represented as loaded. A degraded card must be visibly 
 
 ## P11-08 — no silent stage skipping
 
-Missing upstream Anima stages cannot be replaced by a direct `anima-prompt-compiler` call.
+Missing upstream Prompt Core / Tag Gate stages cannot be replaced by a direct renderer call.
 
 ## P11-09 — generated policy
 

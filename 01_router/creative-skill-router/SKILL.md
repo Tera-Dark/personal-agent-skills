@@ -1,151 +1,107 @@
 ---
 name: creative-skill-router
-description: Entry point for all creative requests in this skill hub. Classifies intent (OC/character design, illustration, fashion, NAI5 prompt, Anima prompt, image reverse analysis, prompt review, ComfyUI/LoRA/dataset), loads identity + aesthetic direction first, then hands off to the right specialist and model adapter. Use whenever a request involves 设计, OC, 人设, 立绘, 插画, 服装, 提示词, prompt, NAI, NovelAI, Anima, 反推, 分析图片, ComfyUI, LoRA, or when it is unclear which skill should handle a creative task.
+description: Entry point for all creative requests. Classifies intent and sends the task to design, analysis, shared prompt compilation, target-model rendering, evaluation, or technical modules. Use for 设计, OC, 人设, 立绘, 插画, 提示词, prompt, NAI, NovelAI, Anima, 反推, 分析图片, ComfyUI, LoRA, or ambiguous creative tasks.
 metadata:
   author: Tera-Dark
-  version: "3.5.0"
+  version: "4.0.0"
   layer: "01_router"
   load: "always"
   status: "active"
-  triggers: "any request; 设计, 提示词, prompt, 反推, 分析, ComfyUI, LoRA"
+  triggers: "any request, 设计, 提示词, prompt, 反推, 分析, ComfyUI, LoRA, NAI5, Anima"
 ---
 
 # Creative Skill Router
 
-## Purpose
+## 定位
 
-把用户请求送进正确的创作管线。Router 不产出最终 prompt，只做：**分类 → 设计就绪判定 → Aesthetic Gate → specialist → Blueprint Gate → tag verification → tag classification/filtering → prompt skeleton → aesthetic protection → prompt compression → tag serialization → adapter / evaluation**。
+Router 只负责：**分类 → 选择入口 → 判断设计是否就绪 → 把任务交给正确 owner**。
 
-```
-Request
-  ↓
-Task Classification            (references/task-classification.md)
-  ↓
-personal-identity-profile      (always, for any creative task)
-  ↓
-aesthetic-director-core      (always for creative tasks → produces a Creative Brief)
-  ↓
-Specialist                     (character-design-engine / illustration-direction / image-reverse-analysis / prompt-analysis)
-  ↓
-Blueprint Gate
-  ↓
-Anima: anima-tag-gate           (verify hard anchors only)
-  ↓
-Anima: anima-tag-classifier     (classify + filter verified tags)
-  ↓
-Anima: anima-prompt-skeleton     (stable facts → Tag/NL structure)
-  ↓
-Anima: anima-aesthetic-protection (design lock audit)
-  ↓
-Anima: anima-prompt-compressor    (minimum-sufficient reduction)
-  ↓
-Anima: anima-tag-serializer     (canonical identity → exact Anima syntax)
-  ↓
-Model Adapter                  (anima-prompt-compiler / nai5-community-prompt-engineering)
+Router 不负责：
+- 审美决策；
+- 角色设计；
+- Prompt Packet 细节；
+- Danbooru 验证细节；
+- Anima / NAI5 内部语法。
 
-Web-first Anima execution: select the declared `pipeline_packs.anima` pack as the single on-demand fetch; its internal order is authoritative.
-  ↓
-evaluation-loop                (on feedback rounds)
-```
+## 主路由
 
-## Gate Model
+### 1. 创作请求
 
-### Aesthetic Gate
-Every creative request passes the gate.
-- FULL: unfinished idea or requested redesign; produce real creative decisions.
-- AUDIT: finished design/specification; check structure and generic drift without redesigning locked facts.
-- ESCALATE: missing core decision in AUDIT; return to FULL.
+未完成的角色 / 服装 / 插画想法：
 
-### Blueprint Gate
-Before any model adapter, verify a type-specific blueprint or a verified finished-design packet. Adapters never fill missing design decisions.
+identity → Aesthetic Gate FULL → specialist → Blueprint Gate
 
-### Anima Tag Gate
-For Anima only, hard anchors are validated after the blueprint is ready and before classification/compilation.
-- `exact` and `alias` may become verified hard tags.
-- `missing` becomes NL; it is never fabricated.
-- fuzzy matches and candidate pools never become hard tags.
-- canonical Danbooru identity remains separate from Anima syntax escaping.
+### 2. 已完成设计 → 模型提示词
 
-### Anima Tag Classifier
-For Anima only, verified tags are classified and filtered before serialization.
-- identity scope is derived only from the verified source group;
-- visual roles are assigned without rewriting canonical strings;
-- redundant/support tags may be omitted to prevent tag piles;
-- core, structural, and signature anchors survive unless the blueprint explicitly leaves them unlocked;
-- classification never changes creative decisions or prompt budget.
+完整设计 / blueprint / 明确锁定事实：
 
-### Anima Prompt Skeleton
-For Anima only, the skeleton maps a finished blueprint into the existing two-part user-visible prompt.
-- verified hard anchors become the compact Tag block;
-- relation, hierarchy, asymmetry, causality, spatial placement, light/material behavior and punctum become Natural Language;
-- Good Anima's soft-phrase concept may be absorbed as compact NL clauses, but never becomes a third visible block;
-- the skeleton compresses rather than expanding the prompt and never makes design decisions.
+identity → Aesthetic Gate AUDIT → Blueprint Gate → visual-prompt-core → danbooru-tag-gate → renderer
 
-### Anima Aesthetic Protection
-For Anima only, adaptation must preserve the upstream design packet.
-- protect thesis, macro silhouette, framing, focal hierarchy, asymmetry, signature garment construction, palette hierarchy and environment relationship;
-- translation may shorten wording but may not normalize or redesign the image;
-- if compression would alter a protected decision, mark design drift and restore the decision instead of inventing a substitute.
+### 3. 目标模型
 
-### Anima Prompt Compressor
-For Anima only, compression is a subtractive pass after skeleton planning and before serialization.
-- remove information that does not materially change the intended image;
-- default to short prompts rather than filling a word budget;
-- protect identity, framing, locked facts, silhouette, essential pose/action and one visual punctum;
-- normally keep NL to one sentence, two only for genuinely complex interaction;
-- never redesign the blueprint while shortening it.
+| 目标 | Renderer |
+|---|---|
+| Anima | anima-renderer |
+| NAI5 / NovelAI | nai5-renderer |
+| 其它图像模型 | general-image-prompt-adapter |
 
-### Anima Tag Serializer
-For Anima only, the serializer is the final syntax boundary between canonical identity and emitted prompt text.
-- it receives only Gate-verified, Classifier-approved tags;
-- it applies only explicitly registered Anima syntax transforms;
-- it never performs alias lookup, fuzzy matching, identity substitution, or global punctuation escaping;
-- canonical identity remains unchanged while `serialized_tag` may differ;
-- unknown syntax fails closed instead of being guessed.
+NAI5 与 Anima **共享 Prompt Core，不各自重新做设计**。
 
-## Core Rules
+### 4. 参考图
 
-1. **创作类请求不得绕过 Aesthetic Gate。** 未完成请求走 FULL；完成设计走 AUDIT。只有 AUDIT PASS 或 FULL 产出通过 Blueprint Gate 后，才允许进入 adapter。
-2. **按意图分类，不按关键词。** 用户提到"NAI5"不代表任务是"写 tag"，可能是"设计一个角色然后用 NAI5 出"。
-3. **设计决策与模型语法分离。** 适配器不重新设计；设计层不写模型语法。
-4. **用户明确要求 > 身份档案 > 审美方向 > 专家 Skill > 模型语法。**
-5. **混合请求拆开。** "设计 OC + 训 LoRA" → `character-design-engine` 完成后再进 `dataset-management` / `lora-training`。
-6. **反馈轮走 `evaluation-loop` + `aesthetic-director-core/references/feedback-diagnosis.md`**，不是直接改 prompt。
-7. **Anima hard tags 必须经过 `anima-tag-gate`。** 不得因为模型记忆、搜索引擎近似结果或语义相似而跳过验证。
-8. **Anima verified tags 在进入 Compiler 前必须经过 `anima-tag-classifier`。** 分类层只做角色标注与减法过滤，不得发现、改写或创造 tag。
-9. **Anima serialized syntax 必须经过 `anima-tag-serializer`。** Compiler 不得重新发明全局转义规则；canonical identity 与 emitted syntax 必须保持分离。
-10. **Web-first Anima 不得拆成多次独立抓取。** 当路由选择 Anima 时，优先加载声明的 `anima` pipeline pack；pack 内部严格执行 Gate → Classifier → Skeleton → Protection → Compressor → Serializer → Compiler，不得跳步、重排或用记忆替代。
+- “参考这张做原创” → image-reverse-analysis → Aesthetic Gate FULL → specialist。
+- “忠实反推这张” → image-reverse-analysis → Aesthetic Gate AUDIT → Prompt Core / renderer。
 
-## Quick Routing Table
+### 5. 现有 Prompt
 
-| 意图 | 触发词示例 | 管线 |
-|---|---|---|
-| 角色 / OC / 服装设计 | OC, 人设, 角色设计, 服装设计, 立绘, 高定, 二游角色 | identity → Aesthetic Gate FULL → `character-design-engine` → Blueprint Gate → adapter |
-| 插画 / 氛围图 / 故事感 | 插画, 氛围图, 竖屏, 半留白, 印象风, 故事感, key visual | identity → Aesthetic Gate FULL → `illustration-direction` → Blueprint Gate → adapter |
-| 已有设计 → Anima 提示词 | 提示词, prompt, tag, Anima（且设计已完整） | identity → Aesthetic Gate AUDIT → Blueprint Gate → **load `pipeline_packs.anima` once** → Gate → Classifier → Skeleton → Protection → Compressor → Serializer → Compiler |
-| 已有设计 → NAI5 提示词 | NAI5, NovelAI（且设计已完整） | identity → Aesthetic Gate AUDIT → verified design packet → `nai5-community-prompt-engineering` |
-| 参考图反推 | 反推, 分析图片, 提取提示词, 还原风格, 参考这张 | identity → `image-reverse-analysis` → Aesthetic Gate FULL（原创）/ AUDIT（忠实）→ specialist/adapter |
-| 提示词审查 / 优化 | 优化提示词, 这个 prompt 哪里有问题 | `prompt-analysis` → (adapter if rewrite needed) |
-| 反馈 / 迭代 | 太平淡, 太乱, 不像, 这版可以, 换个方向 | `evaluation-loop` → feedback-diagnosis → 回到失败层 |
-| 其它图像模型 → 提示词 | Midjourney, DALL-E, Imagen, Flux, SD, 通用, 没说模型 | identity → Aesthetic Gate AUDIT/FULL → `general-image-prompt-adapter` |
-| 技术 | ComfyUI, LoRA, dataset, 训练, 打标 | `comfyui-workflow` / `lora-training` / `dataset-management`（status: planned → 以通用知识作答，标 `[no module]`，提议 `/new-module`） |
-| 扩展模块 | 命中 `06_extensions/*` 或其它模块 description 里的触发词 | 该模块 |
-| 非创作、无模块命中 | 闲聊、问答、杂务 | 不加载模块；直接按 kernel §6 的语气回答 |
+existing prompt → prompt-analysis
 
-模型选择规则见 `references/model-selection.md`。完整模块索引以 harness 的 KERNEL §5（由 `bundle/manifest.json` 生成）为准；`docs/skill-registry.md` 是同一份数据的可读版本。
+如果问题是设计层：
+→ Aesthetic Gate / specialist
 
-## 触发词来自模块自己
+如果问题只是模型语法：
+→ Prompt Core / target renderer
 
-Router 不维护一份手写的触发词总表。每个模块的 frontmatter `description` 和 `metadata.triggers` 就是它的触发条件，build 会把它们汇总进索引。新增模块只要把自己的触发词写好，Router 就能路由到它。
+### 6. 反馈
 
-## What the Router Outputs
+生成图、版本比较、用户说“太平淡 / 太乱 / 不像 / 这版可以 / 哪里不对”：
 
-Router 本身不对用户输出长篇内容。它在内部决定管线后直接开始执行第一步。如果分类有歧义（例如"帮我做一个角色"没说要不要 prompt、要什么模型），**用一个问题**确认，不要列一堆选项。
+→ evaluation-loop → 失败层 owner
+
+只修第一个实际失败层，不借 renderer 堆词掩盖设计问题。
+
+### 7. 技术
+
+ComfyUI / LoRA / dataset：
+→ 对应 technical module
+
+若模块仍为 planned：
+→ [no module]，不得伪装为已加载的专项知识。
+
+## 路由原则
+
+1. 按意图，不按关键词。
+2. NAI5 / Anima 名称只决定 renderer，不决定设计方式。
+3. 共享知识只经过 shared owner；不要把同一规则重新复制到 renderer。
+4. 不确定 target model 且语法会显著改变输出 → 只问一个问题。
+5. 混合任务拆成阶段：例如“设计 OC + 生成 NAI5 + 训练 LoRA”应先完成设计，再进入 Prompt Renderer，再进入训练工具。
+
+## 路由结果
+
+Router 不向用户输出长篇架构说明。内部决定路径后直接执行下一步。
 
 ## References
 
-- `references/task-classification.md` — 分类规则与触发词
-- `references/routing-rules.md` — 优先级与冲突解决
-- `references/model-selection.md` — 何时选 Anima / NAI5 / 通用模型
-- `references/execution-flow.md` — 标准管线与失败恢复
-- `references/skill-map.md` — 各层 Skill 一览
+- references/task-classification.md
+- references/routing-rules.md
+- references/model-selection.md
+- references/execution-flow.md
+- references/skill-map.md
+
+
+## References
+- `references/execution-flow.md` — bundled reference for this module.
+- `references/model-selection.md` — bundled reference for this module.
+- `references/routing-rules.md` — bundled reference for this module.
+- `references/skill-map.md` — bundled reference for this module.
+- `references/task-classification.md` — bundled reference for this module.

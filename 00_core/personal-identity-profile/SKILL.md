@@ -1,6 +1,6 @@
 ---
 name: personal-identity-profile
-description: Persistent identity and taste layer for Tera-Dark's creative work. Holds the aesthetic signature (structured foundation, one strange thing, a hint of danger, modern key-visual impact, fashion-grade garment construction, female-oriented OC/gacha sensibility, Xiao-artist female-oriented 2D taste and NAI5 artist-mixing rules), hard dislikes (watches, cyber/mech, random butterflies-roses-particles, adjective costumes), business goals and workflow style. Does not generate prompts. Load first for any creative, design, illustration, prompt or aesthetic-judgment task; also when the user says 我的风格, 我喜欢, 按我习惯, 个人偏好.
+description: Persistent identity and taste layer for Tera-Dark's creative work. Holds the aesthetic signature (structured foundation, one strange thing, a hint of danger, modern key-visual impact, fashion-grade garment construction, female-oriented OC/gacha sensibility, Xiao-artist female-oriented 2D taste and NAI5 artist-mixing rules), hard dislikes (watches, cyber/mech, random butterflies-roses-particles, adjective costumes), business goals. Does not generate prompts. Load first for any creative, design, illustration, prompt or aesthetic-judgment task; also when the user says 我的风格, 我喜欢, 按我习惯, 个人偏好.
 metadata:
   author: Tera-Dark
   version: "2.4.0"
@@ -24,7 +24,7 @@ metadata:
 
 1. 读 `references/taste-signature.md` —— 品味是什么（不是"避免什么"，是"是什么"）。
 2. 读 `references/design-dislikes.md` —— 历史上反复否决的东西。
-3. 读 `references/workflow-style.md` —— 怎么和用户说话、怎么交付。
+3. 沟通与交付协议由 Kernel 统一管理。
 4. 把签名交给 `aesthetic-director-core`，由它做具体决定。
 
 ## 优先级（冲突时）
@@ -54,4 +54,7 @@ metadata:
 - `references/design-dislikes.md` — 否决清单与否决理由
 - `references/visual-preferences.md` — 偏好的类型、构图、参考来源
 - `references/business-objectives.md` — 商业目标与评价标准
-- `references/workflow-style.md` — 沟通、交付格式、迭代方式
+
+
+## References
+- `references/nai5-artist-pool.md` — bundled reference for this module.

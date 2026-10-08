@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # install.sh — symlink every skill in this hub into an agent's skills directory.
 #
-# The hub keeps skills in numbered layer folders (00_core/, 01_router/, ...) for
+# The hub keeps skills in numbered layer folders (00_core/, 01_router/, 02_design/, 03_prompt/, ...) for
 # readability, but most agent runtimes discover skills one level deep:
 #   Claude Code : ~/.claude/skills/<name>/SKILL.md
 #   Codex       : ~/.agents/skills/<name>/SKILL.md

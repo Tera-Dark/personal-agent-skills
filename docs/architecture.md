@@ -1,135 +1,130 @@
 # Architecture
 
-> v3.8.0 hardens the creative pipeline with explicit Aesthetic and Blueprint Gates plus an aesthetic floor beneath distinctiveness.
+## v4.0 principle
 
-> v2.1.0: a kernel and a build step were added on top of the v2.0 layered skills, turning the repository into a harness that a chat model can load from one URL.
+The harness separates five responsibilities:
 
-## Two views of the same repository
+\`\`\`
+Policy → Routing → Design → Prompt Planning → Rendering
+\`\`\`
 
-```
-SOURCE (what you edit)                        DISTRIBUTION (what a model loads)
-─────────────────────────                     ────────────────────────────────────
-harness.json  VERSION                         bundle/HARNESS.md
-kernel/KERNEL.md                 build.py       = kernel (placeholders filled)
-00_core/<skill>/SKILL.md      ───────────►      + module index (from frontmatter)
-   references/*.md                              + always-on modules, full text
-01_router/ … 06_extensions/                   bundle/modules/<name>.md   (one file per module: SKILL.md + references)
-                                              bundle/HARNESS-FULL.md     (everything)
-                                              bundle/manifest.json       (machine-readable)
-                                              docs/skill-registry.md     (human-readable, generated)
-```
+The most important change from v3.x is that Anima and NAI5 no longer own separate prompt-planning systems.
 
-Chat models (ChatGPT, Gemini, Claude) have no skill-discovery mechanism; a URL fetch returns one document. So the unit of distribution is a **single compiled file**, and the kernel inside it tells the model how to pull more single files on demand. Skill-discovering runtimes (Claude Code, Codex) can still use the sources directly via `scripts/install.sh`.
+## Runtime
 
-## Kernel
+\`\`\`
+User request
+   ↓
+Identity
+   ↓
+Router
+   ├─ design
+   │   ├─ character-design-engine
+   │   └─ illustration-direction
+   │
+   ├─ analysis
+   │   ├─ image-reverse-analysis
+   │   └─ prompt-analysis
+   │
+   └─ prompt
+       ↓
+   Visual Prompt Core
+       ↓
+   Danbooru Tag Gate
+       ├─ anima-renderer
+       ├─ nai5-renderer
+       └─ general-image-prompt-adapter
+\`\`\`
 
-`kernel/KERNEL.md` is not a skill; it is the operating contract every session runs under:
+Feedback enters through \`evaluation-loop\` and returns to the owner of the first failed layer.
 
-| Section | What it fixes |
+## Module ownership
+
+| Owner | Question |
 |---|---|
-| Handshake | The model's first reply is a one-line version probe, not a summary of the repo |
-| Operating loop | READ → ROUTE → LOAD → THINK → EXECUTE → VERIFY → DELIVER, every turn |
-| Non-negotiables | adapters never design · taste has one home · no fabricated model facts · feedback is evidence · prompts in English · never echo harness text · never pretend |
-| Loading protocol | two tiers (always-on embedded / on-demand fetched), ≤3 loads per turn, cache, graceful degradation to module cards with `[card-only]` |
-| Module index | generated from every SKILL.md's frontmatter: triggers, status, token cost, fetch URL, card |
-| Voice | the owner's presentation rules, binding |
-| Session State | a ≤12-line block tracking target, mode, locked facts, approved dimensions, rejected items, prompt version, loaded modules |
-| Vision protocol | `seen:` before anything else; observed vs inferred; route reference vs result vs screenshot |
-| Commands | `/state /modules /reload /mode /model /new-module /version /help` |
-| Extension protocol | how a new module is drafted in chat and goes live through CI |
-| Failure modes | the specific ways this model tends to drift, named |
+| personal-identity-profile | What does the owner prefer? |
+| creative-skill-router | Where should the task go? |
+| aesthetic-director-core | Why should the design look this way? |
+| character-design-engine | How is the character engineered? |
+| illustration-direction | How is the image composed? |
+| visual-prompt-core | How do we represent the design before model syntax? |
+| danbooru-tag-gate | Is this hard tag proven? |
+| anima-renderer | How is the packet expressed in Anima syntax? |
+| nai5-renderer | How is the packet expressed in NAI5 syntax? |
+| general-image-prompt-adapter | How is the packet expressed in natural-language models? |
+| evaluation-loop | Which layer failed? |
 
-## Philosophy
+## Visual Prompt Packet
 
-A prompt is not the design. A prompt is the language used to communicate a **decision** to a model.
+The shared Packet is an internal intermediate representation, not a user-facing output:
 
-Generic ("AI-flavored") output is not a rendering problem; it is a **decision-making** problem: the model fills every slot with the most probable value. So the system's job is to force a human decision path *before* any prompt exists — pick one obsession, reject alternatives, build causality, subtract, keep one strange thing — and only then translate.
+\`\`\`
+style
+subject
+character
+composition
+scene
+action
+relations
+signature
+locked_facts
+rejected
+tag_candidates
+compression_policy
+output_policy
+\`\`\`
 
-## Layers
+This is the stable boundary between design and model syntax.
 
-```
-User Request
-    │
-    ▼
-01_router · creative-skill-router          classify + choose pipeline
-    │
-    ▼
-00_core · personal-identity-profile        WHO is this for
-    │
-    ▼
-00_core · aesthetic-director-core          AESTHETIC GATE (FULL / AUDIT / ESCALATE)
-    │
-    ▼
-02_creation · character-design-engine      CHARACTER BLUEPRINT
-              illustration-direction       ILLUSTRATION BLUEPRINT
-    │
-    ▼
-              BLUEPRINT GATE
-    │
-    ├───────────────┬──────────────────┐
-    ▼               ▼                  ▼
- Anima           NAI5              Generic
- Tag + NL       Community Tags       Natural NL
-    │               │                  │
-    └───────────────┴──────────────────┘
-                    ▼
-05_evaluation · evaluation-loop            diagnose layer → fix one variable → Blueprint Gate
-```
+## Shared vs target-specific
 
-Side entrances:
-- `03_analysis/image-reverse-analysis` — reference image → structure → director (original) or adapter (faithful)
-- `03_analysis/prompt-analysis` — existing prompt → weakest layer → fix or route back
-- `04_tools/*` — technical execution (placeholders for now)
+Shared in Prompt Core:
+- style intent
+- quality intent
+- visual facts
+- composition
+- scene
+- pose / action
+- relations
+- punctum
+- compression
+- design lock
+- output policy
 
-## Priority when things conflict
+Target-specific in renderers:
+- Anima Tag + NL structure and syntax serialization
+- NAI5 artist namespace, weights, character/interaction tags and ordering
+- Generic natural-language formatting and target notes
 
-```
-explicit current-turn request
-  > locked character / reference facts
-  > latest explicit negative feedback
-  > taste signature (Tier A)
-  > taste tendencies (Tier B)
-  > model syntax habits
-  > raw keywords
-```
+## Danbooru boundary
 
-A technically correct prompt that violates the Brief is wrong.
+\`danbooru-tag-gate\` owns only tag evidence:
 
-## Invariants
+\`\`\`
+exact | alias | missing
+\`\`\`
 
-1. **Taste has one home.** Only `personal-identity-profile` stores user preferences. Adapters do not keep "personal aesthetic rules" sections.
-2. **Adapters never design.** They check whether the input is a blueprint (has a thesis with a verb, a silhouette, four garment layers, one punctum, locked facts). If not, they route back.
-3. **Design knowledge is model-agnostic and lives in 00_core / 02_creation design skills.** In v1 the Anima adapter held the OC design system, garment lexicon, composition protocols and the feedback rules; those were only reachable when the user asked for Anima. They now serve every adapter.
-4. **Feedback is evidence about a layer, not permission to add.** `evaluation-loop` + `feedback-diagnosis.md` decide which layer owns the fix.
-5. **Skills reference each other by name.** Never by relative path — they may be installed separately.
+It does not own:
+- Anima escaping
+- NAI5 weighting
+- renderer ranking
+- creative selection
 
-## Why the numbered folders
+This prevents a model-specific tag gate from becoming a second prompt-planning engine.
 
-`00_core/ … 05_evaluation/` make the dependency direction visible in the file tree. Agent runtimes usually discover skills one directory deep, so `scripts/install.sh` flattens the layout with symlinks into `~/.claude/skills/` (or any target). `name` in every SKILL.md equals its immediate directory name, as the spec requires.
+## Loading
 
-## What "human" means operationally
+Only session-wide policy and routing are always-on. Creative design, Prompt Core, tag validation, renderers, analysis and evaluation are on-demand or pipeline-packed.
 
-The system does not try to make output "feel human" with adjectives. It enforces the observable traits of human design decisions:
+The Web-first runtime may load a target prompt pack in one fetch:
 
-| Trait | Enforced by |
-|---|---|
-| one center, unequal attention | M1 obsession, M8 density map |
-| choices from the tail, not the mode | M3 |
-| things cause other things | M4 causality |
-| a moment, not a state | M5 |
-| completeness by subtraction | M6, "what was cut" line |
-| one deliberate imperfection | M7 |
-| visible rejection of alternatives | "rejected directions" line in every Brief |
-| a named taste, not a market segment | `taste-signature.md` |
-| examples, not just rules | `taste-calibration-pairs.md` |
+\`\`\`
+Anima pack = Visual Prompt Core + Danbooru Gate + Anima Renderer
+NAI5 pack  = Visual Prompt Core + Danbooru Gate + NAI5 Renderer
+\`\`\`
 
+This keeps the shared logic identical across targets without requiring seven independent Anima fetches.
 
-## Gate contracts
+## Generated distribution
 
-**Aesthetic Gate:** every creative task passes FULL or AUDIT. FULL makes design decisions; AUDIT validates supplied decisions without rewriting locked facts; missing core decisions escalate to FULL.
-
-**Blueprint Gate:** adapters run only after a type-appropriate blueprint or verified finished-design packet passes. Character and illustration packets have different required fields.
-
-**Adapter boundary:** Anima and NAI5 have model-specific prompt skeletons, but no authority to change the concept.
-
-**Generated distribution:** bundle/ and docs/skill-registry.md are generated from source. VERSION is the harness version; module versions are independent contract versions.
+\`bundle/\` and \`docs/skill-registry.md\` are generated from source. \`harness.json\` is the runtime configuration; the Kernel defines the operating contract.

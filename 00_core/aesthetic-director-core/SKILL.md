@@ -5,7 +5,7 @@ metadata:
   author: Tera-Dark
   version: "2.5.0"
   layer: "00_core"
-  load: "always"
+  load: "on-demand"
   status: "active"
   triggers: "OC, 人设, 插画, 服装, 海报, 联动海报, 艺术海报, key visual, crossover poster, 审美, 创意方向, 人味, 高级感, 不要AI味, 太平淡, 太乱"
 ---
@@ -251,3 +251,7 @@ AUDIT 通常内部完成；只有用户明确要求审美评审时才展开。
 - 普通 NAI5 设计请求不重复已经预设的 artist stack 与质量层；只有完整 prompt 或单画师测试时显式展开。
 
 近期高分校准：Miku“无尽轮回 / 时空交错 / 追寻”叙事海报，用户评分 8.5/10。
+
+
+## References
+- `references/modern-key-visual-grammar.md` — bundled reference for this module.
