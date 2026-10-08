@@ -50,6 +50,14 @@ jobs:
             echo "stale=true" >> "$GITHUB_OUTPUT"
           fi
 
+      - name: Debug generated bundle diff
+        if: steps.check.outputs.stale == 'true'
+        run: |
+          python3 scripts/build.py
+          echo "===== GENERATED DIFF ====="
+          git diff -- bundle docs/skill-registry.md
+          echo "===== END GENERATED DIFF ====="
+
       - name: Fail PR if bundle is stale
         if: github.event_name == 'pull_request' && steps.check.outputs.stale == 'true'
         run: |
