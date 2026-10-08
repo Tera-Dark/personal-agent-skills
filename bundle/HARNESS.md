@@ -153,10 +153,7 @@ Claims about model behavior, syntax, parameters, tags or generation effects use 
 | `lora-training` | 05_tools | on-demand | planned | 270 | LoRA, 训练, fine-tune, 炼丹 | none (planned) |
 | `evaluation-loop` | 06_evaluation | on-demand | active | 1600 | 太平淡, 太乱, 不像, 没人味, 这版可以, 评价一下, 哪里不对, compare | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/evaluation-loop.md` |
 
-Raw URL pattern:
-`https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/<name>.md`
-
-### Module cards (contracts for on-demand modules; use only if a fetch fails)
+#### Module cards (contracts for on-demand modules; use only if a fetch fails)
 
 - **aesthetic-director-core** — Creative direction layer that turns a vague request into one committed design idea before any blueprint or prompt is written. Runs a sequence of generative "moves" (find the obsession, plant a contradiction, pick from the tail, build causality, subtract, keep one strange thing) and produces a short Creative Brief with rejected alternatives. Use for any OC / character / illustration / fashion / key-visual request, whenever output feels generic, "AI-flavored", too plain, too busy, or when the user asks for taste, direction, 审美, 创意方向, 人味, 高级感, 不要AI味.
 - **character-design-engine** — Turns a Creative Brief (from aesthetic-director-core) into a complete, model-agnostic character blueprint — design thesis, silhouette architecture, visual anchors, garment engineering (base / structural / signature extension / accessory system), material contrast, palette hierarchy, behavioral pose + camera, narrative residue, presentation format — then runs a subtraction pass. Use for OC, 人设, 角色设计, 服装设计, 立绘, 高定服设, 二游角色, character sheet, fashion concept. Never writes model-specific prompt syntax.
@@ -173,9 +170,10 @@ Raw URL pattern:
 - **lora-training** — Technical placeholder for LoRA training pipelines: dataset prep, caption organization, training configuration, evaluation. Use when the user mentions LoRA, 训练, fine-tune, 炼丹. Does not decide character concepts or artistic direction.
 - **evaluation-loop** — Evaluates a generated image or compiled prompt against the original Creative Brief and blueprint, using a fixed rubric (identity preservation, outfit binding, spatial clarity, unrequested additions, V1/V2 consistency, output contract) plus a design-layer read (thesis, silhouette, causality, density, punctum, one strange thing). Diagnoses which layer failed and routes the fix to that layer with a single-variable change. Use on any feedback round: 太平淡, 太乱, 不像, 没人味, 这版可以, 评价一下, 哪里不对, compare versions.
 
+Raw URL pattern:
+\`https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/<name>.md\`
+
 #### Pipeline packs
-
-
 
 | pack | modules | fetch |
 |---|---|---|
@@ -815,6 +813,9 @@ artist:zhi_xu_li_ming, artist:zhanzhan_lan, artist:kurikabacha, artist:shu_bing,
 Domestic female-oriented creator ecosystem first → inspect actual work → exact Danbooru artist tag → >50 posts → controlled NAI5 test → owner feedback → tier / role update.
 
 Single test, combination test, and permanent tier are separate evidence types.
+
+---
+
 ## MODULE: creative-skill-router
 layer: 01_router · load: always · status: active · module version: 4.0.0 · harness 4.0.0
 source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/01_router/creative-skill-router
