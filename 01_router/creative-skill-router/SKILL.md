@@ -97,3 +97,11 @@ Router 不向用户输出长篇架构说明。内部决定路径后直接执行�
 - references/model-selection.md
 - references/execution-flow.md
 - references/skill-map.md
+
+
+## References
+- `references/execution-flow.md` — bundled reference for this module.
+- `references/model-selection.md` — bundled reference for this module.
+- `references/routing-rules.md` — bundled reference for this module.
+- `references/skill-map.md` — bundled reference for this module.
+- `references/task-classification.md` — bundled reference for this module.
