@@ -4,7 +4,7 @@ description: Turns a Creative Brief into an authored, model-agnostic illustratio
 metadata:
   author: Tera-Dark
   version: "2.4.0"
-  layer: "02_creation"
+  layer: "02_design"
   load: "on-demand"
   status: "active"
   triggers: "插画, 氛围图, 竖屏, 半留白, 印象风, 故事感, key visual, poster, scene, 极繁, 特写垫底, 大头贴, 元素贴, 角色拼贴"
