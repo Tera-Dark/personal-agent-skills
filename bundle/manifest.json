@@ -7,8 +7,8 @@
   "harness_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS.md",
   "harness_full_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS-FULL.md",
   "handshake": "Harness v4.0.0 loaded · 16 modules · 说需求，或发参考图。",
-  "core_tokens": 20989,
-  "full_tokens": 101571,
+  "core_tokens": 20987,
+  "full_tokens": 103763,
   "pipeline": {
     "aesthetic_gate": "aesthetic-director-core",
     "blueprint_gate": {
@@ -247,25 +247,25 @@
       "load": "on-demand",
       "status": "active",
       "version": "0.1.0",
-      "description": "Thin NovelAI V5 community renderer that converts a Visual Prompt Packet plus verified Danbooru tags into the user's compact NAI5 prompt format. Handles artist namespace, weighting syntax, scene and character blocks, interaction tags, ordering, and optional targeted negatives. Does not design.",
+      "description": "Thin NovelAI V5 renderer that converts a Visual Prompt Packet plus verified Danbooru tags into the user's compact NAI5 prompt format. Handles artist namespace, weighting syntax, base/character prompt fields, interaction tags, ordering, and optional targeted negatives. Does not design.",
       "triggers": "NAI5, NovelAI, NAI提示词, tag prompt, Danbooru prompt, artist stack",
       "path": "03_prompt/nai5-renderer",
       "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/03_prompt/nai5-renderer",
       "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/nai5-renderer.md",
       "references": [
-        "references/community-format.md",
         "references/artist-stack.md",
-        "references/style-layer.md",
         "references/character-block.md",
+        "references/community-format.md",
         "references/interaction-tags.md",
-        "references/scene-block.md",
-        "references/tag-taxonomy.md",
-        "references/weighting.md",
         "references/negative-strategy.md",
-        "references/single-artist-test-protocol.md"
+        "references/scene-block.md",
+        "references/single-artist-test-protocol.md",
+        "references/style-layer.md",
+        "references/tag-taxonomy.md",
+        "references/weighting.md"
       ],
-      "tokens_skill": 1028,
-      "tokens_bundle": 4188
+      "tokens_skill": 1679,
+      "tokens_bundle": 6381
     },
     {
       "name": "visual-prompt-core",
