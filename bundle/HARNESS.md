@@ -136,7 +136,7 @@ Claims about model behavior, syntax, parameters, tags or generation effects use 
 
 | module | layer | load | status | ~tokens | triggers | fetch |
 |---|---|---|---|---|---|---|
-| `personal-identity-profile` | 00_core | always | active | 15353 | 我的风格, 个人偏好, 按我习惯, any creative task | embedded below |
+| `personal-identity-profile` | 00_core | always | active | 16826 | 我的风格, 个人偏好, 按我习惯, any creative task | embedded below |
 | `aesthetic-director-core` | 00_core | on-demand | active | 26085 | OC, 人设, 插画, 服装, 海报, 联动海报, 艺术海报, key visual, crossover poster, 审美, 创意方向, 人味, 高级感, 不要AI味, 太平淡, 太乱 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/aesthetic-director-core.md` |
 | `creative-skill-router` | 01_router | always | active | 3040 | any request, 设计, 提示词, prompt, 反推, 分析, ComfyUI, LoRA, NAI5, Anima | embedded below |
 | `character-design-engine` | 02_design | on-demand | active | 15337 | OC, 人设, 角色设计, 服装设计, 立绘, 高定服设, 二游角色, character sheet, 极繁, 极繁精美, 华丽人设, 原创圈 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/character-design-engine.md` |
@@ -751,7 +751,7 @@ Character identity > decoration.
 
 > Canonical personal artist pool for NovelAI V5 experiments.
 >
-> Updated: 2026-10-07
+> Updated: 2026-10-09
 
 ##### 1. Pool semantics
 
@@ -784,6 +784,7 @@ These four levels represent the user's long-term preference classification. A re
 _(manual assignment)_
 
 ###### 顶级
+- `artist:ibuki_satsuki` — user explicitly identifies this as **顶级（专项风格）**; single-artist score: **8.0/10**. Heavy Chinese-style painterly rendering, visually powerful and highly distinctive. Keep as a specialist for Chinese-style / richly textured large illustrations; do not treat as a universal portrait or default blend anchor.
 - `artist:starshadowmagician` — user explicitly placed in 顶级; latest single-artist score: **8.5/10**; user says they especially like the soft, feminine line quality and coloring.
 - `artist:ask_(askzy)` — user explicitly placed in 顶级; latest single-artist score: **7.5/10**; user says it is not their personal taste, but the style is highly distinctive and strongly summarized. Keep as a **specialized high-value style reference**, not a default personal-style anchor.
 
@@ -847,6 +848,38 @@ Use these tags to choose artists by **function**, not only by overall score.
   - personal-fit note: overall style is respected, but the user does not currently prefer the face.
 
 
+###### Clean / precise portraits and standing art
+- `chuzenji`
+  - verified artist tag: `artist:chuzenji`; public Safebooru index showed about **164 tagged posts** at review time.
+  - score: **8.0/10**.
+  - style tags: **画面精练 / 干净清爽 / 精准简洁 / 立绘友好 / 肖像稳定**.
+  - strongest use: clean character standees, polished portraits, simple backgrounds, clearly readable silhouettes.
+  - role: a high-value clean-rendering anchor; preserve its restraint instead of adding decorative noise.
+
+###### Experimental / psychedelic color treatment
+- `yadu_nadu`
+  - score: **7.0/10**.
+  - style tags: **迷幻 / 染料浸染感 / 头发色彩实验 / 高辨识度 / 极特殊个人风格**.
+  - strongest use: experimental portraits or illustrations where the hair and color treatment are the main visual event.
+  - caution: intentionally niche and easy to overpower a conventional design; use selectively rather than as a default style anchor.
+  - tag verification: external imageboard search surfaced over **200 posts** carrying the spelling `yadu_nadu`, but the surfaced mirror did not clearly confirm the Danbooru tag type as Artist. Keep the user's tested style record; do not claim `artist:yadu_nadu` is verified until the Danbooru tag gate confirms the exact canonical Artist tag.
+
+###### Pseudo-thick-paint / elaborate large illustrations
+- `mento`
+  - verified artist tag: `artist:mento`; public Danbooru-family index showed about **328 tagged posts** at review time.
+  - score: **8.0/10**.
+  - style tags: **伪厚涂 / 精美复杂 / 轻微脏感 / 丰富质感 / 大插图向**.
+  - strongest use: elaborate, high-density character illustrations, richly rendered costumes, large-format key visuals.
+  - caution: retain the attractive painterly texture, but watch the slight visual dirtiness on clean portrait or minimalist work.
+
+###### Chinese-style heavy painterly specialist
+- `ibuki_satsuki`
+  - verified artist tag: `artist:ibuki_satsuki`; public Safebooru/Danbooru-family results showed about **308 tagged posts** at review time.
+  - score: **8.0/10`; manual tier: **顶级（专项风格）**.
+  - style tags: **国风 / 厚重 / 传统绘画气质 / 丰富笔触 / 强风格化**.
+  - strongest use: Chinese-style costume illustration, elaborate traditional motifs, richly textured and atmosphere-led large illustrations.
+  - caution: its high distinctiveness is a strength but reduces general-purpose mixability; use when the concept specifically benefits from this visual language.
+
 ###### Cold dark / rough painterly
 - `huke`
   - verification: exact Safebooru/Danbooru artist tag confirmed; indexed artist count observed at **2790** on 2026-10-06. citeturn659470search0turn659470search1
@@ -861,6 +894,45 @@ Use these tags to choose artists by **function**, not only by overall score.
   - strongest use: scene-led illustrations, worldbuilding, character-in-environment tests
   - useful elements to test next: environmental lighting, props, architecture, atmospheric perspective
   - status: **scene/concept hypothesis only**, not yet confirmed.
+
+##### 4. Single-artist test records — 2026-10-09
+
+These records preserve the user's direct NAI5 test results. Scores do not automatically change manual tiers unless the user explicitly states a tier.
+
+###### `artist:chuzenji`
+- Score: **8.0/10**
+- User feedback: **画面精练，立绘、肖像等画面干净效果极佳**.
+- Style tags: **精练 / 干净 / 清爽 / 肖像 / 立绘稳定**.
+- Best-fit use: clean standing art, neat portraits, restrained composition and readable character shapes.
+- Verification: exact `chuzenji` artist tag surfaced in public Safebooru results (about 164 posts observed).
+- Tier: individually positive; no automatic tier change.
+
+###### `yadu_nadu`
+- Score: **7.0/10**
+- User feedback: **画面像吃了菌子一样，头发有被染料浸染的迷幻感；极特殊个人风格**.
+- Style tags: **迷幻色彩 / 染料浸染感 / 实验头发色彩 / 高辨识度 / 强个性**.
+- Best-fit use: unusual color-led portraits and highly stylized illustrations.
+- Caution: not a general-purpose artist; use when the concept explicitly calls for psychedelic, experimental color treatment.
+- Tag status: spelling `yadu_nadu` and a large body of indexed works were found in external imageboard results, but the Artist-type namespace was not conclusively confirmed. Keep the user-scored style record; exact `artist:` hard-tag use remains pending Danbooru tag-gate verification.
+- Tier: individually tested; no automatic tier change.
+
+###### `artist:mento`
+- Score: **8.0/10**
+- User feedback: **伪厚涂；画面观感略脏；适合精美复杂的大插图，综合表现不错**.
+- Style tags: **伪厚涂 / 复杂精美 / 轻微脏感 / 质感丰富 / 大插图**.
+- Best-fit use: highly detailed large illustrations, ornate costumes, texture-rich key visuals.
+- Caution: may be less suitable for clean minimal portraits when the slight painterly dirtiness is unwanted.
+- Verification: exact `mento` artist identity surfaced in public Danbooru-family results (about 328 posts observed).
+- Tier: individually positive; no automatic tier change.
+
+###### `artist:ibuki_satsuki`
+- Score: **8.0/10**
+- User feedback: **国风厚重感画风，属于顶级，但过于独特**.
+- Style tags: **国风厚重 / 绘画感 / 强风格化 / 传统元素 / 专项高完成度**.
+- Best-fit use: Chinese-style illustration, richly textured traditional costume, atmospheric large illustration.
+- Caution: specialist rather than universal blend anchor; avoid injecting this distinct style into concepts that need clean generic anime rendering.
+- Verification: exact `ibuki_satsuki` artist identity surfaced in public Safebooru/Danbooru-family results (about 308 posts observed).
+- Tier: **user-assigned 顶级（专项风格）**.
 
 ##### 4. Single-artist test records — 2026-10-06
 
