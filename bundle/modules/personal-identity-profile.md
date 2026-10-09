@@ -752,6 +752,22 @@ Use these tags to choose artists by **function**, not only by overall score.
   - personal-fit note: overall style is respected, but the user does not currently prefer the face.
 
 
+##### Modern fashion / distinctive rich coloring
+- `john_kafka`
+  - verified artist tag: `artist:john_kafka`; public Safebooru index showed about **490 tagged posts** at review time.
+  - user score: **7.5/10**.
+  - style tags: **现代时尚 / 强个人特点 / 丰富上色 / 潮流感 / 高辨识度**.
+  - strongest use: fashion-forward character portraits, editorial styling, contemporary outfits, and illustrations where color contributes strongly to personality.
+  - role: expressive style anchor; use when the design needs modern fashion energy and a richer color treatment rather than restrained rendering.
+
+##### Restrained coloring / concise brushwork
+- `zhibuji_loom`
+  - verified artist tag: `artist:zhibuji_loom`; public Safebooru index showed about **405–406 tagged posts** at review time.
+  - user score: **8.5/10**.
+  - style tags: **克制上色 / 精简笔触 / 清爽 / 简洁概括 / 高完成度**.
+  - strongest use: clean portraits, elegant character presentation, and combinations that need painterly restraint without losing finish.
+  - role: high-value restraint anchor; use to prevent color and surface texture from becoming noisy.
+
 ##### Clean / precise portraits and standing art
 - `chuzenji`
   - verified artist tag: `artist:chuzenji`; public Safebooru index showed about **164 tagged posts** at review time.
@@ -802,6 +818,22 @@ Use these tags to choose artists by **function**, not only by overall score.
 #### 4. Single-artist test records — 2026-10-09
 
 These records preserve the user's direct NAI5 test results. Scores do not automatically change manual tiers unless the user explicitly states a tier.
+
+##### `artist:john_kafka`
+- Score: **7.5/10**
+- User feedback: **现代时尚、极具个人特点、上色丰富**.
+- Style tags: **现代时尚 / 高辨识度 / 丰富上色 / 潮流角色肖像**.
+- Best-fit use: contemporary fashion character portraits, editorial outfits, color-led OC design, and stylish urban themes.
+- Verification: exact `john_kafka` artist tag surfaced in public Safebooru results (about 490 tagged posts observed).
+- Tier: individually scored; no automatic tier change.
+
+##### `artist:zhibuji_loom`
+- Score: **8.5/10**
+- User feedback: **上色和笔触比较克制、精简**.
+- Style tags: **克制 / 精简笔触 / 简洁上色 / 干净 / 高完成度**.
+- Best-fit use: refined portraits, clean fashion illustration, and blends that need controlled color and surface detail.
+- Verification: exact `zhibuji_loom` artist tag surfaced in public Safebooru results (about 405–406 tagged posts observed).
+- Tier: individually scored; no automatic tier change.
 
 ##### `artist:chuzenji`
 - Score: **8.0/10**

@@ -136,7 +136,7 @@ Claims about model behavior, syntax, parameters, tags or generation effects use 
 
 | module | layer | load | status | ~tokens | triggers | fetch |
 |---|---|---|---|---|---|---|
-| `personal-identity-profile` | 00_core | always | active | 16826 | 我的风格, 个人偏好, 按我习惯, any creative task | embedded below |
+| `personal-identity-profile` | 00_core | always | active | 17387 | 我的风格, 个人偏好, 按我习惯, any creative task | embedded below |
 | `aesthetic-director-core` | 00_core | on-demand | active | 26085 | OC, 人设, 插画, 服装, 海报, 联动海报, 艺术海报, key visual, crossover poster, 审美, 创意方向, 人味, 高级感, 不要AI味, 太平淡, 太乱 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/aesthetic-director-core.md` |
 | `creative-skill-router` | 01_router | always | active | 3040 | any request, 设计, 提示词, prompt, 反推, 分析, ComfyUI, LoRA, NAI5, Anima | embedded below |
 | `character-design-engine` | 02_design | on-demand | active | 15337 | OC, 人设, 角色设计, 服装设计, 立绘, 高定服设, 二游角色, character sheet, 极繁, 极繁精美, 华丽人设, 原创圈 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/character-design-engine.md` |
@@ -848,6 +848,22 @@ Use these tags to choose artists by **function**, not only by overall score.
   - personal-fit note: overall style is respected, but the user does not currently prefer the face.
 
 
+###### Modern fashion / distinctive rich coloring
+- `john_kafka`
+  - verified artist tag: `artist:john_kafka`; public Safebooru index showed about **490 tagged posts** at review time.
+  - user score: **7.5/10**.
+  - style tags: **现代时尚 / 强个人特点 / 丰富上色 / 潮流感 / 高辨识度**.
+  - strongest use: fashion-forward character portraits, editorial styling, contemporary outfits, and illustrations where color contributes strongly to personality.
+  - role: expressive style anchor; use when the design needs modern fashion energy and a richer color treatment rather than restrained rendering.
+
+###### Restrained coloring / concise brushwork
+- `zhibuji_loom`
+  - verified artist tag: `artist:zhibuji_loom`; public Safebooru index showed about **405–406 tagged posts** at review time.
+  - user score: **8.5/10**.
+  - style tags: **克制上色 / 精简笔触 / 清爽 / 简洁概括 / 高完成度**.
+  - strongest use: clean portraits, elegant character presentation, and combinations that need painterly restraint without losing finish.
+  - role: high-value restraint anchor; use to prevent color and surface texture from becoming noisy.
+
 ###### Clean / precise portraits and standing art
 - `chuzenji`
   - verified artist tag: `artist:chuzenji`; public Safebooru index showed about **164 tagged posts** at review time.
@@ -898,6 +914,22 @@ Use these tags to choose artists by **function**, not only by overall score.
 ##### 4. Single-artist test records — 2026-10-09
 
 These records preserve the user's direct NAI5 test results. Scores do not automatically change manual tiers unless the user explicitly states a tier.
+
+###### `artist:john_kafka`
+- Score: **7.5/10**
+- User feedback: **现代时尚、极具个人特点、上色丰富**.
+- Style tags: **现代时尚 / 高辨识度 / 丰富上色 / 潮流角色肖像**.
+- Best-fit use: contemporary fashion character portraits, editorial outfits, color-led OC design, and stylish urban themes.
+- Verification: exact `john_kafka` artist tag surfaced in public Safebooru results (about 490 tagged posts observed).
+- Tier: individually scored; no automatic tier change.
+
+###### `artist:zhibuji_loom`
+- Score: **8.5/10**
+- User feedback: **上色和笔触比较克制、精简**.
+- Style tags: **克制 / 精简笔触 / 简洁上色 / 干净 / 高完成度**.
+- Best-fit use: refined portraits, clean fashion illustration, and blends that need controlled color and surface detail.
+- Verification: exact `zhibuji_loom` artist tag surfaced in public Safebooru results (about 405–406 tagged posts observed).
+- Tier: individually scored; no automatic tier change.
 
 ###### `artist:chuzenji`
 - Score: **8.0/10**
