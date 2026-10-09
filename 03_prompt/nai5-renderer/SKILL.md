@@ -86,13 +86,13 @@ When the user says artist names only / artist exploration, bypass normal content
 - [ ] user fixed Negative remains external unless requested
 
 ## References
-- references/community-format.md — NAI5 prompt fields, syntax and output conventions.
-- references/character-block.md — per-character prompt structure and field ownership.
-- references/interaction-tags.md — multi-character interaction syntax and reliability limits.
-- references/artist-stack.md — renderer-side artist namespace and weighting syntax.
-- references/style-layer.md — NAI5 quality, complexity and rendering layer.
-- references/scene-block.md — scene ordering and environment handling.
-- references/tag-taxonomy.md — compact tag ordering and semantic grouping.
-- references/weighting.md — NAI5 weight syntax details.
-- references/negative-strategy.md — targeted negative control.
-- references/single-artist-test-protocol.md — controlled single-artist test procedure.
+- `references/community-format.md` — NAI5 prompt fields, syntax and output conventions.
+- `references/character-block.md` — per-character prompt structure and field ownership.
+- `references/interaction-tags.md` — multi-character interaction syntax and reliability limits.
+- `references/artist-stack.md` — renderer-side artist namespace and weighting syntax.
+- `references/style-layer.md` — NAI5 quality, complexity and rendering layer.
+- `references/scene-block.md` — scene ordering and environment handling.
+- `references/tag-taxonomy.md` — compact tag ordering and semantic grouping.
+- `references/weighting.md` — NAI5 weight syntax details.
+- `references/negative-strategy.md` — targeted negative control.
+- `references/single-artist-test-protocol.md` — controlled single-artist test procedure.
