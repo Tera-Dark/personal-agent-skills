@@ -8,7 +8,7 @@
   "harness_full_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS-FULL.md",
   "handshake": "Harness v4.0.0 loaded · 16 modules · 说需求，或发参考图。",
   "core_tokens": 20987,
-  "full_tokens": 103763,
+  "full_tokens": 103768,
   "pipeline": {
     "aesthetic_gate": "aesthetic-director-core",
     "blueprint_gate": {
@@ -253,19 +253,19 @@
       "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/03_prompt/nai5-renderer",
       "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/nai5-renderer.md",
       "references": [
-        "references/artist-stack.md",
-        "references/character-block.md",
         "references/community-format.md",
+        "references/character-block.md",
         "references/interaction-tags.md",
-        "references/negative-strategy.md",
-        "references/scene-block.md",
-        "references/single-artist-test-protocol.md",
+        "references/artist-stack.md",
         "references/style-layer.md",
+        "references/scene-block.md",
         "references/tag-taxonomy.md",
-        "references/weighting.md"
+        "references/weighting.md",
+        "references/negative-strategy.md",
+        "references/single-artist-test-protocol.md"
       ],
-      "tokens_skill": 1679,
-      "tokens_bundle": 6381
+      "tokens_skill": 1684,
+      "tokens_bundle": 6386
     },
     {
       "name": "visual-prompt-core",

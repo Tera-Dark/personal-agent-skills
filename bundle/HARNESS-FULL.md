@@ -144,7 +144,7 @@ Claims about model behavior, syntax, parameters, tags or generation effects use 
 | `anima-renderer` | 03_prompt | on-demand | active | 5876 | Anima, Anima prompt, Anima 提示词, Anima checkpoint | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-renderer.md` |
 | `danbooru-tag-gate` | 03_prompt | on-demand | active | 1404 | Danbooru tag, tag validation, tag check, exact tag, alias, tag verification | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/danbooru-tag-gate.md` |
 | `general-image-prompt-adapter` | 03_prompt | on-demand | active | 2234 | Midjourney, MJ, DALL-E, GPT Image, Imagen, Gemini image, Nano Banana, Flux, SDXL, Stable Diffusion, 通用提示词, 其他模型, 不知道用什么模型 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/general-image-prompt-adapter.md` |
-| `nai5-renderer` | 03_prompt | on-demand | active | 6381 | NAI5, NovelAI, NAI提示词, tag prompt, Danbooru prompt, artist stack | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/nai5-renderer.md` |
+| `nai5-renderer` | 03_prompt | on-demand | active | 6386 | NAI5, NovelAI, NAI提示词, tag prompt, Danbooru prompt, artist stack | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/nai5-renderer.md` |
 | `visual-prompt-core` | 03_prompt | on-demand | active | 1551 | prompt packet, visual prompt, prompt core, 提示词编译, 提示词规划, NAI5, Anima | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/visual-prompt-core.md` |
 | `image-reverse-analysis` | 04_analysis | on-demand | active | 1621 | 反推, 分析图片, 提取提示词, 还原风格, 参考这张, reverse prompt, reference image | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/image-reverse-analysis.md` |
 | `prompt-analysis` | 04_analysis | on-demand | active | 709 | 优化提示词, prompt 哪里有问题, prompt review, 分析这段提示词 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/prompt-analysis.md` |
@@ -6556,129 +6556,16 @@ When the user says artist names only / artist exploration, bypass normal content
 - [ ] user fixed Negative remains external unless requested
 
 #### References
-- references/community-format.md — NAI5 prompt fields, syntax and output conventions.
-- references/character-block.md — per-character prompt structure and field ownership.
-- references/interaction-tags.md — multi-character interaction syntax and reliability limits.
-- references/artist-stack.md — renderer-side artist namespace and weighting syntax.
-- references/style-layer.md — NAI5 quality, complexity and rendering layer.
-- references/scene-block.md — scene ordering and environment handling.
-- references/tag-taxonomy.md — compact tag ordering and semantic grouping.
-- references/weighting.md — NAI5 weight syntax details.
-- references/negative-strategy.md — targeted negative control.
-- references/single-artist-test-protocol.md — controlled single-artist test procedure.
-
----
-
-### Reference: references/artist-stack.md
-
-#### NAI5 Artist Stack Engineering
-
-##### Purpose
-
-Serialize an already-selected artist set into NovelAI V5 syntax. Artist identity, eligibility, tier, blacklist, and personal selection policy belong to personal-identity-profile. This reference owns only renderer-side syntax and composition rules.
-
-##### Syntax
-
-Default artist syntax:
-
-1.0::artist:name::
-
-Numerical emphasis:
-- 1.0 is baseline.
-- >1.0 strengthens.
-- 0.0–1.0 weakens.
-- negative values are reserved for targeted suppression/removal.
-
-##### Rendering rules
-
-- Preserve the artist: namespace exactly.
-- Preserve underscores, periods, parentheses, suffixes, and other exact tag syntax.
-- Never infer an artist tag from a display name.
-- Never silently normalize an unresolved artist token.
-- Serialize only artists already selected and verified upstream.
-- Artist count, weights, blacklist, yellow-pool membership, and exploration eligibility come from Identity; do not duplicate those rules here.
-- Do not treat artist collaboration as a guaranteed mechanism. When it is part of an explicit experiment policy, serialize it as requested; otherwise omit it.
-- If artist weights conflict strongly, prefer fewer selected artists rather than compensating with more weight.
-
-##### Practical serialization
-
-Strong primary + light blend:
-
-1.05::artist:primary::
-0.55::artist:secondary::
-0.5::artist:third::
-
-Conservative blend:
-
-1.0::artist:primary::
-0.55::artist:secondary::
-0.45::artist:third::
-
-Weights are experiment variables, not permanent artist rankings.
-
-##### Debugging
-
-If a mixed artist result becomes noisy, dirty, or stylistically torn, test artist count and weight conflict before changing design content.
-
----
-
-### Reference: references/character-block.md
-
-#### NAI5 Multi-Character Prompt Fields
-
-##### Overview
-
-[Official] NovelAI V5's recommended multi-character workflow uses one Base Prompt and one separate Character Prompt field per character. This isolation helps reduce feature leakage.
-
-The headings below are for the human-readable answer only. Do not paste labels such as “Base Prompt” or “Character Prompt 1” into the prompt contents.
-
-##### Base Prompt
-
-The Base Prompt defines what the image shares across characters:
-
-- count tags, e.g. 2girls or 1girl, 1boy
-- shared location, environment, time and lighting
-- camera, framing, placement cues and composition
-- global style / rendering cues
-- common action and shared atmosphere
-- the narrative event in concise terms
-
-Example:
-
-    1girl, 1boy, outdoors, city sidewalk, walking together, candid photography, slightly tilted camera angle, medium shot, natural daylight, muted cool colors, convenience store entrance
-
-##### Character Prompt structure
-
-Use one Character Prompt field for each character, in the intended visual order.
-
-Example:
-
-    girl, character identity, signature hair and face, distinctive outfit, personal props, expression, pose, own action
-
-    boy, character identity, signature appearance, outfit, personal props, expression, pose, own action
-
-Recommended order:
-1. singular subject type: girl / boy / other
-2. canonical character identity
-3. signature facial and hair features
-4. outfit and distinctive accessories
-5. personal props
-6. expression
-7. pose / gesture / action
-8. short natural-language clarification when needed
-
-##### Rules
-
-- Put subject-count tags only in the Base Prompt. Character fields use singular subject-type tags without counts.
-- Keep each character's identity tokens near the beginning of its own field.
-- Describe signature features before secondary decoration.
-- Keep each character's outfit, props, expression and local action in that character's field.
-- Avoid mixing two characters in one Character Prompt; shared scene and composition belong in Base.
-- Character field order usually influences placement (commonly top-to-bottom / left-to-right). Keep it aligned with the intended composition; use Custom Character Positions for precise placement.
-- Tags and natural language can coexist. Keep tag-like facts compact and use a short sentence to disambiguate a complex gesture.
-- Do not write literal char1: / char2: labels in prompt contents. Those labels may be used internally only when discussing the structure.
-
-Official reference: https://docs.novelai.net/en/image/multiplecharacters/
+- `references/community-format.md` — NAI5 prompt fields, syntax and output conventions.
+- `references/character-block.md` — per-character prompt structure and field ownership.
+- `references/interaction-tags.md` — multi-character interaction syntax and reliability limits.
+- `references/artist-stack.md` — renderer-side artist namespace and weighting syntax.
+- `references/style-layer.md` — NAI5 quality, complexity and rendering layer.
+- `references/scene-block.md` — scene ordering and environment handling.
+- `references/tag-taxonomy.md` — compact tag ordering and semantic grouping.
+- `references/weighting.md` — NAI5 weight syntax details.
+- `references/negative-strategy.md` — targeted negative control.
+- `references/single-artist-test-protocol.md` — controlled single-artist test procedure.
 
 ---
 
@@ -6765,6 +6652,66 @@ Prefer dense visual tokens over long descriptive paragraphs, but preserve the im
 
 ---
 
+### Reference: references/character-block.md
+
+#### NAI5 Multi-Character Prompt Fields
+
+##### Overview
+
+[Official] NovelAI V5's recommended multi-character workflow uses one Base Prompt and one separate Character Prompt field per character. This isolation helps reduce feature leakage.
+
+The headings below are for the human-readable answer only. Do not paste labels such as “Base Prompt” or “Character Prompt 1” into the prompt contents.
+
+##### Base Prompt
+
+The Base Prompt defines what the image shares across characters:
+
+- count tags, e.g. 2girls or 1girl, 1boy
+- shared location, environment, time and lighting
+- camera, framing, placement cues and composition
+- global style / rendering cues
+- common action and shared atmosphere
+- the narrative event in concise terms
+
+Example:
+
+    1girl, 1boy, outdoors, city sidewalk, walking together, candid photography, slightly tilted camera angle, medium shot, natural daylight, muted cool colors, convenience store entrance
+
+##### Character Prompt structure
+
+Use one Character Prompt field for each character, in the intended visual order.
+
+Example:
+
+    girl, character identity, signature hair and face, distinctive outfit, personal props, expression, pose, own action
+
+    boy, character identity, signature appearance, outfit, personal props, expression, pose, own action
+
+Recommended order:
+1. singular subject type: girl / boy / other
+2. canonical character identity
+3. signature facial and hair features
+4. outfit and distinctive accessories
+5. personal props
+6. expression
+7. pose / gesture / action
+8. short natural-language clarification when needed
+
+##### Rules
+
+- Put subject-count tags only in the Base Prompt. Character fields use singular subject-type tags without counts.
+- Keep each character's identity tokens near the beginning of its own field.
+- Describe signature features before secondary decoration.
+- Keep each character's outfit, props, expression and local action in that character's field.
+- Avoid mixing two characters in one Character Prompt; shared scene and composition belong in Base.
+- Character field order usually influences placement (commonly top-to-bottom / left-to-right). Keep it aligned with the intended composition; use Custom Character Positions for precise placement.
+- Tags and natural language can coexist. Keep tag-like facts compact and use a short sentence to disambiguate a complex gesture.
+- Do not write literal char1: / char2: labels in prompt contents. Those labels may be used internally only when discussing the structure.
+
+Official reference: https://docs.novelai.net/en/image/multiplecharacters/
+
+---
+
 ### Reference: references/interaction-tags.md
 
 #### NAI5 Multi-Character Interaction Tags
@@ -6812,123 +6759,56 @@ The example illustrates ownership and direction; choose action tags that match t
 
 ---
 
-### Reference: references/negative-strategy.md
+### Reference: references/artist-stack.md
 
-#### NAI5 Negative Strategy
-
-##### Principle
-
-Negative prompts should solve specific problems.
-
-Avoid blindly copying huge negative lists.
-
-##### Use Cases
-
-- anatomy correction
-- unwanted styles
-- watermark removal
-- composition issues
-
-##### Avoid
-
-Negative tags that conflict with the intended style.
-
----
-
-### Reference: references/scene-block.md
-
-#### NAI5 Scene Block
+#### NAI5 Artist Stack Engineering
 
 ##### Purpose
 
-Defines environment and action description.
+Serialize an already-selected artist set into NovelAI V5 syntax. Artist identity, eligibility, tier, blacklist, and personal selection policy belong to personal-identity-profile. This reference owns only renderer-side syntax and composition rules.
 
-##### Priority
+##### Syntax
 
-Character emotion and action come before background decoration.
+Default artist syntax:
 
-##### Structure
+1.0::artist:name::
 
-- location
-- time
-- atmosphere
-- interaction
-- composition
+Numerical emphasis:
+- 1.0 is baseline.
+- >1.0 strengthens.
+- 0.0–1.0 weakens.
+- negative values are reserved for targeted suppression/removal.
 
----
+##### Rendering rules
 
-### Reference: references/single-artist-test-protocol.md
+- Preserve the artist: namespace exactly.
+- Preserve underscores, periods, parentheses, suffixes, and other exact tag syntax.
+- Never infer an artist tag from a display name.
+- Never silently normalize an unresolved artist token.
+- Serialize only artists already selected and verified upstream.
+- Artist count, weights, blacklist, yellow-pool membership, and exploration eligibility come from Identity; do not duplicate those rules here.
+- Do not treat artist collaboration as a guaranteed mechanism. When it is part of an explicit experiment policy, serialize it as requested; otherwise omit it.
+- If artist weights conflict strongly, prefer fewer selected artists rather than compensating with more weight.
 
-#### NAI5 Single-Artist Style Test Protocol
+##### Practical serialization
 
-##### Purpose
+Strong primary + light blend:
 
-Isolate one artist at a time so the user judges the artist itself rather than a mixed-stack interaction.
+1.05::artist:primary::
+0.55::artist:secondary::
+0.5::artist:third::
 
-##### 1. Test rule
+Conservative blend:
 
-One test contains exactly one artist token.
+1.0::artist:primary::
+0.55::artist:secondary::
+0.45::artist:third::
 
-Format:
-```text
-1.08::artist:name::, [fixed test content]
-```
+Weights are experiment variables, not permanent artist rankings.
 
-For a benchmark batch, keep the non-artist content stable. Change only the artist identity, or the artist weight when intentionally testing weight sensitivity.
+##### Debugging
 
-**Current mandatory test baseline:** include both year tags `year 2025, year 2026` and an explicit compact quality layer in every single-artist test. Do not omit them unless the user explicitly requests a different baseline.
-
-##### 2. Neutral benchmark
-
-```text
-1.08::artist:name::, year 2025, year 2026, 1girl, solo, upper body, portrait, three-quarter view, beautiful young woman, long soft hair, clear large eyes, gentle confident expression, refined layered outfit, lace collar, ribbon detail, small hair ornament, one hand lightly touching the collar, clean pale background, masterpiece, best quality, high quality, very aesthetic, high complexity, detailed shading, smooth gradients, anime coloring
-```
-
-This exposes face, eyes, hair, linework, shading, clothing construction, accessory handling, color grouping, and commission/OC appeal.
-
-##### 3. Red benchmark
-
-For mature/high-demand Red-direction artists, use this after the neutral pass:
-
-```text
-1.08::artist:name::, year 2025, year 2026, 1girl, solo, upper body, elegant character portrait, three-quarter view, beautiful young woman, long flowing hair, expressive eyes, refined layered costume, intricate collar and sleeve construction, one distinctive accessory, poised gesture, clean negative space, strong focal face and chest area, controlled color palette, soft directional light, masterpiece, best quality, high quality, very aesthetic, high complexity, intricate details, detailed shading, smooth gradients, anime coloring
-```
-
-Do not change the benchmark content between artists in the same comparison batch.
-
-##### 4. Rating rubric
-
-Score each artist from 1–10:
-- 脸 / 人物第一眼
-- 画风辨识度
-- 色彩与光影
-- 线稿与刻画
-- 服设完成度
-- 小画师 / Red 约稿感
-
-Optional overall score: average of the six dimensions.
-
-Do not automatically map scores to the user's four preference tiers. The user decides 夯 / 顶级 / 中等 / 次等.
-
-##### 5. Feedback semantics
-
-- '喜欢 / 很喜欢' → individual positive evidence
-- '蛮可爱 / 还可以' → direction and strength evidence, no automatic tier promotion
-- '不喜欢' → negative evidence
-- '单人一般，但混搭很好' → combination evidence only
-
-##### 6. Test order
-
-1. market / high-demand Red benchmark artists
-2. already-liked controls
-3. verified but ungraded artists in the personal pool
-4. newly explored artists after exact-tag and >50-post verification
-
-Do not mix market-Red ranking with the user's personal four-tier ranking until explicitly assigned.
-
-##### 7. Output format
-
-Every test is one copyable block containing one weighted artist and the fixed benchmark content. No separate artist-only block by default.
+If a mixed artist result becomes noisy, dirty, or stylistically torn, test artist count and weight conflict before changing design content.
 
 ---
 
@@ -7037,6 +6917,28 @@ Quality tags establish the generation's quality/aesthetic prior; complexity cont
 
 ---
 
+### Reference: references/scene-block.md
+
+#### NAI5 Scene Block
+
+##### Purpose
+
+Defines environment and action description.
+
+##### Priority
+
+Character emotion and action come before background decoration.
+
+##### Structure
+
+- location
+- time
+- atmosphere
+- interaction
+- composition
+
+---
+
 ### Reference: references/tag-taxonomy.md
 
 #### NAI5 Tag Taxonomy
@@ -7122,6 +7024,104 @@ Do not weight every token. Reserve weights for:
 - unwanted style suppression
 
 Avoid turning prompts into random weighted token piles.
+
+---
+
+### Reference: references/negative-strategy.md
+
+#### NAI5 Negative Strategy
+
+##### Principle
+
+Negative prompts should solve specific problems.
+
+Avoid blindly copying huge negative lists.
+
+##### Use Cases
+
+- anatomy correction
+- unwanted styles
+- watermark removal
+- composition issues
+
+##### Avoid
+
+Negative tags that conflict with the intended style.
+
+---
+
+### Reference: references/single-artist-test-protocol.md
+
+#### NAI5 Single-Artist Style Test Protocol
+
+##### Purpose
+
+Isolate one artist at a time so the user judges the artist itself rather than a mixed-stack interaction.
+
+##### 1. Test rule
+
+One test contains exactly one artist token.
+
+Format:
+```text
+1.08::artist:name::, [fixed test content]
+```
+
+For a benchmark batch, keep the non-artist content stable. Change only the artist identity, or the artist weight when intentionally testing weight sensitivity.
+
+**Current mandatory test baseline:** include both year tags `year 2025, year 2026` and an explicit compact quality layer in every single-artist test. Do not omit them unless the user explicitly requests a different baseline.
+
+##### 2. Neutral benchmark
+
+```text
+1.08::artist:name::, year 2025, year 2026, 1girl, solo, upper body, portrait, three-quarter view, beautiful young woman, long soft hair, clear large eyes, gentle confident expression, refined layered outfit, lace collar, ribbon detail, small hair ornament, one hand lightly touching the collar, clean pale background, masterpiece, best quality, high quality, very aesthetic, high complexity, detailed shading, smooth gradients, anime coloring
+```
+
+This exposes face, eyes, hair, linework, shading, clothing construction, accessory handling, color grouping, and commission/OC appeal.
+
+##### 3. Red benchmark
+
+For mature/high-demand Red-direction artists, use this after the neutral pass:
+
+```text
+1.08::artist:name::, year 2025, year 2026, 1girl, solo, upper body, elegant character portrait, three-quarter view, beautiful young woman, long flowing hair, expressive eyes, refined layered costume, intricate collar and sleeve construction, one distinctive accessory, poised gesture, clean negative space, strong focal face and chest area, controlled color palette, soft directional light, masterpiece, best quality, high quality, very aesthetic, high complexity, intricate details, detailed shading, smooth gradients, anime coloring
+```
+
+Do not change the benchmark content between artists in the same comparison batch.
+
+##### 4. Rating rubric
+
+Score each artist from 1–10:
+- 脸 / 人物第一眼
+- 画风辨识度
+- 色彩与光影
+- 线稿与刻画
+- 服设完成度
+- 小画师 / Red 约稿感
+
+Optional overall score: average of the six dimensions.
+
+Do not automatically map scores to the user's four preference tiers. The user decides 夯 / 顶级 / 中等 / 次等.
+
+##### 5. Feedback semantics
+
+- '喜欢 / 很喜欢' → individual positive evidence
+- '蛮可爱 / 还可以' → direction and strength evidence, no automatic tier promotion
+- '不喜欢' → negative evidence
+- '单人一般，但混搭很好' → combination evidence only
+
+##### 6. Test order
+
+1. market / high-demand Red benchmark artists
+2. already-liked controls
+3. verified but ungraded artists in the personal pool
+4. newly explored artists after exact-tag and >50-post verification
+
+Do not mix market-Red ranking with the user's personal four-tier ranking until explicitly assigned.
+
+##### 7. Output format
+
+Every test is one copyable block containing one weighted artist and the fixed benchmark content. No separate artist-only block by default.
 
 ---
 
