@@ -19,6 +19,13 @@ Router 不负责：
 - Danbooru 验证细节；
 - Anima / NAI5 内部语法。
 
+### 执行模式选择
+
+- **FULL CREATIVE**：新 OC、新服设、新插画、新海报，或核心命题未定的请求。
+- **FAST VARIANT**：用户基于已认可设计要求局部改动。先锁定原设计，只改当轮指定变量；不重新探索被锁定的部分。
+- **PROMPT ONLY**：用户明确说“只输出提示词 / 直接给 prompt”，或提交了完整设计等待编译。内部仍执行必要校验，但不展示 Creative Brief、路由过程或架构说明。
+- 模式由意图和设计完成度决定，不只靠关键词。如果 FAST VARIANT 涉及身份、主轮廓、核心命题或构图的重大改变，则升级 FULL CREATIVE。
+
 ### 主路由
 
 #### 1. 创作请求
@@ -64,7 +71,7 @@ existing prompt → prompt-analysis
 
 → evaluation-loop → 失败层 owner
 
-只修第一个实际失败层，不借 renderer 堆词掩盖设计问题。
+只修第一个实际失败层，不借 renderer 堆词掩盖设计问题。对于用户明确要求的局部变体，采用 FAST VARIANT，不重做未受影响的设计层。
 
 #### 7. 技术
 

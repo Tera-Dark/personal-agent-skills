@@ -7,8 +7,8 @@
   "harness_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS.md",
   "harness_full_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS-FULL.md",
   "handshake": "Harness v4.0.0 loaded · 16 modules · 说需求，或发参考图。",
-  "core_tokens": 23024,
-  "full_tokens": 105805,
+  "core_tokens": 9986,
+  "full_tokens": 107707,
   "pipeline": {
     "aesthetic_gate": "aesthetic-director-core",
     "blueprint_gate": {
@@ -93,14 +93,15 @@
       "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/00_core/personal-identity-profile",
       "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/personal-identity-profile.md",
       "references": [
-        "references/taste-signature.md",
+        "references/taste-core.md",
         "references/design-dislikes.md",
+        "references/taste-signature.md",
+        "references/nai5-artist-pool.md",
         "references/visual-preferences.md",
-        "references/business-objectives.md",
-        "references/nai5-artist-pool.md"
+        "references/business-objectives.md"
       ],
-      "tokens_skill": 582,
-      "tokens_bundle": 17387
+      "tokens_skill": 845,
+      "tokens_bundle": 18664
     },
     {
       "name": "aesthetic-director-core",
@@ -145,8 +146,8 @@
         "references/skill-map.md",
         "references/task-classification.md"
       ],
-      "tokens_skill": 775,
-      "tokens_bundle": 3040
+      "tokens_skill": 1018,
+      "tokens_bundle": 3284
     },
     {
       "name": "character-design-engine",
@@ -264,8 +265,8 @@
         "references/negative-strategy.md",
         "references/single-artist-test-protocol.md"
       ],
-      "tokens_skill": 1684,
-      "tokens_bundle": 6386
+      "tokens_skill": 1745,
+      "tokens_bundle": 6447
     },
     {
       "name": "visual-prompt-core",

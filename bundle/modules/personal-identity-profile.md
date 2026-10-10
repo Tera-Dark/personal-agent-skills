@@ -16,12 +16,18 @@ source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/00_core/per
 
 ### 用法
 
-任何创作类任务开始前：
+常驻 Web Harness 已嵌入 `references/taste-core.md` 与 `references/design-dislikes.md`，日常创作直接使用这两份精简基线，不要再抓取完整 Identity 模块。
 
-1. 读 `references/taste-signature.md` —— 品味是什么（不是"避免什么"，是"是什么"）。
-2. 读 `references/design-dislikes.md` —— 历史上反复否决的东西。
-3. 沟通与交付协议由 Kernel 统一管理。
-4. 把签名交给 `aesthetic-director-core`，由它做具体决定。
+仅在以下场景读取一个对应的原始参考文件：
+- 深度审美校准、复盘长期偏好或用户要求查看完整品味档案：读取 `references/taste-signature.md`。
+- NAI5 画师选择、画师探索或需要生成 artist stack：读取 `references/nai5-artist-pool.md`。
+- 构图 / 题材偏好需要额外背景：读取 `references/visual-preferences.md`。
+- 需要商业目标作为设计约束：读取 `references/business-objectives.md`。
+
+读取时直接 fetch 该单文件，不要为了一个参考文件重新加载整个 Identity 模块。源文件 URL 模式为：
+`https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/00_core/personal-identity-profile/references/<filename>`
+
+用户本回合的明确要求始终优先。沟通与交付协议由 Kernel 统一管理；把当前任务真正需要的审美约束交给 `aesthetic-director-core`。
 
 ### 优先级（冲突时）
 
@@ -44,16 +50,177 @@ source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/00_core/per
 
 更新时保留日期。旧条目不删，标记为"已被 X 取代"。
 
-### References
+### 按需参考资料
 
-- `references/taste-signature.md` — 品味签名：核心、Tier A/B/C、被认可的样本
-- `references/design-dislikes.md` — 否决清单与否决理由
-- `references/visual-preferences.md` — 偏好的类型、构图、参考来源
-- `references/business-objectives.md` — 商业目标与评价标准
+- `references/taste-core.md` — 精简常驻签名，嵌入 Web Harness。
+- `references/taste-signature.md` — 完整品味签名、Tier A/B/C、认可样本；深度校准时读取。
+- `references/design-dislikes.md` — 高频否决清单与理由，常驻嵌入。
+- `references/visual-preferences.md` — 偏好题材、构图与参考来源。
+- `references/business-objectives.md` — 商业目标与评价标准。
+- `references/nai5-artist-pool.md` — NAI5 画师池；仅画师相关任务读取。
 
+---
 
-### References
-- `references/nai5-artist-pool.md` — bundled reference for this module.
+## Reference: references/taste-core.md
+
+### Taste Core — Always-On
+
+> 精简的常驻风格基线。详细案例和细分语法按任务加载；用户当轮明确要求优先。
+
+#### 一句话签名
+
+精致的结构基底上，一处怪，一点危险；复杂度由轮廓、动势和材质关系构成。
+
+#### 不可丢失的审美底盘
+
+- 第一眼美感先成立：脸型、比例、姿态、轮廓、主色块与服装结构必须协调；辨识度不能靠故意做丑。
+- 设计必须有可复述的核心命题；角色应有身份感与收藏欲，不只是漂亮元素的拼装。
+- 服装按真实结构设计：基础层、结构层、标志性延伸与配件系统；交代剪裁、材质、固定点、承重和垂坠。
+- 轮廓缩略图可读；动势、发型、衣摆、道具与构图共享有意义的方向或轴线。
+- 母题以变形方式回声 2–3 次；保留一个有理由的局部怪点和一个明确刺点，不把怪异扩散到整个设计。
+- 复杂度局部化：指定密集区与安静区。复杂可以很高，但不能全画面均匀堆料。
+- 姿势由人物习惯、道具或正在发生的事件引起；至少一处关系呈现因果，而非静态摆拍。
+- 配色有基底、结构色和刺点三级分工；浅色基底、深色结构是倾向，不是不可覆盖的限制。
+
+#### 按任务切换复杂度
+
+- 白底立绘 / clean plate：完整展示角色，背景克制，以轮廓、接地阴影和清晰边缘保持可读性。
+- 现代二游主视觉：突出宏观轮廓、主运动势、大色块和材质对比；允许局部高密度与强裁切，避免全局雾光代替构图。
+- 小画师高密度肖像：人物可以撑满画面；饰品、兴趣物件和装饰可丰富且甜美，但应围绕脸、发型、肩颈、手部和服装建立组织，不强制减成极简。
+- 艺术海报 / 联动 / 超现实场景：先确定独立视觉概念、主图形或空间矛盾，再安排角色、道具、标题与留白。
+- 日常感 / CP 随拍：优先自然动作、人与环境互动、真实的抓拍瞬间，不套用高定服设或海报复杂度。
+
+#### 默认反平庸判断
+
+- 每张作品至少有一个不可随意替换的视觉关系、一个缩略图可读的大结构和一个非默认的记忆点。
+- 选择具体名词、动作、位置和物理关系，少用“高级、精致、神秘、梦幻”等形容词代替设计决定。
+- 不因为画面空就填充粒子、花瓣、光效或无关配件；先检查命题、轮廓、构图、密度和因果。
+- 美感方向优先于装饰数量。极繁可用，但必须有组织、有层级、有安静区。
+
+#### 输出习惯
+
+- 面向用户用中文沟通；面向图像模型的提示词按目标模型输出英文。
+- 用户明确要求“只输出提示词”时，不展示内部 Brief、路由过程或长篇解释。
+- 避免同义重复，优先保留身份、构图、轮廓、关键服装结构、动作关系和记忆点。
+- 详细风格历史、校准样本、参考图语法与 NAI5 画师池均为按需资料，不属于常驻上下文。
+
+---
+
+## Reference: references/design-dislikes.md
+
+### Design Dislikes — 否决清单
+
+> 每一条都是历史反馈里反复出现过的。这不是"永远禁止"清单，是"没有因果链就默认不出现"清单。
+> 判断标准只有一个：**能不能说出她为什么会有这个**（`aesthetic-director-core/references/creative-moves.md` M4）。一只怀表在"以记忆为燃料的钟表裁缝"身上是命题本身；挂在随便哪个少女腰上就是 AI 味。
+> 升格规则：某样东西被否决 ≥3 次，或用户明确说"以后都不要"，才写入本文件。写入时注明日期。
+
+#### General Principle
+
+Avoid adding elements only because they are considered "cool".
+
+Every element should have a design reason and contribute to character identity.
+
+#### 最高优先级否决项（2026-09 之前已反复确认）
+
+- **手表 / 怀表 / 钟表** —— 除非与时间、职业、剧情或服装主题高度适配，否则禁止主动加入。这是历史上最高频的否决。
+- **无来源的饰品作为"高级感补丁"** —— 随机金属链、随机宝石、随机蝴蝶、随机玫瑰、魔法阵、荧光粒子。
+
+---
+
+### Newly promoted anti-patterns — 2026-10-04
+
+These are now explicit dislikes when they appear without a strong reason:
+
+- Beauty-filter face — mirrored eyes, identical eyelid geometry, excessive iris sparkles, porcelain-smooth skin and zero painterly irregularity.
+- Soft-light soup — the whole image dissolved into bloom, haze, bokeh and floating particles with no decisive cast shadow.
+- Surface-only hair — large hairstyles rendered as a shell covered in random flyaway strands, with no readable roots, mass, wrapping or fastening.
+- Accessory wallpaper — flowers, pearls, chains, tassels and ornaments accumulated for luxury without visible attachment points or shared construction logic.
+- Atmosphere as background — using fog, light spots, petals or dreamy color wash instead of a designed environment or a clean white field.
+- Detail without hierarchy — uniformly high detail everywhere, so the image has no dominant mass, quiet field or visual route.
+
+These are defaults to reject because they repeatedly weaken identity and authored design; explicit current-turn requests can override them.
+
+---
+
+### Overused AI Elements
+
+Avoid unless specifically requested:
+
+- random watches
+- unnecessary necklaces
+- meaningless earrings
+- decorative belts
+- excessive straps
+- arbitrary accessories
+
+Reason:
+These often create artificial complexity without improving the design.
+
+---
+
+### Mechanical / Cyber Elements
+
+Avoid excessive use of:
+
+- cyberpunk aesthetics
+- techwear
+- mechanical armor
+- futuristic machinery
+- glowing interfaces
+
+Small mechanical details are acceptable when they support the theme.
+
+Preferred direction:
+Fantasy, fashion, elegance, personality.
+
+---
+
+### Complexity Problems
+
+Avoid complexity for its own sake.
+
+Bad:
+
+- random decorations everywhere
+- unrelated patterns
+- too many competing elements
+- excessive asymmetry
+- overloaded color schemes
+
+Preferred:
+
+Complex but organized.
+Rich but readable.
+
+---
+
+### Character Problems
+
+Avoid:
+
+- generic fantasy girl
+- emotionless beauty model
+- empty standing pose
+- no personality
+- no story implication
+
+A character should feel like a person, not a mannequin.
+
+---
+
+### Style Problems
+
+Avoid:
+
+- generic AI fantasy aesthetics
+- male-oriented armor fantasy
+- meaningless sexy elements
+- visual noise
+- trend chasing without identity
+
+Design priority:
+
+Character identity > decoration.
 
 ---
 
@@ -336,316 +503,6 @@ source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/00_core/per
 
 ##### NAI5 常规设计习惯
 用户已经固定常备画师串与质量层。后续普通“设计一个插画 / 海报”请求默认不重复这些预设内容，重点输出创意、构图、人物、造景、叙事、排版和渲染方向。只有完整 NAI5 prompt 或单画师测试才显式展开。
-
----
-
-## Reference: references/design-dislikes.md
-
-### Design Dislikes — 否决清单
-
-> 每一条都是历史反馈里反复出现过的。这不是"永远禁止"清单，是"没有因果链就默认不出现"清单。
-> 判断标准只有一个：**能不能说出她为什么会有这个**（`aesthetic-director-core/references/creative-moves.md` M4）。一只怀表在"以记忆为燃料的钟表裁缝"身上是命题本身；挂在随便哪个少女腰上就是 AI 味。
-> 升格规则：某样东西被否决 ≥3 次，或用户明确说"以后都不要"，才写入本文件。写入时注明日期。
-
-#### General Principle
-
-Avoid adding elements only because they are considered "cool".
-
-Every element should have a design reason and contribute to character identity.
-
-#### 最高优先级否决项（2026-09 之前已反复确认）
-
-- **手表 / 怀表 / 钟表** —— 除非与时间、职业、剧情或服装主题高度适配，否则禁止主动加入。这是历史上最高频的否决。
-- **无来源的饰品作为"高级感补丁"** —— 随机金属链、随机宝石、随机蝴蝶、随机玫瑰、魔法阵、荧光粒子。
-
----
-
-### Newly promoted anti-patterns — 2026-10-04
-
-These are now explicit dislikes when they appear without a strong reason:
-
-- Beauty-filter face — mirrored eyes, identical eyelid geometry, excessive iris sparkles, porcelain-smooth skin and zero painterly irregularity.
-- Soft-light soup — the whole image dissolved into bloom, haze, bokeh and floating particles with no decisive cast shadow.
-- Surface-only hair — large hairstyles rendered as a shell covered in random flyaway strands, with no readable roots, mass, wrapping or fastening.
-- Accessory wallpaper — flowers, pearls, chains, tassels and ornaments accumulated for luxury without visible attachment points or shared construction logic.
-- Atmosphere as background — using fog, light spots, petals or dreamy color wash instead of a designed environment or a clean white field.
-- Detail without hierarchy — uniformly high detail everywhere, so the image has no dominant mass, quiet field or visual route.
-
-These are defaults to reject because they repeatedly weaken identity and authored design; explicit current-turn requests can override them.
-
----
-
-### Overused AI Elements
-
-Avoid unless specifically requested:
-
-- random watches
-- unnecessary necklaces
-- meaningless earrings
-- decorative belts
-- excessive straps
-- arbitrary accessories
-
-Reason:
-These often create artificial complexity without improving the design.
-
----
-
-### Mechanical / Cyber Elements
-
-Avoid excessive use of:
-
-- cyberpunk aesthetics
-- techwear
-- mechanical armor
-- futuristic machinery
-- glowing interfaces
-
-Small mechanical details are acceptable when they support the theme.
-
-Preferred direction:
-Fantasy, fashion, elegance, personality.
-
----
-
-### Complexity Problems
-
-Avoid complexity for its own sake.
-
-Bad:
-
-- random decorations everywhere
-- unrelated patterns
-- too many competing elements
-- excessive asymmetry
-- overloaded color schemes
-
-Preferred:
-
-Complex but organized.
-Rich but readable.
-
----
-
-### Character Problems
-
-Avoid:
-
-- generic fantasy girl
-- emotionless beauty model
-- empty standing pose
-- no personality
-- no story implication
-
-A character should feel like a person, not a mannequin.
-
----
-
-### Style Problems
-
-Avoid:
-
-- generic AI fantasy aesthetics
-- male-oriented armor fantasy
-- meaningless sexy elements
-- visual noise
-- trend chasing without identity
-
-Design priority:
-
-Character identity > decoration.
-
----
-
-## Reference: references/visual-preferences.md
-
-### Visual Preferences
-
-> 本文件列举偏好的**类型和形式**。品味本身（决策方式、Tier 分层、认可样本）以 `taste-signature.md` 为准；两者冲突时以 `taste-signature.md` 为准。
-
-#### Overall Direction
-
-The user's primary creative field:
-
-- female-oriented character design
-- anime style original characters
-- gacha game style design
-- commercial character illustration
-
-Core goal:
-
-Create characters that feel collectible, memorable and emotionally attractive.
-
----
-
-### Character Design Preference
-
-Prefer:
-
-- strong silhouette
-- elegant costume design
-- high-fashion feeling
-- layered clothing
-- meaningful accessories
-- personality-driven outfits
-
-Character should feel like:
-
-"a character from a high-quality game IP"
-
-not:
-
-"a collection of beautiful elements."
-
----
-
-### Female-Oriented Aesthetic
-
-Beauty is not only appearance.
-
-Prioritize:
-
-- charm
-- atmosphere
-- personality
-- emotional connection
-- fantasy appeal
-
-The viewer should want to know:
-
-"Who is she?"
-
-not only:
-
-"Is she pretty?"
-
----
-
-### Preferred Visual Categories
-
-Frequently suitable:
-
-- gacha character design
-- anime heroine design
-- fantasy fashion
-- eastern fantasy
-- fairy tale aesthetics
-- gothic elegance
-- modern cute fashion
-- high-end illustration
-
----
-
-### Composition Preference
-
-Preferred:
-
-- white background character sheets
-- full-body standing designs
-- seven-head portrait illustration
-- half-body artistic portrait
-- atmospheric vertical illustration
-- semi-empty compositions
-
----
-
-### Reference Sources
-
-When researching visual inspiration:
-
-Prioritize:
-
-- Pinterest
-- high-quality game art
-- anime illustration communities
-- fashion references
-
-Focus on:
-
-design language,
-not direct copying.
-
----
-
-## Reference: references/business-objectives.md
-
-### Business Objectives
-
-#### Creative Purpose
-
-The user's artwork is created with both artistic and practical goals.
-
-Primary objectives:
-
-- OC character design
-- character IP development
-- commercial illustration
-- collectible character appeal
-- design-based product creation
-
-
----
-
-### Evaluation Criteria
-
-A successful design should consider:
-
-#### Recognition
-
-Can viewers remember the character after seeing it once?
-
-A strong character needs a clear visual identity rather than only high rendering quality.
-
-
-#### Appeal
-
-Would someone want to save, collect, or own this character design?
-
-Prioritize emotional connection and fantasy fulfillment.
-
-
-#### Differentiation
-
-Avoid generic AI character patterns.
-
-The design should have:
-
-- unique concept
-- memorable silhouette
-- meaningful costume language
-- recognizable personality
-
-
-#### Market Compatibility
-
-Consider suitability for:
-
-- anime audience
-- gacha-style character appreciation
-- female-oriented character design
-- OC communities
-
-
----
-
-### Design Priority
-
-Preferred priority order:
-
-1. Character charm
-
-2. Visual identity
-
-3. Costume quality
-
-4. Emotional expression
-
-5. Rendering quality
-
-
-Rendering exists to support design.
-
-Visual effects should not replace character thinking.
 
 ---
 
@@ -1188,3 +1045,195 @@ Never use these artists in random selection.
 - Record user-approved combinations separately from individual artist approval.
 - For each single-artist test, record: artist, weight, benchmark, test date, user score, concise feedback, style-role tags, and any confirmed/uncertain suitability.
 - When a new artist is promoted, add the evidence source, exact artist tag, verification date, and a short aesthetic role description.
+
+---
+
+## Reference: references/visual-preferences.md
+
+### Visual Preferences
+
+> 本文件列举偏好的**类型和形式**。品味本身（决策方式、Tier 分层、认可样本）以 `taste-signature.md` 为准；两者冲突时以 `taste-signature.md` 为准。
+
+#### Overall Direction
+
+The user's primary creative field:
+
+- female-oriented character design
+- anime style original characters
+- gacha game style design
+- commercial character illustration
+
+Core goal:
+
+Create characters that feel collectible, memorable and emotionally attractive.
+
+---
+
+### Character Design Preference
+
+Prefer:
+
+- strong silhouette
+- elegant costume design
+- high-fashion feeling
+- layered clothing
+- meaningful accessories
+- personality-driven outfits
+
+Character should feel like:
+
+"a character from a high-quality game IP"
+
+not:
+
+"a collection of beautiful elements."
+
+---
+
+### Female-Oriented Aesthetic
+
+Beauty is not only appearance.
+
+Prioritize:
+
+- charm
+- atmosphere
+- personality
+- emotional connection
+- fantasy appeal
+
+The viewer should want to know:
+
+"Who is she?"
+
+not only:
+
+"Is she pretty?"
+
+---
+
+### Preferred Visual Categories
+
+Frequently suitable:
+
+- gacha character design
+- anime heroine design
+- fantasy fashion
+- eastern fantasy
+- fairy tale aesthetics
+- gothic elegance
+- modern cute fashion
+- high-end illustration
+
+---
+
+### Composition Preference
+
+Preferred:
+
+- white background character sheets
+- full-body standing designs
+- seven-head portrait illustration
+- half-body artistic portrait
+- atmospheric vertical illustration
+- semi-empty compositions
+
+---
+
+### Reference Sources
+
+When researching visual inspiration:
+
+Prioritize:
+
+- Pinterest
+- high-quality game art
+- anime illustration communities
+- fashion references
+
+Focus on:
+
+design language,
+not direct copying.
+
+---
+
+## Reference: references/business-objectives.md
+
+### Business Objectives
+
+#### Creative Purpose
+
+The user's artwork is created with both artistic and practical goals.
+
+Primary objectives:
+
+- OC character design
+- character IP development
+- commercial illustration
+- collectible character appeal
+- design-based product creation
+
+
+---
+
+### Evaluation Criteria
+
+A successful design should consider:
+
+#### Recognition
+
+Can viewers remember the character after seeing it once?
+
+A strong character needs a clear visual identity rather than only high rendering quality.
+
+
+#### Appeal
+
+Would someone want to save, collect, or own this character design?
+
+Prioritize emotional connection and fantasy fulfillment.
+
+
+#### Differentiation
+
+Avoid generic AI character patterns.
+
+The design should have:
+
+- unique concept
+- memorable silhouette
+- meaningful costume language
+- recognizable personality
+
+
+#### Market Compatibility
+
+Consider suitability for:
+
+- anime audience
+- gacha-style character appreciation
+- female-oriented character design
+- OC communities
+
+
+---
+
+### Design Priority
+
+Preferred priority order:
+
+1. Character charm
+
+2. Visual identity
+
+3. Costume quality
+
+4. Emotional expression
+
+5. Rendering quality
+
+
+Rendering exists to support design.
+
+Visual effects should not replace character thinking.
