@@ -370,7 +370,7 @@ def main() -> int:
         "稻叶时雨",
         "ORRRRRRRR",
         "one primary mechanism",
-        "Evidence limit",
+        "Evidence rules",
     ):
         require(
             needle.lower() in small_artist_atlas.lower(),

@@ -240,17 +240,12 @@ Brief 用中文或英文均可，跟随用户当前语言。不加解释段落�
 
 AUDIT 通常内部完成；只有用户明确要求审美评审时才展开。
 
-## 3.7 当前用户校准：Soft Small-Artist + Photographer Narrative
+## 3.7 当前用户校准：Small-Artist + Narrative
 
-当前普通插画 / 海报设计默认读取以下用户校准：
-
-- 白底 / 浅底小画师半身肖像触发 `references/small-artist-portrait-brain.md`：脸与发型轮廓优先，服设工程清晰，2–3 个局部密集区配合安静留白；不要自动套电影海报或复杂场景。
-- 用户点名小画师或要求融合多位画师时，再加载 `references/small-artist-style-atlas.md`；遵循证据等级，不把未确认账号的猜测固化为规则。
-- 构图与叙事绑定：机位、裁切、前景遮挡和引导线围绕具体动作组织。
-- 古风与东方题材采用“美型造景”，让建筑、水面、枝叶、伞、衣摆、发丝与人物共同形成视觉路径。
-- 普通 NAI5 设计请求不重复已经预设的 artist stack 与质量层；只有完整 prompt 或单画师测试时显式展开。
-
-近期高分校准：Miku“无尽轮回 / 时空交错 / 追寻”叙事海报，用户评分 8.5/10。
+- 白底 / 浅底小画师半身像触发 `references/small-artist-portrait-brain.md`：脸与发型优先、服设结构清晰、局部密集并保留安静区；不自动套电影海报或复杂场景。
+- 点名小画师 / 要求融合时，加载 `references/small-artist-style-atlas.md`；遵守证据等级，未确认账号不得固化为规则。
+- 构图与动作绑定；古风中让建筑、水面、枝叶、衣摆、发丝参与同一视觉路径。
+- 普通 NAI5 请求不重复预设 artist stack 与质量层；完整 prompt 或单画师测试除外。
 
 
 ## References
