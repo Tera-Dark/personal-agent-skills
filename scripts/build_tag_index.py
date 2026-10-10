@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Build compact web-first tag lookup shards from the Good Anima upstream index.
 
-The full upstream JSON is downloaded only by CI. Runtime web models fetch the
-manifest plus only the group/prefix shards needed for the current candidates.
+The full upstream JSON is downloaded only by CI. Runtime web models fetch a
+small root manifest, relevant group manifests, and only the needed tag shards.
 """
 import argparse
 import hashlib
@@ -51,28 +51,33 @@ def safe_group(group):
     return safe
 
 
-def prefix_for(tag):
-    """Return the two-character file key without modifying tag identity."""
-    lowered = tag.lower()
-    if not lowered or not re.match(r"^[a-z0-9]", lowered):
+def prefix_for(tag, group):
+    """Return a lookup path key only; preserve the supplied tag for matching."""
+    value = tag.lower()
+    # The upstream 'artists' category stores every canonical key as artist:<name>.
+    # Shard by the artist name, not the constant 'ar' namespace.
+    if group.lower() == "artists" and value.startswith("artist:"):
+        value = value[len("artist:"):]
+    if not value or not re.match(r"^[a-z0-9]", value):
         return "_special"
-    return re.sub(r"[^a-z0-9_]", "_", lowered[:2])
+    return re.sub(r"[^a-z0-9_]", "_", value[:2])
 
 
 def generate_outputs(source, source_sha):
-    indexes = {}
+    outputs = {}
     group_meta = {}
     for group in sorted(source):
         by_prefix = defaultdict(lambda: {"exact": {}, "aliases": {}})
+        rows = source[group]
         valid_count = 0
-        for row in source[group]:
+        for row in rows:
             if not isinstance(row, list) or len(row) < 3 or not isinstance(row[0], str):
                 raise ValueError(f"invalid row in upstream group {group!r}: {row!r}")
             canonical = row[0]
             count = row[1] if isinstance(row[1], int) else None
             aliases_text = row[2] if isinstance(row[2], str) else ""
             valid_count += 1
-            by_prefix[prefix_for(canonical)]["exact"][canonical] = {
+            by_prefix[prefix_for(canonical, group)]["exact"][canonical] = {
                 "canonical": canonical,
                 "count": count,
             }
@@ -80,19 +85,31 @@ def generate_outputs(source, source_sha):
                 alias = alias.strip()
                 if not alias:
                     continue
-                hits = by_prefix[prefix_for(alias)]["aliases"].setdefault(alias, [])
+                hits = by_prefix[prefix_for(alias, group)]["aliases"].setdefault(alias, [])
                 hit = {"canonical": canonical, "count": count}
                 if hit not in hits:
                     hits.append(hit)
 
         safe = safe_group(group)
         prefixes = sorted(by_prefix)
+        group_manifest_path = f"bundle/tag-index/{safe}/manifest.json"
         group_meta[group] = {
             "path_group": safe,
             "tag_count": valid_count,
-            "prefixes": prefixes,
             "shard_count": len(prefixes),
+            "manifest": group_manifest_path,
         }
+        group_manifest = {
+            "schema_version": SCHEMA_VERSION,
+            "source_sha256": source_sha,
+            "group": group,
+            "tag_count": valid_count,
+            "prefixes": prefixes,
+        }
+        outputs[group_manifest_path] = json.dumps(
+            group_manifest, ensure_ascii=False, sort_keys=True, separators=(",", ":")
+        ) + "\n"
+
         for prefix in prefixes:
             shard = by_prefix[prefix]
             shard["aliases"] = {
@@ -111,9 +128,11 @@ def generate_outputs(source, source_sha):
                 "aliases": shard["aliases"],
             }
             rel = f"bundle/tag-index/{safe}/{prefix}.json"
-            indexes[rel] = json.dumps(payload, ensure_ascii=False, sort_keys=True, separators=(",", ":")) + "\n"
+            outputs[rel] = json.dumps(
+                payload, ensure_ascii=False, sort_keys=True, separators=(",", ":")
+            ) + "\n"
 
-    manifest = {
+    root_manifest = {
         "schema_version": SCHEMA_VERSION,
         "source": {
             "repository": SOURCE_REPO,
@@ -124,14 +143,16 @@ def generate_outputs(source, source_sha):
         "lookup": {
             "group_isolation": True,
             "prefix_length": 2,
-            "prefix_rule": "For locating a file only: lowercase the candidate; if its first character is not ASCII a-z or 0-9 use _special; replace non-[a-z0-9_] characters in its first two characters with _. Never alter the candidate used for exact identity matching.",
+            "prefix_rule": "For file routing only: lowercase the candidate; in group 'artists', strip a leading 'artist:' before selecting the prefix; if the resulting first character is not ASCII a-z or 0-9 use _special; replace non-[a-z0-9_] characters in its first two characters with _. Never alter the candidate used for exact identity matching.",
             "lookup_order": ["exact", "alias"],
             "ambiguous_alias": "not promoted; treat as missing",
         },
         "groups": group_meta,
     }
-    indexes["bundle/tag-index/manifest.json"] = json.dumps(manifest, ensure_ascii=False, sort_keys=True, indent=2) + "\n"
-    indexes["bundle/tag-index/NOTICE.md"] = (
+    outputs["bundle/tag-index/manifest.json"] = json.dumps(
+        root_manifest, ensure_ascii=False, sort_keys=True, indent=2
+    ) + "\n"
+    outputs["bundle/tag-index/NOTICE.md"] = (
         "# Third-party tag-index notice\n\n"
         "Generated lookup shards are derived from the Good Anima tag index.\n\n"
         f"- Source repository: {SOURCE_REPO}\n"
@@ -140,17 +161,27 @@ def generate_outputs(source, source_sha):
         "- This derived dataset has separate provenance/licensing from the Harness source code; the root MIT license does not relicense this dataset.\n"
         f"- Source SHA-256: {source_sha}\n"
     )
-    return indexes
+    return outputs
 
 
 def run_self_tests():
-    cases = {"1girl": "1g", "37_(reverse:1999)": "37", "white_background": "wh", "(special_tag)": "_special", ":smile:": "_special"}
-    for tag, expected in cases.items():
-        actual = prefix_for(tag)
+    cases = [
+        ("1girl", "general", "1g"),
+        ("37_(reverse:1999)", "characters", "37"),
+        ("white_background", "general", "wh"),
+        ("artist:starshadowmagician", "artists", "st"),
+        ("(special_tag)", "general", "_special"),
+        (":smile:", "general", "_special"),
+    ]
+    for tag, group, expected in cases:
+        actual = prefix_for(tag, group)
         if actual != expected:
-            raise SystemExit(f"self-test failed: prefix_for({tag!r})={actual!r}, expected {expected!r}")
+            raise SystemExit(
+                f"self-test failed: prefix_for({tag!r}, {group!r})={actual!r}, expected {expected!r}"
+            )
     sample = generate_outputs(
-        {"general": [["long_hair", 12, "long-hair,logn_hair"], ["smile", 7, ":)"]]},
+        {"general": [["long_hair", 12, "long-hair,logn_hair"], ["smile", 7, ":)"]],
+         "artists": [["artist:starshadowmagician", 8, "artist:star_shadow_magician"]]},
         "test-sha",
     )
     alias_shard = json.loads(sample["bundle/tag-index/general/lo.json"])
@@ -158,6 +189,12 @@ def run_self_tests():
         raise SystemExit("self-test failed: exact alias did not resolve to canonical tag")
     if "long_hair" not in alias_shard["exact"]:
         raise SystemExit("self-test failed: canonical tag missing from exact map")
+    artist_manifest = json.loads(sample["bundle/tag-index/artists/manifest.json"])
+    if artist_manifest["prefixes"] != ["st"]:
+        raise SystemExit("self-test failed: artist namespace was not removed for shard routing")
+    artist_shard = json.loads(sample["bundle/tag-index/artists/st.json"])
+    if "artist:starshadowmagician" not in artist_shard["exact"]:
+        raise SystemExit("self-test failed: artist canonical identity was altered")
 
 
 def apply_outputs(expected, check_only):
@@ -193,10 +230,10 @@ def apply_outputs(expected, check_only):
         os.makedirs(os.path.dirname(path), exist_ok=True)
         with open(path, "w", encoding="utf-8", newline="\n") as handle:
             handle.write(content)
-    shards = [p for p in expected if p.endswith(".json") and not p.endswith("/manifest.json")]
-    largest = max((len(expected[p].encode("utf-8")) for p in shards), default=0)
+    shard_paths = [p for p in expected if p.endswith(".json") and not p.endswith("/manifest.json")]
+    largest = max((len(expected[p].encode("utf-8")) for p in shard_paths), default=0)
     manifest = json.loads(expected["bundle/tag-index/manifest.json"])
-    print(f"Generated {len(shards)} shards; largest shard {largest:,} bytes; source SHA-256 {manifest['source']['sha256']}.")
+    print(f"Generated {len(shard_paths)} shards; largest shard {largest:,} bytes; source SHA-256 {manifest['source']['sha256']}.")
 
 
 def main():

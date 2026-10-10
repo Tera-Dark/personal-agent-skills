@@ -2,20 +2,22 @@
 
 ## Purpose
 
-Good Anima derives a compact index from `anima-1.0.csv`, grouping canonical tags, counts and aliases. The Harness keeps upstream data as the source of truth, but web models must not load the entire JSON file.
+Good Anima derives an index from `anima-1.0.csv`, grouping canonical tags, counts and aliases. The Harness keeps upstream data as the source of truth, but web models must not load the entire JSON file.
 
 ## Runtime retrieval
 
-- Manifest: `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/tag-index/manifest.json`
-- Shards: `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/tag-index/<group>/<prefix>.json`
-- Each generated shard contains exact canonical keys and exact aliases for one group/prefix.
-- Read the manifest once per session or until its source SHA changes. Group candidates by group and prefix to reuse fetched shards.
-- If a listed shard is unreadable, its candidates are unverified. If the manifest proves that a prefix is absent from the complete source snapshot, candidates under that prefix are missing.
-- Never infer a missing tag from a search snippet or model memory.
+- Root manifest: `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/tag-index/manifest.json`
+- Group manifest: `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/tag-index/<path_group>/manifest.json`
+- Shard: `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/tag-index/<path_group>/<prefix>.json`
+- Fetch the root manifest once, then only group manifests needed for the current candidate groups, then only the relevant shards. Reuse all fetched manifests/shards in the current session.
+- Every shard contains exact canonical keys and exact aliases for one source group/prefix.
+- If a declared shard cannot be fetched, its candidates are unverified. If the group manifest proves the prefix is absent from the complete source snapshot, candidates under that prefix are missing.
+- The `artists` source group stores namespaced keys such as `artist:name`; for shard routing only, remove the leading `artist:` before taking the prefix. Never alter the string used for exact identity matching.
+- Never infer a missing tag from search snippets or model memory.
 
 ## Build and validation
 
-`scripts/build_tag_index.py` downloads upstream data only in CI/build environments, validates its schema, generates deterministic two-character lookup shards, removes orphaned shards, and supports `--check` for reproducibility verification. `--self-test` runs offline routing and alias tests.
+`scripts/build_tag_index.py` downloads upstream data only in CI/build environments, validates its schema, generates deterministic two-character shards and per-group manifests, removes orphaned shards, and supports `--check`. `--self-test` runs offline routing and alias tests.
 
 The CI workflow regenerates shards on pushes and requires them to be current on pull requests. A partial cache is never treated as a complete source index.
 
@@ -23,7 +25,7 @@ The CI workflow regenerates shards on pushes and requires them to be current on 
 
 - Upstream repository: `https://github.com/ShiroEirin/comfyui-good-anima`
 - Upstream index: `https://raw.githubusercontent.com/ShiroEirin/comfyui-good-anima/main/danbooru-tags/tags_index.json`
-- Upstream data license: GPL-3.0. Generated shards publish the source SHA-256 in the manifest.
+- Upstream data license: GPL-3.0. Generated manifests publish the source SHA-256.
 - The derived dataset has separate provenance/licensing from the Harness source code; the root MIT license does not relicense upstream data.
 
 ## Identity contract

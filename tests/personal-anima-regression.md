@@ -235,3 +235,9 @@ notes:
 ### P12-WEB-TAG-04 — duplicate alias
 - Input: an alias mapping to multiple canonical tags in the same group.
 - Expect: do not guess; mark it missing for hard-tag output and use natural language.
+
+
+### P12-WEB-TAG-05 — namespaced artist sharding
+- Input: verify `artist:starshadowmagician` in the upstream `artists` group.
+- Expect: path prefix is derived from `starshadowmagician` after removing `artist:` for location only; exact identity remains `artist:starshadowmagician`.
+- Fail: all artists are packed into one `ar.json` shard or the canonical tag is rewritten.
