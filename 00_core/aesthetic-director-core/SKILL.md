@@ -258,7 +258,7 @@ AUDIT 通常内部完成；只有用户明确要求审美评审时才展开。
 
 ## 3.8 Painterly Game Illustration
 
-For premium game cards, dynamic character scenes, or an explicit 若干爪 reference, load `references/ruoganzhao-composition-color-grammar.md`.
+For premium game cards and dynamic painterly scenes, load the relevant composition grammar. If the user explicitly references 若干爪, read `references/ruoganzhao-composition-color-grammar.md`; for 烹饪嘶哑's motion-led story illustrations, read `references/cookingsiya-painterly-story-grammar.md`.
 
 Plan the story beat, camera / crop, shared motion path, environmental light, color masses and focal-detail map. Light links figure and setting; secondary details simplify around the focal area.
 

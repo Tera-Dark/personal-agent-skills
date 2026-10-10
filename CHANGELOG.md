@@ -1,3 +1,11 @@
+## [4.4.0] - 2026-10-10
+
+### 烹饪嘶哑 — painterly story illustration case study
+- Added a separately routed case-study reference based on a directly inspected artist-posted illustration, with other public portfolio posts and a course-promotion notice as contextual evidence.
+- Extracted motion geometry, value / light path, color-role hierarchy, environment-as-composition, and selective painterly-resolution rules.
+- Documented evidence boundaries: direct Xiaohongshu gallery access was not available in search indexing; a reposted process note is not attributed as the artist's own statement.
+- Added Taste-18 and deterministic regression checks; kept this mode separate from clean-background 小画师 portraits and from the 若干爪 reference grammar.
+
 ## [4.3.0] - 2026-10-10
 
 ### Small-artist polished portrait mode

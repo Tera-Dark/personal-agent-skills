@@ -311,6 +311,40 @@ def main() -> int:
         failures,
     )
 
+    cookingsiya_grammar = read("00_core/aesthetic-director-core/references/cookingsiya-painterly-story-grammar.md")
+    require(
+        "cookingsiya-painterly-story-grammar.md" in aesthetic_director,
+        "Aesthetic Director does not route motion-led painterly illustrations to the 烹饪嘶哑 study",
+        failures,
+    )
+    require(
+        "## 16. Study calibration — motion-led painterly game illustration" in calibration_library,
+        "High-Aesthetic Calibration Library lost the 烹饪嘶哑 study",
+        failures,
+    )
+    require(
+        "cookingsiya-painterly-story-grammar.md" in taste_core,
+        "Always-on taste core lost the motion-led painterly mode trigger",
+        failures,
+    )
+    for needle in (
+        "One motion system, several material expressions",
+        "dark perimeter, illuminated action",
+        "Color roles, not a fixed palette",
+        "Directly inspected visual sample",
+        "white-background portraits",
+    ):
+        require(
+            needle.lower() in cookingsiya_grammar.lower(),
+            f"烹饪嘶哑 illustration grammar lost required rule: {needle}",
+            failures,
+        )
+    require(
+        "Taste-18 — Motion-led painterly story illustration" in read("tests/test-suite.md"),
+        "Taste-18 motion-led painterly regression case is missing",
+        failures,
+    )
+
     p14 = read("tests/test-suite.md")
     for needle in (
         "P14 — Aesthetic Floor Regression",

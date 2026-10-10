@@ -1,8 +1,8 @@
 # 核心验证测试集 (Test Suite)
 
-> Architecture baseline: v4.3.0
+> Architecture baseline: v4.4.0
 
-> **Version**: 4.3.0  
+> **Version**: 4.4.0  
 > **Last Updated**: 2026-10-10  
 > **Scope**: 验证创作决策、模型适配、Web-first harness、shared Prompt Core + Anima / NAI5 rendering以及审美回归。
 
@@ -399,3 +399,10 @@ It covers 8 real-task scenarios plus 8 cross-task anti-regression checks, emphas
 - Pass: face and hair silhouette read first; garment construction is visible; decoration concentrates in 2–3 attached clusters; dark / mid / light masses maintain form; fine line variation supports a hand-drawn finish; background stays quiet.
 - Fail: default cinematic scenery / giant reflection, generic Lolita substitution, random accessory accumulation, uniform detail everywhere, clipped white ruffles, face treated as an afterthought, or prompt length dominated by mood words.
 - Identity rule: preserve the character's recognizable anchors; transfer the portrait's compositional discipline, not its exact bows, color palette or costume.
+
+
+### Taste-18 — Motion-led painterly story illustration
+- Input: create a dynamic character illustration with a meaningful environment, flowing cloth / hair and painterly lighting.
+- Pass: one dominant motion geometry links body, cloth / prop and environment; value masses establish the read order; an identified light source connects character and setting; one controlled accent follows the visual route; background resolution is looser than focal face / gesture.
+- Fail: generic cinematic mood words, unrelated floating effects, equal detail everywhere, environment not responding to the character, or direct copying of one artist's exact palette / props / composition.
+- Mode separation: this is for painterly narrative scenes, not a replacement for the clean-background small-artist portrait mode.
