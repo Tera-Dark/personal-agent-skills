@@ -152,7 +152,7 @@ Claims about model behavior, syntax, parameters, tags or generation effects use 
 | `character-design-engine` | 02_design | on-demand | active | 15337 | OC, 人设, 角色设计, 服装设计, 立绘, 高定服设, 二游角色, character sheet, 极繁, 极繁精美, 华丽人设, 原创圈 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/character-design-engine.md` |
 | `illustration-direction` | 02_design | on-demand | active | 16908 | 插画, 氛围图, 竖屏, 半留白, 印象风, 故事感, key visual, poster, scene, 极繁, 特写垫底, 大头贴, 元素贴, 角色拼贴 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/illustration-direction.md` |
 | `anima-renderer` | 03_prompt | on-demand | active | 5876 | Anima, Anima prompt, Anima 提示词, Anima checkpoint | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-renderer.md` |
-| `danbooru-tag-gate` | 03_prompt | on-demand | active | 1404 | Danbooru tag, tag validation, tag check, exact tag, alias, tag verification | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/danbooru-tag-gate.md` |
+| `danbooru-tag-gate` | 03_prompt | on-demand | active | 1935 | Danbooru tag, tag validation, tag check, exact tag, alias, tag verification | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/danbooru-tag-gate.md` |
 | `general-image-prompt-adapter` | 03_prompt | on-demand | active | 2234 | Midjourney, MJ, DALL-E, GPT Image, Imagen, Gemini image, Nano Banana, Flux, SDXL, Stable Diffusion, 通用提示词, 其他模型, 不知道用什么模型 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/general-image-prompt-adapter.md` |
 | `nai5-renderer` | 03_prompt | on-demand | active | 6447 | NAI5, NovelAI, NAI提示词, tag prompt, Danbooru prompt, artist stack | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/nai5-renderer.md` |
 | `visual-prompt-core` | 03_prompt | on-demand | active | 1551 | prompt packet, visual prompt, prompt core, 提示词编译, 提示词规划, NAI5, Anima | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/visual-prompt-core.md` |
@@ -6395,11 +6395,14 @@ source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/03_prompt/d
 
 #### 数据源
 
-Primary Web-first source:
+Runtime source (small, selectively retrievable files):
 
-https://raw.githubusercontent.com/ShiroEirin/comfyui-good-anima/main/danbooru-tags/tags_index.json
+- Manifest: `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/tag-index/manifest.json`
+- Shard pattern: `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/tag-index/<group>/<prefix>.json`
 
-数据结构按 group 保存 canonical tag、count、aliases。Count 只作证据元数据，不参与创意排序。
+CI-only source: `https://raw.githubusercontent.com/ShiroEirin/comfyui-good-anima/main/danbooru-tags/tags_index.json`. `scripts/build_tag_index.py` validates this dataset and generates the static lookup shards. **Never ask a web model to fetch the full 6 MB upstream JSON at runtime.**
+
+The manifest records the source SHA-256, groups and available prefixes. Each shard preserves canonical tags, counts and aliases; counts are evidence metadata only and do not control creative ranking.
 
 #### Gate 状态
 
@@ -6417,12 +6420,14 @@ https://raw.githubusercontent.com/ShiroEirin/comfyui-good-anima/main/danbooru-ta
 
 #### Lookup
 
-1. 只做 transport-level normalization：首尾空白、意外重复空格。
-2. 先查指定 group 的 exact canonical。
-3. 未命中再查同 group 的 exact alias。
-4. alias 命中时保留 alias trace，同时以 canonical 为最终身份。
-5. 否则标记 missing。
-6. 不修改 underscore、parentheses、colon、slash 等可能有身份意义的字符。
+1. 首次执行时读取 manifest 一次；保留 source SHA 和可用 group/prefix 列表。
+2. 按候选项的 `group` 分组，并按 manifest 的 prefix rule 计算 shard 路径；每个不同的 (group, prefix) 最多 fetch 一次。
+3. Prefix 只用于定位文件，不是 tag normalization。匹配前仅去掉传输层首尾空白；不得改写候选 tag 中的 underscore、parentheses、colon、slash 或大小写。
+4. 若 manifest 中不存在该 group 或 prefix，可按当前 source snapshot 记为 missing。若 manifest 声明 shard 存在但 fetch 失败，标记 unverified，不能当成 missing。
+5. 在 shard 的 `exact` 字典做原字符串查找；命中则 status=exact。
+6. 只有 exact 未命中，才在 `aliases` 字典做原字符串查找。唯一 canonical 命中才 status=alias 并保留输入 alias trace；若一个 alias 指向多个 canonical，按 missing 处理，不猜测。
+7. Exact / alias 都未命中时标记 missing。Never fuzzy-match.
+8. 多个候选先按 shard 分组后批量读取，避免每个 tag 单独请求一个文件。
 
 #### Group / identity
 
@@ -6477,7 +6482,7 @@ group:
 status: exact | alias | missing
 canonical:
 matched_alias:
-source: danbooru-index
+source: anima-sharded-index (include manifest source SHA)
 
 #### 自检
 
@@ -6494,33 +6499,42 @@ source: danbooru-index
 
 ### Reference: references/tag-index.md
 
-#### Anima 1.0 Tag Index — Web-First Protocol
+#### Anima Tag Index — Sharded Web-First Protocol
 
 ##### Purpose
 
-This reference defines the external corpus used by `anima-tag-gate`.
+Good Anima derives a compact index from `anima-1.0.csv`, grouping canonical tags, counts and aliases. The Harness keeps upstream data as the source of truth, but web models must not load the entire JSON file.
 
-Good Anima documents an `anima-1.0.csv → tags_index.json` pipeline. Its generated index stores canonical tags, usage counts, and aliases in category buckets. This repository adopts the **data contract and validation semantics**, not the local Python/SQLite/EXE runtime.
+##### Runtime retrieval
 
-##### Source
+- Manifest: `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/tag-index/manifest.json`
+- Shards: `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/tag-index/<group>/<prefix>.json`
+- Each generated shard contains exact canonical keys and exact aliases for one group/prefix.
+- Read the manifest once per session or until its source SHA changes. Group candidates by group and prefix to reuse fetched shards.
+- If a listed shard is unreadable, its candidates are unverified. If the manifest proves that a prefix is absent from the complete source snapshot, candidates under that prefix are missing.
+- Never infer a missing tag from a search snippet or model memory.
 
-- Repository: `https://github.com/ShiroEirin/comfyui-good-anima`
-- Index: `https://raw.githubusercontent.com/ShiroEirin/comfyui-good-anima/main/danbooru-tags/tags_index.json`
-- Upstream index shape: `{ group: [[canonical, count, aliases]] }`
+##### Build and validation
 
-##### Web lookup rule
+`scripts/build_tag_index.py` downloads upstream data only in CI/build environments, validates its schema, generates deterministic two-character lookup shards, removes orphaned shards, and supports `--check` for reproducibility verification. `--self-test` runs offline routing and alias tests.
 
-When a hard anchor needs verification, retrieve the index and inspect the intended group. Prefer an exact canonical match, then an exact alias match. Do not use fuzzy similarity as proof.
+The CI workflow regenerates shards on pushes and requires them to be current on pull requests. A partial cache is never treated as a complete source index.
 
-The final prompt must never contain a tag merely because a search engine or model guessed it was close.
+##### Provenance and licensing
 
-##### Provenance
+- Upstream repository: `https://github.com/ShiroEirin/comfyui-good-anima`
+- Upstream index: `https://raw.githubusercontent.com/ShiroEirin/comfyui-good-anima/main/danbooru-tags/tags_index.json`
+- Upstream data license: GPL-3.0. Generated shards publish the source SHA-256 in the manifest.
+- The derived dataset has separate provenance/licensing from the Harness source code; the root MIT license does not relicense upstream data.
 
-This is an upstream-derived validation protocol. The upstream repository is GPL-3.0 licensed. We do not vendor its full generated corpus here; the skill references the public source instead. Any future vendored dataset must be reviewed for licensing and repository-size impact before inclusion.
+##### Identity contract
 
-##### Why the full corpus is not copied here
+- `exact`: input string is a canonical key in the requested group.
+- `alias`: exact alias match resolves uniquely to one canonical key.
+- `missing`: neither exact nor uniquely resolvable alias exists in the source snapshot.
+- `unverified`: a declared shard could not be read or validated.
 
-The personal harness is designed to be pasted into web AI sessions. A giant static tag dump would consume context, make updates expensive, and encourage models to scan unrelated tags. The harness therefore keeps the source pointer + lookup contract lightweight and asks the runtime model to fetch only when a hard anchor actually needs verification.
+Counts never decide creative priority. Identity matching never normalizes punctuation or performs fuzzy similarity.
 
 ---
 
