@@ -262,3 +262,20 @@ explicit user score / direct approval
 → generic model defaults.
 
 Never override a direct user judgment with a generalized style rule.
+
+## 14. Study calibration — painterly light-rich game illustration
+
+Cross-checked against the user's supplied wide reference and a range of publicly indexed illustrations associated with 若干爪. The transferable pattern is not one color palette or a fixed double-face layout; it is the integration of gesture, environmental motion, light and information hierarchy.
+
+### What to preserve
+- **Gesture controls the flow:** hair, sleeves, body angle, props and environmental curves share a strong diagonal / arc instead of floating independently.
+- **Light unifies the image:** the source and its bounce affect the figure, nearby objects and background planes. Environment-colored shadows and selective warm/cool reflections make the scene feel inhabited.
+- **Color is grouped:** a few large masses with unequal visual weight; a deep anchor protects the focal point; an accent color repeats along the intended reading path.
+- **Complexity is selective:** face / hands / signature outfit / narrative object receive the sharpest detail; secondary scenery simplifies into value and color shapes.
+- **Story is physical:** pose, gaze, hand action or material state reveals the moment; a small detail can reward the second look.
+- **Atmosphere comes from light + space + edges:** not from global blur, particles, bokeh or generic cinematic adjectives.
+
+### Do not copy the surface
+Do not force teal-orange palettes, a giant portrait behind a small body, ocean swirls, ribbons, swans, floral scatter or lens flare into unrelated characters. Use the mechanism only where it strengthens this character's identity and current brief.
+
+For operational prompt planning, see `ruoganzhao-composition-color-grammar.md`. This rule complements, rather than replaces, the user's explicit high-aesthetic floor, anti-AI constraints and poster-specific grammar.

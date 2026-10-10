@@ -385,3 +385,10 @@ It covers 8 real-task scenarios plus 8 cross-task anti-regression checks, emphas
 - Input: create a white-background standing character after loading the module contract.
 - Expect: fetch only the required white-background/character-design references; do not fetch all poster and illustration reference documents.
 - Fail: all references are bundled into or required by every on-demand module fetch.
+
+
+### Taste-16 — Light-connected painterly game illustration
+- Input: design a premium character key visual with an active pose, flowing hair / cloth and a specific environmental light source.
+- Pass: gesture and setting share one movement path; source light and reflected color connect character and background; palette is grouped into major masses; focal detail is sharper than secondary scenery; story is visible in one action / object relation.
+- Fail: the output relies on “cinematic / beautiful lighting / highly detailed,” adds floating decorative items, renders every area equally sharp, or uses global haze to conceal weak composition.
+- Non-copying rule: do not force a particular artist's signature palette, double-scale portrait, or recurring motifs into unrelated characters.

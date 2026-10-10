@@ -252,6 +252,30 @@ def main() -> int:
                 failures,
             )
 
+    painterly_grammar = read("00_core/aesthetic-director-core/references/ruoganzhao-composition-color-grammar.md")
+    aesthetic_director = read("00_core/aesthetic-director-core/SKILL.md")
+    calibration_library = read("00_core/aesthetic-director-core/references/high-aesthetic-calibration-library.md")
+    require(
+        "references/ruoganzhao-composition-color-grammar.md" in aesthetic_director,
+        "Aesthetic Director does not route to the painterly game-illustration calibration",
+        failures,
+    )
+    require(
+        "## 14. Study calibration — painterly light-rich game illustration" in calibration_library,
+        "High-Aesthetic Calibration Library lost the painterly game-illustration study",
+        failures,
+    )
+    for needle in (
+        "Light as a connector",
+        "Effective and ineffective information",
+        "color",
+        "movement",
+        "do not force teal-orange palettes",
+    ):
+        require(needle.lower() in painterly_grammar.lower(), f"Painterly illustration calibration lost required rule: {needle}", failures)
+    pool_check = read("00_core/personal-identity-profile/references/nai5-artist-pool.md")
+    require("ruoganzhao-composition-color-grammar.md" in pool_check, "ruoganzhao personal profile is not linked to the new calibration", failures)
+
     p14 = read("tests/test-suite.md")
     for needle in (
         "P14 — Aesthetic Floor Regression",

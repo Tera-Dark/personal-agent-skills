@@ -1,3 +1,11 @@
+## [4.2.0] - 2026-10-10
+
+### Painterly game-illustration aesthetic calibration
+- Added a dedicated calibration reference extracting transferable composition, environmental-light, color-mass, material and information-hierarchy rules from the user's supplied reference and a cross-checked public sample set associated with 若干爪.
+- Routed relevant premium character-card / dynamic illustrated-scene requests to the new mode without hard-coding the artist's palette, motifs, or dual-scale composition.
+- Expanded the personal `ruoganzhao` pool record to balance the earlier yellow/blur caution with broader observed strengths; retained the user's direct experiment evidence.
+- Added Taste-16 and deterministic regression guards for the new calibration.
+
 ## [4.1.0] - 2026-10-10
 
 ### Web-first runtime efficiency
