@@ -1,0 +1,154 @@
+# Small-Artist Portrait Brain — 小画师精品人物肖像机制
+
+> Scope: a specific, user-approved target inside the Chinese illustration-commission ecosystem: polished female character busts / half-body portraits, often on white or nearly empty backgrounds, with attractive face design, elaborate but organized costume construction, fine hand-drawn texture and a strong “finished commission illustration” feeling.
+>
+> This is a composition and rendering mechanism, not a claim that all 小红书 / 米画师 creators share one style. It is based first on the user's supplied white-background half-body reference and repeated direct feedback. Public commission showcases are used only to confirm that portrait, half-body, full-body, pseudo-thick-paint, atmosphere and costume-design commissions are distinct product/style modes.
+
+## 0. One-line definition
+
+**Face-first character art; the outfit rewards close inspection; the clean field makes both feel intentional.**
+
+The image should look like a well-designed character commission, not a movie poster reduced to a bust, a cinematic scene cut out from its background, or generic “beautiful anime girl + accessories”.
+
+## 1. Route selection — use the right brain
+
+Activate this mode when the user asks for:
+- 小画师感 / 小红书约稿感 / 米画师精致人物成稿；
+- a beautiful female character bust, chest-up portrait or half-body illustration;
+- a white / pale background with elaborate clothing, hair and ornament;
+- high-finish OC / gacha character portrait where the character design itself carries the image.
+
+Do **not** force this mode onto:
+- a cinematic poster or concept-led environment scene;
+- a painterly landscape / game card where light and scenery dominate;
+- a full-body turnaround / production character sheet;
+- a candid everyday snapshot or intentionally minimal portrait.
+If the request mixes modes, make the character portrait the visual anchor and only borrow the requested secondary mechanism.
+
+## 2. Composition: portrait, not passport photo
+
+### Main reading order
+1. face / gaze / expression;
+2. hair silhouette and head ornament;
+3. neckline, collar, neck bow or signature upper-body design;
+4. bodice construction and sleeve / hand gesture;
+5. small accessories and texture.
+
+### Framing decisions
+- Default to a close half-body or chest-up crop. The head and shoulders should occupy most of the canvas; costume continues into the lower edge rather than ending in a stiff horizontal cutoff.
+- Place the head slightly off-center when useful; let shoulder height, head tilt, arm position and sleeve volume create mild asymmetry.
+- Use a gesture that reveals the design: touching the collar, holding a ribbon, adjusting a glove, resting fingers near the cheek, gathering a sleeve, or holding one small character-relevant object.
+- Hair, large bows, sleeves and ribbons may cross the frame edges. These cropped shapes should strengthen the portrait silhouette, not behave as random floating ornaments.
+- Keep the face clear. Foreground overlap is allowed only if it creates intimacy or a readable frame without obscuring the expression.
+- The silhouette must remain appealing in a small thumbnail before lace and jewelry are noticed.
+
+### Avoid
+- a rigid centered ID-photo pose;
+- cinematic wide environment with a tiny character;
+- automatic giant background portrait / reflection / ghost face;
+- excessive perspective or a theatrical action pose when the image's appeal should come from delicate character design.
+
+## 3. Face, hair and hand-drawn appeal
+
+### Face
+- Establish the appeal with eye shape, eyelid design, gaze direction, soft cheek color, nose / mouth restraint and believable head volume.
+- Preserve small human irregularities: slight asymmetry between eyes, uneven catchlights, varied line pressure and non-uniform skin color. Do not turn the face into mirrored beauty-filter geometry.
+- Keep decorative highlights selective. The expression should be readable before eye sparkle is noticed.
+
+### Hair
+- Build the hairstyle from coherent masses, root direction, parting, bangs, side locks and tied / curled sections before adding individual strands.
+- A large bow, ribbon, veil or ornament must visibly attach to the hair and alter its silhouette.
+- Let a few thin, carefully placed strands cross the forehead or cheek; do not cover the face with a blanket of random flyaways.
+- Light hair can use thin colored linework and warm/cool reflected accents, but maintain volume and strand grouping.
+
+### Hand-painted finish
+- Permit fine pencil-like hatching, sketch traces beneath color, broken contour lines, gentle colored line variation and a few chromatic edge shifts when they support the chosen finish.
+- Let some edges be sharp and others dissolve into the pale background. The result should feel drawn and colored by hand, not like uniformly sharpened 3D plastic.
+- Texture is a local tool. Do not apply equal grain, crosshatching or blur across every surface.
+
+## 4. Costume architecture: dense, but engineered
+
+Treat clothing as **base layer → construction layer → signature ornament layer**.
+
+- Base layer: blouse, dress, bodice, collar or other garment that establishes the body and silhouette.
+- Construction layer: corset panels, front placket, seams, shoulder yoke, sleeve cap, cuffs, waist gathers, fitted bands, button rows or lacing. This explains how the outfit is assembled.
+- Signature ornament layer: lace, pleated ruffles, bows, ribbons, embroidery, chains, small metal fittings, pendants, feathers or gemstones—only when the character concept benefits from them.
+
+Every ornate element must have a reason to exist:
+- lace follows an actual edge or seam;
+- ruffles attach to a collar, placket, shoulder, cuff or hem;
+- ribbon ties around or fastens something;
+- jewelry hangs from a visible attachment point;
+- gathered fabric has a waist, elastic, seam or tie that explains the volume;
+- sleeve volume responds to the arm and cuff rather than floating independently.
+
+Use **two or three designed detail clusters**, typically selected from head / collar, chest / bodice, and sleeve / cuff / hand. This is a flexible map, not a mandatory recipe. Leave skin, broad fabric panels and the background quieter so the dense clusters read as authored design.
+
+Do not solve “not精致” by adding a necklace, flower, pearl strand or random metal chain. First improve garment construction, silhouette rhythm, shape variation, and the attachment logic of existing details.
+
+## 5. Color and background
+
+### Background
+- Default to white, warm white, pale gray or a very lightly tinted clean field when the user asks for a white-background portrait.
+- A background can contain a barely visible color wash, tiny ground shadow or faint graphic fragment, but should not become a scenic location by default.
+- Use the empty field as a contrast partner to detailed hair / clothing; it is not missing content that must be filled.
+
+### Color grouping
+- Start with a small palette hierarchy: pale / neutral base, dark structural anchor, skin and hair warmth, and at most one deliberate accent family.
+- In the supplied reference, ivory / pearl-gray fabric and warm pale skin are anchored by black ribbons and a dark bodice; subtle blush and cool line accents keep the greys from looking dead. This is an observed example, not a universal palette.
+- Recompute colors from the actual character. Do not turn every character into black-white Gothic Lolita or pastel pink sweetness.
+- Separate material response: lace is thin and translucent; dense cloth holds broad folds; satin bows show directional sheen; metal has small hard glints; skin keeps broad gentle transitions.
+
+## 6. Light, value and finish
+
+- Use soft but directional portrait lighting so the face, hair volume and raised ruffles remain legible on white.
+- Establish value hierarchy: dark bow / bodice / lashes anchor the image; midtone linework defines folds and overlap; white ruffles must retain form instead of clipping into blank white.
+- Colored reflections may touch hair, sleeve edges and jewelry, but should stay subtle enough to preserve the clean portrait appeal.
+- Prefer thin local cast shadows underneath ruffles, between bodice panels, beneath hair locks and around ornaments over a full-scene fog / glow effect.
+- Fine linework should describe volume and fabric construction. Avoid equally sharp outline around every tiny frill; vary line weight and edge softness.
+
+## 7. NAI5 prompt compiler for this mode
+
+Write the prompt in this order:
+1. exact character identity and count;
+2. crop / viewpoint / pose;
+3. recognizable face, hair and head silhouette;
+4. garment architecture and signature ornament clusters;
+5. white / pale background and limited supporting shapes;
+6. palette roles and specific material / light behavior;
+7. hand-painted texture and finish;
+8. one restrained expression / gesture detail.
+
+Rules:
+- Keep it shorter than a cinematic-scene prompt. Spend tokens on face, hair, garment construction, pose and material separation—not on lore paragraphs or a list of background objects.
+- Keep the user's preconfigured artist stack and quality layer external by default. Do not append artist strings or generic quality words unless explicitly requested.
+- Do not emit a Negative section by default.
+- Use only the character identity and tags that fit the character; do not pad with tag synonyms.
+- If the character's signature design is already distinctive, do not replace it with an unrelated costume archetype just to make the picture ornate.
+
+## 8. Preflight — the “小画师脑” test
+
+Before emitting a prompt, verify:
+
+- **Face test:** Would the face still be appealing if all ornaments disappeared?
+- **Silhouette test:** Can the head / hair / bow / shoulders be recognized at thumbnail size?
+- **Construction test:** Can the outfit be mentally assembled from seams, fasteners, folds and attachment points?
+- **Density test:** Are there only 2–3 main detail clusters and clear quiet areas?
+- **Material test:** Can lace, opaque cloth, satin, metal and hair be distinguished by how they catch light?
+- **Handmade test:** Is there selected irregular linework / texture without turning the entire picture noisy or blurry?
+- **Background test:** Does the background support the portrait instead of competing with it?
+- **Identity test:** Does the outfit still belong to the named character rather than becoming generic Lolita / gothic fashion?
+- **Compression test:** If redundant adjectives and story prose are removed, do the actual visual decisions remain?
+
+Fail and redesign if the prompt is mostly mood words, cinematic scenery, floating props, uniform ornament, generic “beautiful girl” styling or endless quality adjectives.
+
+## 9. Evidence boundary and references
+
+The supplied white-background half-body portrait is the primary calibration. It supports these observations: strong face-first hierarchy; large black bow and pale structured hair shape; multiple attached ruffle layers; black neck bow and corset-like central bodice; mostly ivory / gray / black with warm skin; delicate sketch-hatching and colored edge variation; no scene background competing with the outfit.
+
+Public commission listings also make a useful distinction between illustration types and style modes (for example, pure-color retro portraits, detailed avatars, bust / half-body illustrations, costume-design sheets, pseudo-thick-paint, and atmosphere-focused bust illustrations). They are evidence that “commission art” is not one style, not proof that every artist follows the rules here:
+- Public commission showcase with type and style filters: https://www.huashilm.com/showcase?recommend=true
+- Commission / portfolio example separating bust, half-body and full illustration packages: https://kanibep.carrd.co/
+- Portfolio with costume design, standee and illustration categories: https://pudrawing.wixsite.com/my-site
+
+Always prioritize the user's supplied references and direct feedback over generalized platform conventions.

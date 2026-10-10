@@ -279,3 +279,31 @@ Cross-checked against the user's supplied wide reference and a range of publicly
 Do not force teal-orange palettes, a giant portrait behind a small body, ocean swirls, ribbons, swans, floral scatter or lens flare into unrelated characters. Use the mechanism only where it strengthens this character's identity and current brief.
 
 For operational prompt planning, see `ruoganzhao-composition-color-grammar.md`. This rule complements, rather than replaces, the user's explicit high-aesthetic floor, anti-AI constraints and poster-specific grammar.
+
+
+## 15. Study calibration — small-artist polished portrait
+
+Primary evidence: the user's supplied white-background half-body portrait. The intended transfer is its design logic, not a literal reproduction of the bow, black-and-white palette or Lolita costume.
+
+### What makes the reference hold together
+- Face, hair outline and upper-body silhouette establish the first read; costume construction rewards a second look.
+- Large dark bow / bodice shapes anchor pale hair, skin and layered ruffles.
+- Decorative density lives in attached clusters: head, collar / chest, sleeve and cuff; the white background and selected fabric / skin areas remain quiet.
+- Ruffles, lace, gathered sleeves, corset panels, buttons, ribbons and earrings have visible attachment / construction logic.
+- Subtle blush, fine hatching, colored line variation and gently uneven edges keep the image from feeling sterile or mechanically over-sharpened.
+- The crop and tilted pose feel designed but intimate; no elaborate story background is required.
+
+### Transferable rule
+For this mode, **face-first + outfit architecture + controlled ornament clusters + clean negative field** is the design engine.
+
+Do not reduce the reference to “white background + girl + black bow + frills”. Rebuild the same level of organization using the current character's own silhouette, costume language, palette and personal props.
+
+### Failure signatures
+- Detailed clothes but an average / lifeless face.
+- Many accessories with no seams, fasteners or attachment points.
+- Uniformly detailed frills with no dark structural anchor or quiet area.
+- White lace clipped into blank white, or entire face and clothing flattened by one soft-light wash.
+- Generic Lolita clothing replacing a named character's recognizable design.
+- Cinematic environments, floating symbols or lore props added when the requested appeal is a clean character portrait.
+
+This mode is separate from cinematic poster grammar and from painterly environmental game-illustration grammar.

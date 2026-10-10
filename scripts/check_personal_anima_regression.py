@@ -276,6 +276,41 @@ def main() -> int:
     pool_check = read("00_core/personal-identity-profile/references/nai5-artist-pool.md")
     require("ruoganzhao-composition-color-grammar.md" in pool_check, "ruoganzhao personal profile is not linked to the new calibration", failures)
 
+    small_artist_brain = read("00_core/aesthetic-director-core/references/small-artist-portrait-brain.md")
+    taste_core = read("00_core/personal-identity-profile/references/taste-core.md")
+    require(
+        "references/small-artist-portrait-brain.md" in aesthetic_director,
+        "Aesthetic Director does not route small-artist portrait requests to the dedicated brain",
+        failures,
+    )
+    require(
+        "small-artist-portrait-brain.md" in taste_core,
+        "Always-on taste core lost the small-artist portrait mode trigger",
+        failures,
+    )
+    require(
+        "## 15. Study calibration — small-artist polished portrait" in calibration_library,
+        "High-Aesthetic Calibration Library lost the small-artist portrait study",
+        failures,
+    )
+    for needle in (
+        "Face-first character art",
+        "2–3",
+        "Construction logic",
+        "white / pale background",
+        "Do not emit a Negative section by default",
+    ):
+        require(
+            needle.lower() in small_artist_brain.lower(),
+            f"Small-artist portrait brain lost required rule: {needle}",
+            failures,
+        )
+    require(
+        "Taste-17 — Small-artist polished portrait" in read("tests/test-suite.md"),
+        "Taste-17 portrait regression case is missing",
+        failures,
+    )
+
     p14 = read("tests/test-suite.md")
     for needle in (
         "P14 — Aesthetic Floor Regression",

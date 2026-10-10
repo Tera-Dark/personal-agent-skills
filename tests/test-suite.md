@@ -1,8 +1,8 @@
 # 核心验证测试集 (Test Suite)
 
-> Architecture baseline: v4.1.0
+> Architecture baseline: v4.3.0
 
-> **Version**: 4.1.0  
+> **Version**: 4.3.0  
 > **Last Updated**: 2026-10-10  
 > **Scope**: 验证创作决策、模型适配、Web-first harness、shared Prompt Core + Anima / NAI5 rendering以及审美回归。
 
@@ -392,3 +392,10 @@ It covers 8 real-task scenarios plus 8 cross-task anti-regression checks, emphas
 - Pass: gesture and setting share one movement path; source light and reflected color connect character and background; palette is grouped into major masses; focal detail is sharper than secondary scenery; story is visible in one action / object relation.
 - Fail: the output relies on “cinematic / beautiful lighting / highly detailed,” adds floating decorative items, renders every area equally sharp, or uses global haze to conceal weak composition.
 - Non-copying rule: do not force a particular artist's signature palette, double-scale portrait, or recurring motifs into unrelated characters.
+
+
+### Taste-17 — Small-artist polished portrait
+- Input: create a polished female upper-body portrait on a white / pale background with a character-specific costume.
+- Pass: face and hair silhouette read first; garment construction is visible; decoration concentrates in 2–3 attached clusters; dark / mid / light masses maintain form; fine line variation supports a hand-drawn finish; background stays quiet.
+- Fail: default cinematic scenery / giant reflection, generic Lolita substitution, random accessory accumulation, uniform detail everywhere, clipped white ruffles, face treated as an afterthought, or prompt length dominated by mood words.
+- Identity rule: preserve the character's recognizable anchors; transfer the portrait's compositional discipline, not its exact bows, color palette or costume.

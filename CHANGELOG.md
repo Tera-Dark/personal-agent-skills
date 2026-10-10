@@ -1,3 +1,11 @@
+## [4.3.0] - 2026-10-10
+
+### Small-artist polished portrait mode
+- Added a dedicated “小画师肖像脑” reference for clean-background chest-up / half-body character portraits with face-first hierarchy, engineered costume detail, controlled detail clusters, material separation, and hand-drawn line texture.
+- Added a specific route so white-background commission portraits do not default to cinematic poster, environment-scene, or painterly game-card logic.
+- Updated always-on taste core to distinguish small-artist portrait mode from high-density scene illustration and cinematic poster modes.
+- Added Taste-17 and deterministic regression checks for the portrait brain.
+
 ## [4.2.0] - 2026-10-10
 
 ### Painterly game-illustration aesthetic calibration

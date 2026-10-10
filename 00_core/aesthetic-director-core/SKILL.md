@@ -223,6 +223,7 @@ Brief 用中文或英文均可，跟随用户当前语言。不加解释段落�
 - `references/emotional-design.md` — 情绪与叙事如何落到可见的视觉决定上
 - `references/modern-poster-design-grammar.md` — 联动 / 艺术海报的概念先行、图形结构、尺度关系、字体整合与梦核海报语法
 - `references/ruoganzhao-composition-color-grammar.md` — 从若干爪的公开游戏插画中提炼可迁移的构图、环境光、色彩分区和有效信息组织机制
+- `references/small-artist-portrait-brain.md` — 白底半身肖像、服设工程、脸部优先级、局部密度与手绘线感的独立设计机制
 
 
 ### AUDIT → Design Audit Record
@@ -257,6 +258,12 @@ AUDIT 通常内部完成；只有用户明确要求审美评审时才展开。
 ## References
 - `references/modern-key-visual-grammar.md` — bundled reference for this module.
 
+
+## 3.10 Small-Artist Portrait
+
+For 小画师 / 小红书 / 米画师-style polished female busts or half-body portraits, especially on white or pale backgrounds, load `references/small-artist-portrait-brain.md`.
+
+Prioritize face, hair silhouette, outfit construction, 2–3 controlled detail clusters, material separation and fine hand-drawn linework. Do not automatically route this mode into cinematic backgrounds, poster geometry or long story props. Respect the named character's identity; ornament must attach to a real seam, fastening or silhouette decision.
 
 ## 3.8 Painterly Game Illustration
 
