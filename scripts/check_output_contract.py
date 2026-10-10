@@ -29,7 +29,7 @@ def main():
     for token in (
         "Image-generation permission", "do not authorize image generation",
         "PROMPT ONLY", "FAST VARIANT", "FULL CREATIVE", "Visual Prompt Packet",
-        "danbooru-tag-gate", "No unsolicited image generation",
+        "danbooru-tag-gate", "Never invoke an image generation/edit tool",
     ):
         require(token.lower() in kernel.lower(), f"Kernel lacks: {token}")
     for token in ("Image-generation permission", "PROMPT ONLY", "请给我生成一张图片"):
