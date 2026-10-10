@@ -312,3 +312,21 @@ Do not reduce the reference to “white background + girl + black bow + frills�
 - Cinematic environments, floating symbols or lore props added when the requested appeal is a clean character portrait.
 
 This mode is separate from cinematic poster grammar and from painterly environmental game-illustration grammar.
+
+
+### 16. Study calibration — motion-led painterly game illustration
+
+Primary directly inspected sample: 烹饪嘶哑, `玄方一梦·沉契凝锁` (Bilibili dynamic, 2026-07-12). The study is grounded in the visible composition of this work; other publicly mirrored artist posts confirm a broader illustration portfolio, while the promoted lesson description names color, two-value lighting, composition and atmosphere as teaching topics. A reposted silhouette-process note is not attributed to this artist.
+
+#### Transferable signals observed
+- The figure is anchored inside a larger motion system rather than enlarged to fill the canvas.
+- Umbrella / body / fabric / water / leaves share a curved circulation; the red accents repeat along this path.
+- Dark outer value masses protect a brighter central action region; warm light points establish depth.
+- The environment participates through framing, reflection, scale and motion—not just scenery.
+- Figure and garment remain readable while water and distant surroundings resolve into looser, more broken marks.
+- The mood comes from a caught action and the environmental traces of that action, not a large pile of story props.
+
+#### Transferable rule
+**One action → one dominant motion geometry → one connected value / light path → selective painterly detail.**
+
+Do not imitate the exact umbrella, red ribbons, maple leaves, night palette or circular water. They are surface decisions in one image, not a universal formula. Use the separate reference `cookingsiya-painterly-story-grammar.md` for operational prompt planning.
