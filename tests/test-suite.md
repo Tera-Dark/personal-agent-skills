@@ -1,9 +1,9 @@
 # 核心验证测试集 (Test Suite)
 
-> Architecture baseline: v4.0.0
+> Architecture baseline: v4.1.0
 
-> **Version**: 4.0.0  
-> **Last Updated**: 2026-10-05  
+> **Version**: 4.1.0  
+> **Last Updated**: 2026-10-10  
 > **Scope**: 验证创作决策、模型适配、Web-first harness、shared Prompt Core + Anima / NAI5 rendering以及审美回归。
 
 ---

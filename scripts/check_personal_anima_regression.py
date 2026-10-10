@@ -186,7 +186,12 @@ def main() -> int:
             failures,
         )
     require(len(case_ids) == 36, f"expected 36 P12 cases, found {len(case_ids)}", failures)
-    require(version == "4.0.0", f"VERSION must be 4.0.0, found {version}", failures)
+    version_parts = version.split(".")
+    require(
+        len(version_parts) == 3 and all(part.isdigit() for part in version_parts),
+        f"VERSION must follow semantic x.y.z format, found {version}",
+        failures,
+    )
 
     p13 = read("tests/p13-real-task-regression.md")
     p13_cases = re.findall(r"^### (P13-(?:\d{2}|X-\d{2}))\s+—", p13, re.M)

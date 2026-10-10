@@ -441,6 +441,11 @@ def main():
         if fn.endswith(".md") and fn not in expected:
             os.remove(os.path.join(mod_dir, fn))
             print(f"  removed orphan module {fn}")
+    expected_pipelines = {os.path.basename(k) for k in outputs if k.startswith(f"{cfg['bundle_dir']}/pipelines/")}
+    for fn in os.listdir(pipe_dir):
+        if fn.endswith(".md") and fn not in expected_pipelines:
+            os.remove(os.path.join(pipe_dir, fn))
+            print(f"  removed orphan pipeline {fn}")
     expected_reference_paths = {k for k in outputs if k.startswith(f"{cfg['bundle_dir']}/references/")}
     for dirpath, _, filenames in os.walk(reference_dir, topdown=False):
         for fn in filenames:
