@@ -330,3 +330,19 @@ Primary directly inspected sample: 烹饪嘶哑, `玄方一梦·沉契凝锁` (B
 **One action → one dominant motion geometry → one connected value / light path → selective painterly detail.**
 
 Do not imitate the exact umbrella, red ribbons, maple leaves, night palette or circular water. They are surface decisions in one image, not a universal formula. Use the separate reference `cookingsiya-painterly-story-grammar.md` for operational prompt planning.
+
+
+### 17. Study calibration — multi-reference 小画师 portrait system
+
+This calibration synthesizes the user's supplied white-background half-body reference with accessible public visual samples associated with 鈴観 and 速冻汤圆. The indexed candidate “抹茶專門店AM” is explicitly unconfirmed; 丘布林大地 has mostly process / “小脸” search evidence; 稻叶时雨 has one artwork-title signal; ORRRRRRRR could not be reliably identified. See `small-artist-style-atlas.md` for source links and evidence tiers.
+
+#### Shared mechanism, not averaged style
+- Face / hair / shoulder silhouette win the first read; outfit construction and material details reward close inspection.
+- Detail concentrates around face, collar / chest, sleeve / hand and a small accessory interaction.
+- A hand gesture gives the portrait life and creates a secondary focal point without requiring a cinematic story prop.
+- Crisp character shapes can coexist with selective painterly / reflective detail; texture and edge sharpness vary by material and focal importance.
+- A pale base, structural dark, warm skin / hair and a controlled accent provide one useful palette structure, but exact hues change with the character.
+- White / pale space is an active composition tool, not empty canvas to be filled with scenery.
+
+#### Transfer rule
+Design one coherent portrait system first; add one selected rendering mechanism second. Never copy one creator's exact motifs or treat inaccessible / search-only names as confirmed style references.
