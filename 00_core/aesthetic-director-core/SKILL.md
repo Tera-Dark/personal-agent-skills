@@ -258,15 +258,10 @@ AUDIT 通常内部完成；只有用户明确要求审美评审时才展开。
 - `references/modern-key-visual-grammar.md` — bundled reference for this module.
 
 
-## 3.8 当前模式校准：Painterly Light-rich Game Illustration
+## 3.8 Painterly Game Illustration
 
-当用户要求精品游戏卡面、动态角色插画、明亮电影感、具有环境光与叙事的复杂人物插画，或明确参考若干爪作品时，读取 `references/ruoganzhao-composition-color-grammar.md`。
+For premium game cards, dynamic character illustrations, light-rich narrative scenes, or an explicit 若干爪 reference, load `references/ruoganzhao-composition-color-grammar.md`.
 
-这个模式的核心不是固定复刻某个画师的蓝色、金色、发光特效或双尺度人物，而是：
-- 先定真实光照条件，再让环境反光、人物皮肤、发丝、服装和道具共享同一个光色逻辑；
-- 用人物动作、发丝、衣摆与环境轮廓形成同一条构图动势；
-- 先组织 3–4 个大色块、一个深色锚点和一个强调色，再分配材质细节；
-- 将高精度刻画集中在脸、手、关键服装结构与叙事物件，次要背景用大形和边缘层级收住；
-- 用一个具体动作及其环境后果承载故事，而不是用无关物件补氛围。
+Before prompting, decide the story beat, camera / crop, shared motion path, environmental light, major color masses and focal-detail map. Light must connect character and setting; secondary detail must simplify around the focal area.
 
-模式选择服从角色和场景，不固定为暗色、青橙配色、巨大背景脸或任何单一构图模板。普通白底立绘、极简肖像或日常抓拍不应被强行套用此模式。
+This is a transferable design grammar, not a fixed palette or layout. Do not force teal/orange, a giant portrait echo, or recurring motifs into unrelated characters. Keep white-background plates and quiet candid scenes in their own modes.
