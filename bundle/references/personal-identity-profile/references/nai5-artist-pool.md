@@ -260,12 +260,14 @@ These are user-scored individual tests. **Scores do not automatically change the
 - Style tags: **古风 / 精美场景 / 角色立绘 / 装饰型**
 - Best-fit elements: Chinese costume, architectural scenery, flowers, lanterns, traditional props, elegant standing poses.
 
-#### `artist:ruoganzhao`
+#### `artist:ruoganzhao`（若干爪）
 - Score: **8.0/10**
-- User feedback: **精致柔细感 + 场景画风**, but the palette tends yellow and images easily become blurry.
-- Style tags: **精致柔细 / 场景型 / 氛围插画 / 暖黄调 / 易糊**
-- Best-fit elements: warm environmental light, atmospheric scenes, soft costume details, flowers, architecture, narrative backgrounds.
-- Caution: watch yellow cast and loss of detail.
+- User's direct NAI5 test: **精致柔细感 + 场景画风**; this remains a real observation, including the risk of warm/yellow drift and blur when the mix becomes too soft.
+- Broader study from the user's reference plus publicly indexed works: **动作与环境共享动势 / 环境光连接人物和背景 / 冷暖反光分区 / 大色块先行 / 局部繁复刻画 / 角色与场景共同叙事**.
+- Best-fit elements: premium game-card illustrations, dynamic character scenes, expressive cloth and hair flow, lively environmental light, richly described but hierarchically organized materials.
+- Use profile: do not reduce this visual language to warm haze. Preserve cool shadow color, sharp focal edges around face and hands, readable silhouette, and simplified secondary background shapes.
+- Detailed transferable composition / light / color / effective-information rules: `00_core/aesthetic-director-core/references/ruoganzhao-composition-color-grammar.md`.
+- Caution: during NAI5 artist mixing, watch yellow cast and loss of edge clarity; keep the light source, color masses and detail hierarchy explicit.
 
 #### `artist:qingming_tiaohetu`
 - Score: **7.5/10**

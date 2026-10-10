@@ -1,14 +1,14 @@
 {
   "name": "personal-agent-skills",
-  "version": "4.1.0",
+  "version": "4.2.0",
   "repo": "Tera-Dark/personal-agent-skills",
   "branch": "main",
   "raw_base": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/",
   "harness_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS.md",
   "harness_full_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS-FULL.md",
-  "handshake": "Harness v4.1.0 loaded · 16 modules · 说需求，或发参考图。",
+  "handshake": "Harness v4.2.0 loaded · 16 modules · 说需求，或发参考图。",
   "core_tokens": 10045,
-  "full_tokens": 108957,
+  "full_tokens": 112430,
   "pipeline": {
     "aesthetic_gate": "aesthetic-director-core",
     "blueprint_gate": {
@@ -123,7 +123,7 @@
           "path": "references/nai5-artist-pool.md",
           "bundle_path": "bundle/references/personal-identity-profile/references/nai5-artist-pool.md",
           "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/personal-identity-profile/references/nai5-artist-pool.md",
-          "tokens": 7506
+          "tokens": 7703
         },
         {
           "path": "references/visual-preferences.md",
@@ -140,7 +140,7 @@
       ],
       "tokens_skill": 845,
       "tokens_bundle": 1423,
-      "tokens_full_bundle": 18664
+      "tokens_full_bundle": 18861
     },
     {
       "name": "aesthetic-director-core",
@@ -162,6 +162,7 @@
         "references/design-calibration-examples.md",
         "references/anti-ai-patterns.md",
         "references/emotional-design.md",
+        "references/ruoganzhao-composition-color-grammar.md",
         "references/modern-key-visual-grammar.md"
       ],
       "reference_files": [
@@ -169,7 +170,7 @@
           "path": "references/high-aesthetic-calibration-library.md",
           "bundle_path": "bundle/references/aesthetic-director-core/references/high-aesthetic-calibration-library.md",
           "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/aesthetic-director-core/references/high-aesthetic-calibration-library.md",
-          "tokens": 2743
+          "tokens": 3204
         },
         {
           "path": "references/creative-moves.md",
@@ -214,15 +215,21 @@
           "tokens": 1031
         },
         {
+          "path": "references/ruoganzhao-composition-color-grammar.md",
+          "bundle_path": "bundle/references/aesthetic-director-core/references/ruoganzhao-composition-color-grammar.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/aesthetic-director-core/references/ruoganzhao-composition-color-grammar.md",
+          "tokens": 2587
+        },
+        {
           "path": "references/modern-key-visual-grammar.md",
           "bundle_path": "bundle/references/aesthetic-director-core/references/modern-key-visual-grammar.md",
           "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/aesthetic-director-core/references/modern-key-visual-grammar.md",
           "tokens": 1164
         }
       ],
-      "tokens_skill": 4779,
-      "tokens_bundle": 5524,
-      "tokens_full_bundle": 26085
+      "tokens_skill": 4977,
+      "tokens_bundle": 5781,
+      "tokens_full_bundle": 29357
     },
     {
       "name": "creative-skill-router",
