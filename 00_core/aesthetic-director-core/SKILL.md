@@ -260,8 +260,8 @@ AUDIT 通常内部完成；只有用户明确要求审美评审时才展开。
 
 ## 3.8 Painterly Game Illustration
 
-For premium game cards, dynamic character illustrations, light-rich narrative scenes, or an explicit 若干爪 reference, load `references/ruoganzhao-composition-color-grammar.md`.
+For premium game cards, dynamic character scenes, or an explicit 若干爪 reference, load `references/ruoganzhao-composition-color-grammar.md`.
 
-Before prompting, decide the story beat, camera / crop, shared motion path, environmental light, major color masses and focal-detail map. Light must connect character and setting; secondary detail must simplify around the focal area.
+Plan the story beat, camera / crop, shared motion path, environmental light, color masses and focal-detail map. Light links figure and setting; secondary details simplify around the focal area.
 
-This is a transferable design grammar, not a fixed palette or layout. Do not force teal/orange, a giant portrait echo, or recurring motifs into unrelated characters. Keep white-background plates and quiet candid scenes in their own modes.
+Use the grammar, not a fixed palette or layout. Do not force teal/orange, giant portrait echoes or recurring motifs into unrelated characters; keep white plates and candid scenes in their own modes.

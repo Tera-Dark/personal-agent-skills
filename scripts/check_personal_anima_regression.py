@@ -270,7 +270,7 @@ def main() -> int:
         "Effective and ineffective information",
         "color",
         "movement",
-        "Do not hard-code teal/orange palettes",
+        "Do not hard-code teal/orange",
     ):
         require(needle.lower() in painterly_grammar.lower(), f"Painterly illustration calibration lost required rule: {needle}", failures)
     pool_check = read("00_core/personal-identity-profile/references/nai5-artist-pool.md")
