@@ -247,3 +247,9 @@ notes:
 - Input: upstream artist canonical `@starshadowmagician` and NAI5 candidate `artist:starshadowmagician`.
 - Expect: the generated alias entry maps to the exact source canonical and is marked `namespace_bridge:artist_to_at`; NAI5 serialization retains `artist:starshadowmagician`.
 - Fail: artists collapse into a single `_special.json` shard, source identity is rewritten, or a non-identical suffix is accepted.
+
+
+### P12-WEB-TAG-07 — small artist prefix directory
+- Input: verify `artist:starshadowmagician`.
+- Expect: root manifest → artists group manifest → first-character bucket manifest (`s`) → `sta.json`; do not load the full artists prefix list.
+- Fail: retrieve the entire 35 KB artist-prefix manifest or fall back to fuzzy lookup.

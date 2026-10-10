@@ -110,22 +110,54 @@ def generate_outputs(source, source_sha):
 
         safe = safe_group(group)
         prefixes = sorted(by_prefix)
+        prefix_length = 3 if group.lower() == "artists" else 2
         group_manifest_path = f"bundle/tag-index/{safe}/manifest.json"
+        prefix_manifest_pattern = None
+
+        # Artist aliases make even the prefix list comparatively large. Keep the
+        # group manifest small and shard its prefix directory by the first route
+        # character, so the runtime checks only one tiny directory listing.
+        if group.lower() == "artists":
+            prefix_manifest_pattern = f"bundle/tag-index/{safe}/manifests/<bucket>.json"
+            prefix_buckets = defaultdict(list)
+            for prefix in prefixes:
+                bucket = "_special" if prefix == "_special" else prefix[0]
+                prefix_buckets[bucket].append(prefix)
+            for bucket, bucket_prefixes in sorted(prefix_buckets.items()):
+                bucket_path = f"bundle/tag-index/{safe}/manifests/{bucket}.json"
+                bucket_manifest = {
+                    "schema_version": SCHEMA_VERSION,
+                    "source_sha256": source_sha,
+                    "group": group,
+                    "bucket": bucket,
+                    "prefix_length": prefix_length,
+                    "prefixes": sorted(bucket_prefixes),
+                }
+                outputs[bucket_path] = json.dumps(
+                    bucket_manifest, ensure_ascii=False, sort_keys=True, separators=(",", ":")
+                ) + "\n"
+
         group_meta[group] = {
             "path_group": safe,
             "tag_count": valid_count,
             "shard_count": len(prefixes),
-            "prefix_length": 3 if group.lower() == "artists" else 2,
+            "prefix_length": prefix_length,
             "manifest": group_manifest_path,
         }
+        if prefix_manifest_pattern:
+            group_meta[group]["prefix_manifest_pattern"] = prefix_manifest_pattern
+
         group_manifest = {
             "schema_version": SCHEMA_VERSION,
             "source_sha256": source_sha,
             "group": group,
             "tag_count": valid_count,
-            "prefix_length": 3 if group.lower() == "artists" else 2,
-            "prefixes": prefixes,
+            "prefix_length": prefix_length,
         }
+        if prefix_manifest_pattern:
+            group_manifest["prefix_manifest_pattern"] = prefix_manifest_pattern
+        else:
+            group_manifest["prefixes"] = prefixes
         outputs[group_manifest_path] = json.dumps(
             group_manifest, ensure_ascii=False, sort_keys=True, separators=(",", ":")
         ) + "\n"
@@ -211,8 +243,11 @@ def run_self_tests():
     if "long_hair" not in alias_shard["exact"]:
         raise SystemExit("self-test failed: canonical tag missing from exact map")
     artist_manifest = json.loads(sample["bundle/tag-index/artists/manifest.json"])
-    if artist_manifest["prefixes"] != ["sta"] or artist_manifest["prefix_length"] != 3:
-        raise SystemExit(f"self-test failed: artist prefixes incorrectly generated: {artist_manifest!r}")
+    if artist_manifest.get("prefix_length") != 3 or artist_manifest.get("prefix_manifest_pattern") != "bundle/tag-index/artists/manifests/<bucket>.json":
+        raise SystemExit(f"self-test failed: artist group manifest incorrectly generated: {artist_manifest!r}")
+    artist_bucket = json.loads(sample["bundle/tag-index/artists/manifests/s.json"])
+    if artist_bucket["prefixes"] != ["sta"]:
+        raise SystemExit(f"self-test failed: artist bucket manifest incorrectly generated: {artist_bucket!r}")
     artist_shard = json.loads(sample["bundle/tag-index/artists/sta.json"])
     if "@starshadowmagician" not in artist_shard["exact"]:
         raise SystemExit("self-test failed: artist source canonical identity was altered")
