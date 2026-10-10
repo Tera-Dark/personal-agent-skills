@@ -97,7 +97,7 @@ A character blueprint is READY only when thesis, silhouette, anchor hierarchy, a
 
 ## Art Illustration Aesthetic Calibration
 
-艺术插画的主构图、环境能动性、色块层级、动线与局部完成度，统一交给 `illustration-direction` 的 `references/visual-grammar.md`。本模块只负责角色的身份、发型轮廓、服装结构、材质与动作锚点，不重复维护一套插画构图规范。需要大画面时组合两个 blueprint，先锁定角色，再由插画导演布置画面。
+艺术插画的主构图、环境能动性、色块层级、动线与局部完成度，统一交给 `illustration-direction` 内的 visual-grammar 专项参考文件。本模块只负责角色的身份、发型轮廓、服装结构、材质与动作锚点，不重复维护一套插画构图规范。需要大画面时组合两个 blueprint，先锁定角色，再由插画导演布置画面。
 
 ## 多套设计
 
