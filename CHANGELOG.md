@@ -1,3 +1,11 @@
+## [4.5.0] - 2026-10-10
+
+### Multi-reference 小画师 portrait synthesis
+- Added a source-aware style atlas for 鈴観, 速冻汤圆, and research entries for 抹茶, 丘布林大地, 稻叶时雨 and ORRRRRRRR with explicit confidence levels.
+- Separated confirmed visual observations from ambiguous identity / search-only signals rather than inventing style attributes.
+- Fused transferable portrait mechanisms: face-first appeal, engineered costume, local detail clusters, hand / accessory interaction, crisp form plus selective tactile rendering, and active white-space control.
+- Routed named-artist fusion to the new atlas and added Taste-19 regression checks.
+
 ## [4.4.0] - 2026-10-10
 
 ### 烹饪嘶哑 — painterly story illustration case study

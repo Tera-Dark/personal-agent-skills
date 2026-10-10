@@ -152,3 +152,16 @@ Public commission listings also make a useful distinction between illustration t
 - Portfolio with costume design, standee and illustration categories: https://pudrawing.wixsite.com/my-site
 
 Always prioritize the user's supplied references and direct feedback over generalized platform conventions.
+
+
+## 10. Multi-artist synthesis and style-atlas routing
+
+When the user explicitly names a 小画师 or asks to fuse several creators, read `small-artist-style-atlas.md` before prompt writing.
+
+Use the atlas as a **mechanism selector**, not a token pile:
+- choose one primary mechanism and no more than one secondary influence;
+- preserve the named character's identity and the current portrait mode;
+- do not emit creator names in the final artist stack unless the user explicitly requests an artist-string test;
+- respect each evidence label: low-confidence or ambiguous entries cannot become default hard rules.
+
+The core fusion is: **face appeal + engineered outfit + controlled detail clusters + hand / accessory gesture + crisp structure with selective tactile rendering + clean negative field**. Do not average creators into one global effect.

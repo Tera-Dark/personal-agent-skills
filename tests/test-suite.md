@@ -1,8 +1,8 @@
 # 核心验证测试集 (Test Suite)
 
-> Architecture baseline: v4.4.0
+> Architecture baseline: v4.5.0
 
-> **Version**: 4.4.0  
+> **Version**: 4.5.0  
 > **Last Updated**: 2026-10-10  
 > **Scope**: 验证创作决策、模型适配、Web-first harness、shared Prompt Core + Anima / NAI5 rendering以及审美回归。
 
@@ -406,3 +406,10 @@ It covers 8 real-task scenarios plus 8 cross-task anti-regression checks, emphas
 - Pass: one dominant motion geometry links body, cloth / prop and environment; value masses establish the read order; an identified light source connects character and setting; one controlled accent follows the visual route; background resolution is looser than focal face / gesture.
 - Fail: generic cinematic mood words, unrelated floating effects, equal detail everywhere, environment not responding to the character, or direct copying of one artist's exact palette / props / composition.
 - Mode separation: this is for painterly narrative scenes, not a replacement for the clean-background small-artist portrait mode.
+
+
+### Taste-19 — Multi-reference small-artist synthesis
+- Input: create a white-background female half-body commission portrait and fuse several named 小画师 references.
+- Pass: source-confidence levels are respected; choose one primary mechanism and at most one secondary influence; face / hair silhouette, outfit construction, 2–3 detail clusters, hand / accessory gesture and clean negative field stay coherent.
+- Fail: unverified artists are described as confirmed; all signature motifs are stacked; generic accessory lists replace costume engineering; background scenery takes over; creator names are emitted despite the user's default NAI5 preference.
+- Evidence rule: inaccessible or search-only references remain provisional until the user supplies an exact profile or image.

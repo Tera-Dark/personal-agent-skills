@@ -345,6 +345,44 @@ def main() -> int:
         failures,
     )
 
+    small_artist_atlas = read("00_core/aesthetic-director-core/references/small-artist-style-atlas.md")
+    small_artist_brain = read("00_core/aesthetic-director-core/references/small-artist-portrait-brain.md")
+    require(
+        "small-artist-style-atlas.md" in aesthetic_director,
+        "Aesthetic Director lacks a route to the multi-reference 小画师 atlas",
+        failures,
+    )
+    require(
+        "small-artist-style-atlas.md" in small_artist_brain,
+        "Small-artist portrait brain lacks multi-artist synthesis routing",
+        failures,
+    )
+    require(
+        "small-artist-style-atlas.md" in taste_core,
+        "Always-on taste core lost the named-artist atlas trigger",
+        failures,
+    )
+    for needle in (
+        "Evidence rules",
+        "鈴観 / ccroquette_",
+        "速冻汤圆",
+        "丘布林大地",
+        "稻叶时雨",
+        "ORRRRRRRR",
+        "one primary mechanism",
+        "Evidence limit",
+    ):
+        require(
+            needle.lower() in small_artist_atlas.lower(),
+            f"Small-artist atlas lost required creator / evidence rule: {needle}",
+            failures,
+        )
+    require(
+        "Taste-19 — Multi-reference small-artist synthesis" in read("tests/test-suite.md"),
+        "Taste-19 multi-reference portrait regression case is missing",
+        failures,
+    )
+
     p14 = read("tests/test-suite.md")
     for needle in (
         "P14 — Aesthetic Floor Regression",

@@ -224,6 +224,7 @@ Brief 用中文或英文均可，跟随用户当前语言。不加解释段落�
 - `references/modern-poster-design-grammar.md` — 联动 / 艺术海报的概念先行、图形结构、尺度关系、字体整合与梦核海报语法
 - `references/ruoganzhao-composition-color-grammar.md` — 从若干爪的公开游戏插画中提炼可迁移的构图、环境光、色彩分区和有效信息组织机制
 - `references/small-artist-portrait-brain.md` — 白底半身肖像、服设工程、脸部优先级、局部密度与手绘线感的独立设计机制
+- `references/small-artist-style-atlas.md` — 多画师分项证据、可迁移机制与融合后的独立小画师系统
 
 
 ### AUDIT → Design Audit Record
@@ -244,6 +245,7 @@ AUDIT 通常内部完成；只有用户明确要求审美评审时才展开。
 当前普通插画 / 海报设计默认读取以下用户校准：
 
 - 白底 / 浅底小画师半身肖像触发 `references/small-artist-portrait-brain.md`：脸与发型轮廓优先，服设工程清晰，2–3 个局部密集区配合安静留白；不要自动套电影海报或复杂场景。
+- 用户点名小画师或要求融合多位画师时，再加载 `references/small-artist-style-atlas.md`；遵循证据等级，不把未确认账号的猜测固化为规则。
 - 构图与叙事绑定：机位、裁切、前景遮挡和引导线围绕具体动作组织。
 - 古风与东方题材采用“美型造景”，让建筑、水面、枝叶、伞、衣摆、发丝与人物共同形成视觉路径。
 - 普通 NAI5 设计请求不重复已经预设的 artist stack 与质量层；只有完整 prompt 或单画师测试时显式展开。
