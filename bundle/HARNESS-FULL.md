@@ -147,7 +147,7 @@ Claims about model behavior, syntax, parameters, tags or generation effects use 
 | module | layer | load | status | ~tokens | triggers | fetch |
 |---|---|---|---|---|---|---|
 | `personal-identity-profile` | 00_core | always | active | 1423 | 我的风格, 个人偏好, 按我习惯, any creative task | embedded below |
-| `aesthetic-director-core` | 00_core | on-demand | active | 5911 | OC, 人设, 插画, 服装, 海报, 联动海报, 艺术海报, key visual, crossover poster, 审美, 创意方向, 人味, 高级感, 不要AI味, 太平淡, 太乱 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/aesthetic-director-core.md` |
+| `aesthetic-director-core` | 00_core | on-demand | active | 5821 | OC, 人设, 插画, 服装, 海报, 联动海报, 艺术海报, key visual, crossover poster, 审美, 创意方向, 人味, 高级感, 不要AI味, 太平淡, 太乱 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/aesthetic-director-core.md` |
 | `creative-skill-router` | 01_router | always | active | 1467 | any request, 设计, 提示词, prompt, 反推, 分析, ComfyUI, LoRA, NAI5, Anima | embedded below |
 | `character-design-engine` | 02_design | on-demand | active | 4630 | OC, 人设, 角色设计, 服装设计, 立绘, 高定服设, 二游角色, character sheet, 极繁, 极繁精美, 华丽人设, 原创圈 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/character-design-engine.md` |
 | `illustration-direction` | 02_design | on-demand | active | 4116 | 插画, 氛围图, 竖屏, 半留白, 印象风, 故事感, key visual, poster, scene, 极繁, 特写垫底, 大头贴, 元素贴, 角色拼贴 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/illustration-direction.md` |
@@ -1785,9 +1785,6 @@ AUDIT 通常内部完成；只有用户明确要求审美评审时才展开。
 - 摄影师思维进入插画：主动设计机位、景别、焦点、前景遮挡、引导线、裁切和冻结瞬间。
 - 叙事优先于静态展示：人物、物件、环境必须产生可见的事件关系。
 - 古风与东方题材采用“美型造景”，让建筑、水面、枝叶、伞、衣摆、发丝与人物共同形成视觉路径。
-- 半留白与受控高密度都可使用，由概念决定密度。
-- 海报先解决版式、主图形、阅读顺序和尺度关系，再处理渲染。
-- 抽象主题优先建立一个统一视觉机制，例如循环、裂壳、错位、镜像、容器或路径。
 - 普通 NAI5 设计请求不重复已经预设的 artist stack 与质量层；只有完整 prompt 或单画师测试时显式展开。
 
 近期高分校准：Miku“无尽轮回 / 时空交错 / 追寻”叙事海报，用户评分 8.5/10。

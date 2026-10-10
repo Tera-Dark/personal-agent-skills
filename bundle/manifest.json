@@ -8,7 +8,7 @@
   "harness_full_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS-FULL.md",
   "handshake": "Harness v4.3.0 loaded · 16 modules · 说需求，或发参考图。",
   "core_tokens": 10133,
-  "full_tokens": 116144,
+  "full_tokens": 116055,
   "pipeline": {
     "aesthetic_gate": "aesthetic-director-core",
     "blueprint_gate": {
@@ -234,9 +234,9 @@
           "tokens": 1164
         }
       ],
-      "tokens_skill": 5052,
-      "tokens_bundle": 5911,
-      "tokens_full_bundle": 32977
+      "tokens_skill": 4963,
+      "tokens_bundle": 5821,
+      "tokens_full_bundle": 32888
     },
     {
       "name": "creative-skill-router",
