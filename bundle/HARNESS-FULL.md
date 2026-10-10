@@ -152,7 +152,7 @@ Claims about model behavior, syntax, parameters, tags or generation effects use 
 | `character-design-engine` | 02_design | on-demand | active | 15337 | OC, 人设, 角色设计, 服装设计, 立绘, 高定服设, 二游角色, character sheet, 极繁, 极繁精美, 华丽人设, 原创圈 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/character-design-engine.md` |
 | `illustration-direction` | 02_design | on-demand | active | 16908 | 插画, 氛围图, 竖屏, 半留白, 印象风, 故事感, key visual, poster, scene, 极繁, 特写垫底, 大头贴, 元素贴, 角色拼贴 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/illustration-direction.md` |
 | `anima-renderer` | 03_prompt | on-demand | active | 5876 | Anima, Anima prompt, Anima 提示词, Anima checkpoint | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-renderer.md` |
-| `danbooru-tag-gate` | 03_prompt | on-demand | active | 1935 | Danbooru tag, tag validation, tag check, exact tag, alias, tag verification | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/danbooru-tag-gate.md` |
+| `danbooru-tag-gate` | 03_prompt | on-demand | active | 2143 | Danbooru tag, tag validation, tag check, exact tag, alias, tag verification | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/danbooru-tag-gate.md` |
 | `general-image-prompt-adapter` | 03_prompt | on-demand | active | 2234 | Midjourney, MJ, DALL-E, GPT Image, Imagen, Gemini image, Nano Banana, Flux, SDXL, Stable Diffusion, 通用提示词, 其他模型, 不知道用什么模型 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/general-image-prompt-adapter.md` |
 | `nai5-renderer` | 03_prompt | on-demand | active | 6447 | NAI5, NovelAI, NAI提示词, tag prompt, Danbooru prompt, artist stack | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/nai5-renderer.md` |
 | `visual-prompt-core` | 03_prompt | on-demand | active | 1551 | prompt packet, visual prompt, prompt core, 提示词编译, 提示词规划, NAI5, Anima | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/visual-prompt-core.md` |
@@ -6420,10 +6420,10 @@ The manifest records the source SHA-256, groups and available prefixes. Each sha
 
 #### Lookup
 
-1. 首次执行时读取 manifest 一次；保留 source SHA 和可用 group/prefix 列表。
-2. 按候选项的 `group` 分组，并按 manifest 的 prefix rule 计算 shard 路径；每个不同的 (group, prefix) 最多 fetch 一次。
+1. 首次读取 root manifest 并记录 source SHA；随后只读取本任务实际涉及的各个 group manifest，并复用缓存结果。
+2. 按候选项的 `group` 分组，使用 root manifest 提供的 `path_group` 与 prefix rule 计算 shard 路径；每个不同的 (group, prefix) 最多 fetch 一次。对于 `artists`，prefix 计算时仅为定位目的去掉开头的 `artist:`，候选身份字符串本身不变。
 3. Prefix 只用于定位文件，不是 tag normalization。匹配前仅去掉传输层首尾空白；不得改写候选 tag 中的 underscore、parentheses、colon、slash 或大小写。
-4. 若 manifest 中不存在该 group 或 prefix，可按当前 source snapshot 记为 missing。若 manifest 声明 shard 存在但 fetch 失败，标记 unverified，不能当成 missing。
+4. 若 root manifest 不存在该 group，或 group manifest 的 prefix 列表中没有该 prefix，可按当前 source snapshot 记为 missing。若清单声明 shard 存在但 fetch 失败，标记 unverified，不能当成 missing。
 5. 在 shard 的 `exact` 字典做原字符串查找；命中则 status=exact。
 6. 只有 exact 未命中，才在 `aliases` 字典做原字符串查找。唯一 canonical 命中才 status=alias 并保留输入 alias trace；若一个 alias 指向多个 canonical，按 missing 处理，不猜测。
 7. Exact / alias 都未命中时标记 missing。Never fuzzy-match.
@@ -6432,10 +6432,11 @@ The manifest records the source SHA-256, groups and available prefixes. Each sha
 #### Group / identity
 
 身份范围必须来自证据，而不是字符串长相：
-- artist → artist
-- character → character
-- series → series
-- visual tag → general / 对应语义组
+- artist → `artists` (upstream group plural)
+- character → `characters` (upstream group plural)
+- series → `series`
+- visual tag → `general`; meta tag → `meta`
+- Always use the exact group key declared in the root manifest; never infer a group from tag spelling.
 
 尤其是 character / series / artist：
 - 不得跨 group 猜测；
@@ -6503,20 +6504,22 @@ source: anima-sharded-index (include manifest source SHA)
 
 ##### Purpose
 
-Good Anima derives a compact index from `anima-1.0.csv`, grouping canonical tags, counts and aliases. The Harness keeps upstream data as the source of truth, but web models must not load the entire JSON file.
+Good Anima derives an index from `anima-1.0.csv`, grouping canonical tags, counts and aliases. The Harness keeps upstream data as the source of truth, but web models must not load the entire JSON file.
 
 ##### Runtime retrieval
 
-- Manifest: `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/tag-index/manifest.json`
-- Shards: `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/tag-index/<group>/<prefix>.json`
-- Each generated shard contains exact canonical keys and exact aliases for one group/prefix.
-- Read the manifest once per session or until its source SHA changes. Group candidates by group and prefix to reuse fetched shards.
-- If a listed shard is unreadable, its candidates are unverified. If the manifest proves that a prefix is absent from the complete source snapshot, candidates under that prefix are missing.
-- Never infer a missing tag from a search snippet or model memory.
+- Root manifest: `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/tag-index/manifest.json`
+- Group manifest: `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/tag-index/<path_group>/manifest.json`
+- Shard: `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/tag-index/<path_group>/<prefix>.json`
+- Fetch the root manifest once, then only group manifests needed for the current candidate groups, then only the relevant shards. Reuse all fetched manifests/shards in the current session.
+- Every shard contains exact canonical keys and exact aliases for one source group/prefix.
+- If a declared shard cannot be fetched, its candidates are unverified. If the group manifest proves the prefix is absent from the complete source snapshot, candidates under that prefix are missing.
+- The `artists` source group stores namespaced keys such as `artist:name`; for shard routing only, remove the leading `artist:` before taking the prefix. Never alter the string used for exact identity matching.
+- Never infer a missing tag from search snippets or model memory.
 
 ##### Build and validation
 
-`scripts/build_tag_index.py` downloads upstream data only in CI/build environments, validates its schema, generates deterministic two-character lookup shards, removes orphaned shards, and supports `--check` for reproducibility verification. `--self-test` runs offline routing and alias tests.
+`scripts/build_tag_index.py` downloads upstream data only in CI/build environments, validates its schema, generates deterministic two-character shards and per-group manifests, removes orphaned shards, and supports `--check`. `--self-test` runs offline routing and alias tests.
 
 The CI workflow regenerates shards on pushes and requires them to be current on pull requests. A partial cache is never treated as a complete source index.
 
@@ -6524,7 +6527,7 @@ The CI workflow regenerates shards on pushes and requires them to be current on 
 
 - Upstream repository: `https://github.com/ShiroEirin/comfyui-good-anima`
 - Upstream index: `https://raw.githubusercontent.com/ShiroEirin/comfyui-good-anima/main/danbooru-tags/tags_index.json`
-- Upstream data license: GPL-3.0. Generated shards publish the source SHA-256 in the manifest.
+- Upstream data license: GPL-3.0. Generated manifests publish the source SHA-256.
 - The derived dataset has separate provenance/licensing from the Harness source code; the root MIT license does not relicense upstream data.
 
 ##### Identity contract
