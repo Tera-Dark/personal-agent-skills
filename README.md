@@ -1,6 +1,6 @@
 # personal-agent-skills
 
-> v4.6 architecture: mandatory Aesthetic/Blueprint Gates + shared Visual Prompt Core + shared Danbooru verification + thin Anima / NAI5 renderers + Web-first runtime. Runtime bundle optimization: compact identity, selective tag shards, reference-level fetching, and explicit FULL / FAST VARIANT / PROMPT ONLY modes.
+> v4.1 architecture: mandatory Aesthetic/Blueprint Gates + shared Visual Prompt Core + shared Danbooru verification + thin Anima / NAI5 renderers + Web-first runtime. Runtime bundle optimization: compact identity, selective tag shards, reference-level fetching, and explicit FULL / FAST VARIANT / PROMPT ONLY modes.
 
 > ## ⚡ AI bootstrap
 >
@@ -9,6 +9,13 @@
 > 3. Follow the handshake specified by the harness, then work on the user's task.
 >
 > If URLs are inaccessible, reply exactly: \`我无法访问链接。请把 bundle/HARNESS.md 的内容粘贴给我。\`
+
+## Defaults for this owner
+
+- **Design / OC / illustration request → prompt or written design, not automatic image generation.** Only an explicit request to generate/edit an image authorizes an image tool.
+- **NAI5 default → compact positive prompt only.** Preset artist stack, quality terms and Negative stay external unless requested.
+- **PROMPT ONLY** governs visible output rather than internal design depth. Simple edits use FAST VARIANT; substantive original work uses FULL.
+- Web use needs only the GitHub URLs. Build scripts run locally or in CI.
 
 ## What this is
 

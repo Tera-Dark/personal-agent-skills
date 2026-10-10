@@ -413,3 +413,16 @@ It covers 8 real-task scenarios plus 8 cross-task anti-regression checks, emphas
 - Pass: source-confidence levels are respected; choose one primary mechanism and at most one secondary influence; face / hair silhouette, outfit construction, 2–3 detail clusters, hand / accessory gesture and clean negative field stay coherent.
 - Fail: unverified artists are described as confirmed; all signature motifs are stacked; generic accessory lists replace costume engineering; background scenery takes over; creator names are emitted despite the user's default NAI5 preference.
 - Evidence rule: inaccessible or search-only references remain provisional until the user supplies an exact profile or image.
+
+## P15 — Output authorization and web-runtime behavior (v4.6)
+
+Manual cases are in `tests/output-behavior-regression.md`. Automatic invariants are checked with `python3 scripts/check_output_contract.py` after building.
+
+- P15-01: “设计一张精美 OC 插画” → prompt text, no image tool call.
+- P15-02: “请给我生成一张图片” → generation allowed if available.
+- P15-03: “NAI5 只给提示词” → copyable text, no Brief/preset artists/quality/Negative.
+- P15-04: approved design sleeve edit → FAST VARIANT; all other locks preserved.
+- P15-05: replace main composition → FULL illustration direction.
+- P15-06: missing Danbooru shard → cannot claim exact identity.
+- P15-07: simple portrait must not fetch poster or full aesthetic archives.
+- P15-08: upstream tag snapshot change cannot break a normal code PR.
