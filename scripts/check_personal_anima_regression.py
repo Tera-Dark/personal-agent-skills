@@ -215,6 +215,43 @@ def main() -> int:
     ):
         require(needle.lower() in p13.lower(), f"P13 matrix lost required regression concept: {needle}", failures)
 
+    # Preserve current owner-specific prompt defaults and artist blacklist.
+    director = read("00_core/aesthetic-director-core/SKILL.md")
+    require(
+        "普通 NAI5 设计请求不重复已经预设的 artist stack 与质量层" in director,
+        "ordinary NAI5 prompts may duplicate the owner's fixed artist/quality layer",
+        failures,
+    )
+    identity_pool = read("00_core/personal-identity-profile/references/nai5-artist-pool.md")
+    for needle in (
+        "Any artist tag ending with a digit is blacklisted by default.",
+        "artist:yellowshark601",
+        "artist:mihiro_00122",
+        "artist:vlfdus_0",
+        "artist:zishengtian123",
+        "blacklisted artists must never be emitted into new artist stacks",
+    ):
+        require(needle in identity_pool, f"personal artist blacklist lost required rule/example: {needle}", failures)
+
+    default_stack_heading = "## 1.1 Current standby small-artist stack"
+    require(default_stack_heading in identity_pool, "current standby artist stack section is missing", failures)
+    if default_stack_heading in identity_pool:
+        stack_tail = identity_pool.split(default_stack_heading, 1)[1]
+        stack_lines = []
+        for line in stack_tail.splitlines():
+            if line.startswith("## "):
+                break
+            if "::artist:" in line:
+                stack_lines.append(line)
+        default_artists = re.findall(r"artist:([^,]+?)::", "\\n".join(stack_lines))
+        require(bool(default_artists), "could not parse the current standby artist stack", failures)
+        for artist in default_artists:
+            require(
+                not artist[-1:].isdigit(),
+                f"default standby artist stack contains a digit-suffixed blacklisted artist: {artist}",
+                failures,
+            )
+
     p14 = read("tests/test-suite.md")
     for needle in (
         "P14 — Aesthetic Floor Regression",
