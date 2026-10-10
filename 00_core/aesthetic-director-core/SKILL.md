@@ -243,7 +243,7 @@ AUDIT 通常内部完成；只有用户明确要求审美评审时才展开。
 
 当前普通插画 / 海报设计默认读取以下用户校准：
 
-- 国内女性向“小画师”成稿感优先：柔和、空气感、轻晕染、可见笔触；避免一味追求锐利高清。
+- 白底 / 浅底小画师半身肖像触发 `references/small-artist-portrait-brain.md`：脸与发型轮廓优先，服设工程清晰，2–3 个局部密集区配合安静留白；不要自动套电影海报或复杂场景。
 - 摄影师思维进入插画：主动设计机位、景别、焦点、前景遮挡、引导线、裁切和冻结瞬间。
 - 叙事优先于静态展示：人物、物件、环境必须产生可见的事件关系。
 - 古风与东方题材采用“美型造景”，让建筑、水面、枝叶、伞、衣摆、发丝与人物共同形成视觉路径。
@@ -258,12 +258,6 @@ AUDIT 通常内部完成；只有用户明确要求审美评审时才展开。
 ## References
 - `references/modern-key-visual-grammar.md` — bundled reference for this module.
 
-
-## 3.10 Small-Artist Portrait
-
-For 小画师 / 小红书 / 米画师-style polished female busts or half-body portraits, especially on white or pale backgrounds, load `references/small-artist-portrait-brain.md`.
-
-Prioritize face, hair silhouette, outfit construction, 2–3 controlled detail clusters, material separation and fine hand-drawn linework. Do not automatically route this mode into cinematic backgrounds, poster geometry or long story props. Respect the named character's identity; ornament must attach to a real seam, fastening or silhouette decision.
 
 ## 3.8 Painterly Game Illustration
 

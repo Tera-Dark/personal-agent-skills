@@ -296,7 +296,7 @@ def main() -> int:
     for needle in (
         "Face-first character art",
         "2–3",
-        "Construction logic",
+        "construction layer",
         "white / pale background",
         "Do not emit a Negative section by default",
     ):
