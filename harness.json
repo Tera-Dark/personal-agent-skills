@@ -26,15 +26,14 @@
   "always_on": {
     "personal-identity-profile": [
       "SKILL.md",
-      "references/taste-core.md",
-      "references/design-dislikes.md"
+      "references/taste-core.md"
     ],
     "creative-skill-router": [
       "SKILL.md"
     ]
   },
   "handshake": "Harness v{version} loaded · {modules} modules · 说需求，或发参考图。",
-  "core_budget_tokens": 7500,
+  "core_budget_tokens": 6600,
   "pipeline": {
     "aesthetic_gate": "aesthetic-director-core",
     "blueprint_gate": {

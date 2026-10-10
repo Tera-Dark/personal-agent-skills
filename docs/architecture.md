@@ -137,3 +137,7 @@ This keeps the shared logic identical across targets without requiring seven ind
 - Kernel embeds a compact module-card index, not a duplicated index plus repeated descriptive cards.
 - Offline CI checks the **pinned** tag snapshot. Third-party tag synchronization is manual through `workflow_dispatch` with `sync_tag_index` enabled.
 - PRs rebuild and validate generated assets in CI; main branch CI commits refreshed bundle artifacts after a successful build.
+
+### Lean identity residency
+
+The startup bundle contains Identity's small policy contract and `taste-core.md`; the full `design-dislikes.md` and history remain retrievable only when required. This keeps the critical no-clock/no-accessory/anti-plastic-skin defaults in the compact baseline without repeatedly loading the full archive.

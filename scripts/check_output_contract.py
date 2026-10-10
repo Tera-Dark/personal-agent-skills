@@ -36,6 +36,8 @@ def main():
         require(token in harness, f"Runtime lacks: {token}")
     require("默认只交付提示词文本" in taste, "owner prompt-first rule disappeared")
     require("省略常备 artist stack" in taste, "fixed NAI5 stack no longer external")
+    require("高频禁区" in taste, "cold-start no longer carries essential dislikes")
+    require("references/design-dislikes.md" not in str(config["always_on"]), "full dislikes loaded eagerly")
     require("不展示内部候选" in director, "Director leaks rejected candidates")
     require("仅交付可复制 Prompt" in router, "Router leaks Creative Brief")
     require(router.count("## References") == 1, "Router has duplicate reference headings")
@@ -43,7 +45,7 @@ def main():
     require("illustration-direction" in character, "character/illustration ownership bridge lost")
     require("Visual Prompt Packet" in generic, "generic renderer bypasses shared core")
     require("Negative is omitted by default" in nai5, "NAI5 negative default lost")
-    require("only verified" in anima.lower(), "Anima verified tag contract lost")
+    require("verified exact" in anima.lower(), "Anima verified tag contract lost")
 
     require(manifest["version"] == read("VERSION").strip(), "manifest version mismatch")
     require(manifest["core_tokens"] <= config["core_budget_tokens"], "core budget exceeded")

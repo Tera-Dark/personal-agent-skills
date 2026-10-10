@@ -152,8 +152,8 @@ def manifest_table(entries):
     rows = ["| module | load/status | purpose |", "|---|---|---|"]
     for e in entries:
         purpose = e["description"].split(". ")[0].rstrip(".")
-        if len(purpose) > 115:
-            purpose = purpose[:112].rsplit(" ", 1)[0] + "..."
+        if len(purpose) > 78:
+            purpose = purpose[:75].rsplit(" ", 1)[0] + "..."
         rows.append(f'| `{e["name"]}` | {e["load"]}/{e["status"]} | {purpose.replace("|", "/")} |')
     return "\n".join(rows)
 
