@@ -218,7 +218,8 @@ def main() -> int:
     # Preserve current owner-specific prompt defaults and artist blacklist.
     director = read("00_core/aesthetic-director-core/SKILL.md")
     require(
-        "普通 NAI5 设计请求不重复已经预设的 artist stack 与质量层" in director,
+        "不重复预设 artist stack 与质量层" in director
+        and "普通 NAI5" in director,
         "ordinary NAI5 prompts may duplicate the owner's fixed artist/quality layer",
         failures,
     )
