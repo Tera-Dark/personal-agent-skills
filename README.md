@@ -1,6 +1,6 @@
 # personal-agent-skills
 
-> v4.1 architecture: mandatory Aesthetic/Blueprint Gates + shared Visual Prompt Core + shared Danbooru verification + thin Anima / NAI5 renderers + Web-first runtime. Runtime bundle optimization: compact identity, selective tag shards, reference-level fetching, and explicit FULL / FAST VARIANT / PROMPT ONLY modes.
+> v4.6 architecture: mandatory Aesthetic/Blueprint Gates + shared Visual Prompt Core + shared Danbooru verification + thin Anima / NAI5 renderers + Web-first runtime. Runtime bundle optimization: compact identity, selective tag shards, reference-level fetching, and explicit FULL / FAST VARIANT / PROMPT ONLY modes.
 
 > ## ⚡ AI bootstrap
 >

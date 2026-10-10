@@ -14,9 +14,9 @@ metadata:
 
 ## 定位
 
-输入：blueprint（来自 `character-design-engine` / `illustration-direction`）+ 目标模型名（可缺省）。
+输入：已经通过 Blueprint Gate 的 Visual Prompt Packet（由 `visual-prompt-core` 生成）+ 目标模型名（可缺省）。
 输出：一段英文自然语言 prompt（代码块），以及——仅当目标官方支持时——放在 prompt 外的参数行。
-不做：设计。收到的不是 blueprint（没有带动词的命题、轮廓、四层服装、一个刺点、锁定事实）就退回 `aesthetic-director-core`。
+不做：设计。缺少合法的 Packet 或关键蓝图决定，就退回 `aesthetic-director-core` / 对应 specialist；不要在此处补设计。
 不做：编造模型行为。本 Skill 覆盖的模型很多、变化很快；**不确定就写 `[Unverified]`**，不要猜参数。
 
 ## Blueprint boundary
@@ -59,7 +59,7 @@ Step 7  自检
 丢失与补救：<这个格式丢了什么关系，怎么补的，一到两行>
 ```
 
-Standard mode 下同 `anima-prompt-compiler`：V1 忠实 + V2 增强，V2 不改 V1 事实。
+仅用户明确要求多个版本时才提供 V1 忠实 / V2 增强；V2 不得修改锁定事实。
 
 ## 翻译 blueprint 时的取舍
 

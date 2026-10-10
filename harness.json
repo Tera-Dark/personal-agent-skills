@@ -34,7 +34,7 @@
     ]
   },
   "handshake": "Harness v{version} loaded · {modules} modules · 说需求，或发参考图。",
-  "core_budget_tokens": 12000,
+  "core_budget_tokens": 7500,
   "pipeline": {
     "aesthetic_gate": "aesthetic-director-core",
     "blueprint_gate": {
