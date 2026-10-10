@@ -4,6 +4,7 @@
       "manifest": "bundle/tag-index/artists/manifest.json",
       "path_group": "artists",
       "prefix_length": 3,
+      "prefix_manifest_pattern": "bundle/tag-index/artists/manifests/<bucket>.json",
       "shard_count": 5834,
       "tag_count": 42196
     },

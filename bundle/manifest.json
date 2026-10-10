@@ -8,7 +8,7 @@
   "harness_full_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS-FULL.md",
   "handshake": "Harness v4.1.0 loaded · 16 modules · 说需求，或发参考图。",
   "core_tokens": 10045,
-  "full_tokens": 108786,
+  "full_tokens": 108957,
   "pipeline": {
     "aesthetic_gate": "aesthetic-director-core",
     "blueprint_gate": {
@@ -431,12 +431,12 @@
           "path": "references/tag-index.md",
           "bundle_path": "bundle/references/danbooru-tag-gate/references/tag-index.md",
           "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/danbooru-tag-gate/references/tag-index.md",
-          "tokens": 786
+          "tokens": 864
         }
       ],
-      "tokens_skill": 1440,
-      "tokens_bundle": 1668,
-      "tokens_full_bundle": 2362
+      "tokens_skill": 1532,
+      "tokens_bundle": 1760,
+      "tokens_full_bundle": 2533
     },
     {
       "name": "general-image-prompt-adapter",

@@ -152,7 +152,7 @@ Claims about model behavior, syntax, parameters, tags or generation effects use 
 | `character-design-engine` | 02_design | on-demand | active | 4630 | OC, 人设, 角色设计, 服装设计, 立绘, 高定服设, 二游角色, character sheet, 极繁, 极繁精美, 华丽人设, 原创圈 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/character-design-engine.md` |
 | `illustration-direction` | 02_design | on-demand | active | 4116 | 插画, 氛围图, 竖屏, 半留白, 印象风, 故事感, key visual, poster, scene, 极繁, 特写垫底, 大头贴, 元素贴, 角色拼贴 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/illustration-direction.md` |
 | `anima-renderer` | 03_prompt | on-demand | active | 988 | Anima, Anima prompt, Anima 提示词, Anima checkpoint | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-renderer.md` |
-| `danbooru-tag-gate` | 03_prompt | on-demand | active | 1668 | Danbooru tag, tag validation, tag check, exact tag, alias, tag verification | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/danbooru-tag-gate.md` |
+| `danbooru-tag-gate` | 03_prompt | on-demand | active | 1760 | Danbooru tag, tag validation, tag check, exact tag, alias, tag verification | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/danbooru-tag-gate.md` |
 | `general-image-prompt-adapter` | 03_prompt | on-demand | active | 1566 | Midjourney, MJ, DALL-E, GPT Image, Imagen, Gemini image, Nano Banana, Flux, SDXL, Stable Diffusion, 通用提示词, 其他模型, 不知道用什么模型 | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/general-image-prompt-adapter.md` |
 | `nai5-renderer` | 03_prompt | on-demand | active | 2451 | NAI5, NovelAI, NAI提示词, tag prompt, Danbooru prompt, artist stack | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/nai5-renderer.md` |
 | `visual-prompt-core` | 03_prompt | on-demand | active | 1551 | prompt packet, visual prompt, prompt core, 提示词编译, 提示词规划, NAI5, Anima | `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/visual-prompt-core.md` |
@@ -6422,12 +6422,13 @@ The manifest records the source SHA-256, groups and available prefixes. Each sha
 
 1. 首次读取 root manifest 并记录 source SHA；随后只读取本任务实际涉及的各个 group manifest，并复用缓存结果。
 2. 按候选项的 `group` 分组，使用 root manifest 提供的 `path_group` 与 prefix rule 计算 shard 路径；每个不同的 (group, prefix) 最多 fetch 一次。对于 `artists`，prefix 计算时仅为定位目的去掉开头的 `artist:`，候选身份字符串本身不变。
-3. Prefix 只用于定位文件，不是 tag normalization。匹配前仅去掉传输层首尾空白；不得改写候选 tag 中的 underscore、parentheses、colon、slash 或大小写。
-4. 若 root manifest 不存在该 group，或 group manifest 的 prefix 列表中没有该 prefix，可按当前 source snapshot 记为 missing。若清单声明 shard 存在但 fetch 失败，标记 unverified，不能当成 missing。
-5. 在 shard 的 `exact` 字典做原字符串查找；命中则 status=exact。
-6. 只有 exact 未命中，才在 `aliases` 字典做原字符串查找。唯一 canonical 命中才 status=alias 并保留输入 alias trace 与 `origin`。在 `artists` group，`artist:name` 仅可命中构建器为原始 `@name` 显式生成的同名 namespace bridge；不得把它推广为模糊匹配。若一个 alias 指向多个 canonical，按 missing 处理，不猜测。
-7. Exact / alias 都未命中时标记 missing。Never fuzzy-match.
-8. 多个候选先按 shard 分组后批量读取，避免每个 tag 单独请求一个文件。
+3. 若 group manifest 提供 `prefix_manifest_pattern`（当前仅 artists），计算 prefix 的首字符 bucket：一般取 prefix 首字符；prefix 为 `_special` 时 bucket 为 `_special`。只 fetch 对应 bucket manifest，并检查完整 prefix 是否在其 `prefixes` 列表中。
+5. Prefix 只用于定位文件，不是 tag normalization。匹配前仅去掉传输层首尾空白；不得改写候选 tag 中的 underscore、parentheses、colon、slash 或大小写。
+4. 若 root manifest 不存在该 group，或相应 group/bucket manifest 明确没有该 prefix，可按当前 source snapshot 记为 missing。若清单声明的 group manifest、bucket manifest 或 shard fetch 失败，标记 unverified，不能当成 missing。
+6. 在 shard 的 `exact` 字典做原字符串查找；命中则 status=exact。
+7. 只有 exact 未命中，才在 `aliases` 字典做原字符串查找。唯一 canonical 命中才 status=alias 并保留输入 alias trace 与 `origin`。在 `artists` group，`artist:name` 仅可命中构建器为原始 `@name` 显式生成的同名 namespace bridge；不得把它推广为模糊匹配。若一个 alias 指向多个 canonical，按 missing 处理，不猜测。
+8. Exact / alias 都未命中时标记 missing。Never fuzzy-match.
+9. 多个候选先按 shard/bucket 分组后批量读取，避免每个 tag 单独请求一个文件。
 
 #### Group / identity
 
@@ -6512,9 +6513,10 @@ Good Anima derives an index from `anima-1.0.csv`, grouping canonical tags, count
 - Root manifest: `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/tag-index/manifest.json`
 - Group manifest: `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/tag-index/<path_group>/manifest.json`
 - Shard: `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/tag-index/<path_group>/<prefix>.json`
-- Fetch the root manifest once, then only the group manifests needed for the current candidate groups, then only the relevant shards. Reuse fetched manifests and shards in the current session.
+- Fetch the root manifest once, then only group manifests needed for the current candidate groups, then only the relevant shards. Reuse fetched manifests and shards in the current session.
+- The artists group manifest intentionally omits its full prefix list and supplies `prefix_manifest_pattern`. Fetch only the first-character bucket manifest for the candidate prefix, then the selected tag shard. Each bucket manifest lists a small set of available three-character artist prefixes.
 - Every shard contains exact canonical keys and exact aliases for one source group/prefix.
-- If a declared shard cannot be fetched, its candidates are unverified. If the group manifest proves the prefix is absent from the complete source snapshot, candidates under that prefix are missing.
+- If a declared shard cannot be fetched, its candidates are unverified. If the applicable group or bucket manifest proves the prefix is absent from the complete source snapshot, candidates under that prefix are missing.
 - The upstream `artists` group uses canonical values such as `@name`. For a NAI5 input `artist:name`, the builder emits a separate, explicitly marked namespace bridge only when the exact suffix matches the upstream canonical `@name`. The source canonical remains `@name`; this is not fuzzy matching.
 - For routing only, the `artists` group removes a leading `@` or `artist:` before selecting the three-character prefix; other groups use two characters. Never alter the identity string used for exact/alias comparison.
 

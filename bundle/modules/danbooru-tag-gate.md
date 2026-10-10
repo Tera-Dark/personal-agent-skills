@@ -46,12 +46,13 @@ The manifest records the source SHA-256, groups and available prefixes. Each sha
 
 1. 首次读取 root manifest 并记录 source SHA；随后只读取本任务实际涉及的各个 group manifest，并复用缓存结果。
 2. 按候选项的 `group` 分组，使用 root manifest 提供的 `path_group` 与 prefix rule 计算 shard 路径；每个不同的 (group, prefix) 最多 fetch 一次。对于 `artists`，prefix 计算时仅为定位目的去掉开头的 `artist:`，候选身份字符串本身不变。
-3. Prefix 只用于定位文件，不是 tag normalization。匹配前仅去掉传输层首尾空白；不得改写候选 tag 中的 underscore、parentheses、colon、slash 或大小写。
-4. 若 root manifest 不存在该 group，或 group manifest 的 prefix 列表中没有该 prefix，可按当前 source snapshot 记为 missing。若清单声明 shard 存在但 fetch 失败，标记 unverified，不能当成 missing。
-5. 在 shard 的 `exact` 字典做原字符串查找；命中则 status=exact。
-6. 只有 exact 未命中，才在 `aliases` 字典做原字符串查找。唯一 canonical 命中才 status=alias 并保留输入 alias trace 与 `origin`。在 `artists` group，`artist:name` 仅可命中构建器为原始 `@name` 显式生成的同名 namespace bridge；不得把它推广为模糊匹配。若一个 alias 指向多个 canonical，按 missing 处理，不猜测。
-7. Exact / alias 都未命中时标记 missing。Never fuzzy-match.
-8. 多个候选先按 shard 分组后批量读取，避免每个 tag 单独请求一个文件。
+3. 若 group manifest 提供 `prefix_manifest_pattern`（当前仅 artists），计算 prefix 的首字符 bucket：一般取 prefix 首字符；prefix 为 `_special` 时 bucket 为 `_special`。只 fetch 对应 bucket manifest，并检查完整 prefix 是否在其 `prefixes` 列表中。
+5. Prefix 只用于定位文件，不是 tag normalization。匹配前仅去掉传输层首尾空白；不得改写候选 tag 中的 underscore、parentheses、colon、slash 或大小写。
+4. 若 root manifest 不存在该 group，或相应 group/bucket manifest 明确没有该 prefix，可按当前 source snapshot 记为 missing。若清单声明的 group manifest、bucket manifest 或 shard fetch 失败，标记 unverified，不能当成 missing。
+6. 在 shard 的 `exact` 字典做原字符串查找；命中则 status=exact。
+7. 只有 exact 未命中，才在 `aliases` 字典做原字符串查找。唯一 canonical 命中才 status=alias 并保留输入 alias trace 与 `origin`。在 `artists` group，`artist:name` 仅可命中构建器为原始 `@name` 显式生成的同名 namespace bridge；不得把它推广为模糊匹配。若一个 alias 指向多个 canonical，按 missing 处理，不猜测。
+8. Exact / alias 都未命中时标记 missing。Never fuzzy-match.
+9. 多个候选先按 shard/bucket 分组后批量读取，避免每个 tag 单独请求一个文件。
 
 ### Group / identity
 
@@ -125,4 +126,4 @@ source: anima-sharded-index (include manifest source SHA)
 
 Detailed references are separate files. Read only the references required by the current task; do not fetch every reference by default. Each URL points to the generated, version-matched source for this Harness build.
 
-- `references/tag-index.md` (~786 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/danbooru-tag-gate/references/tag-index.md
+- `references/tag-index.md` (~864 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/danbooru-tag-gate/references/tag-index.md

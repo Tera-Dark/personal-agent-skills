@@ -14,9 +14,10 @@ Good Anima derives an index from `anima-1.0.csv`, grouping canonical tags, count
 - Root manifest: `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/tag-index/manifest.json`
 - Group manifest: `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/tag-index/<path_group>/manifest.json`
 - Shard: `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/tag-index/<path_group>/<prefix>.json`
-- Fetch the root manifest once, then only the group manifests needed for the current candidate groups, then only the relevant shards. Reuse fetched manifests and shards in the current session.
+- Fetch the root manifest once, then only group manifests needed for the current candidate groups, then only the relevant shards. Reuse fetched manifests and shards in the current session.
+- The artists group manifest intentionally omits its full prefix list and supplies `prefix_manifest_pattern`. Fetch only the first-character bucket manifest for the candidate prefix, then the selected tag shard. Each bucket manifest lists a small set of available three-character artist prefixes.
 - Every shard contains exact canonical keys and exact aliases for one source group/prefix.
-- If a declared shard cannot be fetched, its candidates are unverified. If the group manifest proves the prefix is absent from the complete source snapshot, candidates under that prefix are missing.
+- If a declared shard cannot be fetched, its candidates are unverified. If the applicable group or bucket manifest proves the prefix is absent from the complete source snapshot, candidates under that prefix are missing.
 - The upstream `artists` group uses canonical values such as `@name`. For a NAI5 input `artist:name`, the builder emits a separate, explicitly marked namespace bridge only when the exact suffix matches the upstream canonical `@name`. The source canonical remains `@name`; this is not fuzzy matching.
 - For routing only, the `artists` group removes a leading `@` or `artist:` before selecting the three-character prefix; other groups use two characters. Never alter the identity string used for exact/alias comparison.
 
