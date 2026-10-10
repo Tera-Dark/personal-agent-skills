@@ -212,7 +212,7 @@ The manifest records the source SHA-256, groups and available prefixes. Each sha
 
 每个 candidate 只能得到一个状态：
 - exact — 输入就是该 group 的 canonical tag。
-- alias — 输入精确命中该 group 的 alias，返回 canonical tag。
+- alias — 输入精确命中该 group 的 source alias，或唯一命中脚本显式生成的 namespace bridge，返回原始 source canonical 并保留匹配来源。
 - missing — exact / alias 均未证明。
 
 永远不要把以下内容升级成 hard tag：
@@ -229,14 +229,14 @@ The manifest records the source SHA-256, groups and available prefixes. Each sha
 3. Prefix 只用于定位文件，不是 tag normalization。匹配前仅去掉传输层首尾空白；不得改写候选 tag 中的 underscore、parentheses、colon、slash 或大小写。
 4. 若 root manifest 不存在该 group，或 group manifest 的 prefix 列表中没有该 prefix，可按当前 source snapshot 记为 missing。若清单声明 shard 存在但 fetch 失败，标记 unverified，不能当成 missing。
 5. 在 shard 的 `exact` 字典做原字符串查找；命中则 status=exact。
-6. 只有 exact 未命中，才在 `aliases` 字典做原字符串查找。唯一 canonical 命中才 status=alias 并保留输入 alias trace；若一个 alias 指向多个 canonical，按 missing 处理，不猜测。
+6. 只有 exact 未命中，才在 `aliases` 字典做原字符串查找。唯一 canonical 命中才 status=alias 并保留输入 alias trace 与 `origin`。在 `artists` group，`artist:name` 仅可命中构建器为原始 `@name` 显式生成的同名 namespace bridge；不得把它推广为模糊匹配。若一个 alias 指向多个 canonical，按 missing 处理，不猜测。
 7. Exact / alias 都未命中时标记 missing。Never fuzzy-match.
 8. 多个候选先按 shard 分组后批量读取，避免每个 tag 单独请求一个文件。
 
 #### Group / identity
 
 身份范围必须来自证据，而不是字符串长相：
-- artist → `artists` (upstream group plural)
+- artist → `artists` (upstream canonical format uses `@name`; NAI5 `artist:name` can match only through the explicitly generated same-name namespace bridge)
 - character → `characters` (upstream group plural)
 - series → `series`
 - visual tag → `general`; meta tag → `meta`
@@ -287,6 +287,7 @@ group:
 status: exact | alias | missing
 canonical:
 matched_alias:
+match_origin: source_alias | namespace_bridge:artist_to_at | null
 source: anima-sharded-index (include manifest source SHA)
 
 #### 自检
@@ -315,15 +316,15 @@ Good Anima derives an index from `anima-1.0.csv`, grouping canonical tags, count
 - Root manifest: `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/tag-index/manifest.json`
 - Group manifest: `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/tag-index/<path_group>/manifest.json`
 - Shard: `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/tag-index/<path_group>/<prefix>.json`
-- Fetch the root manifest once, then only group manifests needed for the current candidate groups, then only the relevant shards. Reuse all fetched manifests/shards in the current session.
+- Fetch the root manifest once, then only the group manifests needed for the current candidate groups, then only the relevant shards. Reuse fetched manifests and shards in the current session.
 - Every shard contains exact canonical keys and exact aliases for one source group/prefix.
 - If a declared shard cannot be fetched, its candidates are unverified. If the group manifest proves the prefix is absent from the complete source snapshot, candidates under that prefix are missing.
-- The `artists` source group stores namespaced keys such as `artist:name`; for shard routing only, remove the leading `artist:` before taking the prefix. Never alter the string used for exact identity matching.
-- Never infer a missing tag from search snippets or model memory.
+- The upstream `artists` group uses canonical values such as `@name`. For a NAI5 input `artist:name`, the builder emits a separate, explicitly marked namespace bridge only when the exact suffix matches the upstream canonical `@name`. The source canonical remains `@name`; this is not fuzzy matching.
+- For routing only, the `artists` group removes a leading `@` or `artist:` before selecting the two-character prefix. Never alter the identity string used for exact/alias comparison.
 
 ##### Build and validation
 
-`scripts/build_tag_index.py` downloads upstream data only in CI/build environments, validates its schema, generates deterministic two-character shards and per-group manifests, removes orphaned shards, and supports `--check`. `--self-test` runs offline routing and alias tests.
+`scripts/build_tag_index.py` downloads upstream data only in CI/build environments, validates its schema, generates deterministic two-character shards and per-group manifests, removes orphaned shards, and supports `--check`. `--self-test` runs offline routing, canonical identity and alias-bridge tests.
 
 The CI workflow regenerates shards on pushes and requires them to be current on pull requests. A partial cache is never treated as a complete source index.
 
@@ -337,11 +338,11 @@ The CI workflow regenerates shards on pushes and requires them to be current on 
 ##### Identity contract
 
 - `exact`: input string is a canonical key in the requested group.
-- `alias`: exact alias match resolves uniquely to one canonical key.
+- `alias`: exact source alias or explicit same-name namespace bridge resolves uniquely to one canonical key.
 - `missing`: neither exact nor uniquely resolvable alias exists in the source snapshot.
 - `unverified`: a declared shard could not be read or validated.
 
-Counts never decide creative priority. Identity matching never normalizes punctuation or performs fuzzy similarity.
+Counts never decide creative priority. Identity matching never fuzzy-matches or changes punctuation in the identity string.
 
 --- MODULE anima-renderer ---
 

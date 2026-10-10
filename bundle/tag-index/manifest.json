@@ -3,7 +3,7 @@
     "artists": {
       "manifest": "bundle/tag-index/artists/manifest.json",
       "path_group": "artists",
-      "shard_count": 1,
+      "shard_count": 954,
       "tag_count": 42196
     },
     "characters": {
@@ -39,7 +39,7 @@
       "alias"
     ],
     "prefix_length": 2,
-    "prefix_rule": "For file routing only: lowercase the candidate; in group 'artists', strip a leading 'artist:' before selecting the prefix; if the resulting first character is not ASCII a-z or 0-9 use _special; replace non-[a-z0-9_] characters in its first two characters with _. Never alter the candidate used for exact identity matching."
+    "prefix_rule": "For file routing only: lowercase the candidate; in group 'artists', strip a leading 'artist:' or '@' before selecting the prefix; if the resulting first character is not ASCII a-z or 0-9 use _special; replace non-[a-z0-9_] characters in its first two characters with _. Never alter the candidate used for exact identity matching."
   },
   "schema_version": 1,
   "source": {
