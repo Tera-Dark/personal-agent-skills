@@ -241,3 +241,9 @@ notes:
 - Input: verify `artist:starshadowmagician` in the upstream `artists` group.
 - Expect: path prefix is derived from `starshadowmagician` after removing `artist:` for location only; exact identity remains `artist:starshadowmagician`.
 - Fail: all artists are packed into one `ar.json` shard or the canonical tag is rewritten.
+
+
+### P12-WEB-TAG-06 — exact artist namespace bridge
+- Input: upstream artist canonical `@starshadowmagician` and NAI5 candidate `artist:starshadowmagician`.
+- Expect: the generated alias entry maps to the exact source canonical and is marked `namespace_bridge:artist_to_at`; NAI5 serialization retains `artist:starshadowmagician`.
+- Fail: artists collapse into a single `_special.json` shard, source identity is rewritten, or a non-identical suffix is accepted.

@@ -51,13 +51,19 @@ def safe_group(group):
     return safe
 
 
-def prefix_for(tag, group):
-    """Return a lookup path key only; preserve the supplied tag for matching."""
+def lookup_name(tag, group):
+    """Return a location-only name; never use this value for identity comparison."""
     value = tag.lower()
-    # The upstream 'artists' category stores every canonical key as artist:<name>.
-    # Shard by the artist name, not the constant 'ar' namespace.
-    if group.lower() == "artists" and value.startswith("artist:"):
-        value = value[len("artist:"):]
+    if group.lower() == "artists":
+        if value.startswith("artist:"):
+            value = value[len("artist:"):]
+        elif value.startswith("@"):
+            value = value[1:]
+    return value
+
+
+def prefix_for(tag, group):
+    value = lookup_name(tag, group)
     if not value or not re.match(r"^[a-z0-9]", value):
         return "_special"
     return re.sub(r"[^a-z0-9_]", "_", value[:2])
@@ -86,9 +92,19 @@ def generate_outputs(source, source_sha):
                 if not alias:
                     continue
                 hits = by_prefix[prefix_for(alias, group)]["aliases"].setdefault(alias, [])
-                hit = {"canonical": canonical, "count": count}
+                hit = {"canonical": canonical, "count": count, "origin": "source_alias"}
                 if hit not in hits:
                     hits.append(hit)
+
+            # Explicit namespace bridge: an upstream @name artist may be queried
+            # through the Harness's NAI5 artist:name namespace. This is identity-
+            # exact only; no fuzzy matching or punctuation normalization occurs.
+            if group.lower() == "artists" and canonical.startswith("@") and len(canonical) > 1:
+                bridge = "artist:" + canonical[1:]
+                bridge_hits = by_prefix[prefix_for(bridge, group)]["aliases"].setdefault(bridge, [])
+                bridge_hit = {"canonical": canonical, "count": count, "origin": "namespace_bridge:artist_to_at"}
+                if bridge_hit not in bridge_hits:
+                    bridge_hits.append(bridge_hit)
 
         safe = safe_group(group)
         prefixes = sorted(by_prefix)
@@ -113,7 +129,7 @@ def generate_outputs(source, source_sha):
         for prefix in prefixes:
             shard = by_prefix[prefix]
             shard["aliases"] = {
-                alias: sorted(hits, key=lambda item: item["canonical"])
+                alias: sorted(hits, key=lambda item: (item["canonical"], item["origin"]))
                 for alias, hits in sorted(shard["aliases"].items())
             }
             payload = {
@@ -143,7 +159,7 @@ def generate_outputs(source, source_sha):
         "lookup": {
             "group_isolation": True,
             "prefix_length": 2,
-            "prefix_rule": "For file routing only: lowercase the candidate; in group 'artists', strip a leading 'artist:' before selecting the prefix; if the resulting first character is not ASCII a-z or 0-9 use _special; replace non-[a-z0-9_] characters in its first two characters with _. Never alter the candidate used for exact identity matching.",
+            "prefix_rule": "For file routing only: lowercase the candidate; in group 'artists', strip a leading 'artist:' or '@' before selecting the prefix; if the resulting first character is not ASCII a-z or 0-9 use _special; replace non-[a-z0-9_] characters in its first two characters with _. Never alter the candidate used for exact identity matching.",
             "lookup_order": ["exact", "alias"],
             "ambiguous_alias": "not promoted; treat as missing",
         },
@@ -170,6 +186,7 @@ def run_self_tests():
         ("37_(reverse:1999)", "characters", "37"),
         ("white_background", "general", "wh"),
         ("artist:starshadowmagician", "artists", "st"),
+        ("@starshadowmagician", "artists", "st"),
         ("(special_tag)", "general", "_special"),
         (":smile:", "general", "_special"),
     ]
@@ -181,7 +198,7 @@ def run_self_tests():
             )
     sample = generate_outputs(
         {"general": [["long_hair", 12, "long-hair,logn_hair"], ["smile", 7, ":)"]],
-         "artists": [["artist:starshadowmagician", 8, "artist:star_shadow_magician"]]},
+         "artists": [["@starshadowmagician", 8, "@star_shadow_magician"]]},
         "test-sha",
     )
     alias_shard = json.loads(sample["bundle/tag-index/general/lo.json"])
@@ -191,10 +208,13 @@ def run_self_tests():
         raise SystemExit("self-test failed: canonical tag missing from exact map")
     artist_manifest = json.loads(sample["bundle/tag-index/artists/manifest.json"])
     if artist_manifest["prefixes"] != ["st"]:
-        raise SystemExit("self-test failed: artist namespace was not removed for shard routing")
+        raise SystemExit(f"self-test failed: artist prefixes incorrectly generated: {artist_manifest['prefixes']!r}")
     artist_shard = json.loads(sample["bundle/tag-index/artists/st.json"])
-    if "artist:starshadowmagician" not in artist_shard["exact"]:
-        raise SystemExit("self-test failed: artist canonical identity was altered")
+    if "@starshadowmagician" not in artist_shard["exact"]:
+        raise SystemExit("self-test failed: artist source canonical identity was altered")
+    bridge = artist_shard["aliases"].get("artist:starshadowmagician", [{}])[0]
+    if bridge.get("canonical") != "@starshadowmagician" or bridge.get("origin") != "namespace_bridge:artist_to_at":
+        raise SystemExit("self-test failed: NAI5-to-Anima artist namespace bridge missing or mislabelled")
 
 
 def apply_outputs(expected, check_only):

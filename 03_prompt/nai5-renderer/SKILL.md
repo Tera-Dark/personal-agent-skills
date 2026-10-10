@@ -29,7 +29,7 @@ This module is a target-model adapter. It accepts only a validated blueprint or 
 
 - Preserve canonical verified Danbooru identity; never promote uncertain spellings into verified tags.
 - Preserve the user artist namespace: artist:name.
-- Artist membership and permanent blacklist belong to personal-identity-profile; renderer only composes the eligible selected stack.
+- Artist membership and permanent blacklist belong to personal-identity-profile; renderer only composes the eligible selected stack. The source index may canonically store the same artist as `@name`; for NAI5 output preserve the packet/pool's `artist:name` spelling after the exact same-name namespace bridge is verified. Never emit the source `@name` form into a NAI5 prompt.
 - Weight syntax is target syntax, not design logic: primary / support differences are serialized with NAI5 weight::tag:: form.
 - Put high-priority subject and composition anchors early.
 - For multi-character V5, prefer NovelAI's official Base Prompt + separate Character Prompt fields. Base controls shared scene, style, framing, and subject counts; each Character Prompt owns one character's identity, appearance, outfit, props, expression, and character-specific action.

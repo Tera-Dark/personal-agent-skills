@@ -36,7 +36,7 @@ The manifest records the source SHA-256, groups and available prefixes. Each sha
 
 每个 candidate 只能得到一个状态：
 - exact — 输入就是该 group 的 canonical tag。
-- alias — 输入精确命中该 group 的 alias，返回 canonical tag。
+- alias — 输入精确命中该 group 的 source alias，或唯一命中脚本显式生成的 namespace bridge，返回原始 source canonical 并保留匹配来源。
 - missing — exact / alias 均未证明。
 
 永远不要把以下内容升级成 hard tag：
@@ -53,14 +53,14 @@ The manifest records the source SHA-256, groups and available prefixes. Each sha
 3. Prefix 只用于定位文件，不是 tag normalization。匹配前仅去掉传输层首尾空白；不得改写候选 tag 中的 underscore、parentheses、colon、slash 或大小写。
 4. 若 root manifest 不存在该 group，或 group manifest 的 prefix 列表中没有该 prefix，可按当前 source snapshot 记为 missing。若清单声明 shard 存在但 fetch 失败，标记 unverified，不能当成 missing。
 5. 在 shard 的 `exact` 字典做原字符串查找；命中则 status=exact。
-6. 只有 exact 未命中，才在 `aliases` 字典做原字符串查找。唯一 canonical 命中才 status=alias 并保留输入 alias trace；若一个 alias 指向多个 canonical，按 missing 处理，不猜测。
+6. 只有 exact 未命中，才在 `aliases` 字典做原字符串查找。唯一 canonical 命中才 status=alias 并保留输入 alias trace 与 `origin`。在 `artists` group，`artist:name` 仅可命中构建器为原始 `@name` 显式生成的同名 namespace bridge；不得把它推广为模糊匹配。若一个 alias 指向多个 canonical，按 missing 处理，不猜测。
 7. Exact / alias 都未命中时标记 missing。Never fuzzy-match.
 8. 多个候选先按 shard 分组后批量读取，避免每个 tag 单独请求一个文件。
 
 ## Group / identity
 
 身份范围必须来自证据，而不是字符串长相：
-- artist → `artists` (upstream group plural)
+- artist → `artists` (upstream canonical format uses `@name`; NAI5 `artist:name` can match only through the explicitly generated same-name namespace bridge)
 - character → `characters` (upstream group plural)
 - series → `series`
 - visual tag → `general`; meta tag → `meta`
@@ -111,6 +111,7 @@ group:
 status: exact | alias | missing
 canonical:
 matched_alias:
+match_origin: source_alias | namespace_bridge:artist_to_at | null
 source: anima-sharded-index (include manifest source SHA)
 
 ## 自检

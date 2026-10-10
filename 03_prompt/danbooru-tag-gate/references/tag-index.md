@@ -9,15 +9,15 @@ Good Anima derives an index from `anima-1.0.csv`, grouping canonical tags, count
 - Root manifest: `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/tag-index/manifest.json`
 - Group manifest: `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/tag-index/<path_group>/manifest.json`
 - Shard: `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/tag-index/<path_group>/<prefix>.json`
-- Fetch the root manifest once, then only group manifests needed for the current candidate groups, then only the relevant shards. Reuse all fetched manifests/shards in the current session.
+- Fetch the root manifest once, then only the group manifests needed for the current candidate groups, then only the relevant shards. Reuse fetched manifests and shards in the current session.
 - Every shard contains exact canonical keys and exact aliases for one source group/prefix.
 - If a declared shard cannot be fetched, its candidates are unverified. If the group manifest proves the prefix is absent from the complete source snapshot, candidates under that prefix are missing.
-- The `artists` source group stores namespaced keys such as `artist:name`; for shard routing only, remove the leading `artist:` before taking the prefix. Never alter the string used for exact identity matching.
-- Never infer a missing tag from search snippets or model memory.
+- The upstream `artists` group uses canonical values such as `@name`. For a NAI5 input `artist:name`, the builder emits a separate, explicitly marked namespace bridge only when the exact suffix matches the upstream canonical `@name`. The source canonical remains `@name`; this is not fuzzy matching.
+- For routing only, the `artists` group removes a leading `@` or `artist:` before selecting the two-character prefix. Never alter the identity string used for exact/alias comparison.
 
 ## Build and validation
 
-`scripts/build_tag_index.py` downloads upstream data only in CI/build environments, validates its schema, generates deterministic two-character shards and per-group manifests, removes orphaned shards, and supports `--check`. `--self-test` runs offline routing and alias tests.
+`scripts/build_tag_index.py` downloads upstream data only in CI/build environments, validates its schema, generates deterministic two-character shards and per-group manifests, removes orphaned shards, and supports `--check`. `--self-test` runs offline routing, canonical identity and alias-bridge tests.
 
 The CI workflow regenerates shards on pushes and requires them to be current on pull requests. A partial cache is never treated as a complete source index.
 
@@ -31,8 +31,8 @@ The CI workflow regenerates shards on pushes and requires them to be current on 
 ## Identity contract
 
 - `exact`: input string is a canonical key in the requested group.
-- `alias`: exact alias match resolves uniquely to one canonical key.
+- `alias`: exact source alias or explicit same-name namespace bridge resolves uniquely to one canonical key.
 - `missing`: neither exact nor uniquely resolvable alias exists in the source snapshot.
 - `unverified`: a declared shard could not be read or validated.
 
-Counts never decide creative priority. Identity matching never normalizes punctuation or performs fuzzy similarity.
+Counts never decide creative priority. Identity matching never fuzzy-matches or changes punctuation in the identity string.
