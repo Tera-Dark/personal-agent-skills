@@ -6,7 +6,7 @@
 
 ## P10-02 — complete generated outputs
 
-`scripts/build.py` generates `bundle/HARNESS.md`, `bundle/HARNESS-FULL.md`, every `bundle/modules/*.md`, every declared `bundle/pipelines/*.md`, `bundle/manifest.json`, and `docs/skill-registry.md`.
+`scripts/build.py` generates `bundle/HARNESS.md`, `bundle/HARNESS-FULL.md`, compact `bundle/modules/*.md`, individual `bundle/references/<module>/...` files, declared `bundle/pipelines/*.md`, `bundle/manifest.json`, and `docs/skill-registry.md`. The full harness still embeds every reference.
 
 ## P10-03 — pipeline pack discovery
 
@@ -14,7 +14,7 @@ Every entry under `pipeline.pipeline_packs` produces a matching `bundle/pipeline
 
 ## P10-04 — orphan detection
 
-`build.py --check` detects generated module bundles and pipeline packs that no longer correspond to source configuration.
+`build.py --check` detects generated module bundles, individual reference files, and pipeline packs that no longer correspond to source configuration.
 
 ## P10-05 — manifest coherence
 
@@ -45,3 +45,21 @@ Pushes to `main` validate sources, rebuild generated artifacts when stale, reval
 - [ ] Version data stays synchronized.
 - [ ] Clean rebuild passes `--check`.
 - [ ] CI rebuild path remains automatic.
+
+## P11 — Reference-Level Runtime Loading
+
+### P11-01 — slim module contract
+- Expect: `bundle/modules/<name>.md` contains the module contract and a compact list of reference URLs, not the full contents of every reference.
+- Fail: a simple task must fetch every reference to read the module contract.
+
+### P11-02 — individual reference artifacts
+- Expect: every declared `references/*.md` source generates a version-matched `bundle/references/<module>/references/*.md` artifact and a manifest URL.
+- Fail: module links point to missing artifacts or stale generated files are not detected.
+
+### P11-03 — full portable bundle remains complete
+- Expect: `bundle/HARNESS-FULL.md` still embeds every active module's complete references for upload/paste-based environments.
+- Fail: full harness becomes dependent on separate reference fetches.
+
+### P11-04 — selective loading
+- Input: simple white-background standing character.
+- Expect: load only the needed aesthetic calibration references; do not load poster grammar, dataset tooling, or unrelated artist experiments.

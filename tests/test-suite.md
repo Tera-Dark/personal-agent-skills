@@ -352,3 +352,36 @@
 The task-driven acceptance suite is maintained in tests/p13-real-task-regression.md.
 
 It covers 8 real-task scenarios plus 8 cross-task anti-regression checks, emphasizing modern gacha key visuals, layered fashion, white-background full-body work, authored illustration, reference-to-original transfer, compact Anima translation, and protection from generic market-average design.
+
+
+---
+
+## Web-first Runtime Efficiency Regression
+
+### WEB-EFF-01 — compact always-on identity
+- Expect: the always-on identity has `taste-core.md` plus the dislike rules, while the full taste archive and NAI5 artist pool are on-demand only.
+- Fail: NAI5 artist records are loaded for unrelated Anima or illustration tasks.
+
+### WEB-EFF-02 — enforced core budget
+- Expect: `scripts/build.py` exits with an error if generated `HARNESS.md` exceeds `harness.json:core_budget_tokens`.
+- Fail: an over-budget bundle is generated with only a warning.
+
+### WEB-EFF-03 — PROMPT ONLY
+- Input: “按这个已完成的人设，只给我 NAI5 提示词。”
+- Expect: mandatory Audit, Prompt Core, Tag Gate where applicable, renderer and Design Lock remain; no visible Creative Brief or routing narration.
+- Fail: validation is skipped or the user receives a long design explanation.
+
+### WEB-EFF-04 — FAST VARIANT
+- Input: “保持原设计和构图，只把主色改成酒红色。”
+- Expect: preserve every unaffected locked fact and change only the requested palette variable.
+- Fail: silhouette, face, outfit construction or pose is redesigned without request.
+
+### WEB-EFF-05 — full-mode escalation
+- Input: “保留原角色，但重新设计整体轮廓和核心命题。”
+- Expect: escalate to FULL CREATIVE rather than treating the request as a minor variant.
+- Fail: a material design change is forced through FAST VARIANT.
+
+### WEB-EFF-06 — selective reference loading
+- Input: create a white-background standing character after loading the module contract.
+- Expect: fetch only the required white-background/character-design references; do not fetch all poster and illustration reference documents.
+- Fail: all references are bundled into or required by every on-demand module fetch.

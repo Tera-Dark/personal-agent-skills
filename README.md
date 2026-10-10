@@ -1,6 +1,6 @@
 # personal-agent-skills
 
-> v4.0 architecture: mandatory Aesthetic/Blueprint Gates + shared Visual Prompt Core + shared Danbooru verification + thin Anima / NAI5 renderers + Web-first runtime.
+> v4.0 architecture: mandatory Aesthetic/Blueprint Gates + shared Visual Prompt Core + shared Danbooru verification + thin Anima / NAI5 renderers + Web-first runtime. Runtime bundle optimization: compact identity, selective tag shards, reference-level fetching, and explicit FULL / FAST VARIANT / PROMPT ONLY modes.
 
 > ## ⚡ AI bootstrap
 >
@@ -33,7 +33,7 @@
 
 | 场景 | 做法 |
 |---|---|
-| ChatGPT / Gemini / Claude | 新对话发仓库链接，模型读取当前 raw Bundle |
+| ChatGPT / Gemini / Claude | 新对话发仓库链接；入口加载精简 Harness，按任务读取模块契约与单独参考文件 |
 | 无联网 / 粘贴 | 把 \`bundle/HARNESS.md\` 全文粘贴 |
 | 自定义 GPT / Gemini Gem / Claude Project | 上传 \`bundle/HARNESS-FULL.md\` |
 | Claude Code / Codex / Cursor | \`scripts/install.sh [target]\` |
@@ -110,3 +110,13 @@ python3 scripts/validate_skills.py --check-bundle
 \`\`\`
 
 License: MIT
+
+
+## Web runtime and selective references
+
+- `bundle/HARNESS.md` is the compact cold-start contract, not the full knowledge archive.
+- `bundle/modules/<name>.md` contains one module's execution contract plus links to its detailed references.
+- `bundle/references/<module>/...` contains generated single-reference files. Fetch only those needed by the current task.
+- `bundle/HARNESS-FULL.md` remains the complete self-contained option for a Custom GPT / Gem / Project that needs everything embedded.
+- Danbooru hard tags use the generated manifest and group/prefix shards under `bundle/tag-index/`; the full upstream index is a build-time input, not a web runtime dependency.
+- The configured Core token estimate is a hard build gate. CI rejects a cold-start bundle that exceeds `harness.json:core_budget_tokens`.

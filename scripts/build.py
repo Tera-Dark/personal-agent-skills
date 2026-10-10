@@ -7,8 +7,9 @@ Outputs (all generated — never edit by hand):
 
   bundle/HARNESS.md            kernel + module index + ALWAYS-ON modules (the file to fetch/paste)
   bundle/HARNESS-FULL.md       everything: kernel + index + every module with all references
-  bundle/modules/<name>.md     one file per module: SKILL.md + all its references (on-demand fetch)
-  bundle/pipelines/<name>.md  generated multi-module pipeline packs (one Web-first fetch)
+  bundle/modules/<name>.md     compact module contract + links to on-demand references
+  bundle/references/<module>/... one generated file per detailed reference
+  bundle/pipelines/<name>.md  generated multi-module contract packs (one Web-first fetch)
   bundle/manifest.json         machine-readable index
   docs/skill-registry.md       human-readable index (same data)
 
@@ -87,9 +88,44 @@ def render_module(s, cfg, version, only_files=None):
     return "\n".join(parts).rstrip() + "\n"
 
 
+def reference_bundle_path(skill_name, ref, bundle_dir):
+    return f"{bundle_dir}/references/{skill_name}/{ref}"
+
+
+def render_reference_index(s, cfg, bundle_dir, reference_files):
+    if not reference_files:
+        return ""
+    lines = [
+        "## On-demand reference files",
+        "",
+        "Detailed references are separate files. Read only the references required by the current task; do not fetch every reference by default. Each URL points to the generated, version-matched source for this Harness build.",
+        "",
+    ]
+    for ref in reference_files:
+        lines.append(
+            f"- `{ref['path']}` (~{ref['tokens']} tokens): "
+            f"{raw_base(cfg)}{ref['bundle_path']}"
+        )
+    return "\n".join(lines) + "\n"
+
+
 def module_entry(s, cfg, version, bundle_dir):
     md = s["metadata"]
     full = render_module(s, cfg, version)
+    contract = render_module(s, cfg, version, only_files=["SKILL.md"])
+    reference_files = []
+    for ref in s["references"]:
+        ref_path = os.path.join(s["dir"], ref)
+        if not os.path.exists(ref_path):
+            raise SystemExit(f"{s['rel_dir']}: missing {ref}")
+        content = open(ref_path, encoding="utf-8").read()
+        reference_files.append({
+            "path": ref,
+            "bundle_path": reference_bundle_path(s["name"], ref, bundle_dir),
+            "bundle_url": f"{raw_base(cfg)}{reference_bundle_path(s['name'], ref, bundle_dir)}",
+            "tokens": L.estimate_tokens(content),
+        })
+    runtime = contract.rstrip() + "\n\n" + render_reference_index(s, cfg, bundle_dir, reference_files)
     return {
         "name": s["name"],
         "layer": s["layer"],
@@ -102,9 +138,12 @@ def module_entry(s, cfg, version, bundle_dir):
         "source_url": tree_url(cfg, s["rel_dir"]),
         "bundle_url": f"{raw_base(cfg)}{bundle_dir}/modules/{s['name']}.md",
         "references": s["references"],
+        "reference_files": reference_files,
         "tokens_skill": L.estimate_tokens(s["body"]),
-        "tokens_bundle": L.estimate_tokens(full),
-        "_rendered": full,
+        "tokens_bundle": L.estimate_tokens(runtime),
+        "tokens_full_bundle": L.estimate_tokens(full),
+        "_rendered": runtime,
+        "_rendered_full": full,
     }
 
 
@@ -225,7 +264,7 @@ def render_harness(root, cfg, version, skills, entries, full=False):
         for e in entries:
             if e["status"] == "planned":
                 continue
-            lines.append(L.demote_headings(e["_rendered"], 1).rstrip())
+            lines.append(L.demote_headings(e["_rendered_full"], 1).rstrip())
             lines.append("")
             lines.append("---")
             lines.append("")
@@ -270,6 +309,17 @@ def build_outputs(root):
     outputs = {}
     for e in entries:
         outputs[f"{bundle_dir}/modules/{e['name']}.md"] = GEN_NOTE + "\n" + e["_rendered"]
+        for ref in e["reference_files"]:
+            source_path = os.path.join(root, e["path"], ref["path"])
+            source_text = open(source_path, encoding="utf-8").read()
+            source_url = f"{raw_base(cfg)}{e['path']}/{ref['path']}"
+            reference_output = (
+                GEN_NOTE + "\n"
+                + f"# REFERENCE: {e['name']} · {ref['path']}\n\n"
+                + f"source: {source_url}\n\n"
+                + L.demote_headings(source_text, 1).rstrip() + "\n"
+            )
+            outputs[ref["bundle_path"]] = reference_output
     by_name = {e["name"]: e for e in entries}
     for pack_name, module_names in ((cfg.get("pipeline") or {}).get("pipeline_packs") or {}).items():
         pack_parts = [GEN_NOTE, f"# PIPELINE PACK: {pack_name} · harness v{version}", "",
@@ -354,6 +404,16 @@ def stale_outputs(root):
             if fn.endswith(".md") and fn not in expected:
                 stale.append(f"{cfg['bundle_dir']}/pipelines/{fn} (orphan — delete)")
 
+    reference_prefix = f"{cfg['bundle_dir']}/references/"
+    expected_references = {k[len(reference_prefix):] for k in outputs if k.startswith(reference_prefix)}
+    reference_dir = os.path.join(root, cfg["bundle_dir"], "references")
+    if os.path.isdir(reference_dir):
+        for dirpath, _, filenames in os.walk(reference_dir):
+            for fn in filenames:
+                rel = os.path.relpath(os.path.join(dirpath, fn), reference_dir).replace(os.sep, "/")
+                if rel not in expected_references:
+                    stale.append(f"{reference_prefix}{rel} (orphan — delete)")
+
     return stale
 
 
@@ -372,13 +432,25 @@ def main():
     cfg, manifest, outputs = build_outputs(root)
     mod_dir = os.path.join(root, cfg["bundle_dir"], "modules")
     pipe_dir = os.path.join(root, cfg["bundle_dir"], "pipelines")
+    reference_dir = os.path.join(root, cfg["bundle_dir"], "references")
     os.makedirs(mod_dir, exist_ok=True)
     os.makedirs(pipe_dir, exist_ok=True)
+    os.makedirs(reference_dir, exist_ok=True)
     expected = {os.path.basename(k) for k in outputs if k.startswith(f"{cfg['bundle_dir']}/modules/")}
     for fn in os.listdir(mod_dir):
         if fn.endswith(".md") and fn not in expected:
             os.remove(os.path.join(mod_dir, fn))
-            print(f"  removed orphan {fn}")
+            print(f"  removed orphan module {fn}")
+    expected_reference_paths = {k for k in outputs if k.startswith(f"{cfg['bundle_dir']}/references/")}
+    for dirpath, _, filenames in os.walk(reference_dir, topdown=False):
+        for fn in filenames:
+            full_path = os.path.join(dirpath, fn)
+            rel_path = os.path.relpath(full_path, root).replace(os.sep, "/")
+            if rel_path not in expected_reference_paths:
+                os.remove(full_path)
+                print(f"  removed orphan reference {rel_path}")
+        if dirpath != reference_dir and not os.listdir(dirpath):
+            os.rmdir(dirpath)
     for rel, content in outputs.items():
         p = os.path.join(root, rel)
         os.makedirs(os.path.dirname(p), exist_ok=True)

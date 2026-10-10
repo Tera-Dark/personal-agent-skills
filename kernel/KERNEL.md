@@ -47,7 +47,7 @@ The harness is designed for web AI use without a local repository, Python runtim
 - Prefer the current main raw harness over remembered content.
 - ALWAYS-ON modules are already in context. Do not fetch them again.
 - ON-DEMAND modules are fetched only after routing selects them.
-- A declared pipeline pack counts as one fetch and may contain multiple internal modules.
+- A declared pipeline pack counts as one module-contract fetch and may contain multiple internal modules. Detailed reference files are fetched separately only when the selected task requires them; do not fetch every reference by default.
 - Do not claim a module is loaded unless it is embedded or successfully fetched.
 - If a fetch fails, operate only from the module card and label the result according to the failure policy. Never substitute stale memory while claiming the module was loaded.
 
@@ -126,7 +126,7 @@ Claims about model behavior, syntax, parameters, tags or generation effects use 
 
 - ALWAYS-ON: only truly session-wide policy and routing modules.
 - ON-DEMAND: design specialists, prompt core, tag gate, renderers, analysis and evaluation.
-- Load at most 3 standalone modules per turn; pipeline packs count as one fetch.
+- Load at most 3 standalone module contracts per turn; pipeline packs count as one contract fetch. Fetch only task-relevant detailed reference files and reuse loaded content.
 - Do not refetch a loaded module unless \`/reload\` is requested.
 - Planned modules have no loadable content.
 
