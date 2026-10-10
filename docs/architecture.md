@@ -1,8 +1,8 @@
 # Architecture
 
-## v4.0 principle
+## v4.6 principle
 
-The harness separates five responsibilities:
+The harness separates five responsibilities and keeps output authorization separate from design:
 
 \`\`\`
 Policy → Routing → Design → Prompt Planning → Rendering
@@ -128,3 +128,16 @@ This keeps the shared logic identical across targets without requiring seven ind
 ## Generated distribution
 
 \`bundle/\` and \`docs/skill-registry.md\` are generated from source. \`harness.json\` is the runtime configuration; the Kernel defines the operating contract.
+
+## v4.6 runtime behavior
+
+- `PROMPT ONLY` is an output overlay, not a shortcut around necessary design validation.
+- Generating/editing an actual image is separate from designing an image prompt and needs an explicit request.
+- FULL scales its design effort to the task; FAST VARIANT preserves approved facts.
+- Kernel embeds a compact module-card index, not a duplicated index plus repeated descriptive cards.
+- Offline CI checks the **pinned** tag snapshot. Third-party tag synchronization is manual through `workflow_dispatch` with `sync_tag_index` enabled.
+- PRs rebuild and validate generated assets in CI; main branch CI commits refreshed bundle artifacts after a successful build.
+
+### Lean identity residency
+
+The startup bundle contains Identity's small policy contract and `taste-core.md`; the full `design-dislikes.md` and history remain retrievable only when required. This keeps the critical no-clock/no-accessory/anti-plastic-skin defaults in the compact baseline without repeatedly loading the full archive.

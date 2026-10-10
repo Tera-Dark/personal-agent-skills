@@ -3,7 +3,7 @@ name: creative-skill-router
 description: Entry point for all creative requests. Classifies intent and sends the task to design, analysis, shared prompt compilation, target-model rendering, evaluation, or technical modules. Use for 设计, OC, 人设, 立绘, 插画, 提示词, prompt, NAI, NovelAI, Anima, 反推, 分析图片, ComfyUI, LoRA, or ambiguous creative tasks.
 metadata:
   author: Tera-Dark
-  version: "4.0.0"
+  version: "4.6.0"
   layer: "01_router"
   load: "always"
   status: "active"
@@ -25,10 +25,10 @@ Router 不负责：
 
 ## 执行模式选择
 
-- **FULL CREATIVE**：新 OC、新服设、新插画、新海报，或核心命题未定的请求。
+- **FULL CREATIVE**：新 OC、服设、插画、海报或核心命题未定；简单肖像使用紧凑 Brief，复杂高完成度插画才充分展开叙事、空间和专业审美参考。
 - **FAST VARIANT**：用户基于已认可设计要求局部改动。先锁定原设计，只改当轮指定变量；不重新探索被锁定的部分。
-- **PROMPT ONLY**：用户明确说“只输出提示词 / 直接给 prompt”，或提交了完整设计等待编译。内部仍执行必要校验，但不展示 Creative Brief、路由过程或架构说明。
-- 模式由意图和设计完成度决定，不只靠关键词。如果 FAST VARIANT 涉及身份、主轮廓、核心命题或构图的重大改变，则升级 FULL CREATIVE。
+- **PROMPT ONLY**：交付层覆盖规则，不是跳过审美设计的捷径。无论新创作还是完整设计，只要用户要求提示词，就私下做适用的设计与校验，仅交付可复制 Prompt；不得展示候选方向、Creative Brief 或路由过程。
+- 模式由意图和设计完成度决定，不只靠关键词。如果 FAST VARIANT 涉及身份、主轮廓、核心命题或构图的重大改变，则升级 FULL CREATIVE。单纯“设计图片”只授权文本创作；生图工具的使用由 Kernel 授权规则单独判断。
 
 ## 主路由
 
@@ -98,17 +98,8 @@ ComfyUI / LoRA / dataset：
 Router 不向用户输出长篇架构说明。内部决定路径后直接执行下一步。
 
 ## References
-
-- references/task-classification.md
-- references/routing-rules.md
-- references/model-selection.md
-- references/execution-flow.md
-- references/skill-map.md
-
-
-## References
-- `references/execution-flow.md` — bundled reference for this module.
-- `references/model-selection.md` — bundled reference for this module.
-- `references/routing-rules.md` — bundled reference for this module.
-- `references/skill-map.md` — bundled reference for this module.
-- `references/task-classification.md` — bundled reference for this module.
+- `references/task-classification.md`
+- `references/routing-rules.md`
+- `references/model-selection.md`
+- `references/execution-flow.md`
+- `references/skill-map.md`

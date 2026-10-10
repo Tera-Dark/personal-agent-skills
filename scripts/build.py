@@ -148,23 +148,14 @@ def module_entry(s, cfg, version, bundle_dir):
 
 
 def manifest_table(entries):
-    rows = ["| module | layer | load | status | ~tokens | triggers | fetch |", "|---|---|---|---|---|---|---|"]
+    """Compact fallback cards; URLs are derivable from the canonical raw pattern."""
+    rows = ["| module | load/status | purpose |", "|---|---|---|"]
     for e in entries:
-        fetch = "embedded below" if e["load"] == "always" else ("none (planned)" if e["status"] == "planned" else f"`{e['bundle_url']}`")
-        trig = e["triggers"].replace("|", "/")
-        rows.append(f"| `{e['name']}` | {e['layer']} | {e['load']} | {e['status']} | {e['tokens_bundle']} | {trig} | {fetch} |")
+        purpose = e["description"].split(". ")[0].rstrip(".")
+        if len(purpose) > 78:
+            purpose = purpose[:75].rsplit(" ", 1)[0] + "..."
+        rows.append(f'| `{e["name"]}` | {e["load"]}/{e["status"]} | {purpose.replace("|", "/")} |')
     return "\n".join(rows)
-
-
-def cards(entries):
-    out = []
-    for e in entries:
-        if e["load"] == "always":
-            continue
-        out.append(f"- **{e['name']}** — {e['description']}")
-    return "\n".join(out)
-
-
 
 
 def failure_policy_table(cfg):
@@ -229,7 +220,7 @@ def render_kernel(root, cfg, version, entries):
         "{{MODULE_COUNT}}": str(len(entries)),
         "{{HANDSHAKE}}": handshake,
         "{{RAW_BASE}}": raw_base(cfg),
-        "{{MANIFEST_TABLE}}": manifest_table(entries) + "\n\n### Module cards (contracts for on-demand modules; use only if a fetch fails)\n\n" + cards(entries),
+        "{{MANIFEST_TABLE}}": manifest_table(entries),
         "{{PIPELINE_PACK_TABLE}}": pipeline_pack_table(cfg),
         "{{FAILURE_POLICY_TABLE}}": failure_policy_table(cfg),
     }

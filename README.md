@@ -10,6 +10,13 @@
 >
 > If URLs are inaccessible, reply exactly: \`我无法访问链接。请把 bundle/HARNESS.md 的内容粘贴给我。\`
 
+## Defaults for this owner
+
+- **Design / OC / illustration request → prompt or written design, not automatic image generation.** Only an explicit request to generate/edit an image authorizes an image tool.
+- **NAI5 default → compact positive prompt only.** Preset artist stack, quality terms and Negative stay external unless requested.
+- **PROMPT ONLY** governs visible output rather than internal design depth. Simple edits use FAST VARIANT; substantive original work uses FULL.
+- Web use needs only the GitHub URLs. Build scripts run locally or in CI.
+
 ## What this is
 
 一个给 ChatGPT / Gemini / Claude 等对话模型使用的创作 harness：kernel 定义运行契约，设计层负责做决定，Prompt Core 把设计转换成模型无关的 Visual Prompt Packet，最后由 Anima / NAI5 / Generic renderer 做模型语法。
