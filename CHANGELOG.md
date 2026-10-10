@@ -4,7 +4,7 @@
 - Reduced the always-on identity payload to a compact taste core and explicit dislike list; moved the full taste archive and NAI5 artist pool to task-specific fetching.
 - Added FULL CREATIVE, FAST VARIANT, and PROMPT ONLY execution modes while preserving Audit, Blueprint, Prompt Core, Tag Gate, Renderer, and Design Lock contracts.
 - Added hard Core token-budget enforcement and structural regression checks.
-- Replaced runtime download of the full upstream Danbooru/Anima index with generated root, group, and two-character lookup manifests/shards.
+- Replaced runtime download of the full upstream Danbooru/Anima index with generated root/group manifests and group-aware prefix shards (artists use three routing characters; other groups use two).
 - Added an explicit exact-name bridge from NAI5 `artist:name` inputs to upstream Anima `@name` artist canonical values; preserved source identity and disallowed fuzzy matching.
 - Made module bundles contract-first and generated individual reference artifacts for task-selective fetching; retained the self-contained full harness.
 - Updated CI checks to regenerate generated artifacts and reject stale bundles, references, or tag-index shards.

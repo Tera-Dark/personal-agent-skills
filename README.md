@@ -118,5 +118,5 @@ License: MIT
 - `bundle/modules/<name>.md` contains one module's execution contract plus links to its detailed references.
 - `bundle/references/<module>/...` contains generated single-reference files. Fetch only those needed by the current task.
 - `bundle/HARNESS-FULL.md` remains the complete self-contained option for a Custom GPT / Gem / Project that needs everything embedded.
-- Danbooru hard tags use the generated manifest and group/prefix shards under `bundle/tag-index/`; the full upstream index is a build-time input, not a web runtime dependency.
+- Danbooru hard tags use the generated root/group manifests and group-aware prefix shards under `bundle/tag-index/`; artists use three routing characters to control alias-heavy shard sizes, other groups use two. The full upstream index is a build-time input, not a web runtime dependency.
 - The configured Core token estimate is a hard build gate. CI rejects a cold-start bundle that exceeds `harness.json:core_budget_tokens`.

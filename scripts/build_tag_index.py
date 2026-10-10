@@ -66,7 +66,9 @@ def prefix_for(tag, group):
     value = lookup_name(tag, group)
     if not value or not re.match(r"^[a-z0-9]", value):
         return "_special"
-    return re.sub(r"[^a-z0-9_]", "_", value[:2])
+    # Artist data is more alias-dense than other groups; use a 3-character route key.
+    width = 3 if group.lower() == "artists" else 2
+    return re.sub(r"[^a-z0-9_]", "_", value[:width])
 
 
 def generate_outputs(source, source_sha):
@@ -113,6 +115,7 @@ def generate_outputs(source, source_sha):
             "path_group": safe,
             "tag_count": valid_count,
             "shard_count": len(prefixes),
+            "prefix_length": 3 if group.lower() == "artists" else 2,
             "manifest": group_manifest_path,
         }
         group_manifest = {
@@ -120,6 +123,7 @@ def generate_outputs(source, source_sha):
             "source_sha256": source_sha,
             "group": group,
             "tag_count": valid_count,
+            "prefix_length": 3 if group.lower() == "artists" else 2,
             "prefixes": prefixes,
         }
         outputs[group_manifest_path] = json.dumps(
@@ -158,8 +162,8 @@ def generate_outputs(source, source_sha):
         },
         "lookup": {
             "group_isolation": True,
-            "prefix_length": 2,
-            "prefix_rule": "For file routing only: lowercase the candidate; in group 'artists', strip a leading 'artist:' or '@' before selecting the prefix; if the resulting first character is not ASCII a-z or 0-9 use _special; replace non-[a-z0-9_] characters in its first two characters with _. Never alter the candidate used for exact identity matching.",
+            "prefix_length_by_group": {"artists": 3, "default": 2},
+            "prefix_rule": "For file routing only: lowercase the candidate; in group artists, strip a leading artist: or @ before selecting three characters; in other groups select two. If the resulting first character is not ASCII a-z or 0-9 use _special; replace non-[a-z0-9_] characters within the selected prefix with _. Never alter the candidate used for exact identity matching.",
             "lookup_order": ["exact", "alias"],
             "ambiguous_alias": "not promoted; treat as missing",
         },
@@ -185,8 +189,8 @@ def run_self_tests():
         ("1girl", "general", "1g"),
         ("37_(reverse:1999)", "characters", "37"),
         ("white_background", "general", "wh"),
-        ("artist:starshadowmagician", "artists", "st"),
-        ("@starshadowmagician", "artists", "st"),
+        ("artist:starshadowmagician", "artists", "sta"),
+        ("@starshadowmagician", "artists", "sta"),
         ("(special_tag)", "general", "_special"),
         (":smile:", "general", "_special"),
     ]
@@ -207,9 +211,9 @@ def run_self_tests():
     if "long_hair" not in alias_shard["exact"]:
         raise SystemExit("self-test failed: canonical tag missing from exact map")
     artist_manifest = json.loads(sample["bundle/tag-index/artists/manifest.json"])
-    if artist_manifest["prefixes"] != ["st"]:
-        raise SystemExit(f"self-test failed: artist prefixes incorrectly generated: {artist_manifest['prefixes']!r}")
-    artist_shard = json.loads(sample["bundle/tag-index/artists/st.json"])
+    if artist_manifest["prefixes"] != ["sta"] or artist_manifest["prefix_length"] != 3:
+        raise SystemExit(f"self-test failed: artist prefixes incorrectly generated: {artist_manifest!r}")
+    artist_shard = json.loads(sample["bundle/tag-index/artists/sta.json"])
     if "@starshadowmagician" not in artist_shard["exact"]:
         raise SystemExit("self-test failed: artist source canonical identity was altered")
     bridge = artist_shard["aliases"].get("artist:starshadowmagician", [{}])[0]
