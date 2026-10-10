@@ -214,3 +214,24 @@ notes:
 - [ ] recent real tasks cover gacha / full-body / high-fashion / illustration / reference / token pressure
 - [ ] deterministic P12 contract checker passes in CI
 - [ ] no degraded path promotes unverified tags into hard_tags
+
+
+## 10. Selective Tag Index Retrieval
+
+### P12-WEB-TAG-01 — small lookup instead of full download
+- Input: verify `white_background`, an artist tag, and a Reverse:1999 character anchor.
+- Expect: read the manifest once, group candidates by source group/prefix, and fetch only the relevant shards.
+- Fail: attempt to fetch the entire upstream `tags_index.json` into a web-model context.
+
+### P12-WEB-TAG-02 — exact then alias
+- Input: `long_hair` plus an exact source alias `long-hair`.
+- Expect: canonical input is `exact`; alias input resolves to `long_hair` only after exact misses.
+- Fail: fuzzy correction or a search result is treated as a verified alias.
+
+### P12-WEB-TAG-03 — absent versus inaccessible
+- Expect: a prefix absent from the source manifest may be `missing`; a manifest-listed shard that cannot be fetched is `unverified`.
+- Fail: transport failure is reported as a nonexistent tag.
+
+### P12-WEB-TAG-04 — duplicate alias
+- Input: an alias mapping to multiple canonical tags in the same group.
+- Expect: do not guess; mark it missing for hard-tag output and use natural language.

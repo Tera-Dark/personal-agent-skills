@@ -1,27 +1,36 @@
-# Anima 1.0 Tag Index — Web-First Protocol
+# Anima Tag Index — Sharded Web-First Protocol
 
 ## Purpose
 
-This reference defines the external corpus used by `anima-tag-gate`.
+Good Anima derives a compact index from `anima-1.0.csv`, grouping canonical tags, counts and aliases. The Harness keeps upstream data as the source of truth, but web models must not load the entire JSON file.
 
-Good Anima documents an `anima-1.0.csv → tags_index.json` pipeline. Its generated index stores canonical tags, usage counts, and aliases in category buckets. This repository adopts the **data contract and validation semantics**, not the local Python/SQLite/EXE runtime.
+## Runtime retrieval
 
-## Source
+- Manifest: `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/tag-index/manifest.json`
+- Shards: `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/tag-index/<group>/<prefix>.json`
+- Each generated shard contains exact canonical keys and exact aliases for one group/prefix.
+- Read the manifest once per session or until its source SHA changes. Group candidates by group and prefix to reuse fetched shards.
+- If a listed shard is unreadable, its candidates are unverified. If the manifest proves that a prefix is absent from the complete source snapshot, candidates under that prefix are missing.
+- Never infer a missing tag from a search snippet or model memory.
 
-- Repository: `https://github.com/ShiroEirin/comfyui-good-anima`
-- Index: `https://raw.githubusercontent.com/ShiroEirin/comfyui-good-anima/main/danbooru-tags/tags_index.json`
-- Upstream index shape: `{ group: [[canonical, count, aliases]] }`
+## Build and validation
 
-## Web lookup rule
+`scripts/build_tag_index.py` downloads upstream data only in CI/build environments, validates its schema, generates deterministic two-character lookup shards, removes orphaned shards, and supports `--check` for reproducibility verification. `--self-test` runs offline routing and alias tests.
 
-When a hard anchor needs verification, retrieve the index and inspect the intended group. Prefer an exact canonical match, then an exact alias match. Do not use fuzzy similarity as proof.
+The CI workflow regenerates shards on pushes and requires them to be current on pull requests. A partial cache is never treated as a complete source index.
 
-The final prompt must never contain a tag merely because a search engine or model guessed it was close.
+## Provenance and licensing
 
-## Provenance
+- Upstream repository: `https://github.com/ShiroEirin/comfyui-good-anima`
+- Upstream index: `https://raw.githubusercontent.com/ShiroEirin/comfyui-good-anima/main/danbooru-tags/tags_index.json`
+- Upstream data license: GPL-3.0. Generated shards publish the source SHA-256 in the manifest.
+- The derived dataset has separate provenance/licensing from the Harness source code; the root MIT license does not relicense upstream data.
 
-This is an upstream-derived validation protocol. The upstream repository is GPL-3.0 licensed. We do not vendor its full generated corpus here; the skill references the public source instead. Any future vendored dataset must be reviewed for licensing and repository-size impact before inclusion.
+## Identity contract
 
-## Why the full corpus is not copied here
+- `exact`: input string is a canonical key in the requested group.
+- `alias`: exact alias match resolves uniquely to one canonical key.
+- `missing`: neither exact nor uniquely resolvable alias exists in the source snapshot.
+- `unverified`: a declared shard could not be read or validated.
 
-The personal harness is designed to be pasted into web AI sessions. A giant static tag dump would consume context, make updates expensive, and encourage models to scan unrelated tags. The harness therefore keeps the source pointer + lookup contract lightweight and asks the runtime model to fetch only when a hard anchor actually needs verification.
+Counts never decide creative priority. Identity matching never normalizes punctuation or performs fuzzy similarity.

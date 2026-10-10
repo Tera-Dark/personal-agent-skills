@@ -23,11 +23,14 @@ metadata:
 
 ## 数据源
 
-Primary Web-first source:
+Runtime source (small, selectively retrievable files):
 
-https://raw.githubusercontent.com/ShiroEirin/comfyui-good-anima/main/danbooru-tags/tags_index.json
+- Manifest: `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/tag-index/manifest.json`
+- Shard pattern: `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/tag-index/<group>/<prefix>.json`
 
-数据结构按 group 保存 canonical tag、count、aliases。Count 只作证据元数据，不参与创意排序。
+CI-only source: `https://raw.githubusercontent.com/ShiroEirin/comfyui-good-anima/main/danbooru-tags/tags_index.json`. `scripts/build_tag_index.py` validates this dataset and generates the static lookup shards. **Never ask a web model to fetch the full 6 MB upstream JSON at runtime.**
+
+The manifest records the source SHA-256, groups and available prefixes. Each shard preserves canonical tags, counts and aliases; counts are evidence metadata only and do not control creative ranking.
 
 ## Gate 状态
 
@@ -45,12 +48,14 @@ https://raw.githubusercontent.com/ShiroEirin/comfyui-good-anima/main/danbooru-ta
 
 ## Lookup
 
-1. 只做 transport-level normalization：首尾空白、意外重复空格。
-2. 先查指定 group 的 exact canonical。
-3. 未命中再查同 group 的 exact alias。
-4. alias 命中时保留 alias trace，同时以 canonical 为最终身份。
-5. 否则标记 missing。
-6. 不修改 underscore、parentheses、colon、slash 等可能有身份意义的字符。
+1. 首次执行时读取 manifest 一次；保留 source SHA 和可用 group/prefix 列表。
+2. 按候选项的 `group` 分组，并按 manifest 的 prefix rule 计算 shard 路径；每个不同的 (group, prefix) 最多 fetch 一次。
+3. Prefix 只用于定位文件，不是 tag normalization。匹配前仅去掉传输层首尾空白；不得改写候选 tag 中的 underscore、parentheses、colon、slash 或大小写。
+4. 若 manifest 中不存在该 group 或 prefix，可按当前 source snapshot 记为 missing。若 manifest 声明 shard 存在但 fetch 失败，标记 unverified，不能当成 missing。
+5. 在 shard 的 `exact` 字典做原字符串查找；命中则 status=exact。
+6. 只有 exact 未命中，才在 `aliases` 字典做原字符串查找。唯一 canonical 命中才 status=alias 并保留输入 alias trace；若一个 alias 指向多个 canonical，按 missing 处理，不猜测。
+7. Exact / alias 都未命中时标记 missing。Never fuzzy-match.
+8. 多个候选先按 shard 分组后批量读取，避免每个 tag 单独请求一个文件。
 
 ## Group / identity
 
@@ -105,7 +110,7 @@ group:
 status: exact | alias | missing
 canonical:
 matched_alias:
-source: danbooru-index
+source: anima-sharded-index (include manifest source SHA)
 
 ## 自检
 

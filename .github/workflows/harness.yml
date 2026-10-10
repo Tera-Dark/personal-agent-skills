@@ -41,10 +41,18 @@ jobs:
 
       # build.py --check compares sources against bundle/ ignoring the build date,
       # so a rebuild on another day does not count as "stale" by itself.
+      - name: Verify or refresh Web-first tag lookup shards
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            python3 scripts/build_tag_index.py --check
+          else
+            python3 scripts/build_tag_index.py
+          fi
+
       - name: Check whether bundle/ matches the sources
         id: check
         run: |
-          if python3 scripts/build.py --check; then
+          if python3 scripts/build.py --check && [ -z "$(git status --porcelain -- bundle/tag-index)" ]; then
             echo "stale=false" >> "$GITHUB_OUTPUT"
           else
             echo "stale=true" >> "$GITHUB_OUTPUT"

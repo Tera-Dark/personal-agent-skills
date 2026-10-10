@@ -132,6 +132,17 @@ def main():
     if not os.path.exists(os.path.join(root, "00_core", "personal-identity-profile", "references", "taste-core.md")):
         errors.append("missing compact always-on reference: 00_core/personal-identity-profile/references/taste-core.md")
 
+    # Web-first tag lookup must use generated selective shards, not the full upstream JSON at runtime.
+    if not os.path.exists(os.path.join(root, "scripts", "build_tag_index.py")):
+        errors.append("missing scripts/build_tag_index.py")
+    tag_gate_path = os.path.join(root, "03_prompt", "danbooru-tag-gate", "SKILL.md")
+    if os.path.exists(tag_gate_path):
+        tag_gate_text = open(tag_gate_path, encoding="utf-8").read()
+        if "bundle/tag-index/manifest.json" not in tag_gate_text:
+            errors.append("Danbooru Tag Gate must reference the generated shard manifest")
+        if "Never ask a web model to fetch the full 6 MB upstream JSON at runtime." not in tag_gate_text:
+            errors.append("Danbooru Tag Gate must prohibit full upstream JSON retrieval at runtime")
+
     # architecture contract sanity
     pipeline = cfg.get('pipeline', {})
     required_pipeline = {'aesthetic_gate', 'blueprint_gate', 'evaluation_gate', 'adapters'}
