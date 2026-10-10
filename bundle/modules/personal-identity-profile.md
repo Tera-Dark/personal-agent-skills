@@ -37,7 +37,7 @@ source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/00_core/per
 
 Detailed references are separate files. Read only the references required by the current task; do not fetch every reference by default. Each URL points to the generated, version-matched source for this Harness build.
 
-- `references/taste-core.md` (~1413 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/personal-identity-profile/references/taste-core.md
+- `references/taste-core.md` (~1582 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/personal-identity-profile/references/taste-core.md
 - `references/design-dislikes.md` (~927 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/personal-identity-profile/references/design-dislikes.md
 - `references/taste-signature.md` (~7272 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/personal-identity-profile/references/taste-signature.md
 - `references/nai5-artist-pool.md` (~7703 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/personal-identity-profile/references/nai5-artist-pool.md
