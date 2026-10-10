@@ -1,14 +1,14 @@
 {
   "name": "personal-agent-skills",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "repo": "Tera-Dark/personal-agent-skills",
   "branch": "main",
   "raw_base": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/",
   "harness_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS.md",
   "harness_full_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS-FULL.md",
-  "handshake": "Harness v4.0.0 loaded · 16 modules · 说需求，或发参考图。",
-  "core_tokens": 9986,
-  "full_tokens": 108701,
+  "handshake": "Harness v4.1.0 loaded · 16 modules · 说需求，或发参考图。",
+  "core_tokens": 10045,
+  "full_tokens": 108760,
   "pipeline": {
     "aesthetic_gate": "aesthetic-director-core",
     "blueprint_gate": {
@@ -100,8 +100,47 @@
         "references/visual-preferences.md",
         "references/business-objectives.md"
       ],
+      "reference_files": [
+        {
+          "path": "references/taste-core.md",
+          "bundle_path": "bundle/references/personal-identity-profile/references/taste-core.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/personal-identity-profile/references/taste-core.md",
+          "tokens": 999
+        },
+        {
+          "path": "references/design-dislikes.md",
+          "bundle_path": "bundle/references/personal-identity-profile/references/design-dislikes.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/personal-identity-profile/references/design-dislikes.md",
+          "tokens": 927
+        },
+        {
+          "path": "references/taste-signature.md",
+          "bundle_path": "bundle/references/personal-identity-profile/references/taste-signature.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/personal-identity-profile/references/taste-signature.md",
+          "tokens": 7272
+        },
+        {
+          "path": "references/nai5-artist-pool.md",
+          "bundle_path": "bundle/references/personal-identity-profile/references/nai5-artist-pool.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/personal-identity-profile/references/nai5-artist-pool.md",
+          "tokens": 7506
+        },
+        {
+          "path": "references/visual-preferences.md",
+          "bundle_path": "bundle/references/personal-identity-profile/references/visual-preferences.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/personal-identity-profile/references/visual-preferences.md",
+          "tokens": 440
+        },
+        {
+          "path": "references/business-objectives.md",
+          "bundle_path": "bundle/references/personal-identity-profile/references/business-objectives.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/personal-identity-profile/references/business-objectives.md",
+          "tokens": 309
+        }
+      ],
       "tokens_skill": 845,
-      "tokens_bundle": 18664
+      "tokens_bundle": 1423,
+      "tokens_full_bundle": 18664
     },
     {
       "name": "aesthetic-director-core",
@@ -125,8 +164,65 @@
         "references/emotional-design.md",
         "references/modern-key-visual-grammar.md"
       ],
+      "reference_files": [
+        {
+          "path": "references/high-aesthetic-calibration-library.md",
+          "bundle_path": "bundle/references/aesthetic-director-core/references/high-aesthetic-calibration-library.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/aesthetic-director-core/references/high-aesthetic-calibration-library.md",
+          "tokens": 2743
+        },
+        {
+          "path": "references/creative-moves.md",
+          "bundle_path": "bundle/references/aesthetic-director-core/references/creative-moves.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/aesthetic-director-core/references/creative-moves.md",
+          "tokens": 3663
+        },
+        {
+          "path": "references/modern-poster-design-grammar.md",
+          "bundle_path": "bundle/references/aesthetic-director-core/references/modern-poster-design-grammar.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/aesthetic-director-core/references/modern-poster-design-grammar.md",
+          "tokens": 3402
+        },
+        {
+          "path": "references/feedback-diagnosis.md",
+          "bundle_path": "bundle/references/aesthetic-director-core/references/feedback-diagnosis.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/aesthetic-director-core/references/feedback-diagnosis.md",
+          "tokens": 1239
+        },
+        {
+          "path": "references/taste-calibration-pairs.md",
+          "bundle_path": "bundle/references/aesthetic-director-core/references/taste-calibration-pairs.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/aesthetic-director-core/references/taste-calibration-pairs.md",
+          "tokens": 4445
+        },
+        {
+          "path": "references/design-calibration-examples.md",
+          "bundle_path": "bundle/references/aesthetic-director-core/references/design-calibration-examples.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/aesthetic-director-core/references/design-calibration-examples.md",
+          "tokens": 1873
+        },
+        {
+          "path": "references/anti-ai-patterns.md",
+          "bundle_path": "bundle/references/aesthetic-director-core/references/anti-ai-patterns.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/aesthetic-director-core/references/anti-ai-patterns.md",
+          "tokens": 1323
+        },
+        {
+          "path": "references/emotional-design.md",
+          "bundle_path": "bundle/references/aesthetic-director-core/references/emotional-design.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/aesthetic-director-core/references/emotional-design.md",
+          "tokens": 1031
+        },
+        {
+          "path": "references/modern-key-visual-grammar.md",
+          "bundle_path": "bundle/references/aesthetic-director-core/references/modern-key-visual-grammar.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/aesthetic-director-core/references/modern-key-visual-grammar.md",
+          "tokens": 1164
+        }
+      ],
       "tokens_skill": 4779,
-      "tokens_bundle": 26085
+      "tokens_bundle": 5524,
+      "tokens_full_bundle": 26085
     },
     {
       "name": "creative-skill-router",
@@ -146,8 +242,41 @@
         "references/skill-map.md",
         "references/task-classification.md"
       ],
+      "reference_files": [
+        {
+          "path": "references/execution-flow.md",
+          "bundle_path": "bundle/references/creative-skill-router/references/execution-flow.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/creative-skill-router/references/execution-flow.md",
+          "tokens": 425
+        },
+        {
+          "path": "references/model-selection.md",
+          "bundle_path": "bundle/references/creative-skill-router/references/model-selection.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/creative-skill-router/references/model-selection.md",
+          "tokens": 301
+        },
+        {
+          "path": "references/routing-rules.md",
+          "bundle_path": "bundle/references/creative-skill-router/references/routing-rules.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/creative-skill-router/references/routing-rules.md",
+          "tokens": 398
+        },
+        {
+          "path": "references/skill-map.md",
+          "bundle_path": "bundle/references/creative-skill-router/references/skill-map.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/creative-skill-router/references/skill-map.md",
+          "tokens": 527
+        },
+        {
+          "path": "references/task-classification.md",
+          "bundle_path": "bundle/references/creative-skill-router/references/task-classification.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/creative-skill-router/references/task-classification.md",
+          "tokens": 379
+        }
+      ],
       "tokens_skill": 1018,
-      "tokens_bundle": 3284
+      "tokens_bundle": 1467,
+      "tokens_full_bundle": 3284
     },
     {
       "name": "character-design-engine",
@@ -166,8 +295,35 @@
         "references/oc-design-system.md",
         "references/garment-lexicon.md"
       ],
+      "reference_files": [
+        {
+          "path": "references/maximalist-oc-design-grammar.md",
+          "bundle_path": "bundle/references/character-design-engine/references/maximalist-oc-design-grammar.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/character-design-engine/references/maximalist-oc-design-grammar.md",
+          "tokens": 3518
+        },
+        {
+          "path": "references/maximalist-atelier-plate-grammar.md",
+          "bundle_path": "bundle/references/character-design-engine/references/maximalist-atelier-plate-grammar.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/character-design-engine/references/maximalist-atelier-plate-grammar.md",
+          "tokens": 1623
+        },
+        {
+          "path": "references/oc-design-system.md",
+          "bundle_path": "bundle/references/character-design-engine/references/oc-design-system.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/character-design-engine/references/oc-design-system.md",
+          "tokens": 3895
+        },
+        {
+          "path": "references/garment-lexicon.md",
+          "bundle_path": "bundle/references/character-design-engine/references/garment-lexicon.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/character-design-engine/references/garment-lexicon.md",
+          "tokens": 1843
+        }
+      ],
       "tokens_skill": 4151,
-      "tokens_bundle": 15337
+      "tokens_bundle": 4630,
+      "tokens_full_bundle": 15337
     },
     {
       "name": "illustration-direction",
@@ -187,8 +343,41 @@
         "references/atmosphere-presets.md",
         "references/white-background-fashion-grammar.md"
       ],
+      "reference_files": [
+        {
+          "path": "references/composition-patterns.md",
+          "bundle_path": "bundle/references/illustration-direction/references/composition-patterns.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/illustration-direction/references/composition-patterns.md",
+          "tokens": 1596
+        },
+        {
+          "path": "references/oc-maximalist-closeup-backdrop-preset.md",
+          "bundle_path": "bundle/references/illustration-direction/references/oc-maximalist-closeup-backdrop-preset.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/illustration-direction/references/oc-maximalist-closeup-backdrop-preset.md",
+          "tokens": 1035
+        },
+        {
+          "path": "references/visual-grammar.md",
+          "bundle_path": "bundle/references/illustration-direction/references/visual-grammar.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/illustration-direction/references/visual-grammar.md",
+          "tokens": 5340
+        },
+        {
+          "path": "references/atmosphere-presets.md",
+          "bundle_path": "bundle/references/illustration-direction/references/atmosphere-presets.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/illustration-direction/references/atmosphere-presets.md",
+          "tokens": 2473
+        },
+        {
+          "path": "references/white-background-fashion-grammar.md",
+          "bundle_path": "bundle/references/illustration-direction/references/white-background-fashion-grammar.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/illustration-direction/references/white-background-fashion-grammar.md",
+          "tokens": 2549
+        }
+      ],
       "tokens_skill": 3577,
-      "tokens_bundle": 16908
+      "tokens_bundle": 4116,
+      "tokens_full_bundle": 16908
     },
     {
       "name": "anima-renderer",
@@ -205,8 +394,23 @@
         "references/anima-model-profiles.md",
         "references/anima-troubleshooting.md"
       ],
+      "reference_files": [
+        {
+          "path": "references/anima-model-profiles.md",
+          "bundle_path": "bundle/references/anima-renderer/references/anima-model-profiles.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/anima-renderer/references/anima-model-profiles.md",
+          "tokens": 2935
+        },
+        {
+          "path": "references/anima-troubleshooting.md",
+          "bundle_path": "bundle/references/anima-renderer/references/anima-troubleshooting.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/anima-renderer/references/anima-troubleshooting.md",
+          "tokens": 2070
+        }
+      ],
       "tokens_skill": 699,
-      "tokens_bundle": 5876
+      "tokens_bundle": 988,
+      "tokens_full_bundle": 5876
     },
     {
       "name": "danbooru-tag-gate",
@@ -222,8 +426,17 @@
       "references": [
         "references/tag-index.md"
       ],
+      "reference_files": [
+        {
+          "path": "references/tag-index.md",
+          "bundle_path": "bundle/references/danbooru-tag-gate/references/tag-index.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/danbooru-tag-gate/references/tag-index.md",
+          "tokens": 760
+        }
+      ],
       "tokens_skill": 1440,
-      "tokens_bundle": 2337
+      "tokens_bundle": 1668,
+      "tokens_full_bundle": 2337
     },
     {
       "name": "general-image-prompt-adapter",
@@ -239,8 +452,17 @@
       "references": [
         "references/target-notes.md"
       ],
+      "reference_files": [
+        {
+          "path": "references/target-notes.md",
+          "bundle_path": "bundle/references/general-image-prompt-adapter/references/target-notes.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/general-image-prompt-adapter/references/target-notes.md",
+          "tokens": 764
+        }
+      ],
       "tokens_skill": 1229,
-      "tokens_bundle": 2234
+      "tokens_bundle": 1566,
+      "tokens_full_bundle": 2234
     },
     {
       "name": "nai5-renderer",
@@ -265,8 +487,71 @@
         "references/negative-strategy.md",
         "references/single-artist-test-protocol.md"
       ],
+      "reference_files": [
+        {
+          "path": "references/community-format.md",
+          "bundle_path": "bundle/references/nai5-renderer/references/community-format.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/nai5-renderer/references/community-format.md",
+          "tokens": 932
+        },
+        {
+          "path": "references/character-block.md",
+          "bundle_path": "bundle/references/nai5-renderer/references/character-block.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/nai5-renderer/references/character-block.md",
+          "tokens": 635
+        },
+        {
+          "path": "references/interaction-tags.md",
+          "bundle_path": "bundle/references/nai5-renderer/references/interaction-tags.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/nai5-renderer/references/interaction-tags.md",
+          "tokens": 564
+        },
+        {
+          "path": "references/artist-stack.md",
+          "bundle_path": "bundle/references/nai5-renderer/references/artist-stack.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/nai5-renderer/references/artist-stack.md",
+          "tokens": 415
+        },
+        {
+          "path": "references/style-layer.md",
+          "bundle_path": "bundle/references/nai5-renderer/references/style-layer.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/nai5-renderer/references/style-layer.md",
+          "tokens": 603
+        },
+        {
+          "path": "references/scene-block.md",
+          "bundle_path": "bundle/references/nai5-renderer/references/scene-block.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/nai5-renderer/references/scene-block.md",
+          "tokens": 57
+        },
+        {
+          "path": "references/tag-taxonomy.md",
+          "bundle_path": "bundle/references/nai5-renderer/references/tag-taxonomy.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/nai5-renderer/references/tag-taxonomy.md",
+          "tokens": 173
+        },
+        {
+          "path": "references/weighting.md",
+          "bundle_path": "bundle/references/nai5-renderer/references/weighting.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/nai5-renderer/references/weighting.md",
+          "tokens": 168
+        },
+        {
+          "path": "references/negative-strategy.md",
+          "bundle_path": "bundle/references/nai5-renderer/references/negative-strategy.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/nai5-renderer/references/negative-strategy.md",
+          "tokens": 73
+        },
+        {
+          "path": "references/single-artist-test-protocol.md",
+          "bundle_path": "bundle/references/nai5-renderer/references/single-artist-test-protocol.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/nai5-renderer/references/single-artist-test-protocol.md",
+          "tokens": 793
+        }
+      ],
       "tokens_skill": 1806,
-      "tokens_bundle": 6508
+      "tokens_bundle": 2451,
+      "tokens_full_bundle": 6508
     },
     {
       "name": "visual-prompt-core",
@@ -280,8 +565,10 @@
       "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/03_prompt/visual-prompt-core",
       "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/visual-prompt-core.md",
       "references": [],
+      "reference_files": [],
       "tokens_skill": 1406,
-      "tokens_bundle": 1551
+      "tokens_bundle": 1551,
+      "tokens_full_bundle": 1551
     },
     {
       "name": "image-reverse-analysis",
@@ -297,8 +584,17 @@
       "references": [
         "references/design-language-extraction.md"
       ],
+      "reference_files": [
+        {
+          "path": "references/design-language-extraction.md",
+          "bundle_path": "bundle/references/image-reverse-analysis/references/design-language-extraction.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/image-reverse-analysis/references/design-language-extraction.md",
+          "tokens": 228
+        }
+      ],
       "tokens_skill": 1188,
-      "tokens_bundle": 1621
+      "tokens_bundle": 1490,
+      "tokens_full_bundle": 1621
     },
     {
       "name": "prompt-analysis",
@@ -312,8 +608,10 @@
       "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/04_analysis/prompt-analysis",
       "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/prompt-analysis.md",
       "references": [],
+      "reference_files": [],
       "tokens_skill": 546,
-      "tokens_bundle": 709
+      "tokens_bundle": 709,
+      "tokens_full_bundle": 709
     },
     {
       "name": "comfyui-workflow",
@@ -327,8 +625,10 @@
       "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/05_tools/comfyui-workflow",
       "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/comfyui-workflow.md",
       "references": [],
+      "reference_files": [],
       "tokens_skill": 162,
-      "tokens_bundle": 280
+      "tokens_bundle": 280,
+      "tokens_full_bundle": 280
     },
     {
       "name": "dataset-management",
@@ -342,8 +642,10 @@
       "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/05_tools/dataset-management",
       "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/dataset-management.md",
       "references": [],
+      "reference_files": [],
       "tokens_skill": 147,
-      "tokens_bundle": 265
+      "tokens_bundle": 265,
+      "tokens_full_bundle": 265
     },
     {
       "name": "lora-training",
@@ -357,8 +659,10 @@
       "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/05_tools/lora-training",
       "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/lora-training.md",
       "references": [],
+      "reference_files": [],
       "tokens_skill": 151,
-      "tokens_bundle": 270
+      "tokens_bundle": 270,
+      "tokens_full_bundle": 270
     },
     {
       "name": "evaluation-loop",
@@ -372,8 +676,10 @@
       "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/06_evaluation/evaluation-loop",
       "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/evaluation-loop.md",
       "references": [],
+      "reference_files": [],
       "tokens_skill": 1395,
-      "tokens_bundle": 1600
+      "tokens_bundle": 1600,
+      "tokens_full_bundle": 1600
     }
   ]
 }
