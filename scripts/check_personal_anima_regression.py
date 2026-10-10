@@ -173,10 +173,10 @@ def main() -> int:
     ):
         require(needle.lower() in sources["kernel"].lower(), f"Kernel lost architecture/failure guard: {needle}", failures)
 
-    case_ids = re.findall(r"^### (P12-[A-Z]+-\d{2})\s+—", matrix, re.M)
+    case_ids = re.findall(r"^### (P12-[A-Z]+(?:-[A-Z]+)*-\d{2})\s+—", matrix, re.M)
     expected_prefixes = {
         "TAG": 10, "SYN": 4, "SKL": 2, "CMP": 3, "PRT": 3,
-        "FLR": 4, "WEB": 4, "REAL": 6,
+        "FLR": 4, "WEB": 11, "REAL": 6,
     }
     for prefix, expected_count in expected_prefixes.items():
         actual = len([x for x in case_ids if x.startswith(f"P12-{prefix}-")])
@@ -185,7 +185,8 @@ def main() -> int:
             f"matrix count for {prefix}: expected {expected_count}, got {actual}",
             failures,
         )
-    require(len(case_ids) == 36, f"expected 36 P12 cases, found {len(case_ids)}", failures)
+    require(len(set(case_ids)) == len(case_ids), "duplicate P12 case IDs detected", failures)
+    require(len(case_ids) == 43, f"expected 43 P12 cases, found {len(case_ids)}", failures)
     version_parts = version.split(".")
     require(
         len(version_parts) == 3 and all(part.isdigit() for part in version_parts),
