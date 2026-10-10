@@ -20,12 +20,18 @@ metadata:
 
 ## 用法
 
-任何创作类任务开始前：
+常驻 Web Harness 已嵌入 `references/taste-core.md` 与 `references/design-dislikes.md`，日常创作直接使用这两份精简基线，不要再抓取完整 Identity 模块。
 
-1. 读 `references/taste-signature.md` —— 品味是什么（不是"避免什么"，是"是什么"）。
-2. 读 `references/design-dislikes.md` —— 历史上反复否决的东西。
-3. 沟通与交付协议由 Kernel 统一管理。
-4. 把签名交给 `aesthetic-director-core`，由它做具体决定。
+仅在以下场景读取一个对应的原始参考文件：
+- 深度审美校准、复盘长期偏好或用户要求查看完整品味档案：读取 `references/taste-signature.md`。
+- NAI5 画师选择、画师探索或需要生成 artist stack：读取 `references/nai5-artist-pool.md`。
+- 构图 / 题材偏好需要额外背景：读取 `references/visual-preferences.md`。
+- 需要商业目标作为设计约束：读取 `references/business-objectives.md`。
+
+读取时直接 fetch 该单文件，不要为了一个参考文件重新加载整个 Identity 模块。源文件 URL 模式为：
+`https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/00_core/personal-identity-profile/references/<filename>`
+
+用户本回合的明确要求始终优先。沟通与交付协议由 Kernel 统一管理；把当前任务真正需要的审美约束交给 `aesthetic-director-core`。
 
 ## 优先级（冲突时）
 
@@ -48,13 +54,11 @@ metadata:
 
 更新时保留日期。旧条目不删，标记为"已被 X 取代"。
 
-## References
+## 按需参考资料
 
-- `references/taste-signature.md` — 品味签名：核心、Tier A/B/C、被认可的样本
-- `references/design-dislikes.md` — 否决清单与否决理由
-- `references/visual-preferences.md` — 偏好的类型、构图、参考来源
-- `references/business-objectives.md` — 商业目标与评价标准
-
-
-## References
-- `references/nai5-artist-pool.md` — bundled reference for this module.
+- `references/taste-core.md` — 精简常驻签名，嵌入 Web Harness。
+- `references/taste-signature.md` — 完整品味签名、Tier A/B/C、认可样本；深度校准时读取。
+- `references/design-dislikes.md` — 高频否决清单与理由，常驻嵌入。
+- `references/visual-preferences.md` — 偏好题材、构图与参考来源。
+- `references/business-objectives.md` — 商业目标与评价标准。
+- `references/nai5-artist-pool.md` — NAI5 画师池；仅画师相关任务读取。

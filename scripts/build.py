@@ -308,6 +308,12 @@ def build_outputs(root):
         },
         "modules": [{k: v for k, v in e.items() if not k.startswith("_")} for e in entries],
     }
+    budget = cfg.get("core_budget_tokens", 40000)
+    if manifest["core_tokens"] > budget:
+        raise SystemExit(
+            f"Core harness exceeds budget: {manifest['core_tokens']} > {budget} tokens. "
+            "Trim always_on payloads or raise the budget intentionally."
+        )
     outputs[f"{bundle_dir}/manifest.json"] = json.dumps(manifest, ensure_ascii=False, indent=2) + "\n"
     outputs["docs/skill-registry.md"] = render_registry(cfg, version, entries)
     return cfg, manifest, outputs

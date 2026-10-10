@@ -119,6 +119,19 @@ def main():
             errors.append(f"{s['rel']}: metadata.load is `always` but harness.json always_on does not list it")
 
 
+    # Web-first runtime budget and identity loading contract.
+    budget = cfg.get("core_budget_tokens")
+    if not isinstance(budget, int) or budget <= 0:
+        errors.append("harness.json core_budget_tokens must be a positive integer")
+    identity_files = cfg.get("always_on", {}).get("personal-identity-profile", [])
+    if "references/taste-core.md" not in identity_files:
+        errors.append("personal-identity-profile always_on must include references/taste-core.md")
+    for heavy_ref in ("references/taste-signature.md", "references/nai5-artist-pool.md"):
+        if heavy_ref in identity_files:
+            errors.append(f"personal-identity-profile always_on must not include on-demand reference {heavy_ref}")
+    if not os.path.exists(os.path.join(root, "00_core", "personal-identity-profile", "references", "taste-core.md")):
+        errors.append("missing compact always-on reference: 00_core/personal-identity-profile/references/taste-core.md")
+
     # architecture contract sanity
     pipeline = cfg.get('pipeline', {})
     required_pipeline = {'aesthetic_gate', 'blueprint_gate', 'evaluation_gate', 'adapters'}

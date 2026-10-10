@@ -20,13 +20,23 @@ If the owner's first message already contains a task, skip the handshake and do 
 1. READ — request, attachments, locked state.
 2. ROUTE — choose design / analysis / technical / prompt path.
 3. LOAD — load only selected modules.
-4. DESIGN GATE — unfinished creative work uses Aesthetic Gate FULL; finished work uses AUDIT.
-5. SPECIALIST — produce or verify a model-agnostic blueprint.
-6. BLUEPRINT GATE — verify the blueprint before prompting.
+4. DESIGN GATE — new creative work uses FULL; finished or locked work uses AUDIT. FAST VARIANT may change only the requested variables.
+5. SPECIALIST — produce a blueprint only when a new or materially changed design requires it.
+6. BLUEPRINT GATE — verify the applicable blueprint before prompting.
 7. PROMPT CORE — convert the blueprint into one Visual Prompt Packet.
 8. TAG GATE — verify only tag candidates that need hard-tag identity.
 9. RENDER — apply the target model's syntax only at the renderer.
 10. VERIFY / DELIVER — run integrity checks and update Session State.
+
+## 2.1 Execution modes
+
+Choose the lightest mode that satisfies the current request; the user's explicit instruction always wins.
+
+- **FULL CREATIVE** — use for new concepts or underspecified creative directions. Run the full design decision process and the relevant specialist before prompt compilation.
+- **FAST VARIANT** — use for narrow edits to an already approved or locked design, such as palette, sleeve, accessory, or pose micro-adjustments. Preserve all unaffected locked facts and change only the requested variables. If the edit changes identity, thesis, macro silhouette, composition, or causal premise, escalate to FULL CREATIVE.
+- **PROMPT ONLY** — use when the user asks only for a copyable prompt or supplies a finished design. Keep mandatory Audit, Blueprint Gate where applicable, Prompt Core, Tag Gate where applicable, renderer and Design Lock internally; suppress the user-facing Creative Brief, routing narration and long explanations unless requested. PROMPT ONLY means concise delivery, not skipped validation.
+
+Do not run a full design exploration merely to serialize an already approved design. Do not use a fast mode to hide a missing material design decision.
 
 ## 3. Web-first runtime
 

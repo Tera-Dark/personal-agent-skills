@@ -46,7 +46,7 @@ This module is a target-model adapter. It accepts only a validated blueprint or 
 
 ## Rendering flow
 
-1. Read style intent from the Packet and obtain the selected artist pool from Identity when artist output is required.
+1. Read style intent from the Packet. When artist output is required, fetch only `00_core/personal-identity-profile/references/nai5-artist-pool.md` from `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/00_core/personal-identity-profile/references/nai5-artist-pool.md`; do not fetch the complete Identity module just to obtain artist data.
 2. Keep only verified high-value tags; omit generic support tags that are redundant with stronger structure.
 3. Serialize shared style / quality / rendering intent using NAI5 syntax, respecting the owner's fixed output preferences.
 4. For one character, emit one compact prompt block.
