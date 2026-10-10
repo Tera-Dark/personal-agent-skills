@@ -6516,11 +6516,11 @@ Good Anima derives an index from `anima-1.0.csv`, grouping canonical tags, count
 - Every shard contains exact canonical keys and exact aliases for one source group/prefix.
 - If a declared shard cannot be fetched, its candidates are unverified. If the group manifest proves the prefix is absent from the complete source snapshot, candidates under that prefix are missing.
 - The upstream `artists` group uses canonical values such as `@name`. For a NAI5 input `artist:name`, the builder emits a separate, explicitly marked namespace bridge only when the exact suffix matches the upstream canonical `@name`. The source canonical remains `@name`; this is not fuzzy matching.
-- For routing only, the `artists` group removes a leading `@` or `artist:` before selecting the two-character prefix. Never alter the identity string used for exact/alias comparison.
+- For routing only, the `artists` group removes a leading `@` or `artist:` before selecting the three-character prefix; other groups use two characters. Never alter the identity string used for exact/alias comparison.
 
 ##### Build and validation
 
-`scripts/build_tag_index.py` downloads upstream data only in CI/build environments, validates its schema, generates deterministic two-character shards and per-group manifests, removes orphaned shards, and supports `--check`. `--self-test` runs offline routing, canonical identity and alias-bridge tests.
+`scripts/build_tag_index.py` downloads upstream data only in CI/build environments, validates its schema, generates deterministic group-aware prefix shards (artists use three routing characters; other groups use two) and per-group manifests, removes orphaned shards, and supports `--check`. `--self-test` runs offline routing, canonical identity and alias-bridge tests.
 
 The CI workflow regenerates shards on pushes and requires them to be current on pull requests. A partial cache is never treated as a complete source index.
 

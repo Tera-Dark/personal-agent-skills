@@ -305,7 +305,7 @@ source: anima-sharded-index (include manifest source SHA)
 
 Detailed references are separate files. Read only the references required by the current task; do not fetch every reference by default. Each URL points to the generated, version-matched source for this Harness build.
 
-- `references/tag-index.md` (~760 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/danbooru-tag-gate/references/tag-index.md
+- `references/tag-index.md` (~786 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/danbooru-tag-gate/references/tag-index.md
 
 --- MODULE anima-renderer ---
 

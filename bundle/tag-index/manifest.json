@@ -3,30 +3,35 @@
     "artists": {
       "manifest": "bundle/tag-index/artists/manifest.json",
       "path_group": "artists",
-      "shard_count": 954,
+      "prefix_length": 3,
+      "shard_count": 5834,
       "tag_count": 42196
     },
     "characters": {
       "manifest": "bundle/tag-index/characters/manifest.json",
       "path_group": "characters",
+      "prefix_length": 2,
       "shard_count": 489,
       "tag_count": 30094
     },
     "general": {
       "manifest": "bundle/tag-index/general/manifest.json",
       "path_group": "general",
+      "prefix_length": 2,
       "shard_count": 510,
       "tag_count": 26275
     },
     "meta": {
       "manifest": "bundle/tag-index/meta/manifest.json",
       "path_group": "meta",
+      "prefix_length": 2,
       "shard_count": 114,
       "tag_count": 282
     },
     "series": {
       "manifest": "bundle/tag-index/series/manifest.json",
       "path_group": "series",
+      "prefix_length": 2,
       "shard_count": 387,
       "tag_count": 8612
     }
@@ -38,8 +43,11 @@
       "exact",
       "alias"
     ],
-    "prefix_length": 2,
-    "prefix_rule": "For file routing only: lowercase the candidate; in group 'artists', strip a leading 'artist:' or '@' before selecting the prefix; if the resulting first character is not ASCII a-z or 0-9 use _special; replace non-[a-z0-9_] characters in its first two characters with _. Never alter the candidate used for exact identity matching."
+    "prefix_length_by_group": {
+      "artists": 3,
+      "default": 2
+    },
+    "prefix_rule": "For file routing only: lowercase the candidate; in group artists, strip a leading artist: or @ before selecting three characters; in other groups select two. If the resulting first character is not ASCII a-z or 0-9 use _special; replace non-[a-z0-9_] characters within the selected prefix with _. Never alter the candidate used for exact identity matching."
   },
   "schema_version": 1,
   "source": {
