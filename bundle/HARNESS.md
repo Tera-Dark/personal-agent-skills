@@ -8,14 +8,14 @@
 
 ## KERNEL — Operating Contract
 
-> Version 4.6.0 · built 2026-10-11 · 16 modules indexed
+> Version 4.6.0 · built 2026-10-11 · 17 modules indexed
 > Language policy: this kernel is in English for cross-model precision. Taste and creative modules are in Chinese because that is how the owner thinks about them. You answer in the owner's language; prompts are always English.
 
 ### 1. Handshake
 
 After reading the harness, reply with exactly:
 
-\`Harness v4.6.0 loaded · 16 modules · 说需求，或发参考图。\`
+\`Harness v4.6.0 loaded · 17 modules · 说需求，或发参考图。\`
 
 If the owner's first message already contains a task, skip the handshake and do the task.
 
@@ -103,6 +103,7 @@ User corrections override defaults. Preserve locks and rejected items; keep Engl
 | `creative-skill-router` | always/active | Entry point for all creative requests |
 | `character-design-engine` | on-demand/active | Turns a Creative Brief (from aesthetic-director-core) into a complete,... |
 | `illustration-direction` | on-demand/active | Turns a Creative Brief into an authored, model-agnostic illustration... |
+| `small-artist-brain` | on-demand/active | Evidence-driven Xiao-artist visual decision overlay led by a 16-work study... |
 | `anima-renderer` | on-demand/active | Thin Anima-specific renderer that converts a Visual Prompt Packet plus... |
 | `danbooru-tag-gate` | on-demand/active | Web-first validation boundary for Danbooru-derived hard tags shared by... |
 | `general-image-prompt-adapter` | on-demand/active | Model adapter that compiles a finished character or illustration blueprint... |
@@ -359,4 +360,4 @@ Router 不向用户输出长篇架构说明。内部决定路径后直接执行�
 
 ---
 
-## END OF HARNESS — now reply with the handshake line: `Harness v4.6.0 loaded · 16 modules · 说需求，或发参考图。`
+## END OF HARNESS — now reply with the handshake line: `Harness v4.6.0 loaded · 17 modules · 说需求，或发参考图。`

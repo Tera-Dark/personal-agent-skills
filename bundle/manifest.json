@@ -6,9 +6,9 @@
   "raw_base": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/",
   "harness_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS.md",
   "harness_full_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS-FULL.md",
-  "handshake": "Harness v4.6.0 loaded · 16 modules · 说需求，或发参考图。",
-  "core_tokens": 6218,
-  "full_tokens": 118471,
+  "handshake": "Harness v4.6.0 loaded · 17 modules · 说需求，或发参考图。",
+  "core_tokens": 6249,
+  "full_tokens": 130759,
   "pipeline": {
     "aesthetic_gate": "aesthetic-director-core",
     "blueprint_gate": {
@@ -406,6 +406,46 @@
       "tokens_skill": 3578,
       "tokens_bundle": 4117,
       "tokens_full_bundle": 16909
+    },
+    {
+      "name": "small-artist-brain",
+      "layer": "02_design",
+      "load": "on-demand",
+      "status": "active",
+      "version": "1.0.0",
+      "description": "Evidence-driven Xiao-artist visual decision overlay led by a 16-work study of illustrator 蒸蒸 ZHENG. Uses composition, character vitality, palette hierarchy, density, space, gesture and camera to raise illustration taste without copying works. Use for 小画师脑, 小画师审美, 米画师, 蒸蒸, ZHENG, 精美插画, 女性向视觉, 作者感, 人物活人感, 高完成度肖像, 双人互动设计, and visual taste refinement. Does not own character identity, generic aesthetic gates, renderer syntax or Danbooru tags.",
+      "triggers": "小画师脑, 小画师, 米画师, 蒸蒸, ZHENG, 女性向, 作者感, 插画审美, 高定肖像, 双人活人感",
+      "path": "02_design/small-artist-brain",
+      "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_design/small-artist-brain",
+      "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/small-artist-brain.md",
+      "references": [
+        "references/zheng-16-work-study.md",
+        "references/zheng-transferable-grammar.md",
+        "references/style-tests.md"
+      ],
+      "reference_files": [
+        {
+          "path": "references/zheng-16-work-study.md",
+          "bundle_path": "bundle/references/small-artist-brain/references/zheng-16-work-study.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/small-artist-brain/references/zheng-16-work-study.md",
+          "tokens": 5011
+        },
+        {
+          "path": "references/zheng-transferable-grammar.md",
+          "bundle_path": "bundle/references/small-artist-brain/references/zheng-transferable-grammar.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/small-artist-brain/references/zheng-transferable-grammar.md",
+          "tokens": 2717
+        },
+        {
+          "path": "references/style-tests.md",
+          "bundle_path": "bundle/references/small-artist-brain/references/style-tests.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/small-artist-brain/references/style-tests.md",
+          "tokens": 1630
+        }
+      ],
+      "tokens_skill": 2619,
+      "tokens_bundle": 3033,
+      "tokens_full_bundle": 12243
     },
     {
       "name": "anima-renderer",
