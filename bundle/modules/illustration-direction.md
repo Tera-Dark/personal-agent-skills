@@ -143,6 +143,18 @@ An illustration blueprint is READY only when visual thesis, captured moment, mot
 - [ ] 删除所有装饰后，画面命题仍然成立吗？
 - [ ] 只开了一个氛围预设吗？
 
+### 小画师脑 Decision Sheet 交接（按需）
+
+当 `creative-skill-router` 选择 `small-artist-brain` 时，先接收其 `Small Artist Decision Sheet` 再完成本模块的 `Illustration Blueprint`。这是**审美决策约束的交接**，不是第二套插画蓝图：
+
+- `character_life` → 将性格、动作起因与 A→B→A 的回应关系落实到「瞬间 / 视线 / 手势」，而不是仅写 `romantic tension` 或 `natural expression`。
+- `macro_shape` 与 `camera_and_crop` → 在「主构图形 / 机位 / 遮挡计划」中固定共同轮廓、视觉动线和裁切原因。
+- `color_mass` 与 `density` → 对应「色块策略 / 密度图 / 主光源」，把丰富颜色组织到可辨认的大色域，而非给整图随机染色。
+- `environment_function` 与 `negative_space` → 对应「人物—环境关系 / 留白 / 叙事残留」，环境必须真的改变空间或行为。
+- `identity_locks` 与 `rejected` → 维护原作角色身份、用户约束和已否决方向；不把蒸蒸样本中的花、圆环、胶片等当作固定模板。
+
+优先读取 `02_design/small-artist-brain/SKILL.md`；创作时按需读取该模块的视觉语法文件（zheng-transferable-grammar.md），16 张逐图研究与验收记录仅在解释或复盘时读取。普通插画不强制启用这个模块；`PROMPT ONLY` 仍只交付最终提示词。小画师脑不决定模型语法，也不得跳过本模块的 Blueprint Gate。
+
 ### References
 
 - `references/visual-grammar.md` — 画面命题、视觉母题、环境能动性、尺度、遮挡、色块、叙事残留、受控超现实与反 AI 套路。
