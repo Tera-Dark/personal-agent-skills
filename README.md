@@ -98,6 +98,10 @@ Tag + NL      Community Tags
 07_extensions future owner-specific extensions
 \`\`\`
 
+### Xiao-artist aesthetic module (on demand)
+
+`02_design/small-artist-brain/` is an independent taste-to-design decision module grounded in 16 user-supplied ZHENG (蒸蒸) illustration studies. It adds concrete character vitality, camera, color-mass, and density choices **between the Director and design specialists**; original images are not redistributed. It is not a renderer or a universal aesthetic gate. See [SKILL.md](02_design/small-artist-brain/SKILL.md) and its on-demand references.
+
 ### Ownership invariants
 
 - **Taste has one home** — \`personal-identity-profile\`.
