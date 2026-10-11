@@ -229,9 +229,9 @@ source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/00_core/per
 - 白底立绘 / clean plate：完整展示角色，背景克制，以轮廓、接地阴影和清晰边缘保持可读性。
 - 现代二游主视觉：突出宏观轮廓、主运动势、大色块和材质对比；允许局部高密度与强裁切，避免全局雾光代替构图。
 - 动态绘画感角色插画：人物姿势、发丝 / 衣料、环境形状必须共享主运动路径；先定明暗大块与光源，再局部细化。明确提及烹饪嘶哑时按需读取 `cookingsiya-painterly-story-grammar.md`；不要把此模式套到白底半身肖像。
-- 高彩度幻想插画（参考用户提供的「-蒸 ZHENG--」作品截图）：以青绿、暖金、珊瑚粉、蓝紫组织大色块；人物、衣摆、飘带、发丝与花枝沿同一曲线运动；密集装饰集中在衣装交界和边缘，面部附近留呼吸区；用局部深色压住高明度色群。仅从缩略图提炼可观察的色彩、形状、动线与密度，笔触和材质微观技法待高清样本验证。此模式适用于幻想叙事插画，不覆盖白底 OC 肖像默认。
+- 小画师脑（2026-10-11）：蒸蒸 ZHENG 的 16 张用户提供作品作为主要审美校准证据。触发「小画师脑 / 蒸蒸 / 作者感插画」时按需加载 `02_design/small-artist-brain/SKILL.md`，在通用创意方向与 illustration blueprint 之间形成具体的 **人物神态与行为、构图大形、色群、视觉密度** 决策；从极简、日常到高繁按题材调整，不默认添加繁花/蝴蝶/滤镜，不复刻委托图。
 - 小画师高密度肖像：人物可以撑满画面；饰品、兴趣物件和装饰可丰富且甜美，但应围绕脸、发型、肩颈、手部和服装建立组织，不强制减成极简。
-- 小画师精品白底半身肖像：脸与发型轮廓优先，服设结构与蕾丝等局部高密度并存，浅底保留安静区，使用精细手绘线感；触发时独立加载 `small-artist-portrait-brain.md`，不要自动套电影海报或复杂场景逻辑。 用户点名具体小画师或要求融合多位画师时，额外加载 `small-artist-style-atlas.md`，只融合可验证机制，不叠加所有画师的表面特征。
+- 小画师精品白底半身肖像：脸与发型轮廓优先，服设结构与蕾丝等局部高密度并存，浅底保留安静区，使用精细手绘线感。专项配方按需读取 `aesthetic-director-core/references/small-artist-portrait-brain.md`；多画师融合按需读取 `small-artist-style-atlas.md`。**蒸蒸主导的独立模块负责通用的作者化审美决策，肖像专项负责白底构图细节；两者不重复维护规则。**
 - 艺术海报 / 联动 / 超现实场景：先确定独立视觉概念、主图形或空间矛盾，再安排角色、道具、标题与留白。
 - 日常感 / CP 随拍：优先自然动作、人与环境互动、真实的抓拍瞬间，不套用高定服设或海报复杂度。
 
@@ -3883,6 +3883,16 @@ Router 不负责：
 未完成的角色 / 服装 / 插画想法：
 
 identity → Aesthetic Gate FULL → specialist → Blueprint Gate
+
+##### 1.1 小画师脑：按需审美增强，不新建另一套通用设计引擎
+
+若用户明确提到「小画师脑」「蒸蒸」「米画师风格分析」，或当前任务要求女性向作者感、活人互动、精美人物插画的专项审美提升：
+
+identity → Aesthetic Gate → **small-artist-brain**（独立审美 Decision Sheet，按 SIMPLE / BALANCED / ORNATE）→ character-design-engine / illustration-direction → Blueprint Gate。
+
+- 仅在触发时读取 `02_design/small-artist-brain/SKILL.md`，创作时按需读取 `02_design/small-artist-brain/references/zheng-transferable-grammar.md`；复盘出处时才读取 16 案例原始分析。
+- 它是**审美证据与决策增强**，不是第二份 universal aesthetic gate、不是另一份 model renderer、不是所有日常/单人都自动繁花化。
+- 用户指定原版服设、固定人设、白底或低彩时必须保留。Prompt Core 不复制这套逻辑，只接收已锁定 blueprint。
 
 ##### 2. 已完成设计 → 模型提示词
 

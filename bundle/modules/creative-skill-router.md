@@ -34,6 +34,16 @@ Router 不负责：
 
 identity → Aesthetic Gate FULL → specialist → Blueprint Gate
 
+#### 1.1 小画师脑：按需审美增强，不新建另一套通用设计引擎
+
+若用户明确提到「小画师脑」「蒸蒸」「米画师风格分析」，或当前任务要求女性向作者感、活人互动、精美人物插画的专项审美提升：
+
+identity → Aesthetic Gate → **small-artist-brain**（独立审美 Decision Sheet，按 SIMPLE / BALANCED / ORNATE）→ character-design-engine / illustration-direction → Blueprint Gate。
+
+- 仅在触发时读取 `02_design/small-artist-brain/SKILL.md`，创作时按需读取 `02_design/small-artist-brain/references/zheng-transferable-grammar.md`；复盘出处时才读取 16 案例原始分析。
+- 它是**审美证据与决策增强**，不是第二份 universal aesthetic gate、不是另一份 model renderer、不是所有日常/单人都自动繁花化。
+- 用户指定原版服设、固定人设、白底或低彩时必须保留。Prompt Core 不复制这套逻辑，只接收已锁定 blueprint。
+
 #### 2. 已完成设计 → 模型提示词
 
 完整设计 / blueprint / 明确锁定事实：
