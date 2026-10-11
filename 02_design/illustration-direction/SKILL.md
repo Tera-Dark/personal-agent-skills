@@ -157,7 +157,7 @@ An illustration blueprint is READY only when visual thesis, captured moment, mot
 - `environment_function` 与 `negative_space` → 对应「人物—环境关系 / 留白 / 叙事残留」，环境必须真的改变空间或行为。
 - `identity_locks` 与 `rejected` → 维护原作角色身份、用户约束和已否决方向；不把蒸蒸样本中的花、圆环、胶片等当作固定模板。
 
-优先读取 `02_design/small-artist-brain/SKILL.md`；创作时按需读取其 `references/zheng-transferable-grammar.md`，16 张逐图研究与验收记录仅在解释或复盘时读取。普通插画不强制启用这个模块；`PROMPT ONLY` 仍只交付最终提示词。小画师脑不决定模型语法，也不得跳过本模块的 Blueprint Gate。
+优先读取 `02_design/small-artist-brain/SKILL.md`；创作时按需读取该模块的视觉语法文件（zheng-transferable-grammar.md），16 张逐图研究与验收记录仅在解释或复盘时读取。普通插画不强制启用这个模块；`PROMPT ONLY` 仍只交付最终提示词。小画师脑不决定模型语法，也不得跳过本模块的 Blueprint Gate。
 
 ## References
 
