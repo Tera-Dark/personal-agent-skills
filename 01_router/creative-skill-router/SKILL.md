@@ -44,7 +44,7 @@ identity → Aesthetic Gate FULL → specialist → Blueprint Gate
 
 identity → Aesthetic Gate → **small-artist-brain**（独立审美 Decision Sheet，按 SIMPLE / BALANCED / ORNATE）→ character-design-engine / illustration-direction → Blueprint Gate。
 
-- 仅在触发时读取 `02_design/small-artist-brain/SKILL.md`，创作时按需读取 `references/zheng-transferable-grammar.md`；复盘出处时才读取 16 案例原始分析。
+- 仅在触发时读取 `02_design/small-artist-brain/SKILL.md`，创作时按需读取 `02_design/small-artist-brain/references/zheng-transferable-grammar.md`；复盘出处时才读取 16 案例原始分析。
 - 它是**审美证据与决策增强**，不是第二份 universal aesthetic gate、不是另一份 model renderer、不是所有日常/单人都自动繁花化。
 - 用户指定原版服设、固定人设、白底或低彩时必须保留。Prompt Core 不复制这套逻辑，只接收已锁定 blueprint。
 
