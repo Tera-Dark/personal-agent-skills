@@ -230,9 +230,10 @@ These are user-scored individual tests. **Scores do not automatically change the
 
 ### `artist:kurikabacha`
 - Score: **8.0/10**
-- User feedback: "还可以".
-- Style tags: **精致柔和 / 细腻笔触 / 精致风肖像**
-- Best-fit elements: delicate portrait, soft rendering, refined clothing details, gentle light, decorative close-up composition.
+- User feedback (updated 2026-10-12): **8.0/10**; pseudo-thick-paint rendering with a semi-hazy atmosphere, particularly suitable for classical Chinese and traditional Japanese illustrations.
+- Style tags: **伪厚涂 / 半朦胧感 / 古风 / 日式古典 / 柔和绘画质感**.
+- Best-fit use: elegant classical Chinese or Japanese character portraits and illustrations, soft painterly atmosphere, restrained decorative costume details.
+- Mixing caution: use as a classical painterly specialist; avoid heavy weighting when the target requires extremely crisp modern flat-color character art.
 - Status: individually positive, tier remains manually unassigned.
 
 ### `artist:zhanzhan_lan`
