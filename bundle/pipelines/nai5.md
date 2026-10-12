@@ -418,3 +418,4 @@ Detailed references are separate files. Read only the references required by the
 - `references/weighting.md` (~168 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/nai5-renderer/references/weighting.md
 - `references/negative-strategy.md` (~73 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/nai5-renderer/references/negative-strategy.md
 - `references/single-artist-test-protocol.md` (~793 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/nai5-renderer/references/single-artist-test-protocol.md
+- `references/nai-v5-usage-guide.md` (~11354 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/nai5-renderer/references/nai-v5-usage-guide.md
