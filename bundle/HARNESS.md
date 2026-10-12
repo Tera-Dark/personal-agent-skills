@@ -103,7 +103,7 @@ User corrections override defaults. Preserve locks and rejected items; keep Engl
 | `creative-skill-router` | always/active | Entry point for all creative requests |
 | `character-design-engine` | on-demand/active | Turns a Creative Brief (from aesthetic-director-core) into a complete,... |
 | `illustration-direction` | on-demand/active | Turns a Creative Brief into an authored, model-agnostic illustration... |
-| `small-artist-brain` | on-demand/active | Evidence-driven Xiao-artist visual decision overlay led by a 16-work study... |
+| `small-artist-brain` | on-demand/active | Evidence-driven Xiao-artist visual decision overlay informed by 16 ZHENG... |
 | `anima-renderer` | on-demand/active | Thin Anima-specific renderer that converts a Visual Prompt Packet plus... |
 | `danbooru-tag-gate` | on-demand/active | Web-first validation boundary for Danbooru-derived hard tags shared by... |
 | `general-image-prompt-adapter` | on-demand/active | Model adapter that compiles a finished character or illustration blueprint... |

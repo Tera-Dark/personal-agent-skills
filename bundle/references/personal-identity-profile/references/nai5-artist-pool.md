@@ -17,8 +17,8 @@ Current personal NAI5 experiment rule:
 - 3–8 artists per experiment
 - every artist weight: 0.3–1.2
 - at least one artist must be >1.0
-- canonical artist syntax: `1.05::artist:name::`
-- preserve the `artist:` namespace and any special spelling exactly
+- canonical weighted artist serialization: `1.05::artist:name::` for names NOT ending in digits; for digit-ending names use **one ASCII space before the closing `::`**, e.g. `0.3::artist:mgong520 ::` (user-corrected 2026-10-12; mandatory in NAI5 output)
+- preserve the `artist:` namespace and canonical artist spelling exactly; the trailing protective space is output syntax, not part of the canonical name
 
 Weights belong to a specific experiment. They are not a permanent artist ranking.
 
@@ -356,7 +356,7 @@ These are user-scored individual tests. **Scores do not automatically change the
 #### `artist:mihiro_00122`
 - Status: **permanently blacklisted by user**
 - User feedback:使用时出现与 `yellowshark601` 类似的糊图问题.
-- Blacklist rule: user explicitly requests that **artists whose canonical artist tag contains digits be blacklisted and not considered for future use**.
+- Historical note: an earlier blanket digit-ending exclusion was superseded by the user's explicit 2026-10-12 formatting correction. Digit-ending names are now allowed if otherwise eligible, using a protective space before the closing `::`; this explicitly blacklisted artist remains excluded.
 - Do not include in random artist selection, single-artist testing, or recommended stacks.
 
 #### `artist:tidsean`
@@ -609,13 +609,12 @@ artist:mihiro_00122
 
 Never use these artists in random selection.
 
-#### Global user blacklist rule
+#### Digit-ending artist names: serialization rule vs actual exclusions
 
-- **Any artist tag ending with a digit is blacklisted by default.**
-- Do not test, recommend, or randomly select artist tags whose final character is a digit unless the user explicitly overrides this rule.
-- Current confirmed examples: `artist:yellowshark601`, `artist:mihiro_00122`, `artist:vlfdus_0`, and `artist:zishengtian123`.
-- This is a user-level practical exclusion rule based on repeated observed workflow problems, not a claim about the technical cause of blurry output.
-- Historical combinations may retain blacklisted artists as records, but blacklisted artists must never be emitted into new artist stacks.
+- **User correction (2026-10-12): digit-ending artist names are NOT automatically blacklisted solely for ending in a digit.** The user's NAI5 tutorial identifies a weighted-tag parsing issue. For every eligible artist name whose final character is `0`–`9`, serialize its weighted NAI5 token with **exactly one ASCII space before closing `::`**: `0.3::artist:mgong520 ::,` (correct), NEVER `0.3::artist:mgong520::,`. This includes future digit-ending artist names. Non-digit names retain the regular serialization.
+- An eligible artist such as `mgong520` may be used with the protective trailing space; this rule does not automatically approve unverified tags or previously excluded artists.
+- Explicit individual technical blacklist entries still apply: `artist:yellowshark601`, `artist:mihiro_00122`. Preserve the earlier documented low-signal/problematic `artist:vlfdus_0` and `artist:zishengtian123` as excluded from new stacks unless the user explicitly requests them; their historical appearances are not recommendations.
+- Historical combinations may retain previous spellings as records, but every **new output** must obey the corrected serialization and current specific exclusions.
 
 ### 12. Maintenance rules
 

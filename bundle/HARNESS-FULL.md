@@ -103,7 +103,7 @@ User corrections override defaults. Preserve locks and rejected items; keep Engl
 | `creative-skill-router` | always/active | Entry point for all creative requests |
 | `character-design-engine` | on-demand/active | Turns a Creative Brief (from aesthetic-director-core) into a complete,... |
 | `illustration-direction` | on-demand/active | Turns a Creative Brief into an authored, model-agnostic illustration... |
-| `small-artist-brain` | on-demand/active | Evidence-driven Xiao-artist visual decision overlay led by a 16-work study... |
+| `small-artist-brain` | on-demand/active | Evidence-driven Xiao-artist visual decision overlay informed by 16 ZHENG... |
 | `anima-renderer` | on-demand/active | Thin Anima-specific renderer that converts a Visual Prompt Packet plus... |
 | `danbooru-tag-gate` | on-demand/active | Web-first validation boundary for Danbooru-derived hard tags shared by... |
 | `general-image-prompt-adapter` | on-demand/active | Model adapter that compiles a finished character or illustration blueprint... |
@@ -673,8 +673,8 @@ Current personal NAI5 experiment rule:
 - 3–8 artists per experiment
 - every artist weight: 0.3–1.2
 - at least one artist must be >1.0
-- canonical artist syntax: `1.05::artist:name::`
-- preserve the `artist:` namespace and any special spelling exactly
+- canonical weighted artist serialization: `1.05::artist:name::` for names NOT ending in digits; for digit-ending names use **one ASCII space before the closing `::`**, e.g. `0.3::artist:mgong520 ::` (user-corrected 2026-10-12; mandatory in NAI5 output)
+- preserve the `artist:` namespace and canonical artist spelling exactly; the trailing protective space is output syntax, not part of the canonical name
 
 Weights belong to a specific experiment. They are not a permanent artist ranking.
 
@@ -1012,7 +1012,7 @@ These are user-scored individual tests. **Scores do not automatically change the
 ###### `artist:mihiro_00122`
 - Status: **permanently blacklisted by user**
 - User feedback:使用时出现与 `yellowshark601` 类似的糊图问题.
-- Blacklist rule: user explicitly requests that **artists whose canonical artist tag contains digits be blacklisted and not considered for future use**.
+- Historical note: an earlier blanket digit-ending exclusion was superseded by the user's explicit 2026-10-12 formatting correction. Digit-ending names are now allowed if otherwise eligible, using a protective space before the closing `::`; this explicitly blacklisted artist remains excluded.
 - Do not include in random artist selection, single-artist testing, or recommended stacks.
 
 ###### `artist:tidsean`
@@ -1265,13 +1265,12 @@ artist:mihiro_00122
 
 Never use these artists in random selection.
 
-###### Global user blacklist rule
+###### Digit-ending artist names: serialization rule vs actual exclusions
 
-- **Any artist tag ending with a digit is blacklisted by default.**
-- Do not test, recommend, or randomly select artist tags whose final character is a digit unless the user explicitly overrides this rule.
-- Current confirmed examples: `artist:yellowshark601`, `artist:mihiro_00122`, `artist:vlfdus_0`, and `artist:zishengtian123`.
-- This is a user-level practical exclusion rule based on repeated observed workflow problems, not a claim about the technical cause of blurry output.
-- Historical combinations may retain blacklisted artists as records, but blacklisted artists must never be emitted into new artist stacks.
+- **User correction (2026-10-12): digit-ending artist names are NOT automatically blacklisted solely for ending in a digit.** The user's NAI5 tutorial identifies a weighted-tag parsing issue. For every eligible artist name whose final character is `0`–`9`, serialize its weighted NAI5 token with **exactly one ASCII space before closing `::`**: `0.3::artist:mgong520 ::,` (correct), NEVER `0.3::artist:mgong520::,`. This includes future digit-ending artist names. Non-digit names retain the regular serialization.
+- An eligible artist such as `mgong520` may be used with the protective trailing space; this rule does not automatically approve unverified tags or previously excluded artists.
+- Explicit individual technical blacklist entries still apply: `artist:yellowshark601`, `artist:mihiro_00122`. Preserve the earlier documented low-signal/problematic `artist:vlfdus_0` and `artist:zishengtian123` as excluded from new stacks unless the user explicitly requests them; their historical appearances are not recommendations.
+- Historical combinations may retain previous spellings as records, but every **new output** must obey the corrected serialization and current specific exclusions.
 
 ##### 12. Maintenance rules
 
@@ -5345,7 +5344,7 @@ Tier 4: Micro Accessories (五金扣件/围巾/束带/首饰)
 ---
 
 ## MODULE: illustration-direction
-layer: 02_design · load: on-demand · status: active · module version: 2.4.0 · harness 4.6.0
+layer: 02_design · load: on-demand · status: active · module version: 2.5.0 · harness 4.6.0
 source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_design/illustration-direction
 
 **description:** Turns a Creative Brief into an authored, model-agnostic illustration blueprint — the image thesis, captured moment, visual motif, environment-character relationship, camera and framing, scale contrast, negative space, physical light sources, density map, narrative residue, and one coherent surreal detail. Use for 插画, 氛围图, 竖屏, 半留白, 印象风, 故事感, key visual, poster, scene illustration, cinematic composition, or whenever a character needs to be placed into a designed moment rather than displayed on a plate. Never writes model-specific prompt syntax.
@@ -5376,11 +5375,12 @@ source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_design/i
 - **人物不默认居中、不默认看镜头、不默认占满画面。** 每一项都需要理由。
 - **环境必须做事。** 它至少要承担框住、切割、反射、遮挡、缩小人物、制造尺度差、引导视线、承载动作或留下事件痕迹中的一项。
 - **一个主视觉母题优先于一堆装饰。** 门、镜、鸟、花、长发、水面、窗格、丝带等只有在承担构图功能时才保留。
-- **光必须有物理来源。** 一个主光源 + 方向 + 衰减 + 阴影沉降区。禁止无来源 rim light。
+- **光必须有物理来源。** 一个主光源 + 方向 + 衰减 + 阴影沉降区。禁止无来源 rim light。允许**有目的的局部失边**：白衣可融入透窗高光、暗发可融入深背景，但至少保留脸/手/关键动作的识别通路；不能用全图过曝或柔焦掩盖结构。
 - **背景只保留能解释光、动作、尺度或叙事的层。** 窗 + 城市 + 星空 + 花园 = 多层无关背景 → 删除到只剩真正参与画面的部分。
 - **氛围元素默认不加。** 花瓣、粒子、光点、蝴蝶、星尘、随机晶体不是“空白填充物”；如果删掉它们画面就崩，说明构图本身还没成立。
 - **允许受控遮挡。** 前景建筑、椅背、花枝、镜框、布料、阴影可以切入人物轮廓；完整展示人物不是插画的默认目标。
 - **密度必须不均匀。** 至少一个密集区、一个安静区和一条连接两者的视觉动线。
+- **画幅不能只是一串长宽比。** 极长竖图优先核对上→中→下的视觉接力；横幅优先确定人物关系与横向大形；若是纪念/图文海报，开画之前预留不妨碍主图的标题/副图安全区，精确文案留给后期。
 - **色彩先做大色块，再做局部颜色。** 通常控制在 3–4 个主要色彩质量 + 1 个有意义的强调色。
 - **超现实一次只解决一个问题。** 一个 coherent impossibility 胜过十个随机魔法特效。
 
@@ -5388,7 +5388,7 @@ source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_design/i
 
 ```
 Step 0  画面命题      一句话说明这张图最核心的视觉想法；禁止只写题材或“漂亮场景”。
-Step 1  瞬间          Brief 的【瞬间】：动作前后 0.5 秒。前 1 秒和后 1 秒分别发生了什么？
+Step 1  瞬间/状态     选叙事温度：安静停留 / 微动作 / 戏剧动作 / 寓言并置或编辑画面。动态画面问前后 0.5 秒；静态寓言/展示画面可只锁定有意义的视觉关系，不虚构剧情。
 Step 2  视觉母题      选一个承担框、切、连、引导、反射、缩放或遮挡功能的核心形状/物件/材质。
 Step 3  尺度与人物占比 人物占画面多少？≤1/3 / ≈1/2 / ≥2/3；必须解释为什么。
 Step 4  主构图形      先排大色块/几何形：主质量、对比质量、安静留白、连接动线。
@@ -5399,7 +5399,7 @@ Step 8  主光源          一个。位置、方向、色温、衰减；阴影�
 Step 9  密度图          密集区 / 安静区 / 连接两者的动线；安静区通常是大块单一材质的墙、天、地、水或布。
 Step 10 叙事残留       环境里一件东西的状态说明发生过什么：空椅、未收的物、湿脚印、断开的丝带、错位倒影、磨损地面等。
 Step 11 色块策略       先定 3–4 个主要色彩质量，再定唯一强调色；避免局部颜色无限增殖。
-Step 12 唯一怪点       一个不寻常或超现实事实；必须与画面命题同源。
+Step 12 辨识刺点       一个令人记住的可见事实；可以是平凡日常中的反差/不对称，也可以是超现实事实，但必须与命题同源。无须为了满足字段硬塞魔法。
 Step 13 氛围预设       从 references/atmosphere-presets.md 选一个（或不选）。预设只调光 / 色 / 材质 / 神态，不用来补构图。
 Step 14 减法            删除随机装饰、无因果道具、无关背景层、第二视觉母题和多余光源；记录删掉什么。
 Step 15 缩略图测试      想象缩小到手机缩略图：能否立刻看出大形、人物位置、视觉母题和焦点？不能则回到 Step 0–4。
@@ -5420,15 +5420,17 @@ An illustration blueprint is READY only when visual thesis, captured moment, mot
 **画幅与占比**：竖/横，比例；人物占___，位于___（三分线/边缘/中心）。
 **视线**：看向___；留白在___侧；观众视线路径为___ → ___ → ___。
 **主构图形**：主质量___ / 对比质量___ / 安静区___ / 连接动线___。
+**画幅阅读节奏**：竖图顶部→中央→底部，或横图左→右；若有图文/附图排版，预留___安全区；普通插画可省略。
 **机位**：___高度，从___方向，___裁切；前景遮挡：___/无。
 **人物—环境关系**：环境通过___作用于人物。
 **遮挡计划**：___主动切入人物的___轮廓；保留___作为识别锚点。
 **主光源**：来自___，___色温，衰减到___；阴影沉降在___。第二光源（若有）：___，与主光的关系是___。
+**边缘选择**：___边必须清楚；___处允许融入白光/暗部；面部和主动作仍可读。
 **密度图**：密集区___ / 安静区___ / 动线___。
 **色块策略**：主色质量___ / ___ / ___；强调色___。
 **环境**：只保留___（它解释光/动作/尺度/叙事中的___）。
 **叙事残留**：___
-**唯一怪点**：___；它与画面命题的关系是___。
+**辨识刺点 / 唯一怪点**：___；它与画面命题的关系是___；写实题材允许无超现实。
 **氛围预设**：___（或无）
 **刺点**：___在___。
 **留下的怪**：___
@@ -5472,7 +5474,7 @@ An illustration blueprint is READY only when visual thesis, captured moment, mot
 #### 自检
 
 - [ ] 能用一句视觉句子说明画面命题吗？
-- [ ] 能说出前 1 秒和后 1 秒吗？
+- [ ] 动态画面能说出前 1 秒和后 1 秒吗？静态寓言/编辑海报是否有明确可见的视觉关系？
 - [ ] 有且只有一个主要视觉母题吗？
 - [ ] 环境是否真的对人物做了某件事？
 - [ ] 人物居中 / 看镜头 / 占满画面——如果是，理由是什么？
@@ -5483,20 +5485,20 @@ An illustration blueprint is READY only when visual thesis, captured moment, mot
 - [ ] 花瓣、粒子、光点、蝴蝶等是否被拿来填空？如果是，删除。
 - [ ] 密集区 / 安静区 / 动线是否明确？
 - [ ] 叙事残留是她造成的，还是至少与她的故事有关？
-- [ ] 超现实元素是否只有一个核心怪点？
+- [ ] 如使用超现实元素，是否只有一个核心怪点？不使用时是否仍然有一个独特的现实细节？
 - [ ] 缩略图里能看出重的地方和视觉动线吗？
 - [ ] 删除所有装饰后，画面命题仍然成立吗？
 - [ ] 只开了一个氛围预设吗？
 
 #### 小画师脑 Decision Sheet 交接（按需）
 
-当 `creative-skill-router` 选择 `small-artist-brain` 时，先接收其 `Small Artist Decision Sheet` 再完成本模块的 `Illustration Blueprint`。这是**审美决策约束的交接**，不是第二套插画蓝图：
+当 `creative-skill-router` 选择 `small-artist-brain` 时，先接收其 `Small Artist Decision Sheet` 再完成本模块的 `Illustration Blueprint`。新批次精品插画的逐图证据见 `02_design/small-artist-brain/references/premium-illustration-12-work-study-2026-10.md`，仅在长竖图、编辑海报、双人承重、高调光和跨题材审美校准时按需读取；本模块依旧独占最终构图设计权。这是**审美决策约束的交接**，不是第二套插画蓝图：
 
-- `character_life` → 将性格、动作起因与 A→B→A 的回应关系落实到「瞬间 / 视线 / 手势」，而不是仅写 `romantic tension` 或 `natural expression`。
+- `character_life` → 将性格、动作起因与 A→B→A 的回应关系落实到「瞬间 / 视线 / 手势」，而不是仅写 `romantic tension` 或 `natural expression`。双人图落实具体支点/接触/重量；静态寓言和编辑式海报允许用并置关系替代强行编造动作。
 - `macro_shape` 与 `camera_and_crop` → 在「主构图形 / 机位 / 遮挡计划」中固定共同轮廓、视觉动线和裁切原因。
-- `color_mass` 与 `density` → 对应「色块策略 / 密度图 / 主光源」，把丰富颜色组织到可辨认的大色域，而非给整图随机染色。
+- `color_mass` 与 `density` → 对应「色块策略 / 密度图 / 主光源」，把丰富颜色组织到可辨认的大色域，而非给整图随机染色。新增 `light_and_finish_delta`（如有）指定局部必须保持的硬边与可失去的边缘，避免无目的糊光。
 - `environment_function` 与 `negative_space` → 对应「人物—环境关系 / 留白 / 叙事残留」，环境必须真的改变空间或行为。
-- `identity_locks` 与 `rejected` → 维护原作角色身份、用户约束和已否决方向；不把蒸蒸样本中的花、圆环、胶片等当作固定模板。
+- `identity_locks` 与 `rejected` → 维护原作角色身份、用户约束和已否决方向；不把任何参考样本中的花、伞、鸟、圆环、胶片等当作固定模板。新增 `editorial_delta`（如有）只约束画面类型和安全区，精确文字在后期处理。
 
 优先读取 `02_design/small-artist-brain/SKILL.md`；创作时按需读取该模块的视觉语法文件（zheng-transferable-grammar.md），16 张逐图研究与验收记录仅在解释或复盘时读取。普通插画不强制启用这个模块；`PROMPT ONLY` 仍只交付最终提示词。小画师脑不决定模型语法，也不得跳过本模块的 Blueprint Gate。
 
@@ -6556,17 +6558,17 @@ Before compiling the prompt, ask:
 ---
 
 ## MODULE: small-artist-brain
-layer: 02_design · load: on-demand · status: active · module version: 1.0.0 · harness 4.6.0
+layer: 02_design · load: on-demand · status: active · module version: 1.1.0 · harness 4.6.0
 source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_design/small-artist-brain
 
-**description:** Evidence-driven Xiao-artist visual decision overlay led by a 16-work study of illustrator 蒸蒸 ZHENG. Uses composition, character vitality, palette hierarchy, density, space, gesture and camera to raise illustration taste without copying works. Use for 小画师脑, 小画师审美, 米画师, 蒸蒸, ZHENG, 精美插画, 女性向视觉, 作者感, 人物活人感, 高完成度肖像, 双人互动设计, and visual taste refinement. Does not own character identity, generic aesthetic gates, renderer syntax or Danbooru tags.
+**description:** Evidence-driven Xiao-artist visual decision overlay informed by 16 ZHENG works and 12 additional user-supplied premium commission examples. Uses composition, character vitality, palette hierarchy, density, space, gesture and camera to raise illustration taste without copying works. Use for 小画师脑, 小画师审美, 米画师, 蒸蒸, ZHENG, 精美插画, 女性向视觉, 作者感, 人物活人感, 高完成度肖像, 双人互动设计, and visual taste refinement. Does not own character identity, generic aesthetic gates, renderer syntax or Danbooru tags.
 
 
 ### Small Artist Brain / 小画师脑
 
 #### 定位与证据边界
 
-这是**独立、按需加载的审美决策增强模块**，以用户提供的蒸蒸 ZHENG 16 张委托插画为主要观察依据。不是某位画师的模型 LoRA、不是画师 tag/画风复刻器，更不意味着所有图都要繁花、蝴蝶、绿紫高彩度。
+这是**独立、按需加载的审美决策增强模块**，以用户提供的蒸蒸 ZHENG 16 张委托插画和 2026-10-12 新增的 12 张多题材精品委托插画为可见证据。不是某位画师的模型 LoRA、不是画师 tag/画风复刻器，更不意味着所有图都要繁花、蝴蝶、绿紫高彩度。
 
 **输入**：当轮意图 + identity 固定偏好 + 角色锁定事实 + `aesthetic-director-core` 的 Creative Brief（或已完成设计的 AUDIT 包）+ 可选参考图。  
 **输出**：`Small Artist Decision Sheet`：可被 `illustration-direction` / `character-design-engine` 消费的具体画面约束、人物行为关系、配色与疏密方案及否决项。  
@@ -6580,9 +6582,10 @@ source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_design/s
 
 - `references/zheng-16-work-study.md`：16 张用户上传图逐张证据、差异与跨作品验证。研究任务/质疑某条规则时必读。
 - `references/zheng-transferable-grammar.md`：构图母型、色彩层级、人物气质、疏密、四种肖像模式、原创约束。实际创作优先加载。
+- `references/premium-illustration-12-work-study-2026-10.md`：新增 12 张参考图逐图观察（P01–P12），以及**叙事温度、画幅阅读节奏、高调失边、双人承重、编辑式版面、局部完成度**六种增量机制；当用户要精品大插画、叙事海报、构图多样性、跨题材美商提升时按需加载。
 - `references/style-tests.md`：五种原创跨题材压力测试、0–16 分自检与后续 A/B 记录方法。用户要求验收或纠偏时读取。
 
-源码只写分析文字，不把私稿/委托画作原图、局部重绘、版权声明以外的图像资产复制进公开仓库。样本编号 Z01–Z16 指向本次会话上传顺序；若在另一会话不可见，必须说明只能读取研究结论而非再次查看原图。
+源码只写分析文字，不把私稿/委托原图或局部重绘复制进公开仓库。样本编号 Z01–Z16 对应原有 16 图；P01–P12 对应本次第二批 IMG_2408 等 12 图。**在新对话若原图未被重新提供，只能以文档研究结论为依据，不得声称再次看到了原图。**
 
 #### 不可妥协的审美判断
 
@@ -6595,17 +6598,20 @@ source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_design/s
 7. **至少设计一个不等价的微表情。** 眼神和嘴角、对视和肢体、主动与被动需要不完全一致，形成“活人感”。
 8. **支持从极简到高繁的全部范围。** 观察 Z08 / Z14 / Z07 可知某一个固定复杂度不足以定义审美。不要强制给所有题材加花、动物、圆环、胶片、钟表或亮点。
 9. **原创优先于临摹。** 引用机制，不复写任何一张委托作品的角色/具体道具/布局/主题组合。
+10. **叙事强度必须与题材匹配。** 静谧风景、日常微动作、强戏剧瞬间、寓言/编辑海报是不同方式；不把每幅画都强行解释为剧情高潮或 0.5 秒动作。
+11. **留白和高光也有结构类型。** 区分裙摆承重白、天空/窗光的照明白、情绪缓冲白与版式留白；允许局部亮边消失或深边融入，但脸/手/主关系必须有可辨识的通路。
+12. **珍视构图，不迷信精细。** 真实支撑点、三种景深/笔触分配、画幅尺度与作者主动舍弃，比全图统一精雕细琢、柔焦发光更重要。
 
 #### 工作流：8 次审美决策
 
 ```
-S0 任务定调   确认官方服设/身份锁、画幅、情绪强度与是否允许场景；选 SIMPLE / BALANCED / ORNATE。
+S0 任务定调   确认身份锁、画幅（窄长竖/横幅/双区海报）、叙事温度（静谧/微动作/戏剧/寓言编辑）与密度强度 SIMPLE / BALANCED / ORNATE。
 S1 活人机制   确定主体的性格态度与一秒内的具体行为；双人再定 A→B→A 的反应回路。
 S2 大形       以人物肢体/发丝/衣料/场景物共同组织唯一大形；缩成图标仍有重心。
 S3 机位       选一个真正让动作更有力的视角；先推导裁切和遮挡，再决定景物。
 S4 色群       空气色、承重色、脸手亮区、一个有意义的刺点；允许多局部色但回归三大色群。
 S5 视觉密度   标出主精、次精、弱精；主精只集中在眼/表情/手/关系媒介。
-S6 作者取舍   从 `zheng-transferable-grammar.md` 选 1 个母型机制，不复制具象场景；主动否决 2 个俗套。
+S6 作者取舍   从 `zheng-transferable-grammar.md` 选一个结构母型；如涉及叙事海报/长图/高调白，按需查新 12 例，最多借 1 个强机制 + 1 个次要机制；主动否决 2 个俗套。
 S7 验收交接   通过视觉命题、可见表情、动作承重、配色/疏密、角色身份与原创性检查，输出 Decision Sheet。
 ```
 
@@ -6638,6 +6644,8 @@ color_mass: "空气色 / 承重色 / 人物焦点色 / 唯一刺点"
 density: "主精 / 次精 / 弱精"
 environment_function: "场景如何框住/承重/驱动/留下痕迹"
 negative_space: "位置 + 材质 + 视觉作用"
+editorial_delta: "可选：叙事强度、画幅纵横阅读节奏、文字安全区；无则省略"
+light_and_finish_delta: "可选：保留/主动丢失的轮廓、局部清晰度和材料受光；无则省略"
 identity_locks: "不能变更的角色与服装事实"
 rejected: "至少两种已排除的公式化方向"
 handoff_notes: "传给 Illustration/Character owner 的决定，renderer 不可重设计"
@@ -6656,12 +6664,16 @@ handoff_notes: "传给 Illustration/Character owner 的决定，renderer 不可�
 - [ ] 角色身份、原版服饰、CP 性格是否保持？
 - [ ] 不会被指认为“把 Zxx 的某张构图原样换角色”？
 - [ ] 经过删除测试后作品仍有核心视觉思想？
+- [ ] 狭长竖图是否真的有上下阅读节奏，而非普通构图纵向拉伸？横图若有排版留白，其位置是否在设计开始时确定？
+- [ ] 人物互动是否能说清支点/触点/回应？光亮或暗部失边是否是有意而非失误？
+- [ ] 能解释为何不用过曝、飞鸟、花、拱框、电影光中的其他机制吗？避免把 12 图用成一张图的固定元素包。
 - [ ] 如无实测，不声称已“稳定还原画风”，只声称有可检验的设计规则？
 
 #### References
 
 - `references/zheng-transferable-grammar.md` — 16 作品抽象出的构图、配色、活人表情、疏密与提示词转译规则。
 - `references/zheng-16-work-study.md` — 16 张可见作品的逐张观察，含证据编号、差异和边界。
+- `references/premium-illustration-12-work-study-2026-10.md` — 新批次 12 图观察与跨题材增量：长图节奏、编辑版式、真实承重、主动失边、完成度选择。
 - `references/style-tests.md` — 白底、双人、幻想、深色冷感、古风的原创验收例与评价表。
 
 ---
@@ -6910,6 +6922,117 @@ handoff_notes: "传给 Illustration/Character owner 的决定，renderer 不可�
 
 ---
 
+### Reference: references/premium-illustration-12-work-study-2026-10.md
+
+#### 精品委托插画 12 例观察与审美增量（2026-10-12）
+
+> 来源：用户在 2026-10-12 对话中上传的第二批 12 张插画，编号 P01–P12 与上传文件 IMG_2408、IMG_2412、IMG_2413、IMG_2414、IMG_2415、IMG_2400、IMG_2410、IMG_2411、IMG_2409、IMG_2404、IMG_2406、IMG_2407 一一对应。本文只保留**可见画面**与可迁移的设计机制，不复制委托原图至公开仓库，不推断画师身份/授权、隐藏的原 Prompt、角色背景设定或作品意图。某些图片带有水印/排版字样，只作版式证据，不作为可直接复制的文案。下文「可能传达的情绪」属于审美解读，非作品官方剧情。
+>
+> 与既有“蒸蒸 ZHENG 16 例”平行互补：16 例建立基本人物生命、密度、色彩与微关系语法；本组突出**画幅叙事、被调度的白与黑、实体互动的重量、不同题材的完成度差异、编辑/赠图式排版**。不是新的风格画师列表，也不是生成模型支持这些技法的实测结论。
+
+##### 一、逐张证据：看见什么 → 为什么成立 → 可迁移什么
+
+| ID / 文件 | 可见画面与支配性结构 | 真正有价值的设计机制 | 错误模仿 |
+|---|---|---|---|
+| **P01 / IMG_2408** | 极长竖幅；上部黑色兜帽骷髅/巨大暗体，下方白衣少女与小白色动物被簇拥在白花中；浅色主体被深色弧形罩住，越往下越明亮 | **双尺度庇护/威胁二义性**：暗体不是背景，而是与前景柔弱人物发生视觉关系；白裙、花与骨骼形成危险与温柔并存的情绪；竖幅形成从压迫到释放的阅读次序 | 所有神性图都复制骷髅、兜帽、百合或守护者 |
+| **P02 / IMG_2412** | 狭长竖幅、春日斑驳日光；两名人物一高一低坐靠；上部深色长袖与下部浅粉长发、浅色衣裙相互穿插；画幅下方留出更安静的草地和布料 | **垂直关系与慢节奏**：用高低坐姿及衣摆长度建立空间，不需要都面对镜头；阳光落在手、脸、头发并在下方逐渐稀释 | 把“情侣靠一起＋花草”当成完整关系设计 |
+| **P03 / IMG_2413** | 极宽的浅蓝白双人图；两位人物在画面偏右，白鸽和明亮的布料越过全幅；边界极亮，局部接近白场 | **高调画面的可控失边**：通过少量明确的人脸、深发、绿叶让大块白羽/白布仍可阅读；鸟群既是方向线也是尺度和空气的显示 | 全图平均高曝光、把鸟当万能装饰 |
+| **P04 / IMG_2414** | 长竖幅；浅发白裙女子表情张扬、手臂张开，处于浓暗背景与成团白花之间；衣料跨出身体边界并形成中部最亮的块面 | **光的舞台聚焦＋失控边缘**：人物动作带来大弧线，周围暗园林把白衣推向观看中心；疏密和明暗都是局部而非平均 | 只写唯美白裙、玫瑰、粒子，丢掉人物激烈的身体语言 |
+| **P05 / IMG_2415** | 竖幅深绿色树影；两人靠近同撑一把偏红的伞，红色与衣服、栏杆/前景形成多处呼应；白花簇在右/下边缘 | **唯一有重量的色彩刺点**：红伞控制上部景深与人物间距离；花枝作为前景交错，而非均匀花框；人与伞的相对位置解释遮蔽 | 无缘无故给每张古风双人图加红伞、花墙 |
+| **P06 / IMG_2400** | 宽幅画面中央偏左为赤发人物，巨大橙金鸟翼占据画面两侧，浓缩的风景被大笔触冲开；地面/枝条压低重心 | **主体＋巨大副形同一运动方向**：人物的手臂、衣襟、鸟翼由类似斜轴连接；高动势不靠堆粒子，而靠大体量和彩色笔触的推力 | 随便在人物背后贴一对巨大翅膀或凤凰 |
+| **P07 / IMG_2410** | 并列两版同构图：长者位于后上部，浅发女孩位于前下部；中部有明显手部接触/动作区域、花瓶/玻璃容器与窗棂；右半人物/衣裙接近高亮白场 | **同构图跨曝光呈现两套叙事权重**：保留脸、手、容器后，其余区域可主动减少刻画；重复画幅让观看者直接注意「消失了什么」 | 将极端白化视作万能高级滤镜；认定两联画表达的确切剧情 |
+| **P08 / IMG_2411** | 横图，深色正装人物抱起浅色长裙红发人物，白花/水面环绕，外层用金属弧线作框；手臂和裙摆占据中心，脸是第二读点 | **承重动作创造亲密，而非表情标签**：抱起的腕、膝、支撑与下坠的裙摆必须成为可信身体结构；正装、白裙、红发明确层级 | 人物仅仅并排互看、衣服无重量；把抱姿画成漂浮 |
+| **P09 / IMG_2409** | 横幅左边约大部分是浅蓝织物、两人和装饰边框，右边留一整块纯白设计栏；白栏中有小肖像框和文字 | **真正的编辑排版与大小图对话**：主图/留白/小图三个尺度相互呼应；留白不是丢失内容，而是有使用目的的物理版面 | 让 NAI5 生造可读的复杂文案，或把空白区也填满花纹 |
+| **P10 / IMG_2404** | 农牧场景横幅；右侧金发女子拿长杖、左侧披斗篷者与马，羊、乡间房舍与风车延伸至远景；衣摆受风 | **人物属于世界而非贴在风景前**：草地、群羊、房屋、道具与相对站位讲清地点、关系与气候；粗笔和宽空间保留生活质感 | 所有高质量插画必须神性、花海或精致脸部 |
+| **P11 / IMG_2406** | 室内横图；桌前男子在写字，窗外光斜照桌案；门口女性停住；卷宗、容器、鸟、窗格组织空间 | **环境给故事提供可见证据**：画面看似杂，只有案桌—书写者—门口来客构成阅读路径；纸张和器物为情节留下具体时间感 | 只写“古典书房里的人”、满屏添加无互动道具 |
+| **P12 / IMG_2407** | 竖幅艺术海报；人物放在中央偏上，绿金与奶白/浅橘组成大块，长布带与异形饰品是剪影结构；标题与细字被留出独立区域 | **一幅肖像同时是平面设计品**：大文字、留白和人物视线共享布局；微装饰次于服饰弧线与明暗体量；完成感不是靠纹理多 | 凭关键词“poster”就要求大量乱码标题、十个金色装饰 |
+
+###### 本组反例提醒
+
+- P01 的暗色压迫和 P03 的几乎过曝，不是彼此矛盾的「哪个光更高级」，而是不同叙事命题下的相反手段。
+- P06 强笔触高运动、P10 粗犷乡间、P12 图形化肖像可以同样精美；**“未完成感”与“完稿感”都不等于到处软糊**。
+- P09 的大片留白承担后期文字/附图布局；P02 的大片留白承担情绪缓冲；不能当成同一种空白。
+- P08 的重量、P05 的遮蔽、P11 的视线/距离使人物关系可被理解；双人关系不能靠通用「intimate, romantic」替代。
+
+##### 二、从 12 张图提炼的六项新增机制（仅供小画师审美决策）
+
+###### M-P1「叙事强度选择器」：不是每幅画都要戏剧高潮
+
+先在四档中选一档，只传给插画方向层，不在这里重建完整插画蓝图：
+
+1. **风景性平静**：如 P10 的停留在路上、P02 的互相陪伴；靠身体重量、目光和生活痕迹。
+2. **微型动作**：如 P05 的伞与遮蔽、P11 的书写与门口停步；某个动作带来具体反应。
+3. **强戏剧瞬间**：如 P04 的张开动作、P08 的抱起；镜头、衣摆、光影要回应身体的变化。
+4. **寓言/展示画面**：如 P01 的骷髅—少女尺度关系、P09/P12 的版面命题；可以不强制 0.5 秒行为，但必须有可见的视觉关系。
+
+**拒绝错误**：一律加“上一秒/下一秒”并编造剧情。寓言与编辑式海报的叙事可来自空间并置或图文层级，不要求故事片动作。
+
+###### M-P2「画幅是一种时间」：竖图读法与横图读法不同
+
+- **窄长竖图**：顶部设起势/悬念（P01 暗形、P02 人物上半部），中部放焦点和接触，底部给释放、回声或安静下降；避免把普通 4:5 均匀拉长。
+- **宽幅双人**：共同承重动作、布料和环境可以横贯画幅（P03/P08）；人物未必必须居中，空白要和视线/人物动作构成因果。
+- **编辑式宽幅**：有意划出 **画面叙事区 / 排版安静区 / 可选次要小图**（P09），不要画完整场景再在上面贴字。
+- **竖版个人海报**：主脸＋长布带/服饰形成一条大的纵向视觉力线，文字区域是布局，而非模型生成出的具体内容（P12）。
+
+###### M-P3「白的四种用途」：高明度不是平均低对比
+
+1. **承重白**：裙摆/布料是大主形（P01/P08）。
+2. **照明白**：窗、天空、羽翼或逆光制造局部消失（P03/P07）。
+3. **呼吸白**：人物之外的空气、路、水、草地慢慢退开（P02/P10）。
+4. **版式白**：为小图、题签或后期文字留独立区域（P09）。
+
+**判据**：亮区可丢轮廓，但至少保留一条路径找到脸/手/重要关系。曝光的消失必须是被设计的，不能全图过曝。
+
+###### M-P4「关系有重量」：触点、支点与接受者三连
+
+针对双人：先说明**谁承担谁的重量、动作从哪里施力、另一人以什么微表情或细动作回应**。P08 的抱起、P05 的共伞、P02 的相倚，构图根本不同。
+- 主动作：具体部位（臂弯托膝、手扶肩、袖口掩雨、指尖停在物边）。
+- 作用结果：头发、衣裙、重心、视线、褶皱和空间距离必须同步变化。
+- 次动作：眼与嘴不一定同向；熟人关系可以无声，别自动脸红、接吻、双向微笑。
+
+###### M-P5「中间的第三主角」：环境既能叙事也能排版
+
+人物之外，只保留一个真正工作的第三视觉单位：伞（P05）、窗口与案桌（P11）、鸟群作为同向运动（P03）、大鸟翼（P06）、骷髅暗体（P01）、独立版式白栏（P09）。其他花草、纸面纹理、金边、细节都应服从它。
+- 让第三单位**主动挤压、分隔、连接或改变**角色空间。
+- 不等于每次都必须加入新道具，双人身体的负形本身也可以是第三单位。
+
+###### M-P6「完成度靠选择」：局部坚硬、局部松散
+
+- **高度确定**：面部转折、眼神、接触的手、受力衣领/褶皱。
+- **中度确定**：与动作有关的布料、前景遮挡、重要道具。
+- **自由笔触/主动丢失**：远景草地、暗绿树林、大片衣料、雾光与纸面纹样。
+- **局部轮廓光**：要说明光源物理位置与反射表面；必要时允许头发某段融入背景、白裙某段消失在窗光，其他部位保持轮廓。
+- 由形体、色块和边缘组织产生手绘感；严禁通过全图柔焦、统一颗粒或增加随机粒子“伪造”作者感。
+
+##### 三、可直接交付给其他设计模块的增量字段
+
+这些只是 Small Artist Decision Sheet 的**可选审美约束**，不是第二套 blueprint，也不是模型 prompt 字符串。
+
+- narrative_temperature：quiet / micro-action / dramatic / symbolic-editorial；为什么选这一档。
+- layout_rhythm：竖向起势→焦点→释放，或横向事件区→安静区，或展示型多尺度结构。
+- light_loss_plan：哪些边缘清楚、哪些主动柔化/过曝/融入暗部；如何维持脸手识别。
+- relationship_weight：身体支点、接触部位、目光接收者、布料/动作后果。
+- finish_selectivity：哪个口袋精画、哪个区域用大笔触、哪个区域安静地不解释。
+- text_safe_zone：仅需要海报排版时记录无字版留白位置；**精确文字应后期排版**，不要许诺 NAI5 能稳定拼对长字句。
+
+##### 四、原创生成使用约束与未来跨对话验收
+
+- 每次只选 **1 项强新机制 + 1 项次要支持机制**。不要求同时加入巨型守护者、仪式花束、鸽群、红伞、框边和书本。
+- 用户给的原图是一种**审美证据**，不是授权临摹/去水印/套原作角色外形的清单。
+- 先设画面目的、画幅、身体关系与留白，再考虑 artist stack、质量词、画风混合；这些设置留给 NAI5 renderer 和个人画师池。
+- **纯提示词任务只输出提示词，用户未明确要求生图则绝不生成图片**。
+- 后续评测必须以用户真实 NAI5 出图反馈为依据；本文代表参考图拆解，不代表任何画师串已经通过测试。
+
+###### 三个“同样精美、但绝不能长得一样”的原创验收题
+
+1. **狭长竖幅**：一位自尊心很强的年轻修复师在废弃灯塔夹层里托住突然碎裂的老照片；上方楼梯暗形压住肩背、手心和照片是全幅最精细之处，底部湿墙与大衣退为宽色块。不得复写骷髅护女/白花/守护兽。
+2. **极宽横幅**：两位穿旅装的姐妹在海港登船前拆开一张手写车票；海风用一条帆布对角线把姐妹之间的留白卷起来，真正的视觉焦点是停在半空的手，而非海鸥群或拥抱模板。
+3. **双区编辑画面**：一个谨慎的青年邮递员在破旧邮局门前低头核对一束退回的钥匙；左侧大图为人物与门廊，右侧留低密度排版空间和一个小型钥匙结构剪影；不能照抄蓝裙双人或星形金边框。
+
+评测时看：**去掉花瓣和泛用形容词，画面仍有体积、视线动线、空间因果与情绪吗？** 对微叙事不用强行大事件；对海报不要强行冒出不相干的剧情；对日常不能退化成正面摆拍。
+
+---
+
 ### Reference: references/style-tests.md
 
 #### 小画师脑的实战检验与回归案例
@@ -6963,6 +7086,36 @@ handoff_notes: "传给 Illustration/Character owner 的决定，renderer 不可�
 - 动作：肩头与袖褶顺风落下，手腕自然弯曲，杯由另一手托稳；眼睛不是正对观众。
 - 密度：眼、手、杯沿，底部薄墨山景只做安静块。
 - 审美检验：衣袖动线因风产生，杯有真实支撑。
+
+##### 新增 12 图审美校准的原创压力测试（2026-10-12；未实际跑图）
+
+###### T6 — 极窄竖幅 × 安静寓言（不要强行剧情动作）
+**命题**：一位年轻植物档案员发现自己照顾的无名树苗，影子竟长成了多年后的苍老形态。
+- 主体：约 1:2.6 纵向，顶部巨大旧窗暗形形成压迫，中段人脸和双手护住的幼苗最清楚，底部浅色围裙与地面的影子逐步展开、变得安静。
+- 关键：寓意通过主体/影子尺度并置成立，不强塞挥手、大笑或大群发光鸟。
+- 验收：缩略图能读出暗→亮、上→下的节奏，影子与幼苗在空间里有可解释的位置。
+- 不可接受：照搬骷髅守护白衣少女／花团圣龛的具体布置。
+
+###### T7 — 宽幅自然日常 × 双人距离（不要每次靠拥抱）
+**命题**：出门远行前，一位姐姐蹲下帮弟弟系紧滑落的行李带，弟弟把准备好的车票藏在身后不让她看见。
+- 主体：宽 16:9，人物偏左下，右侧是开阔码头与大片安静天空，风使布带与衣角沿斜线指向远处渡轮。
+- 关键：蹲姿承重、触点、隐瞒的手与目光关系；装饰总量少，色彩以灰青海面/深蓝旅行衣/暖皮肤分组。
+- 验收：去掉人物美化词与装饰物仍能从身体动作读懂关系和出发前的瞬间。
+- 不可接受：让两人并排盯镜头、放一堆花和鸽子填补右侧空海。
+
+###### T8 — 横幅编辑式双区 × 真实留字安全区
+**命题**：一名古董修复师在维修站把最后一片带海盐痕迹的船钟碎瓷放回盒中，旁边留有一幅极小的物件截面图。
+- 主体：总画幅 2.4:1，左侧 65% 人物+工作台叙事主图，右侧 35% 净色纸白区预留标题与唯一插图；右区必须在构图阶段预留，不让发丝和碎片侵入。
+- 光：左上天窗光，手、瓷片受光；服装与墙面大块概括，主形可读。
+- 验收：分别遮住左右区仍有完整的主图和独立排版区；**NAI 输出先做无长字内容图，准确文字由后期排版**。
+- 不可接受：单纯全幅画完后在角落叠乱码金字、照搬蓝白双人纪念海报。
+
+###### T9 — 高调白衣 × 可控失边（不是糊图）
+**命题**：午后暴雨将停，舞台道具师抬起湿透的白布，布后露出一道恰好像门的光。
+- 主体：4:5，白布占据画面约一半但不能抹掉承重手与肩；湿布一部分融入强窗光，另一边仍能靠阴影/褶皱被识别。
+- 焦点：被布拉紧的指节、眼睛、固定在袖口的别针；灰绿的棚内深处提供承重暗块。
+- 验收：光有物理来源、布料有重量，失边仅发生在光照强区，其余关键轮廓清楚。
+- 不可接受：全图发白、无明暗结构、随机长发/花瓣代替风向。
 
 ##### A/B 测试记录模板
 
@@ -7651,6 +7804,7 @@ This module is a target-model adapter. It accepts only a validated blueprint or 
 - Preserve the user artist namespace: artist:name.
 - Artist membership and permanent blacklist belong to personal-identity-profile; renderer only composes the eligible selected stack. The source index may canonically store the same artist as `@name`; for NAI5 output preserve the packet/pool's `artist:name` spelling after the exact same-name namespace bridge is verified. Never emit the source `@name` form into a NAI5 prompt.
 - Weight syntax is target syntax, not design logic: primary / support differences are serialized with NAI5 weight::tag:: form.
+- **CRITICAL NAI5 ARTIST SERIALIZATION / DIGIT-ENDING NAMES (user-corrected 2026-10-12):** If the canonical artist NAME ends with an ASCII digit (0–9), always insert **exactly one ordinary space immediately BEFORE the terminating `::`** in a weighted artist token. Example: `0.3::artist:mgong520 ::,` (**correct**) vs `0.3::artist:mgong520::,` (**wrong**). Non-digit-ending artist names remain `0.4::artist:poppy_yuu::,`. This is output-format protection against the numeric-tag / weight parsing issue reported in the user's NAI5 study; it does NOT change the canonical Danbooru identity and does not independently validate any tag. Apply to every artist stack, single-artist test and final copy-ready output; inspect all tokens before delivery. Do not substitute an artist-wide digit blacklist for this format fix; honor separately and explicitly blacklisted artist identities.
 - Put high-priority subject and composition anchors early.
 - For multi-character V5, prefer NovelAI's official Base Prompt + separate Character Prompt fields. Base controls shared scene, style, framing, and subject counts; each Character Prompt owns one character's identity, appearance, outfit, props, expression, and character-specific action.
 - Put count tags such as 2girls or 1girl, 1boy in the Base Prompt only. In each Character Prompt use the singular type tag such as girl, boy, or other, without a count.
@@ -7757,7 +7911,7 @@ When the user says artist names only / artist exploration, bypass normal content
 5. **复杂度不是纯“细节旋钮”**：阁楼夜景 low complexity 使平均亮度由约 25 降为 10，medium 约 16，high 接近不写；有可能同时降低细节和照明。教程建议删除旧串自带的 medium complexity。【个人化规则】除非当轮确实需要并已测试，否则不自动添加任何 complexity 标签，尤其不自动为“极繁”写 high complexity。
 6. **数据集媒介标签**：background dataset 在报告里更易出现写实风景；fur dataset 容易诱发假署名。它们有副作用，非用户所求不要默认加。
 7. **假署名/假水印**：3D、手办、CG 写实倾向容易产生底部虚构网址、二维码或版权字样。报告对照 6 种子：不处理 6/6；只写负面 signature/watermark 仍 6/6；负面 + 正向 -2::signature, watermark, username, artist name, text, logo:: 后 0/6。**条件性故障修复**，对普通清透小画师图不要无端加入这一长串。copyright notice 可针对假版权行。
-8. **数字结尾画师 Tag 与权重解析**：来源报告称 0.75::artist:pigeon666:: / 1.2::artist:toraishi666:: 在某些串中会被误读并形成噪点，结束 :: 前留空格的 pigeon666 :: 能修复。【个人化规则】用户当前明令**所有数字结尾画师默认排除**，所以此技巧只记录为机制假说及排障线索，不用于自动解禁，也不自动修改真实 canonical tag。
+8. **数字结尾画师 Tag 与权重解析**：来源报告称 `0.75::artist:pigeon666::` / `1.2::artist:toraishi666::` 在某些串中会被误读并形成噪点，结束 `::` 前留空格能修复。【用户明确纠正，2026-10-12：NAI5 输出硬规则】**所有实际输出的、名称以数字结尾的加权画师标签，必须在结尾 `::` 之前加一个 ASCII 半角空格**，如 `0.3::artist:mgong520 ::,`、`0.75::artist:pigeon666 ::,`。`0.3::artist:mgong520::,` 是错误输出。非数字结尾正常写 `1.15::artist:poppy_yuu::,`。此空格是 NAI5 序列化格式，不改变 Danbooru canonical artist 名称；教程记载特定案例有效，不能宣称所有糊图都只由此导致。独立维护用户明确拉黑的具体画师名，**不再对所有数字结尾画师一刀切禁用**。
 9. **长负面并不等于高质量**：来源测试 80 词负面没有额外提升；Negative 应为故障定位服务。关系属性也可由一句话绑定，但涉及多人仍优先 V5 各自 Character Prompt。
 
 ###### A2 画师与画风——先看原作、单画师强表达、谨慎混合
@@ -8010,7 +8164,7 @@ When the user says artist names only / artist exploration, bypass normal content
 
 ###### E4 画师实验与个人评分纪律
 
-- **已收录、已评分、黄色分组、未评分排除、技术黑名单必须先过滤**；用户明确禁用数字结尾名称，则不得自动重新引入。发现新画师优先中国小画师审美，但不按国籍硬排除，审美匹配最重要。
+- **已收录、已评分、黄色分组、未评分排除、技术黑名单必须先过滤**；数字结尾**不是**独立封禁条件，可用的数字结尾画师必须在加权标签的关闭 `::` 前加空格；已经明确拉黑的具体画师仍然不得自动重新引入。发现新画师优先中国小画师审美，但不按国籍硬排除，审美匹配最重要。
 - 候选须核对 Danbooru 确切 Artist Tag 与作品数；用户当前测试阈值 **>40 posts**；镜像/旧榜单计数不可冒充实时主站核验。池外单画师实验：一轮可给五位，但每个实验串只有 1 位画师。
 - **两个阶段分开**：探索对照先测试单画师的脸、笔触、色调、服装、插画完成度；已喜欢的画师再做主辅混合或厚平交替。
 - 单画师权重 **1.15 是用户近期常用测试串**。个人画师池目前规定正常权重上限 **1.2**；教程的 1.6 只能作为【待验证】的**越界 A/B 研究方案**，在用户明确同意放宽该次限制后使用，绝不能静默全局替换。若明确让“仅画师串”，只给简短画师标签。
