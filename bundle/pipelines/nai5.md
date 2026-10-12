@@ -420,7 +420,7 @@ Detailed references are separate files. Read only the references required by the
 - `references/character-block.md` (~635 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/nai5-renderer/references/character-block.md
 - `references/interaction-tags.md` (~564 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/nai5-renderer/references/interaction-tags.md
 - `references/artist-stack.md` (~415 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/nai5-renderer/references/artist-stack.md
-- `references/style-layer.md` (~603 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/nai5-renderer/references/style-layer.md
+- `references/style-layer.md` (~1257 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/nai5-renderer/references/style-layer.md
 - `references/scene-block.md` (~57 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/nai5-renderer/references/scene-block.md
 - `references/tag-taxonomy.md` (~173 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/nai5-renderer/references/tag-taxonomy.md
 - `references/weighting.md` (~168 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/nai5-renderer/references/weighting.md

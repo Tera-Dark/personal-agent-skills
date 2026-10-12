@@ -3,103 +3,66 @@
 
 source: https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/03_prompt/nai5-renderer/references/style-layer.md
 
-## NAI5 Style and Render Layer
+## NAI5 Style / Quality / Complexity Layer — Conditional, Not Boilerplate
 
-### Global Style + Quality Layer
+### Scope and evidence
 
-Place global visual direction before character blocks, while keeping the main subject and framing in the front half of the prompt.
+This reference serializes **optional model-specific style controls**. It cannot choose aesthetics (design) or artist membership (Identity). Detailed source study: `references/nai-v5-usage-guide.md` A1–A4, B4, B6 and E.
 
-### Quality / Aesthetic
+- [Official] NAI V5 UI quality presets may automatically append quality tokens; a generated prompt should not blindly duplicate enabled quality presets.
+- [Community / XiaoKe HTML experiments, 2026-10] Strong artist style frequently dominates generic rendering tags; year tags and generic quality words produced limited visible changes in several controlled tests. These are experimental observations, not universal laws.
+- [Community / source study] `complexity` may change brightness / apparent detail; the cited attic test observed `low complexity` darken an average brightness measure from about 25 to 10.
 
-NovelAI's V5 Full Quality Tags include:
-`very aesthetic, masterpiece, no text`
+### Owner-first output modes
 
-Its Light quality preset includes:
-`very aesthetic, amazing quality, no text`
+1. **Content-only / pure prompt**: output only visual content and necessary relationship sentences. No artists, quality, year, complexity or long Negative. This is the user's common default.
+2. **Artist-only exploration**: one weighted artist token per test, without forced content, year or quality if artist-only was requested. Benchmark variants live in the single-artist protocol.
+3. **Full prompt / explicitly requested style stack**: include approved artist strings; a small subset of quality / era / medium tags may be added only if requested or demonstrably relevant.
+4. **Multi-character**: shared style and quality (if any) belong to Base Prompt; do not repeat them in each Character Prompt.
 
-Official Prompt Tips also recommend `very aesthetic`, `best quality`, and `high quality` when a generation lacks quality.
+### Artist / medium / quality distinction
 
-Common community quality tokens:
-```
-masterpiece
-best quality
-high quality
-very aesthetic
-amazing quality
-absurdres
-highres
-best illustration
-```
+- Artist: dominant illustration language, facial features, palette and sometimes outfit. Selection belongs to Identity, serialization to NAI5 renderer.
+- Medium: watercolor, flat color, cel shading, anime screenshot, ink wash painting, etc. Choose when medium is part of the design, not because it sounds high quality.
+- Quality: `very aesthetic`, `masterpiece`, `best quality`, `high quality` are **optional**, not required in every prompt. Avoid stacking redundant synonyms; check whether UI presets already add them.
+- Year: `year 2025`, `year 2026` only when the user explicitly wants era conditioning, a controlled test baseline, or a known personal preset. Do not claim year is a dependable style switch.
+- Complexity: **do not auto-insert** `low/medium/high/ultra complexity`. Source tests show brightness side effects, so use deliberate A/B only.
 
-Use a coherent subset rather than mechanically stacking every synonym. The goal is a strong quality prior plus the intended visual language.
+### Visual control ordering
 
-### Complexity
+Prefer a minimal order that respects Visual Prompt Core's design lock:
 
-V5 supports:
-```
-low complexity
-medium complexity
-high complexity
-ultra complexity
-```
+1. Optional selected artist / medium, only if output mode calls for them.
+2. Subject and count, framing and camera/crop — protect large faces and negative space in portrait requests.
+3. Identity and *visible* hair, face, garments, colors, props.
+4. Pose and expression, then known effect tags (lighting, theme, palette).
+5. One or two concise NL sentences for exact contact points, material interactions, asymmetry, spatial perspective or light-entry position.
+6. Optional targeted negative weights only when a diagnosed failure warrants them.
 
-For dense premium character illustration, `high complexity` is a sensible starting point. Use `ultra complexity` when the blueprint genuinely calls for very high visual density.
+Model-specific exceptions:
+- [Community / source study] `Text:` can pull subsequent prompt text into drawn lettering. Put actual sign text at the end, or bind it to the carrier using a quoted phrase.
+- [Community / source study] `back` may cue exposed backs; for rear-facing pose use `from behind`.
+- [Community / source study] `silhouette` may hide the face; if face readability is locked, state front fill light explicitly.
+- [Community / source study] Avoid using `camera` as a physical noun in POV sentences unless an actual camera is desired; use `the viewer`.
 
-Supporting terms:
-```
-high detail
-intricate details
-fine details
-```
+### Targeted style suppression
 
-### Rendering / Material
+Examples only, **not baseline boilerplate**:
 
-Choose rendering terms that reinforce the intended look:
-```
-detailed shading
-smooth gradients
-realistic texture
-anime coloring
-painterly
-ligne claire
-cinematic lighting
-depth of field
-ambient occlusion
-global illumination
-```
+    -1::standing::                    # suppress an unwanted default upright pose
+    -2::signature, watermark, username, artist name, text, logo::  # 3D/CG fake watermarks when observed
 
-Avoid contradictory rendering directions simply because each is individually “high quality”.
+Avoid global `-5::artist collaboration::`, `-2::simple illustration::` or high `complexity` merely to force beauty; these can change the intended rendering language and require empirical justification.
 
-### Style Suppression / Control
+### Model-side parameter suggestions
 
-Use targeted negative numerical emphasis when a known style conflict needs suppression:
-```
--2::simple illustration::
--5::artist collaboration::
--1::censored::
-```
+Do not include this in normal prompt text. The source guide reports a starting point of V5 Full / ~23 steps / CFG 5–6, or Medium at the **same final dimensions** for controlled seed screening. Changing dimensions changes composition even with the same seed. Limits, pricing, and UI behavior must be checked at the time of use.
 
-This is control, not a substitute for positive design.
+### Acceptance
 
-### Prompt Order
-
-A practical structure:
-```
-subject + framing,
-year / era,
-weighted artist stack,
-quality + aesthetic,
-complexity,
-rendering,
-targeted style control,
-scene / environment,
-character detail,
-expression / clothing / pose,
-optional quality tail / no text
-```
-
-NovelAI explicitly notes that prompt order matters and recommends keeping the most important information in the front half.
-
-### Principle
-
-Quality tags establish the generation's quality/aesthetic prior; complexity controls density; rendering terms define the material/light treatment; artist tags establish a style prior. None of these replace the underlying character and composition blueprint.
+- [ ] Requested output mode controls optional layers.
+- [ ] No redundant quality / year / complexity boilerplate.
+- [ ] Composition and face remain the first priorities for small-artist portraits.
+- [ ] NL sentences explain relations rather than repeating tags.
+- [ ] Aesthetic role of chosen artists comes from the personal pool.
+- [ ] Any experimentally derived claim is not presented as an official guarantee.
