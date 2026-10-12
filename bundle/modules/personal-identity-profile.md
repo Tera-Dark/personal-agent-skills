@@ -40,6 +40,6 @@ Detailed references are separate files. Read only the references required by the
 - `references/taste-core.md` (~1561 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/personal-identity-profile/references/taste-core.md
 - `references/design-dislikes.md` (~927 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/personal-identity-profile/references/design-dislikes.md
 - `references/taste-signature.md` (~7272 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/personal-identity-profile/references/taste-signature.md
-- `references/nai5-artist-pool.md` (~7703 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/personal-identity-profile/references/nai5-artist-pool.md
+- `references/nai5-artist-pool.md` (~7797 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/personal-identity-profile/references/nai5-artist-pool.md
 - `references/visual-preferences.md` (~440 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/personal-identity-profile/references/visual-preferences.md
 - `references/business-objectives.md` (~309 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/personal-identity-profile/references/business-objectives.md
