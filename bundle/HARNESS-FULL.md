@@ -1165,6 +1165,26 @@ artist:bochishiraita
 - No specific style assessment supplied; do not invent one.
 - Status: scored, low-priority; do not repeatedly recommend as new.
 
+##### 8.3 Scored artist feedback — 2026-10-12 (Chinese-style exploration)
+
+###### `artist:kikihuihui`
+- User score: **7.5/10**.
+- User style assessment: **繁杂细致，色调偏暗**.
+- Style role: detailed, ornament-rich character illustration with relatively dark palette.
+- Already listed in the historical artist tag inventory; this entry adds explicit user scoring and role assessment.
+
+###### `artist:suzumi_(ccroquette)`
+- User score: **8.5/10**.
+- User style assessment: **整体都很精美，适配度综合**.
+- Style role: broadly applicable, highly polished illustration and portrait artist; strong candidate for main-artist testing and blending.
+- Newly added to the scored pool. Preserve the exact Danbooru spelling.
+
+###### `artist:yinco`
+- User score: **7.0/10**.
+- User style assessment: **偏简单肖像**.
+- Style role: simple, character-focused portrait illustration; do not assume ornate scene composition.
+- Newly added to the scored pool.
+
 ##### 9. Current exploration queue
 
 ###### Tier A — verified Red-direction exploration candidates
