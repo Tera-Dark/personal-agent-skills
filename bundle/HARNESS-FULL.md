@@ -8041,74 +8041,69 @@ When the user says artist names only / artist exploration, bypass normal content
 
 #### NAI5 Single-Artist Style Test Protocol
 
-##### Purpose
+##### Purpose / source
 
-Isolate one artist at a time so the user judges the artist itself rather than a mixed-stack interaction.
+Isolate the visual influence of **one eligible artist** so the user can score the artist rather than a mixed-stack interaction. Artist identity, scoring and exclusions are stored ONLY in `00_core/personal-identity-profile/references/nai5-artist-pool.md`.
 
-##### 1. Test rule
+See `references/nai-v5-usage-guide.md` A2, A3, A4 and E4 for source-study evidence and controlled-experiment caveats.
 
-One test contains exactly one artist token.
+##### Hard eligibility rules
 
-Format:
-```text
-1.08::artist:name::, [fixed test content]
-```
+1. Read the current personal artist pool and unscored exclusion list before suggesting a candidate.
+2. Do not retest a scored, rejected, yellow-group, or blacklisted artist as a **new** candidate. All artist tags ending in digits remain user-excluded; an experimental syntax workaround does not lift the exclusion.
+3. New artist discovery requires a verified exact Danbooru artist tag and **>40 Danbooru posts** under the user's current discovery policy; don't invent counts or pretend a mirror is today's primary-site count.
+4. Test candidates are one-per-prompt. Never add supporting artists while claiming it is a single-artist test.
+5. The user may request 5 artists per batch; that means **five separate experiments**, not one five-artist mixed stack.
 
-For a benchmark batch, keep the non-artist content stable. Change only the artist identity, or the artist weight when intentionally testing weight sensitivity.
+##### Output modes — resolve before writing
 
-**Current mandatory test baseline:** include both year tags `year 2025, year 2026` and an explicit compact quality layer in every single-artist test. Do not omit them unless the user explicitly requests a different baseline.
+**A. Artist-only (when requested or context calls for just artist strings):**
 
-##### 2. Neutral benchmark
+    1.15::artist:exact_name::
 
-```text
-1.08::artist:name::, year 2025, year 2026, 1girl, solo, upper body, portrait, three-quarter view, beautiful young woman, long soft hair, clear large eyes, gentle confident expression, refined layered outfit, lace collar, ribbon detail, small hair ornament, one hand lightly touching the collar, clean pale background, masterpiece, best quality, high quality, very aesthetic, high complexity, detailed shading, smooth gradients, anime coloring
-```
+No mandatory content, year, quality or complexity suffixes. One pasteable token per artist.
 
-This exposes face, eyes, hair, linework, shading, clothing construction, accessory handling, color grouping, and commission/OC appeal.
+**B. Fixed content benchmark (when the user requests comparative test prompts):**
 
-##### 3. Red benchmark
+    1.15::artist:exact_name::, 1girl, solo, upper body, three-quarter view, young woman, long flowing hair, elegant layered blouse, detailed collar and ribbons, pearl earrings, one hand resting near her collar, ivory and dusty rose palette, simple white background
 
-For mature/high-demand Red-direction artists, use this after the neutral pass:
+Fix all words except the artist identity. Character face / clothing / composition are intentionally neutral enough to reveal style differences. Use a different benchmark only when the user specifies a subject or the current benchmark is known to unfairly favor a narrow style.
 
-```text
-1.08::artist:name::, year 2025, year 2026, 1girl, solo, upper body, elegant character portrait, three-quarter view, beautiful young woman, long flowing hair, expressive eyes, refined layered costume, intricate collar and sleeve construction, one distinctive accessory, poised gesture, clean negative space, strong focal face and chest area, controlled color palette, soft directional light, masterpiece, best quality, high quality, very aesthetic, high complexity, intricate details, detailed shading, smooth gradients, anime coloring
-```
+**C. Explicit full-style benchmark:** add a compact quality/year layer **only when requested**, or when matching an existing user-approved test condition. If the user's enabled UI quality preset already inserts quality tags, do not duplicate it. Do not automatically add both `year 2025` and `year 2026`, or `high complexity`.
 
-Do not change the benchmark content between artists in the same comparison batch.
+**D. High-weight A/B hypothesis from XiaoKe's tutorial:** the tutorial reports single-artist `1.6::artist:name::` expressing distinctive style more strongly than a diluted multi-artist stack. Treat this as an **optional separate comparison**, holding seed, prompt, aspect ratio and settings fixed. Do not silently replace the user's commonly used `1.15` baseline.
 
-##### 4. Rating rubric
+##### Controlled variables
 
-Score each artist from 1–10:
-- 脸 / 人物第一眼
-- 画风辨识度
-- 色彩与光影
-- 线稿与刻画
-- 服设完成度
-- 小画师 / Red 约稿感
+Use the same non-artist content, canvas dimensions, model/effort, sample steps, CFG, sampler, seed(s), quality settings and Negative across subjects in the same test batch. Do not claim same-seed equivalence after changing image dimensions. If multiple seeds are available, inspect >1 before generalizing.
 
-Optional overall score: average of the six dimensions.
+At minimum judge:
+- face / first-impression appeal
+- individualized eyes and head/face shape
+- lines and painterly/flat-color handling
+- color hierarchy, shading and atmosphere
+- clothing structure and ornament readability
+- small-artist / Chinese female-oriented commission appeal
+- fidelity to requested camera framing and visible body region
+- obvious style bleed or unexpected outfit/body alterations
 
-Do not automatically map scores to the user's four preference tiers. The user decides 夯 / 顶级 / 中等 / 次等.
+##### Feedback handling
 
-##### 5. Feedback semantics
+- User numerical score and exact style wording are authoritative.
+- `排除` without a score → unscored rejection pool; do not manufacture a reason or score.
+- A lower score (e.g. 6–6.5) → archive as scored low-priority; do not re-offer as discovery.
+- User-designated 黄色分组 → record that membership explicitly and do not randomly reuse.
+- A score for one artist does not validate a multi-artist combination; combination reviews are separate.
+- Never automatically convert numerical scores to personal 夯/顶级/中等/次等 categories; the user controls those tiers.
 
-- '喜欢 / 很喜欢' → individual positive evidence
-- '蛮可爱 / 还可以' → direction and strength evidence, no automatic tier promotion
-- '不喜欢' → negative evidence
-- '单人一般，但混搭很好' → combination evidence only
+##### Output check
 
-##### 6. Test order
-
-1. market / high-demand Red benchmark artists
-2. already-liked controls
-3. verified but ungraded artists in the personal pool
-4. newly explored artists after exact-tag and >50-post verification
-
-Do not mix market-Red ranking with the user's personal four-tier ranking until explicitly assigned.
-
-##### 7. Output format
-
-Every test is one copyable block containing one weighted artist and the fixed benchmark content. No separate artist-only block by default.
+- [ ] One actual artist per test.
+- [ ] Five per batch if requested, no display placeholders.
+- [ ] Verified tag and evidence; current count caveat is honest.
+- [ ] Artist-only vs full benchmark matches the user's instruction.
+- [ ] No forced `year`, quality or complexity.
+- [ ] No artist from the scored or excluded pools presented as newly discovered.
 
 ---
 
