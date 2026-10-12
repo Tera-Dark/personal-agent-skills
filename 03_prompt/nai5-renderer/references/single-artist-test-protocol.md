@@ -30,7 +30,7 @@ Fix all words except the artist identity. Character face / clothing / compositio
 
 **C. Explicit full-style benchmark:** add a compact quality/year layer **only when requested**, or when matching an existing user-approved test condition. If the user's enabled UI quality preset already inserts quality tags, do not duplicate it. Do not automatically add both `year 2025` and `year 2026`, or `high complexity`.
 
-**D. High-weight A/B hypothesis from XiaoKe's tutorial:** the tutorial reports single-artist `1.6::artist:name::` expressing distinctive style more strongly than a diluted multi-artist stack. Treat this as an **optional separate comparison**, holding seed, prompt, aspect ratio and settings fixed. Do not silently replace the user's commonly used `1.15` baseline.
+**D. High-weight A/B hypothesis from XiaoKe's tutorial:** the tutorial reports single-artist `1.6::artist:name::` expressing distinctive style more strongly than a diluted multi-artist stack. The owner's current normal artist-weight ceiling is **1.2**. Treat 1.6 as an **out-of-policy research hypothesis** and only run it after the owner explicitly authorizes relaxing the ceiling for that comparison; hold seed, prompt, aspect ratio and settings fixed. Never silently replace the user's `1.15` baseline.
 
 ## Controlled variables
 
