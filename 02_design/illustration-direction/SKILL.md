@@ -3,7 +3,7 @@ name: illustration-direction
 description: Turns a Creative Brief into an authored, model-agnostic illustration blueprint — the image thesis, captured moment, visual motif, environment-character relationship, camera and framing, scale contrast, negative space, physical light sources, density map, narrative residue, and one coherent surreal detail. Use for 插画, 氛围图, 竖屏, 半留白, 印象风, 故事感, key visual, poster, scene illustration, cinematic composition, or whenever a character needs to be placed into a designed moment rather than displayed on a plate. Never writes model-specific prompt syntax.
 metadata:
   author: Tera-Dark
-  version: "2.4.0"
+  version: "2.5.0"
   layer: "02_design"
   load: "on-demand"
   status: "active"
@@ -35,11 +35,12 @@ metadata:
 - **人物不默认居中、不默认看镜头、不默认占满画面。** 每一项都需要理由。
 - **环境必须做事。** 它至少要承担框住、切割、反射、遮挡、缩小人物、制造尺度差、引导视线、承载动作或留下事件痕迹中的一项。
 - **一个主视觉母题优先于一堆装饰。** 门、镜、鸟、花、长发、水面、窗格、丝带等只有在承担构图功能时才保留。
-- **光必须有物理来源。** 一个主光源 + 方向 + 衰减 + 阴影沉降区。禁止无来源 rim light。
+- **光必须有物理来源。** 一个主光源 + 方向 + 衰减 + 阴影沉降区。禁止无来源 rim light。允许**有目的的局部失边**：白衣可融入透窗高光、暗发可融入深背景，但至少保留脸/手/关键动作的识别通路；不能用全图过曝或柔焦掩盖结构。
 - **背景只保留能解释光、动作、尺度或叙事的层。** 窗 + 城市 + 星空 + 花园 = 多层无关背景 → 删除到只剩真正参与画面的部分。
 - **氛围元素默认不加。** 花瓣、粒子、光点、蝴蝶、星尘、随机晶体不是“空白填充物”；如果删掉它们画面就崩，说明构图本身还没成立。
 - **允许受控遮挡。** 前景建筑、椅背、花枝、镜框、布料、阴影可以切入人物轮廓；完整展示人物不是插画的默认目标。
 - **密度必须不均匀。** 至少一个密集区、一个安静区和一条连接两者的视觉动线。
+- **画幅不能只是一串长宽比。** 极长竖图优先核对上→中→下的视觉接力；横幅优先确定人物关系与横向大形；若是纪念/图文海报，开画之前预留不妨碍主图的标题/副图安全区，精确文案留给后期。
 - **色彩先做大色块，再做局部颜色。** 通常控制在 3–4 个主要色彩质量 + 1 个有意义的强调色。
 - **超现实一次只解决一个问题。** 一个 coherent impossibility 胜过十个随机魔法特效。
 
@@ -47,7 +48,7 @@ metadata:
 
 ```
 Step 0  画面命题      一句话说明这张图最核心的视觉想法；禁止只写题材或“漂亮场景”。
-Step 1  瞬间          Brief 的【瞬间】：动作前后 0.5 秒。前 1 秒和后 1 秒分别发生了什么？
+Step 1  瞬间/状态     选叙事温度：安静停留 / 微动作 / 戏剧动作 / 寓言并置或编辑画面。动态画面问前后 0.5 秒；静态寓言/展示画面可只锁定有意义的视觉关系，不虚构剧情。
 Step 2  视觉母题      选一个承担框、切、连、引导、反射、缩放或遮挡功能的核心形状/物件/材质。
 Step 3  尺度与人物占比 人物占画面多少？≤1/3 / ≈1/2 / ≥2/3；必须解释为什么。
 Step 4  主构图形      先排大色块/几何形：主质量、对比质量、安静留白、连接动线。
@@ -58,7 +59,7 @@ Step 8  主光源          一个。位置、方向、色温、衰减；阴影�
 Step 9  密度图          密集区 / 安静区 / 连接两者的动线；安静区通常是大块单一材质的墙、天、地、水或布。
 Step 10 叙事残留       环境里一件东西的状态说明发生过什么：空椅、未收的物、湿脚印、断开的丝带、错位倒影、磨损地面等。
 Step 11 色块策略       先定 3–4 个主要色彩质量，再定唯一强调色；避免局部颜色无限增殖。
-Step 12 唯一怪点       一个不寻常或超现实事实；必须与画面命题同源。
+Step 12 辨识刺点       一个令人记住的可见事实；可以是平凡日常中的反差/不对称，也可以是超现实事实，但必须与命题同源。无须为了满足字段硬塞魔法。
 Step 13 氛围预设       从 references/atmosphere-presets.md 选一个（或不选）。预设只调光 / 色 / 材质 / 神态，不用来补构图。
 Step 14 减法            删除随机装饰、无因果道具、无关背景层、第二视觉母题和多余光源；记录删掉什么。
 Step 15 缩略图测试      想象缩小到手机缩略图：能否立刻看出大形、人物位置、视觉母题和焦点？不能则回到 Step 0–4。
@@ -79,15 +80,17 @@ An illustration blueprint is READY only when visual thesis, captured moment, mot
 **画幅与占比**：竖/横，比例；人物占___，位于___（三分线/边缘/中心）。
 **视线**：看向___；留白在___侧；观众视线路径为___ → ___ → ___。
 **主构图形**：主质量___ / 对比质量___ / 安静区___ / 连接动线___。
+**画幅阅读节奏**：竖图顶部→中央→底部，或横图左→右；若有图文/附图排版，预留___安全区；普通插画可省略。
 **机位**：___高度，从___方向，___裁切；前景遮挡：___/无。
 **人物—环境关系**：环境通过___作用于人物。
 **遮挡计划**：___主动切入人物的___轮廓；保留___作为识别锚点。
 **主光源**：来自___，___色温，衰减到___；阴影沉降在___。第二光源（若有）：___，与主光的关系是___。
+**边缘选择**：___边必须清楚；___处允许融入白光/暗部；面部和主动作仍可读。
 **密度图**：密集区___ / 安静区___ / 动线___。
 **色块策略**：主色质量___ / ___ / ___；强调色___。
 **环境**：只保留___（它解释光/动作/尺度/叙事中的___）。
 **叙事残留**：___
-**唯一怪点**：___；它与画面命题的关系是___。
+**辨识刺点 / 唯一怪点**：___；它与画面命题的关系是___；写实题材允许无超现实。
 **氛围预设**：___（或无）
 **刺点**：___在___。
 **留下的怪**：___
@@ -131,7 +134,7 @@ An illustration blueprint is READY only when visual thesis, captured moment, mot
 ## 自检
 
 - [ ] 能用一句视觉句子说明画面命题吗？
-- [ ] 能说出前 1 秒和后 1 秒吗？
+- [ ] 动态画面能说出前 1 秒和后 1 秒吗？静态寓言/编辑海报是否有明确可见的视觉关系？
 - [ ] 有且只有一个主要视觉母题吗？
 - [ ] 环境是否真的对人物做了某件事？
 - [ ] 人物居中 / 看镜头 / 占满画面——如果是，理由是什么？
@@ -142,20 +145,20 @@ An illustration blueprint is READY only when visual thesis, captured moment, mot
 - [ ] 花瓣、粒子、光点、蝴蝶等是否被拿来填空？如果是，删除。
 - [ ] 密集区 / 安静区 / 动线是否明确？
 - [ ] 叙事残留是她造成的，还是至少与她的故事有关？
-- [ ] 超现实元素是否只有一个核心怪点？
+- [ ] 如使用超现实元素，是否只有一个核心怪点？不使用时是否仍然有一个独特的现实细节？
 - [ ] 缩略图里能看出重的地方和视觉动线吗？
 - [ ] 删除所有装饰后，画面命题仍然成立吗？
 - [ ] 只开了一个氛围预设吗？
 
 ## 小画师脑 Decision Sheet 交接（按需）
 
-当 `creative-skill-router` 选择 `small-artist-brain` 时，先接收其 `Small Artist Decision Sheet` 再完成本模块的 `Illustration Blueprint`。这是**审美决策约束的交接**，不是第二套插画蓝图：
+当 `creative-skill-router` 选择 `small-artist-brain` 时，先接收其 `Small Artist Decision Sheet` 再完成本模块的 `Illustration Blueprint`。新批次精品插画的逐图证据见 `02_design/small-artist-brain/references/premium-illustration-12-work-study-2026-10.md`，仅在长竖图、编辑海报、双人承重、高调光和跨题材审美校准时按需读取；本模块依旧独占最终构图设计权。这是**审美决策约束的交接**，不是第二套插画蓝图：
 
-- `character_life` → 将性格、动作起因与 A→B→A 的回应关系落实到「瞬间 / 视线 / 手势」，而不是仅写 `romantic tension` 或 `natural expression`。
+- `character_life` → 将性格、动作起因与 A→B→A 的回应关系落实到「瞬间 / 视线 / 手势」，而不是仅写 `romantic tension` 或 `natural expression`。双人图落实具体支点/接触/重量；静态寓言和编辑式海报允许用并置关系替代强行编造动作。
 - `macro_shape` 与 `camera_and_crop` → 在「主构图形 / 机位 / 遮挡计划」中固定共同轮廓、视觉动线和裁切原因。
-- `color_mass` 与 `density` → 对应「色块策略 / 密度图 / 主光源」，把丰富颜色组织到可辨认的大色域，而非给整图随机染色。
+- `color_mass` 与 `density` → 对应「色块策略 / 密度图 / 主光源」，把丰富颜色组织到可辨认的大色域，而非给整图随机染色。新增 `light_and_finish_delta`（如有）指定局部必须保持的硬边与可失去的边缘，避免无目的糊光。
 - `environment_function` 与 `negative_space` → 对应「人物—环境关系 / 留白 / 叙事残留」，环境必须真的改变空间或行为。
-- `identity_locks` 与 `rejected` → 维护原作角色身份、用户约束和已否决方向；不把蒸蒸样本中的花、圆环、胶片等当作固定模板。
+- `identity_locks` 与 `rejected` → 维护原作角色身份、用户约束和已否决方向；不把任何参考样本中的花、伞、鸟、圆环、胶片等当作固定模板。新增 `editorial_delta`（如有）只约束画面类型和安全区，精确文字在后期处理。
 
 优先读取 `02_design/small-artist-brain/SKILL.md`；创作时按需读取该模块的视觉语法文件（zheng-transferable-grammar.md），16 张逐图研究与验收记录仅在解释或复盘时读取。普通插画不强制启用这个模块；`PROMPT ONLY` 仍只交付最终提示词。小画师脑不决定模型语法，也不得跳过本模块的 Blueprint Gate。
 
