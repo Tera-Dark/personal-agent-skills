@@ -253,7 +253,7 @@ def main() -> int:
                 break
             if "::artist:" in line:
                 stack_lines.append(line)
-        default_artists = re.findall(r"artist:([^,:]+?)::", "\\n".join(stack_lines))
+        default_artists = re.findall(r"artist:([^,:]+?)::", " ".join(stack_lines))
         require(bool(default_artists), "could not parse the current standby artist stack", failures)
         explicit_exclusions = {"yellowshark601", "mihiro_00122", "vlfdus_0", "zishengtian123"}
         for artist_token in default_artists:
