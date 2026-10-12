@@ -29,7 +29,7 @@ metadata:
 - `references/zheng-16-work-study.md`：16 张用户上传图逐张证据、差异与跨作品验证。研究任务/质疑某条规则时必读。
 - `references/zheng-transferable-grammar.md`：构图母型、色彩层级、人物气质、疏密、四种肖像模式、原创约束。实际创作优先加载。
 - `references/premium-illustration-12-work-study-2026-10.md`：新增 12 张参考图逐图观察（P01–P12），以及**叙事温度、画幅阅读节奏、高调失边、双人承重、编辑式版面、局部完成度**六种增量机制；当用户要精品大插画、叙事海报、构图多样性、跨题材美商提升时按需加载。
-- `references/style-tests.md`：五种原创跨题材压力测试、0–16 分自检与后续 A/B 记录方法。用户要求验收或纠偏时读取。
+- `references/style-tests.md`：九种原创跨题材压力测试（含本次新增的长竖图、双人真实承重、编辑式留白、高调失边）、0–16 分自检与后续 A/B 记录方法。用户要求验收或纠偏时读取。
 
 源码只写分析文字，不把私稿/委托原图或局部重绘复制进公开仓库。样本编号 Z01–Z16 对应原有 16 图；P01–P12 对应本次第二批 IMG_2408 等 12 图。**在新对话若原图未被重新提供，只能以文档研究结论为依据，不得声称再次看到了原图。**
 
@@ -52,7 +52,7 @@ metadata:
 
 ```
 S0 任务定调   确认身份锁、画幅（窄长竖/横幅/双区海报）、叙事温度（静谧/微动作/戏剧/寓言编辑）与密度强度 SIMPLE / BALANCED / ORNATE。
-S1 活人机制   确定主体的性格态度与一秒内的具体行为；双人再定 A→B→A 的反应回路。
+S1 活人机制   动态场景锁定性格与一秒内的具体行为，双人再定 A→B→A 反应；静谧/寓言/编辑式场景允许用姿态、并置与环境证据承载态度。
 S2 大形       以人物肢体/发丝/衣料/场景物共同组织唯一大形；缩成图标仍有重心。
 S3 机位       选一个真正让动作更有力的视角；先推导裁切和遮挡，再决定景物。
 S4 色群       空气色、承重色、脸手亮区、一个有意义的刺点；允许多局部色但回归三大色群。
@@ -78,7 +78,7 @@ S7 验收交接   通过视觉命题、可见表情、动作承重、配色/疏�
 
 ```yaml
 mode: SIMPLE | BALANCED | ORNATE
-source_mechanism: "借用 Zxx 的哪种可迁移构图/色彩机制（可空，不抄原画）"
+source_mechanism: "借用 Zxx 或 Pxx 的哪种可迁移机制（可空，不复写原画场景、角色或构图组合）"
 character_life:
   temperament: "具体性格在这一秒如何表露"
   face: "眼/嘴/眉的一处非标准表情"
@@ -120,4 +120,4 @@ handoff_notes: "传给 Illustration/Character owner 的决定，renderer 不可�
 - `references/zheng-transferable-grammar.md` — 16 作品抽象出的构图、配色、活人表情、疏密与提示词转译规则。
 - `references/zheng-16-work-study.md` — 16 张可见作品的逐张观察，含证据编号、差异和边界。
 - `references/premium-illustration-12-work-study-2026-10.md` — 新批次 12 图观察与跨题材增量：长图节奏、编辑版式、真实承重、主动失边、完成度选择。
-- `references/style-tests.md` — 白底、双人、幻想、深色冷感、古风的原创验收例与评价表。
+- `references/style-tests.md` — 白底、双人、幻想、深色冷感、古风、长竖图、宽幅日常、编辑双区、高调失边等原创验收例与评价表。
