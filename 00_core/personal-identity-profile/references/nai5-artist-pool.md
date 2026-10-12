@@ -474,6 +474,19 @@ artist:bochishiraita
 - Strongest hypothesized use: dreamy, luminous anime girl portraits and elegant fantasy game-character illustration; further role-specific performance remains to be tested.
 - Preserve the user's style description as authoritative; do not imply a higher score or universal suitability.
 
+### `artist:fuzichoco`
+- User score: **7.5/10**.
+- Style: **华丽的上色风格 / 精美 / 华丽感插画**.
+- Best use: richly colored, ornate fantasy character illustrations; do not assume it is the default clean portrait style.
+- Status: accepted, scored artist.
+
+### `artist:riko_(rik0ring)`
+- User score: **7.0/10**.
+- Group: **黄色分组** (user-assigned yellow category; keep separate from positive default recommendations).
+- Style: **单人物类 / 专精小女孩 / 皮肤质感良好**.
+- Best use: individual young-girl character illustrations and skin rendering; not a general-purpose main artist.
+- Status: scored but yellow-group; exclude from default random auxiliary selection and new-discovery recommendations.
+
 ## 9. Current exploration queue
 
 ### Tier A — verified Red-direction exploration candidates
@@ -528,6 +541,9 @@ These artist tags were shown to the user, and the user explicitly rejected them 
 ~~~text
 artist:kamisato_sora
 artist:amakaze_sora
+artist:necomi
+artist:gomzi
+artist:sakura_oriko
 ~~~
 
 ## 11. Permanent exclusion
