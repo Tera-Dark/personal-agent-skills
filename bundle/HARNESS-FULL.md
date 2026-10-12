@@ -8003,7 +8003,7 @@ When the user says artist names only / artist exploration, bypass normal content
 - **已收录、已评分、黄色分组、未评分排除、技术黑名单必须先过滤**；用户明确禁用数字结尾名称，则不得自动重新引入。发现新画师优先中国小画师审美，但不按国籍硬排除，审美匹配最重要。
 - 候选须核对 Danbooru 确切 Artist Tag 与作品数；用户当前测试阈值 **>40 posts**；镜像/旧榜单计数不可冒充实时主站核验。池外单画师实验：一轮可给五位，但每个实验串只有 1 位画师。
 - **两个阶段分开**：探索对照先测试单画师的脸、笔触、色调、服装、插画完成度；已喜欢的画师再做主辅混合或厚平交替。
-- 单画师权重 **1.15 是用户近期常用测试串**；教程的 1.6 应作为【待验证】的 A/B 高权重版本，不能静默全局替换。若明确让“仅画师串”，只给简短画师标签。
+- 单画师权重 **1.15 是用户近期常用测试串**。个人画师池目前规定正常权重上限 **1.2**；教程的 1.6 只能作为【待验证】的**越界 A/B 研究方案**，在用户明确同意放宽该次限制后使用，绝不能静默全局替换。若明确让“仅画师串”，只给简短画师标签。
 - 对照至少锁定相同提示词、画幅、采样器、CFG、steps、种子；**同画幅**下 Medium→Full 看接近的构图，换画幅后不要仍称固定 seed 可严格复现。
 - 用户评分优先权最高：记录分数、原话、日期、风格职能；没有评分的仅列排除，不能硬编理由；低分和黄色组不得作为默认辅助。
 - 新增来源技巧应标注【来源实测】，在用户自己复现前不要升级为【个人实验验证】。
@@ -8071,7 +8071,7 @@ Fix all words except the artist identity. Character face / clothing / compositio
 
 **C. Explicit full-style benchmark:** add a compact quality/year layer **only when requested**, or when matching an existing user-approved test condition. If the user's enabled UI quality preset already inserts quality tags, do not duplicate it. Do not automatically add both `year 2025` and `year 2026`, or `high complexity`.
 
-**D. High-weight A/B hypothesis from XiaoKe's tutorial:** the tutorial reports single-artist `1.6::artist:name::` expressing distinctive style more strongly than a diluted multi-artist stack. Treat this as an **optional separate comparison**, holding seed, prompt, aspect ratio and settings fixed. Do not silently replace the user's commonly used `1.15` baseline.
+**D. High-weight A/B hypothesis from XiaoKe's tutorial:** the tutorial reports single-artist `1.6::artist:name::` expressing distinctive style more strongly than a diluted multi-artist stack. The owner's current normal artist-weight ceiling is **1.2**. Treat 1.6 as an **out-of-policy research hypothesis** and only run it after the owner explicitly authorizes relaxing the ceiling for that comparison; hold seed, prompt, aspect ratio and settings fixed. Never silently replace the user's `1.15` baseline.
 
 ##### Controlled variables
 

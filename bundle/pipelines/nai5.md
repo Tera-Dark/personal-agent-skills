@@ -414,8 +414,8 @@ When the user says artist names only / artist exploration, bypass normal content
 
 Detailed references are separate files. Read only the references required by the current task; do not fetch every reference by default. Each URL points to the generated, version-matched source for this Harness build.
 
-- `references/nai-v5-usage-guide.md` (~11354 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/nai5-renderer/references/nai-v5-usage-guide.md
-- `references/single-artist-test-protocol.md` (~1127 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/nai5-renderer/references/single-artist-test-protocol.md
+- `references/nai-v5-usage-guide.md` (~11393 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/nai5-renderer/references/nai-v5-usage-guide.md
+- `references/single-artist-test-protocol.md` (~1163 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/nai5-renderer/references/single-artist-test-protocol.md
 - `references/community-format.md` (~932 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/nai5-renderer/references/community-format.md
 - `references/character-block.md` (~635 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/nai5-renderer/references/character-block.md
 - `references/interaction-tags.md` (~564 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/nai5-renderer/references/interaction-tags.md
