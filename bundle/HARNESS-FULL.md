@@ -663,7 +663,7 @@ Character identity > decoration.
 
 > Canonical personal artist pool for NovelAI V5 experiments.
 >
-> Updated: 2026-10-09
+> Updated: 2026-10-12
 
 ##### 1. Pool semantics
 
@@ -1126,6 +1126,15 @@ artist:luckyia
 artist:bochishiraita
 ~~~
 
+##### 8.1 Newly scored single-artist feedback — 2026-10-12
+
+###### `artist:anmi`
+- User score: **7.5/10**.
+- User style assessment: **清透精美梦幻二游风** (translucent, refined, dreamy gacha-game illustration aesthetic).
+- Status: **scored artist in the accepted pool**, not an untested discovery candidate.
+- Strongest hypothesized use: dreamy, luminous anime girl portraits and elegant fantasy game-character illustration; further role-specific performance remains to be tested.
+- Preserve the user's style description as authoritative; do not imply a higher score or universal suitability.
+
 ##### 9. Current exploration queue
 
 ###### Tier A — verified Red-direction exploration candidates
@@ -1157,7 +1166,7 @@ The three already tested above should now be treated as **measured controls**, n
 
 When expanding the pool, use this order:
 
-1. domestic creator ecosystem first: 小红书 / 米画师 / 微博 / OC-focused Chinese communities
+1. search across creator ecosystems globally (including 小红书 / 米画师 / 微博 / Pixiv / X and other OC/illustration communities); do not impose a nationality restriction
 2. inspect the creator's actual body of work for the user's target zone:
    - female-oriented anime character work
    - OC / 二游 / character illustration
@@ -1166,12 +1175,21 @@ When expanding the pool, use this order:
    - collectible / commission appeal
    - clean or intentionally localized high density
 3. verify the **exact Danbooru artist tag**
-4. require **>50 posts** before entering the experimental pool
-5. run a controlled NAI5 portrait test
+4. require **>40 Danbooru posts** for the current user-requested discovery tests; verify exact tag and count before claiming eligibility
+5. check both the scored artist pool and the unscored discovery rejection pool before recommending; run a controlled **single-artist** NAI5 portrait test for newly discovered artists
 6. classify by user feedback, with style-role tags recorded alongside the score
 7. only treat a style-role hypothesis as confirmed when the user's actual NAI5 output supports it
 
 Do not reverse this order by discovering a random Danbooru artist first and retroactively calling them a "小画师".
+
+##### 10.1 Unscored discovery rejection pool
+
+These artist tags were shown to the user, and the user explicitly rejected them **without assigning a score**. Do not recommend, re-test, or include them in exploratory artist stacks unless the user explicitly removes the exclusion. Keep separate from scored artists and technical blacklists.
+
+~~~text
+artist:kamisato_sora
+artist:amakaze_sora
+~~~
 
 ##### 11. Permanent exclusion
 
