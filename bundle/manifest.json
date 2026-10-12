@@ -8,7 +8,7 @@
   "harness_full_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS-FULL.md",
   "handshake": "Harness v4.6.0 loaded · 17 modules · 说需求，或发参考图。",
   "core_tokens": 6523,
-  "full_tokens": 143925,
+  "full_tokens": 144283,
   "pipeline": {
     "aesthetic_gate": "aesthetic-director-core",
     "blueprint_gate": {
@@ -544,6 +544,8 @@
       "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/03_prompt/nai5-renderer",
       "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/nai5-renderer.md",
       "references": [
+        "references/nai-v5-usage-guide.md",
+        "references/single-artist-test-protocol.md",
         "references/community-format.md",
         "references/character-block.md",
         "references/interaction-tags.md",
@@ -552,11 +554,21 @@
         "references/scene-block.md",
         "references/tag-taxonomy.md",
         "references/weighting.md",
-        "references/negative-strategy.md",
-        "references/single-artist-test-protocol.md",
-        "references/nai-v5-usage-guide.md"
+        "references/negative-strategy.md"
       ],
       "reference_files": [
+        {
+          "path": "references/nai-v5-usage-guide.md",
+          "bundle_path": "bundle/references/nai5-renderer/references/nai-v5-usage-guide.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/nai5-renderer/references/nai-v5-usage-guide.md",
+          "tokens": 11354
+        },
+        {
+          "path": "references/single-artist-test-protocol.md",
+          "bundle_path": "bundle/references/nai5-renderer/references/single-artist-test-protocol.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/nai5-renderer/references/single-artist-test-protocol.md",
+          "tokens": 793
+        },
         {
           "path": "references/community-format.md",
           "bundle_path": "bundle/references/nai5-renderer/references/community-format.md",
@@ -610,23 +622,11 @@
           "bundle_path": "bundle/references/nai5-renderer/references/negative-strategy.md",
           "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/nai5-renderer/references/negative-strategy.md",
           "tokens": 73
-        },
-        {
-          "path": "references/single-artist-test-protocol.md",
-          "bundle_path": "bundle/references/nai5-renderer/references/single-artist-test-protocol.md",
-          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/nai5-renderer/references/single-artist-test-protocol.md",
-          "tokens": 793
-        },
-        {
-          "path": "references/nai-v5-usage-guide.md",
-          "bundle_path": "bundle/references/nai5-renderer/references/nai-v5-usage-guide.md",
-          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/nai5-renderer/references/nai-v5-usage-guide.md",
-          "tokens": 11354
         }
       ],
-      "tokens_skill": 1806,
-      "tokens_bundle": 2499,
-      "tokens_full_bundle": 17894
+      "tokens_skill": 2165,
+      "tokens_bundle": 2858,
+      "tokens_full_bundle": 18253
     },
     {
       "name": "visual-prompt-core",

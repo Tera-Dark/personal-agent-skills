@@ -347,6 +347,11 @@ This module is a target-model adapter. It accepts only a validated blueprint or 
 - Use single-field pipe serialization (Base Prompt | Character 1 | Character 2) only when the user explicitly wants a one-block copyable prompt or cannot use separate fields. Official documentation describes this syntax, but recent community reports disagree about its current reliability on V5. Do not imply it is guaranteed; separate fields remain the default.
 - Never mix pipe syntax with separate Character Prompt boxes. They are alternative input methods, not additive layers.
 - Keep scene information only when it affects composition, action, light, scale, or narrative reading.
+- Apply the source-grounded NAI5 model-specific patterns in `references/nai-v5-usage-guide.md` **on demand** (A writing/style/parameters, B task-specific controls, C limits, D summary, E personal execution). It is a reference, not another design owner; do not load the 24-chapter document for trivial artist-only requests.
+- [Community / source study] Prefer verified Danbooru tags for stable visual facts, framing and known effects; use one concise natural-language sentence for contact points, relative depth, asymmetry, light source position, and POV foreground. Do not mechanically repeat a tag in prose.
+- Year, quality and complexity words are conditional style extras, not guaranteed improvements. Respect the user's explicit 'content only / no artist / no year / no quality' modes; avoid forced `medium complexity` or `high complexity` insertion.
+- For single-artist exploration, respect `references/single-artist-test-protocol.md`: exactly one tested artist, with benchmark content only if requested, and optional 1.6 weight as a controlled A/B rather than silently overriding the owner's 1.15 baseline.
+- Treat the source tutorial's reported hit rates and price/limit numbers as experiment context rather than immutable V5 model guarantees.
 - Negative is omitted by default unless requested or necessary for a specific targeted correction.
 - Do not solve design-layer problems by adding more tags.
 - Model-behavior claims use Kernel evidence labels: [Official], [Community], [Personal experiment], or [Unverified].
@@ -393,6 +398,7 @@ When the user says artist names only / artist exploration, bypass normal content
 - [ ] user fixed Negative remains external unless requested
 
 #### References
+- `references/nai-v5-usage-guide.md` — 24-chapter text extraction from XiaoKe's V5 experiments, known limits, and owner-specific minimal prompt workflow (read only relevant sections).
 - `references/community-format.md` — NAI5 prompt fields, syntax and output conventions.
 - `references/character-block.md` — per-character prompt structure and field ownership.
 - `references/interaction-tags.md` — multi-character interaction syntax and reliability limits.
@@ -408,6 +414,8 @@ When the user says artist names only / artist exploration, bypass normal content
 
 Detailed references are separate files. Read only the references required by the current task; do not fetch every reference by default. Each URL points to the generated, version-matched source for this Harness build.
 
+- `references/nai-v5-usage-guide.md` (~11354 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/nai5-renderer/references/nai-v5-usage-guide.md
+- `references/single-artist-test-protocol.md` (~793 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/nai5-renderer/references/single-artist-test-protocol.md
 - `references/community-format.md` (~932 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/nai5-renderer/references/community-format.md
 - `references/character-block.md` (~635 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/nai5-renderer/references/character-block.md
 - `references/interaction-tags.md` (~564 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/nai5-renderer/references/interaction-tags.md
@@ -417,5 +425,3 @@ Detailed references are separate files. Read only the references required by the
 - `references/tag-taxonomy.md` (~173 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/nai5-renderer/references/tag-taxonomy.md
 - `references/weighting.md` (~168 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/nai5-renderer/references/weighting.md
 - `references/negative-strategy.md` (~73 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/nai5-renderer/references/negative-strategy.md
-- `references/single-artist-test-protocol.md` (~793 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/nai5-renderer/references/single-artist-test-protocol.md
-- `references/nai-v5-usage-guide.md` (~11354 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/nai5-renderer/references/nai-v5-usage-guide.md
