@@ -351,7 +351,7 @@ These are user-scored individual tests. **Scores do not automatically change the
 ### `artist:mihiro_00122`
 - Status: **permanently blacklisted by user**
 - User feedback:使用时出现与 `yellowshark601` 类似的糊图问题.
-- Blacklist rule: user explicitly requests that **artists whose canonical artist tag contains digits be blacklisted and not considered for future use**.
+- Historical note: an earlier blanket digit-ending exclusion was superseded by the user's explicit 2026-10-12 formatting correction. Digit-ending names are now allowed if otherwise eligible, using a protective space before the closing `::`; this explicitly blacklisted artist remains excluded.
 - Do not include in random artist selection, single-artist testing, or recommended stacks.
 
 ### `artist:tidsean`
