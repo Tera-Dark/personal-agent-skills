@@ -492,6 +492,23 @@ artist:bochishiraita
 - Best use: individual young-girl character illustrations and skin rendering; not a general-purpose main artist.
 - Status: scored but yellow-group; exclude from default random auxiliary selection and new-discovery recommendations.
 
+### 8.2 Scored single-artist tests — 2026-10-12 (third batch)
+
+#### `artist:momoko_(momopoco)`
+- User score: **6.0/10**.
+- User assessment: **Torino 的下位替代** (inferior substitute for Torino).
+- Status: scored, low-priority; do not promote as a preferred main artist or repeatedly recommend as new.
+
+#### `artist:riichu`
+- User score: **6.5/10**.
+- No specific style assessment supplied; do not invent one.
+- Status: scored, low-priority; do not repeatedly recommend as new.
+
+#### `artist:shirabi`
+- User score: **6.5/10**.
+- No specific style assessment supplied; do not invent one.
+- Status: scored, low-priority; do not repeatedly recommend as new.
+
 ### 9. Current exploration queue
 
 #### Tier A — verified Red-direction exploration candidates
@@ -549,6 +566,8 @@ artist:amakaze_sora
 artist:necomi
 artist:gomzi
 artist:sakura_oriko
+artist:miwabe_sakura
+artist:shironeko_yuuki
 ~~~
 
 ### 11. Permanent exclusion
