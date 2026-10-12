@@ -215,7 +215,9 @@ def main() -> int:
     ):
         require(needle.lower() in p13.lower(), f"P13 matrix lost required regression concept: {needle}", failures)
 
-    # Preserve current owner-specific prompt defaults and artist blacklist.
+    # Preserve owner prompt defaults, exact blacklists and the digit-ending
+    # NAI5 serialization correction (2026-10-12). A digit suffix by itself
+    # must NOT be treated as a blacklist entry.
     director = read("00_core/aesthetic-director-core/SKILL.md")
     require(
         "不重复预设 artist stack 与质量层" in director
@@ -225,14 +227,21 @@ def main() -> int:
     )
     identity_pool = read("00_core/personal-identity-profile/references/nai5-artist-pool.md")
     for needle in (
-        "Any artist tag ending with a digit is blacklisted by default.",
+        "digit-ending artist names are NOT automatically blacklisted",
+        "0.3::artist:mgong520 ::,",
         "artist:yellowshark601",
         "artist:mihiro_00122",
         "artist:vlfdus_0",
         "artist:zishengtian123",
-        "blacklisted artists must never be emitted into new artist stacks",
     ):
-        require(needle in identity_pool, f"personal artist blacklist lost required rule/example: {needle}", failures)
+        require(needle in identity_pool, f"artist pool lost current owner rule/example: {needle}", failures)
+    nai5_skill = read("03_prompt/nai5-renderer/SKILL.md")
+    require(
+        "0.3::artist:mgong520 ::," in nai5_skill
+        and "digit" in nai5_skill.lower(),
+        "NAI5 renderer lost mandatory digit-ending trailing-space serializer",
+        failures,
+    )
 
     default_stack_heading = "## 1.1 Current standby small-artist stack"
     require(default_stack_heading in identity_pool, "current standby artist stack section is missing", failures)
@@ -244,14 +253,28 @@ def main() -> int:
                 break
             if "::artist:" in line:
                 stack_lines.append(line)
-        default_artists = re.findall(r"artist:([^,]+?)::", "\\n".join(stack_lines))
+        default_artists = re.findall(r"artist:([^,:]+?)::", "\\n".join(stack_lines))
         require(bool(default_artists), "could not parse the current standby artist stack", failures)
-        for artist in default_artists:
+        explicit_exclusions = {"yellowshark601", "mihiro_00122", "vlfdus_0", "zishengtian123"}
+        for artist_token in default_artists:
+            canonical = artist_token.rstrip(" ")
             require(
-                not artist[-1:].isdigit(),
-                f"default standby artist stack contains a digit-suffixed blacklisted artist: {artist}",
+                canonical not in explicit_exclusions,
+                f"default standby artist stack includes specifically excluded artist: {canonical}",
                 failures,
             )
+            if canonical[-1:].isdigit():
+                require(
+                    artist_token == canonical + " ",
+                    f"digit-ending artist must have exactly one space before closing :: in weighted token: {artist_token!r}",
+                    failures,
+                )
+            else:
+                require(
+                    artist_token == canonical,
+                    f"non-digit artist must not have a spurious trailing space: {artist_token!r}",
+                    failures,
+                )
 
     painterly_grammar = read("00_core/aesthetic-director-core/references/ruoganzhao-composition-color-grammar.md")
     aesthetic_director = read("00_core/aesthetic-director-core/SKILL.md")
