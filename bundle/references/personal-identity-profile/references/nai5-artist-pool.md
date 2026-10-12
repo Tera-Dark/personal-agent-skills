@@ -529,6 +529,16 @@ artist:bochishiraita
 - Style role: simple, character-focused portrait illustration; do not assume ornate scene composition.
 - Newly added to the scored pool.
 
+### 8.4 Scored artist feedback — 2026-10-12 (full-body portrait illustration)
+
+#### `xiang_tui_tui`
+- User score: **8.5/10**.
+- User style assessment: **很精美的人物全身肖像插画，综合全包含的画风；非常喜欢**.
+- Style role: **精美全身肖像 / 完整人物立绘 / 综合表现力 / 高完成度 / 女性向精致角色插画**.
+- Best-fit use: full-body character portrait illustrations, polished OC standing art and scenes requiring balanced facial appeal, costume construction and overall composition.
+- Status: **user-scored, strongly liked**; no automatic assignment to a manual 夯/顶级/中等/次等 tier.
+- Tag verification: user provided the spelling `xiang_tui_tui`; the exact Danbooru Artist tag has **not** been independently verified in this update. Preserve the spelling and verify through the tag gate before treating it as a verified `artist:` namespace entry.
+
 ### 9. Current exploration queue
 
 #### Tier A — verified Red-direction exploration candidates
