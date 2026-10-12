@@ -620,3 +620,13 @@ Never use these artists in random selection.
 - Record user-approved combinations separately from individual artist approval.
 - For each single-artist test, record: artist, weight, benchmark, test date, user score, concise feedback, style-role tags, and any confirmed/uncertain suitability.
 - When a new artist is promoted, add the evidence source, exact artist tag, verification date, and a short aesthetic role description.
+
+## New artist feedback — 2026-10-12
+
+### `artist:sudong_tangyuan`
+- User rating: **7.5/10**.
+- User feedback: 风格独特的精美画风，适合肖像插画。
+- Style role: distinctive polished portrait illustration / female-oriented character aesthetics.
+- User-requested experiment: primary artist for a fresh classical Chinese style with subtle pseudo-impasto support.
+- Evidence: direct user assessment; tag-index verification and generated-image performance not established by this entry.
+- Tier: manually unassigned; do not infer a permanent ranking or persist experimental weights.
