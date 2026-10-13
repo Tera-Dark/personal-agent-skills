@@ -3,7 +3,7 @@ name: illustration-direction
 description: Turns a Creative Brief into an authored, model-agnostic illustration blueprint — the image thesis, captured moment, visual motif, environment-character relationship, camera and framing, scale contrast, negative space, physical light sources, density map, narrative residue, and one coherent surreal detail. Use for 插画, 氛围图, 竖屏, 半留白, 印象风, 故事感, key visual, poster, scene illustration, cinematic composition, or whenever a character needs to be placed into a designed moment rather than displayed on a plate. Never writes model-specific prompt syntax.
 metadata:
   author: Tera-Dark
-  version: "2.5.0"
+  version: "2.6.0"
   layer: "02_design"
   load: "on-demand"
   status: "active"
@@ -31,9 +31,10 @@ metadata:
 
 ## 硬规则
 
-- **先有画面命题，再有瞬间，再有构图。** 构图服务于视觉命题，不是为了“好看”。
+- **先有画面命题，再有瞬间，再选观看立场与机位，之后才排空间和构图。** 摄影机不是为已摆好的立绘补一个角度；镜头位置必须实质改变人物关系、透视、遮挡、裁切或情绪。
+- **每个插画镜头须有 Camera Intent：谁在看、在哪看、为什么是这一秒。** `cinematic composition`、孤立的 `slightly elevated`、任意焦段数字不构成镜头设计；摄影论证见 `references/cinematic-camera-grammar.md`。
 - **人物不默认居中、不默认看镜头、不默认占满画面。** 每一项都需要理由。
-- **环境必须做事。** 它至少要承担框住、切割、反射、遮挡、缩小人物、制造尺度差、引导视线、承载动作或留下事件痕迹中的一项。
+- **环境必须做事，或被明确决定为无场景留白。** 若要求纯白/留白背景，画幅边界、人物互遮、透视、材质透叠与失边承担空间组织职责；不得因为需要层次而擅自添加景物。
 - **一个主视觉母题优先于一堆装饰。** 门、镜、鸟、花、长发、水面、窗格、丝带等只有在承担构图功能时才保留。
 - **光必须有物理来源。** 一个主光源 + 方向 + 衰减 + 阴影沉降区。禁止无来源 rim light。允许**有目的的局部失边**：白衣可融入透窗高光、暗发可融入深背景，但至少保留脸/手/关键动作的识别通路；不能用全图过曝或柔焦掩盖结构。
 - **背景只保留能解释光、动作、尺度或叙事的层。** 窗 + 城市 + 星空 + 花园 = 多层无关背景 → 删除到只剩真正参与画面的部分。
@@ -50,11 +51,11 @@ metadata:
 Step 0  画面命题      一句话说明这张图最核心的视觉想法；禁止只写题材或“漂亮场景”。
 Step 1  瞬间/状态     选叙事温度：安静停留 / 微动作 / 戏剧动作 / 寓言并置或编辑画面。动态画面问前后 0.5 秒；静态寓言/展示画面可只锁定有意义的视觉关系，不虚构剧情。
 Step 2  视觉母题      选一个承担框、切、连、引导、反射、缩放或遮挡功能的核心形状/物件/材质。
-Step 3  尺度与人物占比 人物占画面多少？≤1/3 / ≈1/2 / ≥2/3；必须解释为什么。
-Step 4  主构图形      先排大色块/几何形：主质量、对比质量、安静留白、连接动线。
-Step 5  位置与视线    人物在画面哪个区域（三分线/边缘/中心）；她在看什么；留白方向由视线和命题决定。
-Step 6  机位            由姿势类型和视觉命题决定；相机高度、方向、裁切、前景遮挡（sub-framing）必须明确。
-Step 7  人物—环境关系  明确环境如何“作用于”人物：框住 / 遮挡 / 反射 / 缩小 / 包围 / 推动 / 分割 / 其他。
+Step 3  观看立场      决定摄影机作为谁的视角：亲密见证、旁观、角色主观或正式肖像；必须写出情绪上的作用。
+Step 4  机位与瞬间    选摄影机相对人物的侧向/高度/距离，选择动作中哪个具体相位被定格；从机位推出近大远小、透视与可见部分，避免事后补 `low angle`。
+Step 5  人物调度      前/中/后层、身体重心、目光、牵手与承重支点；指定一处有意义的前景遮挡，双人图明确 A→B→A 的视觉反应。
+Step 6  画幅与裁切    人物占比、画幅、越界裁切、主体比例；用真实摄影位置决定该出现哪些服饰细节。近景大脸与全身完整展示不能同时强锁。
+Step 7  主构图形      将上面机位产生的肩线、手臂、发丝、衣摆与留白组合为大形、对比质量及观众视线路径；如果换成正面平视依然没有变化，回到 Step 3 重选机位。
 Step 8  主光源          一个。位置、方向、色温、衰减；阴影沉降区必须存在。第二光源只有在与主光形成明确主题关系时出现。
 Step 9  密度图          密集区 / 安静区 / 连接两者的动线；安静区通常是大块单一材质的墙、天、地、水或布。
 Step 10 叙事残留       环境里一件东西的状态说明发生过什么：空椅、未收的物、湿脚印、断开的丝带、错位倒影、磨损地面等。
@@ -67,7 +68,7 @@ Step 15 缩略图测试      想象缩小到手机缩略图：能否立刻看出
 
 ## Blueprint Gate Contract
 
-An illustration blueprint is READY only when visual thesis, captured moment, motif, scale/placement, camera, environment-character relationship, physical light, density map, narrative residue, color-mass strategy, punctum/strange detail, subtraction decisions and locked facts are present.
+An illustration blueprint is READY only when visual thesis, captured moment, motif, scale/placement, **camera intent / actual vantage / foreground-midground depth / motivated crop**, environment-character relationship (or intentional white-space absence), physical light, density map, narrative residue (or consciously omitted for portrait), color-mass strategy, punctum/strange detail, subtraction decisions and locked facts are present. Camera decisions must precede final layout and be visually consequential; not merely a camera-angle adjective.
 
 ## 输出契约：Illustration Blueprint
 
@@ -81,7 +82,10 @@ An illustration blueprint is READY only when visual thesis, captured moment, mot
 **视线**：看向___；留白在___侧；观众视线路径为___ → ___ → ___。
 **主构图形**：主质量___ / 对比质量___ / 安静区___ / 连接动线___。
 **画幅阅读节奏**：竖图顶部→中央→底部，或横图左→右；若有图文/附图排版，预留___安全区；普通插画可省略。
-**机位**：___高度，从___方向，___裁切；前景遮挡：___/无。
+**观看立场**：观众仿佛___，要感受到___；为什么必须看这一秒：___。
+**机位**：相对___站在___侧，约___高度/___距离，朝___方向；透视后果是___（非仅“高/低角度”）。
+**空间调度**：近景___、中景___、远景___；人物 A→B 的承重/接触___，主动遮挡___，不可遮挡___。
+**镜头裁切**：___从画面___缘出框，保留___，焦点路径___→___；为何优于正面平视___。
 **人物—环境关系**：环境通过___作用于人物。
 **遮挡计划**：___主动切入人物的___轮廓；保留___作为识别锚点。
 **主光源**：来自___，___色温，衰减到___；阴影沉降在___。第二光源（若有）：___，与主光的关系是___。
@@ -135,6 +139,9 @@ An illustration blueprint is READY only when visual thesis, captured moment, mot
 
 - [ ] 能用一句视觉句子说明画面命题吗？
 - [ ] 动态画面能说出前 1 秒和后 1 秒吗？静态寓言/编辑海报是否有明确可见的视觉关系？
+- [ ] 机位是否在布局前确定，并且能交代观看者位置、镜头侧向/高度/距离以及它改变了什么？
+- [ ] 前/中/后关系、交叠遮挡、画幅裁切和重点清晰度是否由同一机位推导、彼此兼容？
+- [ ] 将机位换成默认正面平视，情绪/空间/人物关系是否明显变弱？若没有则重做镜头；是否仅靠“cinematic”之类形容词撑场面？
 - [ ] 有且只有一个主要视觉母题吗？
 - [ ] 环境是否真的对人物做了某件事？
 - [ ] 人物居中 / 看镜头 / 占满画面——如果是，理由是什么？
@@ -166,6 +173,7 @@ An illustration blueprint is READY only when visual thesis, captured moment, mot
 
 - `references/visual-grammar.md` — 画面命题、视觉母题、环境能动性、尺度、遮挡、色块、叙事残留、受控超现实与反 AI 套路。
 - `references/composition-patterns.md` — 景别协议、分层展示板、设定图、三分偏置、sub-framing、极端机位（英文短语可直接进 prompt）。
+- `references/cinematic-camera-grammar.md` — **2026-10-13 新增摄影镜头前置协议**：观察立场、瞬间、机位坐标、透视、双人调度、裁切、焦点、白底空间；包含 1999 双人婚礼华尔兹的失败/改良对照。用户提“镜头语言/平/摄影感/动态双人”时优先读取。
 - `references/oc-maximalist-closeup-backdrop-preset.md` — 极繁 OC 展示专用构图预设：特写垫底 + 主全身立绘 + 大头贴/元素贴 + 前景碎片。
 - `references/atmosphere-presets.md` — 去 AI 塑料感六维度 + 五个氛围预设（商业头像 / 清新日系 / 高定极简 / 暗黑叙事 / 电影海报）+ 选择决策流。
 - `references/white-background-fashion-grammar.md` — 白底时装人设的平面构图机制。
