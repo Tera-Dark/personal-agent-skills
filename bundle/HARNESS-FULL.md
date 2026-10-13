@@ -6712,7 +6712,7 @@ source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_design/s
 S0 任务定调   确认身份锁、画幅（窄长竖/横幅/双区海报）、叙事温度（静谧/微动作/戏剧/寓言编辑）与密度强度 SIMPLE / BALANCED / ORNATE。
 S1 活人机制   动态场景锁定性格与一秒内的具体行为，双人再定 A→B→A 反应；静谧/寓言/编辑式场景允许用姿态、并置与环境证据承载态度。
 S2 大形       以人物肢体/发丝/衣料/场景物共同组织唯一大形；缩成图标仍有重心。
-S3 机位       选一个真正让动作更有力的视角；先推导裁切和遮挡，再决定景物。
+S3 机位       提交观看立场 + 选定瞬间 + 摄影机相对人物的具体侧向/高度/距离；检验它如何改变人物调度、前后遮挡、裁切和情绪。S2 只是候选大形，S3 可反过来推翻并重排它；镜头规范交由 `illustration-direction/references/cinematic-camera-grammar.md` 唯一维护。
 S4 色群       空气色、承重色、脸手亮区、一个有意义的刺点；允许多局部色但回归三大色群。
 S5 视觉密度   标出主精、次精、弱精；主精只集中在眼/表情/手/关系媒介。
 S6 作者取舍   从 `zheng-transferable-grammar.md` 选一个结构母型；如涉及叙事海报/长图/高调白，按需查新 12 例，最多借 1 个强机制 + 1 个次要机制；主动否决 2 个俗套。
@@ -9188,7 +9188,7 @@ source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/04_analysis
 ---
 
 ## MODULE: evaluation-loop
-layer: 06_evaluation · load: on-demand · status: active · module version: 2.3.0 · harness 4.6.0
+layer: 06_evaluation · load: on-demand · status: active · module version: 2.4.0 · harness 4.6.0
 source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/06_evaluation/evaluation-loop
 
 **description:** Evaluates a generated image or compiled prompt against the original Creative Brief and blueprint, using a fixed rubric (identity preservation, outfit binding, spatial clarity, unrequested additions, V1/V2 consistency, output contract) plus a design-layer read (thesis, silhouette, causality, density, punctum, one strange thing). Diagnoses which layer failed and routes the fix to that layer with a single-variable change. Use on any feedback round: 太平淡, 太乱, 不像, 没人味, 这版可以, 评价一下, 哪里不对, compare versions.
@@ -9214,6 +9214,7 @@ source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/06_evaluati
 3. 轮廓        缩略图尺寸认得出吗？第一眼是否顺眼、比例是否自然？怪点不能靠破坏大形制造存在感。
 4. 服装结构    四层是否可读？颜色是否绑定到正确的件？有没有融色？
 5. 因果 / 瞬间 姿势有没有解释服装和道具？是状态还是时刻？
+5a. 摄影机位    谁在看、机位在哪、哪一秒被拍到？有没有前中后遮挡与动机裁切？换成普通正面平视是否情绪/叙事几乎不损失？若是则标记 **Camera Failure** → `illustration-direction`，不要靠 renderer 补 `cinematic`。
 6. 密度 / 刺点 有密集区和安静区吗？刺点是一个还是多个？
 7. 那一处怪    在吗？只有一处吗？
 8. 未授权添加  有没有出现 blueprint 里没有的东西（耳环、腰带、手表、粒子、翅膀）？
@@ -9231,12 +9232,14 @@ source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/06_evaluati
 |---|---|---|
 | Identity Preservation | 锁定事实 100% 一致 | 改了发色 / 瞳色 / 关键特征 |
 | Outfit Attribute Binding | 材质与颜色紧贴对应服装件 | 外套颜色渗入内搭；领口材质混淆 |
-| Spatial & Layout Clarity | 景别 / 构图 / 图层隔离清楚 | 展示板出双胞胎；背景喧宾夺主 |
+| Spatial & Layout Clarity | 景别 / 构图 / 图层隔离清楚 | 展示板出双胞胎；背景喧宾夺主；摄影机与遮挡关系互相矛盾 |
 | Unrequested Additions | 无未授权物件 / 世界观 | 出现赛博配件、翅膀、手表、粒子 |
 | V1/V2 Fact Consistency | V2 未改 V1 事实 | V2 把白发改成金发 |
 | Output Contract | 格式正确，无禁用词，无多余负面 | 出现 `masterpiece`；夹带独立 Negative |
 
-外加一行 **Design Read**：命题 ___ / 轮廓 ___ / 因果 ___ / 密度 ___ / 刺点 ___ / 怪 ___（各一个词：成立 / 弱 / 缺失）。
+外加一行 **Design Read**：命题 ___ / 轮廓 ___ / 因果 ___ / **机位 ___** / 密度 ___ / 刺点 ___ / 怪 ___（各一个词：成立 / 弱 / 缺失）。
+
+摄影反平庸必检：给出一句相机在谁的哪一侧、处于什么高度/距离、捕捉哪一帧的具体描述；回答“为何不是正面平视”；核对锁定的原版服设/留白需求没有被机位改变。未提供图像时只评估 Prompt/Blueprint 的摄影规划，不能声称实测成图效果。
 
 #### Modern Key Visual evaluation
 
@@ -9257,7 +9260,7 @@ source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/06_evaluati
 ```
 诊断：失败在 [层]。原因一句话。
 六维：IP ✓/✗ · OB ✓/✗ · SC ✓/✗ · UA ✓/✗ · VC ✓/✗ · OC ✓/✗
-Design Read：命题 成立 / 轮廓 弱 / 因果 缺失 / 密度 成立 / 刺点 多于一个 / 怪 缺失
+Design Read：命题 成立 / 轮廓 弱 / 因果 缺失 / 机位 缺失 / 密度 成立 / 刺点 多于一个 / 怪 缺失
 下一步：交给 [skill]，只改 [一个变量]，锁定 [其它一切]。
 ```
 

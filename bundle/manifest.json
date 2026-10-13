@@ -8,7 +8,7 @@
   "harness_full_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS-FULL.md",
   "handshake": "Harness v4.6.0 loaded · 17 modules · 说需求，或发参考图。",
   "core_tokens": 6523,
-  "full_tokens": 156640,
+  "full_tokens": 156921,
   "pipeline": {
     "aesthetic_gate": "aesthetic-director-core",
     "blueprint_gate": {
@@ -457,9 +457,9 @@
           "tokens": 2549
         }
       ],
-      "tokens_skill": 3330,
-      "tokens_bundle": 3814,
-      "tokens_full_bundle": 18243
+      "tokens_skill": 3399,
+      "tokens_bundle": 3883,
+      "tokens_full_bundle": 18312
     },
     {
       "name": "anima-renderer",
@@ -758,7 +758,7 @@
       "layer": "06_evaluation",
       "load": "on-demand",
       "status": "active",
-      "version": "2.3.0",
+      "version": "2.4.0",
       "description": "Evaluates a generated image or compiled prompt against the original Creative Brief and blueprint, using a fixed rubric (identity preservation, outfit binding, spatial clarity, unrequested additions, V1/V2 consistency, output contract) plus a design-layer read (thesis, silhouette, causality, density, punctum, one strange thing). Diagnoses which layer failed and routes the fix to that layer with a single-variable change. Use on any feedback round: 太平淡, 太乱, 不像, 没人味, 这版可以, 评价一下, 哪里不对, compare versions.",
       "triggers": "太平淡, 太乱, 不像, 没人味, 这版可以, 评价一下, 哪里不对, compare",
       "path": "06_evaluation/evaluation-loop",
@@ -766,9 +766,9 @@
       "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/evaluation-loop.md",
       "references": [],
       "reference_files": [],
-      "tokens_skill": 1395,
-      "tokens_bundle": 1600,
-      "tokens_full_bundle": 1600
+      "tokens_skill": 1607,
+      "tokens_bundle": 1812,
+      "tokens_full_bundle": 1812
     }
   ]
 }
