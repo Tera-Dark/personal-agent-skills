@@ -8,7 +8,7 @@
   "harness_full_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS-FULL.md",
   "handshake": "Harness v4.6.0 loaded · 17 modules · 说需求，或发参考图。",
   "core_tokens": 6523,
-  "full_tokens": 152961,
+  "full_tokens": 155628,
   "pipeline": {
     "aesthetic_gate": "aesthetic-director-core",
     "blueprint_gate": {
@@ -369,7 +369,8 @@
         "references/oc-maximalist-closeup-backdrop-preset.md",
         "references/visual-grammar.md",
         "references/atmosphere-presets.md",
-        "references/white-background-fashion-grammar.md"
+        "references/white-background-fashion-grammar.md",
+        "references/cinematic-camera-grammar.md"
       ],
       "reference_files": [
         {
@@ -401,11 +402,17 @@
           "bundle_path": "bundle/references/illustration-direction/references/white-background-fashion-grammar.md",
           "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/illustration-direction/references/white-background-fashion-grammar.md",
           "tokens": 2549
+        },
+        {
+          "path": "references/cinematic-camera-grammar.md",
+          "bundle_path": "bundle/references/illustration-direction/references/cinematic-camera-grammar.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/illustration-direction/references/cinematic-camera-grammar.md",
+          "tokens": 2646
         }
       ],
       "tokens_skill": 4595,
-      "tokens_bundle": 5134,
-      "tokens_full_bundle": 17926
+      "tokens_bundle": 5186,
+      "tokens_full_bundle": 20591
     },
     {
       "name": "small-artist-brain",
