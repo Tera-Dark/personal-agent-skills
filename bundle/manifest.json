@@ -8,7 +8,7 @@
   "harness_full_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS-FULL.md",
   "handshake": "Harness v4.6.0 loaded · 17 modules · 说需求，或发参考图。",
   "core_tokens": 6523,
-  "full_tokens": 155628,
+  "full_tokens": 156285,
   "pipeline": {
     "aesthetic_gate": "aesthetic-director-core",
     "blueprint_gate": {
@@ -358,21 +358,27 @@
       "layer": "02_design",
       "load": "on-demand",
       "status": "active",
-      "version": "2.5.0",
+      "version": "2.6.0",
       "description": "Turns a Creative Brief into an authored, model-agnostic illustration blueprint — the image thesis, captured moment, visual motif, environment-character relationship, camera and framing, scale contrast, negative space, physical light sources, density map, narrative residue, and one coherent surreal detail. Use for 插画, 氛围图, 竖屏, 半留白, 印象风, 故事感, key visual, poster, scene illustration, cinematic composition, or whenever a character needs to be placed into a designed moment rather than displayed on a plate. Never writes model-specific prompt syntax.",
       "triggers": "插画, 氛围图, 竖屏, 半留白, 印象风, 故事感, key visual, poster, scene, 极繁, 特写垫底, 大头贴, 元素贴, 角色拼贴",
       "path": "02_design/illustration-direction",
       "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_design/illustration-direction",
       "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/illustration-direction.md",
       "references": [
+        "references/cinematic-camera-grammar.md",
         "references/composition-patterns.md",
         "references/oc-maximalist-closeup-backdrop-preset.md",
         "references/visual-grammar.md",
         "references/atmosphere-presets.md",
-        "references/white-background-fashion-grammar.md",
-        "references/cinematic-camera-grammar.md"
+        "references/white-background-fashion-grammar.md"
       ],
       "reference_files": [
+        {
+          "path": "references/cinematic-camera-grammar.md",
+          "bundle_path": "bundle/references/illustration-direction/references/cinematic-camera-grammar.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/illustration-direction/references/cinematic-camera-grammar.md",
+          "tokens": 2646
+        },
         {
           "path": "references/composition-patterns.md",
           "bundle_path": "bundle/references/illustration-direction/references/composition-patterns.md",
@@ -402,17 +408,11 @@
           "bundle_path": "bundle/references/illustration-direction/references/white-background-fashion-grammar.md",
           "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/illustration-direction/references/white-background-fashion-grammar.md",
           "tokens": 2549
-        },
-        {
-          "path": "references/cinematic-camera-grammar.md",
-          "bundle_path": "bundle/references/illustration-direction/references/cinematic-camera-grammar.md",
-          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/illustration-direction/references/cinematic-camera-grammar.md",
-          "tokens": 2646
         }
       ],
-      "tokens_skill": 4595,
-      "tokens_bundle": 5186,
-      "tokens_full_bundle": 20591
+      "tokens_skill": 5252,
+      "tokens_bundle": 5843,
+      "tokens_full_bundle": 21248
     },
     {
       "name": "small-artist-brain",

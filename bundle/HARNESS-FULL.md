@@ -5354,7 +5354,7 @@ Tier 4: Micro Accessories (五金扣件/围巾/束带/首饰)
 ---
 
 ## MODULE: illustration-direction
-layer: 02_design · load: on-demand · status: active · module version: 2.5.0 · harness 4.6.0
+layer: 02_design · load: on-demand · status: active · module version: 2.6.0 · harness 4.6.0
 source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_design/illustration-direction
 
 **description:** Turns a Creative Brief into an authored, model-agnostic illustration blueprint — the image thesis, captured moment, visual motif, environment-character relationship, camera and framing, scale contrast, negative space, physical light sources, density map, narrative residue, and one coherent surreal detail. Use for 插画, 氛围图, 竖屏, 半留白, 印象风, 故事感, key visual, poster, scene illustration, cinematic composition, or whenever a character needs to be placed into a designed moment rather than displayed on a plate. Never writes model-specific prompt syntax.
@@ -5381,9 +5381,10 @@ source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_design/i
 
 #### 硬规则
 
-- **先有画面命题，再有瞬间，再有构图。** 构图服务于视觉命题，不是为了“好看”。
+- **先有画面命题，再有瞬间，再选观看立场与机位，之后才排空间和构图。** 摄影机不是为已摆好的立绘补一个角度；镜头位置必须实质改变人物关系、透视、遮挡、裁切或情绪。
+- **每个插画镜头须有 Camera Intent：谁在看、在哪看、为什么是这一秒。** `cinematic composition`、孤立的 `slightly elevated`、任意焦段数字不构成镜头设计；摄影论证见 `references/cinematic-camera-grammar.md`。
 - **人物不默认居中、不默认看镜头、不默认占满画面。** 每一项都需要理由。
-- **环境必须做事。** 它至少要承担框住、切割、反射、遮挡、缩小人物、制造尺度差、引导视线、承载动作或留下事件痕迹中的一项。
+- **环境必须做事，或被明确决定为无场景留白。** 若要求纯白/留白背景，画幅边界、人物互遮、透视、材质透叠与失边承担空间组织职责；不得因为需要层次而擅自添加景物。
 - **一个主视觉母题优先于一堆装饰。** 门、镜、鸟、花、长发、水面、窗格、丝带等只有在承担构图功能时才保留。
 - **光必须有物理来源。** 一个主光源 + 方向 + 衰减 + 阴影沉降区。禁止无来源 rim light。允许**有目的的局部失边**：白衣可融入透窗高光、暗发可融入深背景，但至少保留脸/手/关键动作的识别通路；不能用全图过曝或柔焦掩盖结构。
 - **背景只保留能解释光、动作、尺度或叙事的层。** 窗 + 城市 + 星空 + 花园 = 多层无关背景 → 删除到只剩真正参与画面的部分。
@@ -5400,11 +5401,11 @@ source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_design/i
 Step 0  画面命题      一句话说明这张图最核心的视觉想法；禁止只写题材或“漂亮场景”。
 Step 1  瞬间/状态     选叙事温度：安静停留 / 微动作 / 戏剧动作 / 寓言并置或编辑画面。动态画面问前后 0.5 秒；静态寓言/展示画面可只锁定有意义的视觉关系，不虚构剧情。
 Step 2  视觉母题      选一个承担框、切、连、引导、反射、缩放或遮挡功能的核心形状/物件/材质。
-Step 3  尺度与人物占比 人物占画面多少？≤1/3 / ≈1/2 / ≥2/3；必须解释为什么。
-Step 4  主构图形      先排大色块/几何形：主质量、对比质量、安静留白、连接动线。
-Step 5  位置与视线    人物在画面哪个区域（三分线/边缘/中心）；她在看什么；留白方向由视线和命题决定。
-Step 6  机位            由姿势类型和视觉命题决定；相机高度、方向、裁切、前景遮挡（sub-framing）必须明确。
-Step 7  人物—环境关系  明确环境如何“作用于”人物：框住 / 遮挡 / 反射 / 缩小 / 包围 / 推动 / 分割 / 其他。
+Step 3  观看立场      决定摄影机作为谁的视角：亲密见证、旁观、角色主观或正式肖像；必须写出情绪上的作用。
+Step 4  机位与瞬间    选摄影机相对人物的侧向/高度/距离，选择动作中哪个具体相位被定格；从机位推出近大远小、透视与可见部分，避免事后补 `low angle`。
+Step 5  人物调度      前/中/后层、身体重心、目光、牵手与承重支点；指定一处有意义的前景遮挡，双人图明确 A→B→A 的视觉反应。
+Step 6  画幅与裁切    人物占比、画幅、越界裁切、主体比例；用真实摄影位置决定该出现哪些服饰细节。近景大脸与全身完整展示不能同时强锁。
+Step 7  主构图形      将上面机位产生的肩线、手臂、发丝、衣摆与留白组合为大形、对比质量及观众视线路径；如果换成正面平视依然没有变化，回到 Step 3 重选机位。
 Step 8  主光源          一个。位置、方向、色温、衰减；阴影沉降区必须存在。第二光源只有在与主光形成明确主题关系时出现。
 Step 9  密度图          密集区 / 安静区 / 连接两者的动线；安静区通常是大块单一材质的墙、天、地、水或布。
 Step 10 叙事残留       环境里一件东西的状态说明发生过什么：空椅、未收的物、湿脚印、断开的丝带、错位倒影、磨损地面等。
@@ -5417,7 +5418,7 @@ Step 15 缩略图测试      想象缩小到手机缩略图：能否立刻看出
 
 #### Blueprint Gate Contract
 
-An illustration blueprint is READY only when visual thesis, captured moment, motif, scale/placement, camera, environment-character relationship, physical light, density map, narrative residue, color-mass strategy, punctum/strange detail, subtraction decisions and locked facts are present.
+An illustration blueprint is READY only when visual thesis, captured moment, motif, scale/placement, **camera intent / actual vantage / foreground-midground depth / motivated crop**, environment-character relationship (or intentional white-space absence), physical light, density map, narrative residue (or consciously omitted for portrait), color-mass strategy, punctum/strange detail, subtraction decisions and locked facts are present. Camera decisions must precede final layout and be visually consequential; not merely a camera-angle adjective.
 
 #### 输出契约：Illustration Blueprint
 
@@ -5431,7 +5432,10 @@ An illustration blueprint is READY only when visual thesis, captured moment, mot
 **视线**：看向___；留白在___侧；观众视线路径为___ → ___ → ___。
 **主构图形**：主质量___ / 对比质量___ / 安静区___ / 连接动线___。
 **画幅阅读节奏**：竖图顶部→中央→底部，或横图左→右；若有图文/附图排版，预留___安全区；普通插画可省略。
-**机位**：___高度，从___方向，___裁切；前景遮挡：___/无。
+**观看立场**：观众仿佛___，要感受到___；为什么必须看这一秒：___。
+**机位**：相对___站在___侧，约___高度/___距离，朝___方向；透视后果是___（非仅“高/低角度”）。
+**空间调度**：近景___、中景___、远景___；人物 A→B 的承重/接触___，主动遮挡___，不可遮挡___。
+**镜头裁切**：___从画面___缘出框，保留___，焦点路径___→___；为何优于正面平视___。
 **人物—环境关系**：环境通过___作用于人物。
 **遮挡计划**：___主动切入人物的___轮廓；保留___作为识别锚点。
 **主光源**：来自___，___色温，衰减到___；阴影沉降在___。第二光源（若有）：___，与主光的关系是___。
@@ -5485,6 +5489,9 @@ An illustration blueprint is READY only when visual thesis, captured moment, mot
 
 - [ ] 能用一句视觉句子说明画面命题吗？
 - [ ] 动态画面能说出前 1 秒和后 1 秒吗？静态寓言/编辑海报是否有明确可见的视觉关系？
+- [ ] 机位是否在布局前确定，并且能交代观看者位置、镜头侧向/高度/距离以及它改变了什么？
+- [ ] 前/中/后关系、交叠遮挡、画幅裁切和重点清晰度是否由同一机位推导、彼此兼容？
+- [ ] 将机位换成默认正面平视，情绪/空间/人物关系是否明显变弱？若没有则重做镜头；是否仅靠“cinematic”之类形容词撑场面？
 - [ ] 有且只有一个主要视觉母题吗？
 - [ ] 环境是否真的对人物做了某件事？
 - [ ] 人物居中 / 看镜头 / 占满画面——如果是，理由是什么？
@@ -5516,9 +5523,96 @@ An illustration blueprint is READY only when visual thesis, captured moment, mot
 
 - `references/visual-grammar.md` — 画面命题、视觉母题、环境能动性、尺度、遮挡、色块、叙事残留、受控超现实与反 AI 套路。
 - `references/composition-patterns.md` — 景别协议、分层展示板、设定图、三分偏置、sub-framing、极端机位（英文短语可直接进 prompt）。
+- `references/cinematic-camera-grammar.md` — **2026-10-13 新增摄影镜头前置协议**：观察立场、瞬间、机位坐标、透视、双人调度、裁切、焦点、白底空间；包含 1999 双人婚礼华尔兹的失败/改良对照。用户提“镜头语言/平/摄影感/动态双人”时优先读取。
 - `references/oc-maximalist-closeup-backdrop-preset.md` — 极繁 OC 展示专用构图预设：特写垫底 + 主全身立绘 + 大头贴/元素贴 + 前景碎片。
 - `references/atmosphere-presets.md` — 去 AI 塑料感六维度 + 五个氛围预设（商业头像 / 清新日系 / 高定极简 / 暗黑叙事 / 电影海报）+ 选择决策流。
 - `references/white-background-fashion-grammar.md` — 白底时装人设的平面构图机制。
+
+---
+
+### Reference: references/cinematic-camera-grammar.md
+
+#### Camera-First Illustration Grammar — 摄影机位与单帧导演协议
+
+> 本文是 `illustration-direction` 的按需专业参考，2026-10-13 因用户指出“画面平、镜头语言缺席”而新增。**画面/机位最终设计权只属于 illustration-direction**；small-artist-brain 可提供候选，visual-prompt-core 只负责保真编码，renderer 不负责临时想镜头。
+> 适用：双人 CP / 华尔兹 / 纪实抓拍 / 高级肖像 / 叙事插画 / 婚礼与时装艺术插画。简单设定立绘不强制复杂机位。
+
+##### 0. 核心改正
+
+`full body, elegant pose, dynamic composition, cinematic lighting` 是画面分类词，不是镜头方案。
+摄影思考必须回答：**谁在看？在哪里看？看到了哪一秒？镜头位置为什么让人物关系更动人？**
+
+摄影/电影语言是 **故事意图 → 观看立场 → 决定性瞬间 → 机位与光学空间 → blocking → framing/crop → light/focus** 的因果链。不得反过来先摆平面站姿，最后补 `low angle`。
+静帧不需要实际运动摄影机，但可借运动轨迹选择拍摄瞬间；“tracking shot”若不改变最终画面中的相对透视/裁切，不应进入图像 Prompt。
+
+##### 1. Camera Intent Gate（内部决策，先于布局）
+
+逐项选择，且每项有**视觉后果**：
+
+1. **观看者位置 / Subjective viewpoint**：亲密旁观者、躲在边缘的见证者、身处旋转的第三人、远处的陌生人、人物视角、正式肖像摄影师。观众与人物是什么关系？
+2. **决定性瞬间 / Moment**：动作的起势、重量转移、失衡被接住、旋身将离未离、停下来后一秒。表情和手势在这帧必须有因果，不能所有元素平均飘。
+3. **拍摄点 / Camera coordinates**：从谁的哪一侧拍？机位相对于脸/肩/腰的高度？向上/下多大程度？近/中/远距离？固定平面与空间纵深如何变化？禁止只写“略俯视”。
+4. **透视 / Perspective**：近距离让前后比例明显，适合被卷入动作；稍远/适度压缩适合凝视和优雅人像。数字焦段只是参考；**位置和相对距离优先于毫米数字**，不写不必要的 `35mm` / `85mm`。
+5. **Blocking + occlusion**：两个人有近/远，哪个肩、手肘、头纱在前景？哪只手握谁、人体承重在哪里、转身方向是否和衣摆方向一致？遮挡不能吞掉角色身份锚点或关键情绪。
+6. **Crop + graphic rhythm**：画幅边界具体在哪里切断人物、帽子、裙摆？不默认全身完整；让肩线/手臂/裙摆/头发连接焦点，视线至少有一个清晰的到达点和休止区。
+7. **Focus / exposure / edge**：第一落点、第二落点是什么？白底时通过皮肤/白布、帽檐/脸的边缘硬软、交叠遮挡和明度层级建立空间，不凭空添建筑/花/光圈。虚化/失边只降次要信息，不抹去关系动作。
+
+**验收反事实**：把镜头换成正面平视，信息、情绪、人物关系是否几乎不变？若是，所选角度毫无用处，需要重新设计；如果删掉“cinematic”一词就不剩摄影特征，同样失败。
+
+##### 2. 四种有用的镜头母型（不是固定套图）
+
+- **侧后方亲密见证**：摄影机在角色 A 肩侧略后、略低，A 的帽檐/肩/手在近景形成受控边框，B 的眼神在中景清晰；适合“沉默者的温柔/被照看的感受”。必须保留 B 的脸和双人的接触点。
+- **舞步转折的斜切单帧**：摄影机位于旋转轨道外侧，略高于肩线，抓住领舞者移重心、另一人转身将经过镜头的瞬间；前景斜切的裙摆与向后延展的头纱制造**近大远小**，眼神与交握的双手作为焦点。适合白底双人婚礼，避免把二人并排拍成服装目录。
+- **中近景贴身裁切**：近距离胸口以上，从略偏人物身体一侧看过去；大胆裁切后背、帽檐、散发，仅让脸、接触处与服装局部说明关系。适合不强调鞋裙全貌的情绪肖像；不能一边 `tight close-up` 一边要求裙摆全展示。
+- **远距离留白观察**：人物占较小面积，机位视平或稍高，人物互动和共同剪影作为唯一密集信息；留白方向由角色运动/视线决定，不强制“左右各一半”或矩形色块。适合距离感、命运感，不适合要求读清面部首饰的任务。
+
+##### 3. 动态与摄影真实性校验
+
+- **重力 / 接触点**：华尔兹先定两人握手与腰背支撑、重心腿，再决定裙摆；领舞与跟随均有主动性，避免僵硬公主抱站姿。
+- **时间相位**：转身时，裙摆/头纱会滞后于身体旋转。不要用所有物件同向齐飘假装运动。
+- **近中远三层**：无环境也可以有三层：近景被裁切的衣袖/头纱，中景清晰脸与交握手，远景另一人身体/裙摆或纸白空间；不得误添第三人。
+- **纯白背景的空间**：用透叠、缩短/延长、体积阴影、局部重叠和 lost-and-found edges 表达，**不是**随机布置灰色渐变、圆形色块、飞散粒子。
+- **双人脸与手的可见性**：艺术性可以遮挡衣服/部分身体，但不应无理由让其中一人消失或让手指悬空。
+- **静止与张力**：不是每张图都要旋转、大广角或俯拍。正式肖像也可通过目光、肩线、相机与人物高度差，完成有意识的观看。
+
+##### 4. Prompt 转译最小骨架（模型无关）
+
+优先写**可见空间事实**，而非摄影术语清单：
+
+```text
+[viewer vantage + camera side/distance/height],
+[precise instant + primary body action + weight transfer],
+[foreground subject/object overlaps the midground at X],
+[faces and shared hand contact remain visible and sharp],
+[deliberate crop + visual path through anatomy/fabric],
+[subject-driven light, edge hierarchy, breathable negative space]
+```
+
+摄影词仅作为锚：`over-the-shoulder view`, `three-quarter rear view`, `close camera distance`, `slightly elevated viewpoint`, `foreground foreshortening`, `layered depth`, `cropped at the hem`。同一组镜头描述必须相容，禁止无目的叠加 `bird's-eye`、`low angle`、`eye-level` 或把 `full body` 与 `extreme close-up` 同时写上。
+
+##### 5. 用户反馈的具体对照：Vertin × Sonetto 华尔兹
+
+用户锁定：维尔汀白礼帽、双方保持角色辨识度、十四行诗婚纱、浪漫艺术感、纯白留白背景、华尔兹、无多余元素。
+
+**被否定的普通方案**：正面双人完整展示，`full body, slightly elevated, flowing S curve`，所有头发/裙摆/头纱均飘，人物比例、遮挡和空间没有对应机位，等于“动态婚纱目录”。
+
+**摄影方案（单一可检验候选，不作为今后固定模板）**：
+- 观察者在旋转轨道的外侧，位于十四行诗肩后约一个身位，略高于胸肩高度，略斜向拍过去；观众仿佛偶然被卷入舞圈。
+- 选 **转身尚未完成的一瞬**：近景是她横掠画面下缘的半透明婚纱与橘发；维尔汀位于中景，白礼帽帽檐压住一条锋利的轮廓；在她们的脸之间保留眼神通路。
+- 维尔汀的一只手稳定扶住十四行诗腰背，另一只手与十四行诗交握；两人身体旋转方向与裙摆滞后方向相反，出现可感知的惯性，而非无因果乱飘。
+- 交握双手和两人的眼神形成“观看路径”；裙摆仅部分出框，白背景承担呼吸，不出现灰块、玫瑰、花瓣、教堂或魔法阵。
+- 若用户要求看全裙摆，改用另一个更远机位，不用在同一 prompt 中强行同时锁定大脸与全身。
+
+##### 6. 摄影知识参考（原则来源，不宣称模型已验证）
+
+- StudioBinder — Rules of Shot Composition in Film (2025): https://www.studiobinder.com/blog/rules-of-shot-composition-in-film/
+- StudioBinder — Blocking and Staging a Scene (2025): https://www.studiobinder.com/blog/blocking-and-staging-scenes/
+- StudioBinder — Types of Camera Shot Angles (2025): https://www.studiobinder.com/blog/types-of-camera-shot-angles-in-film/
+- StudioBinder — Focal Length Explained: https://www.studiobinder.com/blog/focal-length-camera-lenses-explained/
+- Adobe — Leading Lines Photography: https://www.adobe.com/creativecloud/photography/technique/leading-lines.html
+- Adobe Lightroom Academy — Leading Lines: https://lightroom.adobe.com/academy/principles/composition/leading-lines
+
+以上是摄影理论和可迁移的视觉原则，不构成 NAI5 / Anima 的提示词效果实测；实测仍需 A/B 跑图判断模型响应。
 
 ---
 
@@ -6564,92 +6658,6 @@ Before compiling the prompt, ask:
 8. If the face is hidden, does the silhouette still look designed?
 9. If the particles and tiny decorations are removed, does the image still work?
 10. Are expression, pose, costume and palette telling the same aesthetic story?
-
----
-
-### Reference: references/cinematic-camera-grammar.md
-
-#### Camera-First Illustration Grammar — 摄影机位与单帧导演协议
-
-> 本文是 `illustration-direction` 的按需专业参考，2026-10-13 因用户指出“画面平、镜头语言缺席”而新增。**画面/机位最终设计权只属于 illustration-direction**；small-artist-brain 可提供候选，visual-prompt-core 只负责保真编码，renderer 不负责临时想镜头。
-> 适用：双人 CP / 华尔兹 / 纪实抓拍 / 高级肖像 / 叙事插画 / 婚礼与时装艺术插画。简单设定立绘不强制复杂机位。
-
-##### 0. 核心改正
-
-`full body, elegant pose, dynamic composition, cinematic lighting` 是画面分类词，不是镜头方案。
-摄影思考必须回答：**谁在看？在哪里看？看到了哪一秒？镜头位置为什么让人物关系更动人？**
-
-摄影/电影语言是 **故事意图 → 观看立场 → 决定性瞬间 → 机位与光学空间 → blocking → framing/crop → light/focus** 的因果链。不得反过来先摆平面站姿，最后补 `low angle`。
-静帧不需要实际运动摄影机，但可借运动轨迹选择拍摄瞬间；“tracking shot”若不改变最终画面中的相对透视/裁切，不应进入图像 Prompt。
-
-##### 1. Camera Intent Gate（内部决策，先于布局）
-
-逐项选择，且每项有**视觉后果**：
-
-1. **观看者位置 / Subjective viewpoint**：亲密旁观者、躲在边缘的见证者、身处旋转的第三人、远处的陌生人、人物视角、正式肖像摄影师。观众与人物是什么关系？
-2. **决定性瞬间 / Moment**：动作的起势、重量转移、失衡被接住、旋身将离未离、停下来后一秒。表情和手势在这帧必须有因果，不能所有元素平均飘。
-3. **拍摄点 / Camera coordinates**：从谁的哪一侧拍？机位相对于脸/肩/腰的高度？向上/下多大程度？近/中/远距离？固定平面与空间纵深如何变化？禁止只写“略俯视”。
-4. **透视 / Perspective**：近距离让前后比例明显，适合被卷入动作；稍远/适度压缩适合凝视和优雅人像。数字焦段只是参考；**位置和相对距离优先于毫米数字**，不写不必要的 `35mm` / `85mm`。
-5. **Blocking + occlusion**：两个人有近/远，哪个肩、手肘、头纱在前景？哪只手握谁、人体承重在哪里、转身方向是否和衣摆方向一致？遮挡不能吞掉角色身份锚点或关键情绪。
-6. **Crop + graphic rhythm**：画幅边界具体在哪里切断人物、帽子、裙摆？不默认全身完整；让肩线/手臂/裙摆/头发连接焦点，视线至少有一个清晰的到达点和休止区。
-7. **Focus / exposure / edge**：第一落点、第二落点是什么？白底时通过皮肤/白布、帽檐/脸的边缘硬软、交叠遮挡和明度层级建立空间，不凭空添建筑/花/光圈。虚化/失边只降次要信息，不抹去关系动作。
-
-**验收反事实**：把镜头换成正面平视，信息、情绪、人物关系是否几乎不变？若是，所选角度毫无用处，需要重新设计；如果删掉“cinematic”一词就不剩摄影特征，同样失败。
-
-##### 2. 四种有用的镜头母型（不是固定套图）
-
-- **侧后方亲密见证**：摄影机在角色 A 肩侧略后、略低，A 的帽檐/肩/手在近景形成受控边框，B 的眼神在中景清晰；适合“沉默者的温柔/被照看的感受”。必须保留 B 的脸和双人的接触点。
-- **舞步转折的斜切单帧**：摄影机位于旋转轨道外侧，略高于肩线，抓住领舞者移重心、另一人转身将经过镜头的瞬间；前景斜切的裙摆与向后延展的头纱制造**近大远小**，眼神与交握的双手作为焦点。适合白底双人婚礼，避免把二人并排拍成服装目录。
-- **中近景贴身裁切**：近距离胸口以上，从略偏人物身体一侧看过去；大胆裁切后背、帽檐、散发，仅让脸、接触处与服装局部说明关系。适合不强调鞋裙全貌的情绪肖像；不能一边 `tight close-up` 一边要求裙摆全展示。
-- **远距离留白观察**：人物占较小面积，机位视平或稍高，人物互动和共同剪影作为唯一密集信息；留白方向由角色运动/视线决定，不强制“左右各一半”或矩形色块。适合距离感、命运感，不适合要求读清面部首饰的任务。
-
-##### 3. 动态与摄影真实性校验
-
-- **重力 / 接触点**：华尔兹先定两人握手与腰背支撑、重心腿，再决定裙摆；领舞与跟随均有主动性，避免僵硬公主抱站姿。
-- **时间相位**：转身时，裙摆/头纱会滞后于身体旋转。不要用所有物件同向齐飘假装运动。
-- **近中远三层**：无环境也可以有三层：近景被裁切的衣袖/头纱，中景清晰脸与交握手，远景另一人身体/裙摆或纸白空间；不得误添第三人。
-- **纯白背景的空间**：用透叠、缩短/延长、体积阴影、局部重叠和 lost-and-found edges 表达，**不是**随机布置灰色渐变、圆形色块、飞散粒子。
-- **双人脸与手的可见性**：艺术性可以遮挡衣服/部分身体，但不应无理由让其中一人消失或让手指悬空。
-- **静止与张力**：不是每张图都要旋转、大广角或俯拍。正式肖像也可通过目光、肩线、相机与人物高度差，完成有意识的观看。
-
-##### 4. Prompt 转译最小骨架（模型无关）
-
-优先写**可见空间事实**，而非摄影术语清单：
-
-```text
-[viewer vantage + camera side/distance/height],
-[precise instant + primary body action + weight transfer],
-[foreground subject/object overlaps the midground at X],
-[faces and shared hand contact remain visible and sharp],
-[deliberate crop + visual path through anatomy/fabric],
-[subject-driven light, edge hierarchy, breathable negative space]
-```
-
-摄影词仅作为锚：`over-the-shoulder view`, `three-quarter rear view`, `close camera distance`, `slightly elevated viewpoint`, `foreground foreshortening`, `layered depth`, `cropped at the hem`。同一组镜头描述必须相容，禁止无目的叠加 `bird's-eye`、`low angle`、`eye-level` 或把 `full body` 与 `extreme close-up` 同时写上。
-
-##### 5. 用户反馈的具体对照：Vertin × Sonetto 华尔兹
-
-用户锁定：维尔汀白礼帽、双方保持角色辨识度、十四行诗婚纱、浪漫艺术感、纯白留白背景、华尔兹、无多余元素。
-
-**被否定的普通方案**：正面双人完整展示，`full body, slightly elevated, flowing S curve`，所有头发/裙摆/头纱均飘，人物比例、遮挡和空间没有对应机位，等于“动态婚纱目录”。
-
-**摄影方案（单一可检验候选，不作为今后固定模板）**：
-- 观察者在旋转轨道的外侧，位于十四行诗肩后约一个身位，略高于胸肩高度，略斜向拍过去；观众仿佛偶然被卷入舞圈。
-- 选 **转身尚未完成的一瞬**：近景是她横掠画面下缘的半透明婚纱与橘发；维尔汀位于中景，白礼帽帽檐压住一条锋利的轮廓；在她们的脸之间保留眼神通路。
-- 维尔汀的一只手稳定扶住十四行诗腰背，另一只手与十四行诗交握；两人身体旋转方向与裙摆滞后方向相反，出现可感知的惯性，而非无因果乱飘。
-- 交握双手和两人的眼神形成“观看路径”；裙摆仅部分出框，白背景承担呼吸，不出现灰块、玫瑰、花瓣、教堂或魔法阵。
-- 若用户要求看全裙摆，改用另一个更远机位，不用在同一 prompt 中强行同时锁定大脸与全身。
-
-##### 6. 摄影知识参考（原则来源，不宣称模型已验证）
-
-- StudioBinder — Rules of Shot Composition in Film (2025): https://www.studiobinder.com/blog/rules-of-shot-composition-in-film/
-- StudioBinder — Blocking and Staging a Scene (2025): https://www.studiobinder.com/blog/blocking-and-staging-scenes/
-- StudioBinder — Types of Camera Shot Angles (2025): https://www.studiobinder.com/blog/types-of-camera-shot-angles-in-film/
-- StudioBinder — Focal Length Explained: https://www.studiobinder.com/blog/focal-length-camera-lenses-explained/
-- Adobe — Leading Lines Photography: https://www.adobe.com/creativecloud/photography/technique/leading-lines.html
-- Adobe Lightroom Academy — Leading Lines: https://lightroom.adobe.com/academy/principles/composition/leading-lines
-
-以上是摄影理论和可迁移的视觉原则，不构成 NAI5 / Anima 的提示词效果实测；实测仍需 A/B 跑图判断模型响应。
 
 ---
 
