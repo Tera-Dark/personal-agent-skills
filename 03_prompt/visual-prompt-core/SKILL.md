@@ -27,6 +27,7 @@ metadata:
 - 共享优先：任何 Anima / NAI5 都需要的规则只在这里拥有一份。
 - 模型无关：不要写 Anima 转义、NAI5 namespace、权重或 char1 语法；这些属于 renderer。
 - 设计锁定：保留用户锁定事实、核心命题、宏观轮廓、构图、动作、签名结构、唯一刺点和必要环境关系。
+- **镜头保真是设计锁的一部分**：只编译 illustration blueprint 已决定的观看立场、机位侧向/高度/距离、前中后遮挡、裁切和关键清晰度；没有 camera intent 时退回 illustration-direction，renderer 不得用 `cinematic`、`35mm` 等空泛标签补设计。
 - 最小充分：不因为“完整”而重复同义词。
 - Tag 表达稳定视觉事实；Relation 表达位置、因果、遮挡、承重、动势和材质关系。
 - 外部模型行为断言遵守 Kernel 的证据规则。
@@ -36,7 +37,7 @@ metadata:
 1. 输入检查：确认已过 Aesthetic / Blueprint Gate；缺失核心设计则退回上游。
 2. Style Layer：整理 artist intent、quality intent、rendering、complexity，不输出模型专属语法。
 3. Visual Facts：提取 subject、identity、appearance、clothing、props。
-4. Composition：提取 framing、camera、silhouette、motion axis、density、negative space。
+4. Camera-first Composition：先读取上游已批准的 camera intent、captured moment、camera side/height/distance、foreground/midground overlaps 和 deliberate crop，再提取 framing、silhouette、motion axis、density、negative space；不允许按 Prompt 惯用模板擅自恢复正面全身镜头。
 5. Scene & Action：组织 environment、pose、gesture、event 和物理光/空间关系。
 6. Relations：保留因果、遮挡、层级、材质和视觉动线，不重复成 tag。
 7. Signature：保留 punctum、strange detail 和唯一关键记忆点。
@@ -73,6 +74,11 @@ character:
 composition:
   framing:
   camera:
+  camera_intent:
+  camera_position:
+  depth_and_occlusion:
+  deliberate_crop:
+  focal_hierarchy:
   silhouette:
   motion_axis:
   visual_mass:
@@ -119,6 +125,8 @@ output_policy:
 
 ### Relations
 
+摄影设计中的前景遮挡、中景人物、近大远小、重心支撑与裁切边界首先是**关系**，不应被压成 `cinematic, dynamic pose, dramatic angle` 的空泛词列。NAI5/Anima 编译需优先保留能被模型描绘的具体可见关系；焦段数字和镜头术语没有明确视觉后果时删除。
+
 以下信息优先保持为关系：
 - 左右 / 前后 / 内外层级；
 - 角色与环境的接触、遮挡、反射、承重；
@@ -151,6 +159,7 @@ same locked facts
 same thesis
 same macro silhouette
 same framing
+same camera intent / position / occlusion / crop / focal hierarchy
 same essential pose
 same signature construction
 same palette hierarchy
@@ -170,6 +179,7 @@ same environment relationship
 - [ ] Shared 内容没有写入 Anima / NAI5 专属语法。
 - [ ] tag candidate 只代表高价值视觉事实。
 - [ ] 关系没有被压成无意义 tag 堆。
-- [ ] Compression 没有删除核心结构。
+- [ ] Compression 没有删除核心结构和会改变观看关系的机位、遮挡、裁切信息。
+- [ ] 同一 Prompt 中的景别、机位、裁切互相兼容（不能又大特写又全身完整展示）。
 - [ ] locked facts / rejected items 没有丢失。
 - [ ] Packet 足以支持 renderer 在不重新设计的情况下完成输出。
