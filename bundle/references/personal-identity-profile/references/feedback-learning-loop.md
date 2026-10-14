@@ -5,7 +5,7 @@ source: https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/0
 
 ## Feedback Learning Loop — 个人审美增量学习协议
 
-> v1 / 2026-10-14。唯一长期偏好 owner 是 `personal-identity-profile`；`evaluation-loop` 只负责诊断与提取，不能直接重写个人审美；`illustration-direction` 只消费已经生效的偏好。**本协议是可由有读写权限的 AI 执行的工作流，不是 GitHub 原生自动监听聊天。**
+> v2 / 2026-10-14。唯一长期偏好 owner 是 `personal-identity-profile`；`evaluation-loop` 只负责诊断与提取，不能直接重写个人审美；`illustration-direction` 只消费已经生效的偏好。**本协议是可由有读写权限的 AI 执行的工作流，不是 GitHub 原生自动监听聊天。**
 
 ### 目标
 
@@ -40,10 +40,10 @@ source: https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/0
 user feedback
     → evaluation-loop: 提取拆分信号、首个失败层和锁定成功维度
     → current Session State: 当轮立刻应用（无需 GitHub 写权限）
-    → feedback-ledger.md: 有权限且经过用户授权则持久追加；否则保留可复制候选补丁
-    → promotion gate: 用户明确“以后默认/永远不要”，或同一作用域 ≥3 次**独立**一致反馈
-    → identity owner: 更新 taste-signature.md / design-dislikes.md / artist pool
-    → build/validation → 下一次聊天加载生效
+    → data/learning/events.jsonl: 有权限且经过用户授权则结构化追加；否则保留可复制 JSON
+    → scripts/learn.py review: 明确长效指令或同范围 ≥3 个不同作品独立一致反馈、无反证
+    → scripts/learn.py promote: 需明确审阅执行，写 policies.json；仅激活 scope 相关的规则
+    → scripts/learn.py digest → build/validation → 下一次相关创作按需加载 approved digest
 ```
 
 - **独立计数**：同一作品的三次重述=1 个来源；模型重复 AI 自述=0；跨作品、跨不同试跑的用户反馈可计数。三次只是晋升最低门槛，不自动覆盖矛盾证据。
@@ -56,7 +56,7 @@ user feedback
 
 **关键事实：只把 GitHub 链接贴给一个新 AI，并不能提供 GitHub 写权限，也不会在用户不说话时自动记录。**
 
-1. 如果本轮可用**已授权的 GitHub 写入连接**且用户对“持续记偏好”明确许可：评价事件可批量写入 `feedback-ledger.md`（避免每句微小评论形成一次 commit）；必要时按 gate 更新对应 owner，源文件变更后重建生成 Bundle。写前读取仓库当前版本和 blob SHA，冲突先刷新；**永远不直接改 `bundle/`**。
+1. 如果本轮可用**已授权的 GitHub 写入连接**且用户对“持续记偏好”明确许可：评价事件可批量写入 `data/learning/events.jsonl`（避免每句微小评论形成一次 commit）；必要时按 gate 更新 `data/learning/policies.json`，运行 `python3 scripts/learn.py digest` 更新获批偏好快照，再重建 Bundle。写前读取仓库当前版本和 blob SHA，冲突先刷新；**永远不直接改 `bundle/`**。
 2. 连接只能读 / 无写权限：当前会话保留候选，执行 `/learn export` 或用户说“导出偏好补丁”时给一段紧凑 Markdown，供他在支持写入的会话或 GitHub Web 粘贴；**不谎称已保存**。
 3. 用户没开启自动持久化：自然反馈仍影响当前聊天；只在明确“记录/同步 Skill/以后默认”时写。用户若要求停止记录或撤回规则，撤销激活的偏好并保留非个人化的变更记录供审核；仓库持有的原始反馈需按用户删除请求单独处理。
 4. 公共仓库只保留**抽象化创作偏好**和短反馈短语；不要上传用户作品原图、完整私聊、私人身份、健康/财务数据或 API secrets。
@@ -86,3 +86,36 @@ user feedback
 ### 6. 验收
 
 `evaluation-loop` 诊断仍独占首次失败层；Identity 独占偏好更新。每次可检测：同一图不重复计数，正反反馈拆开，scope 不扩大，未验证不宣称成图成功，用户要求撤回可追溯，读写失败诚实回退，没有引入第二个审美 owner。
+
+
+### 7. v2 可执行引擎与正确的存储边界
+
+**唯一机器可信证据**：`data/learning/events.jsonl`。传统 `feedback-ledger.md` 保留为历史人工阅读记录，**不得与 JSONL 重复计票**，不会被脚本自动导入。用户当轮的任意认可，仍以 Session State 即时生效。
+
+标准输入为一个**短小、抽象、无敏感信息的 JSON object**，不得上传完整对话、Prompt 原文、原图或账号/密钥：
+
+```json
+{
+  "rule_id": "film.non_template_camera",
+  "scope": "mode:cinematic",
+  "axis": "camera",
+  "rule": "Choose a motivated witness viewpoint and an observable event instead of a generic station backlight template.",
+  "polarity": "support",
+  "evidence_type": "USER-IMAGE-REPORT",
+  "artifact_id": "cinematic-run-20261014-01",
+  "note": "喜欢镜头处理，而不是只是漂亮光效"
+}
+```
+
+- `artifact_id` 必须能识别一个**独立作品或试跑**；同作品重复赞美只算 1 票。对立反馈不会自动被抵消，任何反证会阻止新的晋升。
+- `rule_id` 是稳定机器标识，一项规则固定 scope/axis/rule。不同风格、不同人设必须新建独立 scope，不能悄悄改旧规则的含义。
+- 模型语言内容优先短英文决策句，`note` 只保留短小非敏感证据。反例评价用 `polarity: "oppose"`，而不是随意给全局所有作品拉黑。
+- **导入**：`python3 scripts/learn.py record --file feedback.json`，也可 stdin。跨对话 GitHub Connector 写入时，先读取 blob SHA，避免并发覆盖；无写权限提供这个 JSON，而不是报已保存。
+- **审核**：`python3 scripts/learn.py review` 展示每条规则的独立支持数、反对数与候选状态；脚本**不会自动 promote**。
+- **批准**：`python3 scripts/learn.py promote film.non_template_camera` 仅在有足够证据/明确用户指令且无反证时可执行，写入 `policies.json` 与独立 `actions.jsonl` 审计。
+- **撤销**：`python3 scripts/learn.py undo film.non_template_camera` 禁用规则但保留动作历史；随后运行 `digest` 更新源文件。
+- **跨会话交接**：`python3 scripts/learn.py session-save my-project --file session.json`，取回用 `session-load my-project`；只允许 target/mode/project/locked/approved/rejected/next_action/prompt_version 这些概要字段。仓库可能公开，不保存密钥/隐私。
+- **按需记忆**：`references/learning-digest.md` 为**已批准规则**生成视图，属于 Identity；新会话进行相关创作时加载，不能把未晋升的 candidate 当全局默认。
+- **验证**：`python3 scripts/learn.py validate` 校验去重、一致性、失效摘要及审计结构；`python3 -m unittest discover -s tests -p 'test_*.py'` 执行模型无关的行为回归。
+
+**现实边界**：CLI 不会自动阅读用户聊天、读取电脑图片、后台运行或进行 LoRA 训练。是否自动同步 GitHub 由当前会话可用的写入连接与用户授权决定。静态测试/CI PASS 不能代表成图美学已经达到 9/10。

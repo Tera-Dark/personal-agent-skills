@@ -1,14 +1,14 @@
 {
   "name": "personal-agent-skills",
-  "version": "4.8.0",
+  "version": "4.9.0",
   "repo": "Tera-Dark/personal-agent-skills",
   "branch": "main",
   "raw_base": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/",
   "harness_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS.md",
   "harness_full_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS-FULL.md",
-  "handshake": "Harness v4.8.0 loaded · 17 modules · 说需求，或发参考图。",
-  "core_tokens": 6333,
-  "full_tokens": 173840,
+  "handshake": "Harness v4.9.0 loaded · 17 modules · 说需求，或发参考图。",
+  "core_tokens": 6566,
+  "full_tokens": 175571,
   "pipeline": {
     "aesthetic_gate": "aesthetic-director-core",
     "blueprint_gate": {
@@ -86,7 +86,7 @@
       "layer": "00_core",
       "load": "always",
       "status": "active",
-      "version": "2.5.0",
+      "version": "2.6.0",
       "description": "Persistent identity and taste layer for Tera-Dark's creative work. Holds the aesthetic signature (structured foundation, one strange thing, a hint of danger, modern key-visual impact, fashion-grade garment construction, female-oriented OC/gacha sensibility, Xiao-artist female-oriented 2D taste and NAI5 artist-mixing rules), hard dislikes (watches, cyber/mech, random butterflies-roses-particles, adjective costumes), business goals. Does not generate prompts. Load first for any creative, design, illustration, prompt or aesthetic-judgment task; also when the user says 我的风格, 我喜欢, 按我习惯, 个人偏好.",
       "triggers": "我的风格, 个人偏好, 按我习惯, any creative task",
       "path": "00_core/personal-identity-profile",
@@ -99,6 +99,7 @@
         "references/nai5-artist-pool.md",
         "references/visual-preferences.md",
         "references/business-objectives.md",
+        "references/learning-digest.md",
         "references/feedback-learning-loop.md",
         "references/feedback-ledger.md"
       ],
@@ -140,10 +141,16 @@
           "tokens": 309
         },
         {
+          "path": "references/learning-digest.md",
+          "bundle_path": "bundle/references/personal-identity-profile/references/learning-digest.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/personal-identity-profile/references/learning-digest.md",
+          "tokens": 87
+        },
+        {
           "path": "references/feedback-learning-loop.md",
           "bundle_path": "bundle/references/personal-identity-profile/references/feedback-learning-loop.md",
           "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/personal-identity-profile/references/feedback-learning-loop.md",
-          "tokens": 2299
+          "tokens": 3248
         },
         {
           "path": "references/feedback-ledger.md",
@@ -152,9 +159,9 @@
           "tokens": 935
         }
       ],
-      "tokens_skill": 485,
-      "tokens_bundle": 1163,
-      "tokens_full_bundle": 24551
+      "tokens_skill": 637,
+      "tokens_bundle": 1363,
+      "tokens_full_bundle": 25753
     },
     {
       "name": "aesthetic-director-core",
@@ -271,7 +278,7 @@
       "layer": "01_router",
       "load": "always",
       "status": "active",
-      "version": "4.8.0",
+      "version": "4.9.0",
       "description": "Intent router for creative requests: character and illustration design, NAI5/Anima prompts, reference analysis, feedback learning, ComfyUI and LoRA. Dispatches to the correct owner without redesigning or encoding model syntax.",
       "triggers": "any request, 设计, 提示词, prompt, 反推, 分析, ComfyUI, LoRA, NAI5, Anima",
       "path": "01_router/creative-skill-router",
@@ -290,7 +297,7 @@
           "path": "references/conversation-qol.md",
           "bundle_path": "bundle/references/creative-skill-router/references/conversation-qol.md",
           "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/creative-skill-router/references/conversation-qol.md",
-          "tokens": 1403
+          "tokens": 1849
         },
         {
           "path": "references/task-classification.md",
@@ -323,9 +330,9 @@
           "tokens": 527
         }
       ],
-      "tokens_skill": 955,
-      "tokens_bundle": 1421,
-      "tokens_full_bundle": 4609
+      "tokens_skill": 971,
+      "tokens_bundle": 1437,
+      "tokens_full_bundle": 5072
     },
     {
       "name": "character-design-engine",
