@@ -423,5 +423,5 @@ Do not add section labels that are not part of the established user-facing Anima
 Detailed references are separate files. Read only the references required by the current task; do not fetch every reference by default. Each URL points to the generated, version-matched source for this Harness build.
 
 - `references/anima-weight-syntax.md` (~1165 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/anima-renderer/references/anima-weight-syntax.md
-- `references/anima-model-profiles.md` (~2935 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/anima-renderer/references/anima-model-profiles.md
+- `references/anima-model-profiles.md` (~3113 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/anima-renderer/references/anima-model-profiles.md
 - `references/anima-troubleshooting.md` (~2070 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/anima-renderer/references/anima-troubleshooting.md

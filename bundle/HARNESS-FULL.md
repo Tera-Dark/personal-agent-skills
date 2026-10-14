@@ -7402,7 +7402,7 @@ A's shoulder partly crosses the near foreground. B stands farther away, her face
 > **Maintainer**: Tera-Dark  
 > **Scope**: Anima 模型族各版本特性、提示词语法、文本编码器兼容性与来源溯源
 
-本文档为 `anima-prompt-compiler` 提供模型底层特性参考。所有规则均采用**证据分级与可溯源体系**，严格区分官方事实、兼容性工程规范与社区经验，严禁未经查证随意贴标。
+本文档为 `anima-renderer` 提供模型底层特性参考。所有规则均采用**证据分级与可溯源体系**，严格区分官方事实、兼容性工程规范与社区经验，严禁未经查证随意贴标。尤其不能从 NAI5 复制 `数字::tag::` 语法作为 Anima 权重；普通 ComfyUI 支持的表达是 `(tag:weight)`，具体是否解析还要核实编码节点。
 
 ---
 
@@ -7422,6 +7422,7 @@ A's shoulder partly crosses the near foreground. B stands farther away, her face
 ###### Source-01 · 官方模型卡片与基线 (Official Model Card Facts)
 - **Type**: 🟢 Official
 - **Source Repository**: [Hugging Face: Cirno/Anima](https://huggingface.co/Cirno/Anima)
+- **Renderer-specific weighting addendum (2026-10-14)**: see `anima-weight-syntax.md` before writing any weighted Anima prompt; model family and text encoder support must not be conflated.
 - **Source Section**: Model Card & Release Notes
 - **Verified On**: 2026-09-17
 - **Applies To**: Anima Base / Aesthetic release checkpoints
@@ -7444,7 +7445,7 @@ A's shoulder partly crosses the near foreground. B stands farther away, her face
 - **Verified On**: 2026-09-17
 - **Commonly Observed Patterns**:
   - 语序前置（Word Order Priority）比单纯提升括号数值权重更具稳定性；
-  - 适度权重范围一般在 `(keyword:1.05)` 至 `(keyword:1.20)` 之间；
+  - 社区可能使用 `(keyword:1.05)` 至更强权重作为实验区间，**不是硬性建议范围**；模型、ComfyUI 文本编码节点、提示词冲突会改变实际效果。加权是否生效必须以当前节点解析与 A/B 测试判断，不能因原作者展示高权重例子就默认全体用 1.8 或 2。
   - 空泛质量词（如 `masterpiece`, `8k`）在 Anima 中容易占用注意力预算，降低具体视觉描述的服从度。
 
 ---

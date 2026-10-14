@@ -8,7 +8,7 @@
   "harness_full_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS-FULL.md",
   "handshake": "Harness v4.7.0 loaded · 17 modules · 说需求，或发参考图。",
   "core_tokens": 6447,
-  "full_tokens": 165142,
+  "full_tokens": 165320,
   "pipeline": {
     "aesthetic_gate": "aesthetic-director-core",
     "blueprint_gate": {
@@ -488,7 +488,7 @@
           "path": "references/anima-model-profiles.md",
           "bundle_path": "bundle/references/anima-renderer/references/anima-model-profiles.md",
           "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/anima-renderer/references/anima-model-profiles.md",
-          "tokens": 2935
+          "tokens": 3113
         },
         {
           "path": "references/anima-troubleshooting.md",
@@ -499,7 +499,7 @@
       ],
       "tokens_skill": 936,
       "tokens_bundle": 1273,
-      "tokens_full_bundle": 7295
+      "tokens_full_bundle": 7473
     },
     {
       "name": "danbooru-tag-gate",
