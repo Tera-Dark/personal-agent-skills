@@ -254,7 +254,7 @@ source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/00_core/per
 ---
 
 ## MODULE: creative-skill-router
-layer: 01_router · load: always · status: active · module version: 4.7.0 · harness 4.7.1
+layer: 01_router · load: always · status: active · module version: 4.8.0 · harness 4.7.1
 source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/01_router/creative-skill-router
 
 **description:** Entry point for all creative requests. Classifies intent and sends the task to design, analysis, shared prompt compilation, target-model rendering, evaluation, or technical modules. Use for 设计, OC, 人设, 立绘, 插画, 提示词, prompt, NAI, NovelAI, Anima, 反推, 分析图片, ComfyUI, LoRA, or ambiguous creative tasks.
@@ -273,7 +273,7 @@ Router 不负责审美、角色设计、Packet 内容、Tag 验证或模型语�
 - **FULL CREATIVE**：新 OC、服设、插画、海报；简单肖像紧凑处理，复杂叙事充分设计。
 - **FAST VARIANT**：已认可设计仅改指定变量，其余锁定。
 - **PROMPT ONLY**：内部仍做必要设计和校验；仅交付可复制 Prompt，不展示内部 Brief。
-- FAST VARIANT 若改身份、轮廓、命题或主构图则升级 FULL。是否允许生图由 Kernel 决定。
+- FAST VARIANT 改身份、命题或主构图则升级 FULL；生图许可仅由 Kernel 决定。
 
 #### 主路由
 
@@ -289,9 +289,7 @@ identity → Aesthetic Gate FULL → specialist → Blueprint Gate
 
 identity → Aesthetic Gate → **small-artist-brain**（独立审美 Decision Sheet，按 SIMPLE / BALANCED / ORNATE）→ character-design-engine / illustration-direction → Blueprint Gate。
 
-- 仅在触发时读取 `02_design/small-artist-brain/SKILL.md`，创作时按需读取 `02_design/small-artist-brain/references/zheng-transferable-grammar.md`；复盘出处时才读取 16 案例原始分析。
-- 它是**审美证据与决策增强**，不是第二份 universal aesthetic gate、不是另一份 model renderer、不是所有日常/单人都自动繁花化。
-- 用户指定原版服设、固定人设、白底或低彩时必须保留。Prompt Core 不复制这套逻辑，只接收已锁定 blueprint。
+- 按需读取小画师模块和相关 reference；它只提供审美证据与决策增量，不是第二套 Director/Renderer，不强制繁花化；原版服设、白底和用户锁定事实优先。
 
 ##### 2. 已完成设计 → 模型提示词
 
@@ -328,9 +326,9 @@ existing prompt → prompt-analysis
 
 生成图、版本比较、用户说“太平淡 / 太乱 / 不像 / 这版可以 / 哪里不对”：
 
-→ evaluation-loop → 失败层 owner
+→ evaluation-loop（诊断 + 拆分好/坏反馈）→ 当前轮锁定 / 身份模块学习候选 → 失败层 owner。
 
-只修第一个实际失败层，不借 renderer 堆词掩盖设计问题。对于用户明确要求的局部变体，采用 FAST VARIANT，不重做未受影响的设计层。
+持续偏好学习按需读取 `00_core/personal-identity-profile/references/feedback-learning-loop.md`：有授权写权限才同步 GitHub；否则保留当轮、支持导出，**不假装自动跨会话记忆**。短句“继续/只改X/上一版更好/一框复制”的操作解释按需读取 `references/conversation-qol.md`。仅改第一个失败层，不重做已认可事实。
 
 ##### 7. 技术
 
@@ -353,6 +351,7 @@ ComfyUI / LoRA / dataset：
 Router 不向用户输出长篇架构说明。内部决定路径后直接执行下一步。
 
 #### References
+- `references/conversation-qol.md` — **按需：高频短句、一框复制、继续/回退、口语化偏好学习入口**。
 - `references/task-classification.md`
 - `references/routing-rules.md`
 - `references/model-selection.md`

@@ -4052,7 +4052,7 @@ This painterly-story mode is suited to dynamic character key visuals and environ
 ---
 
 ## MODULE: creative-skill-router
-layer: 01_router · load: always · status: active · module version: 4.7.0 · harness 4.7.1
+layer: 01_router · load: always · status: active · module version: 4.8.0 · harness 4.7.1
 source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/01_router/creative-skill-router
 
 **description:** Entry point for all creative requests. Classifies intent and sends the task to design, analysis, shared prompt compilation, target-model rendering, evaluation, or technical modules. Use for 设计, OC, 人设, 立绘, 插画, 提示词, prompt, NAI, NovelAI, Anima, 反推, 分析图片, ComfyUI, LoRA, or ambiguous creative tasks.
@@ -4071,7 +4071,7 @@ Router 不负责审美、角色设计、Packet 内容、Tag 验证或模型语�
 - **FULL CREATIVE**：新 OC、服设、插画、海报；简单肖像紧凑处理，复杂叙事充分设计。
 - **FAST VARIANT**：已认可设计仅改指定变量，其余锁定。
 - **PROMPT ONLY**：内部仍做必要设计和校验；仅交付可复制 Prompt，不展示内部 Brief。
-- FAST VARIANT 若改身份、轮廓、命题或主构图则升级 FULL。是否允许生图由 Kernel 决定。
+- FAST VARIANT 改身份、命题或主构图则升级 FULL；生图许可仅由 Kernel 决定。
 
 #### 主路由
 
@@ -4087,9 +4087,7 @@ identity → Aesthetic Gate FULL → specialist → Blueprint Gate
 
 identity → Aesthetic Gate → **small-artist-brain**（独立审美 Decision Sheet，按 SIMPLE / BALANCED / ORNATE）→ character-design-engine / illustration-direction → Blueprint Gate。
 
-- 仅在触发时读取 `02_design/small-artist-brain/SKILL.md`，创作时按需读取 `02_design/small-artist-brain/references/zheng-transferable-grammar.md`；复盘出处时才读取 16 案例原始分析。
-- 它是**审美证据与决策增强**，不是第二份 universal aesthetic gate、不是另一份 model renderer、不是所有日常/单人都自动繁花化。
-- 用户指定原版服设、固定人设、白底或低彩时必须保留。Prompt Core 不复制这套逻辑，只接收已锁定 blueprint。
+- 按需读取小画师模块和相关 reference；它只提供审美证据与决策增量，不是第二套 Director/Renderer，不强制繁花化；原版服设、白底和用户锁定事实优先。
 
 ##### 2. 已完成设计 → 模型提示词
 
@@ -4126,9 +4124,9 @@ existing prompt → prompt-analysis
 
 生成图、版本比较、用户说“太平淡 / 太乱 / 不像 / 这版可以 / 哪里不对”：
 
-→ evaluation-loop → 失败层 owner
+→ evaluation-loop（诊断 + 拆分好/坏反馈）→ 当前轮锁定 / 身份模块学习候选 → 失败层 owner。
 
-只修第一个实际失败层，不借 renderer 堆词掩盖设计问题。对于用户明确要求的局部变体，采用 FAST VARIANT，不重做未受影响的设计层。
+持续偏好学习按需读取 `00_core/personal-identity-profile/references/feedback-learning-loop.md`：有授权写权限才同步 GitHub；否则保留当轮、支持导出，**不假装自动跨会话记忆**。短句“继续/只改X/上一版更好/一框复制”的操作解释按需读取 `references/conversation-qol.md`。仅改第一个失败层，不重做已认可事实。
 
 ##### 7. 技术
 
@@ -4151,11 +4149,63 @@ ComfyUI / LoRA / dataset：
 Router 不向用户输出长篇架构说明。内部决定路径后直接执行下一步。
 
 #### References
+- `references/conversation-qol.md` — **按需：高频短句、一框复制、继续/回退、口语化偏好学习入口**。
 - `references/task-classification.md`
 - `references/routing-rules.md`
 - `references/model-selection.md`
 - `references/execution-flow.md`
 - `references/skill-map.md`
+
+---
+
+### Reference: references/conversation-qol.md
+
+#### Conversation QoL — 高频简短指令与续作手感
+
+> 2026-10-14。只规定**怎样解释用户的操作意图**，不替 Aesthetic Director 创作、不重写模型 Prompt 语法。现有 Router 的 FULL / FAST VARIANT / PROMPT ONLY 优先。
+
+##### 1. 常用自然语言
+
+| 用户说 | 当前模型/人物/设定 | 允许改动 | 禁止 |
+| --- | --- | --- | --- |
+| “继续 / 再来一版 / 下一套” | 延续最近已明确的 IP、人物与模型；画幅和禁区若未指定变动则保留 | 提出**新的命题、瞬间和镜头解法**；留住认可的机制 | 只是把雨夜换车站、复制最近画面结构 |
+| “只改配色 / 只改脸 / 只改机位” | 其它锁定事实严格保留 | FAST VARIANT，仅变指名轴及物理必然伴随的细节 | 擅自换角色、改服装体系、重写故事 |
+| “上一版更好 / 退回上一版” | 恢复上一认可的创意/参数 | 只撤销本次失败变更，并解释一句原因 | 为新版辩解或继续堆装饰 |
+| “这张不错，但 XX 不好” | 保留所有已明确称赞维度 | 把称赞/否定拆为两条反馈，优先修被否定轴 | 以“整体优化”为理由重做好球项 |
+| “只输出提示词 / 一框复制” | 保留设计深度 | 输出一个完整可复制英文块 | 输出 3 块拆开、无端加 Negative/画师串/额外讲解 |
+| “固定原版服设” | 锁 IP 身份、可见原服装 | 调整画面与光源 | 擅自重新设计衣服 |
+| “换其他角色” | 保留已认可的镜头机制、画面题材，若无冲突 | 变更人物/必要身份动作 | 把旧角色服装/道具带给新角色 |
+| “你上次推荐的 / 之前最满意的” | 不确定则查持久认可样本/当前上下文 | 带证据的续作 | 无证据时凭空编造往期用户评分 |
+| “记住 / 以后默认 / 不要再用” | 把用户明确的范围作为首要锁定 | 调用 Identity feedback-learning-loop 做长期晋升 | 将局部否定偷偷扩展为全局禁令 |
+| “比较这两张 / 我试了” | 保留 model / seed / 参数证据 | evaluation-loop 记录实际图像反馈与最小修复项 | 声称仅文本评论是图像 A/B 通过 |
+
+##### 2. 防套模板：变体距离
+
+“继续设计”不等于细节微调。若此前连续用到同一场景/配色/视角，下一轮至少更换 **一个决定第一眼结构的主轴**（观看位置、主体大小/裁切、明度大形、人物行动时相、画面类型）；并明确新的故事因果，不靠换几个环境名词。
+
+用户没有指定“改已有方案”时，优先新创意；说“保持上一版构图”时严禁自作主张换镜头。不要因为自动追求多样性破坏用户已锁定的动作。
+
+##### 3. 节约操作步骤
+
+- 用户贴一张图 + “反推”：先判断是反推 Prompt 还是仅审美拆解；若上下文已经明确用途，不要多问。
+- 新对话发 GitHub 链接：按 Harness 正常启动；如附创作任务则直接执行，无需介绍仓库。
+- 用户说“给我输出提示词”且未提实际绘制：**只输出文本，不调用图像生成工具**。
+- 永远优先 1 块可复制 Prompt；若 NAI5 双角色不同输入槽位的情况与单框冲突，应解释语法的兼容边界，不输出看似整洁但无效的格式。
+- 用户问“记住了吗”时区分 **会话状态 / 已写 GitHub / 仅生成待同步补丁**，无法检索旧聊天则不能保证召回。
+
+##### 4. 学习入口（命令可选，口语优先）
+
+- `/learn status` 或“最近学到什么”：读取当轮反馈，必要时按需加载 `00_core/personal-identity-profile/references/feedback-ledger.md`。
+- `/learn sync` 或“同步品味到 Skill”：遵循 `feedback-learning-loop.md` 的写入许可与晋升门槛。
+- `/learn export` 或“导出本轮偏好”：一块紧凑 Markdown handoff，供没有 GitHub 连接的场景使用。
+- `/learn undo FB-...` 或“撤销这条”：反向更新对应条目并说明生效范围。
+- `/state` 保留最近 Prompt 版本、已锁定/已否定设计事实；不要把 Session State 谎称为持久数据库。
+
+##### 5. QoL 回归示例
+
+- V1 通过“同机位双格 + 微动作” → 用户说“继续”，必须产生新场景/人物动作，不退化成每次双格 + 电车/雨夜。
+- V1 原版维尔汀服装 → 用户说“只换机位”，V2 保持帽、发、外套，只调整观察者位置与物理结果。
+- 用户说“9分，但脸丑”：两条不同 scope 的 Feedback Signal，不直接升格为“用户讨厌该风格”。
 
 ---
 
@@ -4443,57 +4493,6 @@ Skill 之间按**名字**引用（不是相对路径），因为它们可能被�
 ##### kernel/ — 不是 Skill
 
 `kernel/KERNEL.md` 是运行契约（操作循环、加载协议、视觉协议、会话状态、命令、扩展协议）。build 会把它和 always-on 模块合成 `bundle/HARNESS.md`。
-
----
-
-### Reference: references/conversation-qol.md
-
-#### Conversation QoL — 高频简短指令与续作手感
-
-> 2026-10-14。只规定**怎样解释用户的操作意图**，不替 Aesthetic Director 创作、不重写模型 Prompt 语法。现有 Router 的 FULL / FAST VARIANT / PROMPT ONLY 优先。
-
-##### 1. 常用自然语言
-
-| 用户说 | 当前模型/人物/设定 | 允许改动 | 禁止 |
-| --- | --- | --- | --- |
-| “继续 / 再来一版 / 下一套” | 延续最近已明确的 IP、人物与模型；画幅和禁区若未指定变动则保留 | 提出**新的命题、瞬间和镜头解法**；留住认可的机制 | 只是把雨夜换车站、复制最近画面结构 |
-| “只改配色 / 只改脸 / 只改机位” | 其它锁定事实严格保留 | FAST VARIANT，仅变指名轴及物理必然伴随的细节 | 擅自换角色、改服装体系、重写故事 |
-| “上一版更好 / 退回上一版” | 恢复上一认可的创意/参数 | 只撤销本次失败变更，并解释一句原因 | 为新版辩解或继续堆装饰 |
-| “这张不错，但 XX 不好” | 保留所有已明确称赞维度 | 把称赞/否定拆为两条反馈，优先修被否定轴 | 以“整体优化”为理由重做好球项 |
-| “只输出提示词 / 一框复制” | 保留设计深度 | 输出一个完整可复制英文块 | 输出 3 块拆开、无端加 Negative/画师串/额外讲解 |
-| “固定原版服设” | 锁 IP 身份、可见原服装 | 调整画面与光源 | 擅自重新设计衣服 |
-| “换其他角色” | 保留已认可的镜头机制、画面题材，若无冲突 | 变更人物/必要身份动作 | 把旧角色服装/道具带给新角色 |
-| “你上次推荐的 / 之前最满意的” | 不确定则查持久认可样本/当前上下文 | 带证据的续作 | 无证据时凭空编造往期用户评分 |
-| “记住 / 以后默认 / 不要再用” | 把用户明确的范围作为首要锁定 | 调用 Identity feedback-learning-loop 做长期晋升 | 将局部否定偷偷扩展为全局禁令 |
-| “比较这两张 / 我试了” | 保留 model / seed / 参数证据 | evaluation-loop 记录实际图像反馈与最小修复项 | 声称仅文本评论是图像 A/B 通过 |
-
-##### 2. 防套模板：变体距离
-
-“继续设计”不等于细节微调。若此前连续用到同一场景/配色/视角，下一轮至少更换 **一个决定第一眼结构的主轴**（观看位置、主体大小/裁切、明度大形、人物行动时相、画面类型）；并明确新的故事因果，不靠换几个环境名词。
-
-用户没有指定“改已有方案”时，优先新创意；说“保持上一版构图”时严禁自作主张换镜头。不要因为自动追求多样性破坏用户已锁定的动作。
-
-##### 3. 节约操作步骤
-
-- 用户贴一张图 + “反推”：先判断是反推 Prompt 还是仅审美拆解；若上下文已经明确用途，不要多问。
-- 新对话发 GitHub 链接：按 Harness 正常启动；如附创作任务则直接执行，无需介绍仓库。
-- 用户说“给我输出提示词”且未提实际绘制：**只输出文本，不调用图像生成工具**。
-- 永远优先 1 块可复制 Prompt；若 NAI5 双角色不同输入槽位的情况与单框冲突，应解释语法的兼容边界，不输出看似整洁但无效的格式。
-- 用户问“记住了吗”时区分 **会话状态 / 已写 GitHub / 仅生成待同步补丁**，无法检索旧聊天则不能保证召回。
-
-##### 4. 学习入口（命令可选，口语优先）
-
-- `/learn status` 或“最近学到什么”：读取当轮反馈，必要时按需加载 `00_core/personal-identity-profile/references/feedback-ledger.md`。
-- `/learn sync` 或“同步品味到 Skill”：遵循 `feedback-learning-loop.md` 的写入许可与晋升门槛。
-- `/learn export` 或“导出本轮偏好”：一块紧凑 Markdown handoff，供没有 GitHub 连接的场景使用。
-- `/learn undo FB-...` 或“撤销这条”：反向更新对应条目并说明生效范围。
-- `/state` 保留最近 Prompt 版本、已锁定/已否定设计事实；不要把 Session State 谎称为持久数据库。
-
-##### 5. QoL 回归示例
-
-- V1 通过“同机位双格 + 微动作” → 用户说“继续”，必须产生新场景/人物动作，不退化成每次双格 + 电车/雨夜。
-- V1 原版维尔汀服装 → 用户说“只换机位”，V2 保持帽、发、外套，只调整观察者位置与物理结果。
-- 用户说“9分，但脸丑”：两条不同 scope 的 Feedback Signal，不直接升格为“用户讨厌该风格”。
 
 ---
 
