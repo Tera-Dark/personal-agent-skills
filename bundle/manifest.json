@@ -8,7 +8,7 @@
   "harness_full_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS-FULL.md",
   "handshake": "Harness v4.7.0 loaded · 17 modules · 说需求，或发参考图。",
   "core_tokens": 6447,
-  "full_tokens": 163721,
+  "full_tokens": 165142,
   "pipeline": {
     "aesthetic_gate": "aesthetic-director-core",
     "blueprint_gate": {
@@ -466,17 +466,24 @@
       "layer": "03_prompt",
       "load": "on-demand",
       "status": "active",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "description": "Thin Anima-specific renderer that converts a Visual Prompt Packet plus verified Danbooru tags into the established Anima Tag + Natural Language prompt. Handles only Anima syntax, tag serialization, relation wording, output modes, and final target-specific checks. Does not design.",
       "triggers": "Anima, Anima prompt, Anima 提示词, Anima checkpoint",
       "path": "03_prompt/anima-renderer",
       "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/03_prompt/anima-renderer",
       "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/anima-renderer.md",
       "references": [
+        "references/anima-weight-syntax.md",
         "references/anima-model-profiles.md",
         "references/anima-troubleshooting.md"
       ],
       "reference_files": [
+        {
+          "path": "references/anima-weight-syntax.md",
+          "bundle_path": "bundle/references/anima-renderer/references/anima-weight-syntax.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/anima-renderer/references/anima-weight-syntax.md",
+          "tokens": 1165
+        },
         {
           "path": "references/anima-model-profiles.md",
           "bundle_path": "bundle/references/anima-renderer/references/anima-model-profiles.md",
@@ -490,9 +497,9 @@
           "tokens": 2070
         }
       ],
-      "tokens_skill": 699,
-      "tokens_bundle": 988,
-      "tokens_full_bundle": 5876
+      "tokens_skill": 936,
+      "tokens_bundle": 1273,
+      "tokens_full_bundle": 7295
     },
     {
       "name": "danbooru-tag-gate",

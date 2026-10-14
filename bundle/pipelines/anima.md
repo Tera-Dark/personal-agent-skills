@@ -348,7 +348,7 @@ Detailed references are separate files. Read only the references required by the
 --- MODULE anima-renderer ---
 
 ## MODULE: anima-renderer
-layer: 03_prompt · load: on-demand · status: active · module version: 0.1.0 · harness 4.7.0
+layer: 03_prompt · load: on-demand · status: active · module version: 0.2.0 · harness 4.7.0
 source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/03_prompt/anima-renderer
 
 **description:** Thin Anima-specific renderer that converts a Visual Prompt Packet plus verified Danbooru tags into the established Anima Tag + Natural Language prompt. Handles only Anima syntax, tag serialization, relation wording, output modes, and final target-specific checks. Does not design.
@@ -374,6 +374,8 @@ This module is a target-model adapter. It accepts only a validated blueprint or 
 - 只有 verified exact / alias canonical tags 才能进入 Tag block。
 - missing / unverified tag meaning falls back to Natural Language.
 - Canonical tag identity remains separate from Anima serialized syntax.
+- **2026-10-14 用户纠正 / 硬阻断：** Anima + ComfyUI 通用支持加权的文本节点使用 `(phrase:weight)`，**绝不把 NovelAI 的 `1.3::phrase::` 直接复制为 Anima 权重**。自定义 TE / Mixer 有自己的解析规则，未验证时输出无权重混合提示词；详见 `references/anima-weight-syntax.md`。
+- 任何带数字加权的 Anima 输出，发布前检查其解析器是否支持此语法；禁止默认将 NAI5 的 Positive 负权重和 Artist token 搬到 Anima。
 - Current explicit syntax rule: canonical 37_(reverse:1999) serializes as 37\\(reverse1999\\). This is an exact identity rule, not a global punctuation escape.
 - Do not globally rewrite underscores, parentheses, colons, slashes, or name_(series) forms.
 - Preserve Visual Prompt Packet design decisions exactly.
@@ -404,13 +406,15 @@ Do not add section labels that are not part of the established user-facing Anima
 #### Acceptance
 
 - [ ] no unverified hard tag
-- [ ] exact Anima syntax preserved
+- [ ] exact Anima syntax preserved; no NAI5 `number::tag::` in ordinary Anima output
+- [ ] weighted `(phrase:value)` syntax checked against current ComfyUI encoder; identity parentheses escaped only as required
 - [ ] Tag / NL division is clear
 - [ ] relations are represented
 - [ ] no redesign
 - [ ] prompt is minimum-sufficient rather than merely short
 
 #### References
+- `references/anima-weight-syntax.md` — **必读：Anima/ComfyUI 权重、括号转义、与 NAI5 语法防串用、用户纠错回归。**
 - `references/anima-model-profiles.md` — model-specific behavior notes and output constraints.
 - `references/anima-troubleshooting.md` — artifact and compilation troubleshooting patterns.
 
@@ -418,5 +422,6 @@ Do not add section labels that are not part of the established user-facing Anima
 
 Detailed references are separate files. Read only the references required by the current task; do not fetch every reference by default. Each URL points to the generated, version-matched source for this Harness build.
 
+- `references/anima-weight-syntax.md` (~1165 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/anima-renderer/references/anima-weight-syntax.md
 - `references/anima-model-profiles.md` (~2935 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/anima-renderer/references/anima-model-profiles.md
 - `references/anima-troubleshooting.md` (~2070 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/anima-renderer/references/anima-troubleshooting.md

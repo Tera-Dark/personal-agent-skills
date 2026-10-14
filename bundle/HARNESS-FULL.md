@@ -7266,7 +7266,7 @@ handoff_notes: "传给 Illustration/Character owner 的决定，renderer 不可�
 ---
 
 ## MODULE: anima-renderer
-layer: 03_prompt · load: on-demand · status: active · module version: 0.1.0 · harness 4.7.0
+layer: 03_prompt · load: on-demand · status: active · module version: 0.2.0 · harness 4.7.0
 source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/03_prompt/anima-renderer
 
 **description:** Thin Anima-specific renderer that converts a Visual Prompt Packet plus verified Danbooru tags into the established Anima Tag + Natural Language prompt. Handles only Anima syntax, tag serialization, relation wording, output modes, and final target-specific checks. Does not design.
@@ -7292,6 +7292,8 @@ This module is a target-model adapter. It accepts only a validated blueprint or 
 - 只有 verified exact / alias canonical tags 才能进入 Tag block。
 - missing / unverified tag meaning falls back to Natural Language.
 - Canonical tag identity remains separate from Anima serialized syntax.
+- **2026-10-14 用户纠正 / 硬阻断：** Anima + ComfyUI 通用支持加权的文本节点使用 `(phrase:weight)`，**绝不把 NovelAI 的 `1.3::phrase::` 直接复制为 Anima 权重**。自定义 TE / Mixer 有自己的解析规则，未验证时输出无权重混合提示词；详见 `references/anima-weight-syntax.md`。
+- 任何带数字加权的 Anima 输出，发布前检查其解析器是否支持此语法；禁止默认将 NAI5 的 Positive 负权重和 Artist token 搬到 Anima。
 - Current explicit syntax rule: canonical 37_(reverse:1999) serializes as 37\\(reverse1999\\). This is an exact identity rule, not a global punctuation escape.
 - Do not globally rewrite underscores, parentheses, colons, slashes, or name_(series) forms.
 - Preserve Visual Prompt Packet design decisions exactly.
@@ -7322,15 +7324,72 @@ Do not add section labels that are not part of the established user-facing Anima
 #### Acceptance
 
 - [ ] no unverified hard tag
-- [ ] exact Anima syntax preserved
+- [ ] exact Anima syntax preserved; no NAI5 `number::tag::` in ordinary Anima output
+- [ ] weighted `(phrase:value)` syntax checked against current ComfyUI encoder; identity parentheses escaped only as required
 - [ ] Tag / NL division is clear
 - [ ] relations are represented
 - [ ] no redesign
 - [ ] prompt is minimum-sufficient rather than merely short
 
 #### References
+- `references/anima-weight-syntax.md` — **必读：Anima/ComfyUI 权重、括号转义、与 NAI5 语法防串用、用户纠错回归。**
 - `references/anima-model-profiles.md` — model-specific behavior notes and output constraints.
 - `references/anima-troubleshooting.md` — artifact and compilation troubleshooting patterns.
+
+---
+
+### Reference: references/anima-weight-syntax.md
+
+#### Anima Prompt Weight Syntax — ComfyUI 普通文本框
+
+> 2026-10-14 用户纠错后加入。本文只约束 **Anima renderer 的模型专属串行化**，不重新决定权重应该落在哪个设计元素，也不影响 NAI5 规则。
+
+##### 1. 绝不与 NAI5 串用
+
+| 环境 | 带权语法示例 | 禁止的混用 |
+| --- | --- | --- |
+| NovelAI V5 | `1.4::cinematic lighting::` | 不套用到 Anima |
+| Anima + 支持 ComfyUI 括号加权的文本编码节点 | `(cinematic lighting:1.4)` | 不写 `1.4::cinematic lighting::` |
+| Anima + 自定义文本编码器或 Artist Mixer | **先查该节点解析规则** | 不默认任何文本语法在所有节点生效 |
+
+**错误回归样例：** 用户要求“把 NAI5 提示词改成 Anima 权重格式”时，必须重编译所有带权 token，不能仅把模型名称换掉并保留 `数字::tag::`。某些 Artist Mixer 使用 `1.2::artist::` 是插件自己的协议，不可移植成普通 Prompt。
+
+##### 2. 合法语法与词法边界
+
+- ComfyUI 常见加权形式：`(tag:1.2)`、`(clear visible geometry:1.5)`；无需求不加权。
+- 降权同属同一个形式：`(distant background:0.8)`。权重数值不是通用成功率保证，按用户模型/节点/生成结果单变量调试。
+- 普通括号若属于角色标识符，应根据实际文本编码器约定转义，**不要将原角色名标识误解析为权重**。例如含系列括号的角色 tag 可在 ComfyUI 通常形式中写作 `vertin \\(reverse:1999\\)`；但不同编码器可能不需要该写法，严禁在未知后端全局转义。
+- 不要将自然语言中的圆括号、角色 canonical tag 或包含冒号的系列名机械转换成权重。
+- 若用户使用 Qwen 系列 TE / 自定义节点，先辨别是否支持和如何实现 ComfyUI 的 `(text:weight)` 解析。若未确认，**保留非带权 Tag + NL**，不要声称权重一定被执行。
+- Anima 官方/社区样例不能替代当前用户 ComfyUI 编码节点的实际 A/B 测试。标明来源等级 [Official]/[Community]/[User Report]/[Unverified]。
+
+##### 3. 权重部署与可见性
+
+先把 camera intent 编译成可见证据再选择加权：`(viewed through the wet window:1.35)` 必须与前景窗框、水滴遮挡、中景人脸的位置一致。优先加权 1–3 个关键镜头/接触事实，而不是给每句话套权重。
+
+最小结构：
+
+```text
+2girls, character A, character B, original outfits,
+(over the shoulder view:1.35), (A catches B's wrist:1.4),
+A's shoulder partly crosses the near foreground. B stands farther away, her face and their joined hands clearly visible. Light from a single doorway illuminates the hands; the corridor behind stays dark.
+```
+
+严禁添加只为了“电影感”的空泛加权，比如 `(cinematic:1.8), (emotional:1.8)` 而没有任何可拍到的空间关系。
+
+##### 4. 交付前硬检查
+
+1. 目标为 Anima：任何正向 prompt 中的 `\d+(?:\.\d+)?::[^\n]+::` 片段都应被视为 **NAI 语法串用警报**，除非用户指定了兼容该语法的特定扩展节点。
+2. Anima 使用 `(phrase:weight)` 时，必须有该节点支持的依据；仅靠更高数字无法证明有作用。
+3. 无需默认加 `masterpiece`、`best quality`、步骤、采样器、Negative。用户要求“一个框复制”则把 Tag 与一段简洁 NL 放同一代码块，不重复场景。
+4. 原 IP 身份和服饰、双人物理接触、观看位置、明暗主次必须逐项存活；不把 NAI5 的 Positive 负权重 `-1::standing::` 直接迁到 Anima。
+5. 未跑图验证时标记 **SPEC / IMAGE-PENDING**，不宣称视觉效果已通过。
+
+##### 参考
+
+- [Anima 模型页（以当前 checkpoint 与作者说明为准）](https://huggingface.co/Cirno/Anima)
+- [ComfyUI 官方文档](https://docs.comfy.org/)
+- 本仓 `03_prompt/anima-renderer/references/anima-model-profiles.md` 中的版本与 TE 兼容说明。
 
 ---
 
