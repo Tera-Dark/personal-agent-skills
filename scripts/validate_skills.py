@@ -300,10 +300,8 @@ def main():
         for n, line in enumerate(open(ledger_path, encoding="utf-8"), 1):
             if not line.startswith("| FB-"):
                 continue
-            m = re.match(r"^\\| (FB-\\d{8}-\\d{2}) \\|", line)
-            if not m:
-                # Current ledger places a human-readable date after ID.
-                m = re.match(r"^\\| (FB-\\d{8}-\\d{2}) ·", line)
+            # Table format: "| FB-YYYYMMDD-NN · MM-DD | ..."
+            m = re.match(r"^\| (FB-\d{8}-\d{2}) ·", line)
             if not m:
                 errors.append(f"feedback ledger line {n}: invalid signal ID")
                 continue
