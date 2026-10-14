@@ -44,3 +44,4 @@ Detailed references are separate files. Read only the references required by the
 - `references/visual-preferences.md` (~440 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/personal-identity-profile/references/visual-preferences.md
 - `references/business-objectives.md` (~309 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/personal-identity-profile/references/business-objectives.md
 - `references/feedback-learning-loop.md` (~2299 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/personal-identity-profile/references/feedback-learning-loop.md
+- `references/feedback-ledger.md` (~935 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/personal-identity-profile/references/feedback-ledger.md
