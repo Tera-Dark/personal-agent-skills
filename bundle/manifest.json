@@ -8,7 +8,7 @@
   "harness_full_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS-FULL.md",
   "handshake": "Harness v4.7.0 loaded · 17 modules · 说需求，或发参考图。",
   "core_tokens": 6447,
-  "full_tokens": 167571,
+  "full_tokens": 168488,
   "pipeline": {
     "aesthetic_gate": "aesthetic-director-core",
     "blueprint_gate": {
@@ -358,7 +358,7 @@
       "layer": "02_design",
       "load": "on-demand",
       "status": "active",
-      "version": "2.7.0",
+      "version": "2.8.0",
       "description": "Turns a Creative Brief into an authored, model-agnostic illustration blueprint — the image thesis, captured moment, visual motif, environment-character relationship, camera and framing, scale contrast, negative space, physical light sources, density map, narrative residue, and one coherent surreal detail. Use for 插画, 氛围图, 竖屏, 半留白, 印象风, 故事感, key visual, poster, scene illustration, cinematic composition, or whenever a character needs to be placed into a designed moment rather than displayed on a plate. Never writes model-specific prompt syntax.",
       "triggers": "插画, 氛围图, 竖屏, 半留白, 印象风, 故事感, key visual, poster, scene, 极繁, 特写垫底, 大头贴, 元素贴, 角色拼贴",
       "path": "02_design/illustration-direction",
@@ -366,19 +366,25 @@
       "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/illustration-direction.md",
       "references": [
         "references/cinematic-camera-grammar.md",
+        "references/cinematic-12-frame-study-2026-10-14.md",
         "references/composition-patterns.md",
         "references/oc-maximalist-closeup-backdrop-preset.md",
         "references/visual-grammar.md",
         "references/atmosphere-presets.md",
-        "references/white-background-fashion-grammar.md",
-        "references/cinematic-12-frame-study-2026-10-14.md"
+        "references/white-background-fashion-grammar.md"
       ],
       "reference_files": [
         {
           "path": "references/cinematic-camera-grammar.md",
           "bundle_path": "bundle/references/illustration-direction/references/cinematic-camera-grammar.md",
           "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/illustration-direction/references/cinematic-camera-grammar.md",
-          "tokens": 2941
+          "tokens": 3247
+        },
+        {
+          "path": "references/cinematic-12-frame-study-2026-10-14.md",
+          "bundle_path": "bundle/references/illustration-direction/references/cinematic-12-frame-study-2026-10-14.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/illustration-direction/references/cinematic-12-frame-study-2026-10-14.md",
+          "tokens": 2228
         },
         {
           "path": "references/composition-patterns.md",
@@ -409,24 +415,18 @@
           "bundle_path": "bundle/references/illustration-direction/references/white-background-fashion-grammar.md",
           "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/illustration-direction/references/white-background-fashion-grammar.md",
           "tokens": 2549
-        },
-        {
-          "path": "references/cinematic-12-frame-study-2026-10-14.md",
-          "bundle_path": "bundle/references/illustration-direction/references/cinematic-12-frame-study-2026-10-14.md",
-          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/illustration-direction/references/cinematic-12-frame-study-2026-10-14.md",
-          "tokens": 2228
         }
       ],
-      "tokens_skill": 4834,
-      "tokens_bundle": 5483,
-      "tokens_full_bundle": 24072
+      "tokens_skill": 5130,
+      "tokens_bundle": 5780,
+      "tokens_full_bundle": 24674
     },
     {
       "name": "small-artist-brain",
       "layer": "02_design",
       "load": "on-demand",
       "status": "active",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "description": "Evidence-driven Xiao-artist visual decision overlay informed by 16 ZHENG works and 12 additional user-supplied premium commission examples. Uses composition, character vitality, palette hierarchy, density, space, gesture and camera to raise illustration taste without copying works. Use for 小画师脑, 小画师审美, 米画师, 蒸蒸, ZHENG, 精美插画, 女性向视觉, 作者感, 人物活人感, 高完成度肖像, 双人互动设计, and visual taste refinement. Does not own character identity, generic aesthetic gates, renderer syntax or Danbooru tags.",
       "triggers": "小画师脑, 小画师, 米画师, 蒸蒸, ZHENG, 女性向, 作者感, 插画审美, 高定肖像, 双人活人感",
       "path": "02_design/small-artist-brain",
@@ -464,9 +464,9 @@
           "tokens": 2549
         }
       ],
-      "tokens_skill": 3399,
-      "tokens_bundle": 3883,
-      "tokens_full_bundle": 18312
+      "tokens_skill": 3558,
+      "tokens_bundle": 4042,
+      "tokens_full_bundle": 18471
     },
     {
       "name": "anima-renderer",
@@ -779,7 +779,7 @@
       "layer": "06_evaluation",
       "load": "on-demand",
       "status": "active",
-      "version": "2.5.0",
+      "version": "2.6.0",
       "description": "Evaluates a generated image or compiled prompt against the original Creative Brief and blueprint, using a fixed rubric (identity preservation, outfit binding, spatial clarity, unrequested additions, V1/V2 consistency, output contract) plus a design-layer read (thesis, silhouette, causality, density, punctum, one strange thing). Diagnoses which layer failed and routes the fix to that layer with a single-variable change. Use on any feedback round: 太平淡, 太乱, 不像, 没人味, 这版可以, 评价一下, 哪里不对, compare versions.",
       "triggers": "太平淡, 太乱, 不像, 没人味, 这版可以, 评价一下, 哪里不对, compare",
       "path": "06_evaluation/evaluation-loop",
@@ -787,9 +787,9 @@
       "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/evaluation-loop.md",
       "references": [],
       "reference_files": [],
-      "tokens_skill": 1964,
-      "tokens_bundle": 2169,
-      "tokens_full_bundle": 2169
+      "tokens_skill": 2119,
+      "tokens_bundle": 2324,
+      "tokens_full_bundle": 2324
     }
   ]
 }
