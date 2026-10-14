@@ -110,13 +110,9 @@ An illustration blueprint is READY only when visual thesis, captured moment, mot
 
 如果用户要求**极繁 OC 展示 / 特写垫底 / 大头贴 / 元素贴**，优先读取 `references/oc-maximalist-closeup-backdrop-preset.md`。此时“特写垫底”是核心构图骨架：巨大同角色脸部/半身特写铺在最底层，主全身立绘压在前景，再以不同尺度的大头贴、主题元素贴和局部特写形成第三层。不要把这些词误解成“增加几个装饰物”。
 
-## 镜头交付给编译层的最小清单
+## 可见镜头证据的交接
 
-插画导演确定 `camera intent` 后，**必须写一条可见几何说明**而不只是角度名：①最近的部位/道具及其占画幅位置；②与之相对远的脸、手或另一人物；③哪个建筑/天花板/地面在人物身后可见；④哪条肢体承重及是否挺直；⑤脸部/服设有何内容不能被遮住。删掉 `cinematic` 后，这条说明仍应该能支撑画面张力。
-
-如果需要的是角色设计七分身立绘，不强行塞极端鱼眼；如果是叙事海报也不能默认正中全身站桩。镜头设计要同时满足人物魅力、叙事瞬间与材质/服饰可读性，不为“张力”牺牲用户最在意的脸。
-
-NAI5 实验控制器（如 `pov`、`from below`、正向负权重）的有效性不由本 Skill 决定，交给 `nai5-renderer/references/nai5-control-matrix.md`；本层只产出相机视点与可见空间结果。
+镜头设计结束后，把**最近遮挡物、相对远的脸/身体、能看见的环境、承重与挺直程度、必须清晰的身份锚点**交给 Visual Prompt Core 的 `visible_geometry`；如果删去 `cinematic` 就没有空间关系，镜头不合格。完整示例和“低位镜头被误画成弯腰”案例见 `references/cinematic-camera-grammar.md` §7。NAI5 的实际 tag、正向负权重、POV 执行技巧由其 Renderer 按需读取，不能写进本设计 Skill。
 
 ## Modern Key Visual Mode
 
