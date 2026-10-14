@@ -249,6 +249,36 @@ def session_load(root, name):
     return json.loads(p.read_text(encoding="utf-8"))
 
 
+def session_diff(root, older, newer):
+    """Compare two saved design checkpoints without silently mutating either."""
+    a = session_load(root, older)
+    b = session_load(root, newer)
+    def values(packet, field):
+        val = packet.get(field, [])
+        if isinstance(val, list):
+            return set(str(x) for x in val)
+        if isinstance(val, str):
+            return {val} if val else set()
+        return set()
+    missing_locked = sorted(values(a, "locked") - values(b, "locked"))
+    missing_approved = sorted(values(a, "approved") - values(b, "approved"))
+    resurfaced = sorted(values(a, "rejected") & values(b, "approved"))
+    return {
+        "status": "fail" if missing_locked or missing_approved or resurfaced else "pass",
+        "missing_locked": missing_locked,
+        "missing_approved": missing_approved,
+        "resurfaced_rejected": resurfaced,
+        "target_changed": a.get("target") != b.get("target"),
+        "mode_changed": a.get("mode") != b.get("mode"),
+        "before": older, "after": newer,
+    }
+
+
+def session_list(root):
+    p = root / SESSIONS
+    return sorted(f.stem for f in p.glob("*.json") if SESSION_RE.fullmatch(f.stem)) if p.exists() else []
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, default=ROOT)
@@ -263,6 +293,10 @@ def main(argv=None):
     p.add_argument("name")
     p.add_argument("--file")
     subs.add_parser("session-load").add_argument("name")
+    subs.add_parser("session-list")
+    p = subs.add_parser("session-diff")
+    p.add_argument("before")
+    p.add_argument("after")
     a = parser.parse_args(argv)
     root = a.root.resolve()
     try:
@@ -280,8 +314,12 @@ def main(argv=None):
             result = digest(root)
         elif a.command == "validate":
             result = validate(root)
-        else:
+        elif a.command == "session-load":
             result = session_load(root, a.name)
+        elif a.command == "session-list":
+            result = session_list(root)
+        else:
+            result = session_diff(root, a.before, a.after)
         print(json.dumps(result, ensure_ascii=False, indent=2))
         return 0
     except (LearnError, ValueError, OSError) as exc:
