@@ -143,6 +143,16 @@ Tag + NL      Community Tags
 
 `02_design/small-artist-brain/` is an independent taste-to-design decision module grounded in 16 user-supplied ZHENG (蒸蒸) illustration studies. It adds concrete character vitality, camera, color-mass, and density choices **between the Director and design specialists**; original images are not redistributed. It is not a renderer or a universal aesthetic gate. See [SKILL.md](02_design/small-artist-brain/SKILL.md) and its on-demand references.
 
+### 「鱼的库洛牌」摄影思维（按需）
+
+新建 `02_design/yu-de-kuluopai-photography-brain/`，分析用户提供、标注为博主「鱼的库洛牌」的九幅摄影作品，不存放/重新发布图片。**提炼观看立场、决定性瞬间、人体接触点、前景遮挡、物件因果、真实光源与大色块**，形成 Photography Decision Sheet。
+
+示例对话：「用鱼的库洛牌摄影脑，给我写一张 NAI5 古风恋人诀别的电影感提示词」。路由是 **摄影 Skill（机位与瞬间建议） → illustration-direction（设计与 Blueprint Gate） → Visual Prompt Core → Danbooru Tag Gate → NAI5 renderer**。最终仍遵守用户默认纯英文、紧凑正向提示词、无需画师串/质量词/Negative，以及不自动生成图像。模块也可为其他模型提供摄影思考，但不拥有任何模型语法。
+
+- [Skill 入口](02_design/yu-de-kuluopai-photography-brain/SKILL.md)
+- [九张参考图逐帧分析](02_design/yu-de-kuluopai-photography-brain/references/nine-frame-study-2026-10-14.md)
+- [跨题材镜头迁移与 A/B 验证](02_design/yu-de-kuluopai-photography-brain/references/cross-genre-camera-recipes.md)
+
 ### NAI5 experiments → reliable controls
 
 For NovelAI V5, use the fast `03_prompt/nai5-renderer/references/nai5-control-matrix.md` before the full long-form field guide. The matrix maps common failures to concrete camera evidence, motion/POV tags, optional **Positive Prompt** negative weights, light-source controls, identity risks, and A/B diagnostics. This adapter does **not** override creative design decisions or affect Anima syntax. Reported source experiments are not treated as our own verified generations.
