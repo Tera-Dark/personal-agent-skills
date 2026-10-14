@@ -167,3 +167,4 @@ Detailed references are separate files. Read only the references required by the
 - `references/visual-grammar.md` (~6035 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/illustration-direction/references/visual-grammar.md
 - `references/atmosphere-presets.md` (~2473 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/illustration-direction/references/atmosphere-presets.md
 - `references/white-background-fashion-grammar.md` (~2549 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/illustration-direction/references/white-background-fashion-grammar.md
+- `references/cinematic-12-frame-study-2026-10-14.md` (~2228 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/illustration-direction/references/cinematic-12-frame-study-2026-10-14.md

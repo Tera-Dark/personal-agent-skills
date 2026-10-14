@@ -8,7 +8,7 @@
   "harness_full_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS-FULL.md",
   "handshake": "Harness v4.7.0 loaded · 17 modules · 说需求，或发参考图。",
   "core_tokens": 6447,
-  "full_tokens": 165320,
+  "full_tokens": 167571,
   "pipeline": {
     "aesthetic_gate": "aesthetic-director-core",
     "blueprint_gate": {
@@ -370,7 +370,8 @@
         "references/oc-maximalist-closeup-backdrop-preset.md",
         "references/visual-grammar.md",
         "references/atmosphere-presets.md",
-        "references/white-background-fashion-grammar.md"
+        "references/white-background-fashion-grammar.md",
+        "references/cinematic-12-frame-study-2026-10-14.md"
       ],
       "reference_files": [
         {
@@ -408,11 +409,17 @@
           "bundle_path": "bundle/references/illustration-direction/references/white-background-fashion-grammar.md",
           "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/illustration-direction/references/white-background-fashion-grammar.md",
           "tokens": 2549
+        },
+        {
+          "path": "references/cinematic-12-frame-study-2026-10-14.md",
+          "bundle_path": "bundle/references/illustration-direction/references/cinematic-12-frame-study-2026-10-14.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/illustration-direction/references/cinematic-12-frame-study-2026-10-14.md",
+          "tokens": 2228
         }
       ],
       "tokens_skill": 4834,
-      "tokens_bundle": 5425,
-      "tokens_full_bundle": 21823
+      "tokens_bundle": 5483,
+      "tokens_full_bundle": 24072
     },
     {
       "name": "small-artist-brain",
