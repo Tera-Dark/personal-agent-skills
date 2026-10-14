@@ -7,8 +7,8 @@
   "harness_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS.md",
   "harness_full_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS-FULL.md",
   "handshake": "Harness v4.7.1 loaded · 17 modules · 说需求，或发参考图。",
-  "core_tokens": 6575,
-  "full_tokens": 171992,
+  "core_tokens": 6567,
+  "full_tokens": 171985,
   "pipeline": {
     "aesthetic_gate": "aesthetic-director-core",
     "blueprint_gate": {
@@ -86,7 +86,7 @@
       "layer": "00_core",
       "load": "always",
       "status": "active",
-      "version": "2.4.0",
+      "version": "2.5.0",
       "description": "Persistent identity and taste layer for Tera-Dark's creative work. Holds the aesthetic signature (structured foundation, one strange thing, a hint of danger, modern key-visual impact, fashion-grade garment construction, female-oriented OC/gacha sensibility, Xiao-artist female-oriented 2D taste and NAI5 artist-mixing rules), hard dislikes (watches, cyber/mech, random butterflies-roses-particles, adjective costumes), business goals. Does not generate prompts. Load first for any creative, design, illustration, prompt or aesthetic-judgment task; also when the user says 我的风格, 我喜欢, 按我习惯, 个人偏好.",
       "triggers": "我的风格, 个人偏好, 按我习惯, any creative task",
       "path": "00_core/personal-identity-profile",
@@ -152,9 +152,9 @@
           "tokens": 935
         }
       ],
-      "tokens_skill": 492,
-      "tokens_bundle": 1171,
-      "tokens_full_bundle": 24170
+      "tokens_skill": 485,
+      "tokens_bundle": 1163,
+      "tokens_full_bundle": 24162
     },
     {
       "name": "aesthetic-director-core",
