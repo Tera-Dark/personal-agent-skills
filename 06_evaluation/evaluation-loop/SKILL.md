@@ -3,7 +3,7 @@ name: evaluation-loop
 description: Evaluates a generated image or compiled prompt against the original Creative Brief and blueprint, using a fixed rubric (identity preservation, outfit binding, spatial clarity, unrequested additions, V1/V2 consistency, output contract) plus a design-layer read (thesis, silhouette, causality, density, punctum, one strange thing). Diagnoses which layer failed and routes the fix to that layer with a single-variable change. Use on any feedback round: 太平淡, 太乱, 不像, 没人味, 这版可以, 评价一下, 哪里不对, compare versions.
 metadata:
   author: Tera-Dark
-  version: "2.5.0"
+  version: "2.6.0"
   layer: "06_evaluation"
   load: "on-demand"
   status: "active"
@@ -31,12 +31,13 @@ metadata:
 4. 服装结构    四层是否可读？颜色是否绑定到正确的件？有没有融色？
 5. 因果 / 瞬间 姿势有没有解释服装和道具？是状态还是时刻？
 5a. 摄影机位    谁在看、机位在哪、哪一秒被拍到？有没有前中后遮挡与动机裁切？换成普通正面平视是否情绪/叙事几乎不损失？若是则标记 **Camera Failure** → `illustration-direction`，不要靠 renderer 补 `cinematic`。
+5b. **反公式化 / 情绪演出**  是否又落回雨夜+车站+暖光+冷阴影+右三分线？人物是否只是“摆出情绪”，而非一个角色先知、另一角色后知，或两个独立动作发生关系？如是标记 **Narrative/Visual Formula Failure** → `illustration-direction`，不是新增氛围词。
 6. 密度 / 刺点 有密集区和安静区吗？刺点是一个还是多个？
 7. 那一处怪    在吗？只有一处吗？
 8. 未授权添加  有没有出现 blueprint 里没有的东西（耳环、腰带、手表、粒子、翅膀）？
 9. 空间 / 构图 景别对吗？多图层是否隔离？背景抢戏吗？
 10. 光         有物理来源和衰减吗？
-11. 输出契约   格式对吗？有没有模型特定的禁用词 / 多余负面 / 参数？
+11. 输出契约   格式对吗？有没有模型特定的禁用词 / 多余负面 / 参数？**Anima 普通 ComfyUI 节点不得输出 NAI5 的 `数字::tag::` 权重；若加权需确认支持 `(tag:weight)`；NAI5 的 `数字::tag::` 不得被套用为 Anima 普通语法。**
 12. Gate Result  只有通过 Blueprint Gate 才允许重新进入 adapter。
 ```
 
