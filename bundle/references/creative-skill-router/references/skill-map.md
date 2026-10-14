@@ -3,49 +3,40 @@
 
 source: https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/01_router/creative-skill-router/references/skill-map.md
 
-## Skill Map
+## Skill Map (v4.10)
 
-Skill 之间按**名字**引用（不是相对路径），因为它们可能被分别安装到不同位置。
+Skill 之间按**名称**引用；实际源码都以根目录各层的 SKILL.md 为准，详细清单由 `scripts/build.py` 生成 `docs/skill-registry.md`。
 
-### 00_core — 身份与审美
+### 00_core — 品味与审美门
 
-- `personal-identity-profile` — 品味签名、否决清单、工作方式。唯一的品味来源。
-- `aesthetic-director-core` — 九个创作动作 → Creative Brief。所有创作任务的第一站。
+- `personal-identity-profile` — 个人品味、否决与画师池唯一持有者。
+- `aesthetic-director-core` — Creative Brief / Aesthetic Gate。
 
-### 01_router
+### 01_router — 路由
 
-- `creative-skill-router` — 本 Skill。
+- `creative-skill-router` — 任务分类与按需加载，不越界设计。
 
-### 02_creation — 设计与模型适配
+### 02_design — 画面设计
 
-设计（模型无关）：
-- `character-design-engine` — Brief → 角色 blueprint（命题、轮廓、服装工程、配色层级、姿势因果、展示方式）
-- `illustration-direction` — Brief → 画面 blueprint（瞬间、构图、光源、密度、氛围预设）
+- `character-design-engine` — 角色设计 Blueprint。
+- `illustration-direction` — **唯一插画 Blueprint owner**，最终构图、光线和画面 Gate。
+- `small-artist-brain` — 按需女性向插画审美 Decision Sheet，不单独出图。
+- `yu-de-kuluopai-photography-brain` — 「鱼的库洛牌」摄影思维 Decision Sheet：观察机位、生活抓拍、光线与叙事触点；按需，特别为 NAI5 电影感服务。
 
-适配器（模型相关，只翻译不设计）：
-- `anima-prompt-compiler` — Tag + Natural Language 格式，Anima 系列
-- `nai5-community-prompt-engineering` — 社区格式：artist stack / char blocks / 权重，NovelAI
-- `general-image-prompt-adapter` — 自然语言 prompt，Midjourney / DALL-E / Imagen / Flux / SD / 未命名目标；带证据标签
+### 03_prompt — Prompt 编译
 
-### 03_analysis
+- `visual-prompt-core` — 模型无关 Visual Prompt Packet。
+- `danbooru-tag-gate` — 模型共享的 Tag 证据检查。
+- `anima-renderer` — Anima 专属语法。
+- `nai5-renderer` — NovelAI V5 多角色、权重、短英文 Tags + NL。
+- `general-image-prompt-adapter` — 其它图像模型。
 
-- `image-reverse-analysis` — 参考图 → 设计语言（结构，不是物件）
-- `prompt-analysis` — 现有 prompt → 意图 / 结构 / 问题 / 改法
+### 04_analysis / 05_tools / 06_evaluation / 07_extensions
 
-### 04_tools — 技术（status: planned，无可加载内容）
+其它模块按 `docs/skill-registry.md` 和 Bundle manifest 的实际状态加载；planned 模块不得冒充 active。
 
-- `comfyui-workflow`
-- `lora-training`
-- `dataset-management`
+### 推荐链路
 
-### 05_evaluation
+`identity → aesthetic director → [yu-de-kuluopai-photography-brain?] + [small-artist-brain?] → illustration-direction → visual-prompt-core → danbooru-tag-gate → nai5-renderer`
 
-- `evaluation-loop` — 六维评分 + 反馈诊断 + 单变量迭代
-
-### 06_extensions — owner 通过聊天新增的模块
-
-目前为空。规则见 `kernel/EXTENSION-PROTOCOL.md`。
-
-### kernel/ — 不是 Skill
-
-`kernel/KERNEL.md` 是运行契约（操作循环、加载协议、视觉协议、会话状态、命令、扩展协议）。build 会把它和 always-on 模块合成 `bundle/HARNESS.md`。
+摄影与小画师脑是 **decision lenses**；不绕过 Director / Blueprint Gate，不共享或覆盖 renderer 的语法职责，不擅自生图。

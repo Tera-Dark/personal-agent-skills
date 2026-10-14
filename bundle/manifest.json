@@ -1,14 +1,14 @@
 {
   "name": "personal-agent-skills",
-  "version": "4.9.1",
+  "version": "4.10.0",
   "repo": "Tera-Dark/personal-agent-skills",
   "branch": "main",
   "raw_base": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/",
   "harness_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS.md",
   "harness_full_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS-FULL.md",
-  "handshake": "Harness v4.9.1 loaded · 17 modules · 说需求，或发参考图。",
-  "core_tokens": 6242,
-  "full_tokens": 175247,
+  "handshake": "Harness v4.10.0 loaded · 18 modules · 说需求，或发参考图。",
+  "core_tokens": 6499,
+  "full_tokens": 182662,
   "pipeline": {
     "aesthetic_gate": "aesthetic-director-core",
     "blueprint_gate": {
@@ -160,7 +160,7 @@
         }
       ],
       "tokens_skill": 637,
-      "tokens_bundle": 1363,
+      "tokens_bundle": 1364,
       "tokens_full_bundle": 25430
     },
     {
@@ -271,7 +271,7 @@
       ],
       "tokens_skill": 4958,
       "tokens_bundle": 5927,
-      "tokens_full_bundle": 39708
+      "tokens_full_bundle": 39709
     },
     {
       "name": "creative-skill-router",
@@ -327,12 +327,12 @@
           "path": "references/skill-map.md",
           "bundle_path": "bundle/references/creative-skill-router/references/skill-map.md",
           "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/creative-skill-router/references/skill-map.md",
-          "tokens": 527
+          "tokens": 509
         }
       ],
-      "tokens_skill": 971,
-      "tokens_bundle": 1437,
-      "tokens_full_bundle": 5072
+      "tokens_skill": 1157,
+      "tokens_bundle": 1624,
+      "tokens_full_bundle": 5240
     },
     {
       "name": "character-design-engine",
@@ -378,8 +378,8 @@
         }
       ],
       "tokens_skill": 2702,
-      "tokens_bundle": 3178,
-      "tokens_full_bundle": 13885
+      "tokens_bundle": 3179,
+      "tokens_full_bundle": 13886
     },
     {
       "name": "illustration-direction",
@@ -445,9 +445,9 @@
           "tokens": 2549
         }
       ],
-      "tokens_skill": 5130,
-      "tokens_bundle": 5780,
-      "tokens_full_bundle": 24674
+      "tokens_skill": 5575,
+      "tokens_bundle": 6225,
+      "tokens_full_bundle": 25119
     },
     {
       "name": "small-artist-brain",
@@ -497,6 +497,39 @@
       "tokens_full_bundle": 18471
     },
     {
+      "name": "yu-de-kuluopai-photography-brain",
+      "layer": "02_design",
+      "load": "on-demand",
+      "status": "active",
+      "version": "1.0.0",
+      "description": "「鱼的库洛牌」摄影思维——以用户提供的九张摄影参考提炼观察机位、决定性瞬间、光线色块、物理接触和叙事留白，向 illustration-direction 交付摄影 Decision Sheet，特别适合 NAI5 电影感插画。不是独立构图 owner，也不写模型语法。",
+      "triggers": "鱼的库洛牌, 摄影思维, 摄影脑, 摄影感, 电影感, 纪实抓拍, 生活流, 真实镜头, NAI5电影感, photographic thinking",
+      "path": "02_design/yu-de-kuluopai-photography-brain",
+      "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_design/yu-de-kuluopai-photography-brain",
+      "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/yu-de-kuluopai-photography-brain.md",
+      "references": [
+        "references/nine-frame-study-2026-10-14.md",
+        "references/cross-genre-camera-recipes.md"
+      ],
+      "reference_files": [
+        {
+          "path": "references/nine-frame-study-2026-10-14.md",
+          "bundle_path": "bundle/references/yu-de-kuluopai-photography-brain/references/nine-frame-study-2026-10-14.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/yu-de-kuluopai-photography-brain/references/nine-frame-study-2026-10-14.md",
+          "tokens": 2585
+        },
+        {
+          "path": "references/cross-genre-camera-recipes.md",
+          "bundle_path": "bundle/references/yu-de-kuluopai-photography-brain/references/cross-genre-camera-recipes.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/yu-de-kuluopai-photography-brain/references/cross-genre-camera-recipes.md",
+          "tokens": 1569
+        }
+      ],
+      "tokens_skill": 2361,
+      "tokens_bundle": 2700,
+      "tokens_full_bundle": 6720
+    },
+    {
       "name": "anima-renderer",
       "layer": "03_prompt",
       "load": "on-demand",
@@ -533,7 +566,7 @@
         }
       ],
       "tokens_skill": 936,
-      "tokens_bundle": 1273,
+      "tokens_bundle": 1274,
       "tokens_full_bundle": 7473
     },
     {
@@ -585,8 +618,8 @@
         }
       ],
       "tokens_skill": 1234,
-      "tokens_bundle": 1571,
-      "tokens_full_bundle": 2239
+      "tokens_bundle": 1572,
+      "tokens_full_bundle": 2240
     },
     {
       "name": "nai5-renderer",
@@ -688,8 +721,8 @@
         }
       ],
       "tokens_skill": 3247,
-      "tokens_bundle": 3989,
-      "tokens_full_bundle": 24894
+      "tokens_bundle": 3990,
+      "tokens_full_bundle": 24895
     },
     {
       "name": "visual-prompt-core",
