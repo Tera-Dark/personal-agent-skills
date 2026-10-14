@@ -137,6 +137,30 @@ class LearningTests(unittest.TestCase):
         with self.assertRaises(learn.LearnError):
             learn.session_save(self.root, "../secrets", packet)
 
+    def test_session_diff_protects_approved_and_locked_facts(self):
+        learn.session_save(self.root, "v1", {
+            "target": "nai5", "locked": ["original outfit", "silver hair"],
+            "approved": ["camera through glass"], "rejected": ["floating petals"],
+        })
+        learn.session_save(self.root, "v2", {
+            "target": "nai5", "locked": ["silver hair"],
+            "approved": ["floating petals"], "rejected": ["floating petals"],
+        })
+        result = learn.session_diff(self.root, "v1", "v2")
+        self.assertEqual(result["status"], "fail")
+        self.assertIn("original outfit", result["missing_locked"])
+        self.assertIn("camera through glass", result["missing_approved"])
+        self.assertIn("floating petals", result["resurfaced_rejected"])
+        self.assertEqual(learn.session_list(self.root), ["v1", "v2"])
+
+    def test_session_diff_identical_locks_is_safe(self):
+        for name in ("v1", "v2"):
+            learn.session_save(self.root, name, {
+                "target": "anima", "locked": ["green eyes"],
+                "approved": ["active camera"], "rejected": ["random petals"],
+            })
+        self.assertEqual(learn.session_diff(self.root, "v1", "v2")["status"], "pass")
+
     def test_corrupt_event_is_rejected(self):
         (self.root / learn.EVENTS).parent.mkdir(parents=True)
         (self.root / learn.EVENTS).write_text("{broken json}\n", encoding="utf-8")
