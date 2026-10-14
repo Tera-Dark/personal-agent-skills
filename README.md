@@ -1,6 +1,6 @@
 # personal-agent-skills
 
-> v4.7 architecture: mandatory Aesthetic/Blueprint Gates + shared Visual Prompt Core + shared Danbooru verification + thin Anima / NAI5 renderers + Web-first runtime. Runtime bundle optimization: compact identity, selective tag shards, reference-level fetching, and explicit FULL / FAST VARIANT / PROMPT ONLY modes.
+> v4.8 architecture: mandatory Aesthetic/Blueprint Gates + shared Visual Prompt Core + shared Danbooru verification + thin Anima / NAI5 renderers + Web-first runtime. Runtime bundle optimization: compact identity, selective tag shards, reference-level fetching, and explicit FULL / FAST VARIANT / PROMPT ONLY modes.
 
 > ## ⚡ AI bootstrap
 >
@@ -16,6 +16,25 @@
 - **NAI5 default → compact positive prompt only.** Preset artist stack, quality terms and Negative stay external unless requested.
 - **PROMPT ONLY** governs visible output rather than internal design depth. Simple edits use FAST VARIANT; substantive original work uses FULL.
 - Web use needs only the GitHub URLs. Build scripts run locally or in CI.
+
+## 高度个人化 QoL：正常聊天就能学习
+
+> v4.8 起增加“偏好证据 → 当前稿改进 → 持久晋升”的闭环；自然语言优先，不需要学一套命令。
+
+| 你直接说 | Skill 应该做什么 |
+|---|---|
+| “这张 9 分，光影绝了但脸不好看” | 拆成正负反馈，下一稿保留光影，只修脸 |
+| “这个不错，再来个别的情景” | 保留已认可的镜头机制，设计新的事件，而不是重复模板 |
+| “只改镜头/衣服/配色” | FAST VARIANT，只变指定维度 |
+| “上一版更好，退回去” | 回滚失败改动，保留上个好球版本 |
+| “以后都这样，记住” | 优先更新当前规则；根据作用域进入持久偏好候选与晋升流程 |
+| “同步今天的偏好到 Skill” / `/learn sync` | 有已授权 GitHub 写权限时更新证据账本与有效规则；没有权限就导出待同步补丁 |
+| “最近学到了什么” / `/learn status` | 说明本会话候选、已经升级的规则，以及哪些尚未真正持久化 |
+| “把偏好导出来” / `/learn export` | 给单块 Markdown，用于网页端跨对话续作 |
+
+**边界：** 仅凭新对话贴 GitHub 链接，只能读取仓库已提交的长期偏好；它不会自动把所有聊天反馈写进 GitHub。真正跨会话持久化需要已连接、可写的 GitHub 工具及用户允许，或主动执行一次导出/同步。只存创作偏好的抽象摘要，不存个人私密信息或原始图片；模型参数/LoRA 不会自行训练。
+
+详见 [反馈晋升协议](00_core/personal-identity-profile/references/feedback-learning-loop.md)、[反馈证据账本](00_core/personal-identity-profile/references/feedback-ledger.md)、[高频操作 QoL](01_router/creative-skill-router/references/conversation-qol.md)、[学习回归测试](tests/feedback-learning-regression.md)。
 
 ## What this is
 
