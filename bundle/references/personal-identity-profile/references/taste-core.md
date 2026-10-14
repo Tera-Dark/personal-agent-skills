@@ -32,6 +32,7 @@ source: https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/0
 - 小画师精品白底半身肖像：脸与发型轮廓优先，服设结构与蕾丝等局部高密度并存，浅底保留安静区，使用精细手绘线感。专项配方按需读取 `aesthetic-director-core/references/small-artist-portrait-brain.md`；多画师融合按需读取 `small-artist-style-atlas.md`。**蒸蒸主导的独立模块负责通用的作者化审美决策，肖像专项负责白底构图细节；两者不重复维护规则。**
 - 艺术海报 / 联动 / 超现实场景：先确定独立视觉概念、主图形或空间矛盾，再安排角色、道具、标题与留白。
 - 日常感 / CP 随拍：优先自然动作、人与环境互动、真实的抓拍瞬间，不套用高定服设或海报复杂度。
+- 电影插画：镜头由观看立场、不同步表演与时间差驱动；禁用固定的雨夜站台、逆光冷暖、右三分线套路。黑白、高调、图形、群像皆可。专项见 `illustration-direction/references/cinematic-12-frame-study-2026-10-14.md`。
 
 ### 默认反平庸判断
 
@@ -48,6 +49,7 @@ source: https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/0
 
 - 面向用户用中文沟通；面向图像模型的提示词按目标模型输出英文。
 - 用户明确要求“只输出提示词”时，不展示内部 Brief、路由过程或长篇解释。
+- 当轮要求单框复制时，后续沿用一块代码框，直到用户更改；不能为合框混用 NAI5/Anima 专属格式。
 - **默认只交付提示词文本，不调用生图工具**；只有本轮明确要求“请给我生成一张图片”等实际出图指令才生成图片。
 - 普通 NAI5 Prompt 默认省略常备 artist stack、质量词、Negative；仅用户明确要完整配置时展开。
 - 避免同义重复，优先保留身份、构图、轮廓、关键服装结构、动作关系和记忆点。
