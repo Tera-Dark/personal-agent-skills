@@ -84,6 +84,24 @@ class LearningTests(unittest.TestCase):
         with self.assertRaises(learn.LearnError):
             learn.promote(self.root, "cinematic.scene")
 
+    def test_opposition_suspends_a_previously_active_rule(self):
+        learn.record(self.root, feedback(evidence_type="USER-EXPLICIT-POLICY"))
+        learn.promote(self.root, "cinematic.scene")
+        learn.record(self.root, feedback("later-disliked-image",
+                                         polarity="oppose",
+                                         evidence_type="USER-IMAGE-REPORT"))
+        row = learn.review(self.root)[0]
+        self.assertTrue(row["active"])
+        self.assertTrue(row["needs_review"])
+        self.assertFalse(row["effective_active"])
+        learn.digest(self.root)
+        text = (self.root / learn.DIGEST).read_text()
+        self.assertNotIn("Choose meaningful viewpoint", text)
+
+    def test_invalid_date_rejected(self):
+        with self.assertRaises(learn.LearnError):
+            learn.record(self.root, feedback(date="2026-14-99"))
+
     def test_undo_preserves_audit_history(self):
         learn.record(self.root, feedback(
             evidence_type="USER-EXPLICIT-POLICY"
