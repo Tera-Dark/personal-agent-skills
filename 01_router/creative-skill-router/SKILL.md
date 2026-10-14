@@ -22,7 +22,7 @@ Router 不负责审美、角色设计、Packet 内容、Tag 验证或模型语�
 
 - **FULL CREATIVE**：新 OC、服设、插画、海报；简单肖像紧凑处理，复杂叙事充分设计。
 - **FAST VARIANT**：已认可设计仅改指定变量，其余锁定。
-- **PROMPT ONLY**：内部仍做必要设计和校验；只交付可复制 Prompt，不展示内部 Brief。
+- **PROMPT ONLY**：内部仍做必要设计和校验；仅交付可复制 Prompt，不展示内部 Brief。
 - FAST VARIANT 若改身份、轮廓、命题或主构图则升级 FULL。是否允许生图由 Kernel 决定。
 
 ## 主路由
