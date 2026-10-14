@@ -8,7 +8,7 @@
   "harness_full_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS-FULL.md",
   "handshake": "Harness v4.7.0 loaded · 17 modules · 说需求，或发参考图。",
   "core_tokens": 6447,
-  "full_tokens": 163603,
+  "full_tokens": 163721,
   "pipeline": {
     "aesthetic_gate": "aesthetic-director-core",
     "blueprint_gate": {
@@ -395,7 +395,7 @@
           "path": "references/visual-grammar.md",
           "bundle_path": "bundle/references/illustration-direction/references/visual-grammar.md",
           "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/illustration-direction/references/visual-grammar.md",
-          "tokens": 5340
+          "tokens": 6035
         },
         {
           "path": "references/atmosphere-presets.md",
@@ -410,9 +410,9 @@
           "tokens": 2549
         }
       ],
-      "tokens_skill": 5412,
-      "tokens_bundle": 6004,
-      "tokens_full_bundle": 21705
+      "tokens_skill": 4834,
+      "tokens_bundle": 5425,
+      "tokens_full_bundle": 21823
     },
     {
       "name": "small-artist-brain",

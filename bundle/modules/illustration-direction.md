@@ -110,30 +110,9 @@ An illustration blueprint is READY only when visual thesis, captured moment, mot
 
 镜头设计结束后，把**最近遮挡物、相对远的脸/身体、能看见的环境、承重与挺直程度、必须清晰的身份锚点**交给 Visual Prompt Core 的 `visible_geometry`；如果删去 `cinematic` 就没有空间关系，镜头不合格。完整示例和“低位镜头被误画成弯腰”案例见 `references/cinematic-camera-grammar.md` §7。NAI5 的实际 tag、正向负权重、POV 执行技巧由其 Renderer 按需读取，不能写进本设计 Skill。
 
-### Modern Key Visual Mode
+### Modern Key Visual 与视觉案例
 
-当目标是现代二游 / 商业角色主视觉时，覆盖普通“氛围图”的默认解法：
-
-- 先做主体大形 + 主运动轴 + 支撑大形，再填人物细节。
-- 用对角、S 曲线、环绕或双向张力组织头发、衣摆、武器与背景形。
-- 允许角色偏置、切边、前景遮挡和图形框景；不默认正中完整展示。
-- 复杂度集中在 1–2 个 focal pockets，邻接区域刻意降密度。
-- 颜色先看 3–4 个大色块，再放唯一强调色；不要靠柔和渐变消除冲突。
-- 光影必须塑造体积和材质，优先清晰局部阴影与接触阴影，不用全局 bloom 制造高级感。
-- 人物的脸、皮肤、头发和配饰保留有限的手绘不规则：眼睛不必镜像，高光不必堆叠，头发以发量结构优先。
-- 首饰、布带、链条、流苏等必须有可解释的 attachment point；能删掉的装饰优先删。
-- 故事感可以来自一个动态动作、一个被打断的动作或一个明确的 before/after，不必强行加入复杂环境。
-
-### 参考校准：高完成度插画的结构特征
-
-参考 `references/visual-grammar.md`。重点不是模仿某位作者，而是吸收这些可迁移的结构策略：
-
-1. **建筑框景**：巨大门、镜、窗、拱、画框、轨道等形成多重视觉平面，人物是几何结构中的一个元素。
-2. **有机包围**：头发、花、布、枝、鸟群、水流等形成环绕或穿越人物的线性结构，并把密集区包进留白中。
-3. **极端尺度**：让人物足够小，让海、天空、墙、路、建筑或空房间成为真正的视觉主体。
-4. **环境叙事**：环境不是装饰，而是人物行为的前后证据；一个空椅、未收的物、错位倒影往往比十个魔法符号更有故事。
-5. **大色块优先**：先让缩略图成立，再让局部细节成立。
-6. **白也可以是高密度构图**：白底、白发、白裙、白建筑可以通过边缘、材质、阴影、透叠和几何切割形成层次，而不是依靠大量颜色。
+商业主视觉的大色块/焦点/动线、高清插画的建筑框景、有机包围、尺度与白底空间等详细策略，按需读取 `references/visual-grammar.md` 的补充章节；主 Skill 保留审美决策与镜头 Gate，不复制操作实例。
 
 ### 自检
 
@@ -185,6 +164,6 @@ Detailed references are separate files. Read only the references required by the
 - `references/cinematic-camera-grammar.md` (~2941 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/illustration-direction/references/cinematic-camera-grammar.md
 - `references/composition-patterns.md` (~1596 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/illustration-direction/references/composition-patterns.md
 - `references/oc-maximalist-closeup-backdrop-preset.md` (~1035 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/illustration-direction/references/oc-maximalist-closeup-backdrop-preset.md
-- `references/visual-grammar.md` (~5340 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/illustration-direction/references/visual-grammar.md
+- `references/visual-grammar.md` (~6035 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/illustration-direction/references/visual-grammar.md
 - `references/atmosphere-presets.md` (~2473 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/illustration-direction/references/atmosphere-presets.md
 - `references/white-background-fashion-grammar.md` (~2549 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/illustration-direction/references/white-background-fashion-grammar.md
