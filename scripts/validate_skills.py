@@ -229,6 +229,40 @@ def main():
     if not os.path.exists(os.path.join(root, cfg["kernel"])):
         errors.append(f"kernel file {cfg['kernel']} missing")
 
+    # 2026-10-14 owner regression gates: keep model syntax isolated and cinematic
+    # direction in the design layer. Structural SPEC only, not generated-image QA.
+    owner_contracts = {
+        "03_prompt/anima-renderer/SKILL.md": [
+            "references/anima-weight-syntax.md", "(phrase:weight)", "NAI5",
+        ],
+        "03_prompt/anima-renderer/references/anima-weight-syntax.md": [
+            "(cinematic lighting:1.4)", "1.4::cinematic lighting::",
+            "自定义文本编码器",
+        ],
+        "03_prompt/nai5-renderer/SKILL.md": [
+            "weight::tag::", "Anima",
+        ],
+        "02_design/illustration-direction/SKILL.md": [
+            "references/cinematic-12-frame-study-2026-10-14.md",
+            "电影感反套路",
+        ],
+        "02_design/illustration-direction/references/cinematic-12-frame-study-2026-10-14.md": [
+            "不同步", "观看", "反模板",
+        ],
+        "00_core/personal-identity-profile/references/taste-core.md": [
+            "电影插画", "单框复制",
+        ],
+    }
+    for rel, needles in owner_contracts.items():
+        full = os.path.join(root, rel)
+        if not os.path.isfile(full):
+            errors.append(f"owner regression missing file: {rel}")
+            continue
+        content = open(full, encoding="utf-8").read()
+        for token in needles:
+            if token not in content:
+                errors.append(f"owner regression missing guard in {rel}: {token}")
+
     if check_bundle and not errors:
         import build  # noqa: E402  (same directory)
         stale = build.stale_outputs(root)
