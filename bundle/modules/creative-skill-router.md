@@ -114,3 +114,4 @@ Detailed references are separate files. Read only the references required by the
 - `references/model-selection.md` (~301 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/creative-skill-router/references/model-selection.md
 - `references/execution-flow.md` (~425 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/creative-skill-router/references/execution-flow.md
 - `references/skill-map.md` (~527 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/creative-skill-router/references/skill-map.md
+- `references/conversation-qol.md` (~1403 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/creative-skill-router/references/conversation-qol.md

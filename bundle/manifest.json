@@ -8,7 +8,7 @@
   "harness_full_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS-FULL.md",
   "handshake": "Harness v4.7.1 loaded · 17 modules · 说需求，或发参考图。",
   "core_tokens": 6567,
-  "full_tokens": 171985,
+  "full_tokens": 173406,
   "pipeline": {
     "aesthetic_gate": "aesthetic-director-core",
     "blueprint_gate": {
@@ -282,7 +282,8 @@
         "references/routing-rules.md",
         "references/model-selection.md",
         "references/execution-flow.md",
-        "references/skill-map.md"
+        "references/skill-map.md",
+        "references/conversation-qol.md"
       ],
       "reference_files": [
         {
@@ -314,11 +315,17 @@
           "bundle_path": "bundle/references/creative-skill-router/references/skill-map.md",
           "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/creative-skill-router/references/skill-map.md",
           "tokens": 527
+        },
+        {
+          "path": "references/conversation-qol.md",
+          "bundle_path": "bundle/references/creative-skill-router/references/conversation-qol.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/creative-skill-router/references/conversation-qol.md",
+          "tokens": 1403
         }
       ],
       "tokens_skill": 1167,
-      "tokens_bundle": 1616,
-      "tokens_full_bundle": 3433
+      "tokens_bundle": 1664,
+      "tokens_full_bundle": 4852
     },
     {
       "name": "character-design-engine",
