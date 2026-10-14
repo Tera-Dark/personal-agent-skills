@@ -39,6 +39,17 @@ identity → Aesthetic Gate → **small-artist-brain**（独立审美 Decision S
 
 - 按需读取小画师模块和相关 reference；它只提供审美证据与决策增量，不是第二套 Director/Renderer，不强制繁花化；原版服设、白底和用户锁定事实优先。
 
+### 1.2 「鱼的库洛牌」摄影思维（按需）
+
+当用户明确点名「鱼的库洛牌」「摄影脑」「摄影思维」，或要求**纪实抓拍 / 自然生活流 / 摄影式电影感**（尤其「NAI5 + 摄影」）时：
+
+identity → Aesthetic Gate → **yu-de-kuluopai-photography-brain**（摄影 Decision Sheet：观看立场、抓拍瞬间、空间遮挡、自然光）→ **illustration-direction**（唯一构图/Blueprint owner）→ Prompt Core → Danbooru Gate → NAI5 renderer。
+
+- 摄影模块只提供决策增量；它不输出 Tag/Prompt、不覆写人设、不复制参考图的海边/校服/黄伞等物件。
+- 与小画师脑同时触发时，分别提交摄影机位增量与美术审美增量，最后由 illustration-direction 统一决策；用户锁定画幅、事件和服装优先。
+- 「电影感」不强制等于纪实：史诗/抽象海报可不加载，若追求真实观察与生活动作则优先加载摄影模块；失败后针对摄影层迭代，不靠 renderer 补形容词。
+- 参考分析：`02_design/yu-de-kuluopai-photography-brain/SKILL.md`，详细证据按需拉取，非 always-on。
+
 ### 2. 已完成设计 → 模型提示词
 
 完整设计 / blueprint / 明确锁定事实：
