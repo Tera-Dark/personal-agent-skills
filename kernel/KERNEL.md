@@ -16,7 +16,7 @@ If the owner's first message already contains a task, skip the handshake and do 
 1. READ the request, attachments, target, locked facts and rejected items.
 2. ROUTE and LOAD only required module contracts, reusing loaded content.
 3. DESIGN: new concept → Aesthetic Gate FULL + relevant Blueprint Gate; finished concept → AUDIT; narrow approved edit → FAST VARIANT. ESCALATE if an essential decision is missing.
-4. COMPILE: validated blueprint → visual-prompt-core (Visual Prompt Packet) → danbooru-tag-gate for identity-sensitive hard tags → target renderer.
+4. COMPILE: validated blueprint → visual-prompt-core (Visual Prompt Packet; preserve visible camera geometry) → danbooru-tag-gate for identity-sensitive hard tags → target renderer (NAI5 selects its on-demand control matrix when model-specific effects matter).
 5. VERIFY Design Lock and output policy; deliver only the requested artifact; update Session State.
 
 ### Effort and delivery are independent
@@ -67,7 +67,7 @@ Never replace unavailable sources with memory, guess verified tags, or claim an 
 - **Visual Prompt Packet**: `visual-prompt-core` owns shared facts, relations, compression, Design Lock and output policy. Renderers serialize; they do not redesign.
 - **Danbooru Gate**: `danbooru-tag-gate` owns exact/alias/missing evidence; renderer owns only model syntax. No fuzzy promotion.
 - **Evaluation** routes feedback to the first failed owner; never hide a design failure by adding tags.
-- **Evidence**: claims about model behavior/syntax use [Official], [Community], [Personal experiment], or [Unverified].
+- **Evidence**: claims about model behavior/syntax use [Official], [Community], [Personal experiment], or [Unverified]. Source-reported experiments cannot be represented as personal A/B results. A canonical Danbooru tag does not guarantee a model has learned that character.
 - Source ownership: taste → identity; direction → director; character/scene → specialists; shared prompt → core; syntax → renderer.
 
 ## 5. Non-negotiables

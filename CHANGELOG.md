@@ -1,3 +1,12 @@
+## 4.7.0 — 2026-10-14
+
+- Added the on-demand NAI5 control matrix: actionable shot/framing/P​​OV/foreshortening, local Positive negative weights, specific light-source effects, colors, dataset/complexity cautions, source-reported identity limits, and A/B discipline; kept the original long-form study as provenance rather than duplicating it in every prompt.
+- Added shared `visible_geometry` packet contract and illustrator camera handoff. NAI5 serializes the existing design instead of inventing its own camera.
+- Clarified Danbooru canonical evidence vs NovelAI character recognition; no unverified model cutoff treated as official.
+- Reworked NAI5 negative/scene references, slim task routing, and evaluation failure assignment.
+- Added explicit image-pending regression matrix; untouched Anima renderer and original artist pool.
+- GitHub Actions regenerate web runtime bundles from sources after successful checks.
+
 ## [4.5.0] - 2026-10-10
 
 ### Multi-reference 小画师 portrait synthesis

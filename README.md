@@ -1,6 +1,6 @@
 # personal-agent-skills
 
-> v4.1 architecture: mandatory Aesthetic/Blueprint Gates + shared Visual Prompt Core + shared Danbooru verification + thin Anima / NAI5 renderers + Web-first runtime. Runtime bundle optimization: compact identity, selective tag shards, reference-level fetching, and explicit FULL / FAST VARIANT / PROMPT ONLY modes.
+> v4.7 architecture: mandatory Aesthetic/Blueprint Gates + shared Visual Prompt Core + shared Danbooru verification + thin Anima / NAI5 renderers + Web-first runtime. Runtime bundle optimization: compact identity, selective tag shards, reference-level fetching, and explicit FULL / FAST VARIANT / PROMPT ONLY modes.
 
 > ## ⚡ AI bootstrap
 >
@@ -101,6 +101,10 @@ Tag + NL      Community Tags
 ### Xiao-artist aesthetic module (on demand)
 
 `02_design/small-artist-brain/` is an independent taste-to-design decision module grounded in 16 user-supplied ZHENG (蒸蒸) illustration studies. It adds concrete character vitality, camera, color-mass, and density choices **between the Director and design specialists**; original images are not redistributed. It is not a renderer or a universal aesthetic gate. See [SKILL.md](02_design/small-artist-brain/SKILL.md) and its on-demand references.
+
+### NAI5 experiments → reliable controls
+
+For NovelAI V5, use the fast `03_prompt/nai5-renderer/references/nai5-control-matrix.md` before the full long-form field guide. The matrix maps common failures to concrete camera evidence, motion/POV tags, optional **Positive Prompt** negative weights, light-source controls, identity risks, and A/B diagnostics. This adapter does **not** override creative design decisions or affect Anima syntax. Reported source experiments are not treated as our own verified generations.
 
 ### Ownership invariants
 

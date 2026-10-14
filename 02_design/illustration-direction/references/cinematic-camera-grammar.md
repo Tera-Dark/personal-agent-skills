@@ -79,3 +79,12 @@
 - Adobe Lightroom Academy — Leading Lines: https://lightroom.adobe.com/academy/principles/composition/leading-lines
 
 以上是摄影理论和可迁移的视觉原则，不构成 NAI5 / Anima 的提示词效果实测；实测仍需 A/B 跑图判断模型响应。
+
+## 7. 机位交付示范：从抽象描述改成可见画面
+
+- 原描述：`dramatic low angle, cinematic, commanding`。问题：模型知道大概“仰拍”，不知道怎样让手、衣摆、鞋、脸按距离产生关系。
+- 可交付设计事实：`nearest_visible=glossy black shoe and skirt hem crossing bottom edge`；`relative_scale=shoe larger, upright torso narrowing toward the face above`；`background_visible=stone arches behind shoulders`；`face_readability=green eyes and wine-red bangs remain clear`。
+- 上层设计锁住**这些关系**；模型语法适配器再决定用什么 tag 和英语关系短句，绝不倒过来让 Renderer 为满足“低机位”篡改 OC 服饰。
+
+注意模型常把“她从高处低头看你”理解为人物弯腰。解决方式是将“站姿挺直”与“观众能看见的下巴底面、腰部及身后建筑”分开描述。这个失败模式在 NAI5 有来源对照，详细见其控制矩阵；它不是普适摄影定律。
+

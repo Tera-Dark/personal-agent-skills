@@ -1,17 +1,22 @@
-# NAI5 Scene Block
+# NAI5 Scene / Visible Geometry Serialization
 
-## Purpose
+> **不拥有场景创意**：上游 `illustration-direction` 决定叙事、观看立场、镜头、环境。Visual Prompt Core 记录可见空间事实，本文件只提供 NAI5 的轻量表达顺序。
 
-Defines environment and action description.
+## 优先次序
 
-## Priority
+1. 角色人数与选定景别：`upper body`、`cowboy shot`、`full body` 等一次只取合适者。
+2. 看向与位置：`from side, profile`、`from below`、`pov` 等与设计锁一致的 tag。
+3. 动作动词及承重：人物是否站直、俯身、跪下，哪只手接触什么。
+4. **可见近远关系**：最近/裁切处的物体；相对远的脸、身体或环境；遮挡后保留的辨识锚点。
+5. 光从哪来、照在什么部位；主背景只能包含从该机位真实可见的区域。
+6. 一句有意义的诗性描述可留；不要用抽象气氛重复讲解前面已经锁定的事实。
 
-Character emotion and action come before background decoration.
+## 常见冲突
 
-## Structure
+- 大脸 close-up 与完整 full body：回 Blueprint 重新确定景别。
+- 低位 POV 与“她低头看你”：可能被模型解释为弯腰。写人物站直、腰部前景/下巴底面/建筑天花板等**看得见的透视证据**。
+- `back` 易触发裸露后背语义：背影用 `from behind`。
+- `camera` 在 POV 句中可能生成相机道具：改成 `the viewer`。
+- 逆光 silhouette 与清晰双眼：补写从前方照亮脸的弱光，或回设计层改变光比。
 
-- location
-- time
-- atmosphere
-- interaction
-- composition
+更多专项用例、来源样本与边界见 `nai5-control-matrix.md`。

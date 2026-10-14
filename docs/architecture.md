@@ -141,3 +141,28 @@ This keeps the shared logic identical across targets without requiring seven ind
 ### Lean identity residency
 
 The startup bundle contains Identity's small policy contract and `taste-core.md`; the full `design-dislikes.md` and history remain retrievable only when required. This keeps the critical no-clock/no-accessory/anti-plastic-skin defaults in the compact baseline without repeatedly loading the full archive.
+
+## v4.7 — evidence-driven NAI5 adapter, without second design pipeline
+
+The core ownership model is unchanged. The new fast-path is **not** a new Skill:
+
+```
+Illustration camera intent + visible spatial facts
+                    ↓
+Visual Prompt Packet (visible_geometry; no model-specific tags)
+                    ↓
+Danbooru Gate (identity exact/alias/missing; NOT trained-model recognition)
+                    ↓
+NAI5 Renderer
+  ├─ references/nai5-control-matrix.md (quick execution routing)
+  └─ references/nai-v5-usage-guide.md (full reported experiments, on demand)
+                    ↓
+A/B evidence + evaluation-loop (no unverified PASS)
+```
+
+Key split:
+- **Design decision**: visual thesis, decisive moment, viewer relation, which near/far object matters.
+- **Shared compilation**: preserve near/relative scale/occlusion/face-readability, reduce redundant words.
+- **V5 serialization**: map intended viewpoint to stable framing tags + one visible-geometry sentence; optional local positive negative weight only for a specific conflict.
+- **Tag evidence**: canonical identity validation never implies the model recognizes a character; source-reported dataset timing/post-count are not hard rejection rules.
+- **Testing**: `tests/nai5-model-control-regression.md` contains text-contract cases and *pending* paired-image studies; the specification is not proof of model output.

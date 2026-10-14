@@ -3,7 +3,7 @@ name: illustration-direction
 description: Turns a Creative Brief into an authored, model-agnostic illustration blueprint — the image thesis, captured moment, visual motif, environment-character relationship, camera and framing, scale contrast, negative space, physical light sources, density map, narrative residue, and one coherent surreal detail. Use for 插画, 氛围图, 竖屏, 半留白, 印象风, 故事感, key visual, poster, scene illustration, cinematic composition, or whenever a character needs to be placed into a designed moment rather than displayed on a plate. Never writes model-specific prompt syntax.
 metadata:
   author: Tera-Dark
-  version: "2.6.0"
+  version: "2.7.0"
   layer: "02_design"
   load: "on-demand"
   status: "active"
@@ -109,6 +109,14 @@ An illustration blueprint is READY only when visual thesis, captured moment, mot
 如果用户明确要求**插画**，不得把角色重新摆成“完整角色站中间 + 风景背景”的立绘伪装。优先使用视觉母题、环境尺度、sub-framing、非对称布局、反射、切割或局部遮挡。
 
 如果用户要求**极繁 OC 展示 / 特写垫底 / 大头贴 / 元素贴**，优先读取 `references/oc-maximalist-closeup-backdrop-preset.md`。此时“特写垫底”是核心构图骨架：巨大同角色脸部/半身特写铺在最底层，主全身立绘压在前景，再以不同尺度的大头贴、主题元素贴和局部特写形成第三层。不要把这些词误解成“增加几个装饰物”。
+
+## 镜头交付给编译层的最小清单
+
+插画导演确定 `camera intent` 后，**必须写一条可见几何说明**而不只是角度名：①最近的部位/道具及其占画幅位置；②与之相对远的脸、手或另一人物；③哪个建筑/天花板/地面在人物身后可见；④哪条肢体承重及是否挺直；⑤脸部/服设有何内容不能被遮住。删掉 `cinematic` 后，这条说明仍应该能支撑画面张力。
+
+如果需要的是角色设计七分身立绘，不强行塞极端鱼眼；如果是叙事海报也不能默认正中全身站桩。镜头设计要同时满足人物魅力、叙事瞬间与材质/服饰可读性，不为“张力”牺牲用户最在意的脸。
+
+NAI5 实验控制器（如 `pov`、`from below`、正向负权重）的有效性不由本 Skill 决定，交给 `nai5-renderer/references/nai5-control-matrix.md`；本层只产出相机视点与可见空间结果。
 
 ## Modern Key Visual Mode
 

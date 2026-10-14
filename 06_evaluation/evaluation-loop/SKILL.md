@@ -3,7 +3,7 @@ name: evaluation-loop
 description: Evaluates a generated image or compiled prompt against the original Creative Brief and blueprint, using a fixed rubric (identity preservation, outfit binding, spatial clarity, unrequested additions, V1/V2 consistency, output contract) plus a design-layer read (thesis, silhouette, causality, density, punctum, one strange thing). Diagnoses which layer failed and routes the fix to that layer with a single-variable change. Use on any feedback round: 太平淡, 太乱, 不像, 没人味, 这版可以, 评价一下, 哪里不对, compare versions.
 metadata:
   author: Tera-Dark
-  version: "2.4.0"
+  version: "2.5.0"
   layer: "06_evaluation"
   load: "on-demand"
   status: "active"
@@ -56,6 +56,18 @@ metadata:
 外加一行 **Design Read**：命题 ___ / 轮廓 ___ / 因果 ___ / **机位 ___** / 密度 ___ / 刺点 ___ / 怪 ___（各一个词：成立 / 弱 / 缺失）。
 
 摄影反平庸必检：给出一句相机在谁的哪一侧、处于什么高度/距离、捕捉哪一帧的具体描述；回答“为何不是正面平视”；核对锁定的原版服设/留白需求没有被机位改变。未提供图像时只评估 Prompt/Blueprint 的摄影规划，不能声称实测成图效果。
+
+## NAI5 镜头与控制器故障定位（只在 NAI5 任务启用）
+
+设计意图已成立而画面依旧平时，不再只说“加 cinematic”：
+
+1. **没有空间因果**（前景到底是哪只鞋？人物弯了还是站直？脸是否可见？）→ `illustration-direction` 重新确立 `visible_geometry`。
+2. **空间事实齐全，模型没执行**（low angle 仍平视、POV 画出器材、悬浮变站立）→ `nai5-renderer` 从 `nai5-control-matrix.md` 选择**一个**实验控制器，固定种子/画师/画幅/参数做 A/B。
+3. **原 IP 人物变脸/换衣** → 先查 Gate canonical，确认标签是否存在，再由 renderer 补可见原版服饰；不能由 Gate 保证模型学过。
+4. **加招数后反而变坏**（极端权重遮脸、复杂度压暗、轮廓失去美型）→ 回滚新增控制器，不自动加第二个控制器补丁。
+5. 评价中区分 **SPEC（文本通过）/ IMAGE-PENDING（等待出图）/ PASS（有图和对照证据）/ FAIL**。未实测时不能声称模型成功率。
+
+完整用例见 `tests/nai5-model-control-regression.md`；这个测试文档**不能**代替实际跑图结果。
 
 ## Modern Key Visual evaluation
 

@@ -426,3 +426,7 @@ Manual cases are in `tests/output-behavior-regression.md`. Automatic invariants 
 - P15-06: missing Danbooru shard → cannot claim exact identity.
 - P15-07: simple portrait must not fetch poster or full aesthetic archives.
 - P15-08: upstream tag snapshot change cannot break a normal code PR.
+
+## NAI5 control matrix regression (v4.7)
+
+See `tests/nai5-model-control-regression.md` for the eight model-control A/B trials and nine text-contract tests. Trial rows are **IMAGE-PENDING** until screenshots with fixed settings exist; do not mark them PASS based on this repository's text review alone.

@@ -3,7 +3,7 @@ name: nai5-renderer
 description: Thin NovelAI V5 renderer that converts a Visual Prompt Packet plus verified Danbooru tags into the user's compact NAI5 prompt format. Handles artist namespace, weighting syntax, base/character prompt fields, interaction tags, ordering, and optional targeted negatives. Does not design.
 metadata:
   author: Tera-Dark
-  version: "0.1.0"
+  version: "0.2.0"
   layer: "03_prompt"
   load: "on-demand"
   status: "active"
@@ -50,6 +50,22 @@ This module is a target-model adapter. It accepts only a validated blueprint or 
 - Do not solve design-layer problems by adding more tags.
 - Model-behavior claims use Kernel evidence labels: [Official], [Community], [Personal experiment], or [Unverified].
 
+## NAI5 实战控制入口（优先级高于通用描述性修饰）
+
+**每次 NAI5 出图编译前**，按需读取 `references/nai5-control-matrix.md`，短表先于长篇教程。仅查必要行，不让样本报告变成默认配方。需要实验细节、失败率和限制时再读取 `references/nai-v5-usage-guide.md` 的对应章节。此举把源档案与可执行短规则分开，避免将“已收录”误当“已使用”。
+
+对照当前 Packet 的已批准 camera intent，先提取**画面内能看到什么**（最近的是鞋、袖、手还是羽毛；背景出现哪部分；主体是挺直还是前倾；脸在哪里，是否被遮挡），然后选恰当的 `from below`、`from above`、`portrait`、`cowboy shot` 等标签。只用角度堆词而没有实际可见的透视后果，不算完成编译。
+
+按需选择一个**最高杠杆的控制器**：
+- 身份：完整 canonical + 可见外貌服装锚点。tag 有效不等于模型训练认识，作者所报图量阈值及 2026 年中数据截止仅是经验假说。
+- 透视：镜头标签 + 1 句前/中/后可见尺度/遮挡关系；`pov` 用 `the viewer`，不要把实际 `camera` 道具召进画面。
+- 动作：先常用姿势 tag，再写关节/接触/重心；必要时**Positive 内**用小负权重纠偏，如 `2::floating in sky::, -1::standing::`，不要默认投放负面串。
+- 光：明确具体光源照亮的部位；保留脸可见时正面补光要明确；不用泛化 `volumetric light` 代替来源。
+- 色彩/风格：先限制部件的实际颜色，再选色调/媒介标签。禁用默认 `medium complexity`；`background dataset` 仅在更写实风景有需求时用。
+- 多人：基于独立 Character Prompt + 动作责任；`source#` / `target#` / `mutual#` 并不保证复杂关节正确。
+
+当两个控制词互相矛盾（`close-up` 与全身、`silhouette` 与可见瞳孔、`from behind` 与清晰正面脸），**退回设计层做取舍**，不得靠重复形容词覆盖冲突。特殊样本成功率只可标作 [Community/source-reported]，不能说成个人已验证。
+
 ## Rendering flow
 
 1. Read style intent from the Packet. When artist output is required, fetch only `00_core/personal-identity-profile/references/nai5-artist-pool.md` from `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/00_core/personal-identity-profile/references/nai5-artist-pool.md`; do not fetch the complete Identity module just to obtain artist data.
@@ -88,10 +104,14 @@ When the user says artist names only / artist exploration, bypass normal content
 - [ ] no mixing of pipe syntax and separate character fields
 - [ ] no duplicate quality / artist layer
 - [ ] no design invention
+- [ ] camera tags are accompanied by visible spatial evidence when critical
+- [ ] no automatic medium complexity / unused negative weights
+- [ ] canonical identity verification is not misrepresented as V5 recognition
 - [ ] compact output
 - [ ] user fixed Negative remains external unless requested
 
 ## References
+- `references/nai5-control-matrix.md` — **FIRST READ**: concise task→tag/NL control dispatch, camera evidence, positive negative weights, identity risks and troubleshooting.
 - `references/nai-v5-usage-guide.md` — 24-chapter text extraction from XiaoKe's V5 experiments, known limits, and owner-specific minimal prompt workflow (read only relevant sections).
 - `references/community-format.md` — NAI5 prompt fields, syntax and output conventions.
 - `references/character-block.md` — per-character prompt structure and field ownership.

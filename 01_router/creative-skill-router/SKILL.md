@@ -3,7 +3,7 @@ name: creative-skill-router
 description: Entry point for all creative requests. Classifies intent and sends the task to design, analysis, shared prompt compilation, target-model rendering, evaluation, or technical modules. Use for 设计, OC, 人设, 立绘, 插画, 提示词, prompt, NAI, NovelAI, Anima, 反推, 分析图片, ComfyUI, LoRA, or ambiguous creative tasks.
 metadata:
   author: Tera-Dark
-  version: "4.6.0"
+  version: "4.7.0"
   layer: "01_router"
   load: "always"
   status: "active"
@@ -29,6 +29,12 @@ Router 不负责：
 - **FAST VARIANT**：用户基于已认可设计要求局部改动。先锁定原设计，只改当轮指定变量；不重新探索被锁定的部分。
 - **PROMPT ONLY**：交付层覆盖规则，不是跳过审美设计的捷径。无论新创作还是完整设计，只要用户要求提示词，就私下做适用的设计与校验，仅交付可复制 Prompt；不得展示候选方向、Creative Brief 或路由过程。
 - 模式由意图和设计完成度决定，不只靠关键词。如果 FAST VARIANT 涉及身份、主轮廓、核心命题或构图的重大改变，则升级 FULL CREATIVE。单纯“设计图片”只授权文本创作；生图工具的使用由 Kernel 授权规则单独判断。
+
+## NAI5 高杠杆技巧的延迟加载
+
+当用户要求 NAI5 的镜头增强、光照复现、权重纠偏、IP 精准还原、POV、双人互动、极端透视、画师覆盖等任务：**照常先完成设计与共享 Prompt Packet**，选 NAI5 Renderer 后优先查 `references/nai5-control-matrix.md`（通过渲染器的引用链接）。不因为含有“POV/正向负权重/复杂度”等术语而创建第二套审美设计引擎，也不把它们塞进 Anima 流程。
+
+一般的简短肖像编辑只加载当前必需的小节；详细成功率/边界需要时再查 `nai-v5-usage-guide.md`。如果用户说“刚才网站的实测招数”，优先使用**该实测控制矩阵**而不是普通模板形容词。
 
 ## 主路由
 
