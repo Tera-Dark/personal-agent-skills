@@ -100,7 +100,7 @@ User corrections override defaults. Preserve locks and rejected items; keep Engl
 |---|---|---|
 | `personal-identity-profile` | always/active | Persistent identity and taste layer for Tera-Dark's creative work |
 | `aesthetic-director-core` | on-demand/active | Creative direction layer that turns a vague request into one committed... |
-| `creative-skill-router` | always/active | Entry point for all creative requests |
+| `creative-skill-router` | always/active | Intent router for creative requests: character and illustration design,... |
 | `character-design-engine` | on-demand/active | Turns a Creative Brief (from aesthetic-director-core) into a complete,... |
 | `illustration-direction` | on-demand/active | Turns a Creative Brief into an authored, model-agnostic illustration... |
 | `small-artist-brain` | on-demand/active | Evidence-driven Xiao-artist visual decision overlay informed by 16 ZHENG... |
@@ -4064,16 +4064,14 @@ This painterly-story mode is suited to dynamic character key visuals and environ
 layer: 01_router · load: always · status: active · module version: 4.8.0 · harness 4.7.1
 source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/01_router/creative-skill-router
 
-**description:** Entry point for all creative requests. Classifies intent and sends the task to design, analysis, shared prompt compilation, target-model rendering, evaluation, or technical modules. Use for 设计, OC, 人设, 立绘, 插画, 提示词, prompt, NAI, NovelAI, Anima, 反推, 分析图片, ComfyUI, LoRA, or ambiguous creative tasks.
+**description:** Intent router for creative requests: character and illustration design, NAI5/Anima prompts, reference analysis, feedback learning, ComfyUI and LoRA. Dispatches to the correct owner without redesigning or encoding model syntax.
 
 
 ### Creative Skill Router
 
 #### 定位
 
-Router 只负责：**分类 → 选择入口 → 判断设计是否就绪 → 把任务交给正确 owner**。
-
-Router 不负责审美、角色设计、Packet 内容、Tag 验证或模型语法；只路由到对应 owner。
+**按意图分类 → 选模式与正确 owner**。不执行设计、Tag 验证或模型语法。
 
 #### 执行模式选择
 
@@ -4090,9 +4088,9 @@ Router 不负责审美、角色设计、Packet 内容、Tag 验证或模型语�
 
 identity → Aesthetic Gate FULL → specialist → Blueprint Gate
 
-##### 1.1 小画师脑：按需审美增强，不新建另一套通用设计引擎
+##### 1.1 小画师脑（按需）
 
-若用户明确提到「小画师脑」「蒸蒸」「米画师风格分析」，或当前任务要求女性向作者感、活人互动、精美人物插画的专项审美提升：
+触发“小画师脑 / 蒸蒸 / 女性向作者感插画”时：
 
 identity → Aesthetic Gate → **small-artist-brain**（独立审美 Decision Sheet，按 SIMPLE / BALANCED / ORNATE）→ character-design-engine / illustration-direction → Blueprint Gate。
 
@@ -4112,7 +4110,7 @@ identity → Aesthetic Gate AUDIT → Blueprint Gate → visual-prompt-core → 
 | NAI5 / NovelAI | nai5-renderer |
 | 其它图像模型 | general-image-prompt-adapter |
 
-NAI5 与 Anima **共享 Prompt Core，不各自重新做设计**。NAI5 的镜头/权重等实测控制器由 Renderer 的按需控制矩阵处理。
+NAI5 / Anima 共享 Prompt Core；NAI5 专属控制器留 Renderer 按需读取。
 
 ##### 4. 参考图
 
@@ -4121,13 +4119,7 @@ NAI5 与 Anima **共享 Prompt Core，不各自重新做设计**。NAI5 的镜�
 
 ##### 5. 现有 Prompt
 
-existing prompt → prompt-analysis
-
-如果问题是设计层：
-→ Aesthetic Gate / specialist
-
-如果问题只是模型语法：
-→ Prompt Core / target renderer
+existing prompt → prompt-analysis；设计问题回 specialist，语法问题进 target renderer。
 
 ##### 6. 反馈
 
@@ -4139,23 +4131,11 @@ existing prompt → prompt-analysis
 
 ##### 7. 技术
 
-ComfyUI / LoRA / dataset：
-→ 对应 technical module
-
-若模块仍为 planned：
-→ [no module]，不得伪装为已加载的专项知识。
+ComfyUI / LoRA / dataset → 对应 technical module；planned 不得伪装为已加载。
 
 #### 路由原则
 
-1. 按意图，不按关键词。
-2. NAI5 / Anima 名称只决定 renderer，不决定设计方式。
-3. 共享知识只经过 shared owner；不要把同一规则重新复制到 renderer。
-4. 不确定 target model 且语法会显著改变输出 → 只问一个问题。
-5. 混合任务拆成阶段：例如“设计 OC + 生成 NAI5 + 训练 LoRA”应先完成设计，再进入 Prompt Renderer，再进入训练工具。
-
-#### 路由结果
-
-Router 不向用户输出长篇架构说明。内部决定路径后直接执行下一步。
+按意图而非关键词；目标模型只决定 renderer；共享规则仅一个 owner。未知目标影响语法时最多问一个问题。设计 + Prompt + LoRA 按阶段执行。Router 不展示路由长文，直接处理任务。
 
 #### References
 - `references/conversation-qol.md` — **按需：高频短句、一框复制、继续/回退、口语化偏好学习入口**。

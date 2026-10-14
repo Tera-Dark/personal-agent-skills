@@ -7,8 +7,8 @@
   "harness_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS.md",
   "harness_full_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS-FULL.md",
   "handshake": "Harness v4.7.1 loaded · 17 modules · 说需求，或发参考图。",
-  "core_tokens": 6595,
-  "full_tokens": 174101,
+  "core_tokens": 6333,
+  "full_tokens": 173840,
   "pipeline": {
     "aesthetic_gate": "aesthetic-director-core",
     "blueprint_gate": {
@@ -272,7 +272,7 @@
       "load": "always",
       "status": "active",
       "version": "4.8.0",
-      "description": "Entry point for all creative requests. Classifies intent and sends the task to design, analysis, shared prompt compilation, target-model rendering, evaluation, or technical modules. Use for 设计, OC, 人设, 立绘, 插画, 提示词, prompt, NAI, NovelAI, Anima, 反推, 分析图片, ComfyUI, LoRA, or ambiguous creative tasks.",
+      "description": "Intent router for creative requests: character and illustration design, NAI5/Anima prompts, reference analysis, feedback learning, ComfyUI and LoRA. Dispatches to the correct owner without redesigning or encoding model syntax.",
       "triggers": "any request, 设计, 提示词, prompt, 反推, 分析, ComfyUI, LoRA, NAI5, Anima",
       "path": "01_router/creative-skill-router",
       "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/01_router/creative-skill-router",
@@ -323,9 +323,9 @@
           "tokens": 527
         }
       ],
-      "tokens_skill": 1195,
-      "tokens_bundle": 1692,
-      "tokens_full_bundle": 4880
+      "tokens_skill": 955,
+      "tokens_bundle": 1421,
+      "tokens_full_bundle": 4609
     },
     {
       "name": "character-design-engine",
