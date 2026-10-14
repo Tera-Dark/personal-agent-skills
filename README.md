@@ -1,6 +1,6 @@
 # personal-agent-skills
 
-> v4.8 architecture: mandatory Aesthetic/Blueprint Gates + shared Visual Prompt Core + shared Danbooru verification + thin Anima / NAI5 renderers + Web-first runtime. Runtime bundle optimization: compact identity, selective tag shards, reference-level fetching, and explicit FULL / FAST VARIANT / PROMPT ONLY modes.
+> v4.9 architecture: mandatory Aesthetic/Blueprint Gates + shared Visual Prompt Core + shared Danbooru verification + thin Anima / NAI5 renderers + Web-first runtime. Runtime bundle optimization: compact identity, selective tag shards, reference-level fetching, and explicit FULL / FAST VARIANT / PROMPT ONLY modes.
 
 > ## ⚡ AI bootstrap
 >
@@ -35,6 +35,28 @@
 **边界：** 仅凭新对话贴 GitHub 链接，只能读取仓库已提交的长期偏好；它不会自动把所有聊天反馈写进 GitHub。真正跨会话持久化需要已连接、可写的 GitHub 工具及用户允许，或主动执行一次导出/同步。只存创作偏好的抽象摘要，不存个人私密信息或原始图片；模型参数/LoRA 不会自行训练。
 
 详见 [反馈晋升协议](00_core/personal-identity-profile/references/feedback-learning-loop.md)、[反馈证据账本](00_core/personal-identity-profile/references/feedback-ledger.md)、[高频操作 QoL](01_router/creative-skill-router/references/conversation-qol.md)、[学习回归测试](tests/feedback-learning-regression.md)。
+
+## v4.9 可执行的个人学习与跨会话接力
+
+**不是自动训练模型，而是带证据、能撤销的审美学习引擎。** 现在可以将你跑图后的具体评价整理成一条 JSON，利用纯 Python 标准库进行去重、候选评审、偏好晋升、撤销和跨会话续作；下次创作时按需使用已经批准的偏好摘要。CI 会运行相关行为测试。
+
+```bash
+# 在仓库目录下。首次记录：feedback.json 放的是抽象化的短评价，不是完整聊天或图片
+python3 scripts/learn.py record --file feedback.json
+python3 scripts/learn.py review
+# 达到“用户明确要求长期默认”或 >=3 份独立支持，且无反证，经过审核才能启用
+python3 scripts/learn.py promote film.non_template_camera
+python3 scripts/learn.py digest
+python3 scripts/learn.py validate
+
+# 跨会话保存/读取、对比锁定事实
+python3 scripts/learn.py session-save my-oc-v1 --file state.json
+python3 scripts/learn.py session-load my-oc-v1
+python3 scripts/learn.py session-list
+python3 scripts/learn.py session-diff my-oc-v1 my-oc-v2
+```
+
+不用本地 Python 的网页用户仍然可以通过**已授权的 GitHub 写入连接**让 AI 进行等价的读写与审阅；单独贴仓库链接只有读取能力，不代表会记录聊天。仓库可能公开，请勿提交密钥、完整聊天或私密图稿。详见 [学习引擎说明](data/learning/README.md) 和 [七维验收表](docs/experience-scorecard.md)。
 
 ## What this is
 
