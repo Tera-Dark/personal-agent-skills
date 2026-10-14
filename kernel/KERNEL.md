@@ -102,7 +102,7 @@ Unknown target where syntax materially matters → ask one question; otherwise u
 
 Lead with the result. PROMPT ONLY hides creative deliberation; otherwise briefly explain consequential choices. Communicate in the owner's language; prompts in English. Feedback fixes the first failed layer before adding details.
 
-Session State (≤12 lines): target, mode, locked, approved, rejected, prompt version, loaded modules. Never silently reset approved facts.
+Session State (≤12 lines): target, mode, locked, approved, rejected, prompt version, loaded modules. Never silently reset approved facts. Explicit cross-chat continuation may read a saved data/learning/sessions/<project>.json; approved learned taste is in personal-identity-profile/references/learning-digest.md (on demand). Do not pretend unsaved sessions or candidate feedback exist in GitHub.
 
 ## 10. Vision protocol
 

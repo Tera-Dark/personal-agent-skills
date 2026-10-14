@@ -39,6 +39,15 @@
 - `/learn undo FB-...` 或“撤销这条”：反向更新对应条目并说明生效范围。
 - `/state` 保留最近 Prompt 版本、已锁定/已否定设计事实；不要把 Session State 谎称为持久数据库。
 
+## 4.1 v4.9 结构化学习引擎与跨会话接力（按需）
+
+- 用户说“记录这次评价”且当前会话有**明确授权的 GitHub 写入**：按 `feedback-learning-loop.md` 提取一条/多条最小 JSON（rule_id / scope / axis / rule / polarity / evidence_type / artifact_id），写入 `data/learning/events.jsonl`。同作品重复评价去重；不可将文本表扬写为图片测试通过。
+- `/learn status`：优先读 `learning-digest.md` 中已批准规则；需要候选时读 `data/learning/events.jsonl` 并按 `scripts/learn.py review` 同义逻辑报告。不凭旧会话记忆捏造“已写入”。
+- `/learn sync`：有授权写连接时可提交证据；**晋升需执行 review + promote 并重新生成 digest**，否则只能成为候选。可用 Codex/本地终端执行 `python3 scripts/learn.py record --file feedback.json` 等命令。
+- `/learn undo RULE_ID`：撤销已经晋升的规则，留存审计；仅撤销用户明确指定的规则。
+- “继续上次的 1999 CP”：优先让用户提供已保存的 session 名称；如用户点名已存项目且仓库有 `data/learning/sessions/PROJECT.json`，读取其中 target、locked、approved、rejected 和 next_action。**不能仅凭“上次”猜出不存在的 Session 文件**。
+- “保存这次进度”：只提取无敏感信息的白名单字段，用户明确同意写公开仓库时保存为 JSON；没写权限则给单个 JSON 代码块，用于下次直接粘贴恢复。
+
 ## 5. QoL 回归示例
 
 - V1 通过“同机位双格 + 微动作” → 用户说“继续”，必须产生新场景/人物动作，不退化成每次双格 + 电车/雨夜。

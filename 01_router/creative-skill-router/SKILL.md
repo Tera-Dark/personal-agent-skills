@@ -3,7 +3,7 @@ name: creative-skill-router
 description: Intent router for creative requests: character and illustration design, NAI5/Anima prompts, reference analysis, feedback learning, ComfyUI and LoRA. Dispatches to the correct owner without redesigning or encoding model syntax.
 metadata:
   author: Tera-Dark
-  version: "4.8.0"
+  version: "4.9.0"
   layer: "01_router"
   load: "always"
   status: "active"
@@ -70,7 +70,7 @@ existing prompt → prompt-analysis；设计问题回 specialist，语法问题�
 
 → evaluation-loop（诊断 + 拆分好/坏反馈）→ 当前轮锁定 / 身份模块学习候选 → 失败层 owner。
 
-持续偏好学习按需读取 `00_core/personal-identity-profile/references/feedback-learning-loop.md`：有授权写权限才同步 GitHub；否则保留当轮、支持导出，**不假装自动跨会话记忆**。短句“继续/只改X/上一版更好/一框复制”的操作解释按需读取 `references/conversation-qol.md`。仅改第一个失败层，不重做已认可事实。
+评价反馈按需读取 `00_core/personal-identity-profile/references/feedback-learning-loop.md`：先拆分 signal 并锁住当轮成功维度，持久记录才写 `data/learning/events.jsonl`；由 `scripts/learn.py` 去重、评审、晋升、撤销，禁止直接把 candidate 写成 Taste Core。**写 GitHub 要有连接和许可；无权限只导出 JSON**。短句/接力按需读 `references/conversation-qol.md`，只修第一个失败层。
 
 ### 7. 技术
 
