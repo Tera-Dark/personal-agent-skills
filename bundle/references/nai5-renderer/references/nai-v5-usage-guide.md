@@ -5,7 +5,7 @@ source: https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/0
 
 ## NAI V5 使用教程规范：小克实测文字全量提炼 × Tera-Dark 个人工作流
 
-> 文档性质：专属 NovelAI Diffusion V5 技术知识库；**不是新 Skill**，由现有 nai5-renderer 按需读取。
+> 文档性质：专属 NovelAI Diffusion V5 技术知识库；**不是新 Skill**。日常先读短表 `nai5-control-matrix.md`，遇到实验来源、详细限制、失败边界时再按需阅读本档案。
 >
 > 来源：用户上传的《NovelAI V5 实测图鉴 · 小克》离线 HTML，网站 https://nai.rnglg2.top/ ，页面版本 2026-10。原网页自述约 3,400 次请求、3,192 张档案图片。本文件**只提取 HTML 中的教程正文、明确列出的实验数字、文字配方和注意事项**；没有逐张观看图像，也没有访问网页所需的独立数据接口，因此不声称复核了全部图片/全部动态配方。
 >

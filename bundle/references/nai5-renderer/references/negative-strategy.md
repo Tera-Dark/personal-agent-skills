@@ -3,21 +3,21 @@
 
 source: https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/03_prompt/nai5-renderer/references/negative-strategy.md
 
-## NAI5 Negative Strategy
+## NAI5 Negative / Positive Negative Control
 
-### Principle
+> **只在具体故障需要纠偏时读取**。底层实验与证据边界见 `nai5-control-matrix.md` §3 与 `nai-v5-usage-guide.md` A1。
 
-Negative prompts should solve specific problems.
+### 两个不同入口
 
-Avoid blindly copying huge negative lists.
+- **Positive Prompt 内的负权重**：`2::floating in sky::, -1::standing::`。这是源案例对抗默认站姿的精确用法。它不是独立 Negative 框；不能将其理解成允许随处添加通用的负面清单。
+- **独立 Negative Prompt**：按用户需求、真实故障与平台现有 Negative 设置选择。默认保留用户自己的 Negative，不擅自追加或覆盖。
+- **假署名**：只在确实遭遇该问题，且初步检查 3D、CG、写实、画师偏差后，才测试 `-2::signature, watermark, username, artist name, text, logo::`；别默认污染正常肖像。
 
-### Use Cases
+### 决策门槛
 
-- anatomy correction
-- unwanted styles
-- watermark removal
-- composition issues
+1. 看清失败是模型执行偏差还是原本设计就不合理。
+2. 仅选择一个对应“错误默认”的短负权重，尽量不影响身份/服设/面部。
+3. 使用相同 seed、artist、dimensions、steps、CFG 进行 A/B，记录图像结果；出图之前只写预期，不写 PASS。
+4. 如果错误未消失或新错误出现，回滚并再诊断，不加码到一长串。
 
-### Avoid
-
-Negative tags that conflict with the intended style.
+**拒绝**：与锁定动作/构图互斥的负权重、默认全局 `low/medium/high complexity`、默认大面积质量词/负面堆栈。
