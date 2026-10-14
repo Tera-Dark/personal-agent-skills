@@ -16,7 +16,7 @@ metadata:
 
 - 以用户提供并**归属说明为摄影博主「鱼的库洛牌」**的九张作品为学习样本；仅将用户的署名归属作为上下文标记，并不额外声称已经核验摄影作者、授权链或作品发布源。
 - 学习**可迁移的摄影方法**：让观看立场、人物行为、现实物件、场所尺度和光线组成一个事件；不是复制这九张图的场景、人物服装或机位清单。
-- 这是个人专用 **photography decision lens / 摄影决策镜头**，不是新增独立画面导演。**输入**：Creative Brief、用户锁定主题/角色/场景、可选参考图片及当前画面反馈。**输出**：Photography Decision Sheet。**上游**：identity + aesthetic-director-core；**下游**：illustration-direction（唯一画面 Blueprint owner）→ visual-prompt-core → danbooru-tag-gate → NAI5/Anima renderer。
+- 这是个人专用 **photography decision lens / 摄影决策镜头**，不是新增独立画面导演。**输入**：Creative Brief、用户锁定主题/角色/场景、可选参考图片及当前画面反馈。**输出**：Photography Decision Sheet。**上游**：identity + aesthetic-director-core；**下游**：illustration-direction（唯一画面 Blueprint owner）→ visual-prompt-core → danbooru-tag-gate → nai5-renderer / anima-renderer。
 - **不做**：不编写 NAI5/Anima Tag、权重或负面词；不替换角色人设；不擅自生图；不新增持久审美偏好 owner；不假装用户已对任何生成结果打分。
 
 ## 用法与触发
