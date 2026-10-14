@@ -16,6 +16,6 @@ Fast start from a cloned repository:
 4. python3 scripts/learn.py digest
 5. python3 scripts/learn.py validate
 
-Save a creative session with python3 scripts/learn.py session-save my-art --file state.json. Restore with python3 scripts/learn.py session-load my-art.
+Save a creative session with python3 scripts/learn.py session-save my-art --file state.json. Restore with python3 scripts/learn.py session-load my-art. Use python3 scripts/learn.py session-list to find named sessions and python3 scripts/learn.py session-diff my-art-v1 my-art-v2 to detect lost design locks.
 
 For web chat: when a connected agent has explicit write permission, it can edit these exact JSON/JSONL files via GitHub, then regenerate the digest through CI or a local run. Loading the repository alone never grants writes or background monitoring.
