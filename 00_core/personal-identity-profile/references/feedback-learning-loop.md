@@ -1,0 +1,83 @@
+# Feedback Learning Loop — 个人审美增量学习协议
+
+> v1 / 2026-10-14。唯一长期偏好 owner 是 `personal-identity-profile`；`evaluation-loop` 只负责诊断与提取，不能直接重写个人审美；`illustration-direction` 只消费已经生效的偏好。**本协议是可由有读写权限的 AI 执行的工作流，不是 GitHub 原生自动监听聊天。**
+
+## 目标
+
+用户自然说“这张不错 / 太平 / 人味对了 / 9分 / 以后别这样 / 只改视角”时：
+- **立刻影响本会话下一稿**，保留已认可维度，并定位下一次只改什么；
+- **持续记录有凭据的偏好信号**，区分一次性喜欢和稳定审美；
+- 在足够证据或用户明示后，将可复用的规则精炼写入唯一长期归属文件；
+- 避免“越学越窄”：不将一次特定角色/模型/题材的评价泛化成全局禁令。
+
+## 1. 输入与 Signal Packet
+
+对明确审美评价提取一个或多个 **最小独立信号**。一条消息同时“喜欢构图，讨厌脸”应拆成 2 条，而不是一个模糊评分。
+
+| 字段 | 取值 | 约束 |
+| --- | --- | --- |
+| `id` | `FB-YYYYMMDD-NN` | 追加稳定 ID，不复用 |
+| `date` | YYYY-MM-DD | 用户消息日期，不随构建改变 |
+| `scope` | `global` / `mode` / `project` / `ip` / `model` / `artist` | 永远取最窄能解释证据的范围 |
+| `axis` | `camera` / `narrative` / `face` / `palette` / `garment` / `syntax` / `output` / etc. | 一个事件优先只覆盖一个维度 |
+| `polarity` | `like` / `dislike` / `correction` / `neutral` | 不把中性研究当成偏好 |
+| `evidence` | 用户原话短摘 / 用户确认的图/Prompt 代号 | 不造“模型实际出图成功” |
+| `interpretation` | 最小可复用视觉/技术决策 | 不用形容词泛化 |
+| `state` | `candidate` / `confirmed` / `promoted` / `superseded` / `rejected` | 状态随证据改变 |
+| `target` | `taste-signature` / `design-dislikes` / `nai5-artist-pool` / `renderer` / `none` | 写入位置要符合权责 |
+| `linked` | 相关 FB ID / Prompt 代号 | 避免重复计数和丢失上下文 |
+
+对话中出现 **“这段提示词不错”** 只能证明用户认可文本方向（`TEXT-APPROVED`）；**“我跑了，效果好”** 才能写为用户成图反馈（`USER-IMAGE-REPORT`）；只有图与可复核条件才标 **IMAGE-VERIFIED**。不把前两者伪装为模型测试结果。
+
+## 2. 学习与晋升状态机
+
+```text
+user feedback
+    → evaluation-loop: 提取拆分信号、首个失败层和锁定成功维度
+    → current Session State: 当轮立刻应用（无需 GitHub 写权限）
+    → feedback-ledger.md: 有权限且经过用户授权则持久追加；否则保留可复制候选补丁
+    → promotion gate: 用户明确“以后默认/永远不要”，或同一作用域 ≥3 次**独立**一致反馈
+    → identity owner: 更新 taste-signature.md / design-dislikes.md / artist pool
+    → build/validation → 下一次聊天加载生效
+```
+
+- **独立计数**：同一作品的三次重述=1 个来源；模型重复 AI 自述=0；跨作品、跨不同试跑的用户反馈可计数。三次只是晋升最低门槛，不自动覆盖矛盾证据。
+- **候选默认无期限不过度生效**：`candidate` 仅用于类似题材以及本会话，不因为一句“丑”升级全局负面偏好。
+- **明确持久命令优先**：“今后都要”“不要再用”可直接 `confirmed/promoted`；模型语法事实即使用户只指出一次，也立刻修复对应 Renderer 的技术错误（不作为个人审美喜恶）。
+- **反证/冲突**：后来用户纠正或评分反转时，保留原 `id` 并标 `superseded`，新的规则必须注明 scope 和冲突原因；不默默擦除历史。
+- **渐变偏好而非硬锁**：用户在宽屏电影插画喜欢受限视角，不意味着白底立绘也需要镜头遮挡；模式优先，防止“口味收敛为一张图”。
+
+## 3. GitHub 持久化与无连接回退
+
+**关键事实：只把 GitHub 链接贴给一个新 AI，并不能提供 GitHub 写权限，也不会在用户不说话时自动记录。**
+
+1. 如果本轮可用**已授权的 GitHub 写入连接**且用户对“持续记偏好”明确许可：评价事件可批量写入 `feedback-ledger.md`（避免每句微小评论形成一次 commit）；必要时按 gate 更新对应 owner，源文件变更后重建生成 Bundle。写前读取仓库当前版本和 blob SHA，冲突先刷新；**永远不直接改 `bundle/`**。
+2. 连接只能读 / 无写权限：当前会话保留候选，执行 `/learn export` 或用户说“导出偏好补丁”时给一段紧凑 Markdown，供他在支持写入的会话或 GitHub Web 粘贴；**不谎称已保存**。
+3. 用户没开启自动持久化：自然反馈仍影响当前聊天；只在明确“记录/同步 Skill/以后默认”时写。用户若要求停止记录或撤回规则，撤销激活的偏好并保留非个人化的变更记录供审核；仓库持有的原始反馈需按用户删除请求单独处理。
+4. 公共仓库只保留**抽象化创作偏好**和短反馈短语；不要上传用户作品原图、完整私聊、私人身份、健康/财务数据或 API secrets。
+5. **不会自动训练 LoRA / 改模型参数**；自主进化=证据约束下的 Prompt 决策与内容维护，不是参数学习。
+
+## 4. 低摩擦自然语言 QoL（无需背命令）
+
+| 用户自然表达 | 立即行为 | 长期候选 |
+| --- | --- | --- |
+| “这版 9 分，光色好，脸一般” | 锁光色，仅优先修脸 | positive(light) + negative(face)，都限此模式 |
+| “这版不错，再来一个” | 保留**明确认可的机制**，换未锁定的主题/场景 | TEXT-APPROVED，不自动全局推广 |
+| “太丑了，重做” | 先查比例/大色块/构图，回退造成变丑的最近变更 | 不等于所有元素永久拉黑 |
+| “这个画师给 8.5” | 记录准确 artist / 分数 / 优缺点 / 测试模型 | 归 artist pool，不能写进全局 taste |
+| “以后都用单框” | 当轮生效，晋升输出偏好 | global / output |
+| “我试了 Anima 括号权重有效” | 加 user-image-report 条件，不当成全环境事实 | model: Anima / syntax |
+| “继续，换人物，不换构图” | 使用 FAST VARIANT，只改人物与必要 IP 细节 | 不自动新增长久喜好 |
+
+## 5. 恢复、审计与迁移
+
+- `/learn status`：告诉用户本轮候选数量、已晋升规则和未验证来源；仅说明有数据的部分。
+- `/learn why` / “为什么这样写”：追溯某决策依据的 FB ID、稳定偏好和当前指令；没有记录时承认。
+- `/learn export`：把本轮未同步信号变成紧凑 Markdown，方便跨会话复制。
+- `/learn sync` / “更新 Skill”：当前有写工具则先检查 diff 再写；没有工具则输出补丁。**不得假装 GitHub 已同步。**
+- `/learn undo FB-...`：撤回或标 superseded 对应偏好，再更新被晋升的 owner；不要静默篡改无关偏好。
+- 模型/ChatGPT 不会自行持久记住 GitHub 之外的 Session State：跨新对话以仓库版本与最近的 ledger 为准。用户无需给每幅图评分，只有真实评价才入池。
+
+## 6. 验收
+
+`evaluation-loop` 诊断仍独占首次失败层；Identity 独占偏好更新。每次可检测：同一图不重复计数，正反反馈拆开，scope 不扩大，未验证不宣称成图成功，用户要求撤回可追溯，读写失败诚实回退，没有引入第二个审美 owner。
