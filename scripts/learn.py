@@ -93,8 +93,10 @@ def normalize(event):
         raise LearnError("field too long for public abstract ledger")
     e["note"] = str(event.get("note", "")).strip()[:400]
     e["date"] = str(event.get("date", now()[:10]))
-    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", e["date"]):
-        raise LearnError("date must be YYYY-MM-DD")
+    try:
+        datetime.strptime(e["date"], "%Y-%m-%d")
+    except ValueError as exc:
+        raise LearnError("date must be a real YYYY-MM-DD") from exc
     return e
 
 
@@ -134,7 +136,10 @@ def review(root):
         result.append({"rule_id": key, "scope": rows[0]["scope"], "axis": rows[0]["axis"],
                        "rule": rows[0]["rule"], "support": len(support), "oppose": len(oppose),
                        "explicit": explicit, "eligible": eligible,
-                       "active": policies.get(key, {}).get("active", False)})
+                       "active": policies.get(key, {}).get("active", False),
+                       "needs_review": bool(oppose and policies.get(key, {}).get("active", False)),
+                       "effective_active": bool(policies.get(key, {}).get("active", False)
+                                                and not oppose)})
     return result
 
 
@@ -166,7 +171,9 @@ def undo(root, key):
 
 
 def digest_content(root):
-    active = [(k, v) for k, v in sorted(read_policies(root).items()) if v.get("active")]
+    status = {r["rule_id"]: r for r in review(root)}
+    active = [(k, v) for k, v in sorted(read_policies(root).items())
+              if v.get("active") and status.get(k, {}).get("effective_active")]
     lines = [
         "# Learned Taste Digest — approved scoped rules",
         "",
@@ -188,8 +195,8 @@ def digest(root):
     content = digest_content(root)
     if not p.exists() or p.read_text(encoding="utf-8") != content:
         p.write_text(content, encoding="utf-8")
-    return {"status": "ok", "active_rules": sum(v.get("active", False)
-                                                for v in read_policies(root).values())}
+    return {"status": "ok", "effective_active_rules": sum(
+        r["effective_active"] for r in review(root))}
 
 
 def validate(root):
