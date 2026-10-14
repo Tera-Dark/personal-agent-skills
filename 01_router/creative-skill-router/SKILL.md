@@ -16,12 +16,7 @@ metadata:
 
 Router 只负责：**分类 → 选择入口 → 判断设计是否就绪 → 把任务交给正确 owner**。
 
-Router 不负责：
-- 审美决策；
-- 角色设计；
-- Prompt Packet 细节；
-- Danbooru 验证细节；
-- Anima / NAI5 内部语法。
+Router 不负责审美、角色设计、Packet 内容、Tag 验证或模型语法；只路由到对应 owner。
 
 ## 执行模式选择
 
