@@ -30,7 +30,7 @@ This module is a target-model adapter. It accepts only a validated blueprint or 
 - Preserve canonical verified Danbooru identity; never promote uncertain spellings into verified tags.
 - Preserve the user artist namespace: artist:name.
 - Artist membership and permanent blacklist belong to personal-identity-profile; renderer only composes the eligible selected stack. The source index may canonically store the same artist as `@name`; for NAI5 output preserve the packet/pool's `artist:name` spelling after the exact same-name namespace bridge is verified. Never emit the source `@name` form into a NAI5 prompt.
-- Weight syntax is target syntax, not design logic: primary / support differences are serialized with NAI5 weight::tag:: form.
+- Weight syntax is target syntax, not design logic: primary / support differences are serialized with NAI5 weight::tag:: form. **2026-10-14 anti-cross-compiler check:** never tell the Anima Renderer to reuse NAI5 `1.3::tag::`; ordinary ComfyUI-style Anima uses `(tag:1.3)` only when its text encoder supports it. Renderer ownership is strictly target-specific.
 - **CRITICAL NAI5 ARTIST SERIALIZATION / DIGIT-ENDING NAMES (user-corrected 2026-10-12):** If the canonical artist NAME ends with an ASCII digit (0–9), always insert **exactly one ordinary space immediately BEFORE the terminating `::`** in a weighted artist token. Example: `0.3::artist:mgong520 ::,` (**correct**) vs `0.3::artist:mgong520::,` (**wrong**). Non-digit-ending artist names remain `0.4::artist:poppy_yuu::,`. This is output-format protection against the numeric-tag / weight parsing issue reported in the user's NAI5 study; it does NOT change the canonical Danbooru identity and does not independently validate any tag. Apply to every artist stack, single-artist test and final copy-ready output; inspect all tokens before delivery. Do not substitute an artist-wide digit blacklist for this format fix; honor separately and explicitly blacklisted artist identities.
 - Put high-priority subject and composition anchors early.
 - For multi-character V5, prefer NovelAI's official Base Prompt + separate Character Prompt fields. Base controls shared scene, style, framing, and subject counts; each Character Prompt owns one character's identity, appearance, outfit, props, expression, and character-specific action.
@@ -90,7 +90,7 @@ When the user says artist names only / artist exploration, bypass normal content
 
 - One character: one copyable NAI5 prompt in one code block.
 - Multiple characters: by default, show Base Prompt and one Character Prompt per character in separate, compact code blocks, with labels outside the prompt text.
-- If the user explicitly asks for a single-string / one-box version, provide the pipe-separated alternative and do not combine it with instructions to fill separate Character Prompt boxes.
+- If the user explicitly asks for a single-string / one-box version, provide the pipe-separated alternative and do not combine it with instructions to fill separate Character Prompt boxes. Retain the requested one-box delivery preference for subsequent prompts in the same session until the user changes it; verify whether this serialization works in the user's current NAI5 interface.
 - Do not emit bracketed Markdown section headings or internal labels into the actual prompt.
 - Do not emit Negative by default.
 
