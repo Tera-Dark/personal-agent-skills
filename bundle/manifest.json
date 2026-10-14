@@ -8,7 +8,7 @@
   "harness_full_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS-FULL.md",
   "handshake": "Harness v4.7.1 loaded · 17 modules · 说需求，或发参考图。",
   "core_tokens": 6595,
-  "full_tokens": 173712,
+  "full_tokens": 174101,
   "pipeline": {
     "aesthetic_gate": "aesthetic-director-core",
     "blueprint_gate": {
@@ -119,7 +119,7 @@
           "path": "references/taste-signature.md",
           "bundle_path": "bundle/references/personal-identity-profile/references/taste-signature.md",
           "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/personal-identity-profile/references/taste-signature.md",
-          "tokens": 7272
+          "tokens": 7660
         },
         {
           "path": "references/nai5-artist-pool.md",
@@ -154,7 +154,7 @@
       ],
       "tokens_skill": 485,
       "tokens_bundle": 1163,
-      "tokens_full_bundle": 24162
+      "tokens_full_bundle": 24551
     },
     {
       "name": "aesthetic-director-core",
