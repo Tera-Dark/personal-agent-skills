@@ -154,6 +154,18 @@ An illustration blueprint is READY only when visual thesis, captured moment, mot
 
 优先读取 `02_design/small-artist-brain/SKILL.md`；创作时按需读取该模块的视觉语法文件（zheng-transferable-grammar.md），16 张逐图研究与验收记录仅在解释或复盘时读取。普通插画不强制启用这个模块；`PROMPT ONLY` 仍只交付最终提示词。小画师脑不决定模型语法，也不得跳过本模块的 Blueprint Gate。
 
+## 「鱼的库洛牌」摄影思维 Decision Sheet 交接（按需）
+
+当用户明确要求摄影式电影感、生活纪实、特殊观察机位或「鱼的库洛牌」时，先接收 `yu-de-kuluopai-photography-brain` 的 Photography Decision Sheet，再由**本模块独占**最后画面命题、观看立场取舍、构图、动作物理、光线与 Blueprint Gate：
+
+- `event` / `emotional_asymmetry` → 「瞬间 / 人物调度」：保留独立角色的不同步微反应。
+- `viewer_position` / `camera` / `visible_geometry` → 「观看立场 / 机位 / 空间调度 / 遮挡」：最近物、前后尺度、可见接触点、只从该地点能看到的环境。
+- `useful_prop` / `narrative_residue` → 「人物—环境关系 / 残留」：道具真实被使用，不变成随机装饰。
+- `light` / `color_masses` / `density` → 「主光源 / 色块 / 密度」：可以正午直射与浓阴，高亮蓝天与暗室并存；不默认雨夜蓝橙。
+- `do_not_import` → 「删掉的 / 锁定事实」：保留用户主题与年代，**不把参考摄影里校服、海滨、折叠黄伞、单车当风格标签**。
+
+本模块要能使用摄影决策 Sheet **自己确认或否决**布局，而不是把这张 Sheet 生硬放进最终 Prompt。通过 Blueprint Gate 后才交 Prompt Core 与对应 renderer；摄影模块与 `small-artist-brain` 同时存在时，二者仅做可组合的决策参考，无第二位导演。
+
 ## References
 
 - `references/visual-grammar.md` — 画面命题、视觉母题、环境能动性、尺度、遮挡、色块、叙事残留、受控超现实与反 AI 套路。
