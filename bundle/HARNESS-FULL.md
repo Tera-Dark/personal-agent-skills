@@ -9673,7 +9673,7 @@ source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/04_analysis
 ---
 
 ## MODULE: evaluation-loop
-layer: 06_evaluation · load: on-demand · status: active · module version: 2.6.0 · harness 4.7.1
+layer: 06_evaluation · load: on-demand · status: active · module version: 2.7.0 · harness 4.7.1
 source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/06_evaluation/evaluation-loop
 
 **description:** Evaluates a generated image or compiled prompt against the original Creative Brief and blueprint, using a fixed rubric (identity preservation, outfit binding, spatial clarity, unrequested additions, V1/V2 consistency, output contract) plus a design-layer read (thesis, silhouette, causality, density, punctum, one strange thing). Diagnoses which layer failed and routes the fix to that layer with a single-variable change. Use on any feedback round: 太平淡, 太乱, 不像, 没人味, 这版可以, 评价一下, 哪里不对, compare versions.
@@ -9738,6 +9738,12 @@ source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/06_evaluati
 5. 评价中区分 **SPEC（文本通过）/ IMAGE-PENDING（等待出图）/ PASS（有图和对照证据）/ FAIL**。未实测时不能声称模型成功率。
 
 完整用例见 `tests/nai5-model-control-regression.md`；这个测试文档**不能**代替实际跑图结果。
+
+#### Feedback Learning Hand-off（2026-10-14）
+
+收到可判断的评价时，本模块除了首次失败层诊断，还应产出 **最小反馈信号**：对每个单独维度记录 `scope / axis / polarity / evidence / TEXT-APPROVED 或 USER-IMAGE-REPORT / current locked facts`。例如“构图不错、脸不好”必须拆成两个 signal；“再来一版”不等于自动成功。已认可维度进入 Session State 锁定，失败只改一层。
+
+**持久晋升不归评价模块**：转给 `00_core/personal-identity-profile/references/feedback-learning-loop.md`；用写入权限及用户许可决定是否记录到 `feedback-ledger.md`。单条 “太丑” 不升级全局审美禁令，用户明确“以后不要”可直接确认对应作用域。无 Github 写权限时提供 /learn export 可复制候选，而不是说已经写入。技术错误（如 Anima/NAI5 权重串用）修 Renderer，不污染 taste。
 
 #### Modern Key Visual evaluation
 
