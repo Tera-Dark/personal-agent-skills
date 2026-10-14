@@ -263,6 +263,59 @@ def main():
             if token not in content:
                 errors.append(f"owner regression missing guard in {rel}: {token}")
 
+    # Feedback QoL: require an evidence store, constrained promotion policy, and
+    # nonduplicated IDs so "learning" cannot silently turn into an untraceable log.
+    feedback_contracts = {
+        "00_core/personal-identity-profile/SKILL.md": [
+            "feedback-learning-loop.md", "feedback-ledger.md",
+        ],
+        "00_core/personal-identity-profile/references/feedback-learning-loop.md": [
+            "≥3", "scope", "candidate", "superseded", "GitHub",
+        ],
+        "01_router/creative-skill-router/SKILL.md": [
+            "references/conversation-qol.md", "feedback-learning-loop.md",
+        ],
+        "01_router/creative-skill-router/references/conversation-qol.md": [
+            "FAST VARIANT", "/learn status", "/learn sync",
+        ],
+        "06_evaluation/evaluation-loop/SKILL.md": [
+            "Feedback Learning Hand-off", "TEXT-APPROVED",
+        ],
+    }
+    for rel, tokens in feedback_contracts.items():
+        p = os.path.join(root, rel)
+        if not os.path.isfile(p):
+            errors.append(f"feedback QoL missing file: {rel}")
+            continue
+        body = open(p, encoding="utf-8").read()
+        for token in tokens:
+            if token not in body:
+                errors.append(f"feedback QoL contract missing in {rel}: {token}")
+
+    ledger_path = os.path.join(root, "00_core", "personal-identity-profile",
+                               "references", "feedback-ledger.md")
+    if os.path.isfile(ledger_path):
+        import re
+        used = set()
+        for n, line in enumerate(open(ledger_path, encoding="utf-8"), 1):
+            if not line.startswith("| FB-"):
+                continue
+            m = re.match(r"^\\| (FB-\\d{8}-\\d{2}) \\|", line)
+            if not m:
+                # Current ledger places a human-readable date after ID.
+                m = re.match(r"^\\| (FB-\\d{8}-\\d{2}) ·", line)
+            if not m:
+                errors.append(f"feedback ledger line {n}: invalid signal ID")
+                continue
+            signal_id = m.group(1)
+            if signal_id in used:
+                errors.append(f"feedback ledger line {n}: duplicate ID {signal_id}")
+            used.add(signal_id)
+            if not any(" " + st + " →" in line for st in (
+                "candidate", "confirmed", "promoted", "superseded", "rejected"
+            )):
+                errors.append(f"feedback ledger line {n}: missing valid state")
+
     if check_bundle and not errors:
         import build  # noqa: E402  (same directory)
         stale = build.stale_outputs(root)
