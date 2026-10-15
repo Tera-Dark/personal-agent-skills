@@ -11,7 +11,7 @@
 | FB-20261015-03 · 10-15 | mode:cinematic · camera/narrative | TEXT-REJECTED + TEXT-APPROVED：「很丑很难看」「尽量内容少而明确」「俩分镜，都人物面部特写，情绪渲染很饱满」 | 双格剧情情绪稿用两张同场面部反应的**信息增量**而非堆环境；仅在用户指定双格时启用 | confirmed → illustration-direction / session study |
 | FB-20261015-04 · 10-15 | mode:canonical-fanart · identity | USER-CORRECTION：「不是，我要方舟的人物ip的这种分镜」「要懂剧情的设计」 | 先核对 IP/canon 与角色传，再用行为/表情转译角色动机；故事推演要标同人而非官方事实 | confirmed → session study |
 | FB-20261015-05 · 10-15 | mode:ancient-portrait · character-life | MIXED TEXT：「形象不错」「自然背景」「更具镜头感的肖像特写」「没有互动」「不要拿纸」 | 保留审美和服设，改成真实自然背景 + 意图性近景 + 有诱因的优雅转身/互动；无因果信纸道具禁止补丁 | confirmed → small-artist-brain / session study |
-| FB-20261015-06 · 10-15 | mode:material-fusion · framing | TEXT-CORRECTION：「跑出来只有个头」 | 淡入式矿物/水墨肖像须锁**脸、肩、衣袖、躯干的可见性**，失边在下半部；不叠互斥景别 | confirmed USER-IMAGE-REPORT → illustration-direction / session study |
+| FB-20261015-06 · 10-15 | mode:material-fusion · framing | TEXT-CORRECTION：「跑出来只有个头」 | 淡入式矿物/水墨肖像须锁**脸、肩、衣袖、躯干的可见性**，失边在下半部；不叠互斥景别 | confirmed → illustration-direction / session study (user-reported image behavior) |
 | FB-20261015-07 · 10-15 | ip:Arknights-Suzuran · aesthetic | TEXT-APPROVED：「这个表现的感觉很不错」 | 铃兰春花枝头、粉乳白与浅青配色、服装/尾巴/自然花枝共享动势；保持美型、低噪声；**仅认可表现方向，不假定完成出图验证** | confirmed → taste-signature / session study |
 | FB-20261015-08 · 10-15 | mode:experimental-portrait · material | REFERENCE-POSITIVE：「这种风格的高级设计感」 | 负空间、矿物侵蚀、版画颗粒与人物共形；是可选艺术肖像模式，不自动通用化 | candidate → session study |
 | FB-20261015-09 · 10-15 | mode:cinematic · photography | TEXT-APPROVED：「哦，这个不错，有点学到位了」＋新增「鱼的库洛牌」参考 | 摄影机位的实际几何与人物关系、光与密度先于模板词；用户认可方法方向，不是已证明每张 NAI5 稳定成功 | confirmed → photography-brain / session study |
