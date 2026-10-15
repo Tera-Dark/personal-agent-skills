@@ -13,9 +13,13 @@
 ## Defaults for this owner
 
 - **Design / OC / illustration request → prompt or written design, not automatic image generation.** Only an explicit request to generate/edit an image authorizes an image tool.
-- **NAI5 default → compact positive prompt only.** Preset artist stack, quality terms and Negative stay external unless requested.
+- **NAI5 latest confirmed default (2026-10-15) → one copyable English positive prompt, no fixed artist stack / year / quality / Negative.** Users can still explicitly request an artist stack or complete configuration. Prompt-only: never generate images without clear instruction.
 - **PROMPT ONLY** governs visible output rather than internal design depth. Simple edits use FAST VARIANT; substantive original work uses FULL.
 - Web use needs only the GitHub URLs. Build scripts run locally or in CI.
+
+## Latest cross-session taste sync (2026-10-15)
+
+The owner's Oct 14–15 feedback is summarized in [scoped session evidence](00_core/personal-identity-profile/references/session-feedback-2026-10-14-15.md) and promoted where warranted into [Taste Signature](00_core/personal-identity-profile/references/taste-signature.md), [Dislikes](00_core/personal-identity-profile/references/design-dislikes.md), [Illustration Direction](02_design/illustration-direction/SKILL.md), and [NAI5 Renderer](03_prompt/nai5-renderer/SKILL.md). Crucial distinctions: prompt-only not images; externally fixed artist/quality; canon-first fan art; real camera geometry & interaction; optional experimental material-fusion; Suzuran floral reference as scoped positive evidence rather than universal cherry blossoms.
 
 ## 高度个人化 QoL：正常聊天就能学习
 
