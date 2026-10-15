@@ -35,7 +35,7 @@ def main():
     for token in ("Image-generation permission", "PROMPT ONLY", "请给我生成一张图片"):
         require(token in harness, f"Runtime lacks: {token}")
     require("默认只交付提示词文本" in taste, "owner prompt-first rule disappeared")
-    require("省略常备 artist stack" in taste, "fixed NAI5 stack no longer external")
+    require("画师串和质量词已在界面固定" in taste and "默认省略 artist" in taste, "current fixed NAI5 artist/quality defaults are not external")
     require("高频禁区" in taste, "cold-start no longer carries essential dislikes")
     require("references/design-dislikes.md" not in str(config["always_on"]), "full dislikes loaded eagerly")
     require("不展示内部候选" in director, "Director leaks rejected candidates")
