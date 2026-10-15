@@ -18,7 +18,7 @@ metadata:
 
 常驻：本契约 + `references/taste-core.md`。避免把历史审美和大数据库全部塞进冷启动。
 
-按需只读相关引用：`references/design-dislikes.md`（明确拒绝）、`references/taste-signature.md`（稳定审美和认可样本）、`references/nai5-artist-pool.md`（画师）、`references/visual-preferences.md`（画幅历史）、`references/business-objectives.md`（商业目标）。
+按需只读相关引用：`references/design-dislikes.md`（明确拒绝）、`references/taste-signature.md`（稳定审美和认可样本）、`references/nai5-artist-pool.md`（画师）、`references/visual-preferences.md`（画幅历史）、`references/business-objectives.md`（商业目标）、`references/session-feedback-2026-10-14-15.md`（最新会话专项，跨会话恢复按需）。
 **动态已批准偏好**：开始新的创作主题、用户说“按我的喜好”或跨会话续作时，按需读取 `references/learning-digest.md`（只含已审核规则），优先使用与本次 mode/model/IP 匹配的最窄作用域；没有生效规则就直接使用 Taste Core。
 **学习反馈**：评价时按需读取 `references/feedback-learning-loop.md`；`references/feedback-ledger.md` 是旧的人类可读记录，不计入自动证据晋升。结构化证据见 `data/learning/events.jsonl`，来源与执行方式见 `data/learning/README.md`。
 
