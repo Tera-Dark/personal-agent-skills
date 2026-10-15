@@ -1,14 +1,14 @@
 {
   "name": "personal-agent-skills",
-  "version": "4.10.0",
+  "version": "4.10.1",
   "repo": "Tera-Dark/personal-agent-skills",
   "branch": "main",
   "raw_base": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/",
   "harness_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS.md",
   "harness_full_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS-FULL.md",
-  "handshake": "Harness v4.10.0 loaded · 18 modules · 说需求，或发参考图。",
-  "core_tokens": 6499,
-  "full_tokens": 182662,
+  "handshake": "Harness v4.10.1 loaded · 18 modules · 说需求，或发参考图。",
+  "core_tokens": 6508,
+  "full_tokens": 189914,
   "pipeline": {
     "aesthetic_gate": "aesthetic-director-core",
     "blueprint_gate": {
@@ -330,9 +330,9 @@
           "tokens": 509
         }
       ],
-      "tokens_skill": 1157,
-      "tokens_bundle": 1624,
-      "tokens_full_bundle": 5240
+      "tokens_skill": 1158,
+      "tokens_bundle": 1625,
+      "tokens_full_bundle": 5241
     },
     {
       "name": "character-design-engine",
@@ -501,17 +501,25 @@
       "layer": "02_design",
       "load": "on-demand",
       "status": "active",
-      "version": "1.0.0",
-      "description": "「鱼的库洛牌」摄影思维——以用户提供的九张摄影参考提炼观察机位、决定性瞬间、光线色块、物理接触和叙事留白，向 illustration-direction 交付摄影 Decision Sheet，特别适合 NAI5 电影感插画。不是独立构图 owner，也不写模型语法。",
+      "version": "1.1.0",
+      "description": "「鱼的库洛牌」摄影思维——以用户提供的首批九张与追加十三份摄影参考提炼观察机位、决定性瞬间、光线色块、物理接触和叙事留白，向 illustration-direction 交付摄影 Decision Sheet，特别适合 NAI5 电影感插画。不是独立构图 owner，也不写模型语法。",
       "triggers": "鱼的库洛牌, 摄影思维, 摄影脑, 摄影感, 电影感, 纪实抓拍, 生活流, 真实镜头, NAI5电影感, photographic thinking",
       "path": "02_design/yu-de-kuluopai-photography-brain",
       "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_design/yu-de-kuluopai-photography-brain",
       "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/yu-de-kuluopai-photography-brain.md",
       "references": [
+        "references/camera-decision-matrix.md",
         "references/nine-frame-study-2026-10-14.md",
+        "references/thirteen-frame-study-2026-10-15.md",
         "references/cross-genre-camera-recipes.md"
       ],
       "reference_files": [
+        {
+          "path": "references/camera-decision-matrix.md",
+          "bundle_path": "bundle/references/yu-de-kuluopai-photography-brain/references/camera-decision-matrix.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/yu-de-kuluopai-photography-brain/references/camera-decision-matrix.md",
+          "tokens": 2006
+        },
         {
           "path": "references/nine-frame-study-2026-10-14.md",
           "bundle_path": "bundle/references/yu-de-kuluopai-photography-brain/references/nine-frame-study-2026-10-14.md",
@@ -519,15 +527,21 @@
           "tokens": 2585
         },
         {
+          "path": "references/thirteen-frame-study-2026-10-15.md",
+          "bundle_path": "bundle/references/yu-de-kuluopai-photography-brain/references/thirteen-frame-study-2026-10-15.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/yu-de-kuluopai-photography-brain/references/thirteen-frame-study-2026-10-15.md",
+          "tokens": 3831
+        },
+        {
           "path": "references/cross-genre-camera-recipes.md",
           "bundle_path": "bundle/references/yu-de-kuluopai-photography-brain/references/cross-genre-camera-recipes.md",
           "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/yu-de-kuluopai-photography-brain/references/cross-genre-camera-recipes.md",
-          "tokens": 1569
+          "tokens": 2226
         }
       ],
-      "tokens_skill": 2361,
-      "tokens_bundle": 2700,
-      "tokens_full_bundle": 6720
+      "tokens_skill": 3048,
+      "tokens_bundle": 3508,
+      "tokens_full_bundle": 13955
     },
     {
       "name": "anima-renderer",
