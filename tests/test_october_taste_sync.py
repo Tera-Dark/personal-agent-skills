@@ -38,7 +38,7 @@ class OctoberTasteSync(unittest.TestCase):
     def test_design_boundaries_and_subject_safety(self):
         director = DIRECTOR.read_text(encoding="utf-8")
         small = SMALL_ARTIST.read_text(encoding="utf-8")
-        for term in ("双格近景", "矿物/水墨淡入", "角色经历", "同人"):
+        for term in ("双格人物面部", "矿物/水墨淡入", "人物传", "同人"):
             self.assertIn(term, director)
         self.assertIn("铃兰", small)
         self.assertIn("不授权通用模式每张图加樱花", small)
