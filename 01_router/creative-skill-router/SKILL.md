@@ -43,7 +43,7 @@ identity → Aesthetic Gate → **small-artist-brain**（独立审美 Decision S
 
 「鱼的库洛牌 / 摄影脑 / 摄影思维 / NAI5 摄影电影感 / 纪实抓拍、生活流」→ **yu-de-kuluopai-photography-brain** 生成摄影 Decision Sheet（机位、瞬间、触点、光、空间）→ **illustration-direction** 统一 Blueprint Gate → Prompt Core / Tag Gate / NAI5 Renderer。
 
-仅真实观察型电影感调用；史诗海报不强制。与小画师脑可叠加但不另设构图 owner；不复制九图中的校服、海边、黄伞，不更改用户锁定人设，不自动生图。详见摄影模块按需引用。
+仅真实观察型电影感调用；史诗海报不强制。与小画师脑可叠加但不另设构图 owner；不复制参考图中的校服、海边、黄伞，不更改用户锁定人设，不自动生图。详见摄影模块按需引用。
 
 ### 2. 已完成设计 → 模型提示词
 
