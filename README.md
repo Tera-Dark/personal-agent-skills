@@ -145,12 +145,12 @@ Tag + NL      Community Tags
 
 ### 「鱼的库洛牌」摄影思维（按需）
 
-新建 `02_design/yu-de-kuluopai-photography-brain/`，分析用户提供、标注为博主「鱼的库洛牌」的九幅摄影作品，不存放/重新发布图片。**提炼观看立场、决定性瞬间、人体接触点、前景遮挡、物件因果、真实光源与大色块**，形成 Photography Decision Sheet。
+新建 `02_design/yu-de-kuluopai-photography-brain/`，分析用户提供、标注为博主「鱼的库洛牌」摄影思维参考的首批九图与追加十三份样本（含重复/拼贴，不误算独立样本），不存放/重新发布图片。**提炼观看立场、决定性瞬间、人体接触点、前景遮挡、物件因果、真实光源与大色块**，形成 Photography Decision Sheet。
 
 示例对话：「用鱼的库洛牌摄影脑，给我写一张 NAI5 古风恋人诀别的电影感提示词」。路由是 **摄影 Skill（机位与瞬间建议） → illustration-direction（设计与 Blueprint Gate） → Visual Prompt Core → Danbooru Tag Gate → NAI5 renderer**。最终仍遵守用户默认纯英文、紧凑正向提示词、无需画师串/质量词/Negative，以及不自动生成图像。模块也可为其他模型提供摄影思考，但不拥有任何模型语法。
 
 - [Skill 入口](02_design/yu-de-kuluopai-photography-brain/SKILL.md)
-- [九张参考图逐帧分析](02_design/yu-de-kuluopai-photography-brain/references/nine-frame-study-2026-10-14.md)
+- [九张参考图逐帧分析](02_design/yu-de-kuluopai-photography-brain/references/nine-frame-study-2026-10-14.md)\n- [追加十三份参考逐图研究](02_design/yu-de-kuluopai-photography-brain/references/thirteen-frame-study-2026-10-15.md)\n- [镜头决策矩阵与 NAI5 提示词反污染](02_design/yu-de-kuluopai-photography-brain/references/camera-decision-matrix.md)
 - [跨题材镜头迁移与 A/B 验证](02_design/yu-de-kuluopai-photography-brain/references/cross-genre-camera-recipes.md)
 
 ### NAI5 experiments → reliable controls
