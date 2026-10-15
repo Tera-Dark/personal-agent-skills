@@ -60,7 +60,7 @@ class PhotographySkillContracts(unittest.TestCase):
         for n in range(1, 14):
             self.assertIn(f"## {n:02d} ·", notes)
         self.assertIn("02 与 09", notes)  # repeats cannot count as independent evidence
-        self.assertIn("未对每一幅具体图的作者做独立验证", notes)
+        self.assertIn("没有对每一幅具体图的作者做独立验证", notes)
         methods = matrix.read_text(encoding="utf-8")
         for k in ("Contact", "Following", "Observing", "Threshold",
                   "Opposed attention", "NAI5", "参考渗漏", "叙事距离"):
