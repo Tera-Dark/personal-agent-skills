@@ -3,7 +3,7 @@ name: image-reverse-analysis
 description: Decomposes a reference image into transferable design language — silhouette and mass distribution, motif grammar, garment construction, material contrast, palette hierarchy, pose logic, negative space and presentation format — instead of a tag dump. Output feeds aesthetic-director-core (for original work) or a model adapter (for faithful reproduction). Use for 反推, 分析图片, 提取提示词, 还原风格, 参考这张图, reverse prompt, image analysis.
 metadata:
   author: Tera-Dark
-  version: "2.1.0"
+  version: "2.1.1"
   layer: "04_analysis"
   load: "on-demand"
   status: "active"
@@ -57,6 +57,10 @@ v2.0.0 合并了原先三处重复的反推流程（本 Skill、`skills/nai5-pro
 - Human irregularity：脸部是否存在非镜像眼睛、高光差异、笔触边缘或自然色阶。
 - Attachment logic：饰品、链条、流苏、布带如何固定并承担重量。
 
+## Artist Eye · 跨媒介参考的证据与反事实
+
+当用户要求学习多门艺术、融合参考或提升美商时，按需读取 `references/artist-eye-crossmedia-evidence.md`。本模块只负责：原图可见事实 → 机制假说（主次色块/线条/人物动作/可见光源）→ 删除或改变一个主关系会损失什么 → **可迁移机制与不可复制的具体元素**。必须区别视觉观察、资料出处、主观推断与已出图反馈。将 1–3 个可迁移机制交给 `aesthetic-director-core` 作决策，不在本层生成三个独立设计方案或 Prompt。
+
 ## 输出契约
 
 ```
@@ -87,5 +91,6 @@ v2.0.0 合并了原先三处重复的反推流程（本 Skill、`skills/nai5-pro
 见 `aesthetic-director-core/references/taste-calibration-pairs.md` Pair 5：蛇形环绕参考图 → 五条结构原则 → 蚕丝少女原创。
 
 ## References
+- `references/artist-eye-crossmedia-evidence.md` — 用户参考图的观察边界、动画/电影/绘画/版式等源资料与跨领域迁移证据。
 
 - `references/design-language-extraction.md` — 轮廓 / 色彩 / 时装结构 / 情绪的提取要点与重构原则
