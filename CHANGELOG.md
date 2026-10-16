@@ -1,5 +1,15 @@
 # Changelog
 
+## [5.2.0] — 2026-10-16 · MOSS-Image Prompt Renderer
+
+- Added `moss-image-renderer` as a peer of NAI5 and Anima under `03_prompt`, sharing Artist Eye, Visual Prompt Core and optional Danbooru Tag Gate.
+- Added Caption default, optional Tags and native JSON Layout; model evidence grounded in OpenMOSS official homepage, user guides, GitHub Prompt Enhancer and Hugging Face cards.
+- Two pipelines: `moss` (Caption/Layout without forced tag lookup) and `moss-tags` (canonical Tags verification).
+- Added independent, standard-library JSON Layout compiler and tests for coordinate conversion, exact wording and dimension validation.
+- Style description lexicon remains [Candidate] until actually tested. Artist stack omitted by default; no copying NAI5 character slots or weight syntax.
+- Router, L1 entry, README workflow map and regression tests synchronized; existing NAI5/Anima semantics preserved.
+
+
 ## [5.1.0] — 2026-10-16 · Tiered Creative Intelligence
 
 - L1 / L2 / L3 Web-first loading: small core, four generated L2 task cards, on-demand deep design/reference contracts, task pack URLs and structural validation.
