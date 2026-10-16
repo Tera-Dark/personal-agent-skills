@@ -28,7 +28,8 @@ class ArtistEyeContractTest(unittest.TestCase):
         self.assertIn("唯一创意 owner", artist_eye)
         self.assertIn("只接收幸存方向", layout)
         self.assertIn("只动一个变量", eval_skill)
-        self.assertIn("NAI5/Anima", artist_eye)
+        self.assertIn("NAI5", artist_eye)
+        self.assertIn("Anima", artist_eye)
 
     def test_counterfactual_and_originality_are_required(self):
         lab = (DIRECTOR / "references/artist-eye-creative-lab.md").read_text(encoding="utf-8")
@@ -43,7 +44,7 @@ class ArtistEyeContractTest(unittest.TestCase):
         self.assertIn("HYPOTHESIS", atlas)
         self.assertIn("IMAGE-PENDING", atlas)
         self.assertIn("USER-APPROVED", review)
-        self.assertIn("自动美感分数", review)
+        self.assertIn("自动指标", review)
 
     def test_required_manual_cases_exist(self):
         cases = (ROOT / "tests/artist-eye-regression.md").read_text(encoding="utf-8")
