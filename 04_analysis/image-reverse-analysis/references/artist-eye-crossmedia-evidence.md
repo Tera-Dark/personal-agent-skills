@@ -44,6 +44,10 @@
 | 色彩 | Colour Science · [GitHub readme] https://github.com/colour-science/colour | 色空间、明度、色差、受光材质研究；可核对色块分布 | 技术精确≠颜色有感情 |
 | 剪辑/时间 | PySceneDetect · [GitHub readme] https://github.com/Breakthrough/PySceneDetect | 切分镜头用于研究前后帧之间的情绪/信息变化 | 只是工具，不自带导演知识 |
 | 自动审美分数 | LAION Aesthetic Predictor · [GitHub readme] https://github.com/LAION-AI/aesthetic-predictor | 大量候选的辅助筛查/排序假说 | 训练分布/偏见风险、不能用分数否定刻意实验作品 |
+| 版画与跨文化借鉴 | The Met, Japonisme · [Museum curator essay] https://www.metmuseum.org/ja/essays/japonisme | 借鉴特殊裁切、非对称、抽象化色线而非照搬和服/器物；历史上也有跨文化转译 | 艺术史现象不是授权复制单幅作品 |
+| 平面/唱片封面 | Pentagram, The National “Sleep Well Beast” · [Design studio portfolio] https://www.pentagram.com/work/the-national-1 | 专辑视觉语言可以跨封面、包装和宣传系统统一；图形概念先于炫技插画 | 并非所有封面都需要企业式视觉识别 |
+| 音乐封面的概念反转 | Pentagram, Lake “Four” · [Design studio portfolio] https://www.pentagram.com/work/lake | 创作者认为直接画湖不够令人惊讶，改用「洪水」作为标题概念的视觉回应；关键词→反直觉画面 | 不能把「湖→洪水」案例当所有封面的固定解法 |
+
 
 **不确定时**：将工具的用途限制为分析辅助，避免把项目 README 的营销描述或数字当成人类审美定律。涉及作品原图，尊重网站许可与著作权。
 
