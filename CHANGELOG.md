@@ -1,4 +1,27 @@
-## 4.7.0 — 2026-10-14
+# Changelog
+
+> 按版本阅读功能变化；Git 提交保留真实开发记录。生成文件 `bundle/` 由 CI 维护，不代表额外的功能更新。非画师的学习参照只以通用视觉方法命名，不将个人账号用作画风标签。
+
+## [5.0.0] — 2026-10-16 · 通用电影构图与历史整理
+
+- 将摄影辅助模块改名为 `japanese-cinematic-composition`（日系电影感构图思维），移除非画师账号式命名、路由触发词、文档链接、生成入口中的相关引用。保留两批摄影研究的抽象视觉结论，作者归属不作未经核验的宣称。
+- Artist Eye 的学术与设计参考改为「动画制作流程 / 视觉叙事理论 / 唱片设计案例」等通用概述；原来源 URL 仅用于研究可追溯，不用原作者名当作复刻指令。
+- README 工作流图与测试随模块同步迁移。保留原有 Identity → Aesthetic/Blueprint → Visual Prompt Core → Tag Gate → Renderer 的职责边界。
+- 加入 generated-file 标记，便于 GitHub 在代码审查时折叠由 CI 构建的大量 bundle 文件；今后的功能更新建议走 PR + squash merge，减少 `main` 提交噪声。
+- **兼容性提示：** 原模块路径和同名运行时链接已更改。请从当前 `bundle/HARNESS.md` 或新名称重新定位引用；旧会话/书签可能失效。**未重写已公开提交历史**。
+
+## [4.10.x] — 2026-10-14 ~ 2026-10-16 · 电影镜头、创作反馈与 Artist Eye
+
+- 4.10.0–4.10.1：加入按需摄影构图研究、决策矩阵与追加样本，促进可见机位、动作触点、人物距离、光影层次的前置判断。
+- 4.10.2：同步用户对 Canon、人设表现、固定画师层、双格叙事及 Prompt-only 等近期反馈；保持设计层与 NAI5 renderer 分离。
+- Artist Eye：融会动画、电影、平面、绘画与建筑等研究；引入视觉反事实、不同结构的多案竞争与证据约束评价；README 增加原生 Mermaid 工作流图。
+
+## [4.8–4.9] — 2026-10-14 · 偏好学习与运行轻量化
+
+- 区分可验证的成图反馈、文本认可与待审核偏好；加入去重、审阅、晋升、撤销与跨会话接力能力。
+- 优化 Always-on 体积、选择性引用与 Web-first 运行；保留 Aesthetic / Blueprint / Prompt / Tag / Renderer 分工。
+
+## [4.7.0] — 2026-10-14
 
 - Added the on-demand NAI5 control matrix: actionable shot/framing/P​​OV/foreshortening, local Positive negative weights, specific light-source effects, colors, dataset/complexity cautions, source-reported identity limits, and A/B discipline; kept the original long-form study as provenance rather than duplicating it in every prompt.
 - Added shared `visible_geometry` packet contract and illustrator camera handoff. NAI5 serializes the existing design instead of inventing its own camera.

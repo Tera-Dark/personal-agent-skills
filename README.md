@@ -91,6 +91,10 @@ flowchart TB
 | **FAST VARIANT** | 「只改构图 / 表情 / 配色」 | 锁住其他变量，仅修指定部分；触及核心命题则升级 FULL |
 | **PROMPT ONLY** | 「只给提示词，一整块复制」 | 隐藏内部方案和评审，仅显示最终可复制提示词；不跳关 |
 
+## 版本与提交记录
+
+建议按 [Changelog](CHANGELOG.md) 阅读功能版本演进。源代码集中维护在各 Skill 中，`bundle/` 为自动构建产物；主分支开发建议使用 **PR + squash merge**，减少连续小修和自动构建记录带来的干扰。历史提交保留可追溯性，详见 [版本管理规范](docs/versioning.md)。
+
 ## Latest cross-session taste sync (2026-10-15)
 
 The owner's Oct 14–15 feedback is summarized in [scoped session evidence](00_core/personal-identity-profile/references/session-feedback-2026-10-14-15.md) and promoted where warranted into [Taste Signature](00_core/personal-identity-profile/references/taste-signature.md), [Dislikes](00_core/personal-identity-profile/references/design-dislikes.md), [Illustration Direction](02_design/illustration-direction/SKILL.md), and [NAI5 Renderer](03_prompt/nai5-renderer/SKILL.md). Crucial distinctions: prompt-only not images; externally fixed artist/quality; canon-first fan art; real camera geometry & interaction; optional experimental material-fusion; Suzuran floral reference as scoped positive evidence rather than universal cherry blossoms.
