@@ -1,14 +1,14 @@
 {
   "name": "personal-agent-skills",
-  "version": "5.1.0",
+  "version": "5.2.0",
   "repo": "Tera-Dark/personal-agent-skills",
   "branch": "main",
   "raw_base": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/",
   "harness_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS.md",
   "harness_full_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS-FULL.md",
-  "handshake": "Harness v5.1.0 loaded · 18 modules · 说需求，或发参考图。",
-  "core_tokens": 4912,
-  "full_tokens": 206156,
+  "handshake": "Harness v5.2.0 loaded · 19 modules · 说需求，或发参考图。",
+  "core_tokens": 5117,
+  "full_tokens": 213173,
   "pipeline": {
     "aesthetic_gate": "aesthetic-director-core",
     "blueprint_gate": {
@@ -21,6 +21,7 @@
     "adapters": [
       "anima-renderer",
       "nai5-renderer",
+      "moss-image-renderer",
       "general-image-prompt-adapter"
     ],
     "pipeline_packs": {
@@ -33,6 +34,15 @@
         "visual-prompt-core",
         "danbooru-tag-gate",
         "nai5-renderer"
+      ],
+      "moss": [
+        "visual-prompt-core",
+        "moss-image-renderer"
+      ],
+      "moss-tags": [
+        "visual-prompt-core",
+        "danbooru-tag-gate",
+        "moss-image-renderer"
       ]
     }
   },
@@ -71,7 +81,7 @@
           "character-design-engine",
           "illustration-direction"
         ],
-        "tokens": 276,
+        "tokens": 305,
         "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/task-packs/portrait.md"
       },
       "cinematic-duo": {
@@ -81,7 +91,7 @@
           "illustration-direction",
           "japanese-cinematic-composition"
         ],
-        "tokens": 295,
+        "tokens": 338,
         "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/task-packs/cinematic-duo.md"
       },
       "concept-poster": {
@@ -91,7 +101,7 @@
           "illustration-direction",
           "small-artist-brain"
         ],
-        "tokens": 245,
+        "tokens": 285,
         "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/task-packs/concept-poster.md"
       },
       "fast-variant": {
@@ -123,6 +133,23 @@
       ],
       "fetches_as": 1,
       "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/pipelines/nai5.md"
+    },
+    "moss": {
+      "modules": [
+        "visual-prompt-core",
+        "moss-image-renderer"
+      ],
+      "fetches_as": 1,
+      "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/pipelines/moss.md"
+    },
+    "moss-tags": {
+      "modules": [
+        "visual-prompt-core",
+        "danbooru-tag-gate",
+        "moss-image-renderer"
+      ],
+      "fetches_as": 1,
+      "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/pipelines/moss-tags.md"
     }
   },
   "modules": [
@@ -358,9 +385,9 @@
       "layer": "01_router",
       "load": "always",
       "status": "active",
-      "version": "4.9.0",
-      "description": "Intent router for creative requests: character and illustration design, NAI5/Anima prompts, reference analysis, feedback learning, ComfyUI and LoRA. Dispatches to the correct owner without redesigning or encoding model syntax.",
-      "triggers": "any request, 设计, 提示词, prompt, 反推, 分析, ComfyUI, LoRA, NAI5, Anima",
+      "version": "4.9.1",
+      "description": "Intent router for creative requests: character and illustration design, NAI5/Anima/MOSS-Image prompts, reference analysis, feedback learning, ComfyUI and LoRA. Dispatches to the correct owner without redesigning or encoding model syntax.",
+      "triggers": "any request, 设计, 提示词, prompt, 反推, 分析, ComfyUI, LoRA, NAI5, Anima, MOSS-Image",
       "path": "01_router/creative-skill-router",
       "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/01_router/creative-skill-router",
       "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/creative-skill-router.md",
@@ -384,7 +411,7 @@
           "path": "references/router-quickstart.md",
           "bundle_path": "bundle/references/creative-skill-router/references/router-quickstart.md",
           "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/creative-skill-router/references/router-quickstart.md",
-          "tokens": 305
+          "tokens": 368
         },
         {
           "path": "references/task-classification.md",
@@ -396,13 +423,13 @@
           "path": "references/routing-rules.md",
           "bundle_path": "bundle/references/creative-skill-router/references/routing-rules.md",
           "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/creative-skill-router/references/routing-rules.md",
-          "tokens": 398
+          "tokens": 481
         },
         {
           "path": "references/model-selection.md",
           "bundle_path": "bundle/references/creative-skill-router/references/model-selection.md",
           "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/creative-skill-router/references/model-selection.md",
-          "tokens": 301
+          "tokens": 479
         },
         {
           "path": "references/execution-flow.md",
@@ -417,9 +444,9 @@
           "tokens": 504
         }
       ],
-      "tokens_skill": 1439,
-      "tokens_bundle": 1954,
-      "tokens_full_bundle": 5835
+      "tokens_skill": 1712,
+      "tokens_bundle": 2230,
+      "tokens_full_bundle": 6435
     },
     {
       "name": "character-design-engine",
@@ -682,8 +709,8 @@
       "layer": "03_prompt",
       "load": "on-demand",
       "status": "active",
-      "version": "1.3.0",
-      "description": "Web-first validation boundary for Danbooru-derived hard tags shared by Anima and NAI5 workflows. Resolves exact canonical tags, exact aliases, or missing without fuzzy promotion. Use whenever a prompt packet needs verified Danbooru identity.",
+      "version": "1.3.1",
+      "description": "Web-first validation boundary for Danbooru-derived hard tags shared by Anima and NAI5 plus MOSS-Image Tag-mode workflows. Resolves exact canonical tags, exact aliases, or missing without fuzzy promotion. Use whenever a prompt packet needs verified Danbooru identity.",
       "triggers": "Danbooru tag, tag validation, tag check, exact tag, alias, tag verification",
       "path": "03_prompt/danbooru-tag-gate",
       "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/03_prompt/danbooru-tag-gate",
@@ -699,9 +726,9 @@
           "tokens": 864
         }
       ],
-      "tokens_skill": 1872,
-      "tokens_bundle": 2100,
-      "tokens_full_bundle": 2873
+      "tokens_skill": 1952,
+      "tokens_bundle": 2187,
+      "tokens_full_bundle": 2960
     },
     {
       "name": "general-image-prompt-adapter",
@@ -728,6 +755,53 @@
       "tokens_skill": 1234,
       "tokens_bundle": 1571,
       "tokens_full_bundle": 2239
+    },
+    {
+      "name": "moss-image-renderer",
+      "layer": "03_prompt",
+      "load": "on-demand",
+      "status": "active",
+      "version": "1.0.0",
+      "description": "Thin OpenMOSS MOSS-Image renderer for turning approved Visual Prompt Packets into English Caption, optional Danbooru Tag, or native JSON Layout prompts. Uses verified tags only when needed; preserves visual design; never generates images.",
+      "triggers": "MOSS-Image, MOSS Image, OpenMOSS, MOSS生图, moss prompt, moss tags, MOSS Layout, MOSS风格触发词",
+      "path": "03_prompt/moss-image-renderer",
+      "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/03_prompt/moss-image-renderer",
+      "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/moss-image-renderer.md",
+      "references": [
+        "references/layout-contract.md",
+        "references/style-control.md",
+        "references/examples.md",
+        "references/official-spec-and-sources.md"
+      ],
+      "reference_files": [
+        {
+          "path": "references/layout-contract.md",
+          "bundle_path": "bundle/references/moss-image-renderer/references/layout-contract.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/moss-image-renderer/references/layout-contract.md",
+          "tokens": 929
+        },
+        {
+          "path": "references/style-control.md",
+          "bundle_path": "bundle/references/moss-image-renderer/references/style-control.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/moss-image-renderer/references/style-control.md",
+          "tokens": 1154
+        },
+        {
+          "path": "references/examples.md",
+          "bundle_path": "bundle/references/moss-image-renderer/references/examples.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/moss-image-renderer/references/examples.md",
+          "tokens": 807
+        },
+        {
+          "path": "references/official-spec-and-sources.md",
+          "bundle_path": "bundle/references/moss-image-renderer/references/official-spec-and-sources.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/moss-image-renderer/references/official-spec-and-sources.md",
+          "tokens": 1130
+        }
+      ],
+      "tokens_skill": 1938,
+      "tokens_bundle": 2310,
+      "tokens_full_bundle": 6142
     },
     {
       "name": "nai5-renderer",
@@ -837,17 +911,17 @@
       "layer": "03_prompt",
       "load": "on-demand",
       "status": "active",
-      "version": "0.2.0",
-      "description": "Model-agnostic prompt planning layer that converts a validated character or illustration blueprint into one compact Visual Prompt Packet shared by Anima, NAI5, and future image-model renderers. Use after design is complete and before any model-specific prompt syntax. Does not redesign the concept or emit target-model syntax.",
-      "triggers": "prompt packet, visual prompt, prompt core, 提示词编译, 提示词规划, NAI5, Anima",
+      "version": "0.3.0",
+      "description": "Model-agnostic prompt planning layer that converts a validated character or illustration blueprint into one compact Visual Prompt Packet shared by Anima, NAI5, MOSS-Image, and future image-model renderers. Use after design is complete and before any model-specific prompt syntax. Does not redesign the concept or emit target-model syntax.",
+      "triggers": "prompt packet, visual prompt, prompt core, 提示词编译, 提示词规划, NAI5, Anima, MOSS",
       "path": "03_prompt/visual-prompt-core",
       "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/03_prompt/visual-prompt-core",
       "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/visual-prompt-core.md",
       "references": [],
       "reference_files": [],
-      "tokens_skill": 2269,
-      "tokens_bundle": 2414,
-      "tokens_full_bundle": 2414
+      "tokens_skill": 2306,
+      "tokens_bundle": 2454,
+      "tokens_full_bundle": 2454
     },
     {
       "name": "image-reverse-analysis",
