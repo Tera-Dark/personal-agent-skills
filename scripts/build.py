@@ -211,6 +211,13 @@ def render_pipeline_pack(name, module_names, by_name, cfg, version):
         ])
     return "\n".join(lines).rstrip() + "\n"
 
+def task_pack_table(cfg):
+    packs = (cfg.get('knowledge_tiers') or {}).get('task_packs') or {}
+    rows = ['| L2 task card | Read when selected |', '|---|---|']
+    for name in packs:
+        rows.append(f'| {name} | {raw_base(cfg)}{cfg["bundle_dir"]}/task-packs/{name}.md |')
+    return '\n'.join(rows)
+
 def render_kernel(root, cfg, version, entries):
     text = open(os.path.join(root, cfg["kernel"]), encoding="utf-8").read()
     handshake = cfg["handshake"].format(version=version, modules=len(entries))
@@ -222,6 +229,7 @@ def render_kernel(root, cfg, version, entries):
         "{{RAW_BASE}}": raw_base(cfg),
         "{{MANIFEST_TABLE}}": manifest_table(entries),
         "{{PIPELINE_PACK_TABLE}}": pipeline_pack_table(cfg),
+        "{{TASK_PACK_TABLE}}": task_pack_table(cfg),
         "{{FAILURE_POLICY_TABLE}}": failure_policy_table(cfg),
     }
     for k, v in subs.items():
@@ -324,6 +332,17 @@ def build_outputs(root):
             pack_parts.append(L.demote_headings(by_name[module_name]["_rendered"], 1).rstrip())
             pack_parts.append("")
         outputs[f"{bundle_dir}/pipelines/{pack_name}.md"] = "\n".join(pack_parts).rstrip() + "\n"
+    # L2 cards are authored, compact decision protocols; L3 owner contracts remain intact.
+    task_specs = (cfg.get('knowledge_tiers') or {}).get('task_packs') or {}
+    for name, spec in task_specs.items():
+        src = os.path.join(root, spec['source'])
+        if not os.path.isfile(src):
+            raise SystemExit(f'L2 task card {name}: missing source {src}')
+        for owner in spec['modules']:
+            if owner not in by_name or by_name[owner]['status'] != 'active':
+                raise SystemExit(f'L2 task card {name}: invalid owner {owner}')
+        card = open(src, encoding='utf-8').read()
+        outputs[f'{bundle_dir}/task-packs/{name}.md'] = GEN_NOTE + '\n' + f'# L2 TASK CARD: {name} · harness v{version}\n\n' + card
     outputs[f"{bundle_dir}/HARNESS.md"] = render_harness(root, cfg, version, skills, entries, full=False)
     outputs[f"{bundle_dir}/HARNESS-FULL.md"] = render_harness(root, cfg, version, skills, entries, full=True)
     manifest = {
@@ -339,6 +358,18 @@ def build_outputs(root):
         "full_tokens": L.estimate_tokens(outputs[f"{bundle_dir}/HARNESS-FULL.md"]),
         "pipeline": cfg.get("pipeline", {}),
         "failure_policy": cfg.get("failure_policy", {}),
+        "knowledge_tiers": {
+            "l1_core_target_tokens": (cfg.get("knowledge_tiers") or {}).get("l1_core_target_tokens"),
+            "l1_max_tokens": (cfg.get("knowledge_tiers") or {}).get("l1_max_tokens"),
+            "task_packs": {
+                name: {
+                    "source": spec["source"],
+                    "modules": spec["modules"],
+                    "tokens": L.estimate_tokens(outputs[f"{bundle_dir}/task-packs/{name}.md"]),
+                    "bundle_url": f"{raw_base(cfg)}{bundle_dir}/task-packs/{name}.md",
+                } for name, spec in task_specs.items()
+            },
+        },
         "pipeline_packs": {
             name: {
                 "modules": module_names,
@@ -350,6 +381,11 @@ def build_outputs(root):
         "modules": [{k: v for k, v in e.items() if not k.startswith("_")} for e in entries],
     }
     budget = cfg.get("core_budget_tokens", 40000)
+    ceiling = (cfg.get('knowledge_tiers') or {}).get('l1_max_tokens', budget)
+    if ceiling > budget:
+        raise SystemExit('L1 tier ceiling may not exceed existing core budget')
+    if manifest['core_tokens'] > ceiling:
+        raise SystemExit(f'L1 cold start over ceiling: {manifest["core_tokens"]} > {ceiling}')
     if manifest["core_tokens"] > budget:
         raise SystemExit(
             f"Core harness exceeds budget: {manifest['core_tokens']} > {budget} tokens. "
@@ -395,6 +431,12 @@ def stale_outputs(root):
             if fn.endswith(".md") and fn not in expected:
                 stale.append(f"{cfg['bundle_dir']}/pipelines/{fn} (orphan — delete)")
 
+    task_dir = os.path.join(root, cfg['bundle_dir'], 'task-packs')
+    if os.path.isdir(task_dir):
+        expected_cards = {os.path.basename(k) for k in outputs if k.startswith(f'{cfg["bundle_dir"]}/task-packs/')}
+        for name in os.listdir(task_dir):
+            if name.endswith('.md') and name not in expected_cards:
+                stale.append(f'{cfg["bundle_dir"]}/task-packs/{name} (orphan — delete)')
     reference_prefix = f"{cfg['bundle_dir']}/references/"
     expected_references = {k[len(reference_prefix):] for k in outputs if k.startswith(reference_prefix)}
     reference_dir = os.path.join(root, cfg["bundle_dir"], "references")
@@ -437,6 +479,12 @@ def main():
         if fn.endswith(".md") and fn not in expected_pipelines:
             os.remove(os.path.join(pipe_dir, fn))
             print(f"  removed orphan pipeline {fn}")
+    task_dir = os.path.join(root, cfg['bundle_dir'], 'task-packs')
+    os.makedirs(task_dir, exist_ok=True)
+    expected_cards = {os.path.basename(k) for k in outputs if k.startswith(f'{cfg["bundle_dir"]}/task-packs/')}
+    for name in os.listdir(task_dir):
+        if name.endswith('.md') and name not in expected_cards:
+            os.remove(os.path.join(task_dir, name))
     expected_reference_paths = {k for k in outputs if k.startswith(f"{cfg['bundle_dir']}/references/")}
     for dirpath, _, filenames in os.walk(reference_dir, topdown=False):
         for fn in filenames:
