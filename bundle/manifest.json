@@ -8,7 +8,7 @@
   "harness_full_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS-FULL.md",
   "handshake": "Harness v4.10.2 loaded · 18 modules · 说需求，或发参考图。",
   "core_tokens": 6595,
-  "full_tokens": 196053,
+  "full_tokens": 203690,
   "pipeline": {
     "aesthetic_gate": "aesthetic-director-core",
     "blueprint_gate": {
@@ -175,13 +175,14 @@
       "layer": "00_core",
       "load": "on-demand",
       "status": "active",
-      "version": "2.5.0",
+      "version": "2.5.1",
       "description": "Creative direction layer that turns a vague request into one committed design idea before any blueprint or prompt is written. Runs a sequence of generative \"moves\" (find the obsession, plant a contradiction, pick from the tail, build causality, subtract, keep one strange thing) and produces a short Creative Brief with rejected alternatives. Use for any OC / character / illustration / fashion / key-visual request, whenever output feels generic, \"AI-flavored\", too plain, too busy, or when the user asks for taste, direction, 审美, 创意方向, 人味, 高级感, 不要AI味.",
       "triggers": "OC, 人设, 插画, 服装, 海报, 联动海报, 艺术海报, key visual, crossover poster, 审美, 创意方向, 人味, 高级感, 不要AI味, 太平淡, 太乱",
       "path": "00_core/aesthetic-director-core",
       "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/00_core/aesthetic-director-core",
       "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/aesthetic-director-core.md",
       "references": [
+        "references/artist-eye-creative-lab.md",
         "references/high-aesthetic-calibration-library.md",
         "references/creative-moves.md",
         "references/modern-poster-design-grammar.md",
@@ -197,6 +198,12 @@
         "references/cookingsiya-painterly-story-grammar.md"
       ],
       "reference_files": [
+        {
+          "path": "references/artist-eye-creative-lab.md",
+          "bundle_path": "bundle/references/aesthetic-director-core/references/artist-eye-creative-lab.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/aesthetic-director-core/references/artist-eye-creative-lab.md",
+          "tokens": 2440
+        },
         {
           "path": "references/high-aesthetic-calibration-library.md",
           "bundle_path": "bundle/references/aesthetic-director-core/references/high-aesthetic-calibration-library.md",
@@ -276,9 +283,9 @@
           "tokens": 2892
         }
       ],
-      "tokens_skill": 4958,
-      "tokens_bundle": 5927,
-      "tokens_full_bundle": 39709
+      "tokens_skill": 5332,
+      "tokens_bundle": 6354,
+      "tokens_full_bundle": 42543
     },
     {
       "name": "creative-skill-router",
@@ -393,7 +400,7 @@
       "layer": "02_design",
       "load": "on-demand",
       "status": "active",
-      "version": "2.8.0",
+      "version": "2.8.1",
       "description": "Turns a Creative Brief into an authored, model-agnostic illustration blueprint — the image thesis, captured moment, visual motif, environment-character relationship, camera and framing, scale contrast, negative space, physical light sources, density map, narrative residue, and one coherent surreal detail. Use for 插画, 氛围图, 竖屏, 半留白, 印象风, 故事感, key visual, poster, scene illustration, cinematic composition, or whenever a character needs to be placed into a designed moment rather than displayed on a plate. Never writes model-specific prompt syntax.",
       "triggers": "插画, 氛围图, 竖屏, 半留白, 印象风, 故事感, key visual, poster, scene, 极繁, 特写垫底, 大头贴, 元素贴, 角色拼贴",
       "path": "02_design/illustration-direction",
@@ -452,9 +459,9 @@
           "tokens": 2549
         }
       ],
-      "tokens_skill": 5749,
-      "tokens_bundle": 6399,
-      "tokens_full_bundle": 25294
+      "tokens_skill": 5956,
+      "tokens_bundle": 6607,
+      "tokens_full_bundle": 25501
     },
     {
       "name": "small-artist-brain",
@@ -767,16 +774,23 @@
       "layer": "04_analysis",
       "load": "on-demand",
       "status": "active",
-      "version": "2.1.0",
+      "version": "2.1.1",
       "description": "Decomposes a reference image into transferable design language — silhouette and mass distribution, motif grammar, garment construction, material contrast, palette hierarchy, pose logic, negative space and presentation format — instead of a tag dump. Output feeds aesthetic-director-core (for original work) or a model adapter (for faithful reproduction). Use for 反推, 分析图片, 提取提示词, 还原风格, 参考这张图, reverse prompt, image analysis.",
       "triggers": "反推, 分析图片, 提取提示词, 还原风格, 参考这张, reverse prompt, reference image",
       "path": "04_analysis/image-reverse-analysis",
       "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/04_analysis/image-reverse-analysis",
       "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/image-reverse-analysis.md",
       "references": [
+        "references/artist-eye-crossmedia-evidence.md",
         "references/design-language-extraction.md"
       ],
       "reference_files": [
+        {
+          "path": "references/artist-eye-crossmedia-evidence.md",
+          "bundle_path": "bundle/references/image-reverse-analysis/references/artist-eye-crossmedia-evidence.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/image-reverse-analysis/references/artist-eye-crossmedia-evidence.md",
+          "tokens": 2609
+        },
         {
           "path": "references/design-language-extraction.md",
           "bundle_path": "bundle/references/image-reverse-analysis/references/design-language-extraction.md",
@@ -784,9 +798,9 @@
           "tokens": 228
         }
       ],
-      "tokens_skill": 1188,
-      "tokens_bundle": 1490,
-      "tokens_full_bundle": 1621
+      "tokens_skill": 1422,
+      "tokens_bundle": 1780,
+      "tokens_full_bundle": 4487
     },
     {
       "name": "prompt-analysis",
@@ -861,17 +875,26 @@
       "layer": "06_evaluation",
       "load": "on-demand",
       "status": "active",
-      "version": "2.7.0",
+      "version": "2.7.1",
       "description": "Evaluates a generated image or compiled prompt against the original Creative Brief and blueprint, using a fixed rubric (identity preservation, outfit binding, spatial clarity, unrequested additions, V1/V2 consistency, output contract) plus a design-layer read (thesis, silhouette, causality, density, punctum, one strange thing). Diagnoses which layer failed and routes the fix to that layer with a single-variable change. Use on any feedback round: 太平淡, 太乱, 不像, 没人味, 这版可以, 评价一下, 哪里不对, compare versions.",
       "triggers": "太平淡, 太乱, 不像, 没人味, 这版可以, 评价一下, 哪里不对, compare",
       "path": "06_evaluation/evaluation-loop",
       "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/06_evaluation/evaluation-loop",
       "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/evaluation-loop.md",
-      "references": [],
-      "reference_files": [],
-      "tokens_skill": 2397,
-      "tokens_bundle": 2603,
-      "tokens_full_bundle": 2603
+      "references": [
+        "references/artist-eye-review-protocol.md"
+      ],
+      "reference_files": [
+        {
+          "path": "references/artist-eye-review-protocol.md",
+          "bundle_path": "bundle/references/evaluation-loop/references/artist-eye-review-protocol.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/evaluation-loop/references/artist-eye-review-protocol.md",
+          "tokens": 1436
+        }
+      ],
+      "tokens_skill": 2664,
+      "tokens_bundle": 2984,
+      "tokens_full_bundle": 4325
     }
   ]
 }
