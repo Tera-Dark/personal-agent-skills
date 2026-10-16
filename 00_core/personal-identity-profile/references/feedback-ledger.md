@@ -14,7 +14,7 @@
 | FB-20261015-06 · 10-15 | mode:material-fusion · framing | TEXT-CORRECTION：「跑出来只有个头」 | 淡入式矿物/水墨肖像须锁**脸、肩、衣袖、躯干的可见性**，失边在下半部；不叠互斥景别 | confirmed → illustration-direction / session study (user-reported image behavior) |
 | FB-20261015-07 · 10-15 | ip:Arknights-Suzuran · aesthetic | TEXT-APPROVED：「这个表现的感觉很不错」 | 铃兰春花枝头、粉乳白与浅青配色、服装/尾巴/自然花枝共享动势；保持美型、低噪声；**仅认可表现方向，不假定完成出图验证** | confirmed → taste-signature / session study |
 | FB-20261015-08 · 10-15 | mode:experimental-portrait · material | REFERENCE-POSITIVE：「这种风格的高级设计感」 | 负空间、矿物侵蚀、版画颗粒与人物共形；是可选艺术肖像模式，不自动通用化 | candidate → session study |
-| FB-20261015-09 · 10-15 | mode:cinematic · photography | TEXT-APPROVED：「哦，这个不错，有点学到位了」＋新增「鱼的库洛牌」参考 | 摄影机位的实际几何与人物关系、光与密度先于模板词；用户认可方法方向，不是已证明每张 NAI5 稳定成功 | confirmed → photography-brain / session study |
+| FB-20261015-09 · 10-15 | mode:cinematic · photography | TEXT-APPROVED：「哦，这个不错，有点学到位了」＋新增日系叙事摄影参考 | 摄影机位的实际几何与人物关系、光与密度先于模板词；用户认可方法方向，不是已证明每张 NAI5 稳定成功 | confirmed → photography-brain / session study |
 | FB-20261015-10 · 10-15 | mode:SBR-poster · aesthetic | TEXT-APPROVED：「骚爆了。9分」「8分」等 | JOJO7 西部厚涂/荒木系美型、姿态张力、角色标志物/故事气质；不把评分等同于 NAI5 同 Seed 验证 | confirmed → session study |
 | FB-20261014-01 · 10-14 | mode:cinematic · camera | TEXT-REJECTED：“电影感设计思路还是太狭隘”“出图都很难形容” | 不把“电影感”缩为雨夜、车站、逆光、人物三分线；先选受限视点、不同步动作与时间相位。多轮对模板化画面不满 | promoted → cinematic-12-frame-study / illustration-direction |
 | FB-20261014-02 · 10-14 | mode:cinematic-couple · narrative | TEXT-APPROVED：“这个不错，再来个电影感互动画面”，对应旧便利店固定机位双格微动作设计 | 认可**同机位、微动作推进人物亲密关系**的机制；不是声明用户已跑图成功，更不代表所有场景都必须双格 | confirmed → taste-signature（样本 / 局部） |
