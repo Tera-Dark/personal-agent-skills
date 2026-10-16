@@ -5,3 +5,5 @@ Preserve user-locked identity, gender and visible clothing. Make face, hair, col
 Creative intensity: portrait (moderate); no mandatory strange point or dramatic backstory.
 Owner boundaries: director chooses concept, character specialist owns clothing and anatomy, illustration specialist owns framing, shared prompt core compresses and target renderer serializes.
 If a critical identity or spatial fact is missing, fetch full L3 owner rather than guessing. Output prompt only unless actual image generation was explicitly requested.
+
+MOSS: use one Caption by default, not NAI5 per-character fields; preserve plain white backdrop and subject anchors.

@@ -4,3 +4,5 @@ For album covers, vertical story posters, editorial designs and experimental fan
 Start with one visible thesis and dominant thumbnail shape. Decide title safe area, foreground/background and negative space. Every character, graphic element and light mass must contribute to the same relationship; neither overdecorate nor default to plain standing portraits.
 Creative intensity: cinematic for narrative staging, experimental for form/visual metaphor. Whichever suits user intent; not every poster needs surrealism.
 Owner boundaries: director owns concept, illustration-direction owns concrete layout and physical lighting; small-artist module is optional guidance. Renderer must not redesign.
+
+MOSS: album covers normally use Caption; if exact title position or multi-panel boxes are essential use checked native JSON Layout after geometry conversion.

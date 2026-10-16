@@ -22,6 +22,7 @@ def main():
     generic = read("03_prompt/general-image-prompt-adapter/SKILL.md")
     nai5 = read("03_prompt/nai5-renderer/SKILL.md")
     anima = read("03_prompt/anima-renderer/SKILL.md")
+    moss = read("03_prompt/moss-image-renderer/SKILL.md")
     harness = read("bundle/HARNESS.md")
     manifest = json.loads(read("bundle/manifest.json"))
     config = json.loads(read("harness.json"))
@@ -46,6 +47,8 @@ def main():
     require("Visual Prompt Packet" in generic, "generic renderer bypasses shared core")
     require("Negative is omitted by default" in nai5, "NAI5 negative default lost")
     require("verified exact" in anima.lower(), "Anima verified tag contract lost")
+    for phrase in ("Caption", "Tags", "Layout", "abs_centralized", "yxyx", "danbooru-tag-gate", "IMAGE-PENDING"):
+        require(phrase.lower() in moss.lower(), f"MOSS renderer contract missing: {phrase}")
 
     require(manifest["version"] == read("VERSION").strip(), "manifest version mismatch")
     require(manifest["core_tokens"] <= config["core_budget_tokens"], "core budget exceeded")
@@ -56,6 +59,16 @@ def main():
             == ["visual-prompt-core", "danbooru-tag-gate", adapter],
             f"{name} shared pipeline changed",
         )
+    require(
+        config["pipeline"]["pipeline_packs"].get("moss")
+        == ["visual-prompt-core", "moss-image-renderer"],
+        "MOSS Caption/Layout pipeline changed")
+    require(
+        config["pipeline"]["pipeline_packs"].get("moss-tags")
+        == ["visual-prompt-core", "danbooru-tag-gate", "moss-image-renderer"],
+        "MOSS Tags pipeline changed")
+    require("moss-image-renderer" in config["pipeline"]["adapters"],
+            "MOSS adapter missing from main pipeline")
     print(
         f"Output contract regression: PASS; core {manifest['core_tokens']} / "
         f"{config['core_budget_tokens']} tokens"

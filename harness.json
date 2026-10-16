@@ -46,6 +46,7 @@
     "adapters": [
       "anima-renderer",
       "nai5-renderer",
+      "moss-image-renderer",
       "general-image-prompt-adapter"
     ],
     "pipeline_packs": {
@@ -58,6 +59,15 @@
         "visual-prompt-core",
         "danbooru-tag-gate",
         "nai5-renderer"
+      ],
+      "moss": [
+        "visual-prompt-core",
+        "moss-image-renderer"
+      ],
+      "moss-tags": [
+        "visual-prompt-core",
+        "danbooru-tag-gate",
+        "moss-image-renderer"
       ]
     }
   },

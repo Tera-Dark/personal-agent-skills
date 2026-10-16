@@ -1,0 +1,44 @@
+# MOSS · 风格描述库（候选，不是官方魔法词）
+
+此表为 **Artist Eye → MOSS Caption/Tags 的语言实现建议**。全部风格短语标记 [Candidate]；官方只确认支持自然语言和 Tag，**没有验证每一个词在 Base/SFT 的效果**。
+
+| 风格域 | 候选英文短语 | 应绑定的画面对象 |
+|---|---|---|
+| 二次元动画人物 | `hand-drawn 2D anime character`, `clean cel shading`, `anime still` | 脸部、发丝、手、上衣轮廓 |
+| 绘本印刷 | `subtle printed texture`, `simplified painted shapes` | 背景形块 / 材料，不默认覆盖人物五官 |
+| 写实场景 | `photographic urban environment`, `realistic asphalt and concrete textures` | 墙、地面、建筑透视、玻璃反光 |
+| lo-fi 情绪封面 | `understated lo-fi album cover`, `faded analog colors`, `muted dusk ambience` | 全图色彩节奏、留白、情绪距离 |
+| 纪实电影定帧 | `unposed moment`, `observational framing`, `subtle off-center crop` | 人物动作刚结束/将发生的瞬间与观看立场 |
+| 平面图形 | `editorial poster design`, `strong shape hierarchy`, `deliberate negative space` | 标题安全区、视觉动线、图形重量 |
+| 手绘低饱和 | `soft painted shadows`, `restrained highlights`, `limited warm grey palette` | 光源、皮肤、衣服与背景统一调色 |
+| 极简设计 | `quiet negative space`, `simple silhouette` | 避免为填空添加道具与装饰 |
+
+## 优先执行“媒介分区”，不是加更多词
+
+适合「可爱害羞 JK × 写实街景」：
+- **SUBJECT**: `a shy schoolgirl rendered as a distinctly 2D anime figure, with expressive eyes, fine linework and simplified cel shading`。
+- **ENVIRONMENT**: `a realistically photographed Japanese neighborhood with believable pavement grain, shopfront glass and overhead wiring`。
+- **UNIFICATION**: `the illustrated girl and photographic setting share the same cloudy afternoon light direction, perspective and desaturated blue-grey grade`。
+- **CAMERA**: `three-quarter portrait seen from across the sidewalk, with empty street extending behind her`。
+- **GESTURE**: `her fingers tighten around the schoolbag strap as she glances toward someone just outside the frame`。
+
+这里的 **对象 → 材质、光、视角** 映射是设计假说，不能因“词组合理”宣称模型已经学会。
+
+## 防污染
+
+- 模糊 `anime x reality` 容易让人物与背景都走中间态；使用主体与环境两个明确句子。
+- `cinematic, atmospheric, realistic, beautiful, detailed` 平铺不构成镜头、时间和材料规定。
+- 背景指定写实并不意味着人物可以写真人五官。明确 2D 人物边界及共享光色。
+- 需要保留原衣装、人设时勿额外塞手机、耳机、自动售货机、蝴蝶结等“lofi 默认配件”。
+- 不默认加入胶片边框、日期数字、乱码文字。album cover 需要文字时保留版式阅读顺序，精确文字可转 Layout。
+- Tag 模式：只用经 Gate 证明的 character / series canonical；候选风格短语如果直接写在 prompt 中，只能称自然语言，不是 verified hard tag。
+- 用户指定不带任何画师：不得写 `@...`、`artist:...` 或暗示复刻具体摄影作者。
+
+## 测试步骤（适合 Base vs SFT）
+
+1. 锁定 subject、原服装、景别、分辨率、sampler、steps、guidance、negative、种子；记录具体 checkpoint。
+2. A = `anime girl, realistic background`。
+3. B = 同身份/机位/动作的**媒介分区 Caption**（改变视觉域的描述方式），不改故事及道具。
+4. 比较人物是否依然二次元、街景是否保持摄影质感、光影交界是否统一、脸和手是否稳定。
+5. 若测多个风格短语，分别做单变量小步 A/B。种子相同只增强比较控制，不证明严格的科学因果。
+6. 只将带结果图与用户评价的条目写入视觉基准；尚未跑图标 `IMAGE-PENDING`。

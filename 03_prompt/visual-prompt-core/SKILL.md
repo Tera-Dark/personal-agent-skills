@@ -1,13 +1,13 @@
 ---
 name: visual-prompt-core
-description: Model-agnostic prompt planning layer that converts a validated character or illustration blueprint into one compact Visual Prompt Packet shared by Anima, NAI5, and future image-model renderers. Use after design is complete and before any model-specific prompt syntax. Does not redesign the concept or emit target-model syntax.
+description: Model-agnostic prompt planning layer that converts a validated character or illustration blueprint into one compact Visual Prompt Packet shared by Anima, NAI5, MOSS-Image, and future image-model renderers. Use after design is complete and before any model-specific prompt syntax. Does not redesign the concept or emit target-model syntax.
 metadata:
   author: Tera-Dark
-  version: "0.2.0"
+  version: "0.3.0"
   layer: "03_prompt"
   load: "on-demand"
   status: "active"
-  triggers: "prompt packet, visual prompt, prompt core, 提示词编译, 提示词规划, NAI5, Anima"
+  triggers: "prompt packet, visual prompt, prompt core, 提示词编译, 提示词规划, NAI5, Anima, MOSS"
 ---
 
 # Visual Prompt Core
@@ -15,7 +15,7 @@ metadata:
 ## 定位
 
 输入：通过 Aesthetic / Blueprint Gate 的 character blueprint、illustration blueprint，或经过 AUDIT 的 finished-design packet。
-输出：一个模型无关的 Visual Prompt Packet，供 anima-renderer、nai5-renderer 或未来 renderer 使用。
+输出：一个模型无关的 Visual Prompt Packet，供 anima-renderer、nai5-renderer、moss-image-renderer 或未来 renderer 使用。
 
 上游：character-design-engine / illustration-direction，必要时 aesthetic-director-core
 下游：model renderer
@@ -24,8 +24,8 @@ metadata:
 ## 硬规则
 
 - 设计与编码分离：先结构化设计事实，再翻译成模型语法。
-- 共享优先：任何 Anima / NAI5 都需要的规则只在这里拥有一份。
-- 模型无关：不要写 Anima 转义、NAI5 namespace、权重或 char1 语法；这些属于 renderer。
+- 共享优先：任何 Anima / NAI5 / MOSS-Image 都需要的规则只在这里拥有一份。
+- 模型无关：不要写 Anima 转义、NAI5 namespace/权重/char1、MOSS 的 Layout 坐标或 Tag 顺序；这些属于 renderer。
 - 设计锁定：保留用户锁定事实、核心命题、宏观轮廓、构图、动作、签名结构、唯一刺点和必要环境关系。
 - **镜头保真是设计锁的一部分**：只编译 illustration blueprint 已决定的观看立场、机位侧向/高度/距离、前中后遮挡、裁切和关键清晰度；没有 camera intent 时退回 illustration-direction，renderer 不得用 `cinematic`、`35mm` 等空泛标签补设计。
 - 最小充分：不因为“完整”而重复同义词。
@@ -127,7 +127,7 @@ output_policy:
 - **light_visible**：哪个来源在何部位形成亮面/阴影/反光。
 - **contradictions**：景别、身姿、观看方向、光照可见性与锁定服设是否冲突。
 
-这些都是**模型无关视觉事实**，不是 NAI5 权重和特定标签。在 `composition` 下允许增加 `visible_geometry`；如果 blueprint 没有决定关键观看事实，则拒绝自行发明，退回 illustration-direction。NAI5 Renderer 可将其中关键项变成具体 tag+短句，Anima 则保留混合 Tag+NL 的既有语法。
+这些都是**模型无关视觉事实**，不是 NAI5 权重和特定标签。在 `composition` 下允许增加 `visible_geometry`；如果 blueprint 没有决定关键观看事实，则拒绝自行发明，退回 illustration-direction。NAI5 可使用 verified tag+短句，Anima 保留混合 Tag+NL；MOSS 则由独立 Renderer 选择 Caption / Tags / Layout，Layout 的坐标只在 Renderer/辅助编译器中生成。
 
 **压缩优先级**：角色身份与服饰锁 / 景别 / 真实动作 / 近远遮挡证据 / 光源受光关系 > 饰物细枝末节 > 风格同义词。别把“从鞋到脸的近大远小”缩写成 `powerful perspective`。
 

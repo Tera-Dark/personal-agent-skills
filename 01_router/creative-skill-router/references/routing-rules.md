@@ -59,3 +59,7 @@ User preferences override generic best practices.
 | Reference image for faithful reproduction | AUDIT | image-reverse-analysis → verified facts → adapter |
 
 Many words do not equal “already designed”. Readiness is structural.
+
+## MOSS-Image route
+
+MOSS Caption/Layout → visual-prompt-core → moss-image-renderer; MOSS Tags/canonical identity → visual-prompt-core → danbooru-tag-gate → moss-image-renderer. No NAI5 character split or weight serialization. Candidate style descriptors cannot be marked as model-trained special tokens. See `model-selection.md`.

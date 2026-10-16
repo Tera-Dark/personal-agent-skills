@@ -1,13 +1,13 @@
 ---
 name: creative-skill-router
-description: Intent router for creative requests: character and illustration design, NAI5/Anima prompts, reference analysis, feedback learning, ComfyUI and LoRA. Dispatches to the correct owner without redesigning or encoding model syntax.
+description: Intent router for creative requests: character and illustration design, NAI5/Anima/MOSS-Image prompts, reference analysis, feedback learning, ComfyUI and LoRA. Dispatches to the correct owner without redesigning or encoding model syntax.
 metadata:
   author: Tera-Dark
-  version: "4.9.0"
+  version: "4.9.1"
   layer: "01_router"
   load: "always"
   status: "active"
-  triggers: "any request, 设计, 提示词, prompt, 反推, 分析, ComfyUI, LoRA, NAI5, Anima"
+  triggers: "any request, 设计, 提示词, prompt, 反推, 分析, ComfyUI, LoRA, NAI5, Anima, MOSS-Image"
 ---
 
 # Creative Skill Router
@@ -30,6 +30,15 @@ metadata:
 - L3：原创设定复杂、角色身份未明、正典核实、摄影叙事困难、参考推演或 L2 检验失败时读取完整设计 owner 与必要研究资料。
 - 强度由题材而非形容词决定：daily / portrait / cinematic / experimental。所选模式可以明确偏离默认，且不允许破坏角色身份与美感底盘；全文见 aesthetic-director-core 的 adaptive-creative-intensity reference。PROMPT ONLY 不等于简单创作。
 
+## MOSS-Image 并行分支
+
+用户明确说 MOSS-Image / MOSS 生图 / MOSS Caption / MOSS Tags / MOSS Layout 时选 `moss-image-renderer`，不走 Generic Adapter，不把 NAI5/Anima 的权重/多人格式套进去。
+
+- **Caption（默认）**：Visual Prompt Core → `pipeline_packs.moss`；自然语言不强制读取 Danbooru 索引。
+- **Tags / canonical identity**：Visual Prompt Core → `pipeline_packs.moss-tags`，调用 Danbooru Gate 验证 exact/alias；已验证拼写不代表模型已学会。
+- **Layout**：用 `moss` pack 编译官方 `abs_centralized` / `yxyx` 的 JSON；xyxy 草稿需 `scripts/moss_layout.py` 或官方工具转换。
+- 纯靠风格词时不带任何画师串；Base/SFT 共享规范但具体风格效果待实际测试。模型选择不改变 Artist Eye 和 Blueprint。
+- Tag 索引不可用时 Caption 不受影响；Tags 模式的必要硬标签执行 fail-closed；默认只交付文本。
 ## 主路由
 
 ### 1. 创作请求

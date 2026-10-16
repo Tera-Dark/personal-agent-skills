@@ -5,3 +5,5 @@ Verify actual character sex/number, signatures and outfits BEFORE composing. Giv
 Creative intensity: daily for natural everyday interactions; cinematic for narrative shot decisions.
 Owner boundaries: aesthetic director chooses relation; illustration-direction approves camera, action, foreground and lighting.
 NAI5: shared count and scene in Base Prompt; each independent Character Prompt owns its own identity, clothes and actions. For delivery one block may contain human-readable character 1 / character 2 headings; headings are NOT actual model tags. Do not mix them with pipe syntax.
+
+MOSS: describe both subjects and their exact touch/eyelines in one Caption, or a checked native Layout if separate boxes are needed. Do not reuse NAI5 character fields.

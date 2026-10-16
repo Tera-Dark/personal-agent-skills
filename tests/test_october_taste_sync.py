@@ -45,7 +45,7 @@ class OctoberTasteSync(unittest.TestCase):
         self.assertIn("活人互动", small)
 
     def test_current_version(self):
-        self.assertEqual((ROOT / "VERSION").read_text(encoding="utf-8").strip(), "5.1.0")
+        self.assertEqual((ROOT / "VERSION").read_text(encoding="utf-8").strip(), "5.2.0")
 
 
 if __name__ == "__main__":
