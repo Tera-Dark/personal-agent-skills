@@ -154,7 +154,7 @@ An illustration blueprint is READY only when visual thesis, captured moment, mot
 
 将高价值的美型/服设/人物活人感建议吸收为本模块的空间与情绪决策，详细实例见 references/decision-sheet-handoffs.md。没有参考依据时不推断某画师的专属技法。
 
-## 日系电影感构图（按需）
+## 日系电影感构图（按需，japanese-cinematic-composition）
 
 摄影建议须落地为实际的观看立场、手势触点、遮挡与光源，不允许直接写摄影账号名称或用滤镜代替分镜设计。详细接力规则见 references/decision-sheet-handoffs.md。
 
