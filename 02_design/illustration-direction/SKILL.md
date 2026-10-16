@@ -3,7 +3,7 @@ name: illustration-direction
 description: Turns a Creative Brief into an authored, model-agnostic illustration blueprint — the image thesis, captured moment, visual motif, environment-character relationship, camera and framing, scale contrast, negative space, physical light sources, density map, narrative residue, and one coherent surreal detail. Use for 插画, 氛围图, 竖屏, 半留白, 印象风, 故事感, key visual, poster, scene illustration, cinematic composition, or whenever a character needs to be placed into a designed moment rather than displayed on a plate. Never writes model-specific prompt syntax.
 metadata:
   author: Tera-Dark
-  version: "2.8.2"
+  version: "2.9.0"
   layer: "02_design"
   load: "on-demand"
   status: "active"
@@ -34,14 +34,14 @@ metadata:
 - **先有画面命题，再有瞬间，再选观看立场与机位，之后才排空间和构图。** 摄影机不是为已摆好的立绘补一个角度；镜头位置必须实质改变人物关系、透视、遮挡、裁切或情绪。
 - **每个插画镜头须有 Camera Intent：谁在看、在哪看、为什么是这一秒。** `cinematic composition`、孤立的 `slightly elevated`、任意焦段数字不构成镜头设计；摄影论证见 `references/cinematic-camera-grammar.md`。
 - **风格与电影感分开判断（2026-10-14 用户 12 镜头校准）**：电影感不是雨夜、车站、蓝橙撞色、镜头眩光、右三分线的固定配方；须先决定观众的观看权限、人物不同步的活人反应、画面以外的时间。写实抓拍、黑白压暗、高调失边、卡通图形、群像和强近景均可成为电影语言。按需读 `references/cinematic-12-frame-study-2026-10-14.md`。
-- **人物不默认居中、不默认看镜头、不默认占满画面。** 每一项都需要理由。
-- **环境必须做事，或被明确决定为无场景留白。** 若要求纯白/留白背景，画幅边界、人物互遮、透视、材质透叠与失边承担空间组织职责；不得因为需要层次而擅自添加景物。
-- **一个主视觉母题优先于一堆装饰。** 门、镜、鸟、花、长发、水面、窗格、丝带等只有在承担构图功能时才保留。
+- **人物是否居中、看镜头、占满画面取决于真实的构图任务。**
+- **环境必须做事，纯白留白也合法。** 不得擅自添加景物。
+- **一个能支持构图的主视觉母题，优先于无关装饰。**
 - **光必须有物理来源。** 一个主光源 + 方向 + 衰减 + 阴影沉降区。禁止无来源 rim light。允许**有目的的局部失边**：白衣可融入透窗高光、暗发可融入深背景，但至少保留脸/手/关键动作的识别通路；不能用全图过曝或柔焦掩盖结构。
 - **背景只保留能解释光、动作、尺度或叙事的层。** 窗 + 城市 + 星空 + 花园 = 多层无关背景 → 删除到只剩真正参与画面的部分。
 - **氛围元素默认不加。** 花瓣、粒子、光点、蝴蝶、星尘、随机晶体不是“空白填充物”；如果删掉它们画面就崩，说明构图本身还没成立。
 - **允许受控遮挡。** 前景建筑、椅背、花枝、镜框、布料、阴影可以切入人物轮廓；完整展示人物不是插画的默认目标。
-- **密度必须不均匀。** 至少一个密集区、一个安静区和一条连接两者的视觉动线。
+- **按题材组织密度与安静区；简单肖像允许整体低密度。**
 - **画幅不能只是一串长宽比。** 极长竖图优先核对上→中→下的视觉接力；横幅优先确定人物关系与横向大形；若是纪念/图文海报，开画之前预留不妨碍主图的标题/副图安全区，精确文案留给后期。
 - **色彩先做大色块，再做局部颜色。** 通常控制在 3–4 个主要色彩质量 + 1 个有意义的强调色。
 - **超现实一次只解决一个问题。** 一个 coherent impossibility 胜过十个随机魔法特效。
@@ -50,7 +50,7 @@ metadata:
 
 若上游 `aesthetic-director-core` 的 Creative Brief 已通过 Artist Eye 三向竞争，**只接收幸存方向**，把其主视觉因果落实到本模块现有的观看立场、前中后、遮挡、形状、光和密度。不能重开平行的三案，也不把动画/建筑/版式等参考误做成固定场景道具。对于静态抽象或编辑封面，`camera intent` 可合理解释成观众的版式阅读顺序；对于场景和人像仍要求可见机位证据。优先使用上游已经记录的「删除关键关系后会损失什么」作为 Blueprint Gate 的加严检验。
 
-## 2026-10-15 · 近期专项接力（按需）
+## 近期校准（按需）
 
 本轮近期要求：**IP 剧情先核实人物传再设计同人瞬间**；双格人物面部大特写须在两格间有动作/情绪增量；古风小画师近景应在美型之外有自然场景与可信互动；矿物/水墨淡入人物要保住肩颈和躯干识别，不是只剩头。按需读取 Identity 的 `00_core/personal-identity-profile/references/session-feedback-2026-10-14-15.md` 逐项证据与作用域。常规电影感不自动加双格、雨夜、文件、黄伞或矿物裂纹。
 
@@ -150,31 +150,17 @@ An illustration blueprint is READY only when visual thesis, captured moment, mot
 - [ ] **电影感反套路**：这一张真的需要逆光/雨夜/车站/左侧留白/右三分线吗？若去掉这些风格词还成立吗？是否有可信的观察者位置、动作时间差与独立角色行为？若没有，不靠加滤镜修复。
 - [ ] 只开了一个氛围预设吗？
 
-## 小画师脑 Decision Sheet 交接（按需）
+## 小画师脑 Decision Sheet（按需）
 
-当 `creative-skill-router` 选择 `small-artist-brain` 时，先接收其 `Small Artist Decision Sheet` 再完成本模块的 `Illustration Blueprint`。新批次精品插画的逐图证据见 `02_design/small-artist-brain/references/premium-illustration-12-work-study-2026-10.md`，仅在长竖图、编辑海报、双人承重、高调光和跨题材审美校准时按需读取；本模块依旧独占最终构图设计权。这是**审美决策约束的交接**，不是第二套插画蓝图：
+将高价值的美型/服设/人物活人感建议吸收为本模块的空间与情绪决策，详细实例见 references/decision-sheet-handoffs.md。没有参考依据时不推断某画师的专属技法。
 
-- `character_life` → 将性格、动作起因与 A→B→A 的回应关系落实到「瞬间 / 视线 / 手势」，而不是仅写 `romantic tension` 或 `natural expression`。双人图落实具体支点/接触/重量；静态寓言和编辑式海报允许用并置关系替代强行编造动作。
-- `macro_shape` 与 `camera_and_crop` → 在「主构图形 / 机位 / 遮挡计划」中固定共同轮廓、视觉动线和裁切原因。
-- `color_mass` 与 `density` → 对应「色块策略 / 密度图 / 主光源」，把丰富颜色组织到可辨认的大色域，而非给整图随机染色。新增 `light_and_finish_delta`（如有）指定局部必须保持的硬边与可失去的边缘，避免无目的糊光。
-- `environment_function` 与 `negative_space` → 对应「人物—环境关系 / 留白 / 叙事残留」，环境必须真的改变空间或行为。
-- `identity_locks` 与 `rejected` → 维护原作角色身份、用户约束和已否决方向；不把任何参考样本中的花、伞、鸟、圆环、胶片等当作固定模板。新增 `editorial_delta`（如有）只约束画面类型和安全区，精确文字在后期处理。
+## 日系电影感构图（按需，japanese-cinematic-composition）
 
-优先读取 `02_design/small-artist-brain/SKILL.md`；创作时按需读取该模块的视觉语法文件（zheng-transferable-grammar.md），16 张逐图研究与验收记录仅在解释或复盘时读取。普通插画不强制启用这个模块；`PROMPT ONLY` 仍只交付最终提示词。小画师脑不决定模型语法，也不得跳过本模块的 Blueprint Gate。
-
-## 日系电影感构图 · Decision Sheet 交接（按需）
-
-当用户明确要求摄影式电影感、生活纪实、特殊观察机位或需要日系电影感构图时，先接收 `japanese-cinematic-composition` 的 Photography Decision Sheet，再由**本模块独占**最后画面命题、观看立场取舍、构图、动作物理、光线与 Blueprint Gate：
-
-- `event` / `emotional_asymmetry` → 「瞬间 / 人物调度」：保留独立角色的不同步微反应。
-- `viewer_position` / `camera` / `visible_geometry` → 「观看立场 / 机位 / 空间调度 / 遮挡」：最近物、前后尺度、可见接触点、只从该地点能看到的环境。
-- `useful_prop` / `narrative_residue` → 「人物—环境关系 / 残留」：道具真实被使用，不变成随机装饰。
-- `light` / `color_masses` / `density` → 「主光源 / 色块 / 密度」：可以正午直射与浓阴，高亮蓝天与暗室并存；不默认雨夜蓝橙。
-- `do_not_import` → 「删掉的 / 锁定事实」：保留用户主题与年代，**不把参考摄影里校服、海滨、折叠黄伞、单车当风格标签**。
-
-本模块要能使用摄影决策 Sheet **自己确认或否决**布局，而不是把这张 Sheet 生硬放进最终 Prompt。通过 Blueprint Gate 后才交 Prompt Core 与对应 renderer；摄影模块与 `small-artist-brain` 同时存在时，二者仅做可组合的决策参考，无第二位导演。
+摄影建议须落地为实际的观看立场、手势触点、遮挡与光源，不允许直接写摄影账号名称或用滤镜代替分镜设计。详细接力规则见 references/decision-sheet-handoffs.md。
 
 ## References
+
+- `references/decision-sheet-handoffs.md` — 从正文下沉的小画师与日系电影感两份 Decision Sheet 细节。
 
 - `references/visual-grammar.md` — 画面命题、视觉母题、环境能动性、尺度、遮挡、色块、叙事残留、受控超现实与反 AI 套路。
 - `references/composition-patterns.md` — 景别协议、分层展示板、设定图、三分偏置、sub-framing、极端机位（英文短语可直接进 prompt）。

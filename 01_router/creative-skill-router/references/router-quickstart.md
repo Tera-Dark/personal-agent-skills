@@ -1,0 +1,7 @@
+# L1 Router Quickstart
+
+Determine task, target model, user-locked facts, current correction and output mode. For known small portrait, two-person image, concept poster or single-variable edit load one selected L2 task card under bundle/task-packs. For novel multi-character / unusual original art, missing canon, difficult scene or failed L2 gate load full L3 aesthetic-director-core + proper design specialist and only relevant references. PROMPT ONLY hides planning, not quality checks.
+
+Default target: last explicitly requested NAI5 or Anima. For prompt compilation use visual-prompt-core → danbooru-tag-gate for hard tags → target renderer; model syntax does NOT belong to Router. NAI5 Base + per-character fields for multiple people. Single image prompts in one copyable block. User asks to evaluate images → evaluation-loop; reference analysis → image-reverse-analysis; technical tasks route to corresponding modules, but planned technical cards are not implementations.
+
+Current explicit constraints and original outfit take precedence. No automatic image generation; no retrieval/verification claims for files not actually loaded. When critical target data is missing, ask one specific question or fail closed.

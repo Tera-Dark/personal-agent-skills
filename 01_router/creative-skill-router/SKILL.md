@@ -23,6 +23,13 @@ metadata:
 - **PROMPT ONLY**：内部仍做必要设计和校验；仅交付可复制 Prompt，不展示内部 Brief。
 - FAST VARIANT 改身份、命题或主构图则升级 FULL；生图许可仅由 Kernel 决定。
 
+## 三级知识加载与自适应创作策略
+
+- L1：常驻 Identity + Router；不默认抓取任何长篇案例。
+- L2：身份已知的笑颜半身用 portrait；明确关系的双人电影感用 cinematic-duo；已定形的唱片/海报用 concept-poster；锁定版小改用 fast-variant。按需读取 bundle/task-packs 中的一张卡，同时选择原有 NAI5 / Anima pipeline pack。
+- L3：原创设定复杂、角色身份未明、正典核实、摄影叙事困难、参考推演或 L2 检验失败时读取完整设计 owner 与必要研究资料。
+- 强度由题材而非形容词决定：daily / portrait / cinematic / experimental。所选模式可以明确偏离默认，且不允许破坏角色身份与美感底盘；全文见 aesthetic-director-core 的 adaptive-creative-intensity reference。PROMPT ONLY 不等于简单创作。
+
 ## 主路由
 
 ### 1. 创作请求
@@ -87,6 +94,7 @@ ComfyUI / LoRA / dataset → 对应 technical module；planned 不得伪装为�
 按意图而非关键词；目标模型只决定 renderer；共享规则仅一个 owner。未知目标影响语法时最多问一个问题。设计 + Prompt + LoRA 按阶段执行。Router 不展示路由长文，直接处理任务。
 
 ## References
+- `references/router-quickstart.md` — L1 lightweight routing summary; full skill contract is L3.
 - `references/conversation-qol.md` — **按需：高频短句、一框复制、继续/回退、口语化偏好学习入口**。
 - `references/task-classification.md`
 - `references/routing-rules.md`

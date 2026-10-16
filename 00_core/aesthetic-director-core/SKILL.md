@@ -53,7 +53,13 @@ AUDIT 是必经的质量闸门，不等于“顺手美化”。没有失败证�
 
 参考证据按需读取 `../../04_analysis/image-reverse-analysis/references/artist-eye-crossmedia-evidence.md`；不要复制用户上传作品的角色、道具、整体构图，也不要把自动审美分数当裁判。已有成功反馈先锁定；极简肖像、忠实还原或 FAST VARIANT 禁止为了创新强塞超现实。只改变设计决策，NAI5/Anima 语法仍交给各自 Renderer。
 
-## 2.1 Anti-Mediocrity Gate — 反平庸审美闸门
+## 2.1 基础美感约束 + 自适应创作强度
+
+**所有主题的基础底线：** 用户锁定的身份/服设/动作不失真，脸部比例与手势合理，主体轮廓/色块可读，装饰不淹没焦点；忠实反推不强加作者独创怪点。
+
+根据任务加载 references/adaptive-creative-intensity.md，选择 daily、portrait、cinematic 或 experimental。强度表示**形式复杂度与探索幅度，不是美学分数**；用户明确要求优先，允许极简史诗、极繁肖像等跨分类。日常、白底、忠实还原不必出现超现实矛盾、戏剧反转、单一刺点。
+
+## 2.2 Anti-Mediocrity Gate — 反平庸审美闸门
 
 在进入 blueprint / prompt 之前，必须读取 `references/high-aesthetic-calibration-library.md`，先证明方案值得做，再允许进入执行层。
 
@@ -62,7 +68,7 @@ AUDIT 是必经的质量闸门，不等于“顺手美化”。没有失败证�
 - 至少一个核心决定必须依赖该角色，而不是换成任意美女都成立。
 - 至少一个大结构必须在缩略图里读出来。
 - 至少一个具体物件 / 空间 / 材质承担叙事或构图职责。
-- 必须存在一个值得记住的非默认决定。
+- 至少一处有意义的视觉选择，可以是生活化的微小关系而非怪点。
 - 海报 / 联动作品必须额外存在视觉隐喻或主图形；标题若存在，必须进入设计系统。
 - 梦核 / 超现实作品优先使用一个主空间矛盾，不靠随机怪物、随机道具或光效制造“怪”。
 - 如果“漂亮、梦幻、电影感、精致、神秘”等形容词比具体名词、动词、位置更多，退回重做。
@@ -79,7 +85,7 @@ AUDIT 是必经的质量闸门，不等于“顺手美化”。没有失败证�
 
 ## 2. 九个创作动作（Creative Moves）
 
-按顺序执行；简单需求可以合并，但 M1 / M3 / M6 / M7 不可跳过。详细手法与示例见 `references/creative-moves.md`。
+按顺序执行；简单需求可合并 M1 / M3 / M6，M7、M9 在 daily、忠实还原与白底肖像中可明确标记 N/A。详细手法与示例见 `references/creative-moves.md`。
 
 | # | 动作 | 一句话 | 它对抗的 AI 味 |
 |---|---|---|---|
@@ -89,7 +95,7 @@ AUDIT 是必经的质量闸门，不等于“顺手美化”。没有失败证�
 | M4 | **建因果链** Build causality | 姿势 ← 道具 ← 职业 ← 世界。画面里至少要看得出两个"因为"。 | 姿势、服装、道具各自独立随机 |
 | M5 | **选一个瞬间** Choose the moment | 不是状态，是动作发生前后 0.5 秒。 | `standing, looking at viewer` |
 | M6 | **做减法** Subtract | 删到再删一样就会破坏命题为止。写下删掉了什么。 | 靠加东西达到"完成" |
-| M7 | **留一处怪** Keep one strange thing | 一个局部的偏差、错位或不合常规细节；它增加记忆点，但不承担“让整张图变怪”的任务。 | 处处安全，处处平庸 |
+| M7 | **可选异常点** Keep one intentional deviation | 一个局部的偏差、错位或不合常规细节；它增加记忆点，但不承担“让整张图变怪”的任务。 | 处处安全，处处平庸 |
 | M8 | **不均匀分配密度** Uneven density | 指定一个密集区、一个安静区。名字要写出来。 | 装饰均匀撒满全身 |
 | M9 | **命名刺点** Name the punctum | ≤5% 的强调色/强调物，落在具体位置。 | 多处高饱和互相抢戏 |
 
@@ -110,46 +116,9 @@ AUDIT 是必经的质量闸门，不等于“顺手美化”。没有失败证�
 
 默认拒绝用 glow / bokeh / petals / sparkles / mist 代替构图；默认拒绝镜像五官、过量眼睛高光、无笔触的塑料皮肤。现代 Key Visual 可以复杂，但复杂必须先在缩略图里读出大形和动势。
 
-## 3.6 当前模式校准：Modern Poster Design
+## 3.6 Poster / Key Visual 专项（按需）
 
-当请求涉及**艺术海报、联动海报、电影式角色海报、游戏 crossover key visual、梦核 / 超现实海报、标题驱动的宣传主视觉**时，必须读取 `references/modern-poster-design-grammar.md`。
-
-该模式的硬前提：
-
-> **海报不是“精美插画 + 标题”。海报必须先有一个可被记住的视觉概念，再让角色、环境、道具和文字共同服务这个概念。**
-
-导演必须先确定：
-1. **一句话视觉概念**：名词 + 动作 / 关系；
-2. **IP 交叉母题**：两个 IP 为什么能在这张图里自然相遇；
-3. **主图形 / 容器**：什么巨大形状、物体、空间或文字构成视觉骨架；
-4. **角色的构图职责**：角色是锚点、破框、尺度参照、连接物还是符号；
-5. **尺度关系**：至少一个有意的大小 / 空间错位；
-6. **信息层级**：标题、主角、核心物件、环境谁先被看到；
-7. **安静区与密集区**：不能全画满；
-8. **OOC-safe 瞬间**：人物动作必须能从角色性格和当下情境解释；
-9. **一个主怪点 / 空间矛盾**：尤其梦核与超现实主题，不准靠随机怪物和随机装饰堆“怪”；
-10. **标题与图形关系**：标题必须成为设计系统的一部分，而不是贴在空白处。
-
-### Poster first / illustration second
-
-不要先写“角色站在某某世界里”，再补背景和 Logo。
-
-优先采用：
-**IP intersection → visual metaphor → macro graphic structure → character role → spatial / scale relation → typography integration → rendering**
-
-一个合格的联动海报，即使删除小装饰和标题，仍应保留可辨识的独立构图概念。
-
-### 用户当前海报审美的重点
-
-用户明确偏好：
-- 有独立创意母题的视觉海报；
-- 1999 式的概念先行、错位嫁接、尺度反差、图形化构图与出版物 / 电影海报感；
-- 人物必须有足够视觉存在感，但“大人物”不是唯一解决方案；
-- 伪厚涂、概括笔触、精巧构图可以同时存在；
-- 海报应像一个**被策划过的视觉作品**，而不是一张插画加标题。
-
-当用户说“人物太小、艺术设计感不足、张力不足”时，先重做**宏观概念、图形质量、尺度层级、视觉路径**；不要只放大人物或增加装饰。
-当用户说“联动感不够”时，优先重做**交叉母题与视觉隐喻**；不要直接增加另一个 IP 的服装、Logo、道具数量。
+角色主视觉走 references/modern-key-visual-grammar.md；唱片/联动/电影海报必须先形成视觉概念、角色职责和画面主图形，按需读 references/modern-poster-design-grammar.md。详细历史案例已归档至 references/director-case-handoffs.md。白底头像不自动升级为海报。
 
 ## 3. 执行流程
 
@@ -164,7 +133,7 @@ FULL：先过 Anti-Mediocrity Gate → M0 破平庸筛选 → M1–M3：生成 3
    ↓
 M4–M5：给幸存方向建因果链、定瞬间
    ↓
-M6–M9：减法、留怪、密度图、刺点
+M6–M9：减法、密度图，按强度决定是否加入局部偏差与刺点
    ↓
 输出 Creative Brief
    ↓
@@ -184,8 +153,8 @@ M6–M9：减法、留怪、密度图、刺点
 【因果链】A 因为 B，B 因为 C。（至少两个"因为"）
 【瞬间】动作前/后 0.5 秒的具体描述。
 【密度图】密集区：___ / 安静区：___
-【刺点】颜色/物件 + 精确位置。
-【留下的怪】是什么 + 为什么留。
+【局部重点】颜色/物件 + 精确位置；简单画面可只依靠脸和动作。
+【留下的偏差】是什么 + 为什么留；不适用可 N/A。
 【删掉的东西】列 2–4 项。
 【否决的方向】2 个，各一行理由。
 ```
@@ -211,12 +180,20 @@ Brief 用中文或英文均可，跟随用户当前语言。不加解释段落�
 - [ ] 有没有写出被否决的方向和理由？
 - [ ] 形容词是否都换成了名词 + 位置 + 行为？
 - [ ] 删掉了什么？有没有真的删？
-- [ ] 那一处"怪"在哪？它是否只有一处？
+- [ ] 那一处"怪"在哪？它是否有必要出现？
 - [ ] 如果删掉这处怪，剩下的设计仍然好看、完整、可收藏吗？如果不会，说明怪点正在替大结构背锅。
 - [ ] 密集区和安静区是否明确、且不相邻抢戏？
-- [ ] 刺点是否只有一个、且有精确落点？
+- [ ] 刺点是否服务题材，或应明确省略？
 - [ ] 是否踩了 `personal-identity-profile` 的禁区（手表、赛博、随机蝴蝶玫瑰、魔法阵粒子、形容词服装）？
 - [ ] 这一版如果发给一个真人设计师看，他会觉得是"有人做了选择"，还是"有人填了表"？
+
+
+## 人物肖像与绘画叙事专项（按需）
+
+- 女性向肖像：加载 references/small-artist-portrait-brain.md / references/small-artist-style-atlas.md，优先脸、发型、衣饰形体与活人动作，不强求故事舞台。
+- 绘画式游戏大插画：加载 references/ruoganzhao-composition-color-grammar.md 或 references/cookingsiya-painterly-story-grammar.md；光线连接人物/环境，先做可见动势和信息取舍。
+
+**普通 NAI5 不重复预设 artist stack 与质量层**：用户已外部固定，模型提示词只保留内容版；明确点名才包含画师/质量。
 
 ## References
 
@@ -245,24 +222,8 @@ Brief 用中文或英文均可，跟随用户当前语言。不加解释段落�
 【锁定事实】原样保留
 
 AUDIT 通常内部完成；只有用户明确要求审美评审时才展开。
-
-## 3.7 当前用户校准：Small-Artist + Narrative
-
-- 白底 / 浅底小画师半身像触发 `references/small-artist-portrait-brain.md`：脸与发型优先、服设结构清晰、局部密集并保留安静区；不自动套电影海报或复杂场景。
-- 点名小画师 / 要求融合时，加载 `references/small-artist-style-atlas.md`；遵守证据等级，未确认账号不得固化为规则。
-- 构图与动作绑定；古风中让建筑、水面、枝叶、衣摆、发丝参与同一视觉路径。
-- 普通 NAI5 请求不重复预设 artist stack 与质量层；完整 prompt 或单画师测试除外。
-
-
-## References
 - `references/artist-eye-creative-lab.md` — Artist Eye 的跨媒介创作探索、三向候选与反事实选择，不另立设计 owner。
 - `references/modern-key-visual-grammar.md` — bundled reference for this module.
-
-
-## 3.8 Painterly Game Illustration
-
-For premium game cards and dynamic painterly scenes, load the relevant composition grammar. If the user explicitly references 若干爪, read `references/ruoganzhao-composition-color-grammar.md`; for 烹饪嘶哑's motion-led story illustrations, read `references/cookingsiya-painterly-story-grammar.md`.
-
-Plan the story beat, camera / crop, shared motion path, environmental light, color masses and focal-detail map. Light links figure and setting; secondary details simplify around the focal area.
-
-Use the grammar, not a fixed palette or layout. Do not force teal/orange, giant portrait echoes or recurring motifs into unrelated characters; keep white plates and candid scenes in their own modes.
+- `references/adaptive-creative-intensity.md` — 根据题材调节探索幅度，不将怪点与戏剧性做成全局硬约束。
+- `references/cookingsiya-painterly-story-grammar.md` — 动作主导的绘画风叙事案例，仅在主题相关时按需研究。
+- `references/director-case-handoffs.md` — 搬离核心正文的海报专项案例，供深层研究按需读取。

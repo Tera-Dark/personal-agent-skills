@@ -25,11 +25,11 @@
   ],
   "always_on": {
     "personal-identity-profile": [
-      "SKILL.md",
+      "references/identity-quickstart.md",
       "references/taste-core.md"
     ],
     "creative-skill-router": [
-      "SKILL.md"
+      "references/router-quickstart.md"
     ]
   },
   "handshake": "Harness v{version} loaded · {modules} modules · 说需求，或发参考图。",
@@ -83,6 +83,43 @@
       "nl_fallback": true,
       "fuzzy_promotion": false,
       "memory_substitution": false
+    }
+  },
+  "knowledge_tiers": {
+    "l1_core_target_tokens": 5500,
+    "l1_max_tokens": 6600,
+    "task_packs": {
+      "portrait": {
+        "source": "kernel/task-packs/portrait.md",
+        "modules": [
+          "aesthetic-director-core",
+          "character-design-engine",
+          "illustration-direction"
+        ]
+      },
+      "cinematic-duo": {
+        "source": "kernel/task-packs/cinematic-duo.md",
+        "modules": [
+          "aesthetic-director-core",
+          "illustration-direction",
+          "japanese-cinematic-composition"
+        ]
+      },
+      "concept-poster": {
+        "source": "kernel/task-packs/concept-poster.md",
+        "modules": [
+          "aesthetic-director-core",
+          "illustration-direction",
+          "small-artist-brain"
+        ]
+      },
+      "fast-variant": {
+        "source": "kernel/task-packs/fast-variant.md",
+        "modules": [
+          "illustration-direction",
+          "character-design-engine"
+        ]
+      }
     }
   }
 }

@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "id": "portrait",
+      "mode": "portrait",
+      "status": "IMAGE-PENDING",
+      "axis": "camera_crop",
+      "locked": [
+        "gender",
+        "hair",
+        "eyes",
+        "outfit",
+        "white_background",
+        "model_settings"
+      ],
+      "rubric": [
+        "identity",
+        "facial_aesthetics",
+        "camera_crop",
+        "gesture",
+        "material_clarity"
+      ]
+    },
+    {
+      "id": "cinematic-duo",
+      "mode": "cinematic",
+      "status": "IMAGE-PENDING",
+      "axis": "interaction_blocking",
+      "locked": [
+        "character_1_identity",
+        "character_2_identity",
+        "costumes",
+        "model_settings",
+        "frame"
+      ],
+      "rubric": [
+        "identity",
+        "attribute_binding",
+        "interaction",
+        "camera_story",
+        "composition"
+      ]
+    },
+    {
+      "id": "concept-poster",
+      "mode": "experimental",
+      "status": "IMAGE-PENDING",
+      "axis": "graphic_concept",
+      "locked": [
+        "subject",
+        "canvas",
+        "model_settings",
+        "key_colors"
+      ],
+      "rubric": [
+        "subject_readability",
+        "graphic_concept",
+        "visual_order",
+        "typography_safe_space",
+        "originality"
+      ]
+    }
+  ]
+}

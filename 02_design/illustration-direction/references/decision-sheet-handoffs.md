@@ -1,0 +1,28 @@
+# L3 specialist decision-sheet handoffs
+
+## 小画师脑 Decision Sheet 交接（按需）
+
+当 `creative-skill-router` 选择 `small-artist-brain` 时，先接收其 `Small Artist Decision Sheet` 再完成本模块的 `Illustration Blueprint`。新批次精品插画的逐图证据见 `02_design/small-artist-brain/references/premium-illustration-12-work-study-2026-10.md`，仅在长竖图、编辑海报、双人承重、高调光和跨题材审美校准时按需读取；本模块依旧独占最终构图设计权。这是**审美决策约束的交接**，不是第二套插画蓝图：
+
+- `character_life` → 将性格、动作起因与 A→B→A 的回应关系落实到「瞬间 / 视线 / 手势」，而不是仅写 `romantic tension` 或 `natural expression`。双人图落实具体支点/接触/重量；静态寓言和编辑式海报允许用并置关系替代强行编造动作。
+- `macro_shape` 与 `camera_and_crop` → 在「主构图形 / 机位 / 遮挡计划」中固定共同轮廓、视觉动线和裁切原因。
+- `color_mass` 与 `density` → 对应「色块策略 / 密度图 / 主光源」，把丰富颜色组织到可辨认的大色域，而非给整图随机染色。新增 `light_and_finish_delta`（如有）指定局部必须保持的硬边与可失去的边缘，避免无目的糊光。
+- `environment_function` 与 `negative_space` → 对应「人物—环境关系 / 留白 / 叙事残留」，环境必须真的改变空间或行为。
+- `identity_locks` 与 `rejected` → 维护原作角色身份、用户约束和已否决方向；不把任何参考样本中的花、伞、鸟、圆环、胶片等当作固定模板。新增 `editorial_delta`（如有）只约束画面类型和安全区，精确文字在后期处理。
+
+优先读取 `02_design/small-artist-brain/SKILL.md`；创作时按需读取该模块的视觉语法文件（zheng-transferable-grammar.md），16 张逐图研究与验收记录仅在解释或复盘时读取。普通插画不强制启用这个模块；`PROMPT ONLY` 仍只交付最终提示词。小画师脑不决定模型语法，也不得跳过本模块的 Blueprint Gate。
+
+
+
+## 日系电影感构图 · Decision Sheet 交接（按需）
+
+当用户明确要求摄影式电影感、生活纪实、特殊观察机位或需要日系电影感构图时，先接收 `japanese-cinematic-composition` 的 Photography Decision Sheet，再由**本模块独占**最后画面命题、观看立场取舍、构图、动作物理、光线与 Blueprint Gate：
+
+- `event` / `emotional_asymmetry` → 「瞬间 / 人物调度」：保留独立角色的不同步微反应。
+- `viewer_position` / `camera` / `visible_geometry` → 「观看立场 / 机位 / 空间调度 / 遮挡」：最近物、前后尺度、可见接触点、只从该地点能看到的环境。
+- `useful_prop` / `narrative_residue` → 「人物—环境关系 / 残留」：道具真实被使用，不变成随机装饰。
+- `light` / `color_masses` / `density` → 「主光源 / 色块 / 密度」：可以正午直射与浓阴，高亮蓝天与暗室并存；不默认雨夜蓝橙。
+- `do_not_import` → 「删掉的 / 锁定事实」：保留用户主题与年代，**不把参考摄影里校服、海滨、折叠黄伞、单车当风格标签**。
+
+本模块要能使用摄影决策 Sheet **自己确认或否决**布局，而不是把这张 Sheet 生硬放进最终 Prompt。通过 Blueprint Gate 后才交 Prompt Core 与对应 renderer；摄影模块与 `small-artist-brain` 同时存在时，二者仅做可组合的决策参考，无第二位导演。
+

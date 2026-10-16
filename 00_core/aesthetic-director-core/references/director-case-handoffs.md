@@ -1,0 +1,65 @@
+# Historical case handoffs (L3)
+
+原 Director 长段案例已搬迁以减少常规肖像 Token 成本。下文保留原细节，用于海报专项深度策划，不是所有题材必加载。
+
+## 3.6 当前模式校准：Modern Poster Design
+
+当请求涉及**艺术海报、联动海报、电影式角色海报、游戏 crossover key visual、梦核 / 超现实海报、标题驱动的宣传主视觉**时，必须读取 `references/modern-poster-design-grammar.md`。
+
+该模式的硬前提：
+
+> **海报不是“精美插画 + 标题”。海报必须先有一个可被记住的视觉概念，再让角色、环境、道具和文字共同服务这个概念。**
+
+导演必须先确定：
+1. **一句话视觉概念**：名词 + 动作 / 关系；
+2. **IP 交叉母题**：两个 IP 为什么能在这张图里自然相遇；
+3. **主图形 / 容器**：什么巨大形状、物体、空间或文字构成视觉骨架；
+4. **角色的构图职责**：角色是锚点、破框、尺度参照、连接物还是符号；
+5. **尺度关系**：至少一个有意的大小 / 空间错位；
+6. **信息层级**：标题、主角、核心物件、环境谁先被看到；
+7. **安静区与密集区**：不能全画满；
+8. **OOC-safe 瞬间**：人物动作必须能从角色性格和当下情境解释；
+9. **一个主怪点 / 空间矛盾**：尤其梦核与超现实主题，不准靠随机怪物和随机装饰堆“怪”；
+10. **标题与图形关系**：标题必须成为设计系统的一部分，而不是贴在空白处。
+
+### Poster first / illustration second
+
+不要先写“角色站在某某世界里”，再补背景和 Logo。
+
+优先采用：
+**IP intersection → visual metaphor → macro graphic structure → character role → spatial / scale relation → typography integration → rendering**
+
+一个合格的联动海报，即使删除小装饰和标题，仍应保留可辨识的独立构图概念。
+
+### 用户当前海报审美的重点
+
+用户明确偏好：
+- 有独立创意母题的视觉海报；
+- 1999 式的概念先行、错位嫁接、尺度反差、图形化构图与出版物 / 电影海报感；
+- 人物必须有足够视觉存在感，但“大人物”不是唯一解决方案；
+- 伪厚涂、概括笔触、精巧构图可以同时存在；
+- 海报应像一个**被策划过的视觉作品**，而不是一张插画加标题。
+
+当用户说“人物太小、艺术设计感不足、张力不足”时，先重做**宏观概念、图形质量、尺度层级、视觉路径**；不要只放大人物或增加装饰。
+当用户说“联动感不够”时，优先重做**交叉母题与视觉隐喻**；不要直接增加另一个 IP 的服装、Logo、道具数量。
+
+
+
+## 3.8 Painterly Game Illustration
+
+For premium game cards and dynamic painterly scenes, load the relevant composition grammar. If the user explicitly references 若干爪, read `references/ruoganzhao-composition-color-grammar.md`; for 烹饪嘶哑's motion-led story illustrations, read `references/cookingsiya-painterly-story-grammar.md`.
+
+Plan the story beat, camera / crop, shared motion path, environmental light, color masses and focal-detail map. Light links figure and setting; secondary details simplify around the focal area.
+
+Use the grammar, not a fixed palette or layout. Do not force teal/orange, giant portrait echoes or recurring motifs into unrelated characters; keep white plates and candid scenes in their own modes.
+
+
+## 3.7 当前用户校准：Small-Artist + Narrative
+
+- 白底 / 浅底小画师半身像触发 `references/small-artist-portrait-brain.md`：脸与发型优先、服设结构清晰、局部密集并保留安静区；不自动套电影海报或复杂场景。
+- 点名小画师 / 要求融合时，加载 `references/small-artist-style-atlas.md`；遵守证据等级，未确认账号不得固化为规则。
+- 构图与动作绑定；古风中让建筑、水面、枝叶、衣摆、发丝参与同一视觉路径。
+- 普通 NAI5 请求不重复预设 artist stack 与质量层；完整 prompt 或单画师测试除外。
+
+
+
