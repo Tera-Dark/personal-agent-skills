@@ -1,5 +1,15 @@
 # Changelog
 
+## [5.1.0] — 2026-10-16 · Tiered Creative Intelligence
+
+- L1 / L2 / L3 Web-first loading: small core, four generated L2 task cards, on-demand deep design/reference contracts, task pack URLs and structural validation.
+- Adaptive Creative Intensity: preserve hard beauty and identity rules; daily/portrait/cinematic/experimental choose distinct exploration strategies. No mandatory supernatural gimmick.
+- Visual A/B benchmark schema, CLI and executable metadata tests; awaiting actual owner image trials before rating.
+- Natural-language feedback drafting helper; no automatic global preference promotion.
+- CI read-only default with main-only generated-asset writer job; revised docs and source-level evidence boundary.
+- Keep NAI5/Anima renderers and the third-party lookup schema unchanged unless separately tested.
+
+
 > 按版本阅读功能变化；Git 提交保留真实开发记录。生成文件 `bundle/` 由 CI 维护，不代表额外的功能更新。非画师的学习参照只以通用视觉方法命名，不将个人账号用作画风标签。
 
 ## [5.0.0] — 2026-10-16 · 通用电影构图与历史整理

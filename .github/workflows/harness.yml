@@ -18,7 +18,7 @@ on:
         default: false
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: harness-${{ github.ref }}
@@ -59,8 +59,22 @@ jobs:
           python3 scripts/validate_skills.py --check-bundle
           python3 scripts/check_output_contract.py
 
-      - name: Persist generated bundles
-        if: github.event_name != 'pull_request'
+  persist-generated:
+    needs: validate-and-build
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Build verified generated artifacts on main
+        run: |
+          python3 scripts/build.py
+          python3 scripts/validate_skills.py --check-bundle
+      - name: Commit generated bundles (only if changed)
         run: |
           if [ -n "$(git status --porcelain -- bundle docs/skill-registry.md)" ]; then
             git config user.name "github-actions[bot]"
@@ -71,3 +85,4 @@ jobs:
           else
             echo "Generated bundles already current."
           fi
+

@@ -193,6 +193,8 @@ Brief 用中文或英文均可，跟随用户当前语言。不加解释段落�
 - 女性向肖像：加载 references/small-artist-portrait-brain.md / references/small-artist-style-atlas.md，优先脸、发型、衣饰形体与活人动作，不强求故事舞台。
 - 绘画式游戏大插画：加载 references/ruoganzhao-composition-color-grammar.md 或 references/cookingsiya-painterly-story-grammar.md；光线连接人物/环境，先做可见动势和信息取舍。
 
+**普通 NAI5 不重复预设 artist stack 与质量层**：用户已外部固定，模型提示词只保留内容版；明确点名才包含画师/质量。
+
 ## References
 
 - `references/creative-moves.md` — 九个动作的具体手法、每个动作的"AI 会怎么做 vs 设计师会怎么做"
@@ -223,4 +225,5 @@ AUDIT 通常内部完成；只有用户明确要求审美评审时才展开。
 - `references/artist-eye-creative-lab.md` — Artist Eye 的跨媒介创作探索、三向候选与反事实选择，不另立设计 owner。
 - `references/modern-key-visual-grammar.md` — bundled reference for this module.
 - `references/adaptive-creative-intensity.md` — 根据题材调节探索幅度，不将怪点与戏剧性做成全局硬约束。
+- `references/cookingsiya-painterly-story-grammar.md` — 动作主导的绘画风叙事案例，仅在主题相关时按需研究。
 - `references/director-case-handoffs.md` — 搬离核心正文的海报专项案例，供深层研究按需读取。

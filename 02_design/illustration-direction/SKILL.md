@@ -3,7 +3,7 @@ name: illustration-direction
 description: Turns a Creative Brief into an authored, model-agnostic illustration blueprint — the image thesis, captured moment, visual motif, environment-character relationship, camera and framing, scale contrast, negative space, physical light sources, density map, narrative residue, and one coherent surreal detail. Use for 插画, 氛围图, 竖屏, 半留白, 印象风, 故事感, key visual, poster, scene illustration, cinematic composition, or whenever a character needs to be placed into a designed moment rather than displayed on a plate. Never writes model-specific prompt syntax.
 metadata:
   author: Tera-Dark
-  version: "2.8.2"
+  version: "2.9.0"
   layer: "02_design"
   load: "on-demand"
   status: "active"
@@ -34,8 +34,8 @@ metadata:
 - **先有画面命题，再有瞬间，再选观看立场与机位，之后才排空间和构图。** 摄影机不是为已摆好的立绘补一个角度；镜头位置必须实质改变人物关系、透视、遮挡、裁切或情绪。
 - **每个插画镜头须有 Camera Intent：谁在看、在哪看、为什么是这一秒。** `cinematic composition`、孤立的 `slightly elevated`、任意焦段数字不构成镜头设计；摄影论证见 `references/cinematic-camera-grammar.md`。
 - **风格与电影感分开判断（2026-10-14 用户 12 镜头校准）**：电影感不是雨夜、车站、蓝橙撞色、镜头眩光、右三分线的固定配方；须先决定观众的观看权限、人物不同步的活人反应、画面以外的时间。写实抓拍、黑白压暗、高调失边、卡通图形、群像和强近景均可成为电影语言。按需读 `references/cinematic-12-frame-study-2026-10-14.md`。
-- **人物不默认居中、不默认看镜头、不默认占满画面。** 每一项都需要理由。
-- **环境必须做事，或被明确决定为无场景留白。** 若要求纯白/留白背景，画幅边界、人物互遮、透视、材质透叠与失边承担空间组织职责；不得因为需要层次而擅自添加景物。
+- **人物是否居中、看镜头、占满画面取决于真实的构图任务。**
+- **环境必须做事，纯白留白也合法。** 不得擅自添加景物。
 - **一个主视觉母题优先于一堆装饰。** 门、镜、鸟、花、长发、水面、窗格、丝带等只有在承担构图功能时才保留。
 - **光必须有物理来源。** 一个主光源 + 方向 + 衰减 + 阴影沉降区。禁止无来源 rim light。允许**有目的的局部失边**：白衣可融入透窗高光、暗发可融入深背景，但至少保留脸/手/关键动作的识别通路；不能用全图过曝或柔焦掩盖结构。
 - **背景只保留能解释光、动作、尺度或叙事的层。** 窗 + 城市 + 星空 + 花园 = 多层无关背景 → 删除到只剩真正参与画面的部分。

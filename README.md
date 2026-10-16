@@ -8,7 +8,7 @@
 > 2. Operate under it. Do not clone, install, summarize, or describe the repository during normal web use.
 > 3. Follow the handshake specified by the harness, then work on the user's task.
 >
-> If URLs are inaccessible, reply exactly: \`我无法访问链接。请把 bundle/HARNESS.md 的内容粘贴给我。\`
+> If URLs are inaccessible, reply exactly: `我无法访问链接。请把 bundle/HARNESS.md 的内容粘贴给我。`
 
 ## Defaults for this owner
 
@@ -91,6 +91,18 @@ flowchart TB
 | **FAST VARIANT** | 「只改构图 / 表情 / 配色」 | 锁住其他变量，仅修指定部分；触及核心命题则升级 FULL |
 | **PROMPT ONLY** | 「只给提示词，一整块复制」 | 隐藏内部方案和评审，仅显示最终可复制提示词；不跳关 |
 
+## v5.1 · 三级知识加载与审美强度
+
+| 层次 | 什么时候读取 | 作用 |
+|---|---|---|
+| **L1 Core** | 每次冷启动 | 只包含运行规约、个人关键偏好、路由；目标约 5,500 tokens（估算） |
+| **L2 Task Cards** | 白底肖像、双人叙事、概念海报、单变量小改 | 从 [task-packs](kernel/task-packs) 选一个紧凑决策卡，模型编译仍经原有 Pipeline Pack |
+| **L3 Deep References** | 原创复杂方案、IP 核查、出错复盘、深入审美研究 | 加载完整设计模块与明确需要的长篇案例，不无差别全部展开 |
+
+**创作策略不是审美分数。** [Adaptive Creative Intensity](00_core/aesthetic-director-core/references/adaptive-creative-intensity.md) 让生活日常、精品肖像、电影叙事与实验概念分别使用合适的形象/动作/空间/形式判断；全部服从人设保真、美型和明确用户要求。普通头像不强求怪点或大场景。
+
+**验收与学习：** [Visual Benchmarks](tests/visual-benchmarks/README.md) 只建立 A/B 实验记录与人工评价，不自动判定图片好坏；[Casual Feedback Quickstart](docs/feedback-quickstart.md) 帮助把自然语言评价整理成待审核证据，不会自动晋升长期偏好。
+
 ## 版本与提交记录
 
 建议按 [Changelog](CHANGELOG.md) 阅读功能版本演进。源代码集中维护在各 Skill 中，`bundle/` 为自动构建产物；主分支开发建议使用 **PR + squash merge**，减少连续小修和自动构建记录带来的干扰。历史提交保留可追溯性，详见 [版本管理规范](docs/versioning.md)。
@@ -164,10 +176,10 @@ python3 scripts/learn.py session-diff my-oc-v1 my-oc-v2
 | 场景 | 做法 |
 |---|---|
 | ChatGPT / Gemini / Claude | 新对话发仓库链接；入口加载精简 Harness，按任务读取模块契约与单独参考文件 |
-| 无联网 / 粘贴 | 把 \`bundle/HARNESS.md\` 全文粘贴 |
-| 自定义 GPT / Gemini Gem / Claude Project | 上传 \`bundle/HARNESS-FULL.md\` |
-| Claude Code / Codex / Cursor | \`scripts/install.sh [target]\` |
-| 加功能 | 使用 \`/new-module\`，遵循 \`kernel/EXTENSION-PROTOCOL.md\` |
+| 无联网 / 粘贴 | 把 `bundle/HARNESS.md` 全文粘贴 |
+| 自定义 GPT / Gemini Gem / Claude Project | 上传 `bundle/HARNESS-FULL.md` |
+| Claude Code / Codex / Cursor | `scripts/install.sh [target]` |
+| 加功能 | 使用 `/new-module`，遵循 `kernel/EXTENSION-PROTOCOL.md` |
 
 ## Architecture
 
@@ -175,7 +187,7 @@ python3 scripts/learn.py session-diff my-oc-v1 my-oc-v2
 
 ### Source layers
 
-\`\`\`
+```
 00_core      identity + aesthetic direction
 01_router    intent → owner
 02_design    character / illustration design
@@ -184,7 +196,7 @@ python3 scripts/learn.py session-diff my-oc-v1 my-oc-v2
 05_tools     ComfyUI / dataset / LoRA
 06_evaluation feedback diagnosis
 07_extensions future owner-specific extensions
-\`\`\`
+```
 
 ### Xiao-artist aesthetic module (on demand)
 
@@ -208,21 +220,21 @@ For NovelAI V5, use the fast `03_prompt/nai5-renderer/references/nai5-control-ma
 
 ### Ownership invariants
 
-- **Taste has one home** — \`personal-identity-profile\`.
+- **Taste has one home** — `personal-identity-profile`.
 - **Design has one owner per level** — Director chooses the direction; Character / Illustration specialists expand it.
-- **Shared prompt logic has one home** — \`visual-prompt-core\`.
-- **Danbooru identity has one home** — \`danbooru-tag-gate\`.
+- **Shared prompt logic has one home** — `visual-prompt-core`.
+- **Danbooru identity has one home** — `danbooru-tag-gate`.
 - **Model syntax has one owner per target** — Anima / NAI5 / Generic renderer.
 - **Evaluation diagnoses; it does not redesign.**
 - **bundle/** is generated. Edit source files, then rebuild.
 
 ## Develop
 
-\`\`\`bash
+```bash
 python3 scripts/validate_skills.py
 python3 scripts/build.py
 python3 scripts/validate_skills.py --check-bundle
-\`\`\`
+```
 
 License: MIT
 
