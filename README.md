@@ -14,6 +14,7 @@
 
 - **Design / OC / illustration request → prompt or written design, not automatic image generation.** Only an explicit request to generate/edit an image authorizes an image tool.
 - **NAI5 latest confirmed default (2026-10-15) → one copyable English positive prompt, no fixed artist stack / year / quality / Negative.** Users can still explicitly request an artist stack or complete configuration. Prompt-only: never generate images without clear instruction.
+- **MOSS-Image default (2026-10-16) → a single English Caption, no artist strings or unverified special-trigger claims; JSON Layout only when spatial control merits it.**
 - **PROMPT ONLY** governs visible output rather than internal design depth. Simple edits use FAST VARIANT; substantive original work uses FULL.
 - Web use needs only the GitHub URLs. Build scripts run locally or in CI.
 
@@ -51,13 +52,16 @@ flowchart TB
     BLUEPRINT -.->|"需重做核心决定"| DIRECTOR
 
     CORE --> TARGET{"选择目标模型"}
-    TARGET -->|"NAI5 / Anima"| GATE["Danbooru Tag Gate<br/>必要时校验身份与标签"]
+    TARGET -->|"NAI5 / Anima / MOSS Tags"| GATE["Danbooru Tag Gate<br/>必要时校验身份与标签"]
+    TARGET -->|"MOSS Caption / Layout"| MOSS["MOSS Renderer<br/>Caption · Tags · JSON Layout"]
     GATE -->|"NovelAI V5"| NAI5["NAI5 Renderer<br/>Tags · 多角色分槽"]
     GATE -->|"Anima"| ANIMA["Anima Renderer<br/>Tags + Natural Language"]
+    GATE -->|"MOSS Tags"| MOSS
     TARGET -->|"其他图像模型"| GENERIC["General Adapter<br/>目标模型自然语言"]
 
     NAI5 --> OUTPUT(["交付 Prompt / 设计稿"])
     ANIMA --> OUTPUT
+    MOSS --> OUTPUT
     GENERIC --> OUTPUT
 ```
 
@@ -90,6 +94,21 @@ flowchart TB
 | **AUDIT** | 用户已经给出完整设计 / 原设 / 参考还原 | 尊重锁定事实，仅补足必要的校验 |
 | **FAST VARIANT** | 「只改构图 / 表情 / 配色」 | 锁住其他变量，仅修指定部分；触及核心命题则升级 FULL |
 | **PROMPT ONLY** | 「只给提示词，一整块复制」 | 隐藏内部方案和评审，仅显示最终可复制提示词；不跳关 |
+
+## MOSS-Image 模型提示词规范（v5.2）
+
+[**MOSS-Image Renderer**](03_prompt/moss-image-renderer/SKILL.md) 与 NAI5、Anima 平级，继续共享 Artist Eye、Blueprint 和 Visual Prompt Core。MOSS-Image-Base 与 SFT 支持相同的输入类别；**普通创作默认 Caption**。
+
+| 模式 | 使用时机 | Web-first Pipeline |
+|---|---|---|
+| **Caption** | 二次元×真实背景、lo-fi 情绪、肖像、生活感插画 | `moss`：Visual Prompt Core → MOSS Renderer |
+| **Tags** | 请求标签形式，或需要经验证的角色/系列 hard tag | `moss-tags`：Visual Prompt Core → Tag Gate → MOSS Renderer |
+| **Layout** | 需要精确标题、多元素位置、多面板构图 | `moss` + 可选 [Layout 编译器](scripts/moss_layout.py) |
+
+- **默认不添加画师串**；用户要求只凭风格词时，将 anime 人物与 photographic 背景分对象描述，再规定统一的透视与光色，而不是罗列“官方魔法触发词”。
+- 官方没有逐项验证所有候选 lo-fi 风格短语。参考 [风格控制词候选库](03_prompt/moss-image-renderer/references/style-control.md)，先实际跑图后再晋升个别经验。
+- JSON Layout 的**最终**输入是 `abs_centralized` / `yxyx`；左上角 `xyxy` 草稿必须先编译。详见 [Layout 规范](03_prompt/moss-image-renderer/references/layout-contract.md)。
+- 官方依据：[英文指南](https://github.com/OpenMOSS/MOSS-Image/blob/main/USERGUIDE.md)、[中文指南](https://github.com/OpenMOSS/MOSS-Image/blob/main/USERGUIDE_ZH.md)、[Hugging Face Base](https://huggingface.co/OpenMOSS-Team/MOSS-Image-Base)、[Hugging Face SFT](https://huggingface.co/OpenMOSS-Team/MOSS-Image-SFT)。
 
 ## v5.1 · 三级知识加载与审美强度
 
