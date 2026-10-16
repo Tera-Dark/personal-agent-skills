@@ -386,6 +386,9 @@ def build_outputs(root):
         raise SystemExit('L1 tier ceiling may not exceed existing core budget')
     if manifest['core_tokens'] > ceiling:
         raise SystemExit(f'L1 cold start over ceiling: {manifest["core_tokens"]} > {ceiling}')
+    target = (cfg.get('knowledge_tiers') or {}).get('l1_core_target_tokens', ceiling)
+    if manifest['core_tokens'] > target:
+        raise SystemExit(f'L1 cold start exceeds target: {manifest["core_tokens"]} > {target}')
     if manifest["core_tokens"] > budget:
         raise SystemExit(
             f"Core harness exceeds budget: {manifest['core_tokens']} > {budget} tokens. "
