@@ -28,11 +28,11 @@ jobs:
   validate-and-build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           ref: ${{ github.head_ref || github.ref_name }}
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.x"
 
@@ -58,6 +58,8 @@ jobs:
           python3 scripts/build.py
           python3 scripts/validate_skills.py --check-bundle
           python3 scripts/check_output_contract.py
+          python3 scripts/visual_benchmark.py validate
+          python3 scripts/tag_shard_audit.py --check
 
   persist-generated:
     needs: validate-and-build
@@ -66,8 +68,8 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.x'
       - name: Build verified generated artifacts on main

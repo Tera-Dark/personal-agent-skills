@@ -103,6 +103,11 @@ flowchart TB
 
 **验收与学习：** [Visual Benchmarks](tests/visual-benchmarks/README.md) 只建立 A/B 实验记录与人工评价，不自动判定图片好坏；[Casual Feedback Quickstart](docs/feedback-quickstart.md) 帮助把自然语言评价整理成待审核证据，不会自动晋升长期偏好。
 
+
+### 标签索引与许可审计
+
+现有标签库仍使用经过验证的三字符 Artist 路由，避免直接改写上千个 Web-first URL。新增 [分片体积审计](docs/tag-shard-audit.md) 用于测量二字符合并的潜在收益，**目前只读、不迁移**。第三方标签快照的 GPL-3.0 来源及 MIT 源码的边界记录于 [第三方说明](THIRD_PARTY_NOTICES.md)。
+
 ## 版本与提交记录
 
 建议按 [Changelog](CHANGELOG.md) 阅读功能版本演进。源代码集中维护在各 Skill 中，`bundle/` 为自动构建产物；主分支开发建议使用 **PR + squash merge**，减少连续小修和自动构建记录带来的干扰。历史提交保留可追溯性，详见 [版本管理规范](docs/versioning.md)。
