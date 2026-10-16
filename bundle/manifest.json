@@ -1,14 +1,14 @@
 {
   "name": "personal-agent-skills",
-  "version": "5.0.0",
+  "version": "5.1.0",
   "repo": "Tera-Dark/personal-agent-skills",
   "branch": "main",
   "raw_base": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/",
   "harness_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS.md",
   "harness_full_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS-FULL.md",
-  "handshake": "Harness v5.0.0 loaded · 18 modules · 说需求，或发参考图。",
-  "core_tokens": 6581,
-  "full_tokens": 203638,
+  "handshake": "Harness v5.1.0 loaded · 18 modules · 说需求，或发参考图。",
+  "core_tokens": 4912,
+  "full_tokens": 206156,
   "pipeline": {
     "aesthetic_gate": "aesthetic-director-core",
     "blueprint_gate": {
@@ -60,6 +60,51 @@
       "memory_substitution": false
     }
   },
+  "knowledge_tiers": {
+    "l1_core_target_tokens": 5500,
+    "l1_max_tokens": 6600,
+    "task_packs": {
+      "portrait": {
+        "source": "kernel/task-packs/portrait.md",
+        "modules": [
+          "aesthetic-director-core",
+          "character-design-engine",
+          "illustration-direction"
+        ],
+        "tokens": 276,
+        "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/task-packs/portrait.md"
+      },
+      "cinematic-duo": {
+        "source": "kernel/task-packs/cinematic-duo.md",
+        "modules": [
+          "aesthetic-director-core",
+          "illustration-direction",
+          "japanese-cinematic-composition"
+        ],
+        "tokens": 295,
+        "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/task-packs/cinematic-duo.md"
+      },
+      "concept-poster": {
+        "source": "kernel/task-packs/concept-poster.md",
+        "modules": [
+          "aesthetic-director-core",
+          "illustration-direction",
+          "small-artist-brain"
+        ],
+        "tokens": 245,
+        "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/task-packs/concept-poster.md"
+      },
+      "fast-variant": {
+        "source": "kernel/task-packs/fast-variant.md",
+        "modules": [
+          "illustration-direction",
+          "character-design-engine"
+        ],
+        "tokens": 170,
+        "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/task-packs/fast-variant.md"
+      }
+    }
+  },
   "pipeline_packs": {
     "anima": {
       "modules": [
@@ -102,14 +147,15 @@
         "references/session-feedback-2026-10-14-15.md",
         "references/learning-digest.md",
         "references/feedback-learning-loop.md",
-        "references/feedback-ledger.md"
+        "references/feedback-ledger.md",
+        "references/identity-quickstart.md"
       ],
       "reference_files": [
         {
           "path": "references/taste-core.md",
           "bundle_path": "bundle/references/personal-identity-profile/references/taste-core.md",
           "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/personal-identity-profile/references/taste-core.md",
-          "tokens": 1423
+          "tokens": 1596
         },
         {
           "path": "references/design-dislikes.md",
@@ -164,11 +210,17 @@
           "bundle_path": "bundle/references/personal-identity-profile/references/feedback-ledger.md",
           "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/personal-identity-profile/references/feedback-ledger.md",
           "tokens": 1888
+        },
+        {
+          "path": "references/identity-quickstart.md",
+          "bundle_path": "bundle/references/personal-identity-profile/references/identity-quickstart.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/personal-identity-profile/references/identity-quickstart.md",
+          "tokens": 200
         }
       ],
-      "tokens_skill": 665,
-      "tokens_bundle": 1449,
-      "tokens_full_bundle": 30930
+      "tokens_skill": 701,
+      "tokens_bundle": 1536,
+      "tokens_full_bundle": 31353
     },
     {
       "name": "aesthetic-director-core",
@@ -185,17 +237,19 @@
         "references/artist-eye-creative-lab.md",
         "references/high-aesthetic-calibration-library.md",
         "references/creative-moves.md",
-        "references/modern-poster-design-grammar.md",
         "references/feedback-diagnosis.md",
         "references/taste-calibration-pairs.md",
         "references/design-calibration-examples.md",
         "references/anti-ai-patterns.md",
         "references/emotional-design.md",
+        "references/modern-poster-design-grammar.md",
         "references/ruoganzhao-composition-color-grammar.md",
         "references/small-artist-portrait-brain.md",
         "references/small-artist-style-atlas.md",
         "references/modern-key-visual-grammar.md",
-        "references/cookingsiya-painterly-story-grammar.md"
+        "references/adaptive-creative-intensity.md",
+        "references/cookingsiya-painterly-story-grammar.md",
+        "references/director-case-handoffs.md"
       ],
       "reference_files": [
         {
@@ -215,12 +269,6 @@
           "bundle_path": "bundle/references/aesthetic-director-core/references/creative-moves.md",
           "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/aesthetic-director-core/references/creative-moves.md",
           "tokens": 3663
-        },
-        {
-          "path": "references/modern-poster-design-grammar.md",
-          "bundle_path": "bundle/references/aesthetic-director-core/references/modern-poster-design-grammar.md",
-          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/aesthetic-director-core/references/modern-poster-design-grammar.md",
-          "tokens": 3402
         },
         {
           "path": "references/feedback-diagnosis.md",
@@ -253,6 +301,12 @@
           "tokens": 1031
         },
         {
+          "path": "references/modern-poster-design-grammar.md",
+          "bundle_path": "bundle/references/aesthetic-director-core/references/modern-poster-design-grammar.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/aesthetic-director-core/references/modern-poster-design-grammar.md",
+          "tokens": 3402
+        },
+        {
           "path": "references/ruoganzhao-composition-color-grammar.md",
           "bundle_path": "bundle/references/aesthetic-director-core/references/ruoganzhao-composition-color-grammar.md",
           "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/aesthetic-director-core/references/ruoganzhao-composition-color-grammar.md",
@@ -277,15 +331,27 @@
           "tokens": 1164
         },
         {
+          "path": "references/adaptive-creative-intensity.md",
+          "bundle_path": "bundle/references/aesthetic-director-core/references/adaptive-creative-intensity.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/aesthetic-director-core/references/adaptive-creative-intensity.md",
+          "tokens": 1145
+        },
+        {
           "path": "references/cookingsiya-painterly-story-grammar.md",
           "bundle_path": "bundle/references/aesthetic-director-core/references/cookingsiya-painterly-story-grammar.md",
           "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/aesthetic-director-core/references/cookingsiya-painterly-story-grammar.md",
           "tokens": 2892
+        },
+        {
+          "path": "references/director-case-handoffs.md",
+          "bundle_path": "bundle/references/aesthetic-director-core/references/director-case-handoffs.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/aesthetic-director-core/references/director-case-handoffs.md",
+          "tokens": 1231
         }
       ],
-      "tokens_skill": 5332,
-      "tokens_bundle": 6354,
-      "tokens_full_bundle": 42545
+      "tokens_skill": 4822,
+      "tokens_bundle": 5949,
+      "tokens_full_bundle": 44446
     },
     {
       "name": "creative-skill-router",
@@ -300,6 +366,7 @@
       "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/creative-skill-router.md",
       "references": [
         "references/conversation-qol.md",
+        "references/router-quickstart.md",
         "references/task-classification.md",
         "references/routing-rules.md",
         "references/model-selection.md",
@@ -312,6 +379,12 @@
           "bundle_path": "bundle/references/creative-skill-router/references/conversation-qol.md",
           "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/creative-skill-router/references/conversation-qol.md",
           "tokens": 1849
+        },
+        {
+          "path": "references/router-quickstart.md",
+          "bundle_path": "bundle/references/creative-skill-router/references/router-quickstart.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/creative-skill-router/references/router-quickstart.md",
+          "tokens": 305
         },
         {
           "path": "references/task-classification.md",
@@ -344,9 +417,9 @@
           "tokens": 504
         }
       ],
-      "tokens_skill": 1153,
-      "tokens_bundle": 1619,
-      "tokens_full_bundle": 5230
+      "tokens_skill": 1439,
+      "tokens_bundle": 1954,
+      "tokens_full_bundle": 5835
     },
     {
       "name": "character-design-engine",
@@ -400,7 +473,7 @@
       "layer": "02_design",
       "load": "on-demand",
       "status": "active",
-      "version": "2.8.2",
+      "version": "2.9.0",
       "description": "Turns a Creative Brief into an authored, model-agnostic illustration blueprint — the image thesis, captured moment, visual motif, environment-character relationship, camera and framing, scale contrast, negative space, physical light sources, density map, narrative residue, and one coherent surreal detail. Use for 插画, 氛围图, 竖屏, 半留白, 印象风, 故事感, key visual, poster, scene illustration, cinematic composition, or whenever a character needs to be placed into a designed moment rather than displayed on a plate. Never writes model-specific prompt syntax.",
       "triggers": "插画, 氛围图, 竖屏, 半留白, 印象风, 故事感, key visual, poster, scene, 极繁, 特写垫底, 大头贴, 元素贴, 角色拼贴",
       "path": "02_design/illustration-direction",
@@ -412,6 +485,7 @@
         "references/composition-patterns.md",
         "references/oc-maximalist-closeup-backdrop-preset.md",
         "references/visual-grammar.md",
+        "references/decision-sheet-handoffs.md",
         "references/atmosphere-presets.md",
         "references/white-background-fashion-grammar.md"
       ],
@@ -447,6 +521,12 @@
           "tokens": 6035
         },
         {
+          "path": "references/decision-sheet-handoffs.md",
+          "bundle_path": "bundle/references/illustration-direction/references/decision-sheet-handoffs.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/illustration-direction/references/decision-sheet-handoffs.md",
+          "tokens": 1098
+        },
+        {
           "path": "references/atmosphere-presets.md",
           "bundle_path": "bundle/references/illustration-direction/references/atmosphere-presets.md",
           "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/illustration-direction/references/atmosphere-presets.md",
@@ -459,9 +539,9 @@
           "tokens": 2549
         }
       ],
-      "tokens_skill": 5954,
-      "tokens_bundle": 6605,
-      "tokens_full_bundle": 25499
+      "tokens_skill": 4970,
+      "tokens_bundle": 5672,
+      "tokens_full_bundle": 25629
     },
     {
       "name": "japanese-cinematic-composition",
