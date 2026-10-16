@@ -1,40 +1,33 @@
-# Model Selection Rules
+# Model Selection Rules (v5.2)
 
-## Purpose
-
-Select the execution adapter only after the creative artifact passes the Aesthetic Gate and Blueprint Gate.
+Select the execution adapter only after Aesthetic Gate and Blueprint Gate; no renderer redesigns the scene.
 
 ## NAI5
 
-Use when tag-based control, weighted artist stacks, and NovelAI V5 community syntax are desired.
-
-Pipeline:
-identity → Aesthetic Gate FULL/AUDIT → type specialist when needed → Blueprint Gate → nai5-community-prompt-engineering
-
-Output:
-compact weighted community tags using the NAI5 canonical skeleton.
+NovelAI V5: tag-oriented prompt, optional weights and per-character fields.
+Pipeline: visual-prompt-core → danbooru-tag-gate → nai5-renderer.
 
 ## Anima
 
-Use when complex visual concepts, atmosphere and natural-language relationships are important.
+Anima: verified tags + concise Natural Language relations; renderer owns target escaping/weight syntax.
+Pipeline: visual-prompt-core → danbooru-tag-gate → anima-renderer.
 
-Pipeline:
-identity → Aesthetic Gate FULL/AUDIT → type specialist when needed → Blueprint Gate → anima-prompt-compiler
+## MOSS-Image (Base / SFT)
 
-Output:
-Anima Tag Lock + Natural-language Relations.
+MOSS supports three serialization modes, with the same artistic owners:
+
+1. **Caption (default)**: natural-language prompt, single English Positive text. `moss` pack = visual-prompt-core → moss-image-renderer; no forced Danbooru fetch.
+2. **Tags**: official field order Quality → Score → Meta → Year → Character → Series → Artist → General, fields optional and artist omitted by personal default. `moss-tags` pack = visual-prompt-core → danbooru-tag-gate → moss-image-renderer. Gate proves spelling, not model recognition.
+3. **Layout**: native JSON `abs_centralized` + `yxyx` only when object/text positions need boxes. Use `moss` pack and optionally `scripts/moss_layout.py` to compile editable top-left `xyxy` drafts. Width/height belong to generation setting.
+
+Do not use NAI5 weights or character prompts as MOSS syntax; do not call a Candidate style description a verified MOSS token. Base/SFT differ in checkpoint and observed performance, not these input schemas.
+
+Sources: https://github.com/OpenMOSS/MOSS-Image/blob/main/USERGUIDE.md and Hugging Face official model cards.
 
 ## General Image Models
 
-Use for Midjourney, DALL-E / GPT Image, Imagen / Gemini image, Flux, SDXL-style checkpoints or unnamed targets.
-
-Pipeline:
-identity → Aesthetic Gate FULL/AUDIT → type specialist when needed → Blueprint Gate → general-image-prompt-adapter
+Use for unsupported named targets, FLUX, Midjourney, Imagen/Gemini and SDXL. Pipeline: visual-prompt-core → general-image-prompt-adapter.
 
 ## Unknown target
 
-If the target model changes the required prompt format, ask one question. Otherwise default to generic mode.
-
-## Rule
-
-The adapter is the final compiler. It never decides the concept.
+Ask one essential question only if the model changes format materially. Otherwise reuse last explicit target. Preserve prompt-only and user locks.
