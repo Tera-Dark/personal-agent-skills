@@ -39,7 +39,7 @@ class TieredLoadingTests(unittest.TestCase):
             self.assertIn(mode, data)
         self.assertIn("Identity Lock", data)
         self.assertIn("不强制", data)
-        self.assertIn("实际出图", data)
+        self.assertIn("真实出图", data)
 
     def test_existing_renderers_remain_unchanged_owners(self):
         cfg = json.loads((ROOT / "harness.json").read_text(encoding="utf-8"))
