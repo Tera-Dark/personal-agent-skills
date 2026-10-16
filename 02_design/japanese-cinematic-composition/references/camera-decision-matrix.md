@@ -1,6 +1,6 @@
-# 鱼的库洛牌摄影思维 · 事件到镜头的短决策矩阵（v1.1）
+# 日系电影感构图思维 · 事件到镜头的短决策矩阵（v1.1）
 
-此表给 `yu-de-kuluopai-photography-brain` 在出 Decision Sheet 前选择**拍摄几何**，把设计决策交给 illustration-direction。**不是 NAI5 Tag 表、不是固定提示词模板**。多参考来源于九图研究和十三图追加研究；作者身份依用户说明，未经逐图来源核验。
+此表给 `japanese-cinematic-composition` 在出 Decision Sheet 前选择**拍摄几何**，把设计决策交给 illustration-direction。**不是 NAI5 Tag 表、不是固定提示词模板**。多参考来源于九图研究和十三图追加研究；样本只用于视觉分析；未核实每张作品的具体作者。
 
 ## 1. 先选故事关系，才选景别
 
@@ -63,7 +63,7 @@ From the shaded side of a disused platform, a close stack of books cuts across t
 
 错误：
 ```text
-fish's kuro card style, very cinematic, observational photography, emotional realism, vintage film, yellow umbrella, bicycle, giant blue sky, romantic summer vibe
+named-person style, very cinematic, observational photography, emotional realism, vintage film, yellow umbrella, bicycle, giant blue sky, romantic summer vibe
 ```
 
 上例只是可见几何句式；目标 NAI5 要由 visual-prompt-core / danbooru-tag-gate / nai5-renderer 再压成 **英文 Tag + 1~3 句最关键空间和动作 NL**。不把摄影博主名字塞到 Prompt 中当作模型认识的风格 Tag。默认不输出画师串/质量词/Negative/长篇自然语言。使用用户锁定角色时，保留 canon identity/outfit 优先权，不擅自将其改成校服/白衬衫。
