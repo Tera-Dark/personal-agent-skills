@@ -1,14 +1,14 @@
 {
   "name": "personal-agent-skills",
-  "version": "4.10.2",
+  "version": "5.0.0",
   "repo": "Tera-Dark/personal-agent-skills",
   "branch": "main",
   "raw_base": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/",
   "harness_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS.md",
   "harness_full_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS-FULL.md",
-  "handshake": "Harness v4.10.2 loaded · 18 modules · 说需求，或发参考图。",
-  "core_tokens": 6595,
-  "full_tokens": 203690,
+  "handshake": "Harness v5.0.0 loaded · 18 modules · 说需求，或发参考图。",
+  "core_tokens": 6581,
+  "full_tokens": 203638,
   "pipeline": {
     "aesthetic_gate": "aesthetic-director-core",
     "blueprint_gate": {
@@ -163,7 +163,7 @@
           "path": "references/feedback-ledger.md",
           "bundle_path": "bundle/references/personal-identity-profile/references/feedback-ledger.md",
           "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/personal-identity-profile/references/feedback-ledger.md",
-          "tokens": 1889
+          "tokens": 1888
         }
       ],
       "tokens_skill": 665,
@@ -202,7 +202,7 @@
           "path": "references/artist-eye-creative-lab.md",
           "bundle_path": "bundle/references/aesthetic-director-core/references/artist-eye-creative-lab.md",
           "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/aesthetic-director-core/references/artist-eye-creative-lab.md",
-          "tokens": 2440
+          "tokens": 2443
         },
         {
           "path": "references/high-aesthetic-calibration-library.md",
@@ -285,7 +285,7 @@
       ],
       "tokens_skill": 5332,
       "tokens_bundle": 6354,
-      "tokens_full_bundle": 42543
+      "tokens_full_bundle": 42545
     },
     {
       "name": "creative-skill-router",
@@ -341,12 +341,12 @@
           "path": "references/skill-map.md",
           "bundle_path": "bundle/references/creative-skill-router/references/skill-map.md",
           "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/creative-skill-router/references/skill-map.md",
-          "tokens": 509
+          "tokens": 504
         }
       ],
-      "tokens_skill": 1158,
-      "tokens_bundle": 1625,
-      "tokens_full_bundle": 5241
+      "tokens_skill": 1153,
+      "tokens_bundle": 1619,
+      "tokens_full_bundle": 5230
     },
     {
       "name": "character-design-engine",
@@ -392,15 +392,15 @@
         }
       ],
       "tokens_skill": 2702,
-      "tokens_bundle": 3179,
-      "tokens_full_bundle": 13886
+      "tokens_bundle": 3178,
+      "tokens_full_bundle": 13885
     },
     {
       "name": "illustration-direction",
       "layer": "02_design",
       "load": "on-demand",
       "status": "active",
-      "version": "2.8.1",
+      "version": "2.8.2",
       "description": "Turns a Creative Brief into an authored, model-agnostic illustration blueprint — the image thesis, captured moment, visual motif, environment-character relationship, camera and framing, scale contrast, negative space, physical light sources, density map, narrative residue, and one coherent surreal detail. Use for 插画, 氛围图, 竖屏, 半留白, 印象风, 故事感, key visual, poster, scene illustration, cinematic composition, or whenever a character needs to be placed into a designed moment rather than displayed on a plate. Never writes model-specific prompt syntax.",
       "triggers": "插画, 氛围图, 竖屏, 半留白, 印象风, 故事感, key visual, poster, scene, 极繁, 特写垫底, 大头贴, 元素贴, 角色拼贴",
       "path": "02_design/illustration-direction",
@@ -459,9 +459,56 @@
           "tokens": 2549
         }
       ],
-      "tokens_skill": 5956,
-      "tokens_bundle": 6607,
-      "tokens_full_bundle": 25501
+      "tokens_skill": 5954,
+      "tokens_bundle": 6605,
+      "tokens_full_bundle": 25499
+    },
+    {
+      "name": "japanese-cinematic-composition",
+      "layer": "02_design",
+      "load": "on-demand",
+      "status": "active",
+      "version": "2.0.0",
+      "description": "日系电影感构图思维。通过用户提供的摄影案例研究机位、决定性瞬间、距离层次、光色与真实互动，生成 Photography Decision Sheet 交给 illustration-direction；不绑定特定摄影师、不复刻作品，也不负责模型语法。",
+      "triggers": "日系电影感构图, 电影感构图, 摄影思维, 摄影脑, 摄影感, 纪实抓拍, 生活流, 观察机位, 真实镜头, NAI5电影感, cinematic composition",
+      "path": "02_design/japanese-cinematic-composition",
+      "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_design/japanese-cinematic-composition",
+      "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/japanese-cinematic-composition.md",
+      "references": [
+        "references/camera-decision-matrix.md",
+        "references/nine-frame-study-2026-10-14.md",
+        "references/thirteen-frame-study-2026-10-15.md",
+        "references/cross-genre-camera-recipes.md"
+      ],
+      "reference_files": [
+        {
+          "path": "references/camera-decision-matrix.md",
+          "bundle_path": "bundle/references/japanese-cinematic-composition/references/camera-decision-matrix.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/japanese-cinematic-composition/references/camera-decision-matrix.md",
+          "tokens": 2009
+        },
+        {
+          "path": "references/nine-frame-study-2026-10-14.md",
+          "bundle_path": "bundle/references/japanese-cinematic-composition/references/nine-frame-study-2026-10-14.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/japanese-cinematic-composition/references/nine-frame-study-2026-10-14.md",
+          "tokens": 2547
+        },
+        {
+          "path": "references/thirteen-frame-study-2026-10-15.md",
+          "bundle_path": "bundle/references/japanese-cinematic-composition/references/thirteen-frame-study-2026-10-15.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/japanese-cinematic-composition/references/thirteen-frame-study-2026-10-15.md",
+          "tokens": 3821
+        },
+        {
+          "path": "references/cross-genre-camera-recipes.md",
+          "bundle_path": "bundle/references/japanese-cinematic-composition/references/cross-genre-camera-recipes.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/japanese-cinematic-composition/references/cross-genre-camera-recipes.md",
+          "tokens": 2226
+        }
+      ],
+      "tokens_skill": 3028,
+      "tokens_bundle": 3468,
+      "tokens_full_bundle": 13871
     },
     {
       "name": "small-artist-brain",
@@ -507,55 +554,8 @@
         }
       ],
       "tokens_skill": 3895,
-      "tokens_bundle": 4380,
+      "tokens_bundle": 4379,
       "tokens_full_bundle": 18809
-    },
-    {
-      "name": "yu-de-kuluopai-photography-brain",
-      "layer": "02_design",
-      "load": "on-demand",
-      "status": "active",
-      "version": "1.1.0",
-      "description": "「鱼的库洛牌」摄影思维——以用户提供的首批九张与追加十三份摄影参考提炼观察机位、决定性瞬间、光线色块、物理接触和叙事留白，向 illustration-direction 交付摄影 Decision Sheet，特别适合 NAI5 电影感插画。不是独立构图 owner，也不写模型语法。",
-      "triggers": "鱼的库洛牌, 摄影思维, 摄影脑, 摄影感, 电影感, 纪实抓拍, 生活流, 真实镜头, NAI5电影感, photographic thinking",
-      "path": "02_design/yu-de-kuluopai-photography-brain",
-      "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_design/yu-de-kuluopai-photography-brain",
-      "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/yu-de-kuluopai-photography-brain.md",
-      "references": [
-        "references/camera-decision-matrix.md",
-        "references/nine-frame-study-2026-10-14.md",
-        "references/thirteen-frame-study-2026-10-15.md",
-        "references/cross-genre-camera-recipes.md"
-      ],
-      "reference_files": [
-        {
-          "path": "references/camera-decision-matrix.md",
-          "bundle_path": "bundle/references/yu-de-kuluopai-photography-brain/references/camera-decision-matrix.md",
-          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/yu-de-kuluopai-photography-brain/references/camera-decision-matrix.md",
-          "tokens": 2006
-        },
-        {
-          "path": "references/nine-frame-study-2026-10-14.md",
-          "bundle_path": "bundle/references/yu-de-kuluopai-photography-brain/references/nine-frame-study-2026-10-14.md",
-          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/yu-de-kuluopai-photography-brain/references/nine-frame-study-2026-10-14.md",
-          "tokens": 2585
-        },
-        {
-          "path": "references/thirteen-frame-study-2026-10-15.md",
-          "bundle_path": "bundle/references/yu-de-kuluopai-photography-brain/references/thirteen-frame-study-2026-10-15.md",
-          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/yu-de-kuluopai-photography-brain/references/thirteen-frame-study-2026-10-15.md",
-          "tokens": 3831
-        },
-        {
-          "path": "references/cross-genre-camera-recipes.md",
-          "bundle_path": "bundle/references/yu-de-kuluopai-photography-brain/references/cross-genre-camera-recipes.md",
-          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/yu-de-kuluopai-photography-brain/references/cross-genre-camera-recipes.md",
-          "tokens": 2226
-        }
-      ],
-      "tokens_skill": 3048,
-      "tokens_bundle": 3508,
-      "tokens_full_bundle": 13955
     },
     {
       "name": "anima-renderer",
@@ -594,7 +594,7 @@
         }
       ],
       "tokens_skill": 936,
-      "tokens_bundle": 1274,
+      "tokens_bundle": 1273,
       "tokens_full_bundle": 7473
     },
     {
@@ -646,8 +646,8 @@
         }
       ],
       "tokens_skill": 1234,
-      "tokens_bundle": 1572,
-      "tokens_full_bundle": 2240
+      "tokens_bundle": 1571,
+      "tokens_full_bundle": 2239
     },
     {
       "name": "nai5-renderer",
@@ -789,7 +789,7 @@
           "path": "references/artist-eye-crossmedia-evidence.md",
           "bundle_path": "bundle/references/image-reverse-analysis/references/artist-eye-crossmedia-evidence.md",
           "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/image-reverse-analysis/references/artist-eye-crossmedia-evidence.md",
-          "tokens": 2609
+          "tokens": 2663
         },
         {
           "path": "references/design-language-extraction.md",
@@ -799,8 +799,8 @@
         }
       ],
       "tokens_skill": 1422,
-      "tokens_bundle": 1780,
-      "tokens_full_bundle": 4487
+      "tokens_bundle": 1779,
+      "tokens_full_bundle": 4540
     },
     {
       "name": "prompt-analysis",
@@ -893,8 +893,8 @@
         }
       ],
       "tokens_skill": 2664,
-      "tokens_bundle": 2984,
-      "tokens_full_bundle": 4325
+      "tokens_bundle": 2983,
+      "tokens_full_bundle": 4324
     }
   ]
 }

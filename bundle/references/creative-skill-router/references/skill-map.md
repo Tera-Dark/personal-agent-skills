@@ -21,7 +21,7 @@ Skill 之间按**名称**引用；实际源码都以根目录各层的 SKILL.md 
 - `character-design-engine` — 角色设计 Blueprint。
 - `illustration-direction` — **唯一插画 Blueprint owner**，最终构图、光线和画面 Gate。
 - `small-artist-brain` — 按需女性向插画审美 Decision Sheet，不单独出图。
-- `yu-de-kuluopai-photography-brain` — 「鱼的库洛牌」摄影思维 Decision Sheet：观察机位、生活抓拍、光线与叙事触点；按需，特别为 NAI5 电影感服务。
+- `japanese-cinematic-composition` — 日系电影感构图 Decision Sheet：观察机位、生活抓拍、光线与叙事触点；按需，特别为 NAI5 电影感服务。
 
 ### 03_prompt — Prompt 编译
 
@@ -37,6 +37,6 @@ Skill 之间按**名称**引用；实际源码都以根目录各层的 SKILL.md 
 
 ### 推荐链路
 
-`identity → aesthetic director → [yu-de-kuluopai-photography-brain?] + [small-artist-brain?] → illustration-direction → visual-prompt-core → danbooru-tag-gate → nai5-renderer`
+`identity → aesthetic director → [japanese-cinematic-composition?] + [small-artist-brain?] → illustration-direction → visual-prompt-core → danbooru-tag-gate → nai5-renderer`
 
 摄影与小画师脑是 **decision lenses**；不绕过 Director / Blueprint Gate，不共享或覆盖 renderer 的语法职责，不擅自生图。

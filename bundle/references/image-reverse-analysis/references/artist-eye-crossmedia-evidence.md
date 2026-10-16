@@ -39,19 +39,19 @@ source: https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/0
 
 | 门类 | 原始入口 / 证据级别 | 可迁移机制 | 明确的局限 |
 |---|---|---|---|
-| 故事板 & 动画 | Disney Animation Story · [Primary source] https://www.disneyanimation.com/process/story/ | thumbnail→stage→emotion→timing，角色行动优先画风 | 官方制作流程不是 NAI5 参数 |
-| 电影场面调度 | Disney Animation Layout · [Primary source] https://www.disneyanimation.com/process/layout/ | 观看立场、镜头调整、动作与空间承重、镜头接续 | 单帧不能照搬连续镜头运动 |
-| 动画美术开发 | Disney Animation Visual Development · [Primary source] https://www.disneyanimation.com/process/visual-development/ | 角色/环境设计由剧本与情绪推动，单帧也要能抓住情绪 | 商业动画制作规模不可直接复制 |
-| 光色脚本 | Disney Animation Lighting · [Primary source] https://www.disneyanimation.com/process/lighting/ | 设计类型化光与情绪化光的区别，明度范围随情绪改变 | 色彩映射非普适情绪公式 |
-| 基础视觉结构 | Bruce Block, The Visual Story (3rd ed.) · [Publisher] https://www.routledge.com/The-Visual-Story-Creating-the-Visual-Structure-of-Film-TV-and-Digita/Block/p/book/9781138014152 | 七变量：空间/线条/形状/明度/色彩/运动/节奏；用反差和亲和搭建视觉结构 | 不是逐项堆料表 |
+| 故事板 & 动画 | 动画工作室官方 Story 流程 · [Primary source] https://www.disneyanimation.com/process/story/ | thumbnail→stage→emotion→timing，角色行动优先画风 | 官方制作流程不是 NAI5 参数 |
+| 电影场面调度 | 动画工作室官方 Layout 流程 · [Primary source] https://www.disneyanimation.com/process/layout/ | 观看立场、镜头调整、动作与空间承重、镜头接续 | 单帧不能照搬连续镜头运动 |
+| 动画美术开发 | 动画工作室官方视觉开发流程 · [Primary source] https://www.disneyanimation.com/process/visual-development/ | 角色/环境设计由剧本与情绪推动，单帧也要能抓住情绪 | 商业动画制作规模不可直接复制 |
+| 光色脚本 | 动画工作室官方灯光流程 · [Primary source] https://www.disneyanimation.com/process/lighting/ | 设计类型化光与情绪化光的区别，明度范围随情绪改变 | 色彩映射非普适情绪公式 |
+| 基础视觉结构 | 视觉叙事结构理论参考书（第 3 版） · [Publisher] https://www.routledge.com/The-Visual-Story-Creating-the-Visual-Structure-of-Film-TV-and-Digita/Block/p/book/9781138014152 | 七变量：空间/线条/形状/明度/色彩/运动/节奏；用反差和亲和搭建视觉结构 | 不是逐项堆料表 |
 | 电影镜头维度数据 | CineTechBench · [GitHub readme] https://github.com/PRIS-CV/CineTechBench | 景别、机位、构图、机动、光色、焦距的结构化观察 | Benchmark≠生成美感证明；数据许可须单独核实 |
 | 构图分析 | CADB & SAMP-Net · [GitHub readme] https://github.com/bcmi/Image-Composition-Assessment-Dataset-CADB | 常见构图类型及评分，可辅助训练识别大形 | 摄影构图分数不能代表艺术价值 |
 | 色彩 | Colour Science · [GitHub readme] https://github.com/colour-science/colour | 色空间、明度、色差、受光材质研究；可核对色块分布 | 技术精确≠颜色有感情 |
 | 剪辑/时间 | PySceneDetect · [GitHub readme] https://github.com/Breakthrough/PySceneDetect | 切分镜头用于研究前后帧之间的情绪/信息变化 | 只是工具，不自带导演知识 |
 | 自动审美分数 | LAION Aesthetic Predictor · [GitHub readme] https://github.com/LAION-AI/aesthetic-predictor | 大量候选的辅助筛查/排序假说 | 训练分布/偏见风险、不能用分数否定刻意实验作品 |
-| 版画与跨文化借鉴 | The Met, Japonisme · [Museum curator essay] https://www.metmuseum.org/ja/essays/japonisme | 借鉴特殊裁切、非对称、抽象化色线而非照搬和服/器物；历史上也有跨文化转译 | 艺术史现象不是授权复制单幅作品 |
-| 平面/唱片封面 | Pentagram, The National “Sleep Well Beast” · [Design studio portfolio] https://www.pentagram.com/work/the-national-1 | 专辑视觉语言可以跨封面、包装和宣传系统统一；图形概念先于炫技插画 | 并非所有封面都需要企业式视觉识别 |
-| 音乐封面的概念反转 | Pentagram, Lake “Four” · [Design studio portfolio] https://www.pentagram.com/work/lake | 创作者认为直接画湖不够令人惊讶，改用「洪水」作为标题概念的视觉回应；关键词→反直觉画面 | 不能把「湖→洪水」案例当所有封面的固定解法 |
+| 版画与跨文化借鉴 | 博物馆艺术史资料：日式版画的跨文化影响 · [Museum curator essay] https://www.metmuseum.org/ja/essays/japonisme | 借鉴特殊裁切、非对称、抽象化色线而非照搬和服/器物；历史上也有跨文化转译 | 艺术史现象不是授权复制单幅作品 |
+| 平面/唱片封面 | 设计机构：概念专辑视觉系统案例 · [Design studio portfolio] https://www.pentagram.com/work/the-national-1 | 专辑视觉语言可以跨封面、包装和宣传系统统一；图形概念先于炫技插画 | 并非所有封面都需要企业式视觉识别 |
+| 音乐封面的概念反转 | 设计机构：音乐封面概念反转案例 · [Design studio portfolio] https://www.pentagram.com/work/lake | 创作者认为直接画湖不够令人惊讶，改用「洪水」作为标题概念的视觉回应；关键词→反直觉画面 | 不能把「湖→洪水」案例当所有封面的固定解法 |
 
 
 **不确定时**：将工具的用途限制为分析辅助，避免把项目 README 的营销描述或数字当成人类审美定律。涉及作品原图，尊重网站许可与著作权。
