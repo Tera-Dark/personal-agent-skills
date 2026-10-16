@@ -3,7 +3,7 @@ name: aesthetic-director-core
 description: Creative direction layer that turns a vague request into one committed design idea before any blueprint or prompt is written. Runs a sequence of generative "moves" (find the obsession, plant a contradiction, pick from the tail, build causality, subtract, keep one strange thing) and produces a short Creative Brief with rejected alternatives. Use for any OC / character / illustration / fashion / key-visual request, whenever output feels generic, "AI-flavored", too plain, too busy, or when the user asks for taste, direction, 审美, 创意方向, 人味, 高级感, 不要AI味.
 metadata:
   author: Tera-Dark
-  version: "2.5.0"
+  version: "2.5.1"
   layer: "00_core"
   load: "on-demand"
   status: "active"
@@ -46,6 +46,12 @@ AUDIT 是必经的质量闸门，不等于“顺手美化”。没有失败证�
 - **保留有理由的记忆点**。优先从身份、动作、剪裁或视觉关系中选择一处意外；不为凑“怪”硬加不合理元素。**怪 ≠ 丑**，不能破坏比例、姿态、色块和第一眼美感。
 - **美感底盘先成立**。辨识度不能靠故意做丑获得。先让轮廓、比例、姿态、色块与服装结构形成舒服且有收藏欲的整体，再把“怪”压在局部作为张力。
 - **不布道**。不向用户输出审美理论、不复述本文件原则、不空夸。只给判断和结果；PROMPT ONLY 时只交付 Prompt。
+
+## 2.0 Artist Eye · 跨媒介审美探索（按需）
+
+当用户要求「美商提升」「Artist Eye」「跨艺术参考融合」，或 FULL 任务中三个候选同质化时，按需读取 `references/artist-eye-creative-lab.md`。**这不是新设计 owner**：在本模块的 M1–M9 与三向竞争内部引入动画、电影、摄影、平面、绘画、建筑、视觉感知等不同 Lens，每个候选必须有不同的视觉**因果**（事件/空间/编辑），不是换背景或关键词。核心反事实：换成普通正面构图、移走主物件、替换主色后，这个创意具体失去了什么？无可见损失则退回重想。
+
+参考证据按需读取 `../../04_analysis/image-reverse-analysis/references/artist-eye-crossmedia-evidence.md`；不要复制用户上传作品的角色、道具、整体构图，也不要把自动审美分数当裁判。已有成功反馈先锁定；极简肖像、忠实还原或 FAST VARIANT 禁止为了创新强塞超现实。只改变设计决策，NAI5/Anima 语法仍交给各自 Renderer。
 
 ## 2.1 Anti-Mediocrity Gate — 反平庸审美闸门
 
@@ -249,6 +255,7 @@ AUDIT 通常内部完成；只有用户明确要求审美评审时才展开。
 
 
 ## References
+- `references/artist-eye-creative-lab.md` — Artist Eye 的跨媒介创作探索、三向候选与反事实选择，不另立设计 owner。
 - `references/modern-key-visual-grammar.md` — bundled reference for this module.
 
 

@@ -1,6 +1,6 @@
 # personal-agent-skills
 
-> v4.9 architecture: mandatory Aesthetic/Blueprint Gates + shared Visual Prompt Core + shared Danbooru verification + thin Anima / NAI5 renderers + Web-first runtime. Runtime bundle optimization: compact identity, selective tag shards, reference-level fetching, and explicit FULL / FAST VARIANT / PROMPT ONLY modes.
+> Web-first personal creative harness: Aesthetic / Blueprint Gates → shared Visual Prompt Core → target-model renderers. Includes optional Artist Eye research, reusable taste feedback, selective Danbooru verification, and FULL / AUDIT / FAST VARIANT / PROMPT ONLY modes.
 
 > ## ⚡ AI bootstrap
 >
@@ -16,6 +16,80 @@
 - **NAI5 latest confirmed default (2026-10-15) → one copyable English positive prompt, no fixed artist stack / year / quality / Negative.** Users can still explicitly request an artist stack or complete configuration. Prompt-only: never generate images without clear instruction.
 - **PROMPT ONLY** governs visible output rather than internal design depth. Simple edits use FAST VARIANT; substantive original work uses FULL.
 - Web use needs only the GitHub URLs. Build scripts run locally or in CI.
+
+## 🧭 工作流总览 · Workflow Map
+
+> **一条共享创作主线，多种模型输出。** 设计在前、编译在后；参考研究和审美模块按需参与，不会替代最终设计负责人。下图由 GitHub 原生 Mermaid 渲染，无需额外图片或外部服务。
+
+### ① 从想法到 Prompt
+
+```mermaid
+flowchart TB
+    INPUT(["用户需求 · OC / IP · 参考图 · 锁定条件"])
+    INPUT --> KERNEL["Kernel + Identity<br/>运行规则 · 个人审美 · 禁区"]
+    KERNEL --> ROUTER{"Creative Router<br/>识别任务与执行模式"}
+
+    ROUTER -->|"原创创作 · FULL"| DIRECTOR["Aesthetic Director<br/>创意命题 · 三案比较 · 淘汰平庸"]
+    ROUTER -->|"现有方案 · AUDIT"| AUDIT["Design Audit<br/>审核方案 · 保留已定事实"]
+    ROUTER -->|"定向修订 · FAST VARIANT"| FAST["Fast Variant<br/>只修改指定部分"]
+
+    REFERENCE["Image Reverse Analysis<br/>参考图 → 可迁移的结构"] -.-> DIRECTOR
+    EYE["Artist Eye · 按需<br/>电影 / 动画 / 绘画 / 版式跨媒介判断"] -.-> DIRECTOR
+
+    DIRECTOR --> SPECIALIST{"Blueprint 类型"}
+    AUDIT --> SPECIALIST
+    FAST --> SPECIALIST
+    SPECIALIST -->|"角色 / 服装"| CHARACTER["Character Design Engine<br/>外形 · 服设 · 动作因果"]
+    SPECIALIST -->|"插画 / 海报 / 场景"| ILLUSTRATION["Illustration Direction<br/>机位 · 构图 · 叙事 · 光色"]
+
+    SMALL["小画师脑 · 按需<br/>美型 · 关系 · 疏密"] -.-> ILLUSTRATION
+    CAMERA["鱼的库洛牌摄影脑 · 按需<br/>观察立场 · 瞬间 · 触点"] -.-> ILLUSTRATION
+
+    CHARACTER --> BLUEPRINT{"Blueprint Gate<br/>核对设计与身份锁"}
+    ILLUSTRATION --> BLUEPRINT
+    BLUEPRINT -->|"PASS"| CORE["Visual Prompt Core<br/>共享视觉事实 · 空间关系 · 压缩"]
+    BLUEPRINT -.->|"需重做核心决定"| DIRECTOR
+
+    CORE --> TARGET{"选择目标模型"}
+    TARGET -->|"NAI5 / Anima"| GATE["Danbooru Tag Gate<br/>必要时校验身份与标签"]
+    GATE -->|"NovelAI V5"| NAI5["NAI5 Renderer<br/>Tags · 多角色分槽"]
+    GATE -->|"Anima"| ANIMA["Anima Renderer<br/>Tags + Natural Language"]
+    TARGET -->|"其他图像模型"| GENERIC["General Adapter<br/>目标模型自然语言"]
+
+    NAI5 --> OUTPUT(["交付 Prompt / 设计稿"])
+    ANIMA --> OUTPUT
+    GENERIC --> OUTPUT
+```
+
+**读图方式：** 实线表示主要执行顺序，虚线表示按需提供参考、增强决策或退回修改。**PROMPT ONLY 只是输出简化模式**，不会跳过 Aesthetic / Blueprint Gate；默认交付文本，只有明确要求生成或编辑图片时才调用生图工具。技术任务（ComfyUI、LoRA、数据集）由 Router 直接交给相应技术模块，不强行经过插画设计链路。
+
+### ② 成图反馈如何改善下一次创作
+
+```mermaid
+flowchart TB
+    FEEDBACK(["用户反馈 · 出图对比 · 修改要求"]) --> EVAL["Evaluation Loop<br/>识别第一个失败层 · 拆分好坏反馈"]
+    EVAL --> FIX["对应设计 / 分析 / Renderer owner<br/>只改失败变量"]
+    FIX --> NEXT(["下一版设计 / Prompt"])
+    EVAL --> SESSION["Session State<br/>锁定本轮已经认可的部分"]
+    SESSION --> NEXT
+
+    EVAL -.->|"用户允许持久同步"| EVIDENCE["Feedback Evidence<br/>限定题材与作用域 · 记录来源"]
+    EVIDENCE --> REVIEW{"Review<br/>证据足够且无反证？"}
+    REVIEW -->|"暂不晋升"| CANDIDATE["候选规则 · 保留待验证"]
+    REVIEW -->|"经审阅确认"| PROMOTE["Promote + Digest<br/>写入 Identity 的已批准偏好"]
+    PROMOTE -.->|"新会话按需加载"| NEXT
+```
+
+**反馈闭环 ≠ 自动训练模型：** 当轮评价可以直接影响下一稿；跨会话持久化需要已授权的写入、证据审阅与显式晋升。实验性构图和个人喜好不会因为一次好评被自动升级为所有作品的默认规则。
+
+### ③ 工作模式速览
+
+| 模式 | 什么时候用 | 会做什么 |
+|---|---|---|
+| **FULL CREATIVE** | 新 OC、新插画、海报、需要新概念 | 研究 → 多方案比较 → Director → Blueprint → 模型编译 |
+| **AUDIT** | 用户已经给出完整设计 / 原设 / 参考还原 | 尊重锁定事实，仅补足必要的校验 |
+| **FAST VARIANT** | 「只改构图 / 表情 / 配色」 | 锁住其他变量，仅修指定部分；触及核心命题则升级 FULL |
+| **PROMPT ONLY** | 「只给提示词，一整块复制」 | 隐藏内部方案和评审，仅显示最终可复制提示词；不跳关 |
 
 ## Latest cross-session taste sync (2026-10-15)
 
@@ -93,42 +167,7 @@ python3 scripts/learn.py session-diff my-oc-v1 my-oc-v2
 
 ## Architecture
 
-\`\`\`
-Kernel
-  │
-  ▼
-Identity ── persistent taste / dislikes / artist pool
-  │
-  ▼
-Router
-  │
-  ├───────────────┬─────────────────┐
-  ▼               ▼                 ▼
-Design          Analysis        Technical
-  │               │
-  ├─ Character    ├─ Image Reverse
-  └─ Illustration └─ Prompt Analysis
-  │
-  ▼
-Visual Prompt Core
-  ├─ Style / Quality
-  ├─ Visual facts
-  ├─ Composition / Scene
-  ├─ Relations
-  ├─ Compression
-  ├─ Design Lock
-  └─ Output Policy
-  │
-  ▼
-Danbooru Tag Gate
-  │
-  ├───────────────┬────────────────┐
-  ▼               ▼                ▼
-Anima          NAI5             Generic
-Renderer       Renderer         Renderer
-  │               │
-Tag + NL      Community Tags
-\`\`\`
+完整图见上方 [工作流总览](#-工作流总览--workflow-map)。核心原则：**Identity / Director / Blueprint 分别负责偏好、决策与设计；Prompt Core 负责共享视觉事实，Tag Gate 负责标签证据，Renderer 只处理目标模型格式。**
 
 ### Source layers
 
