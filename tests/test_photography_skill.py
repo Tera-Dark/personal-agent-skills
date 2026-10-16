@@ -58,7 +58,7 @@ class CinematicCompositionContracts(unittest.TestCase):
                     "sequence_mode", "shot_scale_tradeoff"):
             self.assertIn(key, body)
         self.assertIn("不按个人摄影师或账号命名风格", body)
-        self.assertIn("不能误当", body)
+        self.assertIn("不将任何人的姓名作为 NAI5", body)
         self.assertIn("canon identity/outfit", matrix)
 
     def test_old_named_reference_is_absent_from_all_source_docs(self):
