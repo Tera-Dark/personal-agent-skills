@@ -3,7 +3,7 @@ name: evaluation-loop
 description: Evaluates a generated image or compiled prompt against the original Creative Brief and blueprint, using a fixed rubric (identity preservation, outfit binding, spatial clarity, unrequested additions, V1/V2 consistency, output contract) plus a design-layer read (thesis, silhouette, causality, density, punctum, one strange thing). Diagnoses which layer failed and routes the fix to that layer with a single-variable change. Use on any feedback round: 太平淡, 太乱, 不像, 没人味, 这版可以, 评价一下, 哪里不对, compare versions.
 metadata:
   author: Tera-Dark
-  version: "2.7.0"
+  version: "2.7.1"
   layer: "06_evaluation"
   load: "on-demand"
   status: "active"
@@ -42,6 +42,10 @@ metadata:
 ```
 
 **技术质量（手、解剖、清晰度）排最后。** 一张技术正确的图仍然可以因为没有人而失败。
+
+## Artist Eye · 创意批评（按需）
+
+当本轮使用跨媒介参考、Artist Eye、三向竞争或用户评价「有无作者感」时，读取 `references/artist-eye-review-protocol.md`：先保留身份锁和已有六维技术检查，再判断命题、主图形、行为因果、观看立场、光色节奏、创作必要性。给每维 `PASS / WEAK / FAIL / N/A` 和一处可见证据，按第一个失败 owner 回退，只动一个变量。用 `tests/artist-eye-regression.md` 的跨题材测试思想检验反模板，但不要将设计自检称为 NAI5 成图通过。允许朴素生活图、极简白底和静态编辑图**没有**强制怪点。自动美感评分不代替用户判断。
 
 ## 六维评分表（与 `tests/test-suite.md` 一致）
 
@@ -111,3 +115,7 @@ Design Read：命题 成立 / 轮廓 弱 / 因果 缺失 / 机位 缺失 / 密�
 2. **怪点不是免死金牌**：若用户反馈“丑”，先撤回或重做怪点，再检查比例 / 轮廓 / 色块 / 剪裁；不能用“这是刻意的”拒绝回滚。
 3. 用户认可的版本：记录成功维度到 `personal-identity-profile/references/taste-signature.md` § 5。
 3. 一次否决不升格为永久规则；≥3 次或用户明说才写入 `design-dislikes.md`。
+
+## References
+
+- `references/artist-eye-review-protocol.md` — 艺术性评审证据、反模板判断、单变量 A/B 与用户成图反馈等级。
