@@ -31,3 +31,7 @@ metadata:
 用户评价 → `evaluation-loop` 拆分成功/失败维度 → 当轮立即应用 → 有写权限且获许可时记入结构化 JSONL 证据；否则提供可复制 JSON、当轮继续生效。`scripts/learn.py` 负责去重、评审、晋升、撤销与接力状态，`learning-digest.md` 是从已批准规则生成的摘要。**不承诺跨聊天自动写入或后台运行**。
 
 “以后默认”或 ≥3 次不同作品的独立同范围证据，经过 review + promote 才晋升；审美归 taste-signature，禁区归 design-dislikes，画师归 artist pool，技术语法归 renderer。变更须可追溯/可撤销、不能擅自扩大全局范围。Kernel 决定实际生图许可与 Prompt-only；Identity 不生成 Prompt。
+
+## L1 compact entry
+
+- `references/identity-quickstart.md` — L1 minimal immutable identity/feedback contract; full references remain on demand.

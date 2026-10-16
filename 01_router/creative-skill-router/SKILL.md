@@ -94,6 +94,7 @@ ComfyUI / LoRA / dataset → 对应 technical module；planned 不得伪装为�
 按意图而非关键词；目标模型只决定 renderer；共享规则仅一个 owner。未知目标影响语法时最多问一个问题。设计 + Prompt + LoRA 按阶段执行。Router 不展示路由长文，直接处理任务。
 
 ## References
+- `references/router-quickstart.md` — L1 lightweight routing summary; full skill contract is L3.
 - `references/conversation-qol.md` — **按需：高频短句、一框复制、继续/回退、口语化偏好学习入口**。
 - `references/task-classification.md`
 - `references/routing-rules.md`

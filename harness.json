@@ -25,11 +25,11 @@
   ],
   "always_on": {
     "personal-identity-profile": [
-      "SKILL.md",
+      "references/identity-quickstart.md",
       "references/taste-core.md"
     ],
     "creative-skill-router": [
-      "SKILL.md"
+      "references/router-quickstart.md"
     ]
   },
   "handshake": "Harness v{version} loaded · {modules} modules · 说需求，或发参考图。",
