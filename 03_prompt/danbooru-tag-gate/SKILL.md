@@ -1,9 +1,9 @@
 ---
 name: danbooru-tag-gate
-description: Web-first validation boundary for Danbooru-derived hard tags shared by Anima and NAI5 workflows. Resolves exact canonical tags, exact aliases, or missing without fuzzy promotion. Use whenever a prompt packet needs verified Danbooru identity.
+description: Web-first validation boundary for Danbooru-derived hard tags shared by Anima and NAI5 plus MOSS-Image Tag-mode workflows. Resolves exact canonical tags, exact aliases, or missing without fuzzy promotion. Use whenever a prompt packet needs verified Danbooru identity.
 metadata:
   author: Tera-Dark
-  version: "1.3.0"
+  version: "1.3.1"
   layer: "03_prompt"
   load: "on-demand"
   status: "active"
@@ -18,7 +18,7 @@ metadata:
 输出：共享 verified tag packet，供任意 renderer 消费。
 
 上游：visual-prompt-core 或模型适配流程中的 tag candidates
-下游：anima-renderer / nai5-renderer
+下游：anima-renderer / nai5-renderer / moss-image-renderer（仅 Tag 模式或身份核验）
 不做：不设计、不选择 artist、不进行 fuzzy matching、不负责目标模型语法。
 
 ## 数据源
@@ -92,12 +92,13 @@ matched_alias
 source
 
 不要在这里做：
+- MOSS Caption 重写、风格词强度评估或 Layout 坐标
 - Anima syntax escaping
 - NAI5 weight syntax
 - NAI5 char1 / source# / target# / mutual#
 - renderer-specific ranking
 
-Canonical identity 永远保持原值。
+Canonical identity 永远保持原值。MOSS 在纯 Caption 或 Layout 模式不强制加载本 Gate；用户明确 Tags / canonical identity 才查证，模型训练识别率仍未知。
 
 ## Failure
 
