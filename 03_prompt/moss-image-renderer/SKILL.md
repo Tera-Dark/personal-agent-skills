@@ -44,7 +44,7 @@ MOSS 官方确认三种输入**格式**、Tag 字段顺序和示例；未发布�
 - Negative：Python 默认空，官方指南给出可选负面 `nsfw, worst quality, bad anatomy, watermark, jpeg artifact`；仅在用户提出或具体故障需要时单独给，不默认污染 Positive。
 - 只在用户问工作流/参数时给设置建议，不将 CFG / steps / shift 写进 prompt。官方推理设置见 `references/official-spec-and-sources.md`。
 - 保持模型无关 Packet 中 locked_facts、人物性别/数目、原服装、具体机位、动作关系、画幅与色彩职责；不额外添加樱花、路灯、雨夜、光斑或风格画师。
-- 官方 [Official] 与候选 [Hypothesis]、用户真实跑图 [User-tested] 证据状态必须明确区分。
+- 官方 [Official] 与候选 [Hypothesis]、用户真实跑图 [User-tested] 证据状态必须明确区分。未曾在 MOSS 实际跑图的候选默认标记 `IMAGE-PENDING`，不推断真实触发强度。
 - **失败退化**：Caption 不因标签索引不可用而中止；确需核实的 Tag 若 Gate 不可用则降为描述；Layout 编译失败必须报告，不得假装合法。
 - 用户仅说“输出提示词”，按 PROMPT ONLY 一整块交付，不生成图片。
 
