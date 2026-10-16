@@ -104,6 +104,24 @@ def main():
         if toks > 5000:
             warnings.append(f"{rel}: body ≈{toks} tokens (> 5000) — move detail into references/")
 
+    # L2 task packs are real authored files, not unlabeled shortcut prompts.
+    tier = cfg.get('knowledge_tiers') or {}
+    cards = tier.get('task_packs') or {}
+    if not isinstance(cards, dict) or not cards:
+        errors.append('knowledge_tiers.task_packs must be a nonempty map')
+    else:
+        for name, spec in cards.items():
+            rel = spec.get('source', '')
+            if not rel.startswith('kernel/task-packs/') or not os.path.isfile(os.path.join(root, rel)):
+                errors.append(f'L2 card missing or outside kernel/task-packs: {name} / {rel}')
+                continue
+            if L.estimate_tokens(open(os.path.join(root, rel), encoding='utf-8').read()) > 1100:
+                errors.append(f'L2 task card exceeds 1100 tokens: {rel}')
+            for owner in spec.get('modules', []):
+                if owner not in skills or skills[owner]['metadata'].get('status') != 'active':
+                    errors.append(f'L2 task card {name}: invalid active owner {owner}')
+    if tier.get('l1_max_tokens', 999999) > cfg.get('core_budget_tokens', 0):
+        errors.append('L1 tier max exceeds existing core budget')
     # always-on config sanity
     for name, files in cfg.get("always_on", {}).items():
         if name not in skills:
