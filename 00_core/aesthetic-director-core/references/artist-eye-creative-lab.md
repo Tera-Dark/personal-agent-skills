@@ -24,7 +24,7 @@
 | Architecture/space | 建筑、室内、阈限空间 | 门槛/栏杆/楼梯对尺度、运动、情绪的实际作用 | 无意义的大窗、通道、螺旋楼梯 |
 | Visual perception/data | 构图标注、显著性、色彩科学 | 验证主次注意力、明度分区、视觉路径 | 让自动美感分数代替作者判断 |
 
-视觉变量可用 Bruce Block 的七类：space、line、shape、tone、color、movement、rhythm。**不用每类各塞一个元素**；要挑能服务命题的 1–2 个主变量，其余配合。
+视觉叙事结构可参考七类通用变量：space、line、shape、tone、color、movement、rhythm。**不用每类各塞一个元素**；要挑能服务命题的 1–2 个主变量，其余配合。
 
 ## 2. Artist Eye 创作前的快速探索（FULL）
 

@@ -1,0 +1,3 @@
+# Generated runtime bundles: readable through GitHub raw links, but collapse their large diffs.
+bundle/** linguist-generated=true
+docs/skill-registry.md linguist-generated=true

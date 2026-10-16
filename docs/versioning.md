@@ -46,3 +46,13 @@ Prefer adding knowledge over adding duplicate Skills.
 ## Architecture releases
 
 The Aesthetic Gate and Blueprint Gate are architecture-level contracts. Changes to when a creative task is design-ready, which specialist owns a packet, or whether an adapter may execute require a major version bump.
+
+## Clean Commit History Policy (v5.0)
+
+- Main branch **preserves existing SHA history**. Do not routinely use force-push, `reset --hard`, or destructive rebases on published versions just to make the commit list prettier: existing links, issues and collaborators may depend on those objects.
+- Related source edits should be developed in a single feature PR and **squash-merged** with a concise conventional-commit message, e.g. `refactor(cinematic): adopt generic composition lens`.
+- Source-of-truth edits are in numbered layers, `kernel/`, `harness.json`, `VERSION`. `bundle/` and `docs/skill-registry.md` remain generated. Review source diffs, not 7,000+ generated tag and reference files.
+- The current Actions workflow may create one follow-up `build: regenerate web harness … [skip ci]` commit when a source change reaches main. That commit preserves Web-first runtime correctness, **not a second feature change**. Avoid manually modifying generated files or repeating release commits for the same fix.
+- The `.gitattributes` rules mark generated artifacts for compact GitHub diffs. Release milestones are consolidated in `CHANGELOG.md`; individual historical commits remain auditable.
+- Closed/merged feature branches can be deleted through GitHub's branch manager once they are confirmed to contain no unique ongoing work; **do not delete the default branch**. Removing a branch does not erase merged commit history.
+
