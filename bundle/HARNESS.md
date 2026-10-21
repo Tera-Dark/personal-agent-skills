@@ -19,7 +19,7 @@ After loading, reply exactly with Harness v5.2.0 loaded · 19 modules · 说需�
 **FULL CREATIVE** makes new substantive design choices. **FAST VARIANT** changes only a named variable. **PROMPT ONLY** controls visible delivery, not evaluation depth.
 1. Read intent, images, model, locked identity, prior approvals/rejections.
 2. Router selects FULL, AUDIT or FAST VARIANT and loads only necessary knowledge.
-3. Director chooses new artistic direction (FULL) or preserves finished design (AUDIT); character/illustration specialists own Blueprint Gate. FAST VARIANT changes only named variables.
+3. Director chooses new artistic direction (FULL) or preserves finished design (AUDIT); character/illustration specialists own Blueprint Gate. FAST VARIANT changes only named variables. On repeated low-taste/weak-composition feedback, load the director's evidence-based visual-taste protocol (L3): separate observed facts from interpretive guesses, compare materially different visual plans, prove intended meaning through visible geometry, and reject inherited templates rather than adding decorative prompt words.
 4. Visual Prompt Packet from visual-prompt-core preserves visible geometry. For identity-sensitive Danbooru hard tags run danbooru-tag-gate (exact/alias only, no fuzzy promotion); then invoke selected renderer (NAI5/Anima/MOSS/Generic).
 5. Verify Design Lock, format and current user instructions. PROMPT ONLY hides intermediate options and outputs only the copyable result, without bypassing necessary checks.
 
@@ -68,7 +68,7 @@ card-only: only available index card may guide noncritical work. pipeline-unavai
 ### 5. Responsibilities and evidence
 - Identity owns taste/locks; creative director owns thesis and design strength; character and illustration specialists own concrete visible design; visual-prompt-core owns shared facts/Design Lock; renderers only serialize.
 - Evaluation diagnoses first failed owner, not a new design. Treat claims as [Official], [Community], [Personal experiment] or [Unverified]. Verified tag existence does not prove model recognition.
-- User corrections always override past preferences. No unwarranted added objects, genders, outfit changes, false claims of image inspection or fabricated citations.
+- User corrections always override past preferences. No unwarranted added objects, genders, outfit changes, false claims of image inspection or fabricated citations. Never claim literary/character interpretation is canonical without evidence; a thoughtful story paragraph is not proof that an image communicates it. Do not equate aesthetics with mandatory tragedy, symbolism, or complication.
 
 ### 6. Module index
 | module | load/status | purpose |
@@ -183,7 +183,7 @@ The owner primarily creates character/illustration prompts with NAI5 and Anima. 
 ---
 
 ## MODULE: creative-skill-router
-layer: 01_router · load: always · status: active · module version: 4.9.1 · harness 5.2.0
+layer: 01_router · load: always · status: active · module version: 4.10.0 · harness 5.2.0
 source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/01_router/creative-skill-router
 
 **description:** Intent router for creative requests: character and illustration design, NAI5/Anima/MOSS-Image prompts, reference analysis, feedback learning, ComfyUI and LoRA. Dispatches to the correct owner without redesigning or encoding model syntax.
@@ -194,7 +194,7 @@ source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/01_router/c
 
 #### L1 Router Quickstart
 
-Determine task, target model, user-locked facts, current correction and output mode. For known small portrait, two-person image, concept poster or single-variable edit load one selected L2 task card under bundle/task-packs. For novel multi-character / unusual original art, missing canon, difficult scene or failed L2 gate load full L3 aesthetic-director-core + proper design specialist and only relevant references. PROMPT ONLY hides planning, not quality checks.
+Determine task, target model, user-locked facts, current correction and output mode. For known small portrait, two-person image, concept poster or single-variable edit load one selected L2 task card under bundle/task-packs. For novel multi-character / unusual original art, missing canon, difficult scene or failed L2 gate load full L3 aesthetic-director-core + proper design specialist and only relevant references. **A user complaint about aesthetics, empty composition, unsupported character motivation or reusing the previous scene is an L3 escalation even if a basic L2 card exists:** load evaluation-loop + aesthetic-director-core's `references/visual-taste-evidence-protocol.md`, separate observed facts from interpretation, compare distinct visible composition mechanisms, then have illustration-direction prove meaning through form. Do not repair by adding decorative keywords, tragic lore or arbitrary light effects. PROMPT ONLY hides planning, not quality checks.
 
 Default target: last explicitly requested NAI5, Anima or MOSS-Image. MOSS Caption/Layout uses moss pack without mandatory tag lookup; MOSS Tags or canonical identity uses moss-tags with Danbooru Gate. For prompt compilation use visual-prompt-core → optional danbooru-tag-gate for hard tags → target renderer; model syntax does NOT belong to Router. NAI5 Base + per-character fields for multiple people; MOSS uses one Caption, comma Tags or yxyx/abs_centralized JSON Layout; no NAI5 character separators. Single image prompts in one copyable block. User asks to evaluate images → evaluation-loop; reference analysis → image-reverse-analysis; technical tasks route to corresponding modules, but planned technical cards are not implementations.
 

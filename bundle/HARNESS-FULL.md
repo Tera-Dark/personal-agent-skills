@@ -19,7 +19,7 @@ After loading, reply exactly with Harness v5.2.0 loaded · 19 modules · 说需�
 **FULL CREATIVE** makes new substantive design choices. **FAST VARIANT** changes only a named variable. **PROMPT ONLY** controls visible delivery, not evaluation depth.
 1. Read intent, images, model, locked identity, prior approvals/rejections.
 2. Router selects FULL, AUDIT or FAST VARIANT and loads only necessary knowledge.
-3. Director chooses new artistic direction (FULL) or preserves finished design (AUDIT); character/illustration specialists own Blueprint Gate. FAST VARIANT changes only named variables.
+3. Director chooses new artistic direction (FULL) or preserves finished design (AUDIT); character/illustration specialists own Blueprint Gate. FAST VARIANT changes only named variables. On repeated low-taste/weak-composition feedback, load the director's evidence-based visual-taste protocol (L3): separate observed facts from interpretive guesses, compare materially different visual plans, prove intended meaning through visible geometry, and reject inherited templates rather than adding decorative prompt words.
 4. Visual Prompt Packet from visual-prompt-core preserves visible geometry. For identity-sensitive Danbooru hard tags run danbooru-tag-gate (exact/alias only, no fuzzy promotion); then invoke selected renderer (NAI5/Anima/MOSS/Generic).
 5. Verify Design Lock, format and current user instructions. PROMPT ONLY hides intermediate options and outputs only the copyable result, without bypassing necessary checks.
 
@@ -68,7 +68,7 @@ card-only: only available index card may guide noncritical work. pipeline-unavai
 ### 5. Responsibilities and evidence
 - Identity owns taste/locks; creative director owns thesis and design strength; character and illustration specialists own concrete visible design; visual-prompt-core owns shared facts/Design Lock; renderers only serialize.
 - Evaluation diagnoses first failed owner, not a new design. Treat claims as [Official], [Community], [Personal experiment] or [Unverified]. Verified tag existence does not prove model recognition.
-- User corrections always override past preferences. No unwarranted added objects, genders, outfit changes, false claims of image inspection or fabricated citations.
+- User corrections always override past preferences. No unwarranted added objects, genders, outfit changes, false claims of image inspection or fabricated citations. Never claim literary/character interpretation is canonical without evidence; a thoughtful story paragraph is not proof that an image communicates it. Do not equate aesthetics with mandatory tragedy, symbolism, or complication.
 
 ### 6. Module index
 | module | load/status | purpose |
@@ -1690,7 +1690,7 @@ The owner primarily creates character/illustration prompts with NAI5 and Anima. 
 ---
 
 ## MODULE: aesthetic-director-core
-layer: 00_core · load: on-demand · status: active · module version: 2.5.1 · harness 5.2.0
+layer: 00_core · load: on-demand · status: active · module version: 2.6.0 · harness 5.2.0
 source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/00_core/aesthetic-director-core
 
 **description:** Creative direction layer that turns a vague request into one committed design idea before any blueprint or prompt is written. Runs a sequence of generative "moves" (find the obsession, plant a contradiction, pick from the tail, build causality, subtract, keep one strange thing) and produces a short Creative Brief with rejected alternatives. Use for any OC / character / illustration / fashion / key-visual request, whenever output feels generic, "AI-flavored", too plain, too busy, or when the user asks for taste, direction, 审美, 创意方向, 人味, 高级感, 不要AI味.
@@ -1769,6 +1769,10 @@ AUDIT 是必经的质量闸门，不等于“顺手美化”。没有失败证�
 
 **目标不是更怪，而是更有选择。新颖度不得牺牲脸、比例、轮廓、服装成立性和第一眼美感。**
 
+#### 2.3 Evidence-Based Taste Gate（2026-10-21）
+
+收到「美商差 / 构图没表达 / 人物动机乱编 / 仅把上一张换角色」反馈、独立寓意画缺乏可见证据或三案同质时，**先读 `references/visual-taste-evidence-protocol.md`**，完成 `SEE / READ / UNKNOWN`、三种不同构图机制竞争、形式与意义的可见举证、角色正典边界、删除无关元素，再进入 Blueprint。普通白底/日常/FAST VARIANT 不强制戏剧反转。仅看文字方案是 `SPEC`，**不可谎称视觉实测成功**。仍由本导演唯一拥有创意决定；Renderer 不得代补故事。
+
 #### 2. 九个创作动作（Creative Moves）
 
 按顺序执行；简单需求可合并 M1 / M3 / M6，M7、M9 在 daily、忠实还原与白底肖像中可明确标记 N/A。详细手法与示例见 `references/creative-moves.md`。
@@ -1815,7 +1819,7 @@ AUDIT 是必经的质量闸门，不等于“顺手美化”。没有失败证�
    ↓
 AUDIT：只审不改；失败则 ESCALATE → FULL
    ↓
-FULL：先过 Anti-Mediocrity Gate → M0 破平庸筛选 → M1–M3：生成 3 个结构机制不同的方向 → 淘汰 2 个（写理由）
+FULL：先过 Anti-Mediocrity Gate → 触发时走 Evidence-Based Taste Gate（事实/可见形式/角色动机证据）→ M0 破平庸筛选 → M1–M3：生成 3 个结构机制不同的方向 → 用视觉证据淘汰 2 个（写理由）
    ↓
 M4–M5：给幸存方向建因果链、定瞬间
    ↓
@@ -1872,6 +1876,8 @@ Brief 用中文或英文均可，跟随用户当前语言。不加解释段落�
 - [ ] 刺点是否服务题材，或应明确省略？
 - [ ] 是否踩了 `personal-identity-profile` 的禁区（手表、赛博、随机蝴蝶玫瑰、魔法阵粒子、形容词服装）？
 - [ ] 这一版如果发给一个真人设计师看，他会觉得是"有人做了选择"，还是"有人填了表"？
+- [ ] 寓意不看解释文字，是否能由画面里的手势、距离、明度或物件关系读出？是不是把自己编的角色心理当成正典？
+- [ ] 第一眼美感是否成立？是否误把「黑暗悲剧」「奇异点」「构图极繁」当成越多越好的审美尺度？
 
 
 #### 人物肖像与绘画叙事专项（按需）
@@ -1883,6 +1889,7 @@ Brief 用中文或英文均可，跟随用户当前语言。不加解释段落�
 
 #### References
 
+- `references/visual-taste-evidence-protocol.md` — 证据式观察、形式/意义对应、三种构图机制择优、角色动机边界、减法、失败回归和调研出处。
 - `references/creative-moves.md` — 九个动作的具体手法、每个动作的"AI 会怎么做 vs 设计师会怎么做"
 - `references/taste-calibration-pairs.md` — 成对示例：同一需求的通用答案与有判断的答案
 - `references/design-calibration-examples.md` — 基础参考设计拆解、必须做出的设计决定、禁止的捷径
@@ -2357,6 +2364,164 @@ This calibration synthesizes the user's supplied white-background half-body refe
 
 ###### Transfer rule
 Design one coherent portrait system first; add one selected rendering mechanism second. Never copy one creator's exact motifs or treat inaccessible / search-only names as confirmed style references.
+
+---
+
+### Reference: references/visual-taste-evidence-protocol.md
+
+#### Visual Taste Evidence Protocol · 基于证据的审美判断 / 方案择优（2026-10-21）
+
+> **性质**：aesthetic-director-core 的按需判断协议，非独立 Skill/设计 owner，不属于模型语法，也不是一份画师风格词典。只有用户明确要求提高美商、用户反复指出方案平庸/无表达、复杂独立插画/寓意作品或现有三案难以区分时优先加载。静态人设 / 白底 / 日常 / 原图还原可以使用轻量路线，不能强制虚构剧情。PROMPT ONLY 仍在内部用，外部只给最终 Prompt。
+>
+> **学习边界**：浏览网上的理论并不会自动提高实际出图美感；以下是有出处的观察、比较与批评方法转译成创作协议。方案文字仅可标为 SPEC/IMAGE-PENDING；未经用户真实成图/反馈，不得称出图已经过审美验证、出图成功率提升或用户已认可。
+
+##### 0. 核心误判：构思漂亮 ≠ 画面成立
+
+以往失败类型：收到「远坂凛抱着满溢圣杯」→ 套用前一张神圣油画的群像、云、天使、金光 → 被指出不独立 → 另造「她防止黑暗蔓延」的命运故事 → 补黑色污液、废墟、红宝石、唯一光口 → 只在文字里宣告寓意。**这一链条没有先问：哪一个实际可见关系最打动人、是否符合用户想看到的角色与题材、是否需要黑暗悲剧。**
+
+为此增加四项新的可追责判断，不能被「加入 cinematic / divine / chiaroscuro / 细节 / 镜头语言」跳过：
+
+- **EVIDENCE**：观察事实与主观诠释分开。想让人看到「欲望」或「怜悯」，具体是哪只手/哪处失衡/哪组图形传达？没有可指认依据就不是画面已有的表达。
+- **FORM–MEANING FIT**：主题必须造成 **形、位、尺度、接触、光、材质或色块** 至少一项不可替换的选择。只写「象征…」不算。
+- **TASTE SELECTION**：至少比较本质不同的视觉提案；不是比较谁写得长或更史诗，而是第一眼是否悦目、是否可信、是否适合角色、是否比熟套方案必要。
+- **SUBTRACTION**：从视觉目的反推每个道具和符号的存在理由。没有因果或视觉职责的装饰、宗教元素和背景层优先删除；同时保护风格需要的形式愉悦，不能为了「有用」把绘画简化成说明图。
+
+##### 1. 研究来源 → 可执行决定
+
+| 研究来源 | 可观察启发（来源陈述的改写） | 本仓库的工程转译（**自拟方法**，不是官方公式） |
+|---|---|---|
+| Getty · Understanding Formal Analysis | 平衡、强调、动线来自线、形、色、明度、空间及其关系 | 从 3–5 个大形/明度质量规划焦点，事后以小图/灰度判断是否读得出来 |
+| MoMA · Foundations for Engagement with Art / Slow Looking | 先仔细观察和描述，再给解释；注意观看者视线和情感反应 | 三栏「我实际看到 / 可能读到 / 还不确定」，每个抽象寓意都必须回指可见证据 |
+| Harvard Project Zero · See, Think, Wonder | 观察、推测和提问互相校正；不把猜想冒充事实 | 「视觉事实 → 观众可推断的两种含义 → 仍未解的问题」，允许保留多义性 |
+| NGA · Vermeer, Woman Holding a Balance | 天平/背后审判画/人物姿态/轴线彼此呼应，平静场面也能建立象征结构 | 安静图无需牺牲美型去补灾难；关系比塞入神圣装饰更有力量 |
+| Met · Caravaggio and His Followers / What Is in a Gesture? | 肢体、距离、光的选择让伦理冲突成为戏剧可见因素 | 一只手的朝向和观看关系可以比多人跪拜更有张力；道具与手必须存在行为因果 |
+| Animation Mentor · Appeal / Posing | 姿态意义、剪影、动作线与平衡共同保证动作可读 | 以无细节形影检验观众能否读到该动作，不以复杂姿态取代情绪 |
+| RISD · Introduction to Critique | 批评检查作品满足目标和实际传递内容，而非作者人格 | 按用户任务成功条件与可见证据做 PASS/WEAK/FAIL，而不是自夸作者感 |
+| ArtStation · Thumbnail concept workflows（实践案例） | 用黑白小稿和大块形状测试构图，之后再加细节 | 内部写出 A/B/C 三种不同明度/视觉质量方案；有真实草图时才声称「看过缩略图」 |
+
+**原始公开入口（研究时间 2026-10-21）：**
+- Getty: https://www.getty.edu/education/teachers/building_lessons/formal_analysis2.html
+- MoMA: https://www.moma.org/visit/accessibility/meetme/practice/foundations.html
+- MoMA Slow Looking: https://www.moma.org/visit/itineraries/slow-looking
+- Harvard Project Zero: https://www.pz.harvard.edu/resources/see-think-wonder
+- NGA Vermeer: https://www.nga.gov/research/publications/online-editions/dutch-paintings-seventeenth-century-woman-holding-balance-c
+- Met Caravaggio: https://www.metmuseum.org/es/essays/caravaggio-michelangelo-merisi-1571-1610-and-his-followers
+- Met Gesture: https://www.metmuseum.org/fr/perspectives/caravaggio-gesture
+- Animation Mentor: https://www.animationmentor.com/blog/tutorial-building-appealing-character-poses-for-animation/
+- RISD: https://artsandlanguage.risd.edu/intro-to-crit
+- Thumbnail creator case: https://samheisler.artstation.com/projects/NG59Yz
+
+##### 2. 任务路由：从需求决定何谓「好」，不能先套美学模板
+
+先判定主目标（不是五种都要）：
+
+1. **魅力肖像 / 日常随拍**：第一眼美型、人与衣装结构、细微非摆拍行为、舒服的裁切与大色块优先。没有象征和反转仍可优秀。
+2. **角色同人叙事**：先读取可靠人物事实和用户锁定设定；区分正典事实、合理推断、完全 AU/自由寓言。冲突由动机驱动，不凭同一 IP 名称随意附会「救赎/悲剧/黑化」。
+3. **观念/象征插画**：让主题在图形关系中可见，可暗示双重含义；不依赖一段解释来补没有画出的故事。
+4. **商业 KV / 海报**：看远读形、信息层级、文字安全区、可识别视觉冲突；不是堆装饰。
+5. **纯形式美 / 高繁造型**：轮廓韵律、材质工程、色彩对位与审美愉悦可以是目的本身；不要强制「每张图都必须痛苦、矛盾、有牺牲」。
+
+当用户只给「A抱着B」时，**锁的是 A、B、拥抱动作及指明的氛围；具体动机仍是创作空间**。先从角色性格、物件属性及动作的物理条件寻找值得表达的方向；缺证据的世界观猜测必须降格为候选诠释。
+
+##### 3. 决策式设计循环（FULL / 特别审美挑战用）
+
+###### Step 1 — LOOK：先观察/事实再解释
+
+建立三行内的 `SEE / READ / UNKNOWN`，不展示给只要 prompt 的用户。
+- SEE：被确认的角色特征、物件、用户希望的姿态、画幅/风格和拒绝项。
+- READ：作品希望诱发的情绪/关系，不要写成 canon。
+- UNKNOWN：未确认的剧情、圣杯性质、结局、人物真实心理；若影响设定真实性，检索或保持开放，不可编造成「她真实的动机」。
+
+###### Step 2 — ASK WHY：找画面自身的问题
+
+回答：观众会先看到什么？第二眼为什么停留？第三眼有没有可能产生另一种阅读？
+- **不是**「这个画面象征牺牲」，而是「她的手一边保护、一边松开；倒出的东西正改变画面里谁的位置」。
+- 有时没有第二义也合理：日常肖像可以纯粹让一瞬间的美和观察距离成立。
+
+###### Step 3 — DIVERGE：至少三种 *不同构图机制*，不单纯换背景
+
+同题优先使候选产生真实差异：
+- **Gesture drama**：手指与道具的真实接触、力量差异、人物反应；画幅可靠近人物。
+- **Scale / negative space**：身体与物件的比例、安静区域的份量改变含义；可以极简。
+- **Material / pictorial metaphor**：材料的溢出/扩散/反射直接主导画布形，而不是往场景里加魔法光点。
+
+每候选仅记录：一条可见主关系 / 一个大形 / 观看位置 / 关键动作 / 一个明确风险 / 两个主动不加的物件。候选只需要 1–2 句，不写成长 prompt；第二案若只能改颜色或元素数量，即判为同一案。
+
+###### Step 4 — PROVE THE PICTURE：形式证据测试
+
+- **两秒观看**：假设图片缩小到约 96px，主体是谁？最大形是什么？视觉路径往哪？无法由文字充分验证时标记为「预测」，不假称已有缩略图。
+- **动作物理**：物件质量由哪只手承担？肩颈与躯干重心怎样因这个动作改变？动作线与剪影在黑块中是否可读？
+- **意义可见**：删掉所有标题、寓意旁白与风格词，观察者还能因哪项**可指认关系**形成相近理解？最多保留一条关键符号链，别同时放「天使+圣冠+血泪+教堂+门+石碑」。
+- **图形工艺**：3–5 个大形/明度分区、主要边缘的清晰/失边、中心/偏置重量、动线起落、主配色和受光方向互相协调。
+- **独立原作**：参考某个视觉机制不等于把上一张的天使、云层、跪拜群像和正中升天挪过来。重用同视觉任务的样板时必须解释为什么继续必要。
+- **跨模型可执行**：如果关系全部藏在抽象句里、生成模型无法绘制，会在编译阶段退化成可见动作与空间事实。
+
+###### Step 5 — JUDGE：不是加权打分，而是比较淘汰
+
+分别检查：第一眼美感 / 角色身份的不可替换性 / 概念独特度 / 具体可见的意义 / 图形完成度预期 / 目标模型可生成性。用 **PASS / WEAK / FAIL** + 证据，不产出虚构的 `92/100`。
+
+**硬否决优先级**：用户明确否定或设定冲突 > 视觉结构明显不成立 > 寓意仅靠旁白支撑 > 重复套模板 > 无关装饰抢走主体。其余是 trade-off，艺术不需要每项满分。选不出明显更佳案时，不要把一案强行夸成最佳，退回换构图机制。
+
+###### Step 6 — SUBTRACT：一物一责，形式愉悦是合法职责
+
+每个物件/灯光/边缘问：「它改变了姿态、轮廓、重心、注视路径、色块或可见故事中的什么？」答不出→删/弱化。装饰若确实维持 rhythm、focal hierarchy 或美感，也可以保留。**不把减法等于画面一定要空，不把最大戏剧等于最佳审美。**
+
+###### Step 7 — COMPILE / VERIFY：设计层与模型层彻底分开
+
+Design Blueprint 应产出稳定的可见几何、手物接触、观察者位置、色彩布局、服饰锚点及明确禁添项；模型 Renderer 仅做语法翻译。Anima 仍然是 **紧凑 Tag + 一段 Natural Language**，不能把调研笔记、选择理由、上游评分、Quality / Meta / Composition 章节名作为正面词。这与 prompt-only 偏好兼容。
+
+**反馈判定**：
+- 只写文字方案，状态 `SPEC`；
+- 已交付 Prompt 尚未生成，`IMAGE-PENDING`；
+- 看到了图，才对视觉事实评价 `IMAGE-REVIEWED`；
+- 用户认可具体画面，才在该轴记录 `USER-APPROVED`。
+未看到的图不能假设模型执行效果，不能凭检查表把「审美提高」当成既成事实。
+
+##### 4. 失败回归：与本轮「凛 × 满溢圣杯」相关
+
+**负例 1：「换脸式崇高」**：
+- 上一张是阿米娅与群像、天使、宗教油画 → 这张换远坂凛却沿用居中升天、天使、跪拜群像。
+- 失败原因不是「场景不够华丽」，而是新题没有自己的核心形式关系；主角可互换。
+- 修复层：aesthetic-director-core 全新比较三个构图机制；不能从上一张克隆天空/群像后贴新角色。
+
+**负例 2：「擅自赋义」**：
+- 输入仅「远坂凛抱着满溢圣杯」→ 自动解释她阻止黑色污液流出、加红宝石耗尽、称为圣杯的灾厄。
+- 这些是**某种 AU/诠释候选**，不是从这一句话可推出的真实剧情；未通过角色动机与用户调性核验。
+- 修复层：先问拥抱动作有哪些可能的情绪（渴望、疑惑、喜悦、守护、尴尬、贪玩、负重、克制），再决定哪一个符合用户想要的独立插画，**不要默认悲剧和神圣 = 深刻**。
+
+**负例 3：「文字深刻而画面普通」**：
+- 用 400 个词说传承、胜利、责任、神圣；缩略图仍是一个抱杯女孩 + 昏暗环境 + 一束光。
+- 修复层：illustration-direction 要求从三种不同大形和接触/材质关系中选最有视觉必要性的一种，再允许写 prompt。
+
+**轻量正向探索方向（仅教学示意，非用户已认可的定稿）**：
+- 「液体流向与头发/衣褶形成同一主曲线」，重点是流动和身体轮廓的画面设计；人物没有被强制编成救世主。
+- 「圣杯遮住面部的一部分，保留唯一可读的眼神与手指」，突出欲望与私密感；不自动升天或放神性道具。
+- 「人和杯的尺寸与身体承重制造轻微失衡」，把“满溢”变成画幅内决定性的视觉重量；不额外加黑液解释。
+
+##### 5. 何时停用（防新的套路系统取代旧套路）
+
+- 用户要求反推 / 精准还原 / 原版服设 / 已批准设计 FAST VARIANT：以 Design Lock 为主，不强行三选一、不替用户添动机。
+- 白底人设、形象肖像、小画师极简时装、抽象形式美：**允许不讲故事、不加寓言、不追求 0.5 秒前后**。
+- 本轮形象足够好时可明确跳过额外象征；不自动加“唯一怪点”。
+- 没有真实草图和用户生成反馈时，所有构图判断都是**规划级**证据，切勿写成审美成功率的证明。
+
+##### 6. 简短内部检查卡（不要直接印到最终 Prompt）
+
+`TASK / CANON / SEE / READ / UNKNOWN → 3 DIFFERENT VISUAL MECHANISMS → FORM EVIDENCE → BEAUTY FLOOR → ELIMINATION → SUBTRACTION → LOCKED BLUEPRINT → RENDERER → IMAGE FEEDBACK`
+
+检查核心问题：**如果把“这是关于____的隐喻”删掉，观众只凭画面还能看到什么？如果只有解释才成立，退回设计，不要再补修饰词。**
+
+##### 7. 如何真的积累审美，而不是只多一张检查表（按用户提供图 / 明确要求研究时）
+
+把研究转成可验证的**对照学习循环**，而不是词库：
+
+1. **慢看（MoMA / Project Zero）**：每次只观察少量高质量作品，在不看作者说明前记下第一眼焦点、主形、眼睛路径、接触点、明暗、留白；然后单独写自己读出的情绪与未能解释的地方。不得把主观感受冒充作者原意。
+2. **拆形（Getty / Animation Mentor）**：用简单灰度小稿 / 文字块图抽出 3–5 个主要明度质量与一条行为线。实图审查必须有实际图；纯文字方案只能把它当构图预测。
+3. **逆向应用（独立创作）**：挑一条可迁移机制（如价值对位、目光信息差、轮廓环抱、物理重心），以不同角色、道具、主构图形设计新图。不要复制原作的视角+角色位置+配色+道具组合。
+4. **并列选择（RISD 批评）**：先评「贴合目标与实际传达什么」，再评吸引力、可读性、身份；记录为什么 A 比 B 好，允许意见分歧。目标不是找到唯一客观美感分。
+5. **出图复盘（真实证据）**：固定目标模型/画幅/seed 等主要变量，尽可能单变量 A/B；记录实际失败究竟在构图、角色、模型服从或色彩。只把用户明确偏好与真实图像反馈交由既有 Identity 反馈机制审核晋升，不拿一张图临时强化全局规则。
+
+**每轮最小沉淀**：一条「更好的可见决定」＋一条「误判/被用户否定的决定」＋对应证据等级。研究越多也不能跳过用户的真实审美判断。无图不输出「这一招显著改善生成效果」；有图但无用户认可，也不标 USER-APPROVED。
 
 ---
 
@@ -4323,7 +4488,7 @@ Use the grammar, not a fixed palette or layout. Do not force teal/orange, giant 
 ---
 
 ## MODULE: creative-skill-router
-layer: 01_router · load: always · status: active · module version: 4.9.1 · harness 5.2.0
+layer: 01_router · load: always · status: active · module version: 4.10.0 · harness 5.2.0
 source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/01_router/creative-skill-router
 
 **description:** Intent router for creative requests: character and illustration design, NAI5/Anima/MOSS-Image prompts, reference analysis, feedback learning, ComfyUI and LoRA. Dispatches to the correct owner without redesigning or encoding model syntax.
@@ -4348,6 +4513,12 @@ source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/01_router/c
 - L2：身份已知的笑颜半身用 portrait；明确关系的双人电影感用 cinematic-duo；已定形的唱片/海报用 concept-poster；锁定版小改用 fast-variant。按需读取 bundle/task-packs 中的一张卡，同时选择原有 NAI5 / Anima pipeline pack。
 - L3：原创设定复杂、角色身份未明、正典核实、摄影叙事困难、参考推演或 L2 检验失败时读取完整设计 owner 与必要研究资料。
 - 强度由题材而非形容词决定：daily / portrait / cinematic / experimental。所选模式可以明确偏离默认，且不允许破坏角色身份与美感底盘；全文见 aesthetic-director-core 的 adaptive-creative-intensity reference。PROMPT ONLY 不等于简单创作。
+
+#### 低审美反馈与独立插画：强制深入设计层（非提示词问题）
+
+明确收到「提高美商 / 没有审美 / 构图和表达不成立 / 人物动机没理解 / 换脸沿用旧图」时，**无论目标是 Anima/NAI5/MOSS，优先启用 L3 的 `evaluation-loop` + `aesthetic-director-core` 的 `00_core/aesthetic-director-core/references/visual-taste-evidence-protocol.md`**。纠正的是「观念→可见形式→择优」而不是渲染风格或艺术家列表。用户只要看方法论时交付分析；用户要最终 Prompt 时内部执行，外部只出按目标模型规范编译的提示词。
+
+遇到角色同人先校验身份与用户要求的原设，区分已知正典和自由创作；没有证据不冒称了解角色真正愿望。不得把上一张场景结构未经授权复制给新主题。反馈持久晋升仍按既有个人 Identity 机制执行。
 
 #### MOSS-Image 并行分支
 
@@ -4496,7 +4667,7 @@ ComfyUI / LoRA / dataset → 对应 technical module；planned 不得伪装为�
 
 #### L1 Router Quickstart
 
-Determine task, target model, user-locked facts, current correction and output mode. For known small portrait, two-person image, concept poster or single-variable edit load one selected L2 task card under bundle/task-packs. For novel multi-character / unusual original art, missing canon, difficult scene or failed L2 gate load full L3 aesthetic-director-core + proper design specialist and only relevant references. PROMPT ONLY hides planning, not quality checks.
+Determine task, target model, user-locked facts, current correction and output mode. For known small portrait, two-person image, concept poster or single-variable edit load one selected L2 task card under bundle/task-packs. For novel multi-character / unusual original art, missing canon, difficult scene or failed L2 gate load full L3 aesthetic-director-core + proper design specialist and only relevant references. **A user complaint about aesthetics, empty composition, unsupported character motivation or reusing the previous scene is an L3 escalation even if a basic L2 card exists:** load evaluation-loop + aesthetic-director-core's `references/visual-taste-evidence-protocol.md`, separate observed facts from interpretation, compare distinct visible composition mechanisms, then have illustration-direction prove meaning through form. Do not repair by adding decorative keywords, tragic lore or arbitrary light effects. PROMPT ONLY hides planning, not quality checks.
 
 Default target: last explicitly requested NAI5, Anima or MOSS-Image. MOSS Caption/Layout uses moss pack without mandatory tag lookup; MOSS Tags or canonical identity uses moss-tags with Danbooru Gate. For prompt compilation use visual-prompt-core → optional danbooru-tag-gate for hard tags → target renderer; model syntax does NOT belong to Router. NAI5 Base + per-character fields for multiple people; MOSS uses one Caption, comma Tags or yxyx/abs_centralized JSON Layout; no NAI5 character separators. Single image prompts in one copyable block. User asks to evaluate images → evaluation-loop; reference analysis → image-reverse-analysis; technical tasks route to corresponding modules, but planned technical cards are not implementations.
 
@@ -5791,7 +5962,7 @@ Tier 4: Micro Accessories (五金扣件/围巾/束带/首饰)
 ---
 
 ## MODULE: illustration-direction
-layer: 02_design · load: on-demand · status: active · module version: 2.9.0 · harness 5.2.0
+layer: 02_design · load: on-demand · status: active · module version: 3.0.0 · harness 5.2.0
 source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_design/illustration-direction
 
 **description:** Turns a Creative Brief into an authored, model-agnostic illustration blueprint — the image thesis, captured moment, visual motif, environment-character relationship, camera and framing, scale contrast, negative space, physical light sources, density map, narrative residue, and one coherent surreal detail. Use for 插画, 氛围图, 竖屏, 半留白, 印象风, 故事感, key visual, poster, scene illustration, cinematic composition, or whenever a character needs to be placed into a designed moment rather than displayed on a plate. Never writes model-specific prompt syntax.
@@ -5815,6 +5986,10 @@ source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_design/i
 - “婚礼已经结束，只剩空椅子和迟到的人。”
 
 如果只能写成“漂亮的神殿 / 梦幻花园 / 华丽场景”，说明画面还没有被设计。
+
+#### 来自 Evidence-Based Taste Gate 的视觉举证（2026-10-21）
+
+导演调用 `00_core/aesthetic-director-core/references/visual-taste-evidence-protocol.md` 时，本模块承接幸存方案，**用实际可见的动作接触、主构图形、明度/距离、遮挡/材料、真实光源证明命题**；不接受仅在文字里解释悲剧、命运或神性。内部保留 `visual_evidence` 和 `interpretation_status`（正典 / 推断 / AU / UNKNOWN），传给 Visual Prompt Core 的只有可画的事实。不要沿用前图布景或替用户补黑液/天使；纯美型图不需故事。没有实际图时只可做文本预测，不能称视觉缩略图已通过。
 
 #### 硬规则
 
@@ -5917,6 +6092,7 @@ An illustration blueprint is READY only when visual thesis, captured moment, mot
 #### 自检
 
 - [ ] 能用一句视觉句子说明画面命题吗？
+- [ ] 删除象征解释的句子后，构图/动作/视觉关系是否仍传达同样或有意多义的感受？角色动机来自可靠资料还是无证据编造？
 - [ ] 动态画面能说出前 1 秒和后 1 秒吗？静态寓言/编辑海报是否有明确可见的视觉关系？
 - [ ] 机位是否在布局前确定，并且能交代观看者位置、镜头侧向/高度/距离以及它改变了什么？
 - [ ] 前/中/后关系、交叠遮挡、画幅裁切和重点清晰度是否由同一机位推导、彼此兼容？
@@ -10981,7 +11157,7 @@ source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/04_analysis
 ---
 
 ## MODULE: evaluation-loop
-layer: 06_evaluation · load: on-demand · status: active · module version: 2.7.1 · harness 5.2.0
+layer: 06_evaluation · load: on-demand · status: active · module version: 2.8.0 · harness 5.2.0
 source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/06_evaluation/evaluation-loop
 
 **description:** Evaluates a generated image or compiled prompt against the original Creative Brief and blueprint, using a fixed rubric (identity preservation, outfit binding, spatial clarity, unrequested additions, V1/V2 consistency, output contract) plus a design-layer read (thesis, silhouette, causality, density, punctum, one strange thing). Diagnoses which layer failed and routes the fix to that layer with a single-variable change. Use on any feedback round: 太平淡, 太乱, 不像, 没人味, 这版可以, 评价一下, 哪里不对, compare versions.
@@ -11023,6 +11199,16 @@ source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/06_evaluati
 #### Artist Eye · 创意批评（按需）
 
 当本轮使用跨媒介参考、Artist Eye、三向竞争或用户评价「有无作者感」时，读取 `references/artist-eye-review-protocol.md`：先保留身份锁和已有六维技术检查，再判断命题、主图形、行为因果、观看立场、光色节奏、创作必要性。给每维 `PASS / WEAK / FAIL / N/A` 和一处可见证据，按第一个失败 owner 回退，只动一个变量。用 `tests/artist-eye-regression.md` 的跨题材测试思想检验反模板，但不要将设计自检称为 NAI5 成图通过。允许朴素生活图、极简白底和静态编辑图**没有**强制怪点。自动美感评分不代替用户判断。
+
+#### Evidence-Based Art Critique · 反「文字寓意冒充画面表达」
+
+当用户指出「美商没进步」「没有理解人物动机」「构图没有表达」「一直把上一张场景换角色」时，优先加载 `references/evidence-based-art-critique.md`，对作品或文本方案分别核验三层：
+
+- **OBSERVABLE**：画面是否真的具备想让观众感受到的可见形/光/手势/空间证据，还是把解释性故事写在了 prompt 结尾？
+- **CHARACTER MOTIVATION**：角色心理和物件关系是用户明确指定、已核实正典、可理解推测，还是被擅自说成「她就是在拯救世界」？
+- **SELECTION QUALITY**：方案之间是否真的比拼不同画面机制，还是共享前一张的群像、圣光、天使、满屏气氛，再换名？
+
+一个失败就优先返回 `aesthetic-director-core`（错误命题或臆造角色动机）或 `illustration-direction`（无法可见呈现、构图弱）。**禁止直接通过增加寓意旁白、精致形容词、质量串或复杂画面元素修补。** 完整的修复路由与可复现反例见 `references/evidence-based-art-critique.md`。对纯美型/静态图，不强制悲剧、故事反转或「唯一怪点」。
 
 #### 六维评分表（与 `tests/test-suite.md` 一致）
 
@@ -11095,6 +11281,7 @@ Design Read：命题 成立 / 轮廓 弱 / 因果 缺失 / 机位 缺失 / 密�
 
 #### References
 
+- `references/evidence-based-art-critique.md` — 可见证据 / 角色诠释来源 / 方案差异判断；对应低审美反馈的修复路由与回归用例。
 - `references/artist-eye-review-protocol.md` — 艺术性评审证据、反模板判断、单变量 A/B 与用户成图反馈等级。
 
 ---
@@ -11153,6 +11340,56 @@ Design Read：命题 成立 / 轮廓 弱 / 因果 缺失 / 机位 缺失 / 密�
 `Artist Eye: SPEC · 命题 PASS（「阴影先于旅人抵达门」） · 主图形 PASS（门外亮楔） · 人物因果 WEAK（抬手未与物件接触） · 优先修正：illustration-direction 只改接触点，锁定身份与色块；未生成图。`
 
 PROMPT ONLY 任务在内部记录，不把此诊断长单发给用户；只有用户要求评价、复盘、改进方案时展示。
+
+---
+
+### Reference: references/evidence-based-art-critique.md
+
+#### Evidence-Based Art Critique · 反语言幻觉审美评审（2026-10-21）
+
+> 只诊断，不写图、不越级修 Prompt。用户明确反馈「美商差、没有表达、角色动机乱编、只是换人复制上一张」时启用。事实来源和详细创作工作流：`../../../00_core/aesthetic-director-core/references/visual-taste-evidence-protocol.md`（从当前 evaluation 目录往上应以仓库根为准；运行时用模块源 URL 查阅，不能将自动拼路径视为成功加载）。公共理论研究来源见该文 §1。
+
+##### A. 首先分清输入证据
+
+- **只有文字/Prompt**：只能判断设计决策是否具体、是否存在矛盾、可以预测哪些风险；标记 `SPEC` 或 `IMAGE-PENDING`。不能用「缩略图十分精彩」之类看过图的说法。
+- **有生成图或参考图**：先标记真实可观察的视觉元素，包括主体比例、姿态、明暗路径、可见物件相互关系；可标记 `IMAGE-REVIEWED`，但不是用户认可。
+- **有用户意见**：分别提取被认可的轴/被否定的轴；明确「这张不好看」不意味着用户从此永久排除暗色调/油画。
+
+##### B. 审美评审必须回答的四组问题
+
+| 核验 | FAIL 的具体证据 | 唯一优先回退 |
+|---|---|---|
+| **语义可见性** | Prompt 只有「悲悯/命运/救赎」解释，却没有手、动作、位置、遮挡、物体状态承接这个意思 | director 若命题本身不成立；illustration-direction 若命题对但布局不传达 |
+| **人物动机/正典** | 未核对设定却写出决定性心理/结局；角色只是万能救世/牺牲容器；用户只要拥抱却被强迫阻止灾难 | aesthetic-director-core 或角色事实核实 |
+| **画面机制独立性** | 新插画和上一张画面都有同一居中升天、跪拜人群、天使、云、神光，只替换名字/道具 | aesthetic-director-core |
+| **基础形式美** | 角色脸/服装失真、剪影迟钝、明度混乱、画面重量无平衡；靠堆光效营造假复杂 | illustration-direction / character-design-engine |
+
+每项写一条可见或文本直接证据，`PASS / WEAK / FAIL / N/A`。不填假的权重分、艺术质量百分数；**选首个高优先级失败 owner 修复，不同时换 8 个元素**。
+
+##### C. 视觉阅读实验（由 MoMA / Project Zero 的观察→解释思想转译）
+
+若可看到图，请两次阅读：
+
+1. **First glance**（1–2 秒）：先读到谁、哪一个大图形、哪一种动作？焦点是否在用户要求的主体上？记录实际的形/明度，而不是先说「像巴洛克」。
+2. **Second look**：眼睛被哪些可见边缘、手势、反射、尺寸、对位拉到什么地方？这第二读是否使作品出现新的理解？
+3. **Without the explanation**：隐藏标题/故事旁白后，作品还可见地传达什么？允许多义性和纯形式美，严禁因为读不出「悲剧」就自动加哭泣/血液/教堂。
+4. **Swap & subtract**：同样表情、机位、主物件换一个少女还成立吗？删掉装饰，主体关系还成立吗？如果必要性消失，返回导演重设主关系。
+
+这些是**方法性试验**；没有用户真实图像就不能声称已进行了 First-glance 视觉验证。
+
+##### D. 失败链条回归：远坂凛抱满溢圣杯（上一轮反馈）
+
+- 原始用户锁：远坂凛、拥抱盛满而溢出的圣杯、独立插画。先后参考图中存在的天使/人群是**旧图特征，不是新图约束**。
+- **失败① 套模板**：从旧图继承圣光、云端人群、中心胜利构图。这是「替换角色」不是「另设计一张」，即使渲染写成大师级也不通过。
+- **失败② 擅自编剧情**：将「满溢」解释为「她在把邪恶封在杯内」并把她写成救世主，又添黑污液、宝石、废墟。未经用户认可或事实核实，不能称其为人物本意。
+- **失败③ 用故事补图**：独立成图仍是「一位女孩抱杯+黑暗环境+侧光」，用长段抽象文字解释神性和牺牲，不能替代真正的构图与行为设计。
+- 合格修复不是给这一版加更强权重、更多大师名和更戏剧化光效，而是走 director 的 `visual-taste-evidence-protocol.md` §3，生成**三种大形/行为机制不同**的方案，依据形式与用户审美选择一案；图像质量等真实用户实测。
+
+##### E. 最小输出
+
+`证据等级：SPEC/IMAGE-PENDING/IMAGE-REVIEWED · 第一失败：____（画面/文本证据） · owner：____ · 修复轴：____ · 其余锁定：____`
+
+PROMPT ONLY 的用户无需看到评审过程；当用户明确要求方法论或复盘时才说明。
 
 ---
 
