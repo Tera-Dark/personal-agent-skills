@@ -42,6 +42,9 @@ source: https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/0
 - 上述少女 `[80,240,500,900]` 在 1024×1024 下变为 `[-272,-432,388,-12]`；标题 `[544,160,940,288]` 变为 `[-352,32,-224,428]`。
 - 模型提示词最终顶层只保留 `summary`、`items`、`bbox_coord_space`、`bbox_format`；`width` / `height` 不在最终 JSON 中。
 - 必须校验画幅边界、box 正面积、文本是否完整和主体是否适配框；多面板用 `summary.canvas:"multi_panel"`，但不能让每个元素随意跨格。
+- **官方导出精度**：小数边先 `round(value, 9)`，再 `floor(x_min/y_min)`、`ceil(x_max/y_max)`，最后减去画布中心；太小以至在导出精度下零宽/高的框必须拒绝。不是「直接四舍五入所有 bbox 值」。
+- **字段白名单**：根部严格限制 `width,height,bbox_coord_space,bbox_format,summary,items`；summary 允许 `caption,meta,canvas,palette`；item 允许 `label,caption,bbox,text,tags,palette`。不接受 `children,parent,id,elements` 等自造结构；item 的 `text` 在官方编译器中可选（若 label=text 则必填）。
+- item 的 `label` 只能是 `object`、`character`、`text`；`summary.caption`、`item.caption` 必须是可见画面描述，不写 JSON 转换说明。允许自然遮挡与 box 叠合，但 bbox 不是画边框的指令。
 - 对需要严格文字的作品，保留 `text` 中的原语言和换行，且字体大/小由实际画幅预留空间决定。
 
 ### 编译
@@ -51,9 +54,10 @@ source: https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/0
 - 官方 enhancer 脚本：`https://github.com/OpenMOSS/MOSS-Image/blob/main/skills/moss-image-prompt-enhancer/scripts/compile_prompt.py`。
 
 Web-first 环境没有 shell 时：
-1. 若元素很少、整数边界明确，可以严格对照上面公式组成正式 yxyx JSON，并自检每一个坐标。
-2. 无法计算/验证精度时，交付 Caption，说明未提供受检 Layout；**绝不能假装 xyxy 草稿是可用输入**。
-3. 不修改用户指定的文字内容、行距或布局意图以“凑坐标”。
+1. 若只有明确的整数坐标，可给出**未执行脚本验证**的手算模型格式，并明确告知用户这一限制；不能称为「官方编译通过」。
+2. 若含小数、复杂多框，优先交付 Caption；明确要求 Layout 时可交付带尺寸的**可编辑草稿**并标注「尚未编译、不可直接粘贴到模型 Positive」。
+3. 不修改用户指定的文字内容、行距或布局意图以「凑坐标」。显式给出的宽高不是 16 倍数时须报告冲突，不暗改。
+4. 能执行 Python 时始终以实际编译成功且复核过的结果为准；不从记忆猜测编译结果。
 
 ### 与 NAI5 的界限
 

@@ -8,7 +8,7 @@
   "harness_full_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS-FULL.md",
   "handshake": "Harness v5.2.0 loaded · 19 modules · 说需求，或发参考图。",
   "core_tokens": 5117,
-  "full_tokens": 213173,
+  "full_tokens": 216707,
   "pipeline": {
     "aesthetic_gate": "aesthetic-director-core",
     "blueprint_gate": {
@@ -761,7 +761,7 @@
       "layer": "03_prompt",
       "load": "on-demand",
       "status": "active",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "description": "Thin OpenMOSS MOSS-Image renderer for turning approved Visual Prompt Packets into English Caption, optional Danbooru Tag, or native JSON Layout prompts. Uses verified tags only when needed; preserves visual design; never generates images.",
       "triggers": "MOSS-Image, MOSS Image, OpenMOSS, MOSS生图, moss prompt, moss tags, MOSS Layout, MOSS风格触发词",
       "path": "03_prompt/moss-image-renderer",
@@ -769,6 +769,7 @@
       "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/moss-image-renderer.md",
       "references": [
         "references/layout-contract.md",
+        "references/official-enhancer-workflow.md",
         "references/style-control.md",
         "references/examples.md",
         "references/official-spec-and-sources.md"
@@ -778,7 +779,13 @@
           "path": "references/layout-contract.md",
           "bundle_path": "bundle/references/moss-image-renderer/references/layout-contract.md",
           "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/moss-image-renderer/references/layout-contract.md",
-          "tokens": 929
+          "tokens": 1265
+        },
+        {
+          "path": "references/official-enhancer-workflow.md",
+          "bundle_path": "bundle/references/moss-image-renderer/references/official-enhancer-workflow.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/moss-image-renderer/references/official-enhancer-workflow.md",
+          "tokens": 2110
         },
         {
           "path": "references/style-control.md",
@@ -796,12 +803,12 @@
           "path": "references/official-spec-and-sources.md",
           "bundle_path": "bundle/references/moss-image-renderer/references/official-spec-and-sources.md",
           "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/moss-image-renderer/references/official-spec-and-sources.md",
-          "tokens": 1130
+          "tokens": 1293
         }
       ],
-      "tokens_skill": 1938,
-      "tokens_bundle": 2310,
-      "tokens_full_bundle": 6142
+      "tokens_skill": 2841,
+      "tokens_bundle": 3267,
+      "tokens_full_bundle": 9673
     },
     {
       "name": "nai5-renderer",
