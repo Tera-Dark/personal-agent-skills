@@ -1,4 +1,4 @@
-# MOSS-Image · 官方证据与使用范围（2026-10-16）
+# MOSS-Image · 官方证据与使用范围（2026-10-21 更新）
 
 本文件是**模型参考**而非独立创意设计模块；官方确认只支撑**格式和建议配置**，不等于个人已在 NAI5/ComfyUI 跑图验证。
 
@@ -10,6 +10,8 @@
 - [Official · Base model card] https://huggingface.co/OpenMOSS-Team/MOSS-Image-Base
 - [Official · SFT model card] https://huggingface.co/OpenMOSS-Team/MOSS-Image-SFT
 - [Official · Prompt Enhancer] https://github.com/OpenMOSS/MOSS-Image/blob/main/skills/moss-image-prompt-enhancer/SKILL.md
+- [Official · Prompt Enhancer compiler] https://github.com/OpenMOSS/MOSS-Image/blob/main/skills/moss-image-prompt-enhancer/scripts/compile_prompt.py
+- [Official · Prompt Enhancer test] https://github.com/OpenMOSS/MOSS-Image/blob/main/skills/moss-image-prompt-enhancer/scripts/test_compile_prompt.py
 - [Official · Pixel Layout draft contract] https://github.com/OpenMOSS/MOSS-Image/blob/main/skills/moss-image-prompt-enhancer/references/layout.md
 - [Official · ComfyUI] https://github.com/OpenMOSS/MOSS-Image/blob/main/comfyui/README.md
 
@@ -39,7 +41,7 @@
 
 [Official · language] 英文训练数据较多，推荐英文描述，但支持中文等语言；画面中的精确文字保持用户原本语言。
 
-[Official · layout] 有 `summary.caption`、平铺 `items`，元素可用 label 为 `text`/`object`/`character`；默认模型直接接收 `abs_centralized + yxyx`。**官方 Prompt Enhancer 的 draft 是左上角 abs + xyxy，只有编译后才是模型正面提示词**。生成宽高和 Layout 草稿宽高必须一致。
+[Official · layout] 有 `summary.caption`、平铺 `items`，元素可用 label 为 `text`/`object`/`character`；默认模型直接接收 `abs_centralized + yxyx`。**官方 Prompt Enhancer 的 draft 是左上角 abs + xyxy，只有编译后才是模型正面提示词**。生成宽高和 Layout 草稿宽高必须一致。官方编译器先将小数坐标 round 至 9 位再按像素包围，拒绝 16 非整倍尺寸、非法字段、越界/退化框、重复 JSON key 与非有限数字。Caption 草稿 `{"caption":"..."}` 编译成纯文本；Layout 成品是单行 JSON，不含 width/height。
 
 [Official · memory] ComfyUI 插件可安装在 custom_nodes/MOSS-Image，推荐参数 50/3/5/uncond22，显存卸载模式与实际速度取决于硬件。不能保证 RTX 4060 8GB 可以直接常驻全部模型。
 
