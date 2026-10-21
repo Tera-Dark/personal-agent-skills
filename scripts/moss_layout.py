@@ -4,6 +4,8 @@
 MOSS-Image accepted Layout: summary/items + centered yxyx coordinates.
 This standalone standard-library helper never generates images.
 Spec: https://github.com/OpenMOSS/MOSS-Image/blob/main/skills/moss-image-prompt-enhancer/references/layout.md
+Behavior aligned with official scripts/compile_prompt.py (2026-10-21).
+This is a local MIT implementation, not a vendored copy of the official script.
 """
 from __future__ import annotations
 
@@ -43,11 +45,14 @@ def bbox_to_native(bbox, width, height):
     x1, y1, x2, y2 = bbox
     require(0 <= x1 < x2 <= width and 0 <= y1 < y2 <= height,
             "bbox must have positive area inside the canvas")
-    # Contain fractional bbox within whole pixels before converting; never clip.
-    y_min = math.floor(y1) - height // 2
-    x_min = math.floor(x1) - width // 2
-    y_max = math.ceil(y2) - height // 2
-    x_max = math.ceil(x2) - width // 2
+    # Match the official prompt-enhancer's Echidna export precision: round to
+    # 9 decimal places before enclosing fractional pixel edges. Never clip.
+    y_min = math.floor(round(y1, 9)) - height // 2
+    x_min = math.floor(round(x1, 9)) - width // 2
+    y_max = math.ceil(round(y2, 9)) - height // 2
+    x_max = math.ceil(round(x2, 9)) - width // 2
+    require(y_min < y_max and x_min < x_max,
+            "bbox is too small at official export precision")
     return [y_min, x_min, y_max, x_max]
 
 
@@ -88,16 +93,14 @@ def compile_draft(draft):
         nonempty(item["caption"], f"{label}.caption")
         if item["label"] == "text":
             require("text" in item, f"{label} text item missing text")
-        elif "text" in item:
-            raise ValueError(f"{label} text field only allowed for text items")
         if "text" in item:
             nonempty(item["text"], f"{label}.text")
         for k in ("tags", "palette"):
             if k in item:
                 string_list(item[k], f"{label}.{k}")
         formatted.append({
-            **{k: v for k, v in item.items() if k != "bbox"},
-            "bbox": bbox_to_native(item["bbox"], w, h),
+            k: bbox_to_native(v, w, h) if k == "bbox" else v
+            for k, v in item.items()
         })
     native = {"summary": sm, "items": formatted,
               "bbox_coord_space": "abs_centralized", "bbox_format": "yxyx"}
@@ -134,7 +137,7 @@ def main(argv=None):
         else:
             print(prompt)
         return 0
-    except (OSError, ValueError) as exc:
+    except (OSError, ValueError, OverflowError) as exc:
         print(f"moss layout error: {exc}", file=sys.stderr)
         return 2
 
