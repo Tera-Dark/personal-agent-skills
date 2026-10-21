@@ -3,7 +3,7 @@ name: creative-skill-router
 description: Intent router for creative requests: character and illustration design, NAI5/Anima/MOSS-Image prompts, reference analysis, feedback learning, ComfyUI and LoRA. Dispatches to the correct owner without redesigning or encoding model syntax.
 metadata:
   author: Tera-Dark
-  version: "4.9.1"
+  version: "4.10.0"
   layer: "01_router"
   load: "always"
   status: "active"
@@ -29,6 +29,12 @@ metadata:
 - L2：身份已知的笑颜半身用 portrait；明确关系的双人电影感用 cinematic-duo；已定形的唱片/海报用 concept-poster；锁定版小改用 fast-variant。按需读取 bundle/task-packs 中的一张卡，同时选择原有 NAI5 / Anima pipeline pack。
 - L3：原创设定复杂、角色身份未明、正典核实、摄影叙事困难、参考推演或 L2 检验失败时读取完整设计 owner 与必要研究资料。
 - 强度由题材而非形容词决定：daily / portrait / cinematic / experimental。所选模式可以明确偏离默认，且不允许破坏角色身份与美感底盘；全文见 aesthetic-director-core 的 adaptive-creative-intensity reference。PROMPT ONLY 不等于简单创作。
+
+## 低审美反馈与独立插画：强制深入设计层（非提示词问题）
+
+明确收到「提高美商 / 没有审美 / 构图和表达不成立 / 人物动机没理解 / 换脸沿用旧图」时，**无论目标是 Anima/NAI5/MOSS，优先启用 L3 的 `evaluation-loop` + `aesthetic-director-core` 的 `00_core/aesthetic-director-core/references/visual-taste-evidence-protocol.md`**。纠正的是「观念→可见形式→择优」而不是渲染风格或艺术家列表。用户只要看方法论时交付分析；用户要最终 Prompt 时内部执行，外部只出按目标模型规范编译的提示词。
+
+遇到角色同人先校验身份与用户要求的原设，区分已知正典和自由创作；没有证据不冒称了解角色真正愿望。不得把上一张场景结构未经授权复制给新主题。反馈持久晋升仍按既有个人 Identity 机制执行。
 
 ## MOSS-Image 并行分支
 

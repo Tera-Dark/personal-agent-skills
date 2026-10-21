@@ -3,7 +3,7 @@ name: illustration-direction
 description: Turns a Creative Brief into an authored, model-agnostic illustration blueprint — the image thesis, captured moment, visual motif, environment-character relationship, camera and framing, scale contrast, negative space, physical light sources, density map, narrative residue, and one coherent surreal detail. Use for 插画, 氛围图, 竖屏, 半留白, 印象风, 故事感, key visual, poster, scene illustration, cinematic composition, or whenever a character needs to be placed into a designed moment rather than displayed on a plate. Never writes model-specific prompt syntax.
 metadata:
   author: Tera-Dark
-  version: "2.9.0"
+  version: "3.0.0"
   layer: "02_design"
   load: "on-demand"
   status: "active"
@@ -28,6 +28,10 @@ metadata:
 - “婚礼已经结束，只剩空椅子和迟到的人。”
 
 如果只能写成“漂亮的神殿 / 梦幻花园 / 华丽场景”，说明画面还没有被设计。
+
+## 来自 Evidence-Based Taste Gate 的视觉举证（2026-10-21）
+
+导演调用 `00_core/aesthetic-director-core/references/visual-taste-evidence-protocol.md` 时，本模块承接幸存方案，**用实际可见的动作接触、主构图形、明度/距离、遮挡/材料、真实光源证明命题**；不接受仅在文字里解释悲剧、命运或神性。内部保留 `visual_evidence` 和 `interpretation_status`（正典 / 推断 / AU / UNKNOWN），传给 Visual Prompt Core 的只有可画的事实。不要沿用前图布景或替用户补黑液/天使；纯美型图不需故事。没有实际图时只可做文本预测，不能称视觉缩略图已通过。
 
 ## 硬规则
 
@@ -130,6 +134,7 @@ An illustration blueprint is READY only when visual thesis, captured moment, mot
 ## 自检
 
 - [ ] 能用一句视觉句子说明画面命题吗？
+- [ ] 删除象征解释的句子后，构图/动作/视觉关系是否仍传达同样或有意多义的感受？角色动机来自可靠资料还是无证据编造？
 - [ ] 动态画面能说出前 1 秒和后 1 秒吗？静态寓言/编辑海报是否有明确可见的视觉关系？
 - [ ] 机位是否在布局前确定，并且能交代观看者位置、镜头侧向/高度/距离以及它改变了什么？
 - [ ] 前/中/后关系、交叠遮挡、画幅裁切和重点清晰度是否由同一机位推导、彼此兼容？
