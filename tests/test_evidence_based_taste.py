@@ -26,7 +26,7 @@ class EvidenceBasedTasteTests(unittest.TestCase):
         self.assertTrue((EVALUATION / "references/evidence-based-art-critique.md").is_file())
         self.assertIn('load: "on-demand"', director)
         self.assertIn("不是新的创意 owner", director)
-        self.assertIn("只诊断", eval_skill)
+        self.assertIn("本 Skill 不修 prompt", eval_skill)
 
     def test_router_l1_escalates_feedback(self):
         router = read(ROUTER / "SKILL.md")
@@ -42,7 +42,7 @@ class EvidenceBasedTasteTests(unittest.TestCase):
         for marker in ("SEE / READ / UNKNOWN", "FORM–MEANING FIT",
                        "三种", "人物", "正典", "SPEC", "IMAGE-PENDING", "用户真实"):
             self.assertIn(marker, spec)
-        self.assertIn("不强制深刻或反转", spec)
+        self.assertIn("没有象征和反转仍可优秀", spec)
         self.assertIn("第一眼美感", spec)
 
     def test_composition_role_consumes_but_does_not_serialize_taste(self):
@@ -58,9 +58,11 @@ class EvidenceBasedTasteTests(unittest.TestCase):
     def test_rin_and_previous_painting_repeated_failure_cases_are_documented(self):
         spec = read(DIRECTOR / "references/visual-taste-evidence-protocol.md")
         critique = read(EVALUATION / "references/evidence-based-art-critique.md")
-        for marker in ("远坂凛", "圣杯", "黑色", "天使", "构图"):
+        for marker in ("远坂凛", "圣杯", "天使", "构图"):
             self.assertIn(marker, spec)
             self.assertIn(marker, critique)
+        self.assertIn("黑色污液", spec)
+        self.assertIn("黑污液", critique)
         for marker in ("失败①", "失败②", "失败③"):
             self.assertIn(marker, critique)
         self.assertIn("用故事补图", critique)
