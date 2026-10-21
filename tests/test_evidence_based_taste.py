@@ -25,7 +25,7 @@ class EvidenceBasedTasteTests(unittest.TestCase):
         self.assertTrue((DIRECTOR / "references/visual-taste-evidence-protocol.md").is_file())
         self.assertTrue((EVALUATION / "references/evidence-based-art-critique.md").is_file())
         self.assertIn('load: "on-demand"', director)
-        self.assertIn("不是新的创意 owner", director)
+        self.assertIn("仍由本导演唯一拥有创意决定", director)
         self.assertIn("本 Skill 不修 prompt", eval_skill)
 
     def test_router_l1_escalates_feedback(self):
