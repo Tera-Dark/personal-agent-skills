@@ -32,7 +32,7 @@ metadata:
 
 ## 低审美反馈与独立插画：强制深入设计层（非提示词问题）
 
-明确收到「提高美商 / 没有审美 / 构图和表达不成立 / 人物动机没理解 / 换脸沿用旧图」时，**无论目标是 Anima/NAI5/MOSS，优先启用 L3 的 `evaluation-loop` + `aesthetic-director-core` 的 `references/visual-taste-evidence-protocol.md`**。纠正的是「观念→可见形式→择优」而不是渲染风格或艺术家列表。用户只要看方法论时交付分析；用户要最终 Prompt 时内部执行，外部只出按目标模型规范编译的提示词。
+明确收到「提高美商 / 没有审美 / 构图和表达不成立 / 人物动机没理解 / 换脸沿用旧图」时，**无论目标是 Anima/NAI5/MOSS，优先启用 L3 的 `evaluation-loop` + `aesthetic-director-core` 的 `00_core/aesthetic-director-core/references/visual-taste-evidence-protocol.md`**。纠正的是「观念→可见形式→择优」而不是渲染风格或艺术家列表。用户只要看方法论时交付分析；用户要最终 Prompt 时内部执行，外部只出按目标模型规范编译的提示词。
 
 遇到角色同人先校验身份与用户要求的原设，区分已知正典和自由创作；没有证据不冒称了解角色真正愿望。不得把上一张场景结构未经授权复制给新主题。反馈持久晋升仍按既有个人 Identity 机制执行。
 
