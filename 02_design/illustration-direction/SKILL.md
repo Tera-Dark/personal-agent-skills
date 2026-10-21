@@ -3,7 +3,7 @@ name: illustration-direction
 description: Turns a Creative Brief into an authored, model-agnostic illustration blueprint — the image thesis, captured moment, visual motif, environment-character relationship, camera and framing, scale contrast, negative space, physical light sources, density map, narrative residue, and one coherent surreal detail. Use for 插画, 氛围图, 竖屏, 半留白, 印象风, 故事感, key visual, poster, scene illustration, cinematic composition, or whenever a character needs to be placed into a designed moment rather than displayed on a plate. Never writes model-specific prompt syntax.
 metadata:
   author: Tera-Dark
-  version: "2.9.0"
+  version: "3.0.0"
   layer: "02_design"
   load: "on-demand"
   status: "active"
@@ -28,6 +28,16 @@ metadata:
 - “婚礼已经结束，只剩空椅子和迟到的人。”
 
 如果只能写成“漂亮的神殿 / 梦幻花园 / 华丽场景”，说明画面还没有被设计。
+
+## 来自 Evidence-Based Taste Gate 的视觉举证（2026-10-21）
+
+当导演因「美商不足 / 没表达 / 人物动机不成立 / 仿照上一张换脸」而选择 `visual-taste-evidence-protocol.md` 后，本模块必须接收幸存方向的**视觉证据约束**，不能在画面编排阶段退回常用居中立绘与景物堆叠。验证参照 `../../00_core/aesthetic-director-core/references/visual-taste-evidence-protocol.md`。
+
+- 先描述观众最先看到的**大形**，然后是第二焦点的**空间/动作关系**，最后才安排画法、光色、细节；不把「悲剧/神性/救赎」直接当构图。
+- 每个寓意、转折或角色动机必须对应可画的手部行为、物体承重、视觉质量、对位/反射、边界或光照差异；文本独白无法证明这一点。无剧情需求时允许纯造型与情绪美。
+- 记录 `visual_evidence`（画面具体由哪里传达）和 `interpretation_status`（已知正典 / 合理推断 / AU / UNKNOWN）；将真正可画的部分交给 Visual Prompt Core。用户只要求角色抱杯，不自动推出黑液、灾难、圣光或救世主叙事。
+- 在没有真实草稿/缩略图时，只能对预期大形做文字检查（SPEC），不可声称「已经通过缩略图实测」；只有得到实际图像后评价主次与焦点。
+- 移除画面的叙事旁白后，重要情绪仍须由可见形式支撑；不确定就回退导演，不靠 renderer 加标签掩盖。
 
 ## 硬规则
 
@@ -130,6 +140,7 @@ An illustration blueprint is READY only when visual thesis, captured moment, mot
 ## 自检
 
 - [ ] 能用一句视觉句子说明画面命题吗？
+- [ ] 删除象征解释的句子后，构图/动作/视觉关系是否仍传达同样或有意多义的感受？角色动机来自可靠资料还是无证据编造？
 - [ ] 动态画面能说出前 1 秒和后 1 秒吗？静态寓言/编辑海报是否有明确可见的视觉关系？
 - [ ] 机位是否在布局前确定，并且能交代观看者位置、镜头侧向/高度/距离以及它改变了什么？
 - [ ] 前/中/后关系、交叠遮挡、画幅裁切和重点清晰度是否由同一机位推导、彼此兼容？
