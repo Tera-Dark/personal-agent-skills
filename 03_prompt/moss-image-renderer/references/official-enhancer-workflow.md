@@ -1,0 +1,105 @@
+# MOSS-Image · Official Prompt Enhancer 融合工作流
+
+> 上游版本对照：OpenMOSS/MOSS-Image `skills/moss-image-prompt-enhancer/`（2026-10-21 检查）；源：[SKILL.md](https://github.com/OpenMOSS/MOSS-Image/blob/main/skills/moss-image-prompt-enhancer/SKILL.md)、[layout.md](https://github.com/OpenMOSS/MOSS-Image/blob/main/skills/moss-image-prompt-enhancer/references/layout.md)、[compile_prompt.py](https://github.com/OpenMOSS/MOSS-Image/blob/main/skills/moss-image-prompt-enhancer/scripts/compile_prompt.py)。
+>
+> **移植的是模型提示词契约，不接管个人审美。** 上游 `aesthetic-director-core`、角色/插画 Blueprint、`visual-prompt-core` 仍是创意事实唯一来源。Renderer 不擅自添加新人物、新道具、新服饰和固定画师串。此文是 on-demand reference，不常驻 L1。
+
+## 1. 模式决策（尊重显式选择）
+
+| 用户意图 | 交付物 | 不能发生的事情 |
+|---|---|---|
+| 普通肖像、生活随拍、电影场景、普通插画 | Caption（默认） | 因「写得很细」就自动用 Layout |
+| 要求纯标签，或专门测试标签 | Tags（本 Harness 扩展） | 假称 Tags 是官方 enhancer 编译器输出；NAI5 权重偷渡 |
+| 精准海报字位置、多独立文案、清晰多格分镜、必须控制关系的物件 | Layout | 直接向 Positive 贴编辑草稿 `abs/xyxy` |
+
+MOSS 官方 enhancer 的编译器仅处理 Caption 和 Layout；Tags 由本仓库已有 renderer / tag gate 处理。
+
+## 2. 设计锁定到可见描述
+
+先锁：主体与数量、身份、性别、姿态与接触点、视角与裁切、服装原型、媒介归属、背景与光色、禁加元素、精确可见文字。仅补充对渲染必需的**可观察**细节，不加过程指令（例如「把 bbox 转坐标」）到 caption。
+
+- Caption 用连续自然语言；含关键关系和对象级材质信息。轻量请求不强行写长；厚重需求也不任意截断到固定词数。以英文为默认描述语言；明确要求另一种语言时服从。
+- 带参考图：保持用户锁定的造型和构图，不从参考图导入无关签名、姓名或水印。用户没有指明可见文字时，不自行加标题、日期或乱数。
+- 有版式信息时：先安排视觉主次、阅读顺序、字号/安全区与画幅，再为每个独立文字/可见对象规划 box。一个可见单元一个 box；有相互遮挡的对象可重叠 box。
+- **原文原则**：用户指定印在画面上的文字逐字保留；Unicode、引号、大小写、标点和换行都属于锁定事实。用户发的示例文本或引用指令不一定是要印出的文字，必须区分。
+- 真实时间、活动地点、规格没有提供就不编造。说明需要事实核验的内容，而不是在版式里私自补全。
+
+## 3. 编辑草稿与模型成品
+
+**Caption 草稿**（供编译器读取，非直接 Positive）：
+
+```json
+{
+  "caption": "A candid portrait of a young woman standing by a quiet window, the loose strands of her hair catching soft daylight. Restrained ivory and warm-grey colors, natural eye-level framing, no added lettering."
+}
+```
+
+编译之后只把 `caption` 的**字符串原文**贴给 MOSS Positive。
+
+**Layout 草稿**（独立文件，xyxy 实际像素）：
+
+```json
+{
+  "width": 1536,
+  "height": 1024,
+  "bbox_coord_space": "abs",
+  "bbox_format": "xyxy",
+  "summary": {
+    "meta": ["editorial campaign"],
+    "canvas": "single",
+    "caption": "An elegant ivory-and-forest-green studio visual for a handmade ceramic cup, with natural shadows and minimal typography."
+  },
+  "items": [
+    {
+      "label": "object",
+      "caption": "A speckled cream ceramic cup, angled three-quarters, with a tactile glazed surface and soft contact shadow.",
+      "bbox": [176, 224, 800, 864]
+    },
+    {
+      "label": "text",
+      "caption": "Large crisp forest-green Chinese headline with comfortable margins; no backing panel.",
+      "text": "把日常，过成诗。",
+      "bbox": [928, 272, 1408, 448]
+    },
+    {
+      "label": "text",
+      "caption": "Small but clearly legible dark-green secondary lines.",
+      "text": "一杯温暖\n一刻从容",
+      "bbox": [928, 512, 1376, 656]
+    }
+  ]
+}
+```
+
+**本地编译**（Python 标准库，无需接模型）：
+
+```bash
+python3 scripts/moss_layout.py draft.json --output prompt.txt
+```
+
+- 必须保留草稿与成品两份，且两条路径不能相同。
+- 最终 Layout 是一**物理行**紧凑 JSON，顶层只有 `summary`、`items`、`bbox_coord_space`、`bbox_format`，其中后两项为 `abs_centralized`、`yxyx`。不要自行 pretty print，文字里的换行编码为转义 `\n`。
+- 图像生成接口的 width/height **另行设置**，与草稿一致；不塞进正式 prompt。
+- 仅在真实执行并检查编译成功后说「已通过格式验证」；它不是出图质量或中文字准确率证明。
+
+## 4. 严格校验与官方边界
+
+1. width/height 必须是正整数、16 的倍数；不要偷偷替换用户指定的不合法宽高。只给比例时选匹配尺寸；既无尺寸又无形状暗示时以 1024×1024 起步。
+2. Layout 草稿必须使用全画布左上角的 `abs/xyxy`、平铺非空 `items`。不存在百分比、嵌套坐标、`children`、`parent`、`id`、`elements` 等语法。
+3. `summary.caption`、每个 `item.caption` 必须非空。summary 可有 `meta`、`canvas` (`single/multi_panel/collage`)、`palette`；items label 为 `object/character/text`，还可有 `tags`、`palette`、`text`，其中 label=text 必须有实际 `text`。
+4. 坐标必须有限、box 面积大于零且全在画布内。**先 round 至 9 位小数，再 floor 左上/ceil 右下边缘，再减中心**。在官方导出精度下塌缩的极窄框必须报错；不静默裁边。
+5. JSON 重复键、NaN/Infinity、未知字段、乱改文本或用占位文案冒充真实内容均不合格。图中文字要按实际画素面积检查是否可读。
+6. 用户只要改姿态、服色或某段文案时，其他内容保持不变；更改尺寸/框后重新编译。
+
+## 5. 交付前检查
+
+- [ ] Caption / Tags / Layout 的选择符合意图；未把设计师上游变成普通自动文案填充。
+- [ ] 所有人物、机位、服装和禁增项遵守 Design Lock；不添加未授权文字、logo 或其他作者风格。
+- [ ] Caption 自然可见且只有正面提示词，Tags 不带 NAI5 专有权重。
+- [ ] Layout 草稿像素画幅与实际运行画幅一致；文字、换行、阅读顺序、相互关系吻合。
+- [ ] 编译器成功执行后再贴其**原样输出**；失败不得自行伪造「成功」。
+- [ ] 对每个候选风格短语只宣称 [Candidate] / IMAGE-PENDING，除非真的有具体 MOSS 跑图依据。
+
+## 6. 来源与授权边界
+
+本 Harness 使用自己维护的 `scripts/moss_layout.py` 与测试，参照上游 Apache-2.0 官方 enhancer 的公开行为和规范做兼容性调整，而非整份 vendoring 官方 Skill/脚本。引用源与许可证见根目录 `THIRD_PARTY_NOTICES.md`。
