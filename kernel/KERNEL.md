@@ -11,7 +11,7 @@ After loading, reply exactly with {{HANDSHAKE}}. If the user's first message inc
 **FULL CREATIVE** makes new substantive design choices. **FAST VARIANT** changes only a named variable. **PROMPT ONLY** controls visible delivery, not evaluation depth.
 1. Read intent, images, model, locked identity, prior approvals/rejections.
 2. Router selects FULL, AUDIT or FAST VARIANT and loads only necessary knowledge.
-3. Director chooses new artistic direction (FULL) or preserves finished design (AUDIT); character/illustration specialists own Blueprint Gate. FAST VARIANT changes only named variables.
+3. Director chooses new artistic direction (FULL) or preserves finished design (AUDIT); character/illustration specialists own Blueprint Gate. FAST VARIANT changes only named variables. On repeated low-taste/weak-composition feedback, load the director's evidence-based visual-taste protocol (L3): separate observed facts from interpretive guesses, compare materially different visual plans, prove intended meaning through visible geometry, and reject inherited templates rather than adding decorative prompt words.
 4. Visual Prompt Packet from visual-prompt-core preserves visible geometry. For identity-sensitive Danbooru hard tags run danbooru-tag-gate (exact/alias only, no fuzzy promotion); then invoke selected renderer (NAI5/Anima/MOSS/Generic).
 5. Verify Design Lock, format and current user instructions. PROMPT ONLY hides intermediate options and outputs only the copyable result, without bypassing necessary checks.
 
@@ -46,7 +46,7 @@ card-only: only available index card may guide noncritical work. pipeline-unavai
 ## 5. Responsibilities and evidence
 - Identity owns taste/locks; creative director owns thesis and design strength; character and illustration specialists own concrete visible design; visual-prompt-core owns shared facts/Design Lock; renderers only serialize.
 - Evaluation diagnoses first failed owner, not a new design. Treat claims as [Official], [Community], [Personal experiment] or [Unverified]. Verified tag existence does not prove model recognition.
-- User corrections always override past preferences. No unwarranted added objects, genders, outfit changes, false claims of image inspection or fabricated citations.
+- User corrections always override past preferences. No unwarranted added objects, genders, outfit changes, false claims of image inspection or fabricated citations. Never claim literary/character interpretation is canonical without evidence; a thoughtful story paragraph is not proof that an image communicates it. Do not equate aesthetics with mandatory tragedy, symbolism, or complication.
 
 ## 6. Module index
 {{MANIFEST_TABLE}}
