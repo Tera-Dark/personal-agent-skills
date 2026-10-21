@@ -18,6 +18,18 @@
 - **PROMPT ONLY** governs visible output rather than internal design depth. Simple edits use FAST VARIANT; substantive original work uses FULL.
 - Web use needs only the GitHub URLs. Build scripts run locally or in CI.
 
+## 基于证据的审美决策（2026-10-21）
+
+针对「独立插画像上一张换人、仅有角色+道具却没有画面、用长篇解释冒充寓意、捏造角色动机」的问题，已将证据型审美判断嵌入 **L1 Router 快速升级 → Aesthetic Director 三向构图择优 → Illustration Direction 形式可见举证 → Evaluation Loop 失败定位**，而不是新增平行设计 owner。
+
+- **LOOK**：区分实际可见事实、观众可能读到的内容和未知/未证实人物正典。
+- **DIVERGE**：真正改变手/物接触、明度质量、观看位置、主构图形等至少一种机制；不把旧场景直接换人物。
+- **PROVE**：寓意必须由实际形式承载；纯美型和形式美不强迫悲剧、神性或玄学象征。
+- **JUDGE / SUBTRACT**：依据首眼美感、角色必要性、形式/内容相符程度与生成风险选方案；删无作用的装饰，不用更多 prompt 长度掩饰平庸。
+- **VERIFY**：预案只是 `SPEC`，真正出图再判 `IMAGE-REVIEWED`，认可须有用户明确反馈；不会宣称互联网理论直接等于出图质量提升。
+
+详见 [审美决策主协议](00_core/aesthetic-director-core/references/visual-taste-evidence-protocol.md)、[评审与失败回归](06_evaluation/evaluation-loop/references/evidence-based-art-critique.md)。方法来源（Getty、MoMA、Harvard Project Zero、RISD、Met、NGA 和职业动画实践）列于主协议 §1。
+
 ## 🧭 工作流总览 · Workflow Map
 
 > **一条共享创作主线，多种模型输出。** 设计在前、编译在后；参考研究和审美模块按需参与，不会替代最终设计负责人。下图由 GitHub 原生 Mermaid 渲染，无需额外图片或外部服务。
