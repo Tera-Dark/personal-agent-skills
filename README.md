@@ -108,6 +108,8 @@ flowchart TB
 - **默认不添加画师串**；用户要求只凭风格词时，将 anime 人物与 photographic 背景分对象描述，再规定统一的透视与光色，而不是罗列“官方魔法触发词”。
 - 官方没有逐项验证所有候选 lo-fi 风格短语。参考 [风格控制词候选库](03_prompt/moss-image-renderer/references/style-control.md)，先实际跑图后再晋升个别经验。
 - JSON Layout 的**最终**输入是 `abs_centralized` / `yxyx`；左上角 `xyxy` 草稿必须先编译。详见 [Layout 规范](03_prompt/moss-image-renderer/references/layout-contract.md)。
+- **已融合 OpenMOSS 官方 Prompt Enhancer 工作流**：按需选择 Caption/Layout、锁定画面可见文字、保持多面板布局与读字顺序、草稿 JSON → Python 校验编译 → 正面提示词。官方编译器只处理 Caption/Layout，本项目原有的 Tags 是独立扩展；美术决定权仍属于 Artist Eye / Blueprint，不被 enhancer 反向改写。详见 [融合规范](03_prompt/moss-image-renderer/references/official-enhancer-workflow.md) 和 [官方 Skill](https://github.com/OpenMOSS/MOSS-Image/tree/main/skills/moss-image-prompt-enhancer)。
+- 本地工作流：将 Caption 草稿保存为 `{"caption":"..."}` 或将 Layout 草稿保存为 `width/height + abs/xyxy`，然后执行 `python3 scripts/moss_layout.py draft.json --output prompt.txt`；将 `prompt.txt` 的纯文本或单行 JSON 复制到 Positive。生成设置中的宽高必须与 Layout 草稿一致（各维度为 16 的正整数倍）。Web-only 环境不可将未经编译的草稿冒充正式提示词。
 - 官方依据：[英文指南](https://github.com/OpenMOSS/MOSS-Image/blob/main/USERGUIDE.md)、[中文指南](https://github.com/OpenMOSS/MOSS-Image/blob/main/USERGUIDE_ZH.md)、[Hugging Face Base](https://huggingface.co/OpenMOSS-Team/MOSS-Image-Base)、[Hugging Face SFT](https://huggingface.co/OpenMOSS-Team/MOSS-Image-SFT)。
 
 ## v5.1 · 三级知识加载与审美强度
