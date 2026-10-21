@@ -3,7 +3,7 @@ name: aesthetic-director-core
 description: Creative direction layer that turns a vague request into one committed design idea before any blueprint or prompt is written. Runs a sequence of generative "moves" (find the obsession, plant a contradiction, pick from the tail, build causality, subtract, keep one strange thing) and produces a short Creative Brief with rejected alternatives. Use for any OC / character / illustration / fashion / key-visual request, whenever output feels generic, "AI-flavored", too plain, too busy, or when the user asks for taste, direction, 审美, 创意方向, 人味, 高级感, 不要AI味.
 metadata:
   author: Tera-Dark
-  version: "2.5.1"
+  version: "2.6.0"
   layer: "00_core"
   load: "on-demand"
   status: "active"
@@ -83,6 +83,14 @@ AUDIT 是必经的质量闸门，不等于“顺手美化”。没有失败证�
 
 **目标不是更怪，而是更有选择。新颖度不得牺牲脸、比例、轮廓、服装成立性和第一眼美感。**
 
+## 2.3 Evidence-Based Taste Gate · 基于视觉证据的审美决策（2026-10-21）
+
+当用户要求「提高美商/审美方法论」、反馈「构图/表达/动机都不成立」、连续 FULL 方案同质化，或绘画式独立叙事中有高风险角色诠释时，**必须读取 `references/visual-taste-evidence-protocol.md`**。这是现有 Artist Eye 的**择优/证据层**，不是新的创意 owner，不会把艺术理解固定成永远悲剧/神性/神秘。
+
+必须在 FULL 设计中明确：`SEE`（实际确定了什么）→ `READ`（希望观众怎样理解）→ `UNKNOWN`（尚无证据的正典/动机）→ 从**三种不同视觉机制**里择优 → 使用可见形状/手势/承重/色块**证明形式与意义一致** → 删除未承担视觉任务的装饰。不能把「我写了很动人的寓意」当作画面已经表达出来，不能替用户编造角色的圣杯目标、黑化动机或灾难背景。**优秀画面也可以只有美型、静默和形式韵律；不强制深刻或反转。**
+
+`PASS` 仅代表文本设计证据具备，不代表真实出图合格。具体看 `references/visual-taste-evidence-protocol.md` §2–6；没有实际图像时不得宣称通过了视觉小图测试。AUDIT/FAST VARIANT/忠实反推仍锁住既有事实，不展开未经请求的新创作。
+
 ## 2. 九个创作动作（Creative Moves）
 
 按顺序执行；简单需求可合并 M1 / M3 / M6，M7、M9 在 daily、忠实还原与白底肖像中可明确标记 N/A。详细手法与示例见 `references/creative-moves.md`。
@@ -129,7 +137,7 @@ AUDIT 是必经的质量闸门，不等于“顺手美化”。没有失败证�
    ↓
 AUDIT：只审不改；失败则 ESCALATE → FULL
    ↓
-FULL：先过 Anti-Mediocrity Gate → M0 破平庸筛选 → M1–M3：生成 3 个结构机制不同的方向 → 淘汰 2 个（写理由）
+FULL：先过 Anti-Mediocrity Gate → 触发时走 Evidence-Based Taste Gate（事实/可见形式/角色动机证据）→ M0 破平庸筛选 → M1–M3：生成 3 个结构机制不同的方向 → 用视觉证据淘汰 2 个（写理由）
    ↓
 M4–M5：给幸存方向建因果链、定瞬间
    ↓
@@ -186,6 +194,8 @@ Brief 用中文或英文均可，跟随用户当前语言。不加解释段落�
 - [ ] 刺点是否服务题材，或应明确省略？
 - [ ] 是否踩了 `personal-identity-profile` 的禁区（手表、赛博、随机蝴蝶玫瑰、魔法阵粒子、形容词服装）？
 - [ ] 这一版如果发给一个真人设计师看，他会觉得是"有人做了选择"，还是"有人填了表"？
+- [ ] 寓意不看解释文字，是否能由画面里的手势、距离、明度或物件关系读出？是不是把自己编的角色心理当成正典？
+- [ ] 第一眼美感是否成立？是否误把「黑暗悲剧」「奇异点」「构图极繁」当成越多越好的审美尺度？
 
 
 ## 人物肖像与绘画叙事专项（按需）
@@ -197,6 +207,7 @@ Brief 用中文或英文均可，跟随用户当前语言。不加解释段落�
 
 ## References
 
+- `references/visual-taste-evidence-protocol.md` — 证据式观察、形式/意义对应、三种构图机制择优、角色动机边界、减法、失败回归和调研出处。
 - `references/creative-moves.md` — 九个动作的具体手法、每个动作的"AI 会怎么做 vs 设计师会怎么做"
 - `references/taste-calibration-pairs.md` — 成对示例：同一需求的通用答案与有判断的答案
 - `references/design-calibration-examples.md` — 基础参考设计拆解、必须做出的设计决定、禁止的捷径
