@@ -67,15 +67,15 @@ class MossLayoutTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             compile_draft(data)
 
-    def test_text_fields_not_assumed(self):
+    def test_text_fields_follow_official_optional_contract(self):
         data = one_layout()
         data["items"][1].pop("text")
         with self.assertRaises(ValueError):
-            compile_draft(data)
+            compile_draft(data)  # text label requires actual text
         data = one_layout()
-        data["items"][0]["text"] = "hidden"
-        with self.assertRaises(ValueError):
-            compile_draft(data)
+        data["items"][0]["text"] = "陶瓷杯"
+        native = json.loads(compile_draft(data))
+        self.assertEqual(native["items"][0]["text"], "陶瓷杯")  # other labels allow optional text
 
     def test_reject_duplicate_keys(self):
         with self.assertRaises(ValueError):
