@@ -25,11 +25,12 @@ class EditorialLayoutContractTests(unittest.TestCase):
     def test_respects_existing_design_owner_boundaries(self):
         s = (MOD / "SKILL.md").read_text(encoding="utf-8")
         for existing in ("aesthetic-director-core", "illustration-direction",
-                         "visual-prompt-core", "moss", "Output"):
+                         "visual-prompt-core", "moss"):
             self.assertIn(existing.lower(), s.lower())
         self.assertIn("不接管人物身份", s)
         self.assertIn("Typography Fidelity", s)
         self.assertIn("Editorial Layout Blueprint", s)
+        self.assertIn("输出", s)
         self.assertIn("不要", s)
 
     def test_router_and_concept_task_card_discover_module(self):
