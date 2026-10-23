@@ -30,6 +30,10 @@
 
 详见 [审美决策主协议](00_core/aesthetic-director-core/references/visual-taste-evidence-protocol.md)、[评审与失败回归](06_evaluation/evaluation-loop/references/evidence-based-art-critique.md)。方法来源（Getty、MoMA、Harvard Project Zero、RISD、Met、NGA 和职业动画实践）列于主协议 §1。
 
+## 审美量化自评 · Aesthetic Scorebook（2026-10-23）
+
+用户要求「自我评分、综合评分、继续优化到 9 分、成图复盘」时，`evaluation-loop` 按需加载[量化审美评分协议](06_evaluation/evaluation-loop/references/quantified-aesthetic-review.md)：**8 个具体维度、5 种题材权重、硬伤分数封顶**，每轴必须有证据。明确区分**文字设计预评估 SPEC** 与 **实际成图 IMAGE-REVIEWED**；未出图不承诺分数，且不凭一个总分冒充真实模型测试。CLI `scripts/aesthetic_score.py` 支持加权、版本差异、用户评分校准和授权后的短记录保存。详见 [Scorebook](data/aesthetic-scores/README.md)。
+
 ## 🧭 工作流总览 · Workflow Map
 
 > **一条共享创作主线，多种模型输出。** 设计在前、编译在后；参考研究和审美模块按需参与，不会替代最终设计负责人。下图由 GitHub 原生 Mermaid 渲染，无需额外图片或外部服务。
