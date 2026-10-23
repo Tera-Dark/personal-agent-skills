@@ -43,6 +43,14 @@ metadata:
 
 **技术质量（手、解剖、清晰度）排最后。** 一张技术正确的图仍然可以因为没有人而失败。
 
+## Quantified Aesthetic Review · 按需量化（2026-10-23）
+
+用户主动要求「自己评分 / 综合评分 / 定量对照 / 9分水平 / 跑图后评分校准」时，按需读取 `references/quantified-aesthetic-review.md`。在原有 Evaluation Gate 的基础上，选择一份题材权重 Profile，对每一有效轴提供 **0–10 半分制分数 + 可观察证据**，然后由 `scripts/aesthetic_score.py` 做加权和硬伤封顶。**分数不替代原有 FAIL/WEAK/PASS 与首个失败层诊断。**
+
+**证据等级硬限制**：只有 Prompt → 标记 `SPEC`，叫「文本预评估」，不能假装是图片的审美完成度；实际看过成图才标 `IMAGE-REVIEWED`。用户只口头报告成图时保留 `USER-IMAGE-REPORT`，不虚构画面证据。SPEC 与 IMAGE-REVIEWED 的分数不直接相减；不同题材/评分者不可冒充严格 A/B；只有三组以上配对评价才有资格讨论持续性自评偏差。
+
+用户要求打分时展示简洁的维度表、总分、最明显优点、首要短板、下一步单一修复变量及保留条件；没有打分要求则内部轻量执行，不在 PROMPT ONLY 输出中插评语。已认可偏好只由 Identity/Feedback Learning Loop 晋升。
+
 ## Artist Eye · 创意批评（按需）
 
 当本轮使用跨媒介参考、Artist Eye、三向竞争或用户评价「有无作者感」时，读取 `references/artist-eye-review-protocol.md`：先保留身份锁和已有六维技术检查，再判断命题、主图形、行为因果、观看立场、光色节奏、创作必要性。给每维 `PASS / WEAK / FAIL / N/A` 和一处可见证据，按第一个失败 owner 回退，只动一个变量。用 `tests/artist-eye-regression.md` 的跨题材测试思想检验反模板，但不要将设计自检称为 NAI5 成图通过。允许朴素生活图、极简白底和静态编辑图**没有**强制怪点。自动美感评分不代替用户判断。
@@ -128,5 +136,6 @@ Design Read：命题 成立 / 轮廓 弱 / 因果 缺失 / 机位 缺失 / 密�
 
 ## References
 
+- `references/quantified-aesthetic-review.md` — 量化审美评分轴、题材权重、证据阶段、封顶规则、A/B 分数差与校准工具。
 - `references/evidence-based-art-critique.md` — 可见证据 / 角色诠释来源 / 方案差异判断；对应低审美反馈的修复路由与回归用例。
 - `references/artist-eye-review-protocol.md` — 艺术性评审证据、反模板判断、单变量 A/B 与用户成图反馈等级。
