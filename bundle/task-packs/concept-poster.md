@@ -8,4 +8,6 @@ Start with one visible thesis and dominant thumbnail shape. If the user has expl
 Creative intensity: cinematic for narrative staging, experimental for form/visual metaphor. Whichever suits user intent; not every poster needs surrealism.
 Owner boundaries: director owns concept, illustration-direction owns concrete layout and physical lighting; small-artist module is optional guidance. Renderer must not redesign.
 
+Editorial typography: when a poster actually needs title/subtitle/masthead, text-safe regions, graphic image windows or foreground-character breakout, read the on-demand `02_design/editorial-layout-design/SKILL.md`; illustration-direction still owns character camera and the final picture blueprint. Do not add text to a pure illustration by default. For exact Chinese titles prefer a separate editable lettering layer; renderer controls any formal Layout encoding.
+
 MOSS: album covers normally use Caption; if exact title position or multi-panel boxes are essential use checked native JSON Layout after geometry conversion.

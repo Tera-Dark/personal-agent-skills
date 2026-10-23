@@ -6,9 +6,9 @@
   "raw_base": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/",
   "harness_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS.md",
   "harness_full_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS-FULL.md",
-  "handshake": "Harness v5.2.0 loaded · 19 modules · 说需求，或发参考图。",
-  "core_tokens": 5384,
-  "full_tokens": 224813,
+  "handshake": "Harness v5.2.0 loaded · 20 modules · 说需求，或发参考图。",
+  "core_tokens": 5416,
+  "full_tokens": 232491,
   "pipeline": {
     "aesthetic_gate": "aesthetic-director-core",
     "blueprint_gate": {
@@ -101,7 +101,7 @@
           "illustration-direction",
           "small-artist-brain"
         ],
-        "tokens": 367,
+        "tokens": 484,
         "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/task-packs/concept-poster.md"
       },
       "fast-variant": {
@@ -451,9 +451,9 @@
           "tokens": 504
         }
       ],
-      "tokens_skill": 1993,
-      "tokens_bundle": 2511,
-      "tokens_full_bundle": 6844
+      "tokens_skill": 2286,
+      "tokens_bundle": 2805,
+      "tokens_full_bundle": 7138
     },
     {
       "name": "character-design-engine",
@@ -501,6 +501,46 @@
       "tokens_skill": 2702,
       "tokens_bundle": 3178,
       "tokens_full_bundle": 13885
+    },
+    {
+      "name": "editorial-layout-design",
+      "layer": "02_design",
+      "load": "on-demand",
+      "status": "active",
+      "version": "1.0.0",
+      "description": "Designs graphic-editorial composition for character posters, illustrated magazine covers, zines, title cards and image-plus-type key visuals. Owns typography hierarchy, safe regions, image/text overlap, page grid and layer compositing; does not replace illustration-direction camera work, creative direction or model-specific syntax. Use when user asks 排版设计, 图文排版, 字体层级, 人物破框, 角色海报版式, 杂志封面, editorial layout, cover typography, or provides an image to study its graphic layout.",
+      "triggers": "排版, 版式, 图文排版, 平面构成, 字体设计, 字体层级, 人物破框, 杂志封面, 编辑式海报, editorial, typography, magazine cover, zine, title card, poster design",
+      "path": "02_design/editorial-layout-design",
+      "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_design/editorial-layout-design",
+      "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/editorial-layout-design.md",
+      "references": [
+        "references/editorial-breakout-reference-2026-10-23.md",
+        "references/editorial-pattern-library.md",
+        "references/production-delivery.md"
+      ],
+      "reference_files": [
+        {
+          "path": "references/editorial-breakout-reference-2026-10-23.md",
+          "bundle_path": "bundle/references/editorial-layout-design/references/editorial-breakout-reference-2026-10-23.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/editorial-layout-design/references/editorial-breakout-reference-2026-10-23.md",
+          "tokens": 1831
+        },
+        {
+          "path": "references/editorial-pattern-library.md",
+          "bundle_path": "bundle/references/editorial-layout-design/references/editorial-pattern-library.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/editorial-layout-design/references/editorial-pattern-library.md",
+          "tokens": 1094
+        },
+        {
+          "path": "references/production-delivery.md",
+          "bundle_path": "bundle/references/editorial-layout-design/references/production-delivery.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/editorial-layout-design/references/production-delivery.md",
+          "tokens": 1290
+        }
+      ],
+      "tokens_skill": 2596,
+      "tokens_bundle": 3025,
+      "tokens_full_bundle": 7073
     },
     {
       "name": "illustration-direction",
@@ -573,9 +613,9 @@
           "tokens": 2549
         }
       ],
-      "tokens_skill": 5233,
-      "tokens_bundle": 5936,
-      "tokens_full_bundle": 25893
+      "tokens_skill": 5503,
+      "tokens_bundle": 6206,
+      "tokens_full_bundle": 26162
     },
     {
       "name": "japanese-cinematic-composition",
