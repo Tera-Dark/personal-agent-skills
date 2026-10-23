@@ -22,6 +22,7 @@ CAPS = {"wrong_identity": 5.0, "brief_violation": 5.5,
         "unreadable_subject": 5.5, "crop_conflict": 6.5}
 STAGES = ("SPEC", "IMAGE-REVIEWED")
 ID_PATTERN = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]{2,79}$")
+VERSION_PATTERN = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]{1,79}$")
 FIELDS = {"assessment_id", "work_id", "version", "stage", "profile", "rater",
           "confidence", "axes", "hard_failures", "summary",
           "image_seen", "image_ref"}
@@ -39,7 +40,7 @@ def validate_entry(entry):
     if not isinstance(entry, dict) or set(entry) - FIELDS:
         raise ValueError("record must be an object with only supported fields")
     for key in ("assessment_id", "work_id", "version"):
-        if not ID_PATTERN.fullmatch(str(entry.get(key, ""))):
+        if not (VERSION_PATTERN if key == "version" else ID_PATTERN).fullmatch(str(entry.get(key, ""))):
             raise ValueError(f"{key}: use a stable public-safe ID (3-80 chars)")
     stage, profile = entry.get("stage"), entry.get("profile")
     if stage not in STAGES or profile not in WEIGHTS:
@@ -136,7 +137,7 @@ def calibrate(assistant, user):
 
 
 def template(profile, stage, work_id, version):
-    if not ID_PATTERN.fullmatch(work_id) or not ID_PATTERN.fullmatch(version):
+    if not ID_PATTERN.fullmatch(work_id) or not VERSION_PATTERN.fullmatch(version):
         raise ValueError("invalid work-id or version")
     result = {"assessment_id": f"{work_id}-{version}-assistant-{stage.lower()}",
               "work_id": work_id, "version": version, "stage": stage,
