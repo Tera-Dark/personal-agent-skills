@@ -30,6 +30,12 @@
 
 详见 [审美决策主协议](00_core/aesthetic-director-core/references/visual-taste-evidence-protocol.md)、[评审与失败回归](06_evaluation/evaluation-loop/references/evidence-based-art-critique.md)。方法来源（Getty、MoMA、Harvard Project Zero、RISD、Met、NGA 和职业动画实践）列于主协议 §1。
 
+## 编辑式排版设计模块 · Editorial Layout Design（2026-10-23）
+
+新增独立按需 Skill：[**editorial-layout-design**](02_design/editorial-layout-design/SKILL.md)，专门处理角色海报、画集扉页、杂志封面和图文 Key Visual 的**字级、版心、留白、图文层叠与人物破框**。第一份[参考拆解](02_design/editorial-layout-design/references/editorial-breakout-reference-2026-10-23.md)从一张用户提供的横版人物编辑插画提炼「**白色纸面 → 局部场景图窗 → 穿出图窗的人物 → 大标题与信息文字**」的可迁移关系，**不保存原图、不照搬角色或署名**。
+
+为避免排版套路化，[版式库](02_design/editorial-layout-design/references/editorial-pattern-library.md)提供三种结构不同的机制：大字与主体配重破框、克制的目录栏与画图区、人物切入巨型标题。模组不抢 `aesthetic-director-core` 的命题和 `illustration-direction` 的摄影机决定；中小字/精确中文的可靠交付见[制作分层规约](02_design/editorial-layout-design/references/production-delivery.md)，需严格准确时建议图像底稿 + 后期可编辑字层，不冒称生图文字可保证准确。
+
 ## 🧭 工作流总览 · Workflow Map
 
 > **一条共享创作主线，多种模型输出。** 设计在前、编译在后；参考研究和审美模块按需参与，不会替代最终设计负责人。下图由 GitHub 原生 Mermaid 渲染，无需额外图片或外部服务。
