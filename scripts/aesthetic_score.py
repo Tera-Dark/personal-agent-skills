@@ -88,7 +88,7 @@ def validate_entry(entry):
 def score(entry):
     validate_entry(entry)
     raw = sum(Decimal(str(entry["axes"][axis]["score"])) * weight
-              for axis, weight in zip(AXES, WEIGHTS[entry["profile"]])) / 100
+              for axis, weight in zip(AXES, WEIGHTS[entry["profile"]]) if weight) / 100
     hard = entry.get("hard_failures", [])
     cap = min((Decimal(str(CAPS[f])) for f in hard), default=Decimal("10"))
     final = one_decimal(min(raw, cap))
