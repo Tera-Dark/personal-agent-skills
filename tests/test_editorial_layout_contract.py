@@ -65,7 +65,7 @@ class EditorialLayoutContractTests(unittest.TestCase):
     def test_text_accuracy_and_no_fake_metadata_rules(self):
         s = (MOD / "references/production-delivery.md").read_text(encoding="utf-8")
         for term in ("精确中文", "不虚构", "abs_centralized", "yxyx",
-                     "moss_layout.py", "图窗", "最终画布"):
+                     "moss_layout.py", "图窗", "整张海报画布边界"):
             self.assertIn(term, s)
         core = (MOD / "SKILL.md").read_text(encoding="utf-8")
         self.assertIn("不能", core)
