@@ -20,7 +20,7 @@ class ScopedOct23DesignRegressions(unittest.TestCase):
             "02_design/character-design-engine/SKILL.md": REF_FASHION.name,
             "02_design/illustration-direction/SKILL.md": REF_DUO.name,
             "03_prompt/moss-image-renderer/SKILL.md": REF_MOSS.name,
-            "00_core/personal-identity-profile/references/taste-core.md": SESSION.name,
+            "00_core/personal-identity-profile/references/taste-signature.md": SESSION.name,
         }
         for source, name in linked.items():
             self.assertIn(name, (ROOT / source).read_text(encoding="utf-8"))
@@ -38,7 +38,7 @@ class ScopedOct23DesignRegressions(unittest.TestCase):
         for term in ("中近景", "手持物", "裁切", "IP AU", "宫门", "运动风"):
             self.assertIn(term, duo)
         moss = REF_MOSS.read_text(encoding="utf-8")
-        for term in ("原版", "AU", "medium-close", "full-body", "避免", "身份锁"):
+        for term in ("原服设", "AU", "medium-close", "full-body", "避免", "身份锁"):
             self.assertIn(term, moss)
 
     def test_varied_outfit_construction_not_one_template(self):
