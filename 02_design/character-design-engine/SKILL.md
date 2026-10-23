@@ -82,6 +82,10 @@ A character blueprint is READY only when thesis, silhouette, anchor hierarchy, a
 **锁定事实**（用户明确给定、不可被适配器"优化"的）：___
 ```
 
+## Scoped Commercial Fashion Calibration（2026-10-22）
+
+当用户要求**二游高定、妩媚擦边、工业外设反差、新中式联动服装**时，按需加载 `references/commercial-game-fashion-calibration-2026-10.md`。先让**性格表情、主裁片、局部露肤与外设功能**互相解释，再考虑小配件；不要通过重复黑色胶衣、短发、过膝袜、巨型机械臂“换色换工具”伪造原创。该校准只适用于明确选定的成年角色与商业时装题材，不覆盖日常少女肖像、正典原版服装或其他审美分支。用户提供参考时优先解构其形体对抗和服装节奏，不复制具体 IP 装饰。
+
 ## Modern Key Visual Mode
 
 当目标是现代二游 / 商业角色主视觉时，角色本身必须具备 key-visual-ready 的大形与动势，而不只是复杂服装：

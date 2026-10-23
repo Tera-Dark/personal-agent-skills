@@ -293,3 +293,8 @@
 - 多轮反馈确认：电影感不应固定为末班列车/雨夜/逆光/大留白的统一配方。根据剧情选择真实观看立场、非同步表演、动作时间相位、受控遮挡与多样化明暗表现；依据 FB-20261014-01，专项详细拆解唯一归属 `02_design/illustration-direction/references/cinematic-12-frame-study-2026-10-14.md`，这里不重复规则。
 - **明确保留反例**：Muse Dash 风格的“画风接近”不等于用户审美满意（FB-20261014-05）。这不是对高饱和/Q 版的全局否定，只是一次特定实验的未满足反馈。
 - 后续用户评分/点评应先进入 `feedback-ledger.md`，按 `feedback-learning-loop.md` 的作用域、来源与晋升条件更新稳定偏好；此档案只存晋升的原则与有代表性的认可样本，防止长期演变成聊天流水账。
+
+
+## 2026-10-22–23 · Scoped commercial-fashion and MOSS duo calibration
+
+Recent text-only feedback for adult commercial anime-game OC costume appeal, intentionally controlled cutouts, recognizable garment tailoring, strong asymmetric functional props, and Endfield duo high-angle fashion cinematography is captured in [scoped session evidence](session-feedback-2026-10-22-23.md). Load only for matching user requests. Do **not** override general female-oriented fashion, clean everyday looks, canon outfits, or the standing no-redundant-details rule. Prompt approval is not a model generation benchmark.
