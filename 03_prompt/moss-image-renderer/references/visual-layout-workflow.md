@@ -1,0 +1,105 @@
+# MOSS-Image · 可视化框选与 JSON Layout 实战（2026-10-26）
+
+> **证据级别**：[Official] OpenMOSS USERGUIDE + Prompt Enhancer；[Community] 第三方框选编辑器。Layout 是**生成前的空间控制**，不是针对现有图像的局部 inpainting 或精确像素蒙版。格式正确≠模型每次完全服从位置。本文不包含 GPU 出图实测，IMAGE-PENDING。
+
+## 一、先判断是不是该用 Layout
+
+- **Caption（默认）**：人物肖像、复杂光影、电影情绪、场景故事；镜头与对象关系可用自然语言可靠表达时无需 JSON。
+- **Layout**：文字与主体位置必须分别确定、版式/平面设计、多格分镜、两角色固定左右站位、多个独立物件排列。
+- **局部修订 JSON**：只能针对下一次生成修改某个 item 的文字/描述/边界框，不能承诺保持其他像素不变。需要改既有图片请走真正的编辑 / inpaint 管线。
+- **不要**因为“场景复杂”就把所有细节拆成几十个 bbox。优先 2–6 个关键元素，次要氛围交给 summary.caption（该数量是工作流建议，不是官方硬上限）。
+
+## 二、浏览器直接拖框：社区工具（非官方）
+
+1. [mossimage.app Layout Tool](https://mossimage.app/moss-image-layout)：网页画布空白区域拖动新增方框，按元素填写说明，复制导出原生 JSON。其页面演示了 16 px 吸附，但这不是官方模型规定的 bbox 粒度。
+2. [pixelateimages 中文 Layout 编辑器](https://pixelateimages.com/zh-cn/blog/moss-image-layout-editor/)：拖动/缩放 bbox，输入文字，导入/导出 JSON，另可下载 ComfyUI 工作流。**站方注明仅校验结构，未进行 GPU 推理实测**；需自己核对当前模型/节点文件名。
+3. [moss-image.com Layout Guide](https://moss-image.com/moss-image-layout-guide)：提供左上角坐标的视觉编辑器说明，适合理解框选转换；不是 OpenMOSS 官方域名。
+
+**信任边界**：上述域名均为第三方。可在本地按下一节构建草稿，使用本仓库编译器校验；不要把网站编辑器的导出兼容性当成官方推理验证，更不要上传敏感图片。每次导出要检查 `bbox_coord_space` 与 `bbox_format`。
+
+## 三、两种坐标绝不能混淆
+
+**给人编辑的草稿**（本 Harness 编译器约定）：
+- `width`、`height` 为生成分辨率，且均为 16 的正整数倍。
+- `bbox_coord_space:"abs"`，`bbox_format:"xyxy"`。
+- `bbox:[left,top,right,bottom]`，左上角原点 (0,0)，x 向右，y 向下。
+
+**真正传入 MOSS 正向提示词的成品**（官方原生约定）：
+- 顶层 `summary`, `items`, `bbox_coord_space:"abs_centralized"`, `bbox_format:"yxyx"`；
+- `bbox:[top-H/2,left-W/2,bottom-H/2,right-W/2]`；原点是画布中心；
+- 正式 JSON **不包含 width/height**，但运行时单独设置一致的宽高。
+- 导出时按官方增强器的边界包围处理小数，**不要靠 LLM 心算或改字段名假装已经转换**。
+
+例如 1024×1024：草稿 bbox `[96,96,928,256]` → 成品 bbox `[-416,-416,-256,416]`。
+
+## 四、可直接修改的海报草稿
+
+以下**只用于编辑/编译，不直接贴进 Positive Prompt**：
+
+```json
+{
+  "width": 1024,
+  "height": 1024,
+  "bbox_coord_space": "abs",
+  "bbox_format": "xyxy",
+  "summary": {
+    "meta": ["constructivist poster"],
+    "canvas": "single",
+    "caption": "An editorial art poster about human imagination becoming free. Restrained ivory, charcoal and oxidized red palette; diagonal geometric tension, tactile paper grain, bold asymmetrical negative space. All elements share coherent lighting and graphic rhythm."
+  },
+  "items": [
+    {
+      "label": "character",
+      "caption": "An expressive young woman turning upward with a wind-swept scarf, painted in a restrained painterly editorial illustration technique; figure isolated against the negative space.",
+      "bbox": [64, 208, 608, 960]
+    },
+    {
+      "label": "object",
+      "caption": "A single large fractured red geometric disk behind the figure, cropped by the canvas, with textured printed edges.",
+      "bbox": [320, 80, 992, 736]
+    },
+    {
+      "label": "text",
+      "caption": "Compact, sharply set black Chinese typography, left aligned with generous breathing room; not printed on a colored plaque.",
+      "text": "想象，自由生长",
+      "bbox": [624, 784, 976, 880]
+    }
+  ]
+}
+```
+
+运行：
+
+```bash
+python3 scripts/moss_layout.py draft.json --output ready.txt
+```
+
+把 `ready.txt` 的**单行完整内容**放进 MOSS 正向提示词。设置生成尺寸 `1024×1024`，不要把 `draft.json` 直接当原生模型输入。若已通过第三方工具导出 `abs_centralized/yxyx`，应检查后直接用原生格式，**不能再喂给这个仅接受草稿的编译器重复转换**。
+
+## 五、ComfyUI / Gradio 接入路径
+
+**ComfyUI**：
+1. 更新至支持 MOSS-Image 的 ComfyUI 版本，使用官方说明中的内置模型加载工作流，或官方 Diffusers/HF 插件工作流。两套 loader 所需文件格式不同，不要混用。
+2. 在正向文本编码/提示词输入处使用最终 JSON；如果当前 ComfyUI 版本提供独立的 Layout Prompt 节点，则按节点输入约定接入，不把左上角草稿直接输入。
+3. 核对 Empty Latent 尺寸 = 布局草稿的宽高，必要时关闭可能重写 JSON 的自动 prompt expansion。
+4. 官方配置参考：Euler，steps 约 50+，CFG 3（官方建议 3–6），shift 5；SLG 若支持可尝试 uncond skip layer 22。仅作基准，须以当前工作流节点为准。
+5. RTX 4060 Laptop 8GB VRAM 不能假设完整 5B 模型能直接载入；是否需卸载/量化/云端取决于实际实现和资源。
+
+**Gradio**：把原生 JSON 粘贴到 Prompt 字段，设置一致的宽高。**Python API**：`json.dumps(native_layout, ensure_ascii=False)` 作为 prompt 传给推理管线。JSON 的引号、转义换行和中文文本不可丢失。
+
+官方参考：[USERGUIDE](https://github.com/OpenMOSS/MOSS-Image/blob/main/USERGUIDE.md)、[OpenMOSS README](https://github.com/OpenMOSS/MOSS-Image)、[官方 enhancer](https://github.com/OpenMOSS/MOSS-Image/tree/main/skills/moss-image-prompt-enhancer)、[像素草稿规范](https://github.com/OpenMOSS/MOSS-Image/blob/main/skills/moss-image-prompt-enhancer/references/layout.md)。
+
+## 六、画面设计技巧与排错
+
+- **优先锁构图，再描述审美**：先固定关键人物、物件、标题 2–6 个 box，然后在 summary 锁画风、主次、色调、镜头和光影；对象 caption 锁各自的材质与清晰轮廓。
+- **避免打架**：summary 写“大字居中”而 bbox 把字安排到右下会冲突；summary 的空间关系必须与 boxes 同步。
+- **人物左右关系**：双人分别各设 character box，再在 summary 中点明 gaze/contact/overlap；不要把单个角色拆成十几个身体部位框。
+- **中文字体**：一条 text item 对应一个可见文案块，text 保留原文；caption 只规定字形、色彩和表面表现。字太多、框太小易失败。
+- **分镜**：`summary.canvas:"multi_panel"`，按画幅给不同角色或对象设不跨面板的 bbox；不代表模型一定自动画出规则分格线，必要时在可见描述中明确分隔方式。
+- **第三方 JSON 不兼容**：若 `label:"building"` 之类自定义标签出现在编辑器输出中，官方 enhancer 草稿只允许 `object/character/text`，应先改为允许的类别再编译。不要误把演示页面里更宽泛的标签当作官方严格编译器白名单。
+- **坐标错位**：核对 `[y_min,x_min,y_max,x_max]`、画布中心原点、分辨率和下游尺寸。别把 `[x_min,y_min,x_max,y_max]` 当作原生 JSON。
+- **几何有效但出图不遵循**：这是实验功能；减少物件数量、扩大目标区域、消除语义冲突，再用固定 seed 做 A/B。只标记 [User-tested] 当实际模型跑图证据可用。
+
+## 七、建议评测矩阵（待实测）
+
+同一个设计 Brief 做：A 纯 Caption；B 原生 JSON Layout；C 相同 Layout 只微调一个 bbox。固定模型 checkpoint / seed / 尺寸 / steps / CFG / shift，分别记录布局命中、文字正确率、人物身份/姿态、风格一致性；不要把单张成功样例当成功能稳定性证明。
