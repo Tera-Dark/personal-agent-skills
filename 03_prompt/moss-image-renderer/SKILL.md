@@ -61,6 +61,8 @@ MOSS 官方确认三种输入**格式**、Tag 字段顺序和示例；未发布�
 - **失败退化**：Caption 不因标签索引不可用而中止；确需核实的 Tag 若 Gate 不可用则降为描述；Layout 编译失败必须报告，不得假装合法。
 - 用户仅说“输出提示词”，按 PROMPT ONLY 一整块交付，不生成图片。
 
+- `references/visual-layout-workflow.md` — 2026-10-26 可视化拖框、第三方编辑器、坐标转换、海报范例、ComfyUI/Gradio 与误区排查。
+
 ## 验收
 
 - [ ] 设计上游已完成，Renderer 无再创作。
@@ -78,3 +80,5 @@ MOSS 官方确认三种输入**格式**、Tag 字段顺序和示例；未发布�
 - `references/style-control.md` — 候选风格描述库、跨媒介锚定方法、单变量测试协议。
 - `references/layout-contract.md` — 官方 Layout 输入、草稿转换、坐标、文字与多面板。
 - `references/examples.md` — Caption / Tags / Layout 可复制用例，均未声称出图验证。
+
+- Visual JSON Layout practical guide: https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/03_prompt/moss-image-renderer/references/visual-layout-workflow.md
