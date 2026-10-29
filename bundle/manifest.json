@@ -8,7 +8,7 @@
   "harness_full_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS-FULL.md",
   "handshake": "Harness v5.2.0 loaded · 20 modules · 说需求，或发参考图。",
   "core_tokens": 5416,
-  "full_tokens": 236587,
+  "full_tokens": 236805,
   "pipeline": {
     "aesthetic_gate": "aesthetic-director-core",
     "blueprint_gate": {
@@ -559,10 +559,10 @@
         "references/composition-patterns.md",
         "references/oc-maximalist-closeup-backdrop-preset.md",
         "references/visual-grammar.md",
+        "references/urban-dusk-window-narrative-2026-10-29.md",
         "references/decision-sheet-handoffs.md",
         "references/atmosphere-presets.md",
-        "references/white-background-fashion-grammar.md",
-        "references/urban-dusk-window-narrative-2026-10-29.md"
+        "references/white-background-fashion-grammar.md"
       ],
       "reference_files": [
         {
@@ -596,6 +596,12 @@
           "tokens": 6035
         },
         {
+          "path": "references/urban-dusk-window-narrative-2026-10-29.md",
+          "bundle_path": "bundle/references/illustration-direction/references/urban-dusk-window-narrative-2026-10-29.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/illustration-direction/references/urban-dusk-window-narrative-2026-10-29.md",
+          "tokens": 1489
+        },
+        {
           "path": "references/decision-sheet-handoffs.md",
           "bundle_path": "bundle/references/illustration-direction/references/decision-sheet-handoffs.md",
           "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/illustration-direction/references/decision-sheet-handoffs.md",
@@ -612,17 +618,11 @@
           "bundle_path": "bundle/references/illustration-direction/references/white-background-fashion-grammar.md",
           "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/illustration-direction/references/white-background-fashion-grammar.md",
           "tokens": 2549
-        },
-        {
-          "path": "references/urban-dusk-window-narrative-2026-10-29.md",
-          "bundle_path": "bundle/references/illustration-direction/references/urban-dusk-window-narrative-2026-10-29.md",
-          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/illustration-direction/references/urban-dusk-window-narrative-2026-10-29.md",
-          "tokens": 1489
         }
       ],
-      "tokens_skill": 5503,
-      "tokens_bundle": 6265,
-      "tokens_full_bundle": 27673
+      "tokens_skill": 5720,
+      "tokens_bundle": 6483,
+      "tokens_full_bundle": 27891
     },
     {
       "name": "japanese-cinematic-composition",

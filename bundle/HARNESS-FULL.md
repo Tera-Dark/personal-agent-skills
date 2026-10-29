@@ -6406,7 +6406,13 @@ An illustration blueprint is READY only when visual thesis, captured moment, mot
 
 摄影建议须落地为实际的观看立场、手势触点、遮挡与光源，不允许直接写摄影账号名称或用滤镜代替分镜设计。详细接力规则见 references/decision-sheet-handoffs.md。
 
+#### 都市情绪流窗景案例（2026-10-29，按需）
+
+当用户给出城市黄昏、室内向外观看、背影人物、大片建筑空间等参考，或希望提升生活感电影镜头的情绪表达时，读取 `references/urban-dusk-window-narrative-2026-10-29.md`。提取窗框网格、室内外密度对照、小人物与巨大城市的尺度关系、真实光衰减与普通动作的叙事意义；禁止机械照搬兔耳、手机、晾衣物或日文排字。此案例为设计语法参考，不是默认场景预设。
+
 #### References
+
+- `references/urban-dusk-window-narrative-2026-10-29.md` — 城市暮色窗景的空间分层、生活痕迹、冷暖光与静态情绪叙事案例。
 
 - `references/decision-sheet-handoffs.md` — 从正文下沉的小画师与日系电影感两份 Decision Sheet 细节。
 
@@ -7288,6 +7294,51 @@ This preset should be selected when the user asks for:
 
 ---
 
+### Reference: references/urban-dusk-window-narrative-2026-10-29.md
+
+#### 都市暮色窗景叙事语法 · Case Study (2026-10-29)
+
+> 来源：用户提供的横版城市窗景插画。仅拆解可观察的视觉决策；不推测原作者身份，不复制人物形象或构图作为默认模板。
+> 适用：都市情绪流插画、日系电影感、歌曲封面、日常空间叙事；不是所有作品都自动使用城市、窗户、耳朵头饰或日文标题。
+
+##### 案例可见事实
+- 约 16:9 横幅；几乎全幅的深色室内与连续落地窗形成硬质几何网格。城市楼群占据窗外绝大部分画幅。
+- 人物较小、偏右、背对观众，手中亮起的手机是微弱亮点；其姿态呈静止而非摆拍。长带状发饰和衣摆形成轻巧的曲线，对照城市与窗框的直线。
+- 近处是深蓝黑的房间与晾晒衣物；远处是密集、层层叠叠、偏灰粉橙的楼宇。局部窗灯、反光和屏幕亮点打破大面积暗色。
+- 窗框、晾衣杆、建筑立面承担横纵节奏。下部深暗的静区，窗外繁复的城市密区，人物位于两者交界。
+- 少量日语竖排字和横向短字融入窗框附近暗区，且没有抢占主视觉；文字需要精确时应由排版模块或后期处理。
+
+##### 可迁移的艺术规律
+1. **环境是主角的情绪尺度**：让人站在巨大城市面前，角色占比小，不以美型人物大特写强行占据视觉中心。环境信息密度本身可以表达孤独、等待或城市匿名性；不要依靠悲伤表情。
+2. **双层空间对照**：室内可见的生活痕迹（衣物、家具边、杂物）与室外密集的公共空间构成私人/公共、近/远、静/动反差。物件只保留 1–2 个能说明有人生活的证据，不随机摆满房间。
+3. **窗口网格负责分镜**：窗框是有节奏的空间切割器，人物不是简单贴在风景前。横向框线压住楼群，竖向框线留出近远和人物位置；建筑线条需要连续透视。
+4. **一个曲线异物**：人物发带、发丝或衣角的弯曲线条打破建筑直线重复。若换主题可用围巾、植物、晾衣绳或人物动作，但只选一条主要有机运动线。
+5. **光色按空间分工**：暗蓝青室内对温粉橙外部黄昏；主体保持部分暗面与不可见细节，不默认添加均匀补光和轮廓光。亮屏、零星窗灯是有动机的小亮点，避免赛博霓虹。
+6. **非对称情绪**：人物正在做一件极普通的事（看手机），环境却拥有超出人物尺度的重量。抓取动作停顿的半秒，使观众推想下一秒，而不是为图注写完整剧情。
+7. **图文安全区前置**：需要歌词/标题时，在画面初期安排暗框边缘的排字安全区；绝不让 NAI5 承担精准日文文字复现。没有文字需求时直接省略。
+
+##### 镜头规划样例（不是固定配方）
+- 观众在室内后方偏左，眼高约站立视线，与人物间隔数米；人物背向观众，完整看见窗框的上中下结构。
+- 前景低明度家具/衣物切入下缘，中景人物在画幅右三分之一，远景建筑多层叠压；窗外景观必须透过开口可见。
+- 唯一可辨动作是抬起手机；手机屏光只轻微照亮手与袖缘。不要添加无来源的面部补光。
+- 眼动路径：外部暖色高密楼群 → 右侧人物/手机 → 左下室内旧物 → 回到城市；大面积暗区容许细节融没。
+
+##### 反向诊断
+- 若变成“完整人物大立绘 + 随机城市壁纸”，应减小人物、恢复窗框遮挡及深暗室内。
+- 若城市过于写实/每栋楼等清晰，降低远景对比度，增加近远层次；近景窗框必须最稳。
+- 若全图一律蓝橙霓虹或巨量光斑，先确定真实夕阳和局部光源，去掉泛化滤镜。
+- 若只有歌词、耳朵或衣饰可记忆而构图无力，先删除文字装饰，检查缩略图的窗格质量与城市/人物比例。
+- 若“电影感”仅来自滤镜，问观看者为何在屋内、为何看见这个瞬间、前后半秒发生何种变化。
+
+##### 下游 Prompt Packet 最小事实
+- framing: horizontal wide, interior looking outward, small back-facing subject offset right.
+- visible_geometry: window mullions intersect layered distant buildings, dark lived-in foreground objects, phone glow localized to hand, one long curved cloth/hair gesture.
+- light: warm low sun across distant facade; blue-black interior shade, measured distance falloff.
+- density: dense city / still person / quiet dark floor.
+- avoid literal source composition when generating new designs: replace story, architecture, action and motif as appropriate, preserving **spatial and emotional causality** rather than borrowing the same scene.
+
+---
+
 ### Reference: references/decision-sheet-handoffs.md
 
 #### L3 specialist decision-sheet handoffs
@@ -7702,51 +7753,6 @@ Before compiling the prompt, ask:
 8. If the face is hidden, does the silhouette still look designed?
 9. If the particles and tiny decorations are removed, does the image still work?
 10. Are expression, pose, costume and palette telling the same aesthetic story?
-
----
-
-### Reference: references/urban-dusk-window-narrative-2026-10-29.md
-
-#### 都市暮色窗景叙事语法 · Case Study (2026-10-29)
-
-> 来源：用户提供的横版城市窗景插画。仅拆解可观察的视觉决策；不推测原作者身份，不复制人物形象或构图作为默认模板。
-> 适用：都市情绪流插画、日系电影感、歌曲封面、日常空间叙事；不是所有作品都自动使用城市、窗户、耳朵头饰或日文标题。
-
-##### 案例可见事实
-- 约 16:9 横幅；几乎全幅的深色室内与连续落地窗形成硬质几何网格。城市楼群占据窗外绝大部分画幅。
-- 人物较小、偏右、背对观众，手中亮起的手机是微弱亮点；其姿态呈静止而非摆拍。长带状发饰和衣摆形成轻巧的曲线，对照城市与窗框的直线。
-- 近处是深蓝黑的房间与晾晒衣物；远处是密集、层层叠叠、偏灰粉橙的楼宇。局部窗灯、反光和屏幕亮点打破大面积暗色。
-- 窗框、晾衣杆、建筑立面承担横纵节奏。下部深暗的静区，窗外繁复的城市密区，人物位于两者交界。
-- 少量日语竖排字和横向短字融入窗框附近暗区，且没有抢占主视觉；文字需要精确时应由排版模块或后期处理。
-
-##### 可迁移的艺术规律
-1. **环境是主角的情绪尺度**：让人站在巨大城市面前，角色占比小，不以美型人物大特写强行占据视觉中心。环境信息密度本身可以表达孤独、等待或城市匿名性；不要依靠悲伤表情。
-2. **双层空间对照**：室内可见的生活痕迹（衣物、家具边、杂物）与室外密集的公共空间构成私人/公共、近/远、静/动反差。物件只保留 1–2 个能说明有人生活的证据，不随机摆满房间。
-3. **窗口网格负责分镜**：窗框是有节奏的空间切割器，人物不是简单贴在风景前。横向框线压住楼群，竖向框线留出近远和人物位置；建筑线条需要连续透视。
-4. **一个曲线异物**：人物发带、发丝或衣角的弯曲线条打破建筑直线重复。若换主题可用围巾、植物、晾衣绳或人物动作，但只选一条主要有机运动线。
-5. **光色按空间分工**：暗蓝青室内对温粉橙外部黄昏；主体保持部分暗面与不可见细节，不默认添加均匀补光和轮廓光。亮屏、零星窗灯是有动机的小亮点，避免赛博霓虹。
-6. **非对称情绪**：人物正在做一件极普通的事（看手机），环境却拥有超出人物尺度的重量。抓取动作停顿的半秒，使观众推想下一秒，而不是为图注写完整剧情。
-7. **图文安全区前置**：需要歌词/标题时，在画面初期安排暗框边缘的排字安全区；绝不让 NAI5 承担精准日文文字复现。没有文字需求时直接省略。
-
-##### 镜头规划样例（不是固定配方）
-- 观众在室内后方偏左，眼高约站立视线，与人物间隔数米；人物背向观众，完整看见窗框的上中下结构。
-- 前景低明度家具/衣物切入下缘，中景人物在画幅右三分之一，远景建筑多层叠压；窗外景观必须透过开口可见。
-- 唯一可辨动作是抬起手机；手机屏光只轻微照亮手与袖缘。不要添加无来源的面部补光。
-- 眼动路径：外部暖色高密楼群 → 右侧人物/手机 → 左下室内旧物 → 回到城市；大面积暗区容许细节融没。
-
-##### 反向诊断
-- 若变成“完整人物大立绘 + 随机城市壁纸”，应减小人物、恢复窗框遮挡及深暗室内。
-- 若城市过于写实/每栋楼等清晰，降低远景对比度，增加近远层次；近景窗框必须最稳。
-- 若全图一律蓝橙霓虹或巨量光斑，先确定真实夕阳和局部光源，去掉泛化滤镜。
-- 若只有歌词、耳朵或衣饰可记忆而构图无力，先删除文字装饰，检查缩略图的窗格质量与城市/人物比例。
-- 若“电影感”仅来自滤镜，问观看者为何在屋内、为何看见这个瞬间、前后半秒发生何种变化。
-
-##### 下游 Prompt Packet 最小事实
-- framing: horizontal wide, interior looking outward, small back-facing subject offset right.
-- visible_geometry: window mullions intersect layered distant buildings, dark lived-in foreground objects, phone glow localized to hand, one long curved cloth/hair gesture.
-- light: warm low sun across distant facade; blue-black interior shade, measured distance falloff.
-- density: dense city / still person / quiet dark floor.
-- avoid literal source composition when generating new designs: replace story, architecture, action and motif as appropriate, preserving **spatial and emotional causality** rather than borrowing the same scene.
 
 ---
 
