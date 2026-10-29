@@ -169,7 +169,13 @@ An illustration blueprint is READY only when visual thesis, captured moment, mot
 
 摄影建议须落地为实际的观看立场、手势触点、遮挡与光源，不允许直接写摄影账号名称或用滤镜代替分镜设计。详细接力规则见 references/decision-sheet-handoffs.md。
 
+## 都市情绪流窗景案例（2026-10-29，按需）
+
+当用户给出城市黄昏、室内向外观看、背影人物、大片建筑空间等参考，或希望提升生活感电影镜头的情绪表达时，读取 `references/urban-dusk-window-narrative-2026-10-29.md`。提取窗框网格、室内外密度对照、小人物与巨大城市的尺度关系、真实光衰减与普通动作的叙事意义；禁止机械照搬兔耳、手机、晾衣物或日文排字。此案例为设计语法参考，不是默认场景预设。
+
 ## References
+
+- `references/urban-dusk-window-narrative-2026-10-29.md` — 城市暮色窗景的空间分层、生活痕迹、冷暖光与静态情绪叙事案例。
 
 - `references/decision-sheet-handoffs.md` — 从正文下沉的小画师与日系电影感两份 Decision Sheet 细节。
 
