@@ -189,3 +189,4 @@ Detailed references are separate files. Read only the references required by the
 - `references/decision-sheet-handoffs.md` (~1098 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/illustration-direction/references/decision-sheet-handoffs.md
 - `references/atmosphere-presets.md` (~2473 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/illustration-direction/references/atmosphere-presets.md
 - `references/white-background-fashion-grammar.md` (~2549 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/illustration-direction/references/white-background-fashion-grammar.md
+- `references/urban-dusk-window-narrative-2026-10-29.md` (~1489 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/illustration-direction/references/urban-dusk-window-narrative-2026-10-29.md

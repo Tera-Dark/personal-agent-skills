@@ -57,9 +57,9 @@ MOSS 官方确认三种输入**格式**、Tag 字段顺序和示例；未发布�
 - **失败退化**：Caption 不因标签索引不可用而中止；确需核实的 Tag 若 Gate 不可用则降为描述；Layout 编译失败必须报告，不得假装合法。
 - 用户仅说“输出提示词”，按 PROMPT ONLY 一整块交付，不生成图片。
 
-#- `references/visual-layout-workflow.md` — 2026-10-26 可视化拖框、第三方编辑器、坐标转换、海报范例、ComfyUI/Gradio 与误区排查。
+- `references/visual-layout-workflow.md` — 2026-10-26 可视化拖框、第三方编辑器、坐标转换、海报范例、ComfyUI/Gradio 与误区排查。
 
-## 验收
+### 验收
 
 - [ ] 设计上游已完成，Renderer 无再创作。
 - [ ] Caption / Tags / Layout 模式选对，风格词没有伪装为官方保证。
@@ -77,6 +77,8 @@ MOSS 官方确认三种输入**格式**、Tag 字段顺序和示例；未发布�
 - `references/layout-contract.md` — 官方 Layout 输入、草稿转换、坐标、文字与多面板。
 - `references/examples.md` — Caption / Tags / Layout 可复制用例，均未声称出图验证。
 
+- Visual JSON Layout practical guide: https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/03_prompt/moss-image-renderer/references/visual-layout-workflow.md
+
 ## On-demand reference files
 
 Detailed references are separate files. Read only the references required by the current task; do not fetch every reference by default. Each URL points to the generated, version-matched source for this Harness build.
@@ -86,5 +88,4 @@ Detailed references are separate files. Read only the references required by the
 - `references/style-control.md` (~1154 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/moss-image-renderer/references/style-control.md
 - `references/examples.md` (~807 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/moss-image-renderer/references/examples.md
 - `references/official-spec-and-sources.md` (~1293 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/moss-image-renderer/references/official-spec-and-sources.md
-
-- Visual JSON Layout practical guide: https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/03_prompt/moss-image-renderer/references/visual-layout-workflow.md
+- `references/visual-layout-workflow.md` (~2471 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/moss-image-renderer/references/visual-layout-workflow.md

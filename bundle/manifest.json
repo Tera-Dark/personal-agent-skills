@@ -8,7 +8,7 @@
   "harness_full_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS-FULL.md",
   "handshake": "Harness v5.2.0 loaded · 20 modules · 说需求，或发参考图。",
   "core_tokens": 5416,
-  "full_tokens": 232491,
+  "full_tokens": 236587,
   "pipeline": {
     "aesthetic_gate": "aesthetic-director-core",
     "blueprint_gate": {
@@ -561,7 +561,8 @@
         "references/visual-grammar.md",
         "references/decision-sheet-handoffs.md",
         "references/atmosphere-presets.md",
-        "references/white-background-fashion-grammar.md"
+        "references/white-background-fashion-grammar.md",
+        "references/urban-dusk-window-narrative-2026-10-29.md"
       ],
       "reference_files": [
         {
@@ -611,11 +612,17 @@
           "bundle_path": "bundle/references/illustration-direction/references/white-background-fashion-grammar.md",
           "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/illustration-direction/references/white-background-fashion-grammar.md",
           "tokens": 2549
+        },
+        {
+          "path": "references/urban-dusk-window-narrative-2026-10-29.md",
+          "bundle_path": "bundle/references/illustration-direction/references/urban-dusk-window-narrative-2026-10-29.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/illustration-direction/references/urban-dusk-window-narrative-2026-10-29.md",
+          "tokens": 1489
         }
       ],
       "tokens_skill": 5503,
-      "tokens_bundle": 6206,
-      "tokens_full_bundle": 26162
+      "tokens_bundle": 6265,
+      "tokens_full_bundle": 27673
     },
     {
       "name": "japanese-cinematic-composition",
@@ -819,7 +826,8 @@
         "references/official-enhancer-workflow.md",
         "references/style-control.md",
         "references/examples.md",
-        "references/official-spec-and-sources.md"
+        "references/official-spec-and-sources.md",
+        "references/visual-layout-workflow.md"
       ],
       "reference_files": [
         {
@@ -851,11 +859,17 @@
           "bundle_path": "bundle/references/moss-image-renderer/references/official-spec-and-sources.md",
           "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/moss-image-renderer/references/official-spec-and-sources.md",
           "tokens": 1293
+        },
+        {
+          "path": "references/visual-layout-workflow.md",
+          "bundle_path": "bundle/references/moss-image-renderer/references/visual-layout-workflow.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/moss-image-renderer/references/visual-layout-workflow.md",
+          "tokens": 2471
         }
       ],
-      "tokens_skill": 2841,
-      "tokens_bundle": 3267,
-      "tokens_full_bundle": 9673
+      "tokens_skill": 2932,
+      "tokens_bundle": 3409,
+      "tokens_full_bundle": 12254
     },
     {
       "name": "nai5-renderer",
