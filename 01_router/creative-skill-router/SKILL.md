@@ -75,9 +75,7 @@ identity → Aesthetic Gate → **small-artist-brain**（独立审美 Decision S
 
 ### 1.4 软件 UI / UX 设计（独立于图像创作）
 
-当用户需要**应用界面、网页产品、管理面板、工具工作站、移动端交互、响应式布局、组件规范、ChatGPT 风格 UI、前端 UX 审查或实现**时，按需加载 `chatgpt-inspired-ui`，先识别产品任务、既有技术栈和用户流程，再按「结构 → 组件 → 状态 → 触控/键盘 → 验收」完成设计或代码调整。
-
-**严格分域**：应用界面 UI 不等同于插画中的文字/图文编排；不要因为出现“设计”二字而调用 `editorial-layout-design`、图像 Prompt Core 或生图 renderer。UI 中需要独立宣传海报/插画时，才由用户的实际任务触发对应创作分支；未明示出图则不生成图片。
+软件 UI/UX、前端、管理面板、工具网站、移动端布局及 ChatGPT 风格界面 → 按需加载 `chatgpt-inspired-ui`；根据任务、现有技术栈和行为做结构、组件、交互与响应式验证。**软件 UI 不走插画、图像 Prompt 或生图 Renderer 管线**；如另有插画任务再独立路由。
 
 ### 2. 已完成设计 → 模型提示词
 
