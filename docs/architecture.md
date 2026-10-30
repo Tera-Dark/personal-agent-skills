@@ -1,6 +1,6 @@
 # Architecture
 
-## v4.6 principle
+## Principle
 
 The harness separates five responsibilities and keeps output authorization separate from design:
 
@@ -121,9 +121,12 @@ The Web-first runtime may load a target prompt pack in one fetch:
 \`\`\`
 Anima pack = Visual Prompt Core + Danbooru Gate + Anima Renderer
 NAI5 pack  = Visual Prompt Core + Danbooru Gate + NAI5 Renderer
+MOSS pack  = Visual Prompt Core + MOSS Renderer (tag mode adds Danbooru Gate)
 \`\`\`
 
 This keeps the shared logic identical across targets without requiring seven independent Anima fetches.
+
+Web sessions resolve a commit SHA and use it for the core and all on-demand raw URLs. If a pinned fetch is unavailable, the runtime falls back to main with version checks and an explicit consistency caveat. This reduces mixed-revision loads but cannot guarantee the SHA is the latest when a web tool caches the API response. Offline pasted content does not require this lookup.
 
 ## Generated distribution
 

@@ -3,7 +3,7 @@ name: danbooru-tag-gate
 description: Web-first validation boundary for Danbooru-derived hard tags shared by Anima and NAI5 plus MOSS-Image Tag-mode workflows. Resolves exact canonical tags, exact aliases, or missing without fuzzy promotion. Use whenever a prompt packet needs verified Danbooru identity.
 metadata:
   author: Tera-Dark
-  version: "1.3.1"
+  version: "2.0.0"
   layer: "03_prompt"
   load: "on-demand"
   status: "active"
@@ -48,9 +48,9 @@ The manifest records the source SHA-256, groups and available prefixes. Each sha
 
 ## Lookup
 
-1. 首次读取 root manifest 并记录 source SHA；随后只读取本任务实际涉及的各个 group manifest，并复用缓存结果。
+1. 首次读取 root manifest 并记录 source SHA；缺少 `shard_filename_rule` 时视为旧版或不完整索引，标记 unverified。随后只读取本任务实际涉及的各个 group manifest，并复用缓存结果；校验 group、bucket 和 shard 的 source SHA 均与 root 相同。
 2. 按候选项的 `group` 分组，使用 root manifest 提供的 `path_group` 与 prefix rule 计算 shard 路径；每个不同的 (group, prefix) 最多 fetch 一次。对于 `artists`，prefix 计算时仅为定位目的去掉开头的 `artist:`，候选身份字符串本身不变。
-3. 若 group manifest 提供 `prefix_manifest_pattern`（当前仅 artists），计算 prefix 的首字符 bucket：一般取 prefix 首字符；prefix 为 `_special` 时 bucket 为 `_special`。只 fetch 对应 bucket manifest，并检查完整 prefix 是否在其 `prefixes` 列表中。
+3. 若 group manifest 提供 `prefix_manifest_pattern`（当前仅 artists），计算 prefix 的首字符 bucket：一般取 prefix 首字符；prefix 为 `_special` 时 bucket 为 `_special`。只 fetch 对应 bucket manifest，并检查完整 prefix 是否在其 `prefixes` 列表中。按 root manifest 的 `shard_filename_rule` 选择文件名；例如 `con` 和 `nul` 使用 `con-shard.json`、`nul-shard.json`，prefix 本身不变。
 4. 若 root manifest 不存在该 group，或相应 group/bucket manifest 明确没有该 prefix，可按当前 source snapshot 记为 missing。若清单声明的 group manifest、bucket manifest 或 shard fetch 失败，标记 unverified，不能当成 missing。
 5. Prefix 只用于定位文件，不是 tag normalization。匹配前仅去掉传输层首尾空白；不得改写候选 tag 中的 underscore、parentheses、colon、slash 或大小写。
 6. 在 shard 的 `exact` 字典做原字符串查找；命中则 status=exact。

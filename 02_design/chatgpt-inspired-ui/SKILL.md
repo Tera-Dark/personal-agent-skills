@@ -3,7 +3,7 @@ name: chatgpt-inspired-ui
 description: Design and audit product interfaces using an original, reusable design language inspired by publicly documented ChatGPT UI principles—calm neutral surfaces, content-first hierarchy, restrained actions, accessible controls, conversation-friendly patterns, and responsive utility layouts. Use for UI/UX, frontend, dashboards, tools, mobile web, design systems, and cross-project interface consistency; not illustration prompt generation.
 metadata:
   author: Tera-Dark
-  version: "1.0.0"
+  version: "1.1.0"
   layer: "02_design"
   load: "on-demand"
   status: "active"
@@ -20,7 +20,7 @@ metadata:
 
 适用：工具站、编辑器、任务管理、设置面板、内容站、素材库、LLM 应用、移动 Web、桌面 Web。
 
-边界：游戏 HUD/世界观视觉、宣传 Landing Page 和强叙事海报不强制继承「应用工作台」构图；它们仅复用可用性原则、状态规范、语义 token。此 Skill 不管理插画美术、NAI5/Anima/MOSS 提示词；除非用户明确要图片，否则输出设计/代码而非生成图片。
+边界：应用工作台、官网/内容站采用不同构图；游戏 HUD/强叙事海报保留各自美术方向。它们共享可用性原则，不强制套聊天布局或中性色。此 Skill 不管理插画美术、NAI5/Anima/MOSS 提示词；除非用户明确要图片，否则输出设计/代码而非生成图片。
 
 ## 2. 三条不可妥协的设计原则
 
@@ -32,8 +32,9 @@ metadata:
 
 ## 3. 来源和证据等级
 
-- **[官方公开]** OpenAI Apps/Plugins UI guidelines：系统颜色、少字体尺寸、统一间距/圆角、单色线性图标、WCAG AA、图片替代文本、字体缩放。https://developers.openai.com/plugins/concepts/ui-guidelines
+- **[官方公开，适用范围：ChatGPT 内插件]** OpenAI Apps/Plugins UI guidelines：系统颜色、少字体尺寸、统一间距/圆角、单色线性图标、WCAG AA、图片替代文本、字体缩放。嵌入 ChatGPT 时遵循宿主规则；独立网站只能借鉴原则，不能称为官方产品规范。https://developers.openai.com/plugins/concepts/ui-guidelines
 - **[官方公开]** OpenAI frontend guidance：运维工具宜安静、实用、易扫描，避免不必要的大 Hero、装饰性卡片矩阵。https://developers.openai.com/api/docs/guides/frontend-prompt
+- **[官方公开，前端制作建议]** 参考图、明确设计系统、内容叙事，以及浏览器中实际检查视口与交互；这些是工作方法，不是 ChatGPT 或官网内部规范。https://developers.openai.com/blog/designing-delightful-frontends-with-gpt-5-4
 - **[官方公开]** OpenAI brand guidance：品牌和 OpenAI Sans 属于 OpenAI 品牌规范范畴；不复制商标、品牌字标。https://openai.com/brand/
 - **[观察性归纳]** ChatGPT 类交互中常见：中心内容柱、弱化旁栏、明确输入区、自然分组、低噪音工具操作。这不是官方发布的精确 CSS 规范。
 - **[自定建议]** 以下 HEX、px、断点、动效时间仅为 Tera UI 的实现起点，不代表真实 ChatGPT 内部 token。以产品测试为准。
@@ -52,6 +53,9 @@ metadata:
 | 文档/素材库 | 筛选/目录 + 列表/画布 + 详情 | 检索、预览、批量处理 |
 | 设置 | 分类导航 + 表单区 | 解释、保存、危险操作保护 |
 | 手机端 | 顶部语境 + 单主任务 + 底部/抽屉导航（仅必要时） | 触控、可发现性、单手操作 |
+| 官网/内容展示 | 清晰导航 + 一项核心内容 + 有节奏的编辑式区块 | 先组织叙事、标题和内容，再决定图片与视觉表现 |
+
+**应用与官网分流**：工作台优先信息密度、稳定导航和重复操作；官网/内容展示优先内容顺序、编辑式排版、真实视觉素材和品牌识别。依据具体项目和参考选择字体、留白、构图和图像，不把任何固定 Hero、卡片禁令或 ChatGPT 侧栏当成通用模板。用户给了官网/截图时，先分析实际参考中标题尺度、网格、留白、内容节奏和响应式关系，并标注直接观察与推测；无法看见时不假装已经对照。
 
 ## 5. 可执行视觉约束
 
@@ -61,7 +65,7 @@ metadata:
 - **字体少而精准**：系统字体栈优先，中文自动回退；常规字重 400/500/600；正文字号建议 14–16px，辅助文字默认至少 12px（复杂手机界面倾向 >=13px）。不用花哨显示字体填补缺失的层级。
 - **间距有节律**：4px 基础单位，8/12/16/24/32 常用。先靠对齐、空间、分隔线形成分组，再考虑卡片背景。
 - **半径作为语法**：小控件建议 6–10px，面板 10–16px，胶囊只留给明确的 pills/chips；不是所有控件都超大圆角。
-- **无意义装饰归零**：默认无渐变、玻璃拟态、发光、巨型阴影、浮夸背景图、到处可见的彩色徽章。
+- **去掉无目的装饰**：工作台默认克制；官网和展示页可在服务内容、品牌和可读性的前提下使用图片、色彩、动态或背景，不强制黑白和纯色。
 - **行宽**：长文本限制可读长度，工作台则给画布/表格足够宽度；不要强迫所有内容窄成聊天列。
 - **图标**：优先 Lucide 一类单色描边图标；图标单独出现时有 accessible name/tooltip，禁止把功能仅靠无标签神秘图标表达。
 
@@ -81,7 +85,7 @@ metadata:
 
 - 必须实现 default/hover/focus-visible/active/disabled/loading/error/success/empty 等实际出现的状态。
 - 所有交互控件可键盘操作；Esc 关闭合理浮层，Tab 顺序与视觉顺序一致，弹窗管理焦点，打开弹窗不导致背景误操作。
-- WCAG AA 基础目标：常规文本对比 >= 4.5:1，大文字 >= 3:1；焦点可见；不以颜色作为唯一信息载体。
+- WCAG 2.2 AA 基础目标：常规文本对比 >= 4.5:1，大文字 >= 3:1；识别控件/状态所必需的边框、图形及焦点指示与相邻色 >= 3:1（依标准例外判断）。不以颜色作为唯一信息载体；逐一测实际配色，细分隔线不能充当唯一控件边界。
 - 支持 `prefers-reduced-motion`、深浅色以及系统缩放；避免固定高度造成文字截断。
 - 交互反馈可使用短暂 120–200ms 过渡（**建议值，非官方参数**），功能性反馈不能被动画延迟。
 - 移动端触控目标一般建议至少 44×44 CSS px 或等效可点区域（自定安全建议）；保持操作间隔，考虑 safe-area 与软键盘。
@@ -103,7 +107,7 @@ metadata:
 3. **Tokens**：设语义变量（surface/text/border/accent/status/space/radius），不要直接把 hex 散落在组件中。
 4. **Structure**：先做主任务的结构与内容层级，再布局、文字、组件外观、动效；别先画五十张卡。
 5. **Implement**：复用既有技术栈；不要为纯 CSS 能完成的事情引入沉重 UI 依赖；必要时采用可维护的组件。
-6. **Test**：至少验证 360/390/768/1280px 宽度、键盘、焦点、长文本、空/加载/报错、深浅色、缩放和移动软键盘影响（不可运行则显式列未验证项）。
+6. **Test**：在可运行环境实际查看桌面与手机页面，优先验证主任务、布局、溢出及交互；按适用性覆盖 360/390/768/1280px、键盘焦点、长文本、空/加载/报错、主题、缩放和移动软键盘。视觉对照要看真实渲染和参考，不能只靠代码或截图生成成功宣称达到目标；工具不可用时标注未验证。
 7. **Subtract**：删除无任务价值的装饰、重复操作、无意义标题、图标、边框与二级卡片。
 8. **Deliver**：总结具体改了哪些内容、哪些场景已验证、仍有哪些风险；**未实际运行的验证不得声称通过**。
 
@@ -113,7 +117,7 @@ metadata:
 
 用户要**已有项目审查**：指出可复现的问题、严重等级 P0/P1/P2、用户影响、最小修复、验证步骤；不因风格统一而删除原有功能。
 
-用户要**代码开发**：直接修改适当项目并给可运行产物；必须先确认访问和写入权限，不能仅用概念稿声称已经部署。
+用户要**代码开发**：在已有授权范围内直接修改适当项目并给可运行产物；仅在缺少必要授权时询问，不能仅用概念稿声称已经部署。
 
 设计细则见 [design-tokens.md](references/design-tokens.md)，评审与反例见 [review-checklist.md](references/review-checklist.md)。
 
@@ -124,3 +128,8 @@ metadata:
 - 不以「极简」为由隐藏关键操作、减少错误反馈或牺牲可访问性。
 - 不为统一风格破坏原有产品关键工作流。
 - 参考该 Skill 进行*原创产品设计*，而非伪造 ChatGPT 官方产品。
+
+## References
+
+- `references/design-tokens.md` — 原创可调的 token 起点及实际对比度检查。
+- `references/review-checklist.md` — 应用与内容站的可验证审查清单。

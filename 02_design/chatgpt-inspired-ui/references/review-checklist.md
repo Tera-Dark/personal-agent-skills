@@ -33,10 +33,11 @@
 1. **宽度**：360 / 390 / 768 / 1280px；包含长标题、长列表与超宽数据。
 2. **输入**：键盘 Tab/Shift+Tab、Enter/Space、Esc、焦点环、屏幕阅读器标签。
 3. **状态**：首次使用、无数据、加载中、网络错误、验证错误、成功确认、无权限。
-4. **主题**：浅色、深色、系统切换、200% 缩放；色彩/文本对比。
+4. **主题**：浅色、深色、系统切换、200% 缩放；实际文字配色与识别控件、状态、焦点所需的非文本对比，不能以装饰性浅分隔线充当唯一边界。
 5. **触控**：手指点击误触、滚动、输入法唤起、safe-area、触控与 hover 不一致。
 6. **性能**：首屏资源、长列表、重复渲染、动画运动偏好；只陈述真实测量结果。
 7. **回归**：原有功能、保存/导出/导入、导航路由、键盘快捷键、状态持久化。
+8. **视觉与参考**：分别实看应用主任务或官网首屏、内容节奏、标题层级、空白和移动端布局；有参考时核对观察到的结构而非声称像素级一致。不能运行或未看参考则标 NOT TESTED。
 
 ## D. 审查输出模板
 
@@ -65,5 +66,7 @@ Token 与组件调整：
 - OpenAI UI guidelines：https://developers.openai.com/plugins/concepts/ui-guidelines
 - OpenAI frontend guidance：https://developers.openai.com/api/docs/guides/frontend-prompt
 - OpenAI brand：https://openai.com/brand/
+- OpenAI frontend workflow：https://developers.openai.com/blog/designing-delightful-frontends-with-gpt-5-4
+- WCAG 2.2 非文本对比：https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html
 
 本文件中的验收断点、token 数值、布局实例均为项目建议，而非官方 ChatGPT 实现细节。

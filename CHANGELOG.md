@@ -1,5 +1,14 @@
 # Changelog
 
+## [6.0.0] — 2026-10-30 · Web-first usability
+
+- Pin web-session repository reads to one commit when accessible; report fallback uncertainty and compare runtime versions when pinning fails.
+- Resolve the task-versus-handshake conflict and stamp generated references with the harness version.
+- Preserve tag prefixes while mapping Windows-reserved shard names to portable filenames; keep the pinned tag data unchanged. This changes two public shard URLs, so old sessions should reload the new gate and manifest together.
+- Simplify the README, correct loading documentation and record the personal web-first, lightweight, easy-to-use priority.
+- Improve `chatgpt-inspired-ui`: distinguish workspaces from editorial websites, add reference-based visual QA and make essential control contrast explicit.
+- Persist the validated tag snapshot across CI jobs when an explicit main-branch refresh is requested.
+
 ## [5.3.0] — 2026-10-30 · Product UI Design Skill
 
 - Added on-demand `chatgpt-inspired-ui` under `02_design`: content-first, functional minimalism inspired by public ChatGPT UI guidance, with explicit original-design and brand boundaries.

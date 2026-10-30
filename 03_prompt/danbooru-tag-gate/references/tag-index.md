@@ -9,6 +9,7 @@ Good Anima derives an index from `anima-1.0.csv`, grouping canonical tags, count
 - Root manifest: `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/tag-index/manifest.json`
 - Group manifest: `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/tag-index/<path_group>/manifest.json`
 - Shard: `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/tag-index/<path_group>/<prefix>.json`
+- Use the root manifest's `shard_filename_rule`: Windows-reserved prefixes such as `con` and `nul` use `<prefix>-shard.json`; the logical prefix remains unchanged.
 - Fetch the root manifest once, then only group manifests needed for the current candidate groups, then only the relevant shards. Reuse fetched manifests and shards in the current session.
 - The artists group manifest intentionally omits its full prefix list and supplies `prefix_manifest_pattern`. Fetch only the first-character bucket manifest for the candidate prefix, then the selected tag shard. Each bucket manifest lists a small set of available three-character artist prefixes.
 - Every shard contains exact canonical keys and exact aliases for one source group/prefix.
@@ -20,7 +21,7 @@ Good Anima derives an index from `anima-1.0.csv`, grouping canonical tags, count
 
 `scripts/build_tag_index.py` downloads upstream data only in CI/build environments, validates its schema, generates deterministic group-aware prefix shards (artists use three routing characters; other groups use two) and per-group manifests, removes orphaned shards, and supports `--check`. `--self-test` runs offline routing, canonical identity and alias-bridge tests.
 
-The CI workflow regenerates shards on pushes and requires them to be current on pull requests. A partial cache is never treated as a complete source index.
+CI checks the pinned snapshot offline. An explicit manual workflow refreshes the upstream snapshot. A partial cache is never treated as a complete source index.
 
 ## Provenance and licensing
 

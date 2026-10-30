@@ -1,14 +1,14 @@
 {
   "name": "personal-agent-skills",
-  "version": "5.3.0",
+  "version": "6.0.0",
   "repo": "Tera-Dark/personal-agent-skills",
   "branch": "main",
   "raw_base": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/",
   "harness_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS.md",
   "harness_full_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS-FULL.md",
-  "handshake": "Harness v5.3.0 loaded · 21 modules · 说需求，或发参考图。",
-  "core_tokens": 5488,
-  "full_tokens": 248839,
+  "handshake": "Harness v6.0.0 loaded · 21 modules · 说需求，或发参考图。",
+  "core_tokens": 5498,
+  "full_tokens": 249843,
   "pipeline": {
     "aesthetic_gate": "aesthetic-director-core",
     "blueprint_gate": {
@@ -521,7 +521,7 @@
       "layer": "02_design",
       "load": "on-demand",
       "status": "active",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "description": "Design and audit product interfaces using an original, reusable design language inspired by publicly documented ChatGPT UI principles—calm neutral surfaces, content-first hierarchy, restrained actions, accessible controls, conversation-friendly patterns, and responsive utility layouts. Use for UI/UX, frontend, dashboards, tools, mobile web, design systems, and cross-project interface consistency; not illustration prompt generation.",
       "triggers": "UI, UX, 前端, 界面, 网页设计, 组件, 工作台, 移动端, 设计系统, ChatGPT风格, GPT界面, 极简实用主义, dashboard, design system, responsive, frontend",
       "path": "02_design/chatgpt-inspired-ui",
@@ -536,18 +536,18 @@
           "path": "references/design-tokens.md",
           "bundle_path": "bundle/references/chatgpt-inspired-ui/references/design-tokens.md",
           "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/chatgpt-inspired-ui/references/design-tokens.md",
-          "tokens": 1042
+          "tokens": 1182
         },
         {
           "path": "references/review-checklist.md",
           "bundle_path": "bundle/references/chatgpt-inspired-ui/references/review-checklist.md",
           "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/chatgpt-inspired-ui/references/review-checklist.md",
-          "tokens": 1208
+          "tokens": 1375
         }
       ],
-      "tokens_skill": 3344,
-      "tokens_bundle": 3673,
-      "tokens_full_bundle": 5798
+      "tokens_skill": 3900,
+      "tokens_bundle": 4228,
+      "tokens_full_bundle": 6662
     },
     {
       "name": "editorial-layout-design",
@@ -817,7 +817,7 @@
       "layer": "03_prompt",
       "load": "on-demand",
       "status": "active",
-      "version": "1.3.1",
+      "version": "2.0.0",
       "description": "Web-first validation boundary for Danbooru-derived hard tags shared by Anima and NAI5 plus MOSS-Image Tag-mode workflows. Resolves exact canonical tags, exact aliases, or missing without fuzzy promotion. Use whenever a prompt packet needs verified Danbooru identity.",
       "triggers": "Danbooru tag, tag validation, tag check, exact tag, alias, tag verification",
       "path": "03_prompt/danbooru-tag-gate",
@@ -831,12 +831,12 @@
           "path": "references/tag-index.md",
           "bundle_path": "bundle/references/danbooru-tag-gate/references/tag-index.md",
           "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/danbooru-tag-gate/references/tag-index.md",
-          "tokens": 864
+          "tokens": 906
         }
       ],
-      "tokens_skill": 1952,
-      "tokens_bundle": 2187,
-      "tokens_full_bundle": 2960
+      "tokens_skill": 2040,
+      "tokens_bundle": 2275,
+      "tokens_full_bundle": 3090
     },
     {
       "name": "general-image-prompt-adapter",

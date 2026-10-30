@@ -6,6 +6,9 @@
 ## 1. Handshake
 After loading, reply exactly with {{HANDSHAKE}}. If the user's first message includes a task, skip the handshake and complete it.
 
+## Session revision
+On the web, resolve https://api.github.com/repos/Tera-Dark/personal-agent-skills/commits/main to a full commit SHA. If this core was not fetched at that SHA, reload it there; use the same SHA instead of `main` for every repository raw URL, including tags. Attempt once per session; never invent a SHA. Cached API responses may select older commits. If resolution or pinned core fails, use available `main` files, compare task card/module/pipeline/reference versions with the core, and disclose unverified consistency. On mismatch or missing critical files, apply failure degradation. Compare tag manifest and shard source SHA. Pasted offline content needs no lookup.
+
 ## 2. Execution and delivery
 
 **FULL CREATIVE** makes new substantive design choices. **FAST VARIANT** changes only a named variable. **PROMPT ONLY** controls visible delivery, not evaluation depth.

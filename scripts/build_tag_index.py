@@ -71,6 +71,13 @@ def prefix_for(tag, group):
     return re.sub(r"[^a-z0-9_]", "_", value[:width])
 
 
+def shard_filename(prefix):
+    # Windows reserves device names even with an extension.
+    if re.fullmatch(r"(?:con|prn|aux|nul|com[1-9]|lpt[1-9])", prefix, re.IGNORECASE):
+        return f"{prefix}-shard.json"
+    return f"{prefix}.json"
+
+
 def generate_outputs(source, source_sha):
     outputs = {}
     group_meta = {}
@@ -179,7 +186,7 @@ def generate_outputs(source, source_sha):
                 "exact": dict(sorted(shard["exact"].items())),
                 "aliases": shard["aliases"],
             }
-            rel = f"bundle/tag-index/{safe}/{prefix}.json"
+            rel = f"bundle/tag-index/{safe}/{shard_filename(prefix)}"
             outputs[rel] = json.dumps(
                 payload, ensure_ascii=False, sort_keys=True, separators=(",", ":")
             ) + "\n"
@@ -196,6 +203,7 @@ def generate_outputs(source, source_sha):
             "group_isolation": True,
             "prefix_length_by_group": {"artists": 3, "default": 2},
             "prefix_rule": "For file routing only: lowercase the candidate; in group artists, strip a leading artist: or @ before selecting three characters; in other groups select two. If the resulting first character is not ASCII a-z or 0-9 use _special; replace non-[a-z0-9_] characters within the selected prefix with _. Never alter the candidate used for exact identity matching.",
+            "shard_filename_rule": "For Windows reserved device prefixes con, prn, aux, nul, com1-com9, lpt1-lpt9, use <prefix>-shard.json; otherwise use <prefix>.json. Prefixes in manifests and shard metadata remain unchanged.",
             "lookup_order": ["exact", "alias"],
             "ambiguous_alias": "not promoted; treat as missing",
         },
@@ -217,6 +225,9 @@ def generate_outputs(source, source_sha):
 
 
 def run_self_tests():
+    assert shard_filename("con") == "con-shard.json"
+    assert shard_filename("nul") == "nul-shard.json"
+    assert shard_filename("sta") == "sta.json"
     cases = [
         ("1girl", "general", "1g"),
         ("37_(reverse:1999)", "characters", "37"),

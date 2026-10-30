@@ -47,9 +47,9 @@ class MossModelRouteTests(unittest.TestCase):
         self.assertRegex(version, r"^\d+\.\d+\.\d+$")
         self.assertIn(f"## [{version}]", (ROOT / "CHANGELOG.md").read_text(encoding="utf-8"))
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
-        self.assertIn("MOSS Renderer", readme)
+        self.assertIn("MOSS", readme)
         self.assertIn("moss-tags", readme)
-        self.assertIn("MOSS --> OUTPUT", readme)
+        self.assertIn("bundle/pipelines/moss-tags.md", readme)
 
 
 if __name__ == "__main__":

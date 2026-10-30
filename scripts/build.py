@@ -152,8 +152,8 @@ def manifest_table(entries):
     rows = ["| module | load/status | purpose |", "|---|---|---|"]
     for e in entries:
         purpose = e["description"].split(". ")[0].rstrip(".")
-        if len(purpose) > 78:
-            purpose = purpose[:75].rsplit(" ", 1)[0] + "..."
+        if len(purpose) > 45:
+            purpose = purpose[:42].rsplit(" ", 1)[0] + "..."
         rows.append(f'| `{e["name"]}` | {e["load"]}/{e["status"]} | {purpose.replace("|", "/")} |')
     return "\n".join(rows)
 
@@ -274,7 +274,7 @@ def render_harness(root, cfg, version, skills, entries, full=False):
             lines.append("")
             lines.append("---")
             lines.append("")
-    lines.append(f"## END OF HARNESS — now reply with the handshake line: `{handshake}`")
+    lines.append(f"## END OF HARNESS — if no task was supplied, reply `{handshake}`; otherwise complete the task.")
     lines.append("")
     return "\n".join(lines)
 
@@ -314,7 +314,7 @@ def build_outputs(root):
             source_url = f"{raw_base(cfg)}{e['path']}/{ref['path']}"
             reference_output = (
                 GEN_NOTE + "\n"
-                + f"# REFERENCE: {e['name']} · {ref['path']}\n\n"
+                + f"# REFERENCE: {e['name']} · {ref['path']} · harness v{version}\n\n"
                 + f"source: {source_url}\n\n"
                 + L.demote_headings(source_text, 1).rstrip() + "\n"
             )

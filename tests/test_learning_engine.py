@@ -37,7 +37,7 @@ class LearningTests(unittest.TestCase):
         self.assertEqual(learn.validate(self.root)["events"], 0)
         learn.digest(self.root)
         self.assertEqual(learn.validate(self.root)["status"], "pass")
-        self.assertIn("No approved learned rules", (self.root / learn.DIGEST).read_text())
+        self.assertIn("No approved learned rules", (self.root / learn.DIGEST).read_text(encoding="utf-8"))
 
     def test_dedup_same_artifact(self):
         a = learn.record(self.root, feedback())
@@ -62,7 +62,7 @@ class LearningTests(unittest.TestCase):
         self.assertFalse(row["active"])
         self.assertEqual(learn.promote(self.root, "cinematic.scene")["status"], "promoted")
         learn.digest(self.root)
-        text = (self.root / learn.DIGEST).read_text()
+        text = (self.root / learn.DIGEST).read_text(encoding="utf-8")
         self.assertIn("Choose meaningful viewpoint", text)
         self.assertEqual(learn.validate(self.root)["status"], "pass")
 
@@ -95,7 +95,7 @@ class LearningTests(unittest.TestCase):
         self.assertTrue(row["needs_review"])
         self.assertFalse(row["effective_active"])
         learn.digest(self.root)
-        text = (self.root / learn.DIGEST).read_text()
+        text = (self.root / learn.DIGEST).read_text(encoding="utf-8")
         self.assertNotIn("Choose meaningful viewpoint", text)
 
     def test_invalid_date_rejected(self):
@@ -112,7 +112,7 @@ class LearningTests(unittest.TestCase):
         actions = learn.jsonl(self.root, learn.ACTIONS)
         self.assertEqual([a["action"] for a in actions], ["promote", "undo"])
         learn.digest(self.root)
-        self.assertNotIn("Choose meaningful viewpoint", (self.root / learn.DIGEST).read_text())
+        self.assertNotIn("Choose meaningful viewpoint", (self.root / learn.DIGEST).read_text(encoding="utf-8"))
 
     def test_rule_id_collision_is_rejected(self):
         learn.record(self.root, feedback())

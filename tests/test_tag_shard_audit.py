@@ -13,8 +13,8 @@ class ShardAuditTests(unittest.TestCase):
     def fixture(self, root):
         d = root / "bundle/tag-index/artists"
         d.mkdir(parents=True)
-        (d / "abc.json").write_text('{"exact":{}}', encoding="utf-8")
-        (d / "abd.json").write_text('{"exact":{}}', encoding="utf-8")
+        (d / "abc.json").write_text('{"_meta":{"prefix":"abc"},"exact":{}}', encoding="utf-8")
+        (d / "abd.json").write_text('{"_meta":{"prefix":"abd"},"exact":{}}', encoding="utf-8")
         base = root / "bundle/tag-index"
         (base / "NOTICE.md").write_text("GPL-3.0", encoding="utf-8")
         manifest = {"schema_version": 1, "source": {"license": "GPL-3.0"},

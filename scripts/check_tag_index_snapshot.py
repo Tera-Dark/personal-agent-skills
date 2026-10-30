@@ -13,6 +13,7 @@ def main():
     sha = root["source"]["sha256"]
     assert len(sha) == 64 and root["schema_version"] == 1
     assert root["lookup"]["group_isolation"] is True
+    assert "<prefix>-shard.json" in root["lookup"]["shard_filename_rule"]
     for group, cfg in root["groups"].items():
         meta = load(f"{cfg['path_group']}/manifest.json")
         assert meta["source_sha256"] == sha
@@ -31,6 +32,10 @@ def main():
         assert shard["_meta"]["group"] == group
         assert candidate in shard["exact"], (group, candidate)
     assert "sta" in load("artists/manifests/s.json")["prefixes"]
+    for prefix in ("con", "nul"):
+        shard = load(f"artists/{prefix}-shard.json")
+        assert shard["_meta"]["prefix"] == prefix
+        assert shard["_meta"]["source_sha256"] == sha
     print("Pinned Danbooru snapshot: PASS (offline metadata and canonical samples)")
 
 if __name__ == "__main__":

@@ -18,7 +18,7 @@ def analyze(root=ROOT, max_bucket_bytes=48000):
         raise ValueError("no artist shards")
     coarse = {}
     for p in shards:
-        prefix = p.stem
+        prefix = json.loads(p.read_text(encoding="utf-8"))["_meta"]["prefix"]
         key = "_special" if prefix == "_special" else prefix[:2]
         coarse.setdefault(key, []).append(p.stat().st_size)
     projected = sum(1 if sum(sizes) <= max_bucket_bytes else len(sizes)

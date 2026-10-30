@@ -37,14 +37,14 @@ Do **not** use non-spec top-level keys (`priority`, `trigger`, `input`, `output`
 
 ## How a skill becomes loadable
 
-`scripts/build.py` turns each skill into one file, `bundle/modules/<name>.md` = SKILL.md body + every reference (in the order the SKILL.md's References section lists them; unlisted `references/*.md` are appended alphabetically). Skills with `load: always` are additionally embedded in `bundle/HARNESS.md` — but only the files listed for them in `harness.json → always_on`, so keep those lists tight (`core_budget_tokens`).
+`scripts/build.py` generates `bundle/modules/<name>.md` from the SKILL.md contract and an index of separate reference URLs. References are generated individually under `bundle/references/` and loaded only when relevant. The optional HARNESS-FULL embeds active modules and their references. Skills with `load: always` are embedded in `bundle/HARNESS.md` only with files listed in `harness.json → always_on`.
 
 Consequences for authors:
 
-- A reference that is not mentioned in SKILL.md still ships, but say what it is for in the References section anyway — the model reads that section to decide whether to scroll.
+- A reference that is not mentioned in SKILL.md still ships, but list its purpose in the References section so the model can select it.
 - Headings inside SKILL.md and references are demoted one/two levels when bundled; start your file at `#` and don't rely on absolute heading depth.
 - Frontmatter is stripped in the bundle and replaced by a generated header (layer · load · status · version · source URL · description).
-- `status: planned` skills are listed in the index but not embedded in HARNESS-FULL and have no fetch URL.
+- `status: planned` skills are listed and may have a module file, but are not implementations and are not embedded in HARNESS-FULL.
 
 Template: `kernel/templates/SKILL.template.md` and `kernel/templates/reference.template.md`. Chat-driven additions follow `kernel/EXTENSION-PROTOCOL.md`.
 
@@ -81,6 +81,6 @@ Chinese for reasoning and rules (this is how the owner thinks about taste); Engl
 3. `name` == directory name; description says what + when.
 4. Body is process; knowledge is in `references/`.
 5. If it's an adapter: input check + route-back rule present; no taste section.
-6. Register it in `docs/skill-registry.md`.
+6. The build generates `docs/skill-registry.md`; do not edit it by hand.
 7. `python3 scripts/validate_skills.py` passes; `python3 scripts/build.py` run and `bundle/` committed (or let CI do it on `main`).
 8. If it changes the architecture, update `README.md` and `docs/architecture.md`, bump `VERSION`, add a `CHANGELOG.md` entry.

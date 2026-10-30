@@ -48,7 +48,8 @@
       "artists": 3,
       "default": 2
     },
-    "prefix_rule": "For file routing only: lowercase the candidate; in group artists, strip a leading artist: or @ before selecting three characters; in other groups select two. If the resulting first character is not ASCII a-z or 0-9 use _special; replace non-[a-z0-9_] characters within the selected prefix with _. Never alter the candidate used for exact identity matching."
+    "prefix_rule": "For file routing only: lowercase the candidate; in group artists, strip a leading artist: or @ before selecting three characters; in other groups select two. If the resulting first character is not ASCII a-z or 0-9 use _special; replace non-[a-z0-9_] characters within the selected prefix with _. Never alter the candidate used for exact identity matching.",
+    "shard_filename_rule": "For Windows reserved device prefixes con, prn, aux, nul, com1-com9, lpt1-lpt9, use <prefix>-shard.json; otherwise use <prefix>.json. Prefixes in manifests and shard metadata remain unchanged."
   },
   "schema_version": 1,
   "source": {

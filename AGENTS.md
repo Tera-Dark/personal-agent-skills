@@ -2,10 +2,12 @@
 
 This repository is an LLM harness for Tera-Dark's creative work: character / illustration design plus model-agnostic prompt planning and target renderers.
 
+Core product priorities: personal use, web-first, lightweight and easy to use. A new chat should work from a link without installation. Prefer selective loading and fewer user steps; do not add services or infrastructure without demonstrated need. Preserve the owner's creative preferences and current-request precedence.
+
 ## When operating under the repository
 
 1. Read \`bundle/HARNESS.md\` and follow it.
-2. Do not summarize the repository.
+2. For normal creative use, do not summarize the repository; explicit requests to inspect or review it take precedence.
 3. Use the handshake and routing rules from the harness.
 
 ## When editing the repository

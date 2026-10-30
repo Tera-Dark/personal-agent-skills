@@ -15,6 +15,7 @@
   --ui-text: #202123;
   --ui-text-muted: #5f6368;
   --ui-border: #e5e5e7;
+  --ui-control-border: #767676;
   --ui-accent: #252525;
   --ui-accent-text: #ffffff;
   --ui-focus: #2563eb;
@@ -43,6 +44,7 @@
   --ui-text: #f2f2f2;
   --ui-text-muted: #b7b7b7;
   --ui-border: #414141;
+  --ui-control-border: #858585;
   --ui-accent: #f3f3f3;
   --ui-accent-text: #171717;
   --ui-focus: #8cb4ff;
@@ -57,6 +59,8 @@ body { background: var(--ui-bg); color: var(--ui-text); font-family: var(--ui-fo
 ```
 
 **注意**：这些配色不能凭外观直接保证所有组合满足 WCAG AA。上线前应对实际文字/控件/状态逐一计算对比度，尤其是 muted text、状态色、占位符、文字覆在强调色背景上。
+
+`--ui-border` 是弱化分隔线，不应作为识别输入框或控件的唯一边界：它与对应表面可能不足 3:1。需依赖边框识别控件时，从 `--ui-control-border` 起步，并在每个实际背景、hover 和主题下重新测量；焦点环也需与相邻背景区分。未使用外框的控件仍须有足够可识别的形状、标签或其他视觉线索。
 
 ## 尺寸建议
 

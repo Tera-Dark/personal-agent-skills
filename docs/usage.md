@@ -9,7 +9,9 @@ README bootstrap
    ↓
 bundle/HARNESS.md
    ↓
-handshake
+commit SHA + pinned HARNESS (if accessible)
+   ↓
+handshake (only when no task was supplied)
    ↓
 router
 \`\`\`
@@ -50,7 +52,9 @@ design / finished packet
 
 ## 4. Web-first contract
 
-正常 Web 使用不需要 repository clone、Python、Node、SQLite 或本地服务器。模块与 pipeline pack 从 Bundle 索引中的 raw URL 按需加载。
+正常 Web 使用不需要 repository clone、Python、Node、SQLite 或本地服务器。AI 解析主分支提交 SHA 后，用该 SHA 读取入口和按需模块；API 或固定链接不可用时可退回 main，检查版本并说明一致性未验证。缓存的 API 结果仍可能是旧提交，因此版本固定保障同一会话一致性，不保证最新。
+
+最省事的用法：新对话粘贴仓库链接和需求，例如“读取此仓库，然后按我的偏好写一条 NAI5 双人插画提示词：……”。遇到无法访问链接时，将 `bundle/HARNESS.md` 内容粘贴给 AI；如还需要模型管线，再粘贴对应 `bundle/pipelines/` 文件。完整版很大，只适合作为可容纳它的环境中的备选，不能保证被完整使用。
 
 失败策略：
 - standalone module → [card-only]
@@ -65,7 +69,7 @@ design / finished packet
 | /modules | 模块索引与已加载模块 |
 | /reload <name> | 强制重新加载 |
 | /mode direct\|standard\|deep | 输出模式 |
-| /model anima\|nai5\|<other> | 目标模型 |
+| /model anima\|nai5\|moss\|other | 目标模型 |
 | /new-module <name> | 扩展协议 |
 | /version | 版本与构建日期 |
 
@@ -77,10 +81,10 @@ python3 scripts/build.py
 python3 scripts/validate_skills.py --check-bundle
 \`\`\`
 
-最终 token 数以 bundle/manifest.json 为准；不要在文档里硬编码过时的估算。
+`bundle/manifest.json` 中的 token 数是粗略估算，实际取决于模型与平台。
 
 ## 7. CI / tag-index maintenance
 
 日常 PR 使用仓库已提交的标签索引快照，离线检验结构，然后在 Runner 中生成并检查 Bundle；不要求 PR 作者手工提交生成产物。合入 main 后，CI 自动提交更新的 Bundle。
 
-确实需要更新第三方 Danbooru 数据时，在 GitHub Actions 手动运行 `harness`，开启 `sync_tag_index`。不把第三方 main 的最新内容强行绑定到每次代码修改。
+确实需要更新第三方 Danbooru 数据时，在 GitHub Actions 选择 **main** 手动运行 `harness`，开启 `sync_tag_index`。验证任务将已检查的快照传给提交任务；其他分支上的手动运行只验证，不写入 main。不把第三方 main 的最新内容强行绑定到每次代码修改。
