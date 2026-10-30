@@ -33,6 +33,15 @@ class WebSessionTests(unittest.TestCase):
         manifest = json.loads(outputs["bundle/tag-index/manifest.json"])
         self.assertIn("<prefix>-shard.json", manifest["lookup"]["shard_filename_rule"])
 
+    def test_full_bundle_embeds_references_but_not_tag_index(self):
+        _, _, outputs = build.build_outputs(str(ROOT))
+        full = outputs["bundle/HARNESS-FULL.md"]
+        self.assertIn("External tag verification still requires the separate index", full)
+        self.assertIn("reuse its embedded active modules and references", full)
+        self.assertIn("composition-quick-card.md", full)
+        self.assertIn("tag-index-unavailable", full)
+        self.assertNotIn("Nothing else needs to be fetched", full)
+
 
 if __name__ == "__main__":
     unittest.main()

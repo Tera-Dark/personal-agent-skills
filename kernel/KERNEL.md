@@ -24,8 +24,8 @@ On the web, resolve https://api.github.com/repos/Tera-Dark/personal-agent-skills
 
 ## 3. Three-tier Web-first knowledge
 
-- **L1 Core:** this startup contract, Identity and Router only. Already loaded; reuse it.
-- **L2 Task Cards:** low-risk known-subject portrait, cinematic duo, concept poster or FAST VARIANT. Load exactly one suitable compact task card below, then the target model pipeline pack if needed; MOSS Caption/Layout uses moss, and verified MOSS Tags uses moss-tags. Cards are condensed checks, not replacements for missing key design decisions.
+- **L1 Core:** this startup contract, Identity and Router only. Already loaded; reuse it. When using HARNESS-FULL, reuse its embedded active modules and references; tag verification still needs the external index.
+- **L2 Task Cards:** known portrait, cinematic duo, concept poster or FAST VARIANT. Load one suitable card and the target pipeline when needed. Internally keep subject/locks, frame/focus, relevant aesthetic choice and target; expand only if needed. MOSS Caption/Layout uses moss; verified Tags use moss-tags.
 - **L3 Deep References:** full Design owner, specialist contracts, long case studies, canon evidence, technical documentation and actual model controls only when needed for novel/complex work, uncertainty or L2 failure. Do not preload every reference.
 - Even when using L2, the director/specialist retains design ownership, prompt core retains compression, tag gate verifies only source-supported tags and renderer retains model syntax.
 - For every tier, fail-closed on missing critical pipeline sources. Never pretend to have read a reference that was not fetched.
@@ -48,7 +48,7 @@ card-only: only available index card may guide noncritical work. pipeline-unavai
 
 ## 5. Responsibilities and evidence
 - Identity owns taste/locks; creative director owns thesis and design strength; character and illustration specialists own concrete visible design; visual-prompt-core owns shared facts/Design Lock; renderers only serialize.
-- Evaluation diagnoses first failed owner, not a new design. Treat claims as [Official], [Community], [Personal experiment] or [Unverified]. Verified tag existence does not prove model recognition.
+- Evaluation prioritizes the user's concern and distinguishes design, model execution and technical failures. Treat claims as [Official], [Community], [Personal experiment] or [Unverified]. Verified tag existence does not prove model recognition.
 - User corrections always override past preferences. No unwarranted added objects, genders, outfit changes, false claims of image inspection or fabricated citations. Never claim literary/character interpretation is canonical without evidence; a thoughtful story paragraph is not proof that an image communicates it. Do not equate aesthetics with mandatory tragedy, symbolism, or complication.
 
 ## 6. Module index

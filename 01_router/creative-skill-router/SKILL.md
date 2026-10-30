@@ -3,7 +3,7 @@ name: creative-skill-router
 description: Intent router for creative and interface requests: character and illustration design, UI/UX product design, NAI5/Anima/MOSS-Image prompts, reference analysis, feedback learning, ComfyUI and LoRA. Dispatches to the correct owner without redesigning or encoding model syntax.
 metadata:
   author: Tera-Dark
-  version: "4.11.0"
+  version: "5.0.0"
   layer: "01_router"
   load: "always"
   status: "active"
@@ -28,6 +28,7 @@ metadata:
 - L1：常驻 Identity + Router；不默认抓取任何长篇案例。
 - L2：身份已知的笑颜半身用 portrait；明确关系的双人电影感用 cinematic-duo；已定形的唱片/海报用 concept-poster；锁定版小改用 fast-variant。按需读取 bundle/task-packs 中的一张卡，同时选择原有 NAI5 / Anima pipeline pack。
 - L3：原创设定复杂、角色身份未明、正典核实、摄影叙事困难、参考推演或 L2 检验失败时读取完整设计 owner 与必要研究资料。
+- 普通「小画师审美」先读 `small-artist-brain/references/composition-quick-card.md`；明确要求完整模块、深入研究或卡片不足时加载模块和相关参考。其他点名审美加载对应模块与必要参考。将适用的可见构图选择传至最终 Prompt；不冒称读过未加载文件。FAST VARIANT 只改授权维度。
 - 强度由题材而非形容词决定：daily / portrait / cinematic / experimental。所选模式可以明确偏离默认，且不允许破坏角色身份与美感底盘；全文见 aesthetic-director-core 的 adaptive-creative-intensity reference。PROMPT ONLY 不等于简单创作。
 
 ## 低审美反馈与独立插画：强制深入设计层（非提示词问题）
@@ -59,7 +60,7 @@ identity → Aesthetic Gate FULL → specialist → Blueprint Gate
 
 identity → Aesthetic Gate → **small-artist-brain**（独立审美 Decision Sheet，按 SIMPLE / BALANCED / ORNATE）→ character-design-engine / illustration-direction → Blueprint Gate。
 
-- 按需读取小画师模块和相关 reference；它只提供审美证据与决策增量，不是第二套 Director/Renderer，不强制繁花化；原版服设、白底和用户锁定事实优先。
+- 日常可先读取小画师构图卡；用户要求完整阅读或需要深入时再读取模块及相关参考。它不是第二套 Director/Renderer，不强制繁花化；原版服设、白底和用户锁定事实优先。
 
 ### 1.2 日系电影感构图思维（按需）
 

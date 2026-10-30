@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.0.0] — 2026-10-30 · Composition-first taste handoff
+
+- Explicitly requested aesthetics load their actual module and relevant reference even on the lightweight path; selected visible composition choices survive prompt compilation.
+- Replace mandatory oddity, fixed props, physical lighting and story requirements with task- and medium-appropriate choices; preserve simple, symmetrical and static compositions when suitable.
+- Add a compact composition comparison and user-run web/image evaluation cases; textual checks do not claim visual improvement.
+- Align character design and evaluation with task-appropriate optional detail, prioritize the user's reported issue, and add a compact small-artist composition card for normal web use.
+- Trim duplicated design checklists while preserving detailed handoff guidance; clarify that the optional full bundle still needs an external tag index for verification.
+
 ## [6.0.0] — 2026-10-30 · Web-first usability
 
 - Pin web-session repository reads to one commit when accessible; report fallback uncertainty and compare runtime versions when pinning fails.

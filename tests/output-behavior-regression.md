@@ -19,4 +19,4 @@ ownership/output rules and build consistency; it cannot prove visual taste.
 | P15-12 | GitHub unavailable for one module | Honest scoped degradation | Pretends full module loaded |
 
 For each manual run, record: source commit, input, actual answer, pass/fail,
-and first failed owner. Preserve approved baselines before any taste changes.
+and the user's priority. Distinguish design from execution failures and preserve approved baselines before any taste changes.

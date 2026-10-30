@@ -38,6 +38,7 @@ MOSS 默认使用 Caption；需要经验证的标签时使用 [moss-tags 管线]
 
 - [使用与故障处理](docs/usage.md) · [模块总览](docs/main-overview.md) · [架构说明](docs/architecture.md)
 - [个人偏好](00_core/personal-identity-profile/SKILL.md) · [反馈整理](docs/feedback-quickstart.md)
+- [构图审美与网页实测](docs/composition-taste-review.md)
 - [完整模块清单](docs/skill-registry.md) · [版本记录](CHANGELOG.md)
 
 ## 维护

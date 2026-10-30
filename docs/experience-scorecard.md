@@ -9,7 +9,7 @@
 | Module isolation | No renderer owns aesthetics; no cross-model syntax leakage in 20 model-compilation checks | Ownership scans + NAI5/Anima spot tests | Architectural SPEC, previously ~9 |
 | Personalized design | >=9/10 owner approval on >=20 independently reviewed images across portrait, OC, movie-still, poster | User-scored images and saved constraints | Not yet measured; strong source corpus |
 | Web efficiency | Cold-start <=6600 heuristic tokens; one-link bootstrap; reference fetched only when relevant | Bundle manifest, 10 measured real chats | Budget gate executable; latency unmeasured |
-| Feedback troubleshooting | >=90% of 20 failed examples preserve accepted layers and fix first failed axis | Before/after prompts, image results | Evaluation rubric + executable lock diff |
+| Feedback troubleshooting | >=90% of 20 failed examples preserve accepted layers and address the user's priority | Before/after prompts, image results | Evaluation rubric + executable lock diff |
 | Long-term learning | 100% unique event IDs; no repeated votes for one artwork; 0 false automatic promotions | Python tests, >=20 real signals | CLI unit tests, sparse initial data |
 | Autonomous evolution | Explicit or >=3 independent supports, 0 active contradictory rules, manual promotion + undo audit | Policy/actions history and reviewable PR | Gated engine; not unsupervised training |
 | QoL | >=90% success in 20 continuation/correction cases: continue, rollback, one-box, locked outfit, cross-session restore | User-run workflows + handoff test suite | Session snapshots/diff + conversational routing |

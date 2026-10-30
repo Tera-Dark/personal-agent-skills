@@ -36,7 +36,7 @@ Router
        └─ general-image-prompt-adapter
 \`\`\`
 
-Feedback enters through \`evaluation-loop\` and returns to the owner of the first failed layer.
+Feedback enters through \`evaluation-loop\`, which prioritizes the user's concern and distinguishes design, model execution and technical failures before routing the smallest relevant change.
 
 ## Module ownership
 
@@ -127,6 +127,8 @@ MOSS pack  = Visual Prompt Core + MOSS Renderer (tag mode adds Danbooru Gate)
 This keeps the shared logic identical across targets without requiring seven independent Anima fetches.
 
 Web sessions resolve a commit SHA and use it for the core and all on-demand raw URLs. If a pinned fetch is unavailable, the runtime falls back to main with version checks and an explicit consistency caveat. This reduces mixed-revision loads but cannot guarantee the SHA is the latest when a web tool caches the API response. Offline pasted content does not require this lookup.
+
+For ordinary small-artist requests, the generated reference `composition-quick-card.md` provides an explicitly limited compact path; explicit full-module or deeper requests load the full module and relevant reference. The card does not pretend to include original images or the complete study. A model pipeline remains required for actual target-specific compilation.
 
 ## Generated distribution
 

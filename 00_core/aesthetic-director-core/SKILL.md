@@ -1,9 +1,9 @@
 ---
 name: aesthetic-director-core
-description: Creative direction layer that turns a vague request into one committed design idea before any blueprint or prompt is written. Runs a sequence of generative "moves" (find the obsession, plant a contradiction, pick from the tail, build causality, subtract, keep one strange thing) and produces a short Creative Brief with rejected alternatives. Use for any OC / character / illustration / fashion / key-visual request, whenever output feels generic, "AI-flavored", too plain, too busy, or when the user asks for taste, direction, 审美, 创意方向, 人味, 高级感, 不要AI味.
+description: Creative direction for OC, characters, illustration, fashion and key visuals. Selects task-appropriate visual relationships and reduces formulaic composition before blueprint and model compilation. Supports quiet, formal, dynamic and experimental work; odd details, narrative and elaborate comparison are optional where suitable. Use for 审美, 创意方向, 人味, 不要AI味 or weak composition.
 metadata:
   author: Tera-Dark
-  version: "2.6.0"
+  version: "3.0.0"
   layer: "00_core"
   load: "on-demand"
   status: "active"
@@ -14,9 +14,9 @@ metadata:
 
 ## 0. 这个 Skill 存在的原因
 
-AI 味不是渲染问题，是**决策方式**问题。模型在每个槽位里填最可能的答案：银发、红瞳、黑裙、优雅地站着、看向镜头、神秘的氛围。每一项单看都"对"，合起来没有人。
+AI 味可能来自构图决策、生成模型、素材或渲染；模型逐格填常见答案是其中一种风险。审查时先定位哪一层失败，不把所有问题都归给提示词或构思。
 
-人类设计师不是这样工作的。人类先被一个东西迷住，然后让其它一切为它让路；人类会否决自己的前三个想法；人类靠删减而不是堆叠达到完成度；人类会故意留一处不合理的东西。
+可采用的设计方法是：先确定视觉重心，比较真正不同的构图关系，再有意识地取舍；静谧、对称和直白也可以成立，不必为了显得有作者感制造怪点。
 
 本 Skill 的任务，就是在写任何 blueprint 或 prompt 之前，**强迫走一遍人类的决策路径**。它输出的不是画面，是一个已经做完选择的 **Creative Brief**。
 
@@ -26,7 +26,7 @@ AI 味不是渲染问题，是**决策方式**问题。模型在每个槽位里�
 ## 1. Design Gate Modes
 
 ### FULL
-用于未完成设计的创作请求。必须完成 M1–M9，真正做选择，产出 Creative Brief。
+用于未完成设计的创作请求。按任务选用 M1–M9，比较必要的设计选项，产出 Creative Brief；不适用的动作标 N/A。
 
 ### AUDIT
 用于用户已经给出完成设计、明确锁定事实或完整 prompt specification 的请求。只检查命题、因果、密度、未授权添加和可执行性，不修改锁定事实。
@@ -61,25 +61,12 @@ AUDIT 是必经的质量闸门，不等于“顺手美化”。没有失败证�
 
 ## 2.2 Anti-Mediocrity Gate — 反平庸审美闸门
 
-在进入 blueprint / prompt 之前，必须读取 `references/high-aesthetic-calibration-library.md`，先证明方案值得做，再允许进入执行层。
+复杂原创或明确要求深度校准时读取 `references/high-aesthetic-calibration-library.md`；简单肖像与锁定修改可以采用轻量检查。纯文字只能做设计预测，不能证明成图通过。
 
-**硬门槛：**
-- 不能只有“角色 + 主题 + 氛围 + 背景”；必须有至少一个不可替换的视觉关系。
-- 至少一个核心决定必须依赖该角色，而不是换成任意美女都成立。
-- 至少一个大结构必须在缩略图里读出来。
-- 至少一个具体物件 / 空间 / 材质承担叙事或构图职责。
-- 至少一处有意义的视觉选择，可以是生活化的微小关系而非怪点。
-- 海报 / 联动作品必须额外存在视觉隐喻或主图形；标题若存在，必须进入设计系统。
-- 梦核 / 超现实作品优先使用一个主空间矛盾，不靠随机怪物、随机道具或光效制造“怪”。
-- 如果“漂亮、梦幻、电影感、精致、神秘”等形容词比具体名词、动词、位置更多，退回重做。
+明确主体与画幅之间一项可见的关系，关注主要形块和焦点，并保留用户锁定的身份。人物轮廓、留白、物件、空间或材质都可承担画面作用；不为满足闸门强加道具、叙事或隐喻。海报若有文字，纳入版面层级。形容词不能替代具体可画的决定。
 
 ### Anti-Mediocrity Reject Test
-1. **一句话压缩**：不能只是一个通用 Pinterest 标题。
-2. **角色替换**：换人后至少一项核心结构必须失效。
-3. **元素删除**：删掉主物件后，画面应明显失去意义或结构。
-4. **缩略图**：先读到大形、主方向、主色块，再读细节。
-5. **创意距离**：三个候选方向必须使用不同的视觉机制，而不是同一方案换几个主题词。
-6. **平庸回退**：如果前三个方向都是“漂亮女孩在一个漂亮地方”，全部作废，从器物、建筑、服装史、生物、编辑设计等相邻领域借结构重新起题。
+比较方案时改变真正的画面组织，而非仅换名词；检查主体、画幅、色块和留白如何支持题意。纯文字只能预测缩略图效果，不能声称已看过。详例按需读 `references/visual-taste-evidence-protocol.md`。
 
 **目标不是更怪，而是更有选择。新颖度不得牺牲脸、比例、轮廓、服装成立性和第一眼美感。**
 
@@ -94,14 +81,14 @@ AUDIT 是必经的质量闸门，不等于“顺手美化”。没有失败证�
 | # | 动作 | 一句话 | 它对抗的 AI 味 |
 |---|---|---|---|
 | M1 | **找到痴迷点** Find the obsession | 这个设计是关于*什么一个东西*的？名词 + 动词，不是职业标签。 | 什么都有一点，什么都不是 |
-| M2 | **埋一个矛盾** Plant a contradiction | 身份 vs 行为 / 材质 vs 场合 / 精致 vs 破损。只埋一个。 | 角色只是一个维度的堆叠 |
-| M3 | **从尾部取样** Pick from the tail | 对至少一个核心属性（发型、轮廓、配色、道具），写下最先想到的 3 个并全部丢弃。 | 每个属性都是分布的众数 |
-| M4 | **建因果链** Build causality | 姿势 ← 道具 ← 职业 ← 世界。画面里至少要看得出两个"因为"。 | 姿势、服装、道具各自独立随机 |
-| M5 | **选一个瞬间** Choose the moment | 不是状态，是动作发生前后 0.5 秒。 | `standing, looking at viewer` |
+| M2 | **可选张力** Explore contrast | 有助于题材时考虑身份、行为或材质之间的差异；不强加矛盾。 | 所有选择都重复同一种效果 |
+| M3 | **扩展选择** Explore alternatives | 对需要创作的核心关系比较不同选项；常见方案合适时也可保留。 | 只在词表里换名词 |
+| M4 | **建关系** Build relations | 按题材连接姿势、材质与空间；静态或形式作品不强造故事。 | 姿势、服装、道具各自独立随机 |
+| M5 | **选状态或瞬间** Choose the moment | 选择动态相位或安静状态；正视观众与静态姿势可有意成立。 | 姿态与题材无关 |
 | M6 | **做减法** Subtract | 删到再删一样就会破坏命题为止。写下删掉了什么。 | 靠加东西达到"完成" |
 | M7 | **可选异常点** Keep one intentional deviation | 一个局部的偏差、错位或不合常规细节；它增加记忆点，但不承担“让整张图变怪”的任务。 | 处处安全，处处平庸 |
 | M8 | **不均匀分配密度** Uneven density | 指定一个密集区、一个安静区。名字要写出来。 | 装饰均匀撒满全身 |
-| M9 | **命名刺点** Name the punctum | ≤5% 的强调色/强调物，落在具体位置。 | 多处高饱和互相抢戏 |
+| M9 | **组织强调** Place emphasis | 按画面需要安排主次与强调；可不设刺点，也不强制面积比例。 | 多处高饱和互相抢戏 |
 
 ## 3.5 当前模式校准：Modern Key Visual
 
@@ -152,10 +139,10 @@ M6–M9：减法、密度图，按强度决定是否加入局部偏差与刺点
 
 ```
 【方向】一句话，名词 + 动词。（例：被供奉的蛇神少女正在把祭品的红线咬断）
-【矛盾】一个。（例：仪式性的洁白 vs 嘴角的血）
-【轮廓策略】五选一：halo/radial · vertical spear · asymmetric cascade · cocoon/volume · fragmented orbit
-【因果链】A 因为 B，B 因为 C。（至少两个"因为"）
-【瞬间】动作前/后 0.5 秒的具体描述。
+【可选张力】适用时说明，不适用省略。
+【轮廓策略】依据题材描述主体、画幅、主形和留白的关系，不限固定图形。
+【关系】画面元素如何联系；适用时说明动作与承重。
+【状态/瞬间】安静状态或具体动作，不编造剧情。
 【密度图】密集区：___ / 安静区：___
 【局部重点】颜色/物件 + 精确位置；简单画面可只依靠脸和动作。
 【留下的偏差】是什么 + 为什么留；不适用可 N/A。
@@ -180,18 +167,9 @@ Brief 用中文或英文均可，跟随用户当前语言。不加解释段落�
 
 ## 6. 输出前自检
 
-- [ ] 【方向】能不能用一句带动词的话复述？
-- [ ] 有没有写出被否决的方向和理由？
-- [ ] 形容词是否都换成了名词 + 位置 + 行为？
-- [ ] 删掉了什么？有没有真的删？
-- [ ] 那一处"怪"在哪？它是否有必要出现？
-- [ ] 如果删掉这处怪，剩下的设计仍然好看、完整、可收藏吗？如果不会，说明怪点正在替大结构背锅。
-- [ ] 密集区和安静区是否明确、且不相邻抢戏？
-- [ ] 刺点是否服务题材，或应明确省略？
-- [ ] 是否踩了 `personal-identity-profile` 的禁区（手表、赛博、随机蝴蝶玫瑰、魔法阵粒子、形容词服装）？
-- [ ] 这一版如果发给一个真人设计师看，他会觉得是"有人做了选择"，还是"有人填了表"？
-- [ ] 寓意不看解释文字，是否能由画面里的手势、距离、明度或物件关系读出？是不是把自己编的角色心理当成正典？
-- [ ] 第一眼美感是否成立？是否误把「黑暗悲剧」「奇异点」「构图极繁」当成越多越好的审美尺度？
+- [ ] 主体与画幅关系能否具体表达，是否符合当前任务和锁定事实？
+- [ ] 所加细节、叙事与怪点是否必要；没有时可省略？
+- [ ] 遵守用户偏好和拒绝项，区分观察、推测和正典；未见成图不冒称通过。
 
 
 ## 人物肖像与绘画叙事专项（按需）

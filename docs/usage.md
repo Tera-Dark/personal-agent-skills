@@ -7,9 +7,7 @@ GitHub repository
    ↓
 README bootstrap
    ↓
-bundle/HARNESS.md
-   ↓
-commit SHA + pinned HARNESS (if accessible)
+commit SHA + pinned HARNESS (or main fallback)
    ↓
 handshake (only when no task was supplied)
    ↓
@@ -54,7 +52,11 @@ design / finished packet
 
 正常 Web 使用不需要 repository clone、Python、Node、SQLite 或本地服务器。AI 解析主分支提交 SHA 后，用该 SHA 读取入口和按需模块；API 或固定链接不可用时可退回 main，检查版本并说明一致性未验证。缓存的 API 结果仍可能是旧提交，因此版本固定保障同一会话一致性，不保证最新。
 
+普通「小画师审美」使用按需的[轻量构图卡](../02_design/small-artist-brain/references/composition-quick-card.md)；明确要求完整模块、逐图研究或轻量卡不足时加载完整模块和相关参考。模型只能说自己实际读到了哪些文件，不能把卡片称作完整研究。
+
 最省事的用法：新对话粘贴仓库链接和需求，例如“读取此仓库，然后按我的偏好写一条 NAI5 双人插画提示词：……”。遇到无法访问链接时，将 `bundle/HARNESS.md` 内容粘贴给 AI；如还需要模型管线，再粘贴对应 `bundle/pipelines/` 文件。完整版很大，只适合作为可容纳它的环境中的备选，不能保证被完整使用。
+
+`HARNESS-FULL.md` 内嵌已启用模块和参考，但不包含第三方标签索引；离线无法核验的身份标签须按 unverified 处理，不能因使用完整版就声称已核验。
 
 失败策略：
 - standalone module → [card-only]

@@ -164,18 +164,17 @@
 ## 3. 设计层回归用例 (Design-Layer Cases, v2.0.0)
 
 以下用例不测 Anima 语法，测 `aesthetic-director-core` → `character-design-engine` 这条链有没有真的做决定。任何模型适配器都适用。
-评分只看四项，缺三项以上判 Fail：**有带动词的命题 / 有被否决的方向 / 有删掉的东西 / 有一处怪**。
+依据当轮目标评价身份、实际可见的角色/构图决定和用户偏好；不强制动词、否决条目或怪点。文本测试不能证明出图美感。
 
 ### Design-01: 开放式 OC
 - **用户输入**：「设计一个有创意的原创女性角色。」
-- **Fail 信号**：输出以职业/种族标签开头（"月光祭司"、"精灵弓箭手"）；发色瞳色服装全是众数；没有【否决的方向】；出现手表 / 蝴蝶 / 玫瑰 / 粒子 / 魔法阵。
+- **Fail 信号**：只罗列空泛元素而无可执行视觉决定；擅自加入用户明确拒绝的物件；不尊重角色或服装锁定。
 - **Pass 参照**：`aesthetic-director-core/references/taste-calibration-pairs.md` Pair 1。
 - **记录**：
   ```markdown
-  - [ ] 命题含动词: Pass / Fail
-  - [ ] 否决的方向 ≥2: Pass / Fail
-  - [ ] 删掉的东西 ≥2: Pass / Fail
-  - [ ] 一处怪（且只有一处）: Pass / Fail
+  - [ ] 身份及明确要求保留: Pass / Fail
+  - [ ] 画面关系或人物结构可执行: Pass / Fail
+  - [ ] 不强制怪点或叙事: Pass / Fail
   - Notes:
   ```
 
@@ -187,7 +186,7 @@
 ### Design-03: "太平淡"反馈轮
 - **上下文**：上一版是「墨绿军装长外套女骑士，短发，持剑，白底」。
 - **用户输入**：「太平淡了。」
-- **Fail 信号**：加肩章 / 勋章 / 披风 / 军帽 / 枫叶 / 光效；回复没有"诊断：失败在 X 层"这一行。
+- **Fail 信号**：无依据地添加装饰，却没有处理用户指出的问题；未经授权改变已认可部分。
 - **Pass 参照**：Pair 6。只动命题层与由它引起的轮廓；装饰不增加。
 
 ### Design-04: 参考图原创
@@ -198,7 +197,7 @@
 ### Design-05: 适配器拒收需求
 - **用户输入**：「帮我写个 NAI5 提示词，一个赛博巫女。」
 - **Fail 信号**：适配器直接产出 prompt。
-- **Pass**：适配器识别出这不是 blueprint，走 identity → director → character-design-engine 后再编译；赛博元素以签名方式处理（有理由的结构、一处怪、一个刺点），而不是拒绝用户要求。
+- **Pass**：设计阶段先处理需求再编译；按用户明确要求处理赛博元素，不强制加入怪点或刺点。
 
 ---
 
@@ -295,9 +294,8 @@
 - Fail: adapter becomes a designer or collapses everything into tags.
 
 ### Arch-06: NAI5 skeleton
-- Pass: Subject → Year/Era → Artist → Quality → Complexity → Rendering → Style Control → Scene → Character → Action.
-- Pass: Quality layer remains present and artist: namespace is preserved.
-- Fail: quality tags are removed as “fluff” or artist namespace is stripped.
+- Pass: ordinary NAI5 output respects the current user default: artist, year, quality and Negative stay omitted unless requested; explicitly requested artist syntax is preserved.
+- Fail: historic full-stack examples override the user's current preference or model-specific syntax is mixed.
 
 ### Arch-07: Artist-mix guard
 - Pass: random pool defaults to at most four artists unless explicitly overridden; one primary artist may sit near 1.0 while secondary artists stay lighter.
@@ -305,7 +303,7 @@
 
 ### Arch-08: Feedback routes to the owning layer
 - Input: “这版太平庸”
-- Pass: evaluation-loop identifies the highest failed design layer, re-enters Aesthetic Gate / specialist, and preserves approved dimensions.
+- Pass: evaluation-loop prioritizes the user's concern, distinguishes design from execution or technical failures, and preserves approved dimensions.
 - Fail: blindly adds decorations or keywords.
 
 ### Arch-09: Generated bundle consistency

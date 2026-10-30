@@ -52,7 +52,7 @@ This module is a target-model adapter. It accepts only a validated blueprint or 
 
 ## NAI5 实战控制入口（优先级高于通用描述性修饰）
 
-**每次 NAI5 出图编译前**，按需读取 `references/nai5-control-matrix.md`，短表先于长篇教程。仅查必要行，不让样本报告变成默认配方。需要实验细节、失败率和限制时再读取 `references/nai-v5-usage-guide.md` 的对应章节。此举把源档案与可执行短规则分开，避免将“已收录”误当“已使用”。
+仅在出现镜头、动作、身份、色彩等具体控制问题，或用户明确要求时，读取 `references/nai5-control-matrix.md` 的相关内容；常规编译使用本模块规则即可。需要实验细节与限制时再读 `references/nai-v5-usage-guide.md`。不得声称未读取内容已验证。
 
 对照当前 Packet 的已批准 camera intent，先提取**画面内能看到什么**（最近的是鞋、袖、手还是羽毛；背景出现哪部分；主体是挺直还是前倾；脸在哪里，是否被遮挡），然后选恰当的 `from below`、`from above`、`portrait`、`cowboy shot` 等标签。只用角度堆词而没有实际可见的透视后果，不算完成编译。
 

@@ -1,5 +1,9 @@
 # L3 specialist decision-sheet handoffs
 
+## 按需画面字段
+
+复杂任务可按需记录：画幅、主体位置及比例、视线与留白、主要形块、裁切、动作/接触、色块与光、焦点清晰度、环境作用和用户锁定事实。摄影机、动作瞬间、叙事、道具、怪点和象征只在任务需要时填写；正面、静止、平面化和纯白背景同样成立。具体字段用于帮助交接，不是完整性配额，也不能把文字规划称作已看到的图片。
+
 ## 小画师脑 Decision Sheet 交接（按需）
 
 当 `creative-skill-router` 选择 `small-artist-brain` 时，先接收其 `Small Artist Decision Sheet` 再完成本模块的 `Illustration Blueprint`。新批次精品插画的逐图证据见 `02_design/small-artist-brain/references/premium-illustration-12-work-study-2026-10.md`，仅在长竖图、编辑海报、双人承重、高调光和跨题材审美校准时按需读取；本模块依旧独占最终构图设计权。这是**审美决策约束的交接**，不是第二套插画蓝图：

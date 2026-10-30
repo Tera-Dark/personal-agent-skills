@@ -245,7 +245,7 @@ def render_harness(root, cfg, version, skills, entries, full=False):
         f"# {cfg['name']} · HARNESS {'FULL ' if full else ''}v{version}",
         "",
         f"> Built {L.today()} from https://github.com/{cfg['repo']} ({cfg['branch']}). "
-        + ("This file contains the kernel, the module index, and EVERY module with all references. Nothing else needs to be fetched."
+        + ("This file embeds the kernel and active modules with their references. External tag verification still requires the separate index."
            if full else
            "This file contains the kernel, the module index, and the ALWAYS-ON modules. On-demand modules are fetched from the URLs in the index when the router selects them."),
         "> Read everything, then follow KERNEL §1 (handshake). Do not summarize this file.",

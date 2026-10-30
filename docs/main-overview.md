@@ -44,9 +44,9 @@
 - [prompt-analysis](../04_analysis/prompt-analysis/SKILL.md) — 已有提示词结构分析
 
 ### 05_tools · 技术工具（3）
-- [comfyui-workflow](../05_tools/comfyui-workflow/SKILL.md) — ComfyUI 工作流
-- [dataset-management](../05_tools/dataset-management/SKILL.md) — 数据集整理
-- [lora-training](../05_tools/lora-training/SKILL.md) — LoRA 训练辅助
+- [comfyui-workflow](../05_tools/comfyui-workflow/SKILL.md) — 计划中的 ComfyUI 工作流占位
+- [dataset-management](../05_tools/dataset-management/SKILL.md) — 计划中的数据集整理占位
+- [lora-training](../05_tools/lora-training/SKILL.md) — 计划中的 LoRA 训练辅助占位
 
 ### 06_evaluation · 反馈与评审（1）
 - [evaluation-loop](../06_evaluation/evaluation-loop/SKILL.md) — 诊断失败层、回归比较与改进

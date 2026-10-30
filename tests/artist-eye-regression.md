@@ -2,7 +2,7 @@
 
 ## 目的与执行
 
-人工对照测试；**不是已跑图的自动通过报告**。由 aesthetic-director-core 生成方向，illustration-direction/character-design-engine 决定空间与服设，renderer 再编译；evaluation-loop 记录第一失败层。
+人工对照测试；**不是已跑图的自动通过报告**。由 aesthetic-director-core 生成方向，illustration-direction/character-design-engine 决定空间与服设，renderer 再编译；evaluation-loop 按用户关注问题区分设计、执行和技术原因。
 
 每题必须回答：命题、三向候选的**不同视觉机制**、两项淘汰理由、幸存方案的机位/版式、环境职责、缩略图大形、一处可见的非默认决定、删除项。默认不给用户展示内部候选，除非用户要求设计方案或验收过程。不会因为测试要求就自动生成图片。
 

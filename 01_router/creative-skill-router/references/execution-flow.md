@@ -15,7 +15,7 @@ User Request
 ## Gate semantics
 
 ### FULL
-Use when the user has not made the core design decisions. The director commits to a thesis, rejects alternatives, builds causality, subtracts, and keeps one coherent strange point.
+Use when the user has not made the core design decisions. The director chooses a task-appropriate visual direction; comparison, causal detail and unusual points are optional when appropriate.
 
 ### AUDIT
 Use when the user already specified the design. The director checks structural completeness, causal gaps, generic drift and unrequested additions without rewriting locked facts.
@@ -27,16 +27,16 @@ If AUDIT finds a missing decision that materially affects the result, return to 
 
 Minimum type-specific artifacts:
 
-- Character: thesis + silhouette + anchor hierarchy + applicable garment structure + material/palette logic + pose/camera + punctum/strange detail + locked facts.
-- Illustration: thesis + captured moment + motif + scale/placement + camera + environment relationship + physical light + density + narrative residue + punctum/strange detail + locked facts.
+- Character: locked identity plus the silhouette, garment and color decisions relevant to the task.
+- Illustration: locked facts and applicable subject/frame, focus and spatial or graphic relationships; camera, physical light, narrative and unusual details can be N/A.
 - Finished-design packet: concrete user-supplied facts covering the adapter's required fields and passing AUDIT.
 
 ## Failure recovery
 
 If output quality is poor:
 1. Do not add keywords first.
-2. Use evaluation-loop to identify the highest failed layer.
-3. Re-enter the owning design or adapter layer only.
+2. Use evaluation-loop to prioritize the user's concern and distinguish design, model execution and technical issues.
+3. Re-enter the appropriate design or adapter layer; label uncertain causes.
 4. Preserve approved and locked dimensions.
 5. Re-run Blueprint Gate before returning to an adapter.
 

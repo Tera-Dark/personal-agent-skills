@@ -12,7 +12,7 @@
 └── assets/             optional
 ```
 
-Skills live under a numbered layer folder (`00_core/` … `06_extensions/`, listed in `harness.json → layers`). The layer folder is organizational only; the skill's identity is its own directory name. A `SKILL.md` outside the declared layers is a validation error.
+Skills live under numbered layer folders (`00_core/` … `07_extensions/`, listed in `harness.json → layers`). The layer folder is organizational only; the skill's identity is its own directory name. A `SKILL.md` outside the declared layers is a validation error.
 
 ## Frontmatter
 
@@ -65,7 +65,7 @@ Knowledge (vocabulary, patterns, model parameters, experiment logs, examples) go
 
 - **Taste lives only in `personal-identity-profile`.** New skills must not add "personal aesthetic" sections. Reference the profile by name.
 - **Adapters translate, they do not design.** An adapter's SKILL.md must include the input check ("is this a blueprint?") and the route-back rule.
-- **Prefer methods over forms.** An output contract that is a list of empty labels (`Identity: / Costume: / Mood:`) invites slot-filling. Write the contract as dependent decisions, and require the "what was cut" and "rejected directions" lines for anything creative.
+- **Prefer methods over forms.** Empty labels invite slot-filling. Record only task-relevant decisions and locks; show rejected directions or cuts when useful or requested, not for every creative task.
 - **Prefer replacement moves over prohibitions.** "Avoid X" must be paired with "do Y instead". See `aesthetic-director-core/references/anti-ai-patterns.md` for the format.
 - **Skills reference each other by name**, never by relative path.
 - **Examples beat rules.** When adding taste knowledge, add a pair to `taste-calibration-pairs.md` (generic answer vs directed answer + what changed) rather than another bullet list.
