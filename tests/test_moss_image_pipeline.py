@@ -43,7 +43,9 @@ class MossModelRouteTests(unittest.TestCase):
             self.assertIn(term, evidence)
 
     def test_readme_and_version(self):
-        self.assertEqual((ROOT / "VERSION").read_text(encoding="utf-8").strip(), "5.2.0")
+        version = (ROOT / "VERSION").read_text(encoding="utf-8").strip()
+        self.assertRegex(version, r"^\\d+\\.\\d+\\.\\d+$")
+        self.assertIn(f"## [{version}]", (ROOT / "CHANGELOG.md").read_text(encoding="utf-8"))
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
         self.assertIn("MOSS Renderer", readme)
         self.assertIn("moss-tags", readme)
