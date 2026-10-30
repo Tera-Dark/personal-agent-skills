@@ -1,14 +1,14 @@
 {
   "name": "personal-agent-skills",
-  "version": "5.2.0",
+  "version": "5.3.0",
   "repo": "Tera-Dark/personal-agent-skills",
   "branch": "main",
   "raw_base": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/",
   "harness_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS.md",
   "harness_full_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS-FULL.md",
-  "handshake": "Harness v5.2.0 loaded · 20 modules · 说需求，或发参考图。",
-  "core_tokens": 5416,
-  "full_tokens": 236805,
+  "handshake": "Harness v5.3.0 loaded · 21 modules · 说需求，或发参考图。",
+  "core_tokens": 5488,
+  "full_tokens": 242808,
   "pipeline": {
     "aesthetic_gate": "aesthetic-director-core",
     "blueprint_gate": {
@@ -392,9 +392,9 @@
       "layer": "01_router",
       "load": "always",
       "status": "active",
-      "version": "4.10.0",
-      "description": "Intent router for creative requests: character and illustration design, NAI5/Anima/MOSS-Image prompts, reference analysis, feedback learning, ComfyUI and LoRA. Dispatches to the correct owner without redesigning or encoding model syntax.",
-      "triggers": "any request, 设计, 提示词, prompt, 反推, 分析, ComfyUI, LoRA, NAI5, Anima, MOSS-Image",
+      "version": "4.11.0",
+      "description": "Intent router for creative and interface requests: character and illustration design, UI/UX product design, NAI5/Anima/MOSS-Image prompts, reference analysis, feedback learning, ComfyUI and LoRA. Dispatches to the correct owner without redesigning or encoding model syntax.",
+      "triggers": "any request, 设计, UI, UX, 前端, 网页界面, 设计系统, 提示词, prompt, 反推, 分析, ComfyUI, LoRA, NAI5, Anima, MOSS-Image",
       "path": "01_router/creative-skill-router",
       "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/01_router/creative-skill-router",
       "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/creative-skill-router.md",
@@ -418,7 +418,7 @@
           "path": "references/router-quickstart.md",
           "bundle_path": "bundle/references/creative-skill-router/references/router-quickstart.md",
           "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/creative-skill-router/references/router-quickstart.md",
-          "tokens": 496
+          "tokens": 531
         },
         {
           "path": "references/task-classification.md",
@@ -451,9 +451,9 @@
           "tokens": 504
         }
       ],
-      "tokens_skill": 2286,
-      "tokens_bundle": 2805,
-      "tokens_full_bundle": 7138
+      "tokens_skill": 2409,
+      "tokens_bundle": 2937,
+      "tokens_full_bundle": 7305
     },
     {
       "name": "character-design-engine",
@@ -501,6 +501,39 @@
       "tokens_skill": 2702,
       "tokens_bundle": 3178,
       "tokens_full_bundle": 13885
+    },
+    {
+      "name": "chatgpt-inspired-ui",
+      "layer": "02_design",
+      "load": "on-demand",
+      "status": "active",
+      "version": "1.0.0",
+      "description": "Design and audit product interfaces using an original, reusable design language inspired by publicly documented ChatGPT UI principles—calm neutral surfaces, content-first hierarchy, restrained actions, accessible controls, conversation-friendly patterns, and responsive utility layouts. Use for UI/UX, frontend, dashboards, tools, mobile web, design systems, and cross-project interface consistency; not illustration prompt generation.",
+      "triggers": "UI, UX, 前端, 界面, 网页设计, 组件, 工作台, 移动端, 设计系统, ChatGPT风格, GPT界面, 极简实用主义, dashboard, design system, responsive, frontend",
+      "path": "02_design/chatgpt-inspired-ui",
+      "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_design/chatgpt-inspired-ui",
+      "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/chatgpt-inspired-ui.md",
+      "references": [
+        "references/design-tokens.md",
+        "references/review-checklist.md"
+      ],
+      "reference_files": [
+        {
+          "path": "references/design-tokens.md",
+          "bundle_path": "bundle/references/chatgpt-inspired-ui/references/design-tokens.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/chatgpt-inspired-ui/references/design-tokens.md",
+          "tokens": 1042
+        },
+        {
+          "path": "references/review-checklist.md",
+          "bundle_path": "bundle/references/chatgpt-inspired-ui/references/review-checklist.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/chatgpt-inspired-ui/references/review-checklist.md",
+          "tokens": 1208
+        }
+      ],
+      "tokens_skill": 3344,
+      "tokens_bundle": 3673,
+      "tokens_full_bundle": 5798
     },
     {
       "name": "editorial-layout-design",
