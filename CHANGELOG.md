@@ -1,5 +1,14 @@
 # Changelog
 
+## [5.3.0] — 2026-10-30 · Product UI Design Skill
+
+- Added on-demand `chatgpt-inspired-ui` under `02_design`: content-first, functional minimalism inspired by public ChatGPT UI guidance, with explicit original-design and brand boundaries.
+- Added semantic light/dark CSS tokens, component/state/responsive rules, accessibility review and project-specific examples.
+- Wired application interface requests into `creative-skill-router` and its always-on quickstart; preserved original illustration and model-renderer branches.
+- Added a concise main-branch module overview and README entry; generated `bundle/` and `docs/skill-registry.md` remain CI-owned build artifacts.
+- Released as a backwards-compatible domain extension, without modifying existing image prompt formats or gates.
+
+
 ## [5.2.0] — 2026-10-16 · MOSS-Image Prompt Renderer
 
 - Added `moss-image-renderer` as a peer of NAI5 and Anima under `03_prompt`, sharing Artist Eye, Visual Prompt Core and optional Danbooru Tag Gate.
