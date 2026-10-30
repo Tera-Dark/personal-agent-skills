@@ -1,0 +1,19 @@
+name: Remove restored PR15 source branch
+on:
+  push:
+    branches: [main]
+    paths: [".github/workflows/one-time-restore-cleanup.yml"]
+permissions:
+  contents: write
+jobs:
+  remove-temp-branch:
+    if: github.repository == 'Tera-Dark/personal-agent-skills'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Remove merged PR15 source ref only
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh api -X DELETE "repos/${GITHUB_REPOSITORY}/git/refs/heads/feat/oct23-moss-fashion-camera-calibration"
+          echo "Removed merged PR #15 branch."
