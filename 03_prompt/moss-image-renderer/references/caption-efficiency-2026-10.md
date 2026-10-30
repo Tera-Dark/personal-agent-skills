@@ -1,0 +1,35 @@
+# MOSS Caption Efficiency — 镜头、人物与服装的高密度可见描述
+
+> 本地项目的**写作/编译指南**，不属于 OpenMOSS 官方验证的提示词强度结论。适用：用户近期 MOSS 二游角色、原图反推、OC、双人电影感、时装 AU 需求。**IMAGE-PENDING**：没有相同模型/种子/参数的生成 A/B 对照。
+
+## 问题
+
+用户近期多轮输出曾出现：800–1000 词以上的英文 Caption、重复“premium / cinematic / elegant / stylish”、一张图同时要求 `wide horizontal` / `vertical` 或 `medium-close` / `full body`，以及“角色正典服装”和“重新设计联动服装”界限不清。长文并不自动更好；遵从 **最小充分、可见且不冲突**。
+
+## 编译优先级（单段或少量自然段，不使用内部标题）
+
+1. **身份锁**：人物数量，已核查的原作/IP名称与各自可见锚点；不能仅凭发色猜角色。原服设忠实时完全保留；用户要时装 AU 时明确 `outfit reimagining, preserve identity`。
+2. **画幅 / 镜头 / 人物占画面积**：horizontal/vertical、紧/中/七分身/全身选一套；相机相对于谁、从哪个方位、俯仰、观看权限、可见的身体区域；先写主要遮挡与视觉焦点。
+3. **一个决定性事件**：A 在做什么、B 的时间差回应；明确各只手接触的对象和道具物理方向，服装受姿势驱动。
+4. **服装剪裁而非形容词**：两人分别一句写主裁片/材质/开衩/露肤位置，后补 1–2 个有意义的细节。不同时复读‘glossy black latex thigh-high’到每个角色。
+5. **环境只作为摄影结构**：门框/楼梯/窗沿或交通设施的透视、反光、光源、画面休止区；避免风景清单。
+6. **视觉闭环**：镜头主体→动作接触点→副主体→服装签名结构→留白；最终用少量材质和颜色结尾。
+
+普通日常可短至 1–3 段；复杂双人换装可更长，但每句话必须提供新的可见信息，不能以目标字数为硬规则。临发前删除空泛“high-end premium cinematic masterpiece”等同义句群。
+
+## 编译前防冲突清单
+
+- `high-angle close medium shot` 与 `full-body incl. shoes` 是否冲突？有冲突则优先用户锁定的角度/景别并舍弃不可见细节。
+- `strict original outfit` 与 `modern new-Chinese qipao skin` 是否冲突？明确忠实 vs AU。
+- 伞、折扇、茶杯、行李是否过多？只保留推动动作的物件。
+- 已知角色是否漏掉代表性发型、眼、角/尾/种族特征？如果身份不确定先核实，不假装 canon。
+- 是否为了显得有电影感自动加了雨、光斑、边框或过度 rim light？
+- 若只请求一个 Prompt，交付**单一英文 Caption 代码块**，不额外给多个方案、参数建议或训练数据结论。
+
+## 极简编译示例（虚构双人，不宣称模型实测）
+
+```text
+Two adult women pause beneath a narrow courtyard gate, seen from a close three-quarter viewpoint above their heads looking down onto the wet stone. The woman nearest the lens wears a rose-colored modern qipao with a carefully curved waist seam and one thigh slit; she half-turns, lifting a folded fan toward her smile while catching her companion's sleeve with her free hand. The second woman, a step farther back in a porcelain-blue qipao, is still holding the handle of an umbrella as she turns toward the tug, amused. Their shoulders overlap, but both faces and the linked hands remain visible. The gate arch, a small band of white wall and the stone reflections form one quiet path back to their expressions. Soft diffuse daylight and pale reflected light reveal the silk without overwhelming the figures.
+```
+
+这是**表达结构示例**，不是 MOSS 官方最佳提示词，也不代表真实生图效果。
