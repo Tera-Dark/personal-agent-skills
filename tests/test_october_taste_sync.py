@@ -46,7 +46,7 @@ class OctoberTasteSync(unittest.TestCase):
 
     def test_current_version(self):
         version = (ROOT / "VERSION").read_text(encoding="utf-8").strip()
-        self.assertRegex(version, r"^\\d+\\.\\d+\\.\\d+$")
+        self.assertRegex(version, r"^\d+\.\d+\.\d+$")
         self.assertIn(f"## [{version}]", (ROOT / "CHANGELOG.md").read_text(encoding="utf-8"))
 
 
