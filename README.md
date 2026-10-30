@@ -18,6 +18,16 @@
 - **PROMPT ONLY** governs visible output rather than internal design depth. Simple edits use FAST VARIANT; substantive original work uses FULL.
 - Web use needs only the GitHub URLs. Build scripts run locally or in CI.
 
+## 软件界面设计 · ChatGPT-Inspired UI（2026-10-30）
+
+新增可按需加载的 [**chatgpt-inspired-ui**](02_design/chatgpt-inspired-ui/SKILL.md)：把公开可查的 ChatGPT/OpenAI UI 设计原则与观察性设计方法转化为**原创、跨项目的功能极简主义设计系统**。涵盖导航与内容优先级、响应式布局、可访问性、浅/深色设计变量、控件状态和 UI 重构验收；不冒充官方内部 CSS，不复制 ChatGPT 专有品牌素材。
+
+- 设计变量：[design-tokens.md](02_design/chatgpt-inspired-ui/references/design-tokens.md)
+- UI 审查：[review-checklist.md](02_design/chatgpt-inspired-ui/references/review-checklist.md)
+- [**当前主分支模块总览**](docs/main-overview.md) — 模块分层、用途与维护入口
+
+与图像设计管线分离：应用 UI/UX 由 `chatgpt-inspired-ui` 主导；角色海报的图文排版仍由 `editorial-layout-design` 负责。
+
 ## 基于证据的审美决策（2026-10-21）
 
 针对「独立插画像上一张换人、仅有角色+道具却没有画面、用长篇解释冒充寓意、捏造角色动机」的问题，已将证据型审美判断嵌入 **L1 Router 快速升级 → Aesthetic Director 三向构图择优 → Illustration Direction 形式可见举证 → Evaluation Loop 失败定位**，而不是新增平行设计 owner。

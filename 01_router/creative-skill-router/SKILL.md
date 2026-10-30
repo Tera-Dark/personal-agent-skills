@@ -1,13 +1,13 @@
 ---
 name: creative-skill-router
-description: Intent router for creative requests: character and illustration design, NAI5/Anima/MOSS-Image prompts, reference analysis, feedback learning, ComfyUI and LoRA. Dispatches to the correct owner without redesigning or encoding model syntax.
+description: Intent router for creative and interface requests: character and illustration design, UI/UX product design, NAI5/Anima/MOSS-Image prompts, reference analysis, feedback learning, ComfyUI and LoRA. Dispatches to the correct owner without redesigning or encoding model syntax.
 metadata:
   author: Tera-Dark
-  version: "4.10.0"
+  version: "4.11.0"
   layer: "01_router"
   load: "always"
   status: "active"
-  triggers: "any request, 设计, 提示词, prompt, 反推, 分析, ComfyUI, LoRA, NAI5, Anima, MOSS-Image"
+  triggers: "any request, 设计, UI, UX, 前端, 网页界面, 设计系统, 提示词, prompt, 反推, 分析, ComfyUI, LoRA, NAI5, Anima, MOSS-Image"
 ---
 
 # Creative Skill Router
@@ -72,6 +72,10 @@ identity → Aesthetic Gate → **small-artist-brain**（独立审美 Decision S
 当任务明确是「**图文排版 / 杂志封面 / 字体层级 / 角色海报版式 / 人物破框 / 参考图排版学习**」时启用 **`editorial-layout-design`**，它只拥有**文字与页面层级、版心、图文遮挡、出框安全区**；`illustration-direction` 仍拥有镜头、空间与人物调度，`aesthetic-director-core` 仍拥有创作命题。不把“海报 / poster”一词自动视为需要文字；只有图文关系确实重要才按需读取新模块。
 
 流程：用户参考图 → `image-reverse-analysis` 辨认可见事实 → Aesthetic Gate → illustration-direction 主图形 → **editorial-layout-design 图文系统** → Blueprint Gate → Visual Prompt Core → model renderer。对于精确中文标题/小字优先描述可编辑后期字层；MOSS Layout 的模型格式由 renderer 管辖。普通纯图插画、人物立绘与 PROMPT ONLY 的单画面不默认添加信息栏目。
+
+### 1.4 软件 UI / UX 设计（独立于图像创作）
+
+软件 UI/UX、前端、管理面板、工具网站、移动端布局及 ChatGPT 风格界面 → 按需加载 `chatgpt-inspired-ui`；根据任务、现有技术栈和行为做结构、组件、交互与响应式验证。**软件 UI 不走插画、图像 Prompt 或生图 Renderer 管线**；如另有插画任务再独立路由。
 
 ### 2. 已完成设计 → 模型提示词
 
