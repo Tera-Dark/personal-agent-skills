@@ -8,7 +8,7 @@
   "harness_full_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/HARNESS-FULL.md",
   "handshake": "Harness v5.3.0 loaded · 21 modules · 说需求，或发参考图。",
   "core_tokens": 5488,
-  "full_tokens": 242808,
+  "full_tokens": 248839,
   "pipeline": {
     "aesthetic_gate": "aesthetic-director-core",
     "blueprint_gate": {
@@ -91,7 +91,7 @@
           "illustration-direction",
           "japanese-cinematic-composition"
         ],
-        "tokens": 338,
+        "tokens": 473,
         "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/task-packs/cinematic-duo.md"
       },
       "concept-poster": {
@@ -175,7 +175,8 @@
         "references/learning-digest.md",
         "references/feedback-learning-loop.md",
         "references/feedback-ledger.md",
-        "references/identity-quickstart.md"
+        "references/identity-quickstart.md",
+        "references/session-feedback-2026-10-22-23.md"
       ],
       "reference_files": [
         {
@@ -194,7 +195,7 @@
           "path": "references/taste-signature.md",
           "bundle_path": "bundle/references/personal-identity-profile/references/taste-signature.md",
           "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/personal-identity-profile/references/taste-signature.md",
-          "tokens": 8146
+          "tokens": 8297
         },
         {
           "path": "references/nai5-artist-pool.md",
@@ -243,11 +244,17 @@
           "bundle_path": "bundle/references/personal-identity-profile/references/identity-quickstart.md",
           "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/personal-identity-profile/references/identity-quickstart.md",
           "tokens": 200
+        },
+        {
+          "path": "references/session-feedback-2026-10-22-23.md",
+          "bundle_path": "bundle/references/personal-identity-profile/references/session-feedback-2026-10-22-23.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/personal-identity-profile/references/session-feedback-2026-10-22-23.md",
+          "tokens": 1105
         }
       ],
       "tokens_skill": 701,
-      "tokens_bundle": 1536,
-      "tokens_full_bundle": 31353
+      "tokens_bundle": 1592,
+      "tokens_full_bundle": 32629
     },
     {
       "name": "aesthetic-director-core",
@@ -470,6 +477,7 @@
         "references/maximalist-oc-design-grammar.md",
         "references/maximalist-atelier-plate-grammar.md",
         "references/oc-design-system.md",
+        "references/commercial-game-fashion-calibration-2026-10.md",
         "references/garment-lexicon.md"
       ],
       "reference_files": [
@@ -492,15 +500,21 @@
           "tokens": 3895
         },
         {
+          "path": "references/commercial-game-fashion-calibration-2026-10.md",
+          "bundle_path": "bundle/references/character-design-engine/references/commercial-game-fashion-calibration-2026-10.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/character-design-engine/references/commercial-game-fashion-calibration-2026-10.md",
+          "tokens": 1586
+        },
+        {
           "path": "references/garment-lexicon.md",
           "bundle_path": "bundle/references/character-design-engine/references/garment-lexicon.md",
           "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/character-design-engine/references/garment-lexicon.md",
           "tokens": 1843
         }
       ],
-      "tokens_skill": 2702,
-      "tokens_bundle": 3178,
-      "tokens_full_bundle": 13885
+      "tokens_skill": 2915,
+      "tokens_bundle": 3454,
+      "tokens_full_bundle": 15708
     },
     {
       "name": "chatgpt-inspired-ui",
@@ -587,6 +601,7 @@
       "source_url": "https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_design/illustration-direction",
       "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/illustration-direction.md",
       "references": [
+        "references/duo-fashion-camera-staging-2026-10.md",
         "references/cinematic-camera-grammar.md",
         "references/cinematic-12-frame-study-2026-10-14.md",
         "references/composition-patterns.md",
@@ -598,6 +613,12 @@
         "references/white-background-fashion-grammar.md"
       ],
       "reference_files": [
+        {
+          "path": "references/duo-fashion-camera-staging-2026-10.md",
+          "bundle_path": "bundle/references/illustration-direction/references/duo-fashion-camera-staging-2026-10.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/illustration-direction/references/duo-fashion-camera-staging-2026-10.md",
+          "tokens": 1337
+        },
         {
           "path": "references/cinematic-camera-grammar.md",
           "bundle_path": "bundle/references/illustration-direction/references/cinematic-camera-grammar.md",
@@ -653,9 +674,9 @@
           "tokens": 2549
         }
       ],
-      "tokens_skill": 5720,
-      "tokens_bundle": 6483,
-      "tokens_full_bundle": 27891
+      "tokens_skill": 5939,
+      "tokens_bundle": 6759,
+      "tokens_full_bundle": 29467
     },
     {
       "name": "japanese-cinematic-composition",
@@ -856,6 +877,7 @@
       "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/modules/moss-image-renderer.md",
       "references": [
         "references/layout-contract.md",
+        "references/caption-efficiency-2026-10.md",
         "references/official-enhancer-workflow.md",
         "references/style-control.md",
         "references/examples.md",
@@ -868,6 +890,12 @@
           "bundle_path": "bundle/references/moss-image-renderer/references/layout-contract.md",
           "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/moss-image-renderer/references/layout-contract.md",
           "tokens": 1265
+        },
+        {
+          "path": "references/caption-efficiency-2026-10.md",
+          "bundle_path": "bundle/references/moss-image-renderer/references/caption-efficiency-2026-10.md",
+          "bundle_url": "https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/moss-image-renderer/references/caption-efficiency-2026-10.md",
+          "tokens": 1140
         },
         {
           "path": "references/official-enhancer-workflow.md",
@@ -900,9 +928,9 @@
           "tokens": 2471
         }
       ],
-      "tokens_skill": 2932,
-      "tokens_bundle": 3409,
-      "tokens_full_bundle": 12254
+      "tokens_skill": 3123,
+      "tokens_bundle": 3653,
+      "tokens_full_bundle": 13604
     },
     {
       "name": "nai5-renderer",

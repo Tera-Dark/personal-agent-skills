@@ -626,6 +626,11 @@ Character identity > decoration.
 - **明确保留反例**：Muse Dash 风格的“画风接近”不等于用户审美满意（FB-20261014-05）。这不是对高饱和/Q 版的全局否定，只是一次特定实验的未满足反馈。
 - 后续用户评分/点评应先进入 `feedback-ledger.md`，按 `feedback-learning-loop.md` 的作用域、来源与晋升条件更新稳定偏好；此档案只存晋升的原则与有代表性的认可样本，防止长期演变成聊天流水账。
 
+
+##### 2026-10-22–23 · Scoped commercial-fashion and MOSS duo calibration
+
+Recent text-only feedback for adult commercial anime-game OC costume appeal, intentionally controlled cutouts, recognizable garment tailoring, strong asymmetric functional props, and Endfield duo high-angle fashion cinematography is captured in [scoped session evidence](session-feedback-2026-10-22-23.md). Load only for matching user requests. Do **not** override general female-oriented fashion, clean everyday looks, canon outfits, or the standing no-redundant-details rule. Prompt approval is not a model generation benchmark.
+
 ---
 
 ### Reference: references/nai5-artist-pool.md
@@ -1688,6 +1693,38 @@ user feedback
 #### L1 Identity Compact Contract
 
 The owner primarily creates character/illustration prompts with NAI5 and Anima. Current user request and exact visible reference always supersede prior preferences. Do NOT generate an image unless clearly explicitly requested. Default deliver one copyable English positive prompt, no externally fixed NAI5 artist/quality/year/Negative. Preserve canon/IP identity, gender, hairstyle, garment and crop; never invent a second role for a supplied subject. The adjacent Taste Core supplies aesthetic baseline, dislikes and creative modes. Do not silently promote a single favorable remark into global taste. Approved persistent updates require authorized write and reviewed evidence; references/learning-digest.md may be loaded only when useful for scoped prior approvals.
+
+---
+
+### Reference: references/session-feedback-2026-10-22-23.md
+
+#### Scoped Session Feedback — 2026-10-22–23
+
+> 来源：用户当轮对话中的参考图、直接纠正与文字反馈。**这是针对近期题材的审美候选与局部已确认偏好，不是独立模型跑图试验，不等于全局审美禁令。** 仅保留抽象化创作机制，不复制或转载用户图片。证据类型除特别说明外均为 **TEXT-APPROVED / IMAGE-PENDING**。
+
+##### 本轮有效信号
+
+| ID | Scope | Axis | 用户信号简述 | 可操作解释 | 状态 |
+|---|---|---|---|---|---|
+| FB-20261022-OC-01 | mode: commercial OC | garment | 工业恶魔参考比“天文猫娘”更有魅力，后者像 NPC | 先设计性格瞬间与宏观外设形体对抗，再选可复述的服装主裁片 | candidate |
+| FB-20261022-OC-02 | mode: alluring couture | garment | 侧乳、大腿根、极小内裤与多开格有吸引力；希望兼具高定美感 | 成人角色、用户明确要擦边时，通过裁片边界、固定点、留白节奏安排局部露肤；不强制所有女性人设默认露肤 | candidate |
+| FB-20261022-OC-03 | mode: character design | variety | 四套机械娘服装“单调”，多次重复黑胶衣＋黑丝套路 | 同批方案首先换剪裁母体、主轮廓、材质和动作，而非换配色或外设 | candidate |
+| FB-20261022-OC-04 | mode: couture | intensity | 前卫芭蕾方案“太前卫”，想要商业二游感 | 复杂度服从易读的人物吸引力；可设计高定但不能全身变概念装置 | candidate |
+| FB-20261023-DUO-01 | ip: Endfield AU; mode: duo cinematic | camera | 两人并排太平、人物占比不够；更偏从上向下、中近景 | 明确机位高度/俯角/裁切，关系手势前置，衣服腰臀线须在镜头里可见 | candidate |
+| FB-20261023-DUO-02 | ip: Endfield AU; mode: fashion | outfit | 终末地双角色，不要泛指原创古装；新中式旗袍要有二游潮流商业设计感 | 先锁 IP 身份与各自性格，再在 AU 前提下设计不同款旗袍服装结构 | candidate |
+| FB-20261023-DUO-03 | ip: Endfield AU; mode: cinematic | composition | 希望江南宫门、视觉引导、道具和互动；对更强俯拍版本评价“还不错” | 人物优先、宫门充当框景/动线而非风景背景、手持物推动动作 | candidate; text direction positive |
+| FB-20261023-DUO-04 | ip: Endfield AU; mode: daily | theme | 后续还要双人运动风穿搭＋出行日常 | daily 模式允许运动服、旅途互动和普通自然光；不自动延续旗袍或宫门 | candidate |
+
+##### 一次误判的流程教训
+
+在用户上传粉发蓝眼龙尾人物的参考图时，前一稿按“原创龙娘”描述；随后用户询问身份，助手认作《明日方舟：终末地》的伊冯。后续**遇到已知 IP 外观**应在忠实反推前进行身份检查，不能不确定时直接把参考当 OC。识别必须由可靠证据支持，不以先前助手的自信断言替代核查。
+
+##### 作用域与冲突说明
+
+- `taste-signature.md` 的女性向清透审美仍适用于广泛作品；本次较强露肤偏好仅对用户主动选择的成人二游性感高定题材生效。
+- 日常电影感与商业角色立绘采用不同的服装与镜头复杂度，不把强烈服装剪裁强制套给出行随拍。
+- 用户说“还不错”支持**文本方案方向**，不等于图已成功生成。没有提供可复核生成图、种子和设置，不宣称效果已证实。
+- 如后续继续明确反对当前措辞或测试表现不佳，以新反馈局部修正；单次方案不能自动晋升永久默认。
 
 ---
 
@@ -5043,6 +5080,10 @@ A character blueprint is READY only when thesis, silhouette, anchor hierarchy, a
 **锁定事实**（用户明确给定、不可被适配器"优化"的）：___
 ```
 
+#### Scoped Commercial Fashion Calibration（2026-10-22）
+
+当用户要求**二游高定、妩媚擦边、工业外设反差、新中式联动服装**时，按需加载 `references/commercial-game-fashion-calibration-2026-10.md`。先让**性格表情、主裁片、局部露肤与外设功能**互相解释，再考虑小配件；不要通过重复黑色胶衣、短发、过膝袜、巨型机械臂“换色换工具”伪造原创。该校准只适用于明确选定的成年角色与商业时装题材，不覆盖日常少女肖像、正典原版服装或其他审美分支。用户提供参考时优先解构其形体对抗和服装节奏，不复制具体 IP 装饰。
+
 #### Modern Key Visual Mode
 
 当目标是现代二游 / 商业角色主视觉时，角色本身必须具备 key-visual-ready 的大形与动势，而不只是复杂服装：
@@ -5884,6 +5925,54 @@ For white-background立绘, the white field is a **quiet counter-mass**, not per
 
 ---
 
+### Reference: references/commercial-game-fashion-calibration-2026-10.md
+
+#### Commercial Anime-Game Fashion — 人物吸引力与服装工程（2026-10-22 校准）
+
+> **Scope:** 用户明确要求“二游 / 高定 / 擦边 / 新中式联动时装 / 原创人物”时按需加载。不是所有作品的常驻性感默认值，也不是任何商业游戏的官方设计标准。证据来自 2026-10-22–23 对话中的文字偏好与用户上传参考图；属于 **TEXT-APPROVED / IMAGE-PENDING**，不冒充实测模型效果。角色必须明确是成年人。
+
+##### 1. 先辨认魅力机制，再取服装零件
+
+设计序列：**人格瞬间 → 肉体与外设的形体对抗 → 服装主裁片 → 有目的露肤 → 材质层次 → 功能附件 → 减法**。
+
+- **表情是人格，不是单纯美颜。** 偏分遮眼短发 + 微笑露虎牙 + 内收肩线，可形成“看似无害但装备危险”的张力；这是特定参考的可迁移机制，不是新角色一律粉发、红眼、角、虎牙。
+- **人体与大型外设的体量对抗。** 人物以流畅肌肤、弧形腰臀和腿线成主形；外设以粗重折线、马达、悬臂、抓夹成反形。外设必须有可说清的实际用途和连接/承重结构，不能随便换一种炫酷环形装饰。
+- **服装的性感来自精确控制暴露边界。** 需要妩媚或擦边时，可使用侧乳开窗、收紧腰线、腿根/高开衩、极简高腰/低腰底装等，但必须让裁片、包边、支撑、固定点与动作解释这些空隙。所有露肤区同时最大化通常会导致廉价、重复的“黑色乳胶模板”。一张图保留一处主要露肤区，其他区域按服装剪裁和角色气质调整；若用户明确指定多个区域，则尊重要求但仍分配视觉主次。
+- **吸睛与高定同时成立。** 第一眼读脸与身形，第二眼读 1–2 个标志性结构；局部的纹样、盘扣、开格、蕾丝、束带不能取代宏观剪裁。
+
+##### 2. 五个设计决定（禁止换色复用）
+
+1. **衣型母体：** 先从旗袍、工装短外套、紧身舞衣、赛车服、运动套装、礼服等选一个实体母体，不能直接从“紧身衣 + 随机扣带”开始。
+2. **剪裁轨迹：** 明确领口、胸侧/肩背、腰线、下摆和侧开衩的连续路径；衣服脱离饰品仍然好看。
+3. **材质主次：** 哑光技术织物、丝缎、透明纱、皮革、亮面涂层、丝袜可对比，但每块材质须绑定一个具体衣片；不是每件衣服都写 black latex。
+4. **大形结构：** 大袖、长发、短披挂、非对称裙片、尾巴、武器/机械至少一项形成可识别的大形，另有一处安静区。不可“什么都想亮眼”。
+5. **人物动作：** 用具体姿势激活衣服（扭腰时裙侧开衩张开、抬臂露侧腰、跨步牵动披片）；不得用“性感站姿”代替重心、手势、肩胯反向和物理运动。
+
+###### 两组反例 → 正例
+
+- **失败：** 四位不同职业的少女，全部短粉发、黑色胶衣、露侧乳、丁字底装、黑色高筒袜，只更换外设颜色与末端工具。**修正：** 不同主题首先更换衣型母体/主剪裁与大形，再决定适合的露肤区；职业道具要有具体机械/物理功能。
+- **失败：** 银发猫耳、琥珀眼、短外套、星座饰品与精密圆环拼接，角色像没有情绪的职业 NPC。**修正：** 用不对称的表情与行为、一个功能明确的外设动作，以及有意识保留的服装留白建立人物存在感。
+
+##### 3. 二游风 × 新中式旗袍的独立路径
+
+**Scope: contemporary Chinese fashion / AU skins**。不把古装汉服、历史旗袍和现代新中式潮流联动混写成一类。
+
+- 用立领、斜襟、盘扣、滚边、提花丝缎和侧开衩建立可辨认的旗袍骨架，再选择短夹克、改良袖口、运动内搭、微型金属扣、简洁腰链等少量现代潮流节点。
+- 两个角色的款式必须互相呼应但不同款：活泼者可短裙、动势和明亮色块；克制者可有垂坠的中长裙片、不同布面与冷色结构。不要只用粉/蓝染两套相同的裙子。
+- 体态表现依赖胸腰裁片、肩胯反向、腿线和开衩在**动作中的变化**，不能仅靠“slim sexy figure”这类空词。
+- 原角色锚点与 AU 服装改装分开锁：保留脸、发色、眼、角、尾巴、身份；只在用户明确允许换装时改服装。不能自行把同人换装说成原版官方皮肤。
+
+##### 4. 交付前的 Fashion Gate
+
+- [ ] 角色表情与动作能独立证明性格，而非只有“seductive”？
+- [ ] 拿掉配件之后，领口/胸腰/下摆/袖型仍有独特裁片？
+- [ ] 是否又复用了上一张的黑色胶衣、过膝袜、短发、坏笑、机械臂？
+- [ ] 每一处露肤/开格是否有边界、固定、支撑与视觉作用？
+- [ ] 眼睛→人物主体→大形/功能外设的观看顺序是否清晰？
+- [ ] 单次参考是否被误晋升为全球审美禁令？
+
+---
+
 ### Reference: references/garment-lexicon.md
 
 #### Garment Lexicon — 服装结构词汇与穿搭模式
@@ -6572,6 +6661,10 @@ source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/02_design/i
 
 导演调用 `00_core/aesthetic-director-core/references/visual-taste-evidence-protocol.md` 时，本模块承接幸存方案，**用实际可见的动作接触、主构图形、明度/距离、遮挡/材料、真实光源证明命题**；不接受仅在文字里解释悲剧、命运或神性。内部保留 `visual_evidence` 和 `interpretation_status`（正典 / 推断 / AU / UNKNOWN），传给 Visual Prompt Core 的只有可画的事实。不要沿用前图布景或替用户补黑液/天使；纯美型图不需故事。没有实际图时只可做文本预测，不能称视觉缩略图已通过。
 
+#### 双人时装 / 俯视中近景的专项校准（2026-10-23）
+
+当用户要求**IP 双人、联动时装、江南新中式、出行日常、从上往下近距离俯视**时，按需读取 `references/duo-fashion-camera-staging-2026-10.md`。先确认角色身份与是否允许服装 AU，再设计**不同步的两人动作 + 可见接触点 + 高机位透视证据 + 人物占画面积 + 兼容的裁切**。别让“站成一排的全身立绘 + 景区背景”冒充电影镜头，也别为了展示整双鞋破坏用户锁定的中近景。只留一件能推动动作的手持物、一个必要框景/透视结构和清晰的焦点路径；不强迫每张图带伞与扇子。
+
 #### 硬规则
 
 - **先有画面命题，再有瞬间，再选观看立场与机位，之后才排空间和构图。** 摄影机不是为已摆好的立绘补一个角度；镜头位置必须实质改变人物关系、透视、遮挡、裁切或情绪。
@@ -6725,6 +6818,47 @@ An illustration blueprint is READY only when visual thesis, captured moment, mot
 - `references/oc-maximalist-closeup-backdrop-preset.md` — 极繁 OC 展示专用构图预设：特写垫底 + 主全身立绘 + 大头贴/元素贴 + 前景碎片。
 - `references/atmosphere-presets.md` — 去 AI 塑料感六维度 + 五个氛围预设（商业头像 / 清新日系 / 高定极简 / 暗黑叙事 / 电影海报）+ 选择决策流。
 - `references/white-background-fashion-grammar.md` — 白底时装人设的平面构图机制。
+
+---
+
+### Reference: references/duo-fashion-camera-staging-2026-10.md
+
+#### Duo Fashion & High-Angle Staging — 双人时装日常的镜头与视觉引导
+
+> **Scope:** IP 双人日常、二游联动时装、江南新中式、中近景、高机位俯拍、旅行抓拍。此文补充镜头的具体失败修正，不替代 `cinematic-camera-grammar.md` 的通用机位理论。来源：用户 2026-10-23 多轮文本纠偏；**TEXT-APPROVED / IMAGE-PENDING**，无已验证跑图结论。
+
+##### Camera-first：优先解一个画面瞬间
+
+反例：人物并列全身、正面站姿，身后是漂亮建筑；后来才贴 `cinematic` / `dynamic composition` / `slightly high angle` 标签。这不是电影调度。
+
+1. **瞬间先行**：选一个双人非同步事件：A 回身拉 B 的袖口；B 一手仍举伞另一手回应；A 将饮料递给 B；B 被带着跨过门槛。动作有前后 0.5 秒。
+2. **空间坐标**：明确摄影机在人物前方偏哪侧、离人有多近、比头部高多少、向下观看多少、地面能看见多少。用户要求“从上往下、中近景”时明确 `close elevated three-quarter view, looking down about 35–50 degrees` 只是候选，用可见肩顶、头发、地面透视来证明。不要把俯视画成角色主动弯腰，也不要照搬固定角度。
+3. **构图占比与裁切**：中近景优先两个脸、肩胸、腰、手部互动及必要的大腿上段；如果服装卖点在长靴/裙摆或全身，则另选半身/七分身或全身，**不可在同一 Prompt 中同时要求“tight medium-close”与“both complete full bodies / shoes”**。
+4. **层叠错位**：A 稍近相机、B 半步后；交错肩线与不同腰高；清楚哪条袖/手/道具穿过前景、哪只手抓谁、人物是否承重。严禁双人前后错层被写成第三个人。
+5. **视线路径**：只用一条主要路线连接“前景框→近景脸→两人握手/递物→远景脸→服装高设计区”；至少有一处安静背景用来休止。不是每样元素都要指向腰腿。
+6. **环境退位**：江南院落主要保留宫门框线、白墙/灰瓦、窄条湿石地；门框形成引导弧，竹影和水面可选。场景不是旅游景点拼贴。出行运动风则以交通设施一条透视线/行李牵引带表达事件，不强制雨夜、伞、车站、路灯。
+
+##### 双人行为约束
+
+- **A 与 B 必须有不同的动机**；一个主动、一个做出有时间差的回应。两人都看镜头并同时比手势，只适用于刻意合拍，不是默认。
+- **一件有因果的手持物足够**：折扇遮住笑容；伞柄引导手腕；饮品交换解释手部位置；车票说明即将乘车。不要自动把油纸伞、茶杯、扇子三件全上。
+- **风尚与身体曲线**：衣领、腰线、开衩在旋身/迈步/抬手时被自然展示；不靠强行扭腰把两个角色摆成模特。
+- **IP AU 规则**：两个人身份分别检查并单独锁发色、眼、发型、种族特征与性格；可变的联动衣服单独设计。不能乱称正典皮肤；认不准时先核实，不拿普通原创代替正典人物。
+
+##### 两个可迁移的画面机制（示例，不是模板）
+
+**江南宫门 / 新中式时装：** 从院门上方斜俯视，A 位于近侧，刚将折扇举至唇边，另一只手轻牵 B 的袖口；B 侧身回望、手里拿一件能解释行为的物件。白墙留在两人肩间当安静区，木门框收束大形。脸部和接触点最清楚，旗袍领、腰身与侧开衩必须在可见裁切范围内。
+
+**运动风出行：** 站台/街口侧上方观察，A 已转身冲着 B 招手，B 仍半拉着旅行袋、刚抬眼；运动服的袖口、背包带和发梢方向各自服从动作。距离与遮挡使两人关系像被捕获的一秒，而不是对镜头拍广告合照。
+
+##### Gate
+
+- [ ] 机位是否产生看得见的透视/遮挡/裁切差异？
+- [ ] 两人分别在做什么，哪个动作导致另一个动作？
+- [ ] 中近景实际能容纳请求展示的服装区域吗？
+- [ ] 手与手持物的归属、握持、遮挡是否互相一致？
+- [ ] 环境最多留几个真正参与画面的锚点？
+- [ ] 是否既像日常真实一瞬，又有清晰的第一、第二视觉焦点？
 
 ---
 
@@ -9875,6 +10009,10 @@ source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/03_prompt/m
 2. **Tags**：明确要纯标签、追求已验证角色/系列标签时使用。官方推荐顺序：Quality → Score → Meta → Year → Character → Series → Artist → General；各项**可为空**，个人默认不加画师、年份、质量串。MOSS 官方示例用 `@foo bar` 示意 artist 字段，**不是** NAI5 的 `artist:name`；用户明确不要画师，则不输出任何画师。仅把 Danbooru Gate **exact/alias** 的身份/关键事实当作 verified tag；普通自然语言风格短语是描述，不冒称 canonical tag。不要沿用 NAI5 的 `1.2::tag::` 或 Anima 的权重转义作为 MOSS 官方语法。
 3. **Layout**：仅当明确要求结构化坐标、排版文字、复杂多面板，且空间规则对结果有实质价值时使用。实际输入必须是**官方模型面向的 JSON**：`summary` + 平铺 `items`，`bbox_format:"yxyx"`、`bbox_coord_space:"abs_centralized"`、`bbox:[y_min,x_min,y_max,x_max]`。不要把编辑草稿的左上原点 `xyxy` 直接交给模型。可以先用 `scripts/moss_layout.py` 或官方 enhancer 从 `width,height,abs,xyxy` 草稿编译；无法确认坐标时优先 Caption，不杜撰“已经过校验”。详细规则见 `references/layout-contract.md`。
 
+#### 近期 MOSS Caption 精炼与矛盾检查（2026-10-23）
+
+对于用户近期的**双人电影感 / 商业时装 AU / 人设高还原**需求，按需加载 `references/caption-efficiency-2026-10.md`。顺序：**已验证身份和可改服饰范围 → 画幅/机位/裁切 → 两人非同步动作与手部接触 → 核心衣片结构 → 最少有效环境 → 光色**。避免用大段 `premium / cinematic / elegant` 同义词淹没空间信息；检验 `medium-close` 与 `full-body shoes` 等冲突。此处是本地写作规约，不声称经 MOSS 模型实测优化，Renderer 仍不能自行改变上游设计。
+
 #### 官方 Prompt Enhancer 融合流程（2026-10-21）
 
 与 OpenMOSS 官方 [moss-image-prompt-enhancer](https://github.com/OpenMOSS/MOSS-Image/tree/main/skills/moss-image-prompt-enhancer) 对齐，但**不照搬上游的创意决策职责**：美术方案和锁定事实仍由本 Harness 上游负责，Renderer 只在不改变方案的前提下做可见信息具体化、模式选择和格式编译。
@@ -9995,6 +10133,46 @@ Web-first 环境没有 shell 时：
 ##### 与 NAI5 的界限
 
 `character 1:`、`character 2:`、`source#`、单字符串 `|`、NAI5 权重均不是 MOSS JSON Layout。多人 Layout 通过分配不同 character items 实现相对位置（仍要说明彼此关系）。
+
+---
+
+### Reference: references/caption-efficiency-2026-10.md
+
+#### MOSS Caption Efficiency — 镜头、人物与服装的高密度可见描述
+
+> 本地项目的**写作/编译指南**，不属于 OpenMOSS 官方验证的提示词强度结论。适用：用户近期 MOSS 二游角色、原图反推、OC、双人电影感、时装 AU 需求。**IMAGE-PENDING**：没有相同模型/种子/参数的生成 A/B 对照。
+
+##### 问题
+
+用户近期多轮输出曾出现：800–1000 词以上的英文 Caption、重复“premium / cinematic / elegant / stylish”、一张图同时要求 `wide horizontal` / `vertical` 或 `medium-close` / `full body`，以及“角色正典服装”和“重新设计联动服装”界限不清。长文并不自动更好；遵从 **最小充分、可见且不冲突**。
+
+##### 编译优先级（单段或少量自然段，不使用内部标题）
+
+1. **身份锁**：人物数量，已核查的原作/IP名称与各自可见锚点；不能仅凭发色猜角色。原服设忠实时完全保留；用户要时装 AU 时明确 `outfit reimagining, preserve identity`。
+2. **画幅 / 镜头 / 人物占画面积**：horizontal/vertical、紧/中/七分身/全身选一套；相机相对于谁、从哪个方位、俯仰、观看权限、可见的身体区域；先写主要遮挡与视觉焦点。
+3. **一个决定性事件**：A 在做什么、B 的时间差回应；明确各只手接触的对象和道具物理方向，服装受姿势驱动。
+4. **服装剪裁而非形容词**：两人分别一句写主裁片/材质/开衩/露肤位置，后补 1–2 个有意义的细节。不同时复读‘glossy black latex thigh-high’到每个角色。
+5. **环境只作为摄影结构**：门框/楼梯/窗沿或交通设施的透视、反光、光源、画面休止区；避免风景清单。
+6. **视觉闭环**：镜头主体→动作接触点→副主体→服装签名结构→留白；最终用少量材质和颜色结尾。
+
+普通日常可短至 1–3 段；复杂双人换装可更长，但每句话必须提供新的可见信息，不能以目标字数为硬规则。临发前删除空泛“high-end premium cinematic masterpiece”等同义句群。
+
+##### 编译前防冲突清单
+
+- `high-angle close medium shot` 与 `full-body incl. shoes` 是否冲突？有冲突则优先用户锁定的角度/景别并舍弃不可见细节。
+- `strict original outfit` 与 `modern new-Chinese qipao skin` 是否冲突？明确忠实 vs AU。
+- 伞、折扇、茶杯、行李是否过多？只保留推动动作的物件。
+- 已知角色是否漏掉代表性发型、眼、角/尾/种族特征？如果身份不确定先核实，不假装 canon。
+- 是否为了显得有电影感自动加了雨、光斑、边框或过度 rim light？
+- 若只请求一个 Prompt，交付**单一英文 Caption 代码块**，不额外给多个方案、参数建议或训练数据结论。
+
+##### 极简编译示例（虚构双人，不宣称模型实测）
+
+```text
+Two adult women pause beneath a narrow courtyard gate, seen from a close three-quarter viewpoint above their heads looking down onto the wet stone. The woman nearest the lens wears a rose-colored modern qipao with a carefully curved waist seam and one thigh slit; she half-turns, lifting a folded fan toward her smile while catching her companion's sleeve with her free hand. The second woman, a step farther back in a porcelain-blue qipao, is still holding the handle of an umbrella as she turns toward the tug, amused. Their shoulders overlap, but both faces and the linked hands remain visible. The gate arch, a small band of white wall and the stone reflections form one quiet path back to their expressions. Soft diffuse daylight and pale reflected light reveal the silk without overwhelming the figures.
+```
+
+这是**表达结构示例**，不是 MOSS 官方最佳提示词，也不代表真实生图效果。
 
 ---
 

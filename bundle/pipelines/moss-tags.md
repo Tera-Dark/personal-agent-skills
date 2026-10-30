@@ -371,6 +371,10 @@ source: https://github.com/Tera-Dark/personal-agent-skills/tree/main/03_prompt/m
 2. **Tags**：明确要纯标签、追求已验证角色/系列标签时使用。官方推荐顺序：Quality → Score → Meta → Year → Character → Series → Artist → General；各项**可为空**，个人默认不加画师、年份、质量串。MOSS 官方示例用 `@foo bar` 示意 artist 字段，**不是** NAI5 的 `artist:name`；用户明确不要画师，则不输出任何画师。仅把 Danbooru Gate **exact/alias** 的身份/关键事实当作 verified tag；普通自然语言风格短语是描述，不冒称 canonical tag。不要沿用 NAI5 的 `1.2::tag::` 或 Anima 的权重转义作为 MOSS 官方语法。
 3. **Layout**：仅当明确要求结构化坐标、排版文字、复杂多面板，且空间规则对结果有实质价值时使用。实际输入必须是**官方模型面向的 JSON**：`summary` + 平铺 `items`，`bbox_format:"yxyx"`、`bbox_coord_space:"abs_centralized"`、`bbox:[y_min,x_min,y_max,x_max]`。不要把编辑草稿的左上原点 `xyxy` 直接交给模型。可以先用 `scripts/moss_layout.py` 或官方 enhancer 从 `width,height,abs,xyxy` 草稿编译；无法确认坐标时优先 Caption，不杜撰“已经过校验”。详细规则见 `references/layout-contract.md`。
 
+#### 近期 MOSS Caption 精炼与矛盾检查（2026-10-23）
+
+对于用户近期的**双人电影感 / 商业时装 AU / 人设高还原**需求，按需加载 `references/caption-efficiency-2026-10.md`。顺序：**已验证身份和可改服饰范围 → 画幅/机位/裁切 → 两人非同步动作与手部接触 → 核心衣片结构 → 最少有效环境 → 光色**。避免用大段 `premium / cinematic / elegant` 同义词淹没空间信息；检验 `medium-close` 与 `full-body shoes` 等冲突。此处是本地写作规约，不声称经 MOSS 模型实测优化，Renderer 仍不能自行改变上游设计。
+
 #### 官方 Prompt Enhancer 融合流程（2026-10-21）
 
 与 OpenMOSS 官方 [moss-image-prompt-enhancer](https://github.com/OpenMOSS/MOSS-Image/tree/main/skills/moss-image-prompt-enhancer) 对齐，但**不照搬上游的创意决策职责**：美术方案和锁定事实仍由本 Harness 上游负责，Renderer 只在不改变方案的前提下做可见信息具体化、模式选择和格式编译。
@@ -433,6 +437,7 @@ MOSS 官方确认三种输入**格式**、Tag 字段顺序和示例；未发布�
 Detailed references are separate files. Read only the references required by the current task; do not fetch every reference by default. Each URL points to the generated, version-matched source for this Harness build.
 
 - `references/layout-contract.md` (~1265 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/moss-image-renderer/references/layout-contract.md
+- `references/caption-efficiency-2026-10.md` (~1140 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/moss-image-renderer/references/caption-efficiency-2026-10.md
 - `references/official-enhancer-workflow.md` (~2110 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/moss-image-renderer/references/official-enhancer-workflow.md
 - `references/style-control.md` (~1154 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/moss-image-renderer/references/style-control.md
 - `references/examples.md` (~807 tokens): https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/references/moss-image-renderer/references/examples.md
