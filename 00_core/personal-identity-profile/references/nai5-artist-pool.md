@@ -681,6 +681,7 @@ artist:jinzhangde_piku
 artist:shen_a_fang
 artist:guigui_rongrong
 artist:diurtion
+artist:gillannn
 artist:tengyuan_keke
 artist:shaiziji
 artist:xingchunxiang
