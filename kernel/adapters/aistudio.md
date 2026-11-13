@@ -8,7 +8,7 @@ This adapter is the Google AI Studio entry point. It embeds the ordinary L1 Harn
 
 - Enable **URL Context** in AI Studio's Tools before sending the entry URL.
 - URL Context reads the URLs explicitly supplied to it. It does **not** automatically crawl or recursively fetch links found inside a fetched Markdown file.
-- The embedded L1 Harness is already loaded. Do not fetch \`HARNESS.md\` again unless this adapter was truncated or unreadable.
+- The embedded L1 Harness is already loaded. Do not fetch `HARNESS.md` again unless this adapter was truncated or unreadable.
 - Treat links in the embedded index as a routing catalog, not proof that their contents have been loaded.
 - After identifying the task, explicitly request the selected raw URLs through URL Context. Batch the smallest useful set in one request (one L2 card, at most one target pipeline pack, and only the necessary L3 module/reference files). Do not preload all modules.
 - If AI Studio cannot make a second URL Context request, ask the user to provide the selected raw URL(s) or paste their contents. Continue only within the available evidence and mark missing critical sources unavailable.
@@ -18,8 +18,8 @@ This adapter is the Google AI Studio entry point. It embeds the ordinary L1 Harn
 
 1. **L1 — already embedded:** use the Identity, Router, execution contract, full module index, failure policy, task-card URLs and pipeline URLs in the embedded Harness.
 2. **L2 — select by intent:** fetch one matching task card when the task is a portrait, cinematic duo, concept poster or fast variant. For other tasks, skip L2 if no card fits.
-3. **Pipeline — select by target:** for model-specific image prompting, fetch the matching pipeline pack: \`nai5\`, \`anima\`, \`moss\` or \`moss-tags\`. MOSS Caption/Layout uses \`moss\`; verified Tags use \`moss-tags\`.
-4. **L3 — only when needed:** fetch the selected module contract and the specific reference files required for complex, novel, uncertain or failed tasks. Use the module index's exact URL. Technical tasks route to their corresponding module; \`planned\` modules are placeholders, not implemented capabilities.
+3. **Pipeline — select by target:** for model-specific image prompting, fetch the matching pipeline pack: `nai5`, `anima`, `moss` or `moss-tags`. MOSS Caption/Layout uses `moss`; verified Tags use `moss-tags`.
+4. **L3 — only when needed:** fetch the selected module contract and the specific reference files required for complex, novel, uncertain or failed tasks. Use the module index's exact URL. Technical tasks route to their corresponding module; `planned` modules are placeholders, not implemented capabilities.
 5. **Version check:** compare each fetched file's Harness version with this adapter's version. If a file is from a different version, retry using the same commit-pinned path when available. If consistency cannot be established, disclose that limitation and apply the existing failure policy.
 
 ## 3. URL Context failure behavior
@@ -34,7 +34,7 @@ This adapter is the Google AI Studio entry point. It embeds the ordinary L1 Harn
 
 In a fresh AI Studio prompt, enable URL Context and provide this adapter URL:
 
-\`{{AISTUDIO_URL}}\`
+`{{AISTUDIO_URL}}`
 
 If the first message also contains a task, complete it rather than stopping at the handshake. If it contains only the adapter URL, use the Harness handshake. Keep subsequent reads scoped to the selected task and target.
 
