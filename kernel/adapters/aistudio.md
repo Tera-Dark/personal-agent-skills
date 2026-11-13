@@ -1,4 +1,4 @@
-# Google AI Studio Adapter — source template
+# Google AI Studio Adapter
 
 > Generated for Harness v{{VERSION}} · built {{BUILD_DATE}} · {{MODULE_COUNT}} modules indexed
 
