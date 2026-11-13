@@ -18,6 +18,14 @@ If the harness is inaccessible, reply: `我无法访问链接。请把 bundle/HA
 
 只有链接时，AI 会确认加载；同一条消息有任务时直接做任务。链接读取、缓存与多文件访问能力因平台而异，不能保证每次都成功。无法访问时可粘贴 [精简入口](bundle/HARNESS.md)，并在需要时粘贴相应 [模型管线](bundle/pipelines/)；[完整包](bundle/HARNESS-FULL.md) 体积很大，能上传不代表一定能被完整利用。
 
+### Google AI Studio
+
+在 AI Studio 新建 Prompt，打开 Tools 中的 **URL Context**，然后发送：
+
+`https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/AISTUDIO.md`
+
+可以在同一条消息里附上具体任务。AI Studio 专用入口内嵌 L1 核心和完整路由索引；执行任务时再显式读取所需任务卡、模型管线或深度模块。URL Context 不会自动递归读取 Markdown 中的链接，因此模型必须主动提交选中的 URL；如果当前会话无法继续读取 URL，就把对应文件链接或内容交给模型。
+
 版本固定保证会话内读取同一提交；如果网页工具缓存了 GitHub API，所选提交仍可能不是最新版本。不能固定时，AI 应检查可用文件的版本并说明一致性尚未验证。
 
 ## 默认习惯

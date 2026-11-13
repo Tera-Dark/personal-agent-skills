@@ -63,7 +63,17 @@ design / finished packet
 - pipeline pack → [pipeline-unavailable]
 - Danbooru index → [tag-index-unavailable]
 
-## 5. Commands
+## 5. Google AI Studio / URL Context
+
+1. Open Google AI Studio and create a Chat Prompt.
+2. Enable **URL Context** in Tools.
+3. Send `https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/bundle/AISTUDIO.md`, optionally with the task in the same message.
+4. The adapter embeds L1 and the full module index. For a real task, the model must explicitly fetch the selected L2 task card, target pipeline and only the required L3 modules/references. URL Context does not automatically follow links in fetched Markdown.
+5. Check the Harness version on every fetched file. If the model cannot issue another URL Context request, provide the selected raw URL or paste the file contents. Missing critical pipeline sources must trigger the existing failure policy.
+
+Do not paste `HARNESS-FULL.md` by default. The AI Studio adapter is the balanced entry; deep module knowledge remains on demand. The URL Context tool's URL and file-size limits are platform constraints, not guarantees that every nested source has been read.
+
+## 6. Commands
 
 | 命令 | 作用 |
 |---|---|
@@ -75,7 +85,7 @@ design / finished packet
 | /new-module <name> | 扩展协议 |
 | /version | 版本与构建日期 |
 
-## 6. 开发
+## 7. 开发
 
 \`\`\`bash
 python3 scripts/validate_skills.py
@@ -85,7 +95,7 @@ python3 scripts/validate_skills.py --check-bundle
 
 `bundle/manifest.json` 中的 token 数是粗略估算，实际取决于模型与平台。
 
-## 7. CI / tag-index maintenance
+## 8. CI / tag-index maintenance
 
 日常 PR 使用仓库已提交的标签索引快照，离线检验结构，然后在 Runner 中生成并检查 Bundle；不要求 PR 作者手工提交生成产物。合入 main 后，CI 自动提交更新的 Bundle。
 
