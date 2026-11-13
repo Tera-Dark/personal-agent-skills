@@ -7,6 +7,7 @@ Outputs (all generated — never edit by hand):
 
   bundle/HARNESS.md            kernel + module index + ALWAYS-ON modules (the file to fetch/paste)
   bundle/HARNESS-FULL.md       everything: kernel + index + every module with all references
+  bundle/AISTUDIO.md          balanced Google AI Studio entry + embedded L1 Harness
   bundle/modules/<name>.md     compact module contract + links to on-demand references
   bundle/references/<module>/... one generated file per detailed reference
   bundle/pipelines/<name>.md  generated multi-module contract packs (one Web-first fetch)
@@ -279,6 +280,29 @@ def render_harness(root, cfg, version, skills, entries, full=False):
     return "\n".join(lines)
 
 
+
+def render_aistudio(root, cfg, version, skills, entries):
+    """Render the balanced Google AI Studio entry with an embedded L1 Harness."""
+    template_path = os.path.join(root, "kernel", "adapters", "aistudio.md")
+    if not os.path.isfile(template_path):
+        raise SystemExit("missing AI Studio adapter source: kernel/adapters/aistudio.md")
+    template = open(template_path, encoding="utf-8").read()
+    harness = render_harness(root, cfg, version, skills, entries, full=False)
+    adapter_url = f"{raw_base(cfg)}{cfg['bundle_dir']}/AISTUDIO.md"
+    substitutions = {
+        "{{VERSION}}": version,
+        "{{BUILD_DATE}}": L.today(),
+        "{{MODULE_COUNT}}": str(len(entries)),
+        "{{AISTUDIO_URL}}": adapter_url,
+        "{{EMBEDDED_HARNESS}}": L.demote_headings(harness, 1).rstrip(),
+    }
+    for key, value in substitutions.items():
+        template = template.replace(key, value)
+    if "{{" in template:
+        raise SystemExit("AI Studio adapter source contains an unresolved template token")
+    return GEN_NOTE + "\n" + template.rstrip() + "\n"
+
+
 def render_registry(cfg, version, entries):
     rows = ["| Skill | Layer | Load | Status | Purpose | Triggers |", "|---|---|---|---|---|---|"]
     for e in entries:
@@ -345,6 +369,7 @@ def build_outputs(root):
         outputs[f'{bundle_dir}/task-packs/{name}.md'] = GEN_NOTE + '\n' + f'# L2 TASK CARD: {name} · harness v{version}\n\n' + card
     outputs[f"{bundle_dir}/HARNESS.md"] = render_harness(root, cfg, version, skills, entries, full=False)
     outputs[f"{bundle_dir}/HARNESS-FULL.md"] = render_harness(root, cfg, version, skills, entries, full=True)
+    outputs[f"{bundle_dir}/AISTUDIO.md"] = render_aistudio(root, cfg, version, skills, entries)
     manifest = {
         "name": cfg["name"],
         "version": version,
@@ -353,6 +378,8 @@ def build_outputs(root):
         "raw_base": raw_base(cfg),
         "harness_url": f"{raw_base(cfg)}{bundle_dir}/HARNESS.md",
         "harness_full_url": f"{raw_base(cfg)}{bundle_dir}/HARNESS-FULL.md",
+        "aistudio_url": f"{raw_base(cfg)}{bundle_dir}/AISTUDIO.md",
+        "aistudio_tokens": L.estimate_tokens(outputs[f"{bundle_dir}/AISTUDIO.md"]),
         "handshake": cfg["handshake"].format(version=version, modules=len(entries)),
         "core_tokens": L.estimate_tokens(outputs[f"{bundle_dir}/HARNESS.md"]),
         "full_tokens": L.estimate_tokens(outputs[f"{bundle_dir}/HARNESS-FULL.md"]),
