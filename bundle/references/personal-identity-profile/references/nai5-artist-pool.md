@@ -7,7 +7,7 @@ source: https://raw.githubusercontent.com/Tera-Dark/personal-agent-skills/main/0
 
 > Canonical personal artist pool for NovelAI V5 experiments.
 >
-> Updated: 2026-10-12
+> Updated: 2026-11-17
 
 ### 1. Pool semantics
 
@@ -354,10 +354,9 @@ These are user-scored individual tests. **Scores do not automatically change the
 - Best-fit elements: game-promo composition, character key visuals, strong focal framing, readable costume design, polished lighting.
 
 #### `artist:mihiro_00122`
-- Status: **permanently blacklisted by user**
-- User feedback:使用时出现与 `yellowshark601` 类似的糊图问题.
-- Historical note: an earlier blanket digit-ending exclusion was superseded by the user's explicit 2026-10-12 formatting correction. Digit-ending names are now allowed if otherwise eligible, using a protective space before the closing `::`; this explicitly blacklisted artist remains excluded.
-- Do not include in random artist selection, single-artist testing, or recommended stacks.
+- Status: **restored to the eligible artist pool by the user on 2026-11-17**.
+- Historical note: the earlier blur / weight-recognition issue was caused by incorrect serialization of digit-ending artist names, not by a confirmed incompatibility of this artist.
+- This artist is no longer blacklisted. When emitting a weighted NAI5 tag, use exactly one ASCII space before the closing `::`: `0.3::artist:mihiro_00122 ::`.
 
 #### `artist:tidsean`
 - Score: **8.5/10**
@@ -602,18 +601,16 @@ artist:shironeko_yuuki
 
 ### 11. Permanent exclusion
 
-~~~text
-artist:yellowshark601
-artist:mihiro_00122
-~~~
+**No permanent artist exclusions are currently active.**
 
-Never use these artists in random selection.
+- **User restoration — 2026-11-17:** `artist:yellowshark601` and `artist:mihiro_00122` are both restored to the eligible pool. The earlier apparent blur / weight-recognition issue was caused by missing protective spaces in weighted NAI5 tags for digit-ending artist names, not a reason to permanently exclude these artists.
+- Do not reintroduce either artist as a blacklist entry unless the user explicitly requests it in a future update.
 
-#### Digit-ending artist names: serialization rule vs actual exclusions
+#### Digit-ending artist names: serialization rule
 
-- **User correction (2026-10-12): digit-ending artist names are NOT automatically blacklisted solely for ending in a digit.** The user's NAI5 tutorial identifies a weighted-tag parsing issue. For every eligible artist name whose final character is `0`–`9`, serialize its weighted NAI5 token with **exactly one ASCII space before closing `::`**: `0.3::artist:mgong520 ::,` (correct), NEVER `0.3::artist:mgong520::,`. This includes future digit-ending artist names. Non-digit names retain the regular serialization.
-- An eligible artist such as `mgong520` may be used with the protective trailing space; this rule does not automatically approve unverified tags or previously excluded artists.
-- Explicit individual technical blacklist entries still apply: `artist:yellowshark601`, `artist:mihiro_00122`. Preserve the earlier documented low-signal/problematic `artist:vlfdus_0` and `artist:zishengtian123` as excluded from new stacks unless the user explicitly requests them; their historical appearances are not recommendations.
+- **User correction (2026-10-12; reaffirmed 2026-11-17): digit-ending artist names are NOT automatically blacklisted solely for ending in a digit.** For every eligible artist name whose final character is `0`–`9`, serialize its weighted NAI5 token with **exactly one ASCII space before closing `::`**: `0.3::artist:mgong520 ::,` (correct), NEVER `0.3::artist:mgong520::,`. This includes `yellowshark601`, `mihiro_00122`, and future digit-ending artist names. Non-digit names retain the regular serialization.
+- The protective space is output syntax only; it is not part of the canonical artist name. It fixes the weighted-tag parsing issue and does not itself verify an unverified artist tag.
+- Preserve the earlier documented low-signal/problematic `artist:vlfdus_0` and `artist:zishengtian123` as excluded from new stacks unless the user explicitly requests them; their historical appearances are not recommendations.
 - Historical combinations may retain previous spellings as records, but every **new output** must obey the corrected serialization and current specific exclusions.
 
 ### 12. Maintenance rules
