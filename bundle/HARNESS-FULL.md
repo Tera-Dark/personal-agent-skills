@@ -1279,6 +1279,7 @@ The following list was explicitly supplied by the user for the **精选画师池
 - For random stacks requested from this pool, select exactly 5 distinct artists per stack and apply the current experiment rule in §1: each weight 0.3–1.2, with at least one weight >1.0.
 - The existing exclusions and exact NAI5 serialization rules elsewhere in this file still apply.
 - Parentheses and other punctuation in the source names are retained exactly as supplied; verify canonical tag spelling separately before treating any unverified spelling as a confirmed hard tag.
+- **2026-11-17 update:** `yellowshark601` and `mihiro_00122` were restored after the user identified the missing trailing ASCII space in digit-ending weighted tags as the cause of the earlier parsing issue; both are appended to this curated pool.
 
 ~~~text
 artist:9degree
@@ -1327,6 +1328,8 @@ artist:xingchunxiang
 artist:xiao_pin_pan
 artist:glutton_（18152740927lx）
 artist:shiling
+artist:yellowshark601
+artist:mihiro_00122
 ~~~
 
 ---
